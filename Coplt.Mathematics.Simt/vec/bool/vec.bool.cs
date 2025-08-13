@@ -2,1029 +2,345 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region b32v2_mt4
+#region b32v2_mt
 
-public partial struct b32v2_mt4
+public partial struct b32v2_mt
 {
-    public static b32v2_mt4 True
+    public static b32v2_mt True
     {
         [MethodImpl(256 | 512)]
         get => new(b32v.True);
     }
-    public static b32v2_mt4 False
+    public static b32v2_mt False
     {
         [MethodImpl(256 | 512)]
         get => new(b32v.False);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator !(b32v2_mt4 self) => ~self;
+    public static b32v2_mt operator !(b32v2_mt self) => ~self;
 }
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32_mt4 all([This] b32v2_mt4 v)
+    public static b32_mt all([This] b32v2_mt v)
     {
         return v.x & v.y;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt4 any([This] b32v2_mt4 v)
+    public static b32_mt any([This] b32v2_mt v)
     {
         return v.x | v.y;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt4 all_false([This] b32v2_mt4 v) => ~any(v);
+    public static b32_mt all_false([This] b32v2_mt v) => ~any(v);
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v2_mt4 v)
+    public static bool lane_all([This] b32v2_mt v)
     {
         return v.x.lane_all() && v.y.lane_all();
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v2_mt4 v)
+    public static bool lane_any([This] b32v2_mt v)
     {
         return v.x.lane_any() || v.y.lane_any();
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v2_mt4 v)
+    public static bool lane_all_false([This] b32v2_mt v)
     {
         return v.x.lane_all_false() && v.y.lane_all_false();
     }
 }
 
-#endregion // b32v2_mt4
-#region b32v2_mt8
+#endregion // b32v2_mt
+#region b32v3_mt
 
-public partial struct b32v2_mt8
+public partial struct b32v3_mt
 {
-    public static b32v2_mt8 True
+    public static b32v3_mt True
     {
         [MethodImpl(256 | 512)]
         get => new(b32v.True);
     }
-    public static b32v2_mt8 False
+    public static b32v3_mt False
     {
         [MethodImpl(256 | 512)]
         get => new(b32v.False);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator !(b32v2_mt8 self) => ~self;
+    public static b32v3_mt operator !(b32v3_mt self) => ~self;
 }
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32_mt8 all([This] b32v2_mt8 v)
+    public static b32_mt all([This] b32v3_mt v)
+    {
+        return v.x & v.y & v.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt any([This] b32v3_mt v)
+    {
+        return v.x | v.y | v.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt all_false([This] b32v3_mt v) => ~any(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool lane_all([This] b32v3_mt v)
+    {
+        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all();
+    }
+
+    [MethodImpl(256 | 512)]
+    public static bool lane_any([This] b32v3_mt v)
+    {
+        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any();
+    }
+
+    [MethodImpl(256 | 512)]
+    public static bool lane_all_false([This] b32v3_mt v)
+    {
+        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false();
+    }
+}
+
+#endregion // b32v3_mt
+#region b32v4_mt
+
+public partial struct b32v4_mt
+{
+    public static b32v4_mt True
+    {
+        [MethodImpl(256 | 512)]
+        get => new(b32v.True);
+    }
+    public static b32v4_mt False
+    {
+        [MethodImpl(256 | 512)]
+        get => new(b32v.False);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator !(b32v4_mt self) => ~self;
+}
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32_mt all([This] b32v4_mt v)
+    {
+        return v.x & v.y & v.z & v.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt any([This] b32v4_mt v)
+    {
+        return v.x | v.y | v.z | v.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt all_false([This] b32v4_mt v) => ~any(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool lane_all([This] b32v4_mt v)
+    {
+        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all() && v.w.lane_all();
+    }
+
+    [MethodImpl(256 | 512)]
+    public static bool lane_any([This] b32v4_mt v)
+    {
+        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any() || v.w.lane_any();
+    }
+
+    [MethodImpl(256 | 512)]
+    public static bool lane_all_false([This] b32v4_mt v)
+    {
+        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false() && v.w.lane_all_false();
+    }
+}
+
+#endregion // b32v4_mt
+#region b64v2_mt
+
+public partial struct b64v2_mt
+{
+    public static b64v2_mt True
+    {
+        [MethodImpl(256 | 512)]
+        get => new(b64v.True);
+    }
+    public static b64v2_mt False
+    {
+        [MethodImpl(256 | 512)]
+        get => new(b64v.False);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt operator !(b64v2_mt self) => ~self;
+}
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64_mt all([This] b64v2_mt v)
     {
         return v.x & v.y;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt8 any([This] b32v2_mt8 v)
+    public static b64_mt any([This] b64v2_mt v)
     {
         return v.x | v.y;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt8 all_false([This] b32v2_mt8 v) => ~any(v);
+    public static b64_mt all_false([This] b64v2_mt v) => ~any(v);
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v2_mt8 v)
+    public static bool lane_all([This] b64v2_mt v)
     {
         return v.x.lane_all() && v.y.lane_all();
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v2_mt8 v)
+    public static bool lane_any([This] b64v2_mt v)
     {
         return v.x.lane_any() || v.y.lane_any();
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v2_mt8 v)
+    public static bool lane_all_false([This] b64v2_mt v)
     {
         return v.x.lane_all_false() && v.y.lane_all_false();
     }
 }
 
-#endregion // b32v2_mt8
-#region b32v2_mt16
+#endregion // b64v2_mt
+#region b64v3_mt
 
-public partial struct b32v2_mt16
+public partial struct b64v3_mt
 {
-    public static b32v2_mt16 True
+    public static b64v3_mt True
     {
         [MethodImpl(256 | 512)]
-        get => new(b32v.True);
+        get => new(b64v.True);
     }
-    public static b32v2_mt16 False
+    public static b64v3_mt False
     {
         [MethodImpl(256 | 512)]
-        get => new(b32v.False);
+        get => new(b64v.False);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator !(b32v2_mt16 self) => ~self;
+    public static b64v3_mt operator !(b64v3_mt self) => ~self;
 }
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32_mt16 all([This] b32v2_mt16 v)
-    {
-        return v.x & v.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 any([This] b32v2_mt16 v)
-    {
-        return v.x | v.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 all_false([This] b32v2_mt16 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v2_mt16 v)
-    {
-        return v.x.lane_all() && v.y.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v2_mt16 v)
-    {
-        return v.x.lane_any() || v.y.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v2_mt16 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false();
-    }
-}
-
-#endregion // b32v2_mt16
-#region b32v3_mt4
-
-public partial struct b32v3_mt4
-{
-    public static b32v3_mt4 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.True);
-    }
-    public static b32v3_mt4 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator !(b32v3_mt4 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt4 all([This] b32v3_mt4 v)
+    public static b64_mt all([This] b64v3_mt v)
     {
         return v.x & v.y & v.z;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt4 any([This] b32v3_mt4 v)
+    public static b64_mt any([This] b64v3_mt v)
     {
         return v.x | v.y | v.z;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt4 all_false([This] b32v3_mt4 v) => ~any(v);
+    public static b64_mt all_false([This] b64v3_mt v) => ~any(v);
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v3_mt4 v)
+    public static bool lane_all([This] b64v3_mt v)
     {
         return v.x.lane_all() && v.y.lane_all() && v.z.lane_all();
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v3_mt4 v)
+    public static bool lane_any([This] b64v3_mt v)
     {
         return v.x.lane_any() || v.y.lane_any() || v.z.lane_any();
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v3_mt4 v)
+    public static bool lane_all_false([This] b64v3_mt v)
     {
         return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false();
     }
 }
 
-#endregion // b32v3_mt4
-#region b32v3_mt8
+#endregion // b64v3_mt
+#region b64v4_mt
 
-public partial struct b32v3_mt8
+public partial struct b64v4_mt
 {
-    public static b32v3_mt8 True
+    public static b64v4_mt True
     {
         [MethodImpl(256 | 512)]
-        get => new(b32v.True);
+        get => new(b64v.True);
     }
-    public static b32v3_mt8 False
+    public static b64v4_mt False
     {
         [MethodImpl(256 | 512)]
-        get => new(b32v.False);
+        get => new(b64v.False);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator !(b32v3_mt8 self) => ~self;
+    public static b64v4_mt operator !(b64v4_mt self) => ~self;
 }
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32_mt8 all([This] b32v3_mt8 v)
-    {
-        return v.x & v.y & v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt8 any([This] b32v3_mt8 v)
-    {
-        return v.x | v.y | v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt8 all_false([This] b32v3_mt8 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v3_mt8 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v3_mt8 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v3_mt8 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false();
-    }
-}
-
-#endregion // b32v3_mt8
-#region b32v3_mt16
-
-public partial struct b32v3_mt16
-{
-    public static b32v3_mt16 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.True);
-    }
-    public static b32v3_mt16 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator !(b32v3_mt16 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 all([This] b32v3_mt16 v)
-    {
-        return v.x & v.y & v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 any([This] b32v3_mt16 v)
-    {
-        return v.x | v.y | v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 all_false([This] b32v3_mt16 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v3_mt16 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v3_mt16 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v3_mt16 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false();
-    }
-}
-
-#endregion // b32v3_mt16
-#region b32v4_mt4
-
-public partial struct b32v4_mt4
-{
-    public static b32v4_mt4 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.True);
-    }
-    public static b32v4_mt4 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator !(b32v4_mt4 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt4 all([This] b32v4_mt4 v)
+    public static b64_mt all([This] b64v4_mt v)
     {
         return v.x & v.y & v.z & v.w;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt4 any([This] b32v4_mt4 v)
+    public static b64_mt any([This] b64v4_mt v)
     {
         return v.x | v.y | v.z | v.w;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt4 all_false([This] b32v4_mt4 v) => ~any(v);
+    public static b64_mt all_false([This] b64v4_mt v) => ~any(v);
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v4_mt4 v)
+    public static bool lane_all([This] b64v4_mt v)
     {
         return v.x.lane_all() && v.y.lane_all() && v.z.lane_all() && v.w.lane_all();
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v4_mt4 v)
+    public static bool lane_any([This] b64v4_mt v)
     {
         return v.x.lane_any() || v.y.lane_any() || v.z.lane_any() || v.w.lane_any();
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v4_mt4 v)
+    public static bool lane_all_false([This] b64v4_mt v)
     {
         return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false() && v.w.lane_all_false();
     }
 }
 
-#endregion // b32v4_mt4
-#region b32v4_mt8
-
-public partial struct b32v4_mt8
-{
-    public static b32v4_mt8 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.True);
-    }
-    public static b32v4_mt8 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator !(b32v4_mt8 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt8 all([This] b32v4_mt8 v)
-    {
-        return v.x & v.y & v.z & v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt8 any([This] b32v4_mt8 v)
-    {
-        return v.x | v.y | v.z | v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt8 all_false([This] b32v4_mt8 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v4_mt8 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all() && v.w.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v4_mt8 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any() || v.w.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v4_mt8 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false() && v.w.lane_all_false();
-    }
-}
-
-#endregion // b32v4_mt8
-#region b32v4_mt16
-
-public partial struct b32v4_mt16
-{
-    public static b32v4_mt16 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.True);
-    }
-    public static b32v4_mt16 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator !(b32v4_mt16 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 all([This] b32v4_mt16 v)
-    {
-        return v.x & v.y & v.z & v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 any([This] b32v4_mt16 v)
-    {
-        return v.x | v.y | v.z | v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 all_false([This] b32v4_mt16 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32v4_mt16 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all() && v.w.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32v4_mt16 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any() || v.w.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32v4_mt16 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false() && v.w.lane_all_false();
-    }
-}
-
-#endregion // b32v4_mt16
-#region b64v2_mt4
-
-public partial struct b64v2_mt4
-{
-    public static b64v2_mt4 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v2_mt4 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator !(b64v2_mt4 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 all([This] b64v2_mt4 v)
-    {
-        return v.x & v.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 any([This] b64v2_mt4 v)
-    {
-        return v.x | v.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 all_false([This] b64v2_mt4 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v2_mt4 v)
-    {
-        return v.x.lane_all() && v.y.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v2_mt4 v)
-    {
-        return v.x.lane_any() || v.y.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v2_mt4 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false();
-    }
-}
-
-#endregion // b64v2_mt4
-#region b64v2_mt8
-
-public partial struct b64v2_mt8
-{
-    public static b64v2_mt8 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v2_mt8 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator !(b64v2_mt8 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 all([This] b64v2_mt8 v)
-    {
-        return v.x & v.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 any([This] b64v2_mt8 v)
-    {
-        return v.x | v.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 all_false([This] b64v2_mt8 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v2_mt8 v)
-    {
-        return v.x.lane_all() && v.y.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v2_mt8 v)
-    {
-        return v.x.lane_any() || v.y.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v2_mt8 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false();
-    }
-}
-
-#endregion // b64v2_mt8
-#region b64v2_mt16
-
-public partial struct b64v2_mt16
-{
-    public static b64v2_mt16 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v2_mt16 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator !(b64v2_mt16 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 all([This] b64v2_mt16 v)
-    {
-        return v.x & v.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 any([This] b64v2_mt16 v)
-    {
-        return v.x | v.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 all_false([This] b64v2_mt16 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v2_mt16 v)
-    {
-        return v.x.lane_all() && v.y.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v2_mt16 v)
-    {
-        return v.x.lane_any() || v.y.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v2_mt16 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false();
-    }
-}
-
-#endregion // b64v2_mt16
-#region b64v3_mt4
-
-public partial struct b64v3_mt4
-{
-    public static b64v3_mt4 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v3_mt4 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator !(b64v3_mt4 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 all([This] b64v3_mt4 v)
-    {
-        return v.x & v.y & v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 any([This] b64v3_mt4 v)
-    {
-        return v.x | v.y | v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 all_false([This] b64v3_mt4 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v3_mt4 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v3_mt4 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v3_mt4 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false();
-    }
-}
-
-#endregion // b64v3_mt4
-#region b64v3_mt8
-
-public partial struct b64v3_mt8
-{
-    public static b64v3_mt8 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v3_mt8 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator !(b64v3_mt8 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 all([This] b64v3_mt8 v)
-    {
-        return v.x & v.y & v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 any([This] b64v3_mt8 v)
-    {
-        return v.x | v.y | v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 all_false([This] b64v3_mt8 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v3_mt8 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v3_mt8 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v3_mt8 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false();
-    }
-}
-
-#endregion // b64v3_mt8
-#region b64v3_mt16
-
-public partial struct b64v3_mt16
-{
-    public static b64v3_mt16 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v3_mt16 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator !(b64v3_mt16 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 all([This] b64v3_mt16 v)
-    {
-        return v.x & v.y & v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 any([This] b64v3_mt16 v)
-    {
-        return v.x | v.y | v.z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 all_false([This] b64v3_mt16 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v3_mt16 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v3_mt16 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v3_mt16 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false();
-    }
-}
-
-#endregion // b64v3_mt16
-#region b64v4_mt4
-
-public partial struct b64v4_mt4
-{
-    public static b64v4_mt4 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v4_mt4 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator !(b64v4_mt4 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 all([This] b64v4_mt4 v)
-    {
-        return v.x & v.y & v.z & v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 any([This] b64v4_mt4 v)
-    {
-        return v.x | v.y | v.z | v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 all_false([This] b64v4_mt4 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v4_mt4 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all() && v.w.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v4_mt4 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any() || v.w.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v4_mt4 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false() && v.w.lane_all_false();
-    }
-}
-
-#endregion // b64v4_mt4
-#region b64v4_mt8
-
-public partial struct b64v4_mt8
-{
-    public static b64v4_mt8 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v4_mt8 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator !(b64v4_mt8 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 all([This] b64v4_mt8 v)
-    {
-        return v.x & v.y & v.z & v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 any([This] b64v4_mt8 v)
-    {
-        return v.x | v.y | v.z | v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 all_false([This] b64v4_mt8 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v4_mt8 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all() && v.w.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v4_mt8 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any() || v.w.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v4_mt8 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false() && v.w.lane_all_false();
-    }
-}
-
-#endregion // b64v4_mt8
-#region b64v4_mt16
-
-public partial struct b64v4_mt16
-{
-    public static b64v4_mt16 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.True);
-    }
-    public static b64v4_mt16 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64v.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator !(b64v4_mt16 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 all([This] b64v4_mt16 v)
-    {
-        return v.x & v.y & v.z & v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 any([This] b64v4_mt16 v)
-    {
-        return v.x | v.y | v.z | v.w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 all_false([This] b64v4_mt16 v) => ~any(v);
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64v4_mt16 v)
-    {
-        return v.x.lane_all() && v.y.lane_all() && v.z.lane_all() && v.w.lane_all();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64v4_mt16 v)
-    {
-        return v.x.lane_any() || v.y.lane_any() || v.z.lane_any() || v.w.lane_any();
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64v4_mt16 v)
-    {
-        return v.x.lane_all_false() && v.y.lane_all_false() && v.z.lane_all_false() && v.w.lane_all_false();
-    }
-}
-
-#endregion // b64v4_mt16
+#endregion // b64v4_mt

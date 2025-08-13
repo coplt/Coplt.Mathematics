@@ -6,7 +6,7 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -23,7 +23,7 @@ namespace Coplt.Mathematics.Simt;
             {
                 foreach (var size in sizes)
                 {
-                    var typeName = $"{typ.name.Replace('v', 'm')}{n}x{m}_mt{size}";
+                    var typeName = $"{typ.name.Replace('v', 'm')}{n}x{m}_mt";
 #>
 
 #region <#= typeName #>
@@ -34,7 +34,7 @@ public static partial class math_mt
 <#
                     foreach (var (target, name) in ss)
                     {
-                        var tarName = $"{target.Replace('v', 'm')}{n}x{m}_mt{size}";
+                        var tarName = $"{target.Replace('v', 'm')}{n}x{m}_mt";
 #>
     [MethodImpl(256 | 512)]
     public static <#= tarName #> as<#= name #>([This] <#= typeName #> v) => v.BitCast<<#= typeName #>, <#= tarName #>>();

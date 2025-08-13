@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.Simt;
 
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -19,7 +19,7 @@ namespace Coplt.Mathematics.Simt;
             var num_vectors = Math.Max(1, bitSize / 512);
             bitSize = Math.Min(512, bitSize);
 
-            var typeName = $"{typ.compType}_mt{size}";
+            var typeName = $"{typ.compType}_mt";
 
             IEnumerable<string> ForVectors(string name)
             {

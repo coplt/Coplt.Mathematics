@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.Simt;
 
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     var TypMap = Typ.Typs.ToDictionary(a => a.name);
 
     foreach (var typ in Typ.Typs)
@@ -32,7 +32,7 @@ namespace Coplt.Mathematics.Simt;
                 var num_vectors = Math.Max(1, bitSize / 512);
                 bitSize = Math.Min(512, bitSize);
 
-                var typeName = $"{typ.name}{i}_mt{size}";
+                var typeName = $"{typ.name}{i}_mt";
 
                 IEnumerable<string> ForVectors(string name)
                 {
@@ -58,8 +58,8 @@ public partial struct <#= typeName #>
                 {
                     if (!tar.simd) continue;
                     if (tar.size < 4) continue;
-                    var tarName = $"{tar.name}{i}_mt{size}";
-                    var tarScalarName = $"{tar.compType}_mt{size}";
+                    var tarName = $"{tar.name}{i}_mt";
+                    var tarScalarName = $"{tar.compType}_mt";
 
                     var cast = $"({tar.compType})";
 

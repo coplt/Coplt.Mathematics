@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.Simt;
 
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -21,15 +21,15 @@ namespace Coplt.Mathematics.Simt;
                 var num_vectors = Math.Max(1, bitSize / 512);
                 bitSize = Math.Min(512, bitSize);
 
-                var typeName = $"{typ.name}{i}_mt{size}";
-                var scalarName = $"{typ.compType}_mt{size}";
+                var typeName = $"{typ.name}{i}_mt";
+                var scalarName = $"{typ.compType}_mt";
                 var simd_typeName = $"{typ.name}{i}";
                 
                 var bType = $"b{typ.size * 8}v";
                 var scalar_bType = $"b{typ.size * 8}";
                 var bTyp = Typ.Typs.FirstOrDefault(a => a.name == bType);
-                var bTypeName = $"{bType}{i}_mt{size}";
-                var scalar_bTypeName = $"{scalar_bType}_mt{size}";
+                var bTypeName = $"{bType}{i}_mt";
+                var scalar_bTypeName = $"{scalar_bType}_mt";
 #>
 #region <#= typeName #>
 

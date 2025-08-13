@@ -2,33 +2,13 @@
 
 namespace Coplt.Mathematics.Simt.Geometries;
 
-#region box_mt4
+#region box_mt
 
 [CpuOnly]
-public partial record struct box_mt4
+public partial record struct box_mt
 {
-    public float3_mt4 min;
-    public float3_mt4 max;
+    public float3_mt min;
+    public float3_mt max;
 }
 
-#endregion // box_mt4
-#region box_mt8
-
-[CpuOnly]
-public partial record struct box_mt8
-{
-    public float3_mt8 min;
-    public float3_mt8 max;
-}
-
-#endregion // box_mt8
-#region box_mt16
-
-[CpuOnly]
-public partial record struct box_mt16
-{
-    public float3_mt16 min;
-    public float3_mt16 max;
-}
-
-#endregion // box_mt16
+#endregion // box_mt

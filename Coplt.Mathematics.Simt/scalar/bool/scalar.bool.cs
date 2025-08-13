@@ -2,255 +2,87 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region b32_mt4
+#region b32_mt
 
-public partial struct b32_mt4
+public partial struct b32_mt
 {
-    public static b32_mt4 True
+    public static b32_mt True
     {
         [MethodImpl(256 | 512)]
         get => new(b32.True);
     }
-    public static b32_mt4 False
+    public static b32_mt False
     {
         [MethodImpl(256 | 512)]
         get => new(b32.False);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32_mt4 operator !(b32_mt4 self) => ~self;
+    public static b32_mt operator !(b32_mt self) => ~self;
 }
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32_mt4 v)
-    {
-        return (v.vector == Vector128<uint>.AllBitsSet);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32_mt4 v)
-    {
-        return (v.vector != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32_mt4 v)
-    {
-        return (v.vector == default);
-    }
-}
-
-#endregion // b32_mt4
-#region b32_mt8
-
-public partial struct b32_mt8
-{
-    public static b32_mt8 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32.True);
-    }
-    public static b32_mt8 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt8 operator !(b32_mt8 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32_mt8 v)
-    {
-        return (v.vector == Vector256<uint>.AllBitsSet);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32_mt8 v)
-    {
-        return (v.vector != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32_mt8 v)
-    {
-        return (v.vector == default);
-    }
-}
-
-#endregion // b32_mt8
-#region b32_mt16
-
-public partial struct b32_mt16
-{
-    public static b32_mt16 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32.True);
-    }
-    public static b32_mt16 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 operator !(b32_mt16 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32_mt16 v)
+    public static bool lane_all([This] b32_mt v)
     {
         return (v.vector == Vector512<uint>.AllBitsSet);
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32_mt16 v)
+    public static bool lane_any([This] b32_mt v)
     {
         return (v.vector != default);
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32_mt16 v)
+    public static bool lane_all_false([This] b32_mt v)
     {
         return (v.vector == default);
     }
 }
 
-#endregion // b32_mt16
-#region b64_mt4
+#endregion // b32_mt
+#region b64_mt
 
-public partial struct b64_mt4
+public partial struct b64_mt
 {
-    public static b64_mt4 True
+    public static b64_mt True
     {
         [MethodImpl(256 | 512)]
         get => new(b64.True);
     }
-    public static b64_mt4 False
+    public static b64_mt False
     {
         [MethodImpl(256 | 512)]
         get => new(b64.False);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64_mt4 operator !(b64_mt4 self) => ~self;
+    public static b64_mt operator !(b64_mt self) => ~self;
 }
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64_mt4 v)
-    {
-        return (v.vector == Vector256<ulong>.AllBitsSet);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64_mt4 v)
-    {
-        return (v.vector != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64_mt4 v)
-    {
-        return (v.vector == default);
-    }
-}
-
-#endregion // b64_mt4
-#region b64_mt8
-
-public partial struct b64_mt8
-{
-    public static b64_mt8 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64.True);
-    }
-    public static b64_mt8 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 operator !(b64_mt8 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64_mt8 v)
-    {
-        return (v.vector == Vector512<ulong>.AllBitsSet);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64_mt8 v)
-    {
-        return (v.vector != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64_mt8 v)
-    {
-        return (v.vector == default);
-    }
-}
-
-#endregion // b64_mt8
-#region b64_mt16
-
-public partial struct b64_mt16
-{
-    public static b64_mt16 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64.True);
-    }
-    public static b64_mt16 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 operator !(b64_mt16 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64_mt16 v)
+    public static bool lane_all([This] b64_mt v)
     {
         return (v.vector0 == Vector512<ulong>.AllBitsSet) && (v.vector1 == Vector512<ulong>.AllBitsSet);
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64_mt16 v)
+    public static bool lane_any([This] b64_mt v)
     {
         return (v.vector0 != default) || (v.vector1 != default);
     }
 
     [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64_mt16 v)
+    public static bool lane_all_false([This] b64_mt v)
     {
         return (v.vector0 == default) && (v.vector1 == default);
     }
 }
 
-#endregion // b64_mt16
+#endregion // b64_mt

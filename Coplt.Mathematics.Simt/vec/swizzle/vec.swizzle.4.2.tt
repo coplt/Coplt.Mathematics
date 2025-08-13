@@ -6,7 +6,7 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     int[] a0123 = [0,1,2,3];
     var car_pd_3 = (
         from a in a0123.AsParallel().AsOrdered()
@@ -19,8 +19,8 @@ namespace Coplt.Mathematics.Simt;
         if (typ.size < 4) continue;
         foreach (var size in sizes)
         {
-            var typeName = $"{typ.name}4_mt{size}";
-            var retTypeName = $"{typ.name}2_mt{size}";
+            var typeName = $"{typ.name}4_mt";
+            var retTypeName = $"{typ.name}2_mt";
 #>
 
 #region <#= typeName #>

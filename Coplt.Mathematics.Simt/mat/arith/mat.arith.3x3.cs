@@ -2,65 +2,65 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float3x3_mt4
+#region float3x3_mt
 
-public partial struct float3x3_mt4
+public partial struct float3x3_mt
 {
     /// <summary>
-    /// Constructs a float3x3_mt4 from the upper left 3x3 of a float4x4_mt4
+    /// Constructs a float3x3_mt from the upper left 3x3 of a float4x4_mt
     /// </summary>
-    /// <param name="m4x4"><see cref="float4x4_mt4"/> to extract a float3x3_mt4 from</param>
+    /// <param name="m4x4"><see cref="float4x4_mt"/> to extract a float3x3_mt from</param>
     [MethodImpl(256 | 512)]
-    public float3x3_mt4(float4x4_mt4 m4x4)
+    public float3x3_mt(float4x4_mt m4x4)
     {
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
     }
 
-    /// <summary>Constructs a float3x3_mt4 matrix from a unit quaternion</summary>
+    /// <summary>Constructs a float3x3_mt matrix from a unit quaternion</summary>
     /// <param name="q">The quaternion rotation</param>
     [MethodImpl(256 | 512)]
-    public float3x3_mt4(quaternion_mt4 q)
+    public float3x3_mt(quaternion_mt q)
     {
         var v = q.value;
         var v2 = v + v;
 
-        var npn = new uint3_mt4(0x80000000, default, 0x80000000).asf();
-        var nnp = new uint3_mt4(0x80000000, 0x80000000, default).asf();
-        var pnn = new uint3_mt4(default, 0x80000000, 0x80000000).asf();
+        var npn = new uint3_mt(0x80000000, default, 0x80000000).asf();
+        var nnp = new uint3_mt(0x80000000, 0x80000000, default).asf();
+        var pnn = new uint3_mt(default, 0x80000000, 0x80000000).asf();
 
-        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new float3_mt4(1.0f, default, default);
-        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new float3_mt4(default, 1.0f, default);
-        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new float3_mt4(default, default, 1.0f);
+        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new float3_mt(1.0f, default, default);
+        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new float3_mt(default, 1.0f, default);
+        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new float3_mt(default, default, 1.0f);
     }
 
     /// <summary>
-    /// Returns a float3x3_mt4 view rotation matrix given a unit length forward vector and a unit length up vector.
+    /// Returns a float3x3_mt view rotation matrix given a unit length forward vector and a unit length up vector.
     /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="float3x3_mt4.LookRotationSafe" /> instead.
+    /// If these assumptions are not met use <see cref="float3x3_mt.LookRotationSafe" /> instead.
     /// </summary>
     /// <param name="forward">The forward vector to align the center of view with</param>
     /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The float3x3_mt4 view rotation matrix</returns>
+    /// <returns>The float3x3_mt view rotation matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 LookRotation(float3_mt4 forward, float3_mt4 up)
+    public static float3x3_mt LookRotation(float3_mt forward, float3_mt up)
     {
         var t = up.cross(forward).normalize();
         return new(t, forward.cross(t), forward);
     }
 
     /// <summary>
-    /// Returns a float3x3_mt4 view rotation matrix given a forward vector and an up vector.
+    /// Returns a float3x3_mt view rotation matrix given a forward vector and an up vector.
     /// The two input vectors are not assumed to be unit length.
     /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
     /// the identity will be returned instead.
     /// </summary>
     /// <param name="forward">The forward vector to align the center of view with</param>
     /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The float3x3_mt4 view rotation matrix or the identity matrix.</returns>
+    /// <returns>The float3x3_mt view rotation matrix or the identity matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 LookRotationSafe(float3_mt4 forward, float3_mt4 up)
+    public static float3x3_mt LookRotationSafe(float3_mt forward, float3_mt up)
     {
         var forwardLengthSq = forward.dot(forward);
         var upLengthSq = up.dot(up);
@@ -77,27 +77,27 @@ public partial struct float3x3_mt4
 
         var accept = mn > math_mt.MinRotateSafe<float>() & mx < math_mt.MaxRotateSafe<float>()
             & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(accept, new float3x3_mt4(t, forward.cross(t), forward), Identity);
+        return math_mt.select(accept, new float3x3_mt(t, forward.cross(t), forward), Identity);
     }
     
     /// <summary>
-    /// Returns a float3x3_mt4 matrix representing a rotation around a unit axis by an angle in radians.
+    /// Returns a float3x3_mt matrix representing a rotation around a unit axis by an angle in radians.
     /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
     /// </summary>
     /// <param name="axis">The rotation axis</param>
     /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float3x3_mt4 matrix representing the rotation around an axis.</returns>
+    /// <returns>The float3x3_mt matrix representing the rotation around an axis.</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 AxisAngle(float3_mt4 axis, float_mt4 angle)
+    public static float3x3_mt AxisAngle(float3_mt axis, float_mt angle)
     {
         angle.sincos(out var sina, out var cosa);
         var u = axis;
         var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new float4_mt4(u * sina, cosa);
+        var t = new float4_mt(u * sina, cosa);
 
-        var ppn = new uint3_mt4(default, default, 0x80000000).asfloat();
-        var npp = new uint3_mt4(0x80000000, default, default).asfloat();
-        var pnp = new uint3_mt4(default, 0x80000000, default).asfloat();
+        var ppn = new uint3_mt(default, default, 0x80000000).asfloat();
+        var npp = new uint3_mt(0x80000000, default, default).asfloat();
+        var pnp = new uint3_mt(default, 0x80000000, default).asfloat();
 
         return new(
             u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
@@ -107,23 +107,23 @@ public partial struct float3x3_mt4
     }
     
     /// <summary>
-    /// Returns a float3x3_mt4 matrix representing a rotation around a unit axis by an angle in radians.
+    /// Returns a float3x3_mt matrix representing a rotation around a unit axis by an angle in radians.
     /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
     /// </summary>
     /// <param name="axis">The rotation axis</param>
     /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float3x3_mt4 matrix representing the rotation around an axis.</returns>
+    /// <returns>The float3x3_mt matrix representing the rotation around an axis.</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 AxisAngle(float3_mt4 axis, float angle)
+    public static float3x3_mt AxisAngle(float3_mt axis, float angle)
     {
         angle.sincos(out var sina, out var cosa);
         var u = axis;
         var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new float4_mt4(u * sina, cosa);
+        var t = new float4_mt(u * sina, cosa);
 
-        var ppn = new uint3_mt4(default, default, 0x80000000).asfloat();
-        var npp = new uint3_mt4(0x80000000, default, default).asfloat();
-        var pnp = new uint3_mt4(default, 0x80000000, default).asfloat();
+        var ppn = new uint3_mt(default, default, 0x80000000).asfloat();
+        var npp = new uint3_mt(0x80000000, default, default).asfloat();
+        var pnp = new uint3_mt(default, 0x80000000, default).asfloat();
 
         return new(
             u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
@@ -133,13 +133,13 @@ public partial struct float3x3_mt4
     }
 
     /// <summary>
-    /// Returns a float3x3_mt4 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
+    /// Returns a float3x3_mt rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix of the Euler angle rotation in x-y-z order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float3x3_mt rotation matrix of the Euler angle rotation in x-y-z order</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 EulerXYZ(float3_mt4 xyz)
+    public static float3x3_mt EulerXYZ(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -150,13 +150,13 @@ public partial struct float3x3_mt4
     }
 
     /// <summary>
-    /// Returns a float3x3_mt4 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
+    /// Returns a float3x3_mt rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix of the Euler angle rotation in x-z-y order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float3x3_mt rotation matrix of the Euler angle rotation in x-z-y order</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 EulerXZY(float3_mt4 xyz)
+    public static float3x3_mt EulerXZY(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -167,13 +167,13 @@ public partial struct float3x3_mt4
     }
 
     /// <summary>
-    /// Returns a float3x3_mt4 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
+    /// Returns a float3x3_mt rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix of the Euler angle rotation in y-x-z order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float3x3_mt rotation matrix of the Euler angle rotation in y-x-z order</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 EulerYXZ(float3_mt4 xyz)
+    public static float3x3_mt EulerYXZ(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -184,13 +184,13 @@ public partial struct float3x3_mt4
     }
 
     /// <summary>
-    /// Returns a float3x3_mt4 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
+    /// Returns a float3x3_mt rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix of the Euler angle rotation in y-z-x order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float3x3_mt rotation matrix of the Euler angle rotation in y-z-x order</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 EulerYZX(float3_mt4 xyz)
+    public static float3x3_mt EulerYZX(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -201,13 +201,13 @@ public partial struct float3x3_mt4
     }
 
     /// <summary>
-    /// Returns a float3x3_mt4 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
+    /// Returns a float3x3_mt rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix of the Euler angle rotation in z-x-y order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float3x3_mt rotation matrix of the Euler angle rotation in z-x-y order</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 EulerZXY(float3_mt4 xyz)
+    public static float3x3_mt EulerZXY(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -218,13 +218,13 @@ public partial struct float3x3_mt4
     }
 
     /// <summary>
-    /// Returns a float3x3_mt4 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis
+    /// Returns a float3x3_mt rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix of the Euler angle rotation in z-y-x order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float3x3_mt rotation matrix of the Euler angle rotation in z-y-x order</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 EulerZYX(float3_mt4 xyz)
+    public static float3x3_mt EulerZYX(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -234,11 +234,11 @@ public partial struct float3x3_mt4
         );
     }
 
-    /// <summary>Returns a float3x3_mt4 matrix that rotates around the x-axis by a given number of radians</summary>
+    /// <summary>Returns a float3x3_mt matrix that rotates around the x-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix that rotates around the x-axis</returns>
+    /// <returns>The float3x3_mt rotation matrix that rotates around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 RotateX(float_mt4 angle)
+    public static float3x3_mt RotateX(float_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -248,11 +248,11 @@ public partial struct float3x3_mt4
         );
     }
 
-    /// <summary>Returns a float3x3_mt4 matrix that rotates around the y-axis by a given number of radians</summary>
+    /// <summary>Returns a float3x3_mt matrix that rotates around the y-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix that rotates around the y-axis</returns>
+    /// <returns>The float3x3_mt rotation matrix that rotates around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 RotateY(float_mt4 angle)
+    public static float3x3_mt RotateY(float_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -262,11 +262,11 @@ public partial struct float3x3_mt4
         );
     }
 
-    /// <summary>Returns a float3x3_mt4 matrix that rotates around the z-axis by a given number of radians</summary>
+    /// <summary>Returns a float3x3_mt matrix that rotates around the z-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt4 rotation matrix that rotates around the z-axis</returns>
+    /// <returns>The float3x3_mt rotation matrix that rotates around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 RotateZ(float_mt4 angle)
+    public static float3x3_mt RotateZ(float_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -276,62 +276,62 @@ public partial struct float3x3_mt4
         );
     }
     
-    /// <summary>Returns a float3x3_mt4 matrix representing a uniform scaling of all axes by s</summary>
+    /// <summary>Returns a float3x3_mt matrix representing a uniform scaling of all axes by s</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The float3x3_mt4 matrix representing a uniform scale</returns>
+    /// <returns>The float3x3_mt matrix representing a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 Scale(float_mt4 s) => new(
+    public static float3x3_mt Scale(float_mt s) => new(
         s,    default, default,
         default, s,    default,
         default, default, s
     );
     
-    /// <summary>Returns a float3x3_mt4 matrix representing a non-uniform axis scaling by x, y and z</summary>
+    /// <summary>Returns a float3x3_mt matrix representing a non-uniform axis scaling by x, y and z</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The float3x3_mt4 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The float3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 Scale(float_mt4 x, float_mt4 y, float_mt4 z) => new(
+    public static float3x3_mt Scale(float_mt x, float_mt y, float_mt z) => new(
         x,    default, default,
         default, y,    default,
         default, default, z
     );
 
-    /// <summary>Returns a float3x3_mt4 matrix representing a non-uniform axis scaling by the components of the float3_mt4 vector v</summary>
+    /// <summary>Returns a float3x3_mt matrix representing a non-uniform axis scaling by the components of the float3_mt vector v</summary>
     /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The float3x3_mt4 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The float3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 Scale(float3_mt4 v) => new(
+    public static float3x3_mt Scale(float3_mt v) => new(
         v.x,    default, default,
         default, v.y,    default,
         default, default, v.z
     );
 
     /// <summary>
-    /// Converts a float4x4_mt4 to a float3x3_mt4
+    /// Converts a float4x4_mt to a float3x3_mt
     /// </summary>
-    /// <param name="m4x4">The float4x4_mt4 to convert to a float3x3_mt4</param>
-    /// <returns>The float3x3_mt4 constructed from the upper left 3x3 of the input float4x4_mt4 matrix</returns>
+    /// <param name="m4x4">The float4x4_mt to convert to a float3x3_mt</param>
+    /// <returns>The float3x3_mt constructed from the upper left 3x3 of the input float4x4_mt matrix</returns>
     [MethodImpl(256 | 512)]
-    public static explicit operator float3x3_mt4(float4x4_mt4 m4x4) => new(m4x4);
+    public static explicit operator float3x3_mt(float4x4_mt m4x4) => new(m4x4);
 }
 
 [Ex]
 public static partial class math_mt
 {
 
-    /// <summary>Returns the float3x3_mt4 full inverse of a float3x3_mt4 matrix</summary>
+    /// <summary>Returns the float3x3_mt full inverse of a float3x3_mt matrix</summary>
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 inverse([This] float3x3_mt4 m)
+    public static float3x3_mt inverse([This] float3x3_mt m)
     {
         var (c0, c1, c2) = m;
-        // var t0 = new float3_mt4(c1.x, c2.x, c0.x);
-        // var t1 = new float3_mt4(c1.y, c2.y, c0.y);
-        // var t2 = new float3_mt4(c1.z, c2.z, c0.z);
-        var (t0, t1, t2) = transpose(new float3x3_mt4(c1, c2, c0));
+        // var t0 = new float3_mt(c1.x, c2.x, c0.x);
+        // var t1 = new float3_mt(c1.y, c2.y, c0.y);
+        // var t2 = new float3_mt(c1.z, c2.z, c0.z);
+        var (t0, t1, t2) = transpose(new float3x3_mt(c1, c2, c0));
     
         // var m0 = t1 * t2.yzx - t1.yzx * t2;
         // var m1 = t0.yzx * t2 - t0 * t2.yzx;
@@ -341,14 +341,14 @@ public static partial class math_mt
         var m2 = fsm(t0 * t1.yzx, t0.yzx, t1);
     
         var rcpDet = (1.0f / csum(t0.zxy * m0));
-        return new float3x3_mt4(m0, m1, m2) * rcpDet;
+        return new float3x3_mt(m0, m1, m2) * rcpDet;
     }
 
-    // <summary>Returns the determinant of a float3x3_mt4 matrix</summary>
+    // <summary>Returns the determinant of a float3x3_mt matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float_mt4 determinant([This] float3x3_mt4 m)
+    public static float_mt determinant([This] float3x3_mt m)
     {
         var (c0, c1, c2) = m;
 
@@ -366,799 +366,67 @@ public static partial class math_mt
     }
 }
 
-#endregion // float3x3_mt4
+#endregion // float3x3_mt
 
-#region float3x3_mt8
+#region double3x3_mt
 
-public partial struct float3x3_mt8
+public partial struct double3x3_mt
 {
     /// <summary>
-    /// Constructs a float3x3_mt8 from the upper left 3x3 of a float4x4_mt8
+    /// Constructs a double3x3_mt from the upper left 3x3 of a double4x4_mt
     /// </summary>
-    /// <param name="m4x4"><see cref="float4x4_mt8"/> to extract a float3x3_mt8 from</param>
+    /// <param name="m4x4"><see cref="double4x4_mt"/> to extract a double3x3_mt from</param>
     [MethodImpl(256 | 512)]
-    public float3x3_mt8(float4x4_mt8 m4x4)
+    public double3x3_mt(double4x4_mt m4x4)
     {
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
     }
 
-    /// <summary>Constructs a float3x3_mt8 matrix from a unit quaternion</summary>
+    /// <summary>Constructs a double3x3_mt matrix from a unit quaternion</summary>
     /// <param name="q">The quaternion rotation</param>
     [MethodImpl(256 | 512)]
-    public float3x3_mt8(quaternion_mt8 q)
+    public double3x3_mt(quaternion_d_mt q)
     {
         var v = q.value;
         var v2 = v + v;
 
-        var npn = new uint3_mt8(0x80000000, default, 0x80000000).asf();
-        var nnp = new uint3_mt8(0x80000000, 0x80000000, default).asf();
-        var pnn = new uint3_mt8(default, 0x80000000, 0x80000000).asf();
+        var npn = new ulong3_mt(0x8000000000000000, default, 0x8000000000000000).asf();
+        var nnp = new ulong3_mt(0x8000000000000000, 0x8000000000000000, default).asf();
+        var pnn = new ulong3_mt(default, 0x8000000000000000, 0x8000000000000000).asf();
 
-        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new float3_mt8(1.0f, default, default);
-        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new float3_mt8(default, 1.0f, default);
-        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new float3_mt8(default, default, 1.0f);
+        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new double3_mt(1.0, default, default);
+        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new double3_mt(default, 1.0, default);
+        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new double3_mt(default, default, 1.0);
     }
 
     /// <summary>
-    /// Returns a float3x3_mt8 view rotation matrix given a unit length forward vector and a unit length up vector.
+    /// Returns a double3x3_mt view rotation matrix given a unit length forward vector and a unit length up vector.
     /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="float3x3_mt8.LookRotationSafe" /> instead.
+    /// If these assumptions are not met use <see cref="double3x3_mt.LookRotationSafe" /> instead.
     /// </summary>
     /// <param name="forward">The forward vector to align the center of view with</param>
     /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The float3x3_mt8 view rotation matrix</returns>
+    /// <returns>The double3x3_mt view rotation matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt8 LookRotation(float3_mt8 forward, float3_mt8 up)
+    public static double3x3_mt LookRotation(double3_mt forward, double3_mt up)
     {
         var t = up.cross(forward).normalize();
         return new(t, forward.cross(t), forward);
     }
 
     /// <summary>
-    /// Returns a float3x3_mt8 view rotation matrix given a forward vector and an up vector.
+    /// Returns a double3x3_mt view rotation matrix given a forward vector and an up vector.
     /// The two input vectors are not assumed to be unit length.
     /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
     /// the identity will be returned instead.
     /// </summary>
     /// <param name="forward">The forward vector to align the center of view with</param>
     /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The float3x3_mt8 view rotation matrix or the identity matrix.</returns>
+    /// <returns>The double3x3_mt view rotation matrix or the identity matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3_mt8 LookRotationSafe(float3_mt8 forward, float3_mt8 up)
-    {
-        var forwardLengthSq = forward.dot(forward);
-        var upLengthSq = up.dot(up);
-
-        forward *= forwardLengthSq.rsqrt();
-        up *= upLengthSq.rsqrt();
-
-        var t = up.cross(forward);
-        var tLengthSq = t.dot(t);
-        t *= tLengthSq.rsqrt();
-
-        var mn = forwardLengthSq.min(upLengthSq).min(tLengthSq);
-        var mx = forwardLengthSq.max(upLengthSq).max(tLengthSq);
-
-        var accept = mn > math_mt.MinRotateSafe<float>() & mx < math_mt.MaxRotateSafe<float>()
-            & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(accept, new float3x3_mt8(t, forward.cross(t), forward), Identity);
-    }
-    
-    /// <summary>
-    /// Returns a float3x3_mt8 matrix representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The rotation axis</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float3x3_mt8 matrix representing the rotation around an axis.</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 AxisAngle(float3_mt8 axis, float_mt8 angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = axis;
-        var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new float4_mt8(u * sina, cosa);
-
-        var ppn = new uint3_mt8(default, default, 0x80000000).asfloat();
-        var npp = new uint3_mt8(0x80000000, default, default).asfloat();
-        var pnp = new uint3_mt8(default, 0x80000000, default).asfloat();
-
-        return new(
-            u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
-            u.yyy.fma(u_inv_cosa, t.zwx ^ npp),
-            u.zzz.fma(u_inv_cosa, t.yxw ^ pnp)
-        );
-    }
-    
-    /// <summary>
-    /// Returns a float3x3_mt8 matrix representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The rotation axis</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float3x3_mt8 matrix representing the rotation around an axis.</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 AxisAngle(float3_mt8 axis, float angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = axis;
-        var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new float4_mt8(u * sina, cosa);
-
-        var ppn = new uint3_mt8(default, default, 0x80000000).asfloat();
-        var npp = new uint3_mt8(0x80000000, default, default).asfloat();
-        var pnp = new uint3_mt8(default, 0x80000000, default).asfloat();
-
-        return new(
-            u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
-            u.yyy.fma(u_inv_cosa, t.zwx ^ npp),
-            u.zzz.fma(u_inv_cosa, t.yxw ^ pnp)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt8 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix of the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 EulerXYZ(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (c.z * s.x * s.y - c.x * s.z),    (c.x * c.z * s.y + s.x * s.z),
-            (c.y * s.z),  (c.x * c.z + s.x * s.y * s.z),    (c.x * s.y * s.z - c.z * s.x),
-            (-s.y),       (c.y * s.x),                      (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt8 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix of the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 EulerXZY(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (s.x * s.y - c.x * c.y * s.z),    (c.x * s.y + c.y * s.x * s.z),
-            (s.z),        (c.x * c.z),                      (-c.z * s.x),                 
-            (-c.z * s.y), (c.y * s.x + c.x * s.y * s.z),    (c.x * c.y - s.x * s.y * s.z)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt8 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix of the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 EulerYXZ(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z - s.x * s.y * s.z),    (-c.x * s.z), (c.z * s.y + c.y * s.x * s.z),
-            (c.z * s.x * s.y + c.y * s.z),    (c.x * c.z),  (s.y * s.z - c.y * c.z * s.x),
-            (-c.x * s.y),                     (s.x),        (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt8 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix of the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 EulerYZX(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-s.z),       (c.z * s.y),                  
-            (s.x * s.y + c.x * c.y * s.z),    (c.x * c.z),  (c.x * s.y * s.z - c.y * s.x),
-            (c.y * s.x * s.z - c.x * s.y),    (c.z * s.x),  (c.x * c.y + s.x * s.y * s.z)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt8 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix of the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 EulerZXY(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z + s.x * s.y * s.z),    (c.z * s.x * s.y - c.y * s.z),    (c.x * s.y),
-            (c.x * s.z),                      (c.x * c.z),                      (-s.x),     
-            (c.y * s.x * s.z - c.z * s.y),    (c.y * c.z * s.x + s.y * s.z),    (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt8 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix of the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 EulerZYX(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-c.y * s.z),                     (s.y),       
-            (c.z * s.x * s.y + c.x * s.z),    (c.x * c.z - s.x * s.y * s.z),    (-c.y * s.x),
-            (s.x * s.z - c.x * c.z * s.y),    (c.z * s.x + c.x * s.y * s.z),    (c.x * c.y)
-        );
-    }
-
-    /// <summary>Returns a float3x3_mt8 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 RotateX(float_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0f, default, default,
-            default, c,     -s,
-            default, s,     c
-        );
-    }
-
-    /// <summary>Returns a float3x3_mt8 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 RotateY(float_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,
-            default, 1.0f, default,
-            -s,    default, c
-        );
-    }
-
-    /// <summary>Returns a float3x3_mt8 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt8 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 RotateZ(float_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default,
-            s,     c,     default,
-            default, default, 1.0f
-        );
-    }
-    
-    /// <summary>Returns a float3x3_mt8 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The float3x3_mt8 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 Scale(float_mt8 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a float3x3_mt8 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The float3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 Scale(float_mt8 x, float_mt8 y, float_mt8 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a float3x3_mt8 matrix representing a non-uniform axis scaling by the components of the float3_mt8 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The float3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 Scale(float3_mt8 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a float4x4_mt8 to a float3x3_mt8
-    /// </summary>
-    /// <param name="m4x4">The float4x4_mt8 to convert to a float3x3_mt8</param>
-    /// <returns>The float3x3_mt8 constructed from the upper left 3x3 of the input float4x4_mt8 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator float3x3_mt8(float4x4_mt8 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-
-    /// <summary>Returns the float3x3_mt8 full inverse of a float3x3_mt8 matrix</summary>
-    /// <param name="m">Matrix to invert</param>
-    /// <returns>The inverted matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 inverse([This] float3x3_mt8 m)
-    {
-        var (c0, c1, c2) = m;
-        // var t0 = new float3_mt8(c1.x, c2.x, c0.x);
-        // var t1 = new float3_mt8(c1.y, c2.y, c0.y);
-        // var t2 = new float3_mt8(c1.z, c2.z, c0.z);
-        var (t0, t1, t2) = transpose(new float3x3_mt8(c1, c2, c0));
-    
-        // var m0 = t1 * t2.yzx - t1.yzx * t2;
-        // var m1 = t0.yzx * t2 - t0 * t2.yzx;
-        // var m2 = t0 * t1.yzx - t0.yzx * t1;
-        var m0 = fsm(t1 * t2.yzx, t1.yzx, t2);
-        var m1 = fsm(t0.yzx * t2, t0, t2.yzx);
-        var m2 = fsm(t0 * t1.yzx, t0.yzx, t1);
-    
-        var rcpDet = (1.0f / csum(t0.zxy * m0));
-        return new float3x3_mt8(m0, m1, m2) * rcpDet;
-    }
-
-    // <summary>Returns the determinant of a float3x3_mt8 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float_mt8 determinant([This] float3x3_mt8 m)
-    {
-        var (c0, c1, c2) = m;
-
-        // var m00 = c1.y * c2.z - c1.z * c2.y;
-        // var m01 = c0.y * c2.z - c0.z * c2.y;
-        // var m02 = c0.y * c1.z - c0.z * c1.y;
-        var m00 = fsm(c1.y * c2.z, c1.z, c2.y);
-        var m01 = fsm(c0.y * c2.z, c0.z, c2.y);
-        var m02 = fsm(c0.y * c1.z, c0.z, c1.y);
-
-        //var r = c0.x * m00 - c1.x * m01 + c2.x * m02;
-        var r = fam(fsm(c0.x * m00, c1.x, m01), c2.x, m02);
-
-        return r;
-    }
-}
-
-#endregion // float3x3_mt8
-
-#region float3x3_mt16
-
-public partial struct float3x3_mt16
-{
-    /// <summary>
-    /// Constructs a float3x3_mt16 from the upper left 3x3 of a float4x4_mt16
-    /// </summary>
-    /// <param name="m4x4"><see cref="float4x4_mt16"/> to extract a float3x3_mt16 from</param>
-    [MethodImpl(256 | 512)]
-    public float3x3_mt16(float4x4_mt16 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-
-    /// <summary>Constructs a float3x3_mt16 matrix from a unit quaternion</summary>
-    /// <param name="q">The quaternion rotation</param>
-    [MethodImpl(256 | 512)]
-    public float3x3_mt16(quaternion_mt16 q)
-    {
-        var v = q.value;
-        var v2 = v + v;
-
-        var npn = new uint3_mt16(0x80000000, default, 0x80000000).asf();
-        var nnp = new uint3_mt16(0x80000000, 0x80000000, default).asf();
-        var pnn = new uint3_mt16(default, 0x80000000, 0x80000000).asf();
-
-        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new float3_mt16(1.0f, default, default);
-        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new float3_mt16(default, 1.0f, default);
-        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new float3_mt16(default, default, 1.0f);
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt16 view rotation matrix given a unit length forward vector and a unit length up vector.
-    /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="float3x3_mt16.LookRotationSafe" /> instead.
-    /// </summary>
-    /// <param name="forward">The forward vector to align the center of view with</param>
-    /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The float3x3_mt16 view rotation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 LookRotation(float3_mt16 forward, float3_mt16 up)
-    {
-        var t = up.cross(forward).normalize();
-        return new(t, forward.cross(t), forward);
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt16 view rotation matrix given a forward vector and an up vector.
-    /// The two input vectors are not assumed to be unit length.
-    /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
-    /// the identity will be returned instead.
-    /// </summary>
-    /// <param name="forward">The forward vector to align the center of view with</param>
-    /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The float3x3_mt16 view rotation matrix or the identity matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 LookRotationSafe(float3_mt16 forward, float3_mt16 up)
-    {
-        var forwardLengthSq = forward.dot(forward);
-        var upLengthSq = up.dot(up);
-
-        forward *= forwardLengthSq.rsqrt();
-        up *= upLengthSq.rsqrt();
-
-        var t = up.cross(forward);
-        var tLengthSq = t.dot(t);
-        t *= tLengthSq.rsqrt();
-
-        var mn = forwardLengthSq.min(upLengthSq).min(tLengthSq);
-        var mx = forwardLengthSq.max(upLengthSq).max(tLengthSq);
-
-        var accept = mn > math_mt.MinRotateSafe<float>() & mx < math_mt.MaxRotateSafe<float>()
-            & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(accept, new float3x3_mt16(t, forward.cross(t), forward), Identity);
-    }
-    
-    /// <summary>
-    /// Returns a float3x3_mt16 matrix representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The rotation axis</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float3x3_mt16 matrix representing the rotation around an axis.</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 AxisAngle(float3_mt16 axis, float_mt16 angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = axis;
-        var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new float4_mt16(u * sina, cosa);
-
-        var ppn = new uint3_mt16(default, default, 0x80000000).asfloat();
-        var npp = new uint3_mt16(0x80000000, default, default).asfloat();
-        var pnp = new uint3_mt16(default, 0x80000000, default).asfloat();
-
-        return new(
-            u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
-            u.yyy.fma(u_inv_cosa, t.zwx ^ npp),
-            u.zzz.fma(u_inv_cosa, t.yxw ^ pnp)
-        );
-    }
-    
-    /// <summary>
-    /// Returns a float3x3_mt16 matrix representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The rotation axis</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float3x3_mt16 matrix representing the rotation around an axis.</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 AxisAngle(float3_mt16 axis, float angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = axis;
-        var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new float4_mt16(u * sina, cosa);
-
-        var ppn = new uint3_mt16(default, default, 0x80000000).asfloat();
-        var npp = new uint3_mt16(0x80000000, default, default).asfloat();
-        var pnp = new uint3_mt16(default, 0x80000000, default).asfloat();
-
-        return new(
-            u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
-            u.yyy.fma(u_inv_cosa, t.zwx ^ npp),
-            u.zzz.fma(u_inv_cosa, t.yxw ^ pnp)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt16 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix of the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 EulerXYZ(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (c.z * s.x * s.y - c.x * s.z),    (c.x * c.z * s.y + s.x * s.z),
-            (c.y * s.z),  (c.x * c.z + s.x * s.y * s.z),    (c.x * s.y * s.z - c.z * s.x),
-            (-s.y),       (c.y * s.x),                      (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt16 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix of the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 EulerXZY(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (s.x * s.y - c.x * c.y * s.z),    (c.x * s.y + c.y * s.x * s.z),
-            (s.z),        (c.x * c.z),                      (-c.z * s.x),                 
-            (-c.z * s.y), (c.y * s.x + c.x * s.y * s.z),    (c.x * c.y - s.x * s.y * s.z)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt16 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix of the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 EulerYXZ(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z - s.x * s.y * s.z),    (-c.x * s.z), (c.z * s.y + c.y * s.x * s.z),
-            (c.z * s.x * s.y + c.y * s.z),    (c.x * c.z),  (s.y * s.z - c.y * c.z * s.x),
-            (-c.x * s.y),                     (s.x),        (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt16 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix of the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 EulerYZX(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-s.z),       (c.z * s.y),                  
-            (s.x * s.y + c.x * c.y * s.z),    (c.x * c.z),  (c.x * s.y * s.z - c.y * s.x),
-            (c.y * s.x * s.z - c.x * s.y),    (c.z * s.x),  (c.x * c.y + s.x * s.y * s.z)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt16 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix of the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 EulerZXY(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z + s.x * s.y * s.z),    (c.z * s.x * s.y - c.y * s.z),    (c.x * s.y),
-            (c.x * s.z),                      (c.x * c.z),                      (-s.x),     
-            (c.y * s.x * s.z - c.z * s.y),    (c.y * c.z * s.x + s.y * s.z),    (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float3x3_mt16 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix of the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 EulerZYX(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-c.y * s.z),                     (s.y),       
-            (c.z * s.x * s.y + c.x * s.z),    (c.x * c.z - s.x * s.y * s.z),    (-c.y * s.x),
-            (s.x * s.z - c.x * c.z * s.y),    (c.z * s.x + c.x * s.y * s.z),    (c.x * c.y)
-        );
-    }
-
-    /// <summary>Returns a float3x3_mt16 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 RotateX(float_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0f, default, default,
-            default, c,     -s,
-            default, s,     c
-        );
-    }
-
-    /// <summary>Returns a float3x3_mt16 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 RotateY(float_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,
-            default, 1.0f, default,
-            -s,    default, c
-        );
-    }
-
-    /// <summary>Returns a float3x3_mt16 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float3x3_mt16 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 RotateZ(float_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default,
-            s,     c,     default,
-            default, default, 1.0f
-        );
-    }
-    
-    /// <summary>Returns a float3x3_mt16 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The float3x3_mt16 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 Scale(float_mt16 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a float3x3_mt16 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The float3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 Scale(float_mt16 x, float_mt16 y, float_mt16 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a float3x3_mt16 matrix representing a non-uniform axis scaling by the components of the float3_mt16 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The float3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 Scale(float3_mt16 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a float4x4_mt16 to a float3x3_mt16
-    /// </summary>
-    /// <param name="m4x4">The float4x4_mt16 to convert to a float3x3_mt16</param>
-    /// <returns>The float3x3_mt16 constructed from the upper left 3x3 of the input float4x4_mt16 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator float3x3_mt16(float4x4_mt16 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-
-    /// <summary>Returns the float3x3_mt16 full inverse of a float3x3_mt16 matrix</summary>
-    /// <param name="m">Matrix to invert</param>
-    /// <returns>The inverted matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 inverse([This] float3x3_mt16 m)
-    {
-        var (c0, c1, c2) = m;
-        // var t0 = new float3_mt16(c1.x, c2.x, c0.x);
-        // var t1 = new float3_mt16(c1.y, c2.y, c0.y);
-        // var t2 = new float3_mt16(c1.z, c2.z, c0.z);
-        var (t0, t1, t2) = transpose(new float3x3_mt16(c1, c2, c0));
-    
-        // var m0 = t1 * t2.yzx - t1.yzx * t2;
-        // var m1 = t0.yzx * t2 - t0 * t2.yzx;
-        // var m2 = t0 * t1.yzx - t0.yzx * t1;
-        var m0 = fsm(t1 * t2.yzx, t1.yzx, t2);
-        var m1 = fsm(t0.yzx * t2, t0, t2.yzx);
-        var m2 = fsm(t0 * t1.yzx, t0.yzx, t1);
-    
-        var rcpDet = (1.0f / csum(t0.zxy * m0));
-        return new float3x3_mt16(m0, m1, m2) * rcpDet;
-    }
-
-    // <summary>Returns the determinant of a float3x3_mt16 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float_mt16 determinant([This] float3x3_mt16 m)
-    {
-        var (c0, c1, c2) = m;
-
-        // var m00 = c1.y * c2.z - c1.z * c2.y;
-        // var m01 = c0.y * c2.z - c0.z * c2.y;
-        // var m02 = c0.y * c1.z - c0.z * c1.y;
-        var m00 = fsm(c1.y * c2.z, c1.z, c2.y);
-        var m01 = fsm(c0.y * c2.z, c0.z, c2.y);
-        var m02 = fsm(c0.y * c1.z, c0.z, c1.y);
-
-        //var r = c0.x * m00 - c1.x * m01 + c2.x * m02;
-        var r = fam(fsm(c0.x * m00, c1.x, m01), c2.x, m02);
-
-        return r;
-    }
-}
-
-#endregion // float3x3_mt16
-
-#region double3x3_mt4
-
-public partial struct double3x3_mt4
-{
-    /// <summary>
-    /// Constructs a double3x3_mt4 from the upper left 3x3 of a double4x4_mt4
-    /// </summary>
-    /// <param name="m4x4"><see cref="double4x4_mt4"/> to extract a double3x3_mt4 from</param>
-    [MethodImpl(256 | 512)]
-    public double3x3_mt4(double4x4_mt4 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-
-    /// <summary>Constructs a double3x3_mt4 matrix from a unit quaternion</summary>
-    /// <param name="q">The quaternion rotation</param>
-    [MethodImpl(256 | 512)]
-    public double3x3_mt4(quaternion_d_mt4 q)
-    {
-        var v = q.value;
-        var v2 = v + v;
-
-        var npn = new ulong3_mt4(0x8000000000000000, default, 0x8000000000000000).asf();
-        var nnp = new ulong3_mt4(0x8000000000000000, 0x8000000000000000, default).asf();
-        var pnn = new ulong3_mt4(default, 0x8000000000000000, 0x8000000000000000).asf();
-
-        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new double3_mt4(1.0, default, default);
-        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new double3_mt4(default, 1.0, default);
-        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new double3_mt4(default, default, 1.0);
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt4 view rotation matrix given a unit length forward vector and a unit length up vector.
-    /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="double3x3_mt4.LookRotationSafe" /> instead.
-    /// </summary>
-    /// <param name="forward">The forward vector to align the center of view with</param>
-    /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The double3x3_mt4 view rotation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt4 LookRotation(double3_mt4 forward, double3_mt4 up)
-    {
-        var t = up.cross(forward).normalize();
-        return new(t, forward.cross(t), forward);
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt4 view rotation matrix given a forward vector and an up vector.
-    /// The two input vectors are not assumed to be unit length.
-    /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
-    /// the identity will be returned instead.
-    /// </summary>
-    /// <param name="forward">The forward vector to align the center of view with</param>
-    /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The double3x3_mt4 view rotation matrix or the identity matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt4 LookRotationSafe(double3_mt4 forward, double3_mt4 up)
+    public static double3x3_mt LookRotationSafe(double3_mt forward, double3_mt up)
     {
         var forwardLengthSq = forward.dot(forward);
         var upLengthSq = up.dot(up);
@@ -1175,27 +443,27 @@ public partial struct double3x3_mt4
 
         var accept = mn > math_mt.MinRotateSafe<double>() & mx < math_mt.MaxRotateSafe<double>()
             & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(accept, new double3x3_mt4(t, forward.cross(t), forward), Identity);
+        return math_mt.select(accept, new double3x3_mt(t, forward.cross(t), forward), Identity);
     }
     
     /// <summary>
-    /// Returns a double3x3_mt4 matrix representing a rotation around a unit axis by an angle in radians.
+    /// Returns a double3x3_mt matrix representing a rotation around a unit axis by an angle in radians.
     /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
     /// </summary>
     /// <param name="axis">The rotation axis</param>
     /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double3x3_mt4 matrix representing the rotation around an axis.</returns>
+    /// <returns>The double3x3_mt matrix representing the rotation around an axis.</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 AxisAngle(double3_mt4 axis, double_mt4 angle)
+    public static double3x3_mt AxisAngle(double3_mt axis, double_mt angle)
     {
         angle.sincos(out var sina, out var cosa);
         var u = axis;
         var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new double4_mt4(u * sina, cosa);
+        var t = new double4_mt(u * sina, cosa);
 
-        var ppn = new ulong3_mt4(default, default, 0x8000000000000000).asdouble();
-        var npp = new ulong3_mt4(0x8000000000000000, default, default).asdouble();
-        var pnp = new ulong3_mt4(default, 0x8000000000000000, default).asdouble();
+        var ppn = new ulong3_mt(default, default, 0x8000000000000000).asdouble();
+        var npp = new ulong3_mt(0x8000000000000000, default, default).asdouble();
+        var pnp = new ulong3_mt(default, 0x8000000000000000, default).asdouble();
 
         return new(
             u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
@@ -1205,23 +473,23 @@ public partial struct double3x3_mt4
     }
     
     /// <summary>
-    /// Returns a double3x3_mt4 matrix representing a rotation around a unit axis by an angle in radians.
+    /// Returns a double3x3_mt matrix representing a rotation around a unit axis by an angle in radians.
     /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
     /// </summary>
     /// <param name="axis">The rotation axis</param>
     /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double3x3_mt4 matrix representing the rotation around an axis.</returns>
+    /// <returns>The double3x3_mt matrix representing the rotation around an axis.</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 AxisAngle(double3_mt4 axis, double angle)
+    public static double3x3_mt AxisAngle(double3_mt axis, double angle)
     {
         angle.sincos(out var sina, out var cosa);
         var u = axis;
         var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new double4_mt4(u * sina, cosa);
+        var t = new double4_mt(u * sina, cosa);
 
-        var ppn = new ulong3_mt4(default, default, 0x8000000000000000).asdouble();
-        var npp = new ulong3_mt4(0x8000000000000000, default, default).asdouble();
-        var pnp = new ulong3_mt4(default, 0x8000000000000000, default).asdouble();
+        var ppn = new ulong3_mt(default, default, 0x8000000000000000).asdouble();
+        var npp = new ulong3_mt(0x8000000000000000, default, default).asdouble();
+        var pnp = new ulong3_mt(default, 0x8000000000000000, default).asdouble();
 
         return new(
             u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
@@ -1231,13 +499,13 @@ public partial struct double3x3_mt4
     }
 
     /// <summary>
-    /// Returns a double3x3_mt4 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
+    /// Returns a double3x3_mt rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix of the Euler angle rotation in x-y-z order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double3x3_mt rotation matrix of the Euler angle rotation in x-y-z order</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 EulerXYZ(double3_mt4 xyz)
+    public static double3x3_mt EulerXYZ(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -1248,13 +516,13 @@ public partial struct double3x3_mt4
     }
 
     /// <summary>
-    /// Returns a double3x3_mt4 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
+    /// Returns a double3x3_mt rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix of the Euler angle rotation in x-z-y order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double3x3_mt rotation matrix of the Euler angle rotation in x-z-y order</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 EulerXZY(double3_mt4 xyz)
+    public static double3x3_mt EulerXZY(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -1265,13 +533,13 @@ public partial struct double3x3_mt4
     }
 
     /// <summary>
-    /// Returns a double3x3_mt4 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
+    /// Returns a double3x3_mt rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix of the Euler angle rotation in y-x-z order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double3x3_mt rotation matrix of the Euler angle rotation in y-x-z order</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 EulerYXZ(double3_mt4 xyz)
+    public static double3x3_mt EulerYXZ(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -1282,13 +550,13 @@ public partial struct double3x3_mt4
     }
 
     /// <summary>
-    /// Returns a double3x3_mt4 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
+    /// Returns a double3x3_mt rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix of the Euler angle rotation in y-z-x order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double3x3_mt rotation matrix of the Euler angle rotation in y-z-x order</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 EulerYZX(double3_mt4 xyz)
+    public static double3x3_mt EulerYZX(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -1299,13 +567,13 @@ public partial struct double3x3_mt4
     }
 
     /// <summary>
-    /// Returns a double3x3_mt4 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
+    /// Returns a double3x3_mt rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix of the Euler angle rotation in z-x-y order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double3x3_mt rotation matrix of the Euler angle rotation in z-x-y order</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 EulerZXY(double3_mt4 xyz)
+    public static double3x3_mt EulerZXY(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -1316,13 +584,13 @@ public partial struct double3x3_mt4
     }
 
     /// <summary>
-    /// Returns a double3x3_mt4 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis
+    /// Returns a double3x3_mt rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix of the Euler angle rotation in z-y-x order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double3x3_mt rotation matrix of the Euler angle rotation in z-y-x order</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 EulerZYX(double3_mt4 xyz)
+    public static double3x3_mt EulerZYX(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -1332,11 +600,11 @@ public partial struct double3x3_mt4
         );
     }
 
-    /// <summary>Returns a double3x3_mt4 matrix that rotates around the x-axis by a given number of radians</summary>
+    /// <summary>Returns a double3x3_mt matrix that rotates around the x-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix that rotates around the x-axis</returns>
+    /// <returns>The double3x3_mt rotation matrix that rotates around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 RotateX(double_mt4 angle)
+    public static double3x3_mt RotateX(double_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -1346,11 +614,11 @@ public partial struct double3x3_mt4
         );
     }
 
-    /// <summary>Returns a double3x3_mt4 matrix that rotates around the y-axis by a given number of radians</summary>
+    /// <summary>Returns a double3x3_mt matrix that rotates around the y-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix that rotates around the y-axis</returns>
+    /// <returns>The double3x3_mt rotation matrix that rotates around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 RotateY(double_mt4 angle)
+    public static double3x3_mt RotateY(double_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -1360,11 +628,11 @@ public partial struct double3x3_mt4
         );
     }
 
-    /// <summary>Returns a double3x3_mt4 matrix that rotates around the z-axis by a given number of radians</summary>
+    /// <summary>Returns a double3x3_mt matrix that rotates around the z-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt4 rotation matrix that rotates around the z-axis</returns>
+    /// <returns>The double3x3_mt rotation matrix that rotates around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 RotateZ(double_mt4 angle)
+    public static double3x3_mt RotateZ(double_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -1374,62 +642,62 @@ public partial struct double3x3_mt4
         );
     }
     
-    /// <summary>Returns a double3x3_mt4 matrix representing a uniform scaling of all axes by s</summary>
+    /// <summary>Returns a double3x3_mt matrix representing a uniform scaling of all axes by s</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The double3x3_mt4 matrix representing a uniform scale</returns>
+    /// <returns>The double3x3_mt matrix representing a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 Scale(double_mt4 s) => new(
+    public static double3x3_mt Scale(double_mt s) => new(
         s,    default, default,
         default, s,    default,
         default, default, s
     );
     
-    /// <summary>Returns a double3x3_mt4 matrix representing a non-uniform axis scaling by x, y and z</summary>
+    /// <summary>Returns a double3x3_mt matrix representing a non-uniform axis scaling by x, y and z</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The double3x3_mt4 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The double3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 Scale(double_mt4 x, double_mt4 y, double_mt4 z) => new(
+    public static double3x3_mt Scale(double_mt x, double_mt y, double_mt z) => new(
         x,    default, default,
         default, y,    default,
         default, default, z
     );
 
-    /// <summary>Returns a double3x3_mt4 matrix representing a non-uniform axis scaling by the components of the double3_mt4 vector v</summary>
+    /// <summary>Returns a double3x3_mt matrix representing a non-uniform axis scaling by the components of the double3_mt vector v</summary>
     /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The double3x3_mt4 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The double3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 Scale(double3_mt4 v) => new(
+    public static double3x3_mt Scale(double3_mt v) => new(
         v.x,    default, default,
         default, v.y,    default,
         default, default, v.z
     );
 
     /// <summary>
-    /// Converts a double4x4_mt4 to a double3x3_mt4
+    /// Converts a double4x4_mt to a double3x3_mt
     /// </summary>
-    /// <param name="m4x4">The double4x4_mt4 to convert to a double3x3_mt4</param>
-    /// <returns>The double3x3_mt4 constructed from the upper left 3x3 of the input double4x4_mt4 matrix</returns>
+    /// <param name="m4x4">The double4x4_mt to convert to a double3x3_mt</param>
+    /// <returns>The double3x3_mt constructed from the upper left 3x3 of the input double4x4_mt matrix</returns>
     [MethodImpl(256 | 512)]
-    public static explicit operator double3x3_mt4(double4x4_mt4 m4x4) => new(m4x4);
+    public static explicit operator double3x3_mt(double4x4_mt m4x4) => new(m4x4);
 }
 
 [Ex]
 public static partial class math_mt
 {
 
-    /// <summary>Returns the double3x3_mt4 full inverse of a double3x3_mt4 matrix</summary>
+    /// <summary>Returns the double3x3_mt full inverse of a double3x3_mt matrix</summary>
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 inverse([This] double3x3_mt4 m)
+    public static double3x3_mt inverse([This] double3x3_mt m)
     {
         var (c0, c1, c2) = m;
-        // var t0 = new double3_mt4(c1.x, c2.x, c0.x);
-        // var t1 = new double3_mt4(c1.y, c2.y, c0.y);
-        // var t2 = new double3_mt4(c1.z, c2.z, c0.z);
-        var (t0, t1, t2) = transpose(new double3x3_mt4(c1, c2, c0));
+        // var t0 = new double3_mt(c1.x, c2.x, c0.x);
+        // var t1 = new double3_mt(c1.y, c2.y, c0.y);
+        // var t2 = new double3_mt(c1.z, c2.z, c0.z);
+        var (t0, t1, t2) = transpose(new double3x3_mt(c1, c2, c0));
     
         // var m0 = t1 * t2.yzx - t1.yzx * t2;
         // var m1 = t0.yzx * t2 - t0 * t2.yzx;
@@ -1439,14 +707,14 @@ public static partial class math_mt
         var m2 = fsm(t0 * t1.yzx, t0.yzx, t1);
     
         var rcpDet = (1.0 / csum(t0.zxy * m0));
-        return new double3x3_mt4(m0, m1, m2) * rcpDet;
+        return new double3x3_mt(m0, m1, m2) * rcpDet;
     }
 
-    // <summary>Returns the determinant of a double3x3_mt4 matrix</summary>
+    // <summary>Returns the determinant of a double3x3_mt matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double_mt4 determinant([This] double3x3_mt4 m)
+    public static double_mt determinant([This] double3x3_mt m)
     {
         var (c0, c1, c2) = m;
 
@@ -1464,795 +732,63 @@ public static partial class math_mt
     }
 }
 
-#endregion // double3x3_mt4
+#endregion // double3x3_mt
 
-#region double3x3_mt8
+#region int3x3_mt
 
-public partial struct double3x3_mt8
+public partial struct int3x3_mt
 {
     /// <summary>
-    /// Constructs a double3x3_mt8 from the upper left 3x3 of a double4x4_mt8
+    /// Constructs a int3x3_mt from the upper left 3x3 of a int4x4_mt
     /// </summary>
-    /// <param name="m4x4"><see cref="double4x4_mt8"/> to extract a double3x3_mt8 from</param>
+    /// <param name="m4x4"><see cref="int4x4_mt"/> to extract a int3x3_mt from</param>
     [MethodImpl(256 | 512)]
-    public double3x3_mt8(double4x4_mt8 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-
-    /// <summary>Constructs a double3x3_mt8 matrix from a unit quaternion</summary>
-    /// <param name="q">The quaternion rotation</param>
-    [MethodImpl(256 | 512)]
-    public double3x3_mt8(quaternion_d_mt8 q)
-    {
-        var v = q.value;
-        var v2 = v + v;
-
-        var npn = new ulong3_mt8(0x8000000000000000, default, 0x8000000000000000).asf();
-        var nnp = new ulong3_mt8(0x8000000000000000, 0x8000000000000000, default).asf();
-        var pnn = new ulong3_mt8(default, 0x8000000000000000, 0x8000000000000000).asf();
-
-        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new double3_mt8(1.0, default, default);
-        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new double3_mt8(default, 1.0, default);
-        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new double3_mt8(default, default, 1.0);
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt8 view rotation matrix given a unit length forward vector and a unit length up vector.
-    /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="double3x3_mt8.LookRotationSafe" /> instead.
-    /// </summary>
-    /// <param name="forward">The forward vector to align the center of view with</param>
-    /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The double3x3_mt8 view rotation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 LookRotation(double3_mt8 forward, double3_mt8 up)
-    {
-        var t = up.cross(forward).normalize();
-        return new(t, forward.cross(t), forward);
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt8 view rotation matrix given a forward vector and an up vector.
-    /// The two input vectors are not assumed to be unit length.
-    /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
-    /// the identity will be returned instead.
-    /// </summary>
-    /// <param name="forward">The forward vector to align the center of view with</param>
-    /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The double3x3_mt8 view rotation matrix or the identity matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 LookRotationSafe(double3_mt8 forward, double3_mt8 up)
-    {
-        var forwardLengthSq = forward.dot(forward);
-        var upLengthSq = up.dot(up);
-
-        forward *= forwardLengthSq.rsqrt();
-        up *= upLengthSq.rsqrt();
-
-        var t = up.cross(forward);
-        var tLengthSq = t.dot(t);
-        t *= tLengthSq.rsqrt();
-
-        var mn = forwardLengthSq.min(upLengthSq).min(tLengthSq);
-        var mx = forwardLengthSq.max(upLengthSq).max(tLengthSq);
-
-        var accept = mn > math_mt.MinRotateSafe<double>() & mx < math_mt.MaxRotateSafe<double>()
-            & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(accept, new double3x3_mt8(t, forward.cross(t), forward), Identity);
-    }
-    
-    /// <summary>
-    /// Returns a double3x3_mt8 matrix representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The rotation axis</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double3x3_mt8 matrix representing the rotation around an axis.</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 AxisAngle(double3_mt8 axis, double_mt8 angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = axis;
-        var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new double4_mt8(u * sina, cosa);
-
-        var ppn = new ulong3_mt8(default, default, 0x8000000000000000).asdouble();
-        var npp = new ulong3_mt8(0x8000000000000000, default, default).asdouble();
-        var pnp = new ulong3_mt8(default, 0x8000000000000000, default).asdouble();
-
-        return new(
-            u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
-            u.yyy.fma(u_inv_cosa, t.zwx ^ npp),
-            u.zzz.fma(u_inv_cosa, t.yxw ^ pnp)
-        );
-    }
-    
-    /// <summary>
-    /// Returns a double3x3_mt8 matrix representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The rotation axis</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double3x3_mt8 matrix representing the rotation around an axis.</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 AxisAngle(double3_mt8 axis, double angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = axis;
-        var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new double4_mt8(u * sina, cosa);
-
-        var ppn = new ulong3_mt8(default, default, 0x8000000000000000).asdouble();
-        var npp = new ulong3_mt8(0x8000000000000000, default, default).asdouble();
-        var pnp = new ulong3_mt8(default, 0x8000000000000000, default).asdouble();
-
-        return new(
-            u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
-            u.yyy.fma(u_inv_cosa, t.zwx ^ npp),
-            u.zzz.fma(u_inv_cosa, t.yxw ^ pnp)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt8 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix of the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 EulerXYZ(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (c.z * s.x * s.y - c.x * s.z),    (c.x * c.z * s.y + s.x * s.z),
-            (c.y * s.z),  (c.x * c.z + s.x * s.y * s.z),    (c.x * s.y * s.z - c.z * s.x),
-            (-s.y),       (c.y * s.x),                      (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt8 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix of the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 EulerXZY(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (s.x * s.y - c.x * c.y * s.z),    (c.x * s.y + c.y * s.x * s.z),
-            (s.z),        (c.x * c.z),                      (-c.z * s.x),                 
-            (-c.z * s.y), (c.y * s.x + c.x * s.y * s.z),    (c.x * c.y - s.x * s.y * s.z)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt8 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix of the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 EulerYXZ(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z - s.x * s.y * s.z),    (-c.x * s.z), (c.z * s.y + c.y * s.x * s.z),
-            (c.z * s.x * s.y + c.y * s.z),    (c.x * c.z),  (s.y * s.z - c.y * c.z * s.x),
-            (-c.x * s.y),                     (s.x),        (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt8 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix of the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 EulerYZX(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-s.z),       (c.z * s.y),                  
-            (s.x * s.y + c.x * c.y * s.z),    (c.x * c.z),  (c.x * s.y * s.z - c.y * s.x),
-            (c.y * s.x * s.z - c.x * s.y),    (c.z * s.x),  (c.x * c.y + s.x * s.y * s.z)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt8 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix of the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 EulerZXY(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z + s.x * s.y * s.z),    (c.z * s.x * s.y - c.y * s.z),    (c.x * s.y),
-            (c.x * s.z),                      (c.x * c.z),                      (-s.x),     
-            (c.y * s.x * s.z - c.z * s.y),    (c.y * c.z * s.x + s.y * s.z),    (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt8 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix of the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 EulerZYX(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-c.y * s.z),                     (s.y),       
-            (c.z * s.x * s.y + c.x * s.z),    (c.x * c.z - s.x * s.y * s.z),    (-c.y * s.x),
-            (s.x * s.z - c.x * c.z * s.y),    (c.z * s.x + c.x * s.y * s.z),    (c.x * c.y)
-        );
-    }
-
-    /// <summary>Returns a double3x3_mt8 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 RotateX(double_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0, default, default,
-            default, c,     -s,
-            default, s,     c
-        );
-    }
-
-    /// <summary>Returns a double3x3_mt8 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 RotateY(double_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,
-            default, 1.0, default,
-            -s,    default, c
-        );
-    }
-
-    /// <summary>Returns a double3x3_mt8 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt8 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 RotateZ(double_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default,
-            s,     c,     default,
-            default, default, 1.0
-        );
-    }
-    
-    /// <summary>Returns a double3x3_mt8 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The double3x3_mt8 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 Scale(double_mt8 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a double3x3_mt8 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The double3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 Scale(double_mt8 x, double_mt8 y, double_mt8 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a double3x3_mt8 matrix representing a non-uniform axis scaling by the components of the double3_mt8 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The double3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 Scale(double3_mt8 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a double4x4_mt8 to a double3x3_mt8
-    /// </summary>
-    /// <param name="m4x4">The double4x4_mt8 to convert to a double3x3_mt8</param>
-    /// <returns>The double3x3_mt8 constructed from the upper left 3x3 of the input double4x4_mt8 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator double3x3_mt8(double4x4_mt8 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-
-    /// <summary>Returns the double3x3_mt8 full inverse of a double3x3_mt8 matrix</summary>
-    /// <param name="m">Matrix to invert</param>
-    /// <returns>The inverted matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 inverse([This] double3x3_mt8 m)
-    {
-        var (c0, c1, c2) = m;
-        // var t0 = new double3_mt8(c1.x, c2.x, c0.x);
-        // var t1 = new double3_mt8(c1.y, c2.y, c0.y);
-        // var t2 = new double3_mt8(c1.z, c2.z, c0.z);
-        var (t0, t1, t2) = transpose(new double3x3_mt8(c1, c2, c0));
-    
-        // var m0 = t1 * t2.yzx - t1.yzx * t2;
-        // var m1 = t0.yzx * t2 - t0 * t2.yzx;
-        // var m2 = t0 * t1.yzx - t0.yzx * t1;
-        var m0 = fsm(t1 * t2.yzx, t1.yzx, t2);
-        var m1 = fsm(t0.yzx * t2, t0, t2.yzx);
-        var m2 = fsm(t0 * t1.yzx, t0.yzx, t1);
-    
-        var rcpDet = (1.0 / csum(t0.zxy * m0));
-        return new double3x3_mt8(m0, m1, m2) * rcpDet;
-    }
-
-    // <summary>Returns the determinant of a double3x3_mt8 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double_mt8 determinant([This] double3x3_mt8 m)
-    {
-        var (c0, c1, c2) = m;
-
-        // var m00 = c1.y * c2.z - c1.z * c2.y;
-        // var m01 = c0.y * c2.z - c0.z * c2.y;
-        // var m02 = c0.y * c1.z - c0.z * c1.y;
-        var m00 = fsm(c1.y * c2.z, c1.z, c2.y);
-        var m01 = fsm(c0.y * c2.z, c0.z, c2.y);
-        var m02 = fsm(c0.y * c1.z, c0.z, c1.y);
-
-        //var r = c0.x * m00 - c1.x * m01 + c2.x * m02;
-        var r = fam(fsm(c0.x * m00, c1.x, m01), c2.x, m02);
-
-        return r;
-    }
-}
-
-#endregion // double3x3_mt8
-
-#region double3x3_mt16
-
-public partial struct double3x3_mt16
-{
-    /// <summary>
-    /// Constructs a double3x3_mt16 from the upper left 3x3 of a double4x4_mt16
-    /// </summary>
-    /// <param name="m4x4"><see cref="double4x4_mt16"/> to extract a double3x3_mt16 from</param>
-    [MethodImpl(256 | 512)]
-    public double3x3_mt16(double4x4_mt16 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-
-    /// <summary>Constructs a double3x3_mt16 matrix from a unit quaternion</summary>
-    /// <param name="q">The quaternion rotation</param>
-    [MethodImpl(256 | 512)]
-    public double3x3_mt16(quaternion_d_mt16 q)
-    {
-        var v = q.value;
-        var v2 = v + v;
-
-        var npn = new ulong3_mt16(0x8000000000000000, default, 0x8000000000000000).asf();
-        var nnp = new ulong3_mt16(0x8000000000000000, 0x8000000000000000, default).asf();
-        var pnn = new ulong3_mt16(default, 0x8000000000000000, 0x8000000000000000).asf();
-
-        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new double3_mt16(1.0, default, default);
-        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new double3_mt16(default, 1.0, default);
-        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new double3_mt16(default, default, 1.0);
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt16 view rotation matrix given a unit length forward vector and a unit length up vector.
-    /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="double3x3_mt16.LookRotationSafe" /> instead.
-    /// </summary>
-    /// <param name="forward">The forward vector to align the center of view with</param>
-    /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The double3x3_mt16 view rotation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 LookRotation(double3_mt16 forward, double3_mt16 up)
-    {
-        var t = up.cross(forward).normalize();
-        return new(t, forward.cross(t), forward);
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt16 view rotation matrix given a forward vector and an up vector.
-    /// The two input vectors are not assumed to be unit length.
-    /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
-    /// the identity will be returned instead.
-    /// </summary>
-    /// <param name="forward">The forward vector to align the center of view with</param>
-    /// <param name="up">The up vector to point top of view toward</param>
-    /// <returns>The double3x3_mt16 view rotation matrix or the identity matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 LookRotationSafe(double3_mt16 forward, double3_mt16 up)
-    {
-        var forwardLengthSq = forward.dot(forward);
-        var upLengthSq = up.dot(up);
-
-        forward *= forwardLengthSq.rsqrt();
-        up *= upLengthSq.rsqrt();
-
-        var t = up.cross(forward);
-        var tLengthSq = t.dot(t);
-        t *= tLengthSq.rsqrt();
-
-        var mn = forwardLengthSq.min(upLengthSq).min(tLengthSq);
-        var mx = forwardLengthSq.max(upLengthSq).max(tLengthSq);
-
-        var accept = mn > math_mt.MinRotateSafe<double>() & mx < math_mt.MaxRotateSafe<double>()
-            & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(accept, new double3x3_mt16(t, forward.cross(t), forward), Identity);
-    }
-    
-    /// <summary>
-    /// Returns a double3x3_mt16 matrix representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The rotation axis</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double3x3_mt16 matrix representing the rotation around an axis.</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 AxisAngle(double3_mt16 axis, double_mt16 angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = axis;
-        var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new double4_mt16(u * sina, cosa);
-
-        var ppn = new ulong3_mt16(default, default, 0x8000000000000000).asdouble();
-        var npp = new ulong3_mt16(0x8000000000000000, default, default).asdouble();
-        var pnp = new ulong3_mt16(default, 0x8000000000000000, default).asdouble();
-
-        return new(
-            u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
-            u.yyy.fma(u_inv_cosa, t.zwx ^ npp),
-            u.zzz.fma(u_inv_cosa, t.yxw ^ pnp)
-        );
-    }
-    
-    /// <summary>
-    /// Returns a double3x3_mt16 matrix representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The rotation axis</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double3x3_mt16 matrix representing the rotation around an axis.</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 AxisAngle(double3_mt16 axis, double angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = axis;
-        var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
-        var t = new double4_mt16(u * sina, cosa);
-
-        var ppn = new ulong3_mt16(default, default, 0x8000000000000000).asdouble();
-        var npp = new ulong3_mt16(0x8000000000000000, default, default).asdouble();
-        var pnp = new ulong3_mt16(default, 0x8000000000000000, default).asdouble();
-
-        return new(
-            u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
-            u.yyy.fma(u_inv_cosa, t.zwx ^ npp),
-            u.zzz.fma(u_inv_cosa, t.yxw ^ pnp)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt16 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix of the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 EulerXYZ(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (c.z * s.x * s.y - c.x * s.z),    (c.x * c.z * s.y + s.x * s.z),
-            (c.y * s.z),  (c.x * c.z + s.x * s.y * s.z),    (c.x * s.y * s.z - c.z * s.x),
-            (-s.y),       (c.y * s.x),                      (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt16 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix of the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 EulerXZY(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (s.x * s.y - c.x * c.y * s.z),    (c.x * s.y + c.y * s.x * s.z),
-            (s.z),        (c.x * c.z),                      (-c.z * s.x),                 
-            (-c.z * s.y), (c.y * s.x + c.x * s.y * s.z),    (c.x * c.y - s.x * s.y * s.z)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt16 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix of the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 EulerYXZ(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z - s.x * s.y * s.z),    (-c.x * s.z), (c.z * s.y + c.y * s.x * s.z),
-            (c.z * s.x * s.y + c.y * s.z),    (c.x * c.z),  (s.y * s.z - c.y * c.z * s.x),
-            (-c.x * s.y),                     (s.x),        (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt16 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix of the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 EulerYZX(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-s.z),       (c.z * s.y),                  
-            (s.x * s.y + c.x * c.y * s.z),    (c.x * c.z),  (c.x * s.y * s.z - c.y * s.x),
-            (c.y * s.x * s.z - c.x * s.y),    (c.z * s.x),  (c.x * c.y + s.x * s.y * s.z)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt16 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix of the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 EulerZXY(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z + s.x * s.y * s.z),    (c.z * s.x * s.y - c.y * s.z),    (c.x * s.y),
-            (c.x * s.z),                      (c.x * c.z),                      (-s.x),     
-            (c.y * s.x * s.z - c.z * s.y),    (c.y * c.z * s.x + s.y * s.z),    (c.x * c.y)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double3x3_mt16 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix of the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 EulerZYX(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-c.y * s.z),                     (s.y),       
-            (c.z * s.x * s.y + c.x * s.z),    (c.x * c.z - s.x * s.y * s.z),    (-c.y * s.x),
-            (s.x * s.z - c.x * c.z * s.y),    (c.z * s.x + c.x * s.y * s.z),    (c.x * c.y)
-        );
-    }
-
-    /// <summary>Returns a double3x3_mt16 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 RotateX(double_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0, default, default,
-            default, c,     -s,
-            default, s,     c
-        );
-    }
-
-    /// <summary>Returns a double3x3_mt16 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 RotateY(double_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,
-            default, 1.0, default,
-            -s,    default, c
-        );
-    }
-
-    /// <summary>Returns a double3x3_mt16 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double3x3_mt16 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 RotateZ(double_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default,
-            s,     c,     default,
-            default, default, 1.0
-        );
-    }
-    
-    /// <summary>Returns a double3x3_mt16 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The double3x3_mt16 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 Scale(double_mt16 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a double3x3_mt16 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The double3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 Scale(double_mt16 x, double_mt16 y, double_mt16 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a double3x3_mt16 matrix representing a non-uniform axis scaling by the components of the double3_mt16 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The double3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 Scale(double3_mt16 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a double4x4_mt16 to a double3x3_mt16
-    /// </summary>
-    /// <param name="m4x4">The double4x4_mt16 to convert to a double3x3_mt16</param>
-    /// <returns>The double3x3_mt16 constructed from the upper left 3x3 of the input double4x4_mt16 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator double3x3_mt16(double4x4_mt16 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-
-    /// <summary>Returns the double3x3_mt16 full inverse of a double3x3_mt16 matrix</summary>
-    /// <param name="m">Matrix to invert</param>
-    /// <returns>The inverted matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 inverse([This] double3x3_mt16 m)
-    {
-        var (c0, c1, c2) = m;
-        // var t0 = new double3_mt16(c1.x, c2.x, c0.x);
-        // var t1 = new double3_mt16(c1.y, c2.y, c0.y);
-        // var t2 = new double3_mt16(c1.z, c2.z, c0.z);
-        var (t0, t1, t2) = transpose(new double3x3_mt16(c1, c2, c0));
-    
-        // var m0 = t1 * t2.yzx - t1.yzx * t2;
-        // var m1 = t0.yzx * t2 - t0 * t2.yzx;
-        // var m2 = t0 * t1.yzx - t0.yzx * t1;
-        var m0 = fsm(t1 * t2.yzx, t1.yzx, t2);
-        var m1 = fsm(t0.yzx * t2, t0, t2.yzx);
-        var m2 = fsm(t0 * t1.yzx, t0.yzx, t1);
-    
-        var rcpDet = (1.0 / csum(t0.zxy * m0));
-        return new double3x3_mt16(m0, m1, m2) * rcpDet;
-    }
-
-    // <summary>Returns the determinant of a double3x3_mt16 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double_mt16 determinant([This] double3x3_mt16 m)
-    {
-        var (c0, c1, c2) = m;
-
-        // var m00 = c1.y * c2.z - c1.z * c2.y;
-        // var m01 = c0.y * c2.z - c0.z * c2.y;
-        // var m02 = c0.y * c1.z - c0.z * c1.y;
-        var m00 = fsm(c1.y * c2.z, c1.z, c2.y);
-        var m01 = fsm(c0.y * c2.z, c0.z, c2.y);
-        var m02 = fsm(c0.y * c1.z, c0.z, c1.y);
-
-        //var r = c0.x * m00 - c1.x * m01 + c2.x * m02;
-        var r = fam(fsm(c0.x * m00, c1.x, m01), c2.x, m02);
-
-        return r;
-    }
-}
-
-#endregion // double3x3_mt16
-
-#region int3x3_mt4
-
-public partial struct int3x3_mt4
-{
-    /// <summary>
-    /// Constructs a int3x3_mt4 from the upper left 3x3 of a int4x4_mt4
-    /// </summary>
-    /// <param name="m4x4"><see cref="int4x4_mt4"/> to extract a int3x3_mt4 from</param>
-    [MethodImpl(256 | 512)]
-    public int3x3_mt4(int4x4_mt4 m4x4)
+    public int3x3_mt(int4x4_mt m4x4)
     {
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
     }
     
-    /// <summary>Returns a int3x3_mt4 matrix representing a uniform scaling of all axes by s</summary>
+    /// <summary>Returns a int3x3_mt matrix representing a uniform scaling of all axes by s</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The int3x3_mt4 matrix representing a uniform scale</returns>
+    /// <returns>The int3x3_mt matrix representing a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt4 Scale(int_mt4 s) => new(
+    public static int3x3_mt Scale(int_mt s) => new(
         s,    default, default,
         default, s,    default,
         default, default, s
     );
     
-    /// <summary>Returns a int3x3_mt4 matrix representing a non-uniform axis scaling by x, y and z</summary>
+    /// <summary>Returns a int3x3_mt matrix representing a non-uniform axis scaling by x, y and z</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The int3x3_mt4 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The int3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt4 Scale(int_mt4 x, int_mt4 y, int_mt4 z) => new(
+    public static int3x3_mt Scale(int_mt x, int_mt y, int_mt z) => new(
         x,    default, default,
         default, y,    default,
         default, default, z
     );
 
-    /// <summary>Returns a int3x3_mt4 matrix representing a non-uniform axis scaling by the components of the int3_mt4 vector v</summary>
+    /// <summary>Returns a int3x3_mt matrix representing a non-uniform axis scaling by the components of the int3_mt vector v</summary>
     /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The int3x3_mt4 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The int3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt4 Scale(int3_mt4 v) => new(
+    public static int3x3_mt Scale(int3_mt v) => new(
         v.x,    default, default,
         default, v.y,    default,
         default, default, v.z
     );
 
     /// <summary>
-    /// Converts a int4x4_mt4 to a int3x3_mt4
+    /// Converts a int4x4_mt to a int3x3_mt
     /// </summary>
-    /// <param name="m4x4">The int4x4_mt4 to convert to a int3x3_mt4</param>
-    /// <returns>The int3x3_mt4 constructed from the upper left 3x3 of the input int4x4_mt4 matrix</returns>
+    /// <param name="m4x4">The int4x4_mt to convert to a int3x3_mt</param>
+    /// <returns>The int3x3_mt constructed from the upper left 3x3 of the input int4x4_mt matrix</returns>
     [MethodImpl(256 | 512)]
-    public static explicit operator int3x3_mt4(int4x4_mt4 m4x4) => new(m4x4);
+    public static explicit operator int3x3_mt(int4x4_mt m4x4) => new(m4x4);
 }
 
 [Ex]
@@ -2260,63 +796,63 @@ public static partial class math_mt
 {
 }
 
-#endregion // int3x3_mt4
+#endregion // int3x3_mt
 
-#region int3x3_mt8
+#region uint3x3_mt
 
-public partial struct int3x3_mt8
+public partial struct uint3x3_mt
 {
     /// <summary>
-    /// Constructs a int3x3_mt8 from the upper left 3x3 of a int4x4_mt8
+    /// Constructs a uint3x3_mt from the upper left 3x3 of a uint4x4_mt
     /// </summary>
-    /// <param name="m4x4"><see cref="int4x4_mt8"/> to extract a int3x3_mt8 from</param>
+    /// <param name="m4x4"><see cref="uint4x4_mt"/> to extract a uint3x3_mt from</param>
     [MethodImpl(256 | 512)]
-    public int3x3_mt8(int4x4_mt8 m4x4)
+    public uint3x3_mt(uint4x4_mt m4x4)
     {
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
     }
     
-    /// <summary>Returns a int3x3_mt8 matrix representing a uniform scaling of all axes by s</summary>
+    /// <summary>Returns a uint3x3_mt matrix representing a uniform scaling of all axes by s</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The int3x3_mt8 matrix representing a uniform scale</returns>
+    /// <returns>The uint3x3_mt matrix representing a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt8 Scale(int_mt8 s) => new(
+    public static uint3x3_mt Scale(uint_mt s) => new(
         s,    default, default,
         default, s,    default,
         default, default, s
     );
     
-    /// <summary>Returns a int3x3_mt8 matrix representing a non-uniform axis scaling by x, y and z</summary>
+    /// <summary>Returns a uint3x3_mt matrix representing a non-uniform axis scaling by x, y and z</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The int3x3_mt8 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The uint3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt8 Scale(int_mt8 x, int_mt8 y, int_mt8 z) => new(
+    public static uint3x3_mt Scale(uint_mt x, uint_mt y, uint_mt z) => new(
         x,    default, default,
         default, y,    default,
         default, default, z
     );
 
-    /// <summary>Returns a int3x3_mt8 matrix representing a non-uniform axis scaling by the components of the int3_mt8 vector v</summary>
+    /// <summary>Returns a uint3x3_mt matrix representing a non-uniform axis scaling by the components of the uint3_mt vector v</summary>
     /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The int3x3_mt8 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The uint3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt8 Scale(int3_mt8 v) => new(
+    public static uint3x3_mt Scale(uint3_mt v) => new(
         v.x,    default, default,
         default, v.y,    default,
         default, default, v.z
     );
 
     /// <summary>
-    /// Converts a int4x4_mt8 to a int3x3_mt8
+    /// Converts a uint4x4_mt to a uint3x3_mt
     /// </summary>
-    /// <param name="m4x4">The int4x4_mt8 to convert to a int3x3_mt8</param>
-    /// <returns>The int3x3_mt8 constructed from the upper left 3x3 of the input int4x4_mt8 matrix</returns>
+    /// <param name="m4x4">The uint4x4_mt to convert to a uint3x3_mt</param>
+    /// <returns>The uint3x3_mt constructed from the upper left 3x3 of the input uint4x4_mt matrix</returns>
     [MethodImpl(256 | 512)]
-    public static explicit operator int3x3_mt8(int4x4_mt8 m4x4) => new(m4x4);
+    public static explicit operator uint3x3_mt(uint4x4_mt m4x4) => new(m4x4);
 }
 
 [Ex]
@@ -2324,63 +860,63 @@ public static partial class math_mt
 {
 }
 
-#endregion // int3x3_mt8
+#endregion // uint3x3_mt
 
-#region int3x3_mt16
+#region long3x3_mt
 
-public partial struct int3x3_mt16
+public partial struct long3x3_mt
 {
     /// <summary>
-    /// Constructs a int3x3_mt16 from the upper left 3x3 of a int4x4_mt16
+    /// Constructs a long3x3_mt from the upper left 3x3 of a long4x4_mt
     /// </summary>
-    /// <param name="m4x4"><see cref="int4x4_mt16"/> to extract a int3x3_mt16 from</param>
+    /// <param name="m4x4"><see cref="long4x4_mt"/> to extract a long3x3_mt from</param>
     [MethodImpl(256 | 512)]
-    public int3x3_mt16(int4x4_mt16 m4x4)
+    public long3x3_mt(long4x4_mt m4x4)
     {
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
     }
     
-    /// <summary>Returns a int3x3_mt16 matrix representing a uniform scaling of all axes by s</summary>
+    /// <summary>Returns a long3x3_mt matrix representing a uniform scaling of all axes by s</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The int3x3_mt16 matrix representing a uniform scale</returns>
+    /// <returns>The long3x3_mt matrix representing a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt16 Scale(int_mt16 s) => new(
+    public static long3x3_mt Scale(long_mt s) => new(
         s,    default, default,
         default, s,    default,
         default, default, s
     );
     
-    /// <summary>Returns a int3x3_mt16 matrix representing a non-uniform axis scaling by x, y and z</summary>
+    /// <summary>Returns a long3x3_mt matrix representing a non-uniform axis scaling by x, y and z</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The int3x3_mt16 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The long3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt16 Scale(int_mt16 x, int_mt16 y, int_mt16 z) => new(
+    public static long3x3_mt Scale(long_mt x, long_mt y, long_mt z) => new(
         x,    default, default,
         default, y,    default,
         default, default, z
     );
 
-    /// <summary>Returns a int3x3_mt16 matrix representing a non-uniform axis scaling by the components of the int3_mt16 vector v</summary>
+    /// <summary>Returns a long3x3_mt matrix representing a non-uniform axis scaling by the components of the long3_mt vector v</summary>
     /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The int3x3_mt16 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The long3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int3x3_mt16 Scale(int3_mt16 v) => new(
+    public static long3x3_mt Scale(long3_mt v) => new(
         v.x,    default, default,
         default, v.y,    default,
         default, default, v.z
     );
 
     /// <summary>
-    /// Converts a int4x4_mt16 to a int3x3_mt16
+    /// Converts a long4x4_mt to a long3x3_mt
     /// </summary>
-    /// <param name="m4x4">The int4x4_mt16 to convert to a int3x3_mt16</param>
-    /// <returns>The int3x3_mt16 constructed from the upper left 3x3 of the input int4x4_mt16 matrix</returns>
+    /// <param name="m4x4">The long4x4_mt to convert to a long3x3_mt</param>
+    /// <returns>The long3x3_mt constructed from the upper left 3x3 of the input long4x4_mt matrix</returns>
     [MethodImpl(256 | 512)]
-    public static explicit operator int3x3_mt16(int4x4_mt16 m4x4) => new(m4x4);
+    public static explicit operator long3x3_mt(long4x4_mt m4x4) => new(m4x4);
 }
 
 [Ex]
@@ -2388,63 +924,63 @@ public static partial class math_mt
 {
 }
 
-#endregion // int3x3_mt16
+#endregion // long3x3_mt
 
-#region uint3x3_mt4
+#region ulong3x3_mt
 
-public partial struct uint3x3_mt4
+public partial struct ulong3x3_mt
 {
     /// <summary>
-    /// Constructs a uint3x3_mt4 from the upper left 3x3 of a uint4x4_mt4
+    /// Constructs a ulong3x3_mt from the upper left 3x3 of a ulong4x4_mt
     /// </summary>
-    /// <param name="m4x4"><see cref="uint4x4_mt4"/> to extract a uint3x3_mt4 from</param>
+    /// <param name="m4x4"><see cref="ulong4x4_mt"/> to extract a ulong3x3_mt from</param>
     [MethodImpl(256 | 512)]
-    public uint3x3_mt4(uint4x4_mt4 m4x4)
+    public ulong3x3_mt(ulong4x4_mt m4x4)
     {
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
     }
     
-    /// <summary>Returns a uint3x3_mt4 matrix representing a uniform scaling of all axes by s</summary>
+    /// <summary>Returns a ulong3x3_mt matrix representing a uniform scaling of all axes by s</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The uint3x3_mt4 matrix representing a uniform scale</returns>
+    /// <returns>The ulong3x3_mt matrix representing a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static uint3x3_mt4 Scale(uint_mt4 s) => new(
+    public static ulong3x3_mt Scale(ulong_mt s) => new(
         s,    default, default,
         default, s,    default,
         default, default, s
     );
     
-    /// <summary>Returns a uint3x3_mt4 matrix representing a non-uniform axis scaling by x, y and z</summary>
+    /// <summary>Returns a ulong3x3_mt matrix representing a non-uniform axis scaling by x, y and z</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The uint3x3_mt4 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The ulong3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static uint3x3_mt4 Scale(uint_mt4 x, uint_mt4 y, uint_mt4 z) => new(
+    public static ulong3x3_mt Scale(ulong_mt x, ulong_mt y, ulong_mt z) => new(
         x,    default, default,
         default, y,    default,
         default, default, z
     );
 
-    /// <summary>Returns a uint3x3_mt4 matrix representing a non-uniform axis scaling by the components of the uint3_mt4 vector v</summary>
+    /// <summary>Returns a ulong3x3_mt matrix representing a non-uniform axis scaling by the components of the ulong3_mt vector v</summary>
     /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The uint3x3_mt4 rotation matrix representing a non-uniform scale</returns>
+    /// <returns>The ulong3x3_mt rotation matrix representing a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static uint3x3_mt4 Scale(uint3_mt4 v) => new(
+    public static ulong3x3_mt Scale(ulong3_mt v) => new(
         v.x,    default, default,
         default, v.y,    default,
         default, default, v.z
     );
 
     /// <summary>
-    /// Converts a uint4x4_mt4 to a uint3x3_mt4
+    /// Converts a ulong4x4_mt to a ulong3x3_mt
     /// </summary>
-    /// <param name="m4x4">The uint4x4_mt4 to convert to a uint3x3_mt4</param>
-    /// <returns>The uint3x3_mt4 constructed from the upper left 3x3 of the input uint4x4_mt4 matrix</returns>
+    /// <param name="m4x4">The ulong4x4_mt to convert to a ulong3x3_mt</param>
+    /// <returns>The ulong3x3_mt constructed from the upper left 3x3 of the input ulong4x4_mt matrix</returns>
     [MethodImpl(256 | 512)]
-    public static explicit operator uint3x3_mt4(uint4x4_mt4 m4x4) => new(m4x4);
+    public static explicit operator ulong3x3_mt(ulong4x4_mt m4x4) => new(m4x4);
 }
 
 [Ex]
@@ -2452,516 +988,4 @@ public static partial class math_mt
 {
 }
 
-#endregion // uint3x3_mt4
-
-#region uint3x3_mt8
-
-public partial struct uint3x3_mt8
-{
-    /// <summary>
-    /// Constructs a uint3x3_mt8 from the upper left 3x3 of a uint4x4_mt8
-    /// </summary>
-    /// <param name="m4x4"><see cref="uint4x4_mt8"/> to extract a uint3x3_mt8 from</param>
-    [MethodImpl(256 | 512)]
-    public uint3x3_mt8(uint4x4_mt8 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-    
-    /// <summary>Returns a uint3x3_mt8 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The uint3x3_mt8 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt8 Scale(uint_mt8 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a uint3x3_mt8 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The uint3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt8 Scale(uint_mt8 x, uint_mt8 y, uint_mt8 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a uint3x3_mt8 matrix representing a non-uniform axis scaling by the components of the uint3_mt8 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The uint3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt8 Scale(uint3_mt8 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a uint4x4_mt8 to a uint3x3_mt8
-    /// </summary>
-    /// <param name="m4x4">The uint4x4_mt8 to convert to a uint3x3_mt8</param>
-    /// <returns>The uint3x3_mt8 constructed from the upper left 3x3 of the input uint4x4_mt8 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3x3_mt8(uint4x4_mt8 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // uint3x3_mt8
-
-#region uint3x3_mt16
-
-public partial struct uint3x3_mt16
-{
-    /// <summary>
-    /// Constructs a uint3x3_mt16 from the upper left 3x3 of a uint4x4_mt16
-    /// </summary>
-    /// <param name="m4x4"><see cref="uint4x4_mt16"/> to extract a uint3x3_mt16 from</param>
-    [MethodImpl(256 | 512)]
-    public uint3x3_mt16(uint4x4_mt16 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-    
-    /// <summary>Returns a uint3x3_mt16 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The uint3x3_mt16 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt16 Scale(uint_mt16 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a uint3x3_mt16 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The uint3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt16 Scale(uint_mt16 x, uint_mt16 y, uint_mt16 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a uint3x3_mt16 matrix representing a non-uniform axis scaling by the components of the uint3_mt16 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The uint3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt16 Scale(uint3_mt16 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a uint4x4_mt16 to a uint3x3_mt16
-    /// </summary>
-    /// <param name="m4x4">The uint4x4_mt16 to convert to a uint3x3_mt16</param>
-    /// <returns>The uint3x3_mt16 constructed from the upper left 3x3 of the input uint4x4_mt16 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3x3_mt16(uint4x4_mt16 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // uint3x3_mt16
-
-#region long3x3_mt4
-
-public partial struct long3x3_mt4
-{
-    /// <summary>
-    /// Constructs a long3x3_mt4 from the upper left 3x3 of a long4x4_mt4
-    /// </summary>
-    /// <param name="m4x4"><see cref="long4x4_mt4"/> to extract a long3x3_mt4 from</param>
-    [MethodImpl(256 | 512)]
-    public long3x3_mt4(long4x4_mt4 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-    
-    /// <summary>Returns a long3x3_mt4 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The long3x3_mt4 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt4 Scale(long_mt4 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a long3x3_mt4 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The long3x3_mt4 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt4 Scale(long_mt4 x, long_mt4 y, long_mt4 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a long3x3_mt4 matrix representing a non-uniform axis scaling by the components of the long3_mt4 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The long3x3_mt4 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt4 Scale(long3_mt4 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a long4x4_mt4 to a long3x3_mt4
-    /// </summary>
-    /// <param name="m4x4">The long4x4_mt4 to convert to a long3x3_mt4</param>
-    /// <returns>The long3x3_mt4 constructed from the upper left 3x3 of the input long4x4_mt4 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator long3x3_mt4(long4x4_mt4 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // long3x3_mt4
-
-#region long3x3_mt8
-
-public partial struct long3x3_mt8
-{
-    /// <summary>
-    /// Constructs a long3x3_mt8 from the upper left 3x3 of a long4x4_mt8
-    /// </summary>
-    /// <param name="m4x4"><see cref="long4x4_mt8"/> to extract a long3x3_mt8 from</param>
-    [MethodImpl(256 | 512)]
-    public long3x3_mt8(long4x4_mt8 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-    
-    /// <summary>Returns a long3x3_mt8 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The long3x3_mt8 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt8 Scale(long_mt8 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a long3x3_mt8 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The long3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt8 Scale(long_mt8 x, long_mt8 y, long_mt8 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a long3x3_mt8 matrix representing a non-uniform axis scaling by the components of the long3_mt8 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The long3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt8 Scale(long3_mt8 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a long4x4_mt8 to a long3x3_mt8
-    /// </summary>
-    /// <param name="m4x4">The long4x4_mt8 to convert to a long3x3_mt8</param>
-    /// <returns>The long3x3_mt8 constructed from the upper left 3x3 of the input long4x4_mt8 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator long3x3_mt8(long4x4_mt8 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // long3x3_mt8
-
-#region long3x3_mt16
-
-public partial struct long3x3_mt16
-{
-    /// <summary>
-    /// Constructs a long3x3_mt16 from the upper left 3x3 of a long4x4_mt16
-    /// </summary>
-    /// <param name="m4x4"><see cref="long4x4_mt16"/> to extract a long3x3_mt16 from</param>
-    [MethodImpl(256 | 512)]
-    public long3x3_mt16(long4x4_mt16 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-    
-    /// <summary>Returns a long3x3_mt16 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The long3x3_mt16 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt16 Scale(long_mt16 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a long3x3_mt16 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The long3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt16 Scale(long_mt16 x, long_mt16 y, long_mt16 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a long3x3_mt16 matrix representing a non-uniform axis scaling by the components of the long3_mt16 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The long3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt16 Scale(long3_mt16 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a long4x4_mt16 to a long3x3_mt16
-    /// </summary>
-    /// <param name="m4x4">The long4x4_mt16 to convert to a long3x3_mt16</param>
-    /// <returns>The long3x3_mt16 constructed from the upper left 3x3 of the input long4x4_mt16 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator long3x3_mt16(long4x4_mt16 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // long3x3_mt16
-
-#region ulong3x3_mt4
-
-public partial struct ulong3x3_mt4
-{
-    /// <summary>
-    /// Constructs a ulong3x3_mt4 from the upper left 3x3 of a ulong4x4_mt4
-    /// </summary>
-    /// <param name="m4x4"><see cref="ulong4x4_mt4"/> to extract a ulong3x3_mt4 from</param>
-    [MethodImpl(256 | 512)]
-    public ulong3x3_mt4(ulong4x4_mt4 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-    
-    /// <summary>Returns a ulong3x3_mt4 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The ulong3x3_mt4 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt4 Scale(ulong_mt4 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a ulong3x3_mt4 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The ulong3x3_mt4 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt4 Scale(ulong_mt4 x, ulong_mt4 y, ulong_mt4 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a ulong3x3_mt4 matrix representing a non-uniform axis scaling by the components of the ulong3_mt4 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The ulong3x3_mt4 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt4 Scale(ulong3_mt4 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a ulong4x4_mt4 to a ulong3x3_mt4
-    /// </summary>
-    /// <param name="m4x4">The ulong4x4_mt4 to convert to a ulong3x3_mt4</param>
-    /// <returns>The ulong3x3_mt4 constructed from the upper left 3x3 of the input ulong4x4_mt4 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3x3_mt4(ulong4x4_mt4 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // ulong3x3_mt4
-
-#region ulong3x3_mt8
-
-public partial struct ulong3x3_mt8
-{
-    /// <summary>
-    /// Constructs a ulong3x3_mt8 from the upper left 3x3 of a ulong4x4_mt8
-    /// </summary>
-    /// <param name="m4x4"><see cref="ulong4x4_mt8"/> to extract a ulong3x3_mt8 from</param>
-    [MethodImpl(256 | 512)]
-    public ulong3x3_mt8(ulong4x4_mt8 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-    
-    /// <summary>Returns a ulong3x3_mt8 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The ulong3x3_mt8 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt8 Scale(ulong_mt8 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a ulong3x3_mt8 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The ulong3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt8 Scale(ulong_mt8 x, ulong_mt8 y, ulong_mt8 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a ulong3x3_mt8 matrix representing a non-uniform axis scaling by the components of the ulong3_mt8 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The ulong3x3_mt8 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt8 Scale(ulong3_mt8 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a ulong4x4_mt8 to a ulong3x3_mt8
-    /// </summary>
-    /// <param name="m4x4">The ulong4x4_mt8 to convert to a ulong3x3_mt8</param>
-    /// <returns>The ulong3x3_mt8 constructed from the upper left 3x3 of the input ulong4x4_mt8 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3x3_mt8(ulong4x4_mt8 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // ulong3x3_mt8
-
-#region ulong3x3_mt16
-
-public partial struct ulong3x3_mt16
-{
-    /// <summary>
-    /// Constructs a ulong3x3_mt16 from the upper left 3x3 of a ulong4x4_mt16
-    /// </summary>
-    /// <param name="m4x4"><see cref="ulong4x4_mt16"/> to extract a ulong3x3_mt16 from</param>
-    [MethodImpl(256 | 512)]
-    public ulong3x3_mt16(ulong4x4_mt16 m4x4)
-    {
-        c0 = m4x4.c0.xyz;
-        c1 = m4x4.c1.xyz;
-        c2 = m4x4.c2.xyz;
-    }
-    
-    /// <summary>Returns a ulong3x3_mt16 matrix representing a uniform scaling of all axes by s</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The ulong3x3_mt16 matrix representing a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt16 Scale(ulong_mt16 s) => new(
-        s,    default, default,
-        default, s,    default,
-        default, default, s
-    );
-    
-    /// <summary>Returns a ulong3x3_mt16 matrix representing a non-uniform axis scaling by x, y and z</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The ulong3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt16 Scale(ulong_mt16 x, ulong_mt16 y, ulong_mt16 z) => new(
-        x,    default, default,
-        default, y,    default,
-        default, default, z
-    );
-
-    /// <summary>Returns a ulong3x3_mt16 matrix representing a non-uniform axis scaling by the components of the ulong3_mt16 vector v</summary>
-    /// <param name="v">The vector containing non-uniform scaling factors</param>
-    /// <returns>The ulong3x3_mt16 rotation matrix representing a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt16 Scale(ulong3_mt16 v) => new(
-        v.x,    default, default,
-        default, v.y,    default,
-        default, default, v.z
-    );
-
-    /// <summary>
-    /// Converts a ulong4x4_mt16 to a ulong3x3_mt16
-    /// </summary>
-    /// <param name="m4x4">The ulong4x4_mt16 to convert to a ulong3x3_mt16</param>
-    /// <returns>The ulong3x3_mt16 constructed from the upper left 3x3 of the input ulong4x4_mt16 matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3x3_mt16(ulong4x4_mt16 m4x4) => new(m4x4);
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // ulong3x3_mt16
+#endregion // ulong3x3_mt

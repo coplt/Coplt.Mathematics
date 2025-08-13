@@ -2,25 +2,25 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float2_mt4
+#region float2_mt
 
-public partial struct float2_mt4
+public partial struct float2_mt
 {
     #region Constants
 
-    public static float2_mt4 Zero
+    public static float2_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static float2_mt4 One
+    public static float2_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1.0f);
     }
 
-    public static float2_mt4 Two
+    public static float2_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new(2.0f);
@@ -31,76 +31,76 @@ public partial struct float2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator-(float2_mt4 a) => new(-a.x, -a.y);
+    public static float2_mt operator-(float2_mt a) => new(-a.x, -a.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator+(float2_mt4 a, float2_mt4 b) => new(a.x + b.x, a.y + b.y);
+    public static float2_mt operator+(float2_mt a, float2_mt b) => new(a.x + b.x, a.y + b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator+(float2_mt4 a, float_mt4 b) => new(a.x + b, a.y + b);
+    public static float2_mt operator+(float2_mt a, float_mt b) => new(a.x + b, a.y + b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator+(float_mt4 a, float2_mt4 b) => new(a + b.x, a + b.y);
+    public static float2_mt operator+(float_mt a, float2_mt b) => new(a + b.x, a + b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator-(float2_mt4 a, float2_mt4 b) => new(a.x - b.x, a.y - b.y);
+    public static float2_mt operator-(float2_mt a, float2_mt b) => new(a.x - b.x, a.y - b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator-(float2_mt4 a, float_mt4 b) => new(a.x - b, a.y - b);
+    public static float2_mt operator-(float2_mt a, float_mt b) => new(a.x - b, a.y - b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator-(float_mt4 a, float2_mt4 b) => new(a - b.x, a - b.y);
+    public static float2_mt operator-(float_mt a, float2_mt b) => new(a - b.x, a - b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator*(float2_mt4 a, float2_mt4 b) => new(a.x * b.x, a.y * b.y);
+    public static float2_mt operator*(float2_mt a, float2_mt b) => new(a.x * b.x, a.y * b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator*(float2_mt4 a, float_mt4 b) => new(a.x * b, a.y * b);
+    public static float2_mt operator*(float2_mt a, float_mt b) => new(a.x * b, a.y * b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator*(float_mt4 a, float2_mt4 b) => new(a * b.x, a * b.y);
+    public static float2_mt operator*(float_mt a, float2_mt b) => new(a * b.x, a * b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator*(float2_mt4 a, float b) => new(a.x * b, a.y * b);
+    public static float2_mt operator*(float2_mt a, float b) => new(a.x * b, a.y * b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator*(float a, float2_mt4 b) => new(a * b.x, a * b.y);
+    public static float2_mt operator*(float a, float2_mt b) => new(a * b.x, a * b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator/(float2_mt4 a, float2_mt4 b) => new(a.x / b.x, a.y / b.y);
+    public static float2_mt operator/(float2_mt a, float2_mt b) => new(a.x / b.x, a.y / b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator/(float_mt4 a, float2_mt4 b) => new(a / b.x, a / b.y);
+    public static float2_mt operator/(float_mt a, float2_mt b) => new(a / b.x, a / b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator/(float2_mt4 a, float_mt4 b) => new(a.x / b, a.y / b);
+    public static float2_mt operator/(float2_mt a, float_mt b) => new(a.x / b, a.y / b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator/(float a, float2_mt4 b) => new(a / b.x, a / b.y);
+    public static float2_mt operator/(float a, float2_mt b) => new(a / b.x, a / b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator/(float2_mt4 a, float b) => new(a.x / b, a.y / b);
+    public static float2_mt operator/(float2_mt a, float b) => new(a.x / b, a.y / b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator%(float2_mt4 a, float2_mt4 b) => math_mt.rem(a, b);
+    public static float2_mt operator%(float2_mt a, float2_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator%(float_mt4 a, float2_mt4 b) => math_mt.rem(a, b);
+    public static float2_mt operator%(float_mt a, float2_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator%(float2_mt4 a, float_mt4 b) => math_mt.rem(a, b);
+    public static float2_mt operator%(float2_mt a, float_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator%(float a, float2_mt4 b) => math_mt.rem(a, b);
+    public static float2_mt operator%(float a, float2_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator%(float2_mt4 a, float b) => math_mt.rem(a, b);
+    public static float2_mt operator%(float2_mt a, float b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator++(float2_mt4 a) => a + float_mt4.One;
+    public static float2_mt operator++(float2_mt a) => a + float_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator--(float2_mt4 a) => a - float_mt4.One;
+    public static float2_mt operator--(float2_mt a) => a - float_mt.One;
 
     #endregion // Operators
 }
@@ -109,19 +109,19 @@ public partial struct float2_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2_mt4 abs([This] float2_mt4 a) => new(abs(a.x), abs(a.y));
+    public static float2_mt abs([This] float2_mt a) => new(abs(a.x), abs(a.y));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 sign([This] float2_mt4 a) => new(sign(a.x), sign(a.y));
+    public static float2_mt sign([This] float2_mt a) => new(sign(a.x), sign(a.y));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 min([This] float2_mt4 a, float2_mt4 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static float2_mt min([This] float2_mt a, float2_mt b) => new(min(a.x, b.x), min(a.y, b.y));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 max([This] float2_mt4 a, float2_mt4 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static float2_mt max([This] float2_mt a, float2_mt b) => new(max(a.x, b.x), max(a.y, b.y));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 clamp([This] float2_mt4 v, float2_mt4 min, float2_mt4 max) => math_mt.max(min, math_mt.min(max, v));
+    public static float2_mt clamp([This] float2_mt v, float2_mt min, float2_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -131,7 +131,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt4 fma([This] float2_mt4 a, float2_mt4 b, float2_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static float2_mt fma([This] float2_mt a, float2_mt b, float2_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -141,7 +141,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt4 fms([This] float2_mt4 a, float2_mt4 b, float2_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static float2_mt fms([This] float2_mt a, float2_mt b, float2_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -151,7 +151,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt4 fnma([This] float2_mt4 a, float2_mt4 b, float2_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static float2_mt fnma([This] float2_mt a, float2_mt b, float2_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -161,7 +161,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt4 fsm([This] float2_mt4 c, float2_mt4 a, float2_mt4 b) => fnma(a, b, c);
+    public static float2_mt fsm([This] float2_mt c, float2_mt a, float2_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -171,7 +171,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt4 fam([This] float2_mt4 c, float2_mt4 a, float2_mt4 b) => fma(a, b, c);
+    public static float2_mt fam([This] float2_mt c, float2_mt a, float2_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -181,90 +181,90 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt4 mad([This] float2_mt4 a, float2_mt4 b, float2_mt4 c) => fma(a, b, c);
+    public static float2_mt mad([This] float2_mt a, float2_mt b, float2_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 lerp(float2_mt4 start, float2_mt4 end, [This] float2_mt4 t)
+    public static float2_mt lerp(float2_mt start, float2_mt end, [This] float2_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 lerp(float2_mt4 start, float2_mt4 end, [This] float t)
+    public static float2_mt lerp(float2_mt start, float2_mt end, [This] float t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 lerp(float start, float end, [This] float2_mt4 t)
+    public static float2_mt lerp(float start, float end, [This] float2_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 unlerp([This] float2_mt4 a, float2_mt4 start, float2_mt4 end) => (a - start) / (end - start);
+    public static float2_mt unlerp([This] float2_mt a, float2_mt start, float2_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 unlerp([This] float a, float2_mt4 start, float2_mt4 end) => (a - start) / (end - start);
+    public static float2_mt unlerp([This] float a, float2_mt start, float2_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 unlerp([This] float2_mt4 a, float start, float end) => (a - start) / (end - start);
+    public static float2_mt unlerp([This] float2_mt a, float start, float end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 remap([This] float2_mt4 a, float2_mt4 srcStart, float2_mt4 srcEnd, float2_mt4 dstStart, float2_mt4 dstEnd) => 
+    public static float2_mt remap([This] float2_mt a, float2_mt srcStart, float2_mt srcEnd, float2_mt dstStart, float2_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 remap([This] float2_mt4 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
+    public static float2_mt remap([This] float2_mt a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 square([This] float2_mt4 a) => a * a;
+    public static float2_mt square([This] float2_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 dot([This] float2_mt4 a, float2_mt4 b)
+    public static float_mt dot([This] float2_mt a, float2_mt b)
     {
         // a.x * b.x + a.y * b.y
         return fma(a.y, b.y, a.x * b.x);
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 lengthsq([This] float2_mt4 a) => dot(a, a);
+    public static float_mt lengthsq([This] float2_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 distancesq([This] float2_mt4 a, float2_mt4 b) => lengthsq(b - a);
+    public static float_mt distancesq([This] float2_mt a, float2_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 csum([This] float2_mt4 a) => a.x + a.y;
+    public static float_mt csum([This] float2_mt a) => a.x + a.y;
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 cmin([This] float2_mt4 a) => a.x.min(a.y);
+    public static float_mt cmin([This] float2_mt a) => a.x.min(a.y);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 cmax([This] float2_mt4 a) => a.x.max(a.y);
+    public static float_mt cmax([This] float2_mt a) => a.x.max(a.y);
 
 }
 
-#endregion // float2_mt4
-#region float2_mt8
+#endregion // float2_mt
+#region float3_mt
 
-public partial struct float2_mt8
+public partial struct float3_mt
 {
     #region Constants
 
-    public static float2_mt8 Zero
+    public static float3_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static float2_mt8 One
+    public static float3_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1.0f);
     }
 
-    public static float2_mt8 Two
+    public static float3_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new(2.0f);
@@ -275,76 +275,76 @@ public partial struct float2_mt8
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator-(float2_mt8 a) => new(-a.x, -a.y);
+    public static float3_mt operator-(float3_mt a) => new(-a.x, -a.y, -a.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator+(float2_mt8 a, float2_mt8 b) => new(a.x + b.x, a.y + b.y);
+    public static float3_mt operator+(float3_mt a, float3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator+(float2_mt8 a, float_mt8 b) => new(a.x + b, a.y + b);
+    public static float3_mt operator+(float3_mt a, float_mt b) => new(a.x + b, a.y + b, a.z + b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator+(float_mt8 a, float2_mt8 b) => new(a + b.x, a + b.y);
+    public static float3_mt operator+(float_mt a, float3_mt b) => new(a + b.x, a + b.y, a + b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator-(float2_mt8 a, float2_mt8 b) => new(a.x - b.x, a.y - b.y);
+    public static float3_mt operator-(float3_mt a, float3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator-(float2_mt8 a, float_mt8 b) => new(a.x - b, a.y - b);
+    public static float3_mt operator-(float3_mt a, float_mt b) => new(a.x - b, a.y - b, a.z - b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator-(float_mt8 a, float2_mt8 b) => new(a - b.x, a - b.y);
+    public static float3_mt operator-(float_mt a, float3_mt b) => new(a - b.x, a - b.y, a - b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator*(float2_mt8 a, float2_mt8 b) => new(a.x * b.x, a.y * b.y);
+    public static float3_mt operator*(float3_mt a, float3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator*(float2_mt8 a, float_mt8 b) => new(a.x * b, a.y * b);
+    public static float3_mt operator*(float3_mt a, float_mt b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator*(float_mt8 a, float2_mt8 b) => new(a * b.x, a * b.y);
+    public static float3_mt operator*(float_mt a, float3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator*(float2_mt8 a, float b) => new(a.x * b, a.y * b);
+    public static float3_mt operator*(float3_mt a, float b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator*(float a, float2_mt8 b) => new(a * b.x, a * b.y);
+    public static float3_mt operator*(float a, float3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator/(float2_mt8 a, float2_mt8 b) => new(a.x / b.x, a.y / b.y);
+    public static float3_mt operator/(float3_mt a, float3_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator/(float_mt8 a, float2_mt8 b) => new(a / b.x, a / b.y);
+    public static float3_mt operator/(float_mt a, float3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator/(float2_mt8 a, float_mt8 b) => new(a.x / b, a.y / b);
+    public static float3_mt operator/(float3_mt a, float_mt b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator/(float a, float2_mt8 b) => new(a / b.x, a / b.y);
+    public static float3_mt operator/(float a, float3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator/(float2_mt8 a, float b) => new(a.x / b, a.y / b);
+    public static float3_mt operator/(float3_mt a, float b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator%(float2_mt8 a, float2_mt8 b) => math_mt.rem(a, b);
+    public static float3_mt operator%(float3_mt a, float3_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator%(float_mt8 a, float2_mt8 b) => math_mt.rem(a, b);
+    public static float3_mt operator%(float_mt a, float3_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator%(float2_mt8 a, float_mt8 b) => math_mt.rem(a, b);
+    public static float3_mt operator%(float3_mt a, float_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator%(float a, float2_mt8 b) => math_mt.rem(a, b);
+    public static float3_mt operator%(float a, float3_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator%(float2_mt8 a, float b) => math_mt.rem(a, b);
+    public static float3_mt operator%(float3_mt a, float b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator++(float2_mt8 a) => a + float_mt8.One;
+    public static float3_mt operator++(float3_mt a) => a + float_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator--(float2_mt8 a) => a - float_mt8.One;
+    public static float3_mt operator--(float3_mt a) => a - float_mt.One;
 
     #endregion // Operators
 }
@@ -353,19 +353,19 @@ public partial struct float2_mt8
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2_mt8 abs([This] float2_mt8 a) => new(abs(a.x), abs(a.y));
+    public static float3_mt abs([This] float3_mt a) => new(abs(a.x), abs(a.y), abs(a.z));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 sign([This] float2_mt8 a) => new(sign(a.x), sign(a.y));
+    public static float3_mt sign([This] float3_mt a) => new(sign(a.x), sign(a.y), sign(a.z));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 min([This] float2_mt8 a, float2_mt8 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static float3_mt min([This] float3_mt a, float3_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 max([This] float2_mt8 a, float2_mt8 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static float3_mt max([This] float3_mt a, float3_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 clamp([This] float2_mt8 v, float2_mt8 min, float2_mt8 max) => math_mt.max(min, math_mt.min(max, v));
+    public static float3_mt clamp([This] float3_mt v, float3_mt min, float3_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -375,7 +375,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt8 fma([This] float2_mt8 a, float2_mt8 b, float2_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static float3_mt fma([This] float3_mt a, float3_mt b, float3_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -385,7 +385,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt8 fms([This] float2_mt8 a, float2_mt8 b, float2_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static float3_mt fms([This] float3_mt a, float3_mt b, float3_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -395,7 +395,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt8 fnma([This] float2_mt8 a, float2_mt8 b, float2_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static float3_mt fnma([This] float3_mt a, float3_mt b, float3_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -405,7 +405,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt8 fsm([This] float2_mt8 c, float2_mt8 a, float2_mt8 b) => fnma(a, b, c);
+    public static float3_mt fsm([This] float3_mt c, float3_mt a, float3_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -415,7 +415,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt8 fam([This] float2_mt8 c, float2_mt8 a, float2_mt8 b) => fma(a, b, c);
+    public static float3_mt fam([This] float3_mt c, float3_mt a, float3_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -425,90 +425,97 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt8 mad([This] float2_mt8 a, float2_mt8 b, float2_mt8 c) => fma(a, b, c);
+    public static float3_mt mad([This] float3_mt a, float3_mt b, float3_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 lerp(float2_mt8 start, float2_mt8 end, [This] float2_mt8 t)
+    public static float3_mt lerp(float3_mt start, float3_mt end, [This] float3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 lerp(float2_mt8 start, float2_mt8 end, [This] float t)
+    public static float3_mt lerp(float3_mt start, float3_mt end, [This] float t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 lerp(float start, float end, [This] float2_mt8 t)
+    public static float3_mt lerp(float start, float end, [This] float3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 unlerp([This] float2_mt8 a, float2_mt8 start, float2_mt8 end) => (a - start) / (end - start);
+    public static float3_mt unlerp([This] float3_mt a, float3_mt start, float3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 unlerp([This] float a, float2_mt8 start, float2_mt8 end) => (a - start) / (end - start);
+    public static float3_mt unlerp([This] float a, float3_mt start, float3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 unlerp([This] float2_mt8 a, float start, float end) => (a - start) / (end - start);
+    public static float3_mt unlerp([This] float3_mt a, float start, float end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 remap([This] float2_mt8 a, float2_mt8 srcStart, float2_mt8 srcEnd, float2_mt8 dstStart, float2_mt8 dstEnd) => 
+    public static float3_mt remap([This] float3_mt a, float3_mt srcStart, float3_mt srcEnd, float3_mt dstStart, float3_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 remap([This] float2_mt8 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
+    public static float3_mt remap([This] float3_mt a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 square([This] float2_mt8 a) => a * a;
+    public static float3_mt square([This] float3_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 dot([This] float2_mt8 a, float2_mt8 b)
+    public static float_mt dot([This] float3_mt a, float3_mt b)
     {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
+        // a.x * b.x + a.y * b.y + a.z * b.z
+        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 lengthsq([This] float2_mt8 a) => dot(a, a);
+    public static float3_mt cross([This] float3_mt a, float3_mt b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 distancesq([This] float2_mt8 a, float2_mt8 b) => lengthsq(b - a);
+    public static float_mt lengthsq([This] float3_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 csum([This] float2_mt8 a) => a.x + a.y;
+    public static float_mt distancesq([This] float3_mt a, float3_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 cmin([This] float2_mt8 a) => a.x.min(a.y);
+    public static float_mt csum([This] float3_mt a) => a.x + a.y + a.z;
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 cmax([This] float2_mt8 a) => a.x.max(a.y);
+    public static float_mt cmin([This] float3_mt a) => a.x.min(a.y).min(a.z);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt cmax([This] float3_mt a) => a.x.max(a.y).max(a.z);
 
 }
 
-#endregion // float2_mt8
-#region float2_mt16
+#endregion // float3_mt
+#region float4_mt
 
-public partial struct float2_mt16
+public partial struct float4_mt
 {
     #region Constants
 
-    public static float2_mt16 Zero
+    public static float4_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static float2_mt16 One
+    public static float4_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1.0f);
     }
 
-    public static float2_mt16 Two
+    public static float4_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new(2.0f);
@@ -519,76 +526,76 @@ public partial struct float2_mt16
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator-(float2_mt16 a) => new(-a.x, -a.y);
+    public static float4_mt operator-(float4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator+(float2_mt16 a, float2_mt16 b) => new(a.x + b.x, a.y + b.y);
+    public static float4_mt operator+(float4_mt a, float4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator+(float2_mt16 a, float_mt16 b) => new(a.x + b, a.y + b);
+    public static float4_mt operator+(float4_mt a, float_mt b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator+(float_mt16 a, float2_mt16 b) => new(a + b.x, a + b.y);
+    public static float4_mt operator+(float_mt a, float4_mt b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator-(float2_mt16 a, float2_mt16 b) => new(a.x - b.x, a.y - b.y);
+    public static float4_mt operator-(float4_mt a, float4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator-(float2_mt16 a, float_mt16 b) => new(a.x - b, a.y - b);
+    public static float4_mt operator-(float4_mt a, float_mt b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator-(float_mt16 a, float2_mt16 b) => new(a - b.x, a - b.y);
+    public static float4_mt operator-(float_mt a, float4_mt b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator*(float2_mt16 a, float2_mt16 b) => new(a.x * b.x, a.y * b.y);
+    public static float4_mt operator*(float4_mt a, float4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator*(float2_mt16 a, float_mt16 b) => new(a.x * b, a.y * b);
+    public static float4_mt operator*(float4_mt a, float_mt b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator*(float_mt16 a, float2_mt16 b) => new(a * b.x, a * b.y);
+    public static float4_mt operator*(float_mt a, float4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator*(float2_mt16 a, float b) => new(a.x * b, a.y * b);
+    public static float4_mt operator*(float4_mt a, float b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator*(float a, float2_mt16 b) => new(a * b.x, a * b.y);
+    public static float4_mt operator*(float a, float4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator/(float2_mt16 a, float2_mt16 b) => new(a.x / b.x, a.y / b.y);
+    public static float4_mt operator/(float4_mt a, float4_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator/(float_mt16 a, float2_mt16 b) => new(a / b.x, a / b.y);
+    public static float4_mt operator/(float_mt a, float4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator/(float2_mt16 a, float_mt16 b) => new(a.x / b, a.y / b);
+    public static float4_mt operator/(float4_mt a, float_mt b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator/(float a, float2_mt16 b) => new(a / b.x, a / b.y);
+    public static float4_mt operator/(float a, float4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator/(float2_mt16 a, float b) => new(a.x / b, a.y / b);
+    public static float4_mt operator/(float4_mt a, float b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator%(float2_mt16 a, float2_mt16 b) => math_mt.rem(a, b);
+    public static float4_mt operator%(float4_mt a, float4_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator%(float_mt16 a, float2_mt16 b) => math_mt.rem(a, b);
+    public static float4_mt operator%(float_mt a, float4_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator%(float2_mt16 a, float_mt16 b) => math_mt.rem(a, b);
+    public static float4_mt operator%(float4_mt a, float_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator%(float a, float2_mt16 b) => math_mt.rem(a, b);
+    public static float4_mt operator%(float a, float4_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator%(float2_mt16 a, float b) => math_mt.rem(a, b);
+    public static float4_mt operator%(float4_mt a, float b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator++(float2_mt16 a) => a + float_mt16.One;
+    public static float4_mt operator++(float4_mt a) => a + float_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator--(float2_mt16 a) => a - float_mt16.One;
+    public static float4_mt operator--(float4_mt a) => a - float_mt.One;
 
     #endregion // Operators
 }
@@ -597,19 +604,19 @@ public partial struct float2_mt16
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2_mt16 abs([This] float2_mt16 a) => new(abs(a.x), abs(a.y));
+    public static float4_mt abs([This] float4_mt a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 sign([This] float2_mt16 a) => new(sign(a.x), sign(a.y));
+    public static float4_mt sign([This] float4_mt a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 min([This] float2_mt16 a, float2_mt16 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static float4_mt min([This] float4_mt a, float4_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 max([This] float2_mt16 a, float2_mt16 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static float4_mt max([This] float4_mt a, float4_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 clamp([This] float2_mt16 v, float2_mt16 min, float2_mt16 max) => math_mt.max(min, math_mt.min(max, v));
+    public static float4_mt clamp([This] float4_mt v, float4_mt min, float4_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -619,7 +626,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt16 fma([This] float2_mt16 a, float2_mt16 b, float2_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static float4_mt fma([This] float4_mt a, float4_mt b, float4_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -629,7 +636,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt16 fms([This] float2_mt16 a, float2_mt16 b, float2_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static float4_mt fms([This] float4_mt a, float4_mt b, float4_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -639,7 +646,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt16 fnma([This] float2_mt16 a, float2_mt16 b, float2_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static float4_mt fnma([This] float4_mt a, float4_mt b, float4_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -649,7 +656,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt16 fsm([This] float2_mt16 c, float2_mt16 a, float2_mt16 b) => fnma(a, b, c);
+    public static float4_mt fsm([This] float4_mt c, float4_mt a, float4_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -659,7 +666,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt16 fam([This] float2_mt16 c, float2_mt16 a, float2_mt16 b) => fma(a, b, c);
+    public static float4_mt fam([This] float4_mt c, float4_mt a, float4_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -669,1575 +676,90 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2_mt16 mad([This] float2_mt16 a, float2_mt16 b, float2_mt16 c) => fma(a, b, c);
+    public static float4_mt mad([This] float4_mt a, float4_mt b, float4_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 lerp(float2_mt16 start, float2_mt16 end, [This] float2_mt16 t)
+    public static float4_mt lerp(float4_mt start, float4_mt end, [This] float4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 lerp(float2_mt16 start, float2_mt16 end, [This] float t)
+    public static float4_mt lerp(float4_mt start, float4_mt end, [This] float t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 lerp(float start, float end, [This] float2_mt16 t)
+    public static float4_mt lerp(float start, float end, [This] float4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 unlerp([This] float2_mt16 a, float2_mt16 start, float2_mt16 end) => (a - start) / (end - start);
+    public static float4_mt unlerp([This] float4_mt a, float4_mt start, float4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 unlerp([This] float a, float2_mt16 start, float2_mt16 end) => (a - start) / (end - start);
+    public static float4_mt unlerp([This] float a, float4_mt start, float4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 unlerp([This] float2_mt16 a, float start, float end) => (a - start) / (end - start);
+    public static float4_mt unlerp([This] float4_mt a, float start, float end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 remap([This] float2_mt16 a, float2_mt16 srcStart, float2_mt16 srcEnd, float2_mt16 dstStart, float2_mt16 dstEnd) => 
+    public static float4_mt remap([This] float4_mt a, float4_mt srcStart, float4_mt srcEnd, float4_mt dstStart, float4_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 remap([This] float2_mt16 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
+    public static float4_mt remap([This] float4_mt a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 square([This] float2_mt16 a) => a * a;
+    public static float4_mt square([This] float4_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static float_mt16 dot([This] float2_mt16 a, float2_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 lengthsq([This] float2_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 distancesq([This] float2_mt16 a, float2_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 csum([This] float2_mt16 a) => a.x + a.y;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 cmin([This] float2_mt16 a) => a.x.min(a.y);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 cmax([This] float2_mt16 a) => a.x.max(a.y);
-
-}
-
-#endregion // float2_mt16
-#region float3_mt4
-
-public partial struct float3_mt4
-{
-    #region Constants
-
-    public static float3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator-(float3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator+(float3_mt4 a, float3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator+(float3_mt4 a, float_mt4 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator+(float_mt4 a, float3_mt4 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator-(float3_mt4 a, float3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator-(float3_mt4 a, float_mt4 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator-(float_mt4 a, float3_mt4 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator*(float3_mt4 a, float3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator*(float3_mt4 a, float_mt4 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator*(float_mt4 a, float3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator*(float3_mt4 a, float b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator*(float a, float3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator/(float3_mt4 a, float3_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator/(float_mt4 a, float3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator/(float3_mt4 a, float_mt4 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator/(float a, float3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator/(float3_mt4 a, float b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator%(float3_mt4 a, float3_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator%(float_mt4 a, float3_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator%(float3_mt4 a, float_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator%(float a, float3_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator%(float3_mt4 a, float b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator++(float3_mt4 a) => a + float_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator--(float3_mt4 a) => a - float_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 abs([This] float3_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 sign([This] float3_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 min([This] float3_mt4 a, float3_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 max([This] float3_mt4 a, float3_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 clamp([This] float3_mt4 v, float3_mt4 min, float3_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 fma([This] float3_mt4 a, float3_mt4 b, float3_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 fms([This] float3_mt4 a, float3_mt4 b, float3_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 fnma([This] float3_mt4 a, float3_mt4 b, float3_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 fsm([This] float3_mt4 c, float3_mt4 a, float3_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 fam([This] float3_mt4 c, float3_mt4 a, float3_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 mad([This] float3_mt4 a, float3_mt4 b, float3_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 lerp(float3_mt4 start, float3_mt4 end, [This] float3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 lerp(float3_mt4 start, float3_mt4 end, [This] float t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 lerp(float start, float end, [This] float3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 unlerp([This] float3_mt4 a, float3_mt4 start, float3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 unlerp([This] float a, float3_mt4 start, float3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 unlerp([This] float3_mt4 a, float start, float end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 remap([This] float3_mt4 a, float3_mt4 srcStart, float3_mt4 srcEnd, float3_mt4 dstStart, float3_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 remap([This] float3_mt4 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 square([This] float3_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 dot([This] float3_mt4 a, float3_mt4 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 cross([This] float3_mt4 a, float3_mt4 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 lengthsq([This] float3_mt4 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 distancesq([This] float3_mt4 a, float3_mt4 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 csum([This] float3_mt4 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 cmin([This] float3_mt4 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 cmax([This] float3_mt4 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // float3_mt4
-#region float3_mt8
-
-public partial struct float3_mt8
-{
-    #region Constants
-
-    public static float3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator-(float3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator+(float3_mt8 a, float3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator+(float3_mt8 a, float_mt8 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator+(float_mt8 a, float3_mt8 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator-(float3_mt8 a, float3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator-(float3_mt8 a, float_mt8 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator-(float_mt8 a, float3_mt8 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator*(float3_mt8 a, float3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator*(float3_mt8 a, float_mt8 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator*(float_mt8 a, float3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator*(float3_mt8 a, float b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator*(float a, float3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator/(float3_mt8 a, float3_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator/(float_mt8 a, float3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator/(float3_mt8 a, float_mt8 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator/(float a, float3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator/(float3_mt8 a, float b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator%(float3_mt8 a, float3_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator%(float_mt8 a, float3_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator%(float3_mt8 a, float_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator%(float a, float3_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator%(float3_mt8 a, float b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator++(float3_mt8 a) => a + float_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator--(float3_mt8 a) => a - float_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 abs([This] float3_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 sign([This] float3_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 min([This] float3_mt8 a, float3_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 max([This] float3_mt8 a, float3_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 clamp([This] float3_mt8 v, float3_mt8 min, float3_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 fma([This] float3_mt8 a, float3_mt8 b, float3_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 fms([This] float3_mt8 a, float3_mt8 b, float3_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 fnma([This] float3_mt8 a, float3_mt8 b, float3_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 fsm([This] float3_mt8 c, float3_mt8 a, float3_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 fam([This] float3_mt8 c, float3_mt8 a, float3_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 mad([This] float3_mt8 a, float3_mt8 b, float3_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 lerp(float3_mt8 start, float3_mt8 end, [This] float3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 lerp(float3_mt8 start, float3_mt8 end, [This] float t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 lerp(float start, float end, [This] float3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 unlerp([This] float3_mt8 a, float3_mt8 start, float3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 unlerp([This] float a, float3_mt8 start, float3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 unlerp([This] float3_mt8 a, float start, float end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 remap([This] float3_mt8 a, float3_mt8 srcStart, float3_mt8 srcEnd, float3_mt8 dstStart, float3_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 remap([This] float3_mt8 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 square([This] float3_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 dot([This] float3_mt8 a, float3_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 cross([This] float3_mt8 a, float3_mt8 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 lengthsq([This] float3_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 distancesq([This] float3_mt8 a, float3_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 csum([This] float3_mt8 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 cmin([This] float3_mt8 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 cmax([This] float3_mt8 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // float3_mt8
-#region float3_mt16
-
-public partial struct float3_mt16
-{
-    #region Constants
-
-    public static float3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator-(float3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator+(float3_mt16 a, float3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator+(float3_mt16 a, float_mt16 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator+(float_mt16 a, float3_mt16 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator-(float3_mt16 a, float3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator-(float3_mt16 a, float_mt16 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator-(float_mt16 a, float3_mt16 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator*(float3_mt16 a, float3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator*(float3_mt16 a, float_mt16 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator*(float_mt16 a, float3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator*(float3_mt16 a, float b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator*(float a, float3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator/(float3_mt16 a, float3_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator/(float_mt16 a, float3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator/(float3_mt16 a, float_mt16 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator/(float a, float3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator/(float3_mt16 a, float b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator%(float3_mt16 a, float3_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator%(float_mt16 a, float3_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator%(float3_mt16 a, float_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator%(float a, float3_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator%(float3_mt16 a, float b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator++(float3_mt16 a) => a + float_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator--(float3_mt16 a) => a - float_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 abs([This] float3_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 sign([This] float3_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 min([This] float3_mt16 a, float3_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 max([This] float3_mt16 a, float3_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 clamp([This] float3_mt16 v, float3_mt16 min, float3_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 fma([This] float3_mt16 a, float3_mt16 b, float3_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 fms([This] float3_mt16 a, float3_mt16 b, float3_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 fnma([This] float3_mt16 a, float3_mt16 b, float3_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 fsm([This] float3_mt16 c, float3_mt16 a, float3_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 fam([This] float3_mt16 c, float3_mt16 a, float3_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 mad([This] float3_mt16 a, float3_mt16 b, float3_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 lerp(float3_mt16 start, float3_mt16 end, [This] float3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 lerp(float3_mt16 start, float3_mt16 end, [This] float t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 lerp(float start, float end, [This] float3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 unlerp([This] float3_mt16 a, float3_mt16 start, float3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 unlerp([This] float a, float3_mt16 start, float3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 unlerp([This] float3_mt16 a, float start, float end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 remap([This] float3_mt16 a, float3_mt16 srcStart, float3_mt16 srcEnd, float3_mt16 dstStart, float3_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 remap([This] float3_mt16 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 square([This] float3_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 dot([This] float3_mt16 a, float3_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 cross([This] float3_mt16 a, float3_mt16 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 lengthsq([This] float3_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 distancesq([This] float3_mt16 a, float3_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 csum([This] float3_mt16 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 cmin([This] float3_mt16 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 cmax([This] float3_mt16 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // float3_mt16
-#region float4_mt4
-
-public partial struct float4_mt4
-{
-    #region Constants
-
-    public static float4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator-(float4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator+(float4_mt4 a, float4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator+(float4_mt4 a, float_mt4 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator+(float_mt4 a, float4_mt4 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator-(float4_mt4 a, float4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator-(float4_mt4 a, float_mt4 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator-(float_mt4 a, float4_mt4 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator*(float4_mt4 a, float4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator*(float4_mt4 a, float_mt4 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator*(float_mt4 a, float4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator*(float4_mt4 a, float b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator*(float a, float4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator/(float4_mt4 a, float4_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator/(float_mt4 a, float4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator/(float4_mt4 a, float_mt4 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator/(float a, float4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator/(float4_mt4 a, float b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator%(float4_mt4 a, float4_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator%(float_mt4 a, float4_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator%(float4_mt4 a, float_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator%(float a, float4_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator%(float4_mt4 a, float b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator++(float4_mt4 a) => a + float_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator--(float4_mt4 a) => a - float_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 abs([This] float4_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 sign([This] float4_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 min([This] float4_mt4 a, float4_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 max([This] float4_mt4 a, float4_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 clamp([This] float4_mt4 v, float4_mt4 min, float4_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 fma([This] float4_mt4 a, float4_mt4 b, float4_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 fms([This] float4_mt4 a, float4_mt4 b, float4_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 fnma([This] float4_mt4 a, float4_mt4 b, float4_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 fsm([This] float4_mt4 c, float4_mt4 a, float4_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 fam([This] float4_mt4 c, float4_mt4 a, float4_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 mad([This] float4_mt4 a, float4_mt4 b, float4_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 lerp(float4_mt4 start, float4_mt4 end, [This] float4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 lerp(float4_mt4 start, float4_mt4 end, [This] float t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 lerp(float start, float end, [This] float4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 unlerp([This] float4_mt4 a, float4_mt4 start, float4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 unlerp([This] float a, float4_mt4 start, float4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 unlerp([This] float4_mt4 a, float start, float end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 remap([This] float4_mt4 a, float4_mt4 srcStart, float4_mt4 srcEnd, float4_mt4 dstStart, float4_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 remap([This] float4_mt4 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 square([This] float4_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 dot([This] float4_mt4 a, float4_mt4 b)
+    public static float_mt dot([This] float4_mt a, float4_mt b)
     {
         // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
         return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 lengthsq([This] float4_mt4 a) => dot(a, a);
+    public static float_mt lengthsq([This] float4_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 distancesq([This] float4_mt4 a, float4_mt4 b) => lengthsq(b - a);
+    public static float_mt distancesq([This] float4_mt a, float4_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 csum([This] float4_mt4 a) => a.x + a.y + a.z + a.w;
+    public static float_mt csum([This] float4_mt a) => a.x + a.y + a.z + a.w;
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 cmin([This] float4_mt4 a) => a.x.min(a.y).min(a.z).min(a.w);
+    public static float_mt cmin([This] float4_mt a) => a.x.min(a.y).min(a.z).min(a.w);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 cmax([This] float4_mt4 a) => a.x.max(a.y).max(a.z).max(a.w);
+    public static float_mt cmax([This] float4_mt a) => a.x.max(a.y).max(a.z).max(a.w);
 
 }
 
-#endregion // float4_mt4
-#region float4_mt8
+#endregion // float4_mt
+#region double2_mt
 
-public partial struct float4_mt8
+public partial struct double2_mt
 {
     #region Constants
 
-    public static float4_mt8 Zero
+    public static double2_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static float4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator-(float4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator+(float4_mt8 a, float4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator+(float4_mt8 a, float_mt8 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator+(float_mt8 a, float4_mt8 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator-(float4_mt8 a, float4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator-(float4_mt8 a, float_mt8 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator-(float_mt8 a, float4_mt8 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator*(float4_mt8 a, float4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator*(float4_mt8 a, float_mt8 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator*(float_mt8 a, float4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator*(float4_mt8 a, float b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator*(float a, float4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator/(float4_mt8 a, float4_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator/(float_mt8 a, float4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator/(float4_mt8 a, float_mt8 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator/(float a, float4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator/(float4_mt8 a, float b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator%(float4_mt8 a, float4_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator%(float_mt8 a, float4_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator%(float4_mt8 a, float_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator%(float a, float4_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator%(float4_mt8 a, float b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator++(float4_mt8 a) => a + float_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator--(float4_mt8 a) => a - float_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 abs([This] float4_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 sign([This] float4_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 min([This] float4_mt8 a, float4_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 max([This] float4_mt8 a, float4_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 clamp([This] float4_mt8 v, float4_mt8 min, float4_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 fma([This] float4_mt8 a, float4_mt8 b, float4_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 fms([This] float4_mt8 a, float4_mt8 b, float4_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 fnma([This] float4_mt8 a, float4_mt8 b, float4_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 fsm([This] float4_mt8 c, float4_mt8 a, float4_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 fam([This] float4_mt8 c, float4_mt8 a, float4_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 mad([This] float4_mt8 a, float4_mt8 b, float4_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 lerp(float4_mt8 start, float4_mt8 end, [This] float4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 lerp(float4_mt8 start, float4_mt8 end, [This] float t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 lerp(float start, float end, [This] float4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 unlerp([This] float4_mt8 a, float4_mt8 start, float4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 unlerp([This] float a, float4_mt8 start, float4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 unlerp([This] float4_mt8 a, float start, float end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 remap([This] float4_mt8 a, float4_mt8 srcStart, float4_mt8 srcEnd, float4_mt8 dstStart, float4_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 remap([This] float4_mt8 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 square([This] float4_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 dot([This] float4_mt8 a, float4_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 lengthsq([This] float4_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 distancesq([This] float4_mt8 a, float4_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 csum([This] float4_mt8 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 cmin([This] float4_mt8 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 cmax([This] float4_mt8 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // float4_mt8
-#region float4_mt16
-
-public partial struct float4_mt16
-{
-    #region Constants
-
-    public static float4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator-(float4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator+(float4_mt16 a, float4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator+(float4_mt16 a, float_mt16 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator+(float_mt16 a, float4_mt16 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator-(float4_mt16 a, float4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator-(float4_mt16 a, float_mt16 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator-(float_mt16 a, float4_mt16 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator*(float4_mt16 a, float4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator*(float4_mt16 a, float_mt16 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator*(float_mt16 a, float4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator*(float4_mt16 a, float b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator*(float a, float4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator/(float4_mt16 a, float4_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator/(float_mt16 a, float4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator/(float4_mt16 a, float_mt16 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator/(float a, float4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator/(float4_mt16 a, float b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator%(float4_mt16 a, float4_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator%(float_mt16 a, float4_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator%(float4_mt16 a, float_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator%(float a, float4_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator%(float4_mt16 a, float b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator++(float4_mt16 a) => a + float_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator--(float4_mt16 a) => a - float_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 abs([This] float4_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 sign([This] float4_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 min([This] float4_mt16 a, float4_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 max([This] float4_mt16 a, float4_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 clamp([This] float4_mt16 v, float4_mt16 min, float4_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 fma([This] float4_mt16 a, float4_mt16 b, float4_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 fms([This] float4_mt16 a, float4_mt16 b, float4_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 fnma([This] float4_mt16 a, float4_mt16 b, float4_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 fsm([This] float4_mt16 c, float4_mt16 a, float4_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 fam([This] float4_mt16 c, float4_mt16 a, float4_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 mad([This] float4_mt16 a, float4_mt16 b, float4_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 lerp(float4_mt16 start, float4_mt16 end, [This] float4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 lerp(float4_mt16 start, float4_mt16 end, [This] float t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 lerp(float start, float end, [This] float4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 unlerp([This] float4_mt16 a, float4_mt16 start, float4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 unlerp([This] float a, float4_mt16 start, float4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 unlerp([This] float4_mt16 a, float start, float end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 remap([This] float4_mt16 a, float4_mt16 srcStart, float4_mt16 srcEnd, float4_mt16 dstStart, float4_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 remap([This] float4_mt16 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 square([This] float4_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 dot([This] float4_mt16 a, float4_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 lengthsq([This] float4_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 distancesq([This] float4_mt16 a, float4_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 csum([This] float4_mt16 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 cmin([This] float4_mt16 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 cmax([This] float4_mt16 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // float4_mt16
-#region double2_mt4
-
-public partial struct double2_mt4
-{
-    #region Constants
-
-    public static double2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double2_mt4 One
+    public static double2_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1.0);
     }
 
-    public static double2_mt4 Two
+    public static double2_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new(2.0);
@@ -2248,76 +770,76 @@ public partial struct double2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator-(double2_mt4 a) => new(-a.x, -a.y);
+    public static double2_mt operator-(double2_mt a) => new(-a.x, -a.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator+(double2_mt4 a, double2_mt4 b) => new(a.x + b.x, a.y + b.y);
+    public static double2_mt operator+(double2_mt a, double2_mt b) => new(a.x + b.x, a.y + b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator+(double2_mt4 a, double_mt4 b) => new(a.x + b, a.y + b);
+    public static double2_mt operator+(double2_mt a, double_mt b) => new(a.x + b, a.y + b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator+(double_mt4 a, double2_mt4 b) => new(a + b.x, a + b.y);
+    public static double2_mt operator+(double_mt a, double2_mt b) => new(a + b.x, a + b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator-(double2_mt4 a, double2_mt4 b) => new(a.x - b.x, a.y - b.y);
+    public static double2_mt operator-(double2_mt a, double2_mt b) => new(a.x - b.x, a.y - b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator-(double2_mt4 a, double_mt4 b) => new(a.x - b, a.y - b);
+    public static double2_mt operator-(double2_mt a, double_mt b) => new(a.x - b, a.y - b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator-(double_mt4 a, double2_mt4 b) => new(a - b.x, a - b.y);
+    public static double2_mt operator-(double_mt a, double2_mt b) => new(a - b.x, a - b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator*(double2_mt4 a, double2_mt4 b) => new(a.x * b.x, a.y * b.y);
+    public static double2_mt operator*(double2_mt a, double2_mt b) => new(a.x * b.x, a.y * b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator*(double2_mt4 a, double_mt4 b) => new(a.x * b, a.y * b);
+    public static double2_mt operator*(double2_mt a, double_mt b) => new(a.x * b, a.y * b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator*(double_mt4 a, double2_mt4 b) => new(a * b.x, a * b.y);
+    public static double2_mt operator*(double_mt a, double2_mt b) => new(a * b.x, a * b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator*(double2_mt4 a, double b) => new(a.x * b, a.y * b);
+    public static double2_mt operator*(double2_mt a, double b) => new(a.x * b, a.y * b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator*(double a, double2_mt4 b) => new(a * b.x, a * b.y);
+    public static double2_mt operator*(double a, double2_mt b) => new(a * b.x, a * b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator/(double2_mt4 a, double2_mt4 b) => new(a.x / b.x, a.y / b.y);
+    public static double2_mt operator/(double2_mt a, double2_mt b) => new(a.x / b.x, a.y / b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator/(double_mt4 a, double2_mt4 b) => new(a / b.x, a / b.y);
+    public static double2_mt operator/(double_mt a, double2_mt b) => new(a / b.x, a / b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator/(double2_mt4 a, double_mt4 b) => new(a.x / b, a.y / b);
+    public static double2_mt operator/(double2_mt a, double_mt b) => new(a.x / b, a.y / b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator/(double a, double2_mt4 b) => new(a / b.x, a / b.y);
+    public static double2_mt operator/(double a, double2_mt b) => new(a / b.x, a / b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator/(double2_mt4 a, double b) => new(a.x / b, a.y / b);
+    public static double2_mt operator/(double2_mt a, double b) => new(a.x / b, a.y / b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator%(double2_mt4 a, double2_mt4 b) => math_mt.rem(a, b);
+    public static double2_mt operator%(double2_mt a, double2_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator%(double_mt4 a, double2_mt4 b) => math_mt.rem(a, b);
+    public static double2_mt operator%(double_mt a, double2_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator%(double2_mt4 a, double_mt4 b) => math_mt.rem(a, b);
+    public static double2_mt operator%(double2_mt a, double_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator%(double a, double2_mt4 b) => math_mt.rem(a, b);
+    public static double2_mt operator%(double a, double2_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator%(double2_mt4 a, double b) => math_mt.rem(a, b);
+    public static double2_mt operator%(double2_mt a, double b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator++(double2_mt4 a) => a + double_mt4.One;
+    public static double2_mt operator++(double2_mt a) => a + double_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator--(double2_mt4 a) => a - double_mt4.One;
+    public static double2_mt operator--(double2_mt a) => a - double_mt.One;
 
     #endregion // Operators
 }
@@ -2326,19 +848,19 @@ public partial struct double2_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double2_mt4 abs([This] double2_mt4 a) => new(abs(a.x), abs(a.y));
+    public static double2_mt abs([This] double2_mt a) => new(abs(a.x), abs(a.y));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 sign([This] double2_mt4 a) => new(sign(a.x), sign(a.y));
+    public static double2_mt sign([This] double2_mt a) => new(sign(a.x), sign(a.y));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 min([This] double2_mt4 a, double2_mt4 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static double2_mt min([This] double2_mt a, double2_mt b) => new(min(a.x, b.x), min(a.y, b.y));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 max([This] double2_mt4 a, double2_mt4 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static double2_mt max([This] double2_mt a, double2_mt b) => new(max(a.x, b.x), max(a.y, b.y));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 clamp([This] double2_mt4 v, double2_mt4 min, double2_mt4 max) => math_mt.max(min, math_mt.min(max, v));
+    public static double2_mt clamp([This] double2_mt v, double2_mt min, double2_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2348,7 +870,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt4 fma([This] double2_mt4 a, double2_mt4 b, double2_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static double2_mt fma([This] double2_mt a, double2_mt b, double2_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -2358,7 +880,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt4 fms([This] double2_mt4 a, double2_mt4 b, double2_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static double2_mt fms([This] double2_mt a, double2_mt b, double2_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -2368,7 +890,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt4 fnma([This] double2_mt4 a, double2_mt4 b, double2_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static double2_mt fnma([This] double2_mt a, double2_mt b, double2_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -2378,7 +900,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt4 fsm([This] double2_mt4 c, double2_mt4 a, double2_mt4 b) => fnma(a, b, c);
+    public static double2_mt fsm([This] double2_mt c, double2_mt a, double2_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2388,7 +910,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt4 fam([This] double2_mt4 c, double2_mt4 a, double2_mt4 b) => fma(a, b, c);
+    public static double2_mt fam([This] double2_mt c, double2_mt a, double2_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2398,90 +920,90 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt4 mad([This] double2_mt4 a, double2_mt4 b, double2_mt4 c) => fma(a, b, c);
+    public static double2_mt mad([This] double2_mt a, double2_mt b, double2_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 lerp(double2_mt4 start, double2_mt4 end, [This] double2_mt4 t)
+    public static double2_mt lerp(double2_mt start, double2_mt end, [This] double2_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 lerp(double2_mt4 start, double2_mt4 end, [This] double t)
+    public static double2_mt lerp(double2_mt start, double2_mt end, [This] double t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 lerp(double start, double end, [This] double2_mt4 t)
+    public static double2_mt lerp(double start, double end, [This] double2_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 unlerp([This] double2_mt4 a, double2_mt4 start, double2_mt4 end) => (a - start) / (end - start);
+    public static double2_mt unlerp([This] double2_mt a, double2_mt start, double2_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 unlerp([This] double a, double2_mt4 start, double2_mt4 end) => (a - start) / (end - start);
+    public static double2_mt unlerp([This] double a, double2_mt start, double2_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 unlerp([This] double2_mt4 a, double start, double end) => (a - start) / (end - start);
+    public static double2_mt unlerp([This] double2_mt a, double start, double end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 remap([This] double2_mt4 a, double2_mt4 srcStart, double2_mt4 srcEnd, double2_mt4 dstStart, double2_mt4 dstEnd) => 
+    public static double2_mt remap([This] double2_mt a, double2_mt srcStart, double2_mt srcEnd, double2_mt dstStart, double2_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 remap([This] double2_mt4 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
+    public static double2_mt remap([This] double2_mt a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 square([This] double2_mt4 a) => a * a;
+    public static double2_mt square([This] double2_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 dot([This] double2_mt4 a, double2_mt4 b)
+    public static double_mt dot([This] double2_mt a, double2_mt b)
     {
         // a.x * b.x + a.y * b.y
         return fma(a.y, b.y, a.x * b.x);
     }
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 lengthsq([This] double2_mt4 a) => dot(a, a);
+    public static double_mt lengthsq([This] double2_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 distancesq([This] double2_mt4 a, double2_mt4 b) => lengthsq(b - a);
+    public static double_mt distancesq([This] double2_mt a, double2_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 csum([This] double2_mt4 a) => a.x + a.y;
+    public static double_mt csum([This] double2_mt a) => a.x + a.y;
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 cmin([This] double2_mt4 a) => a.x.min(a.y);
+    public static double_mt cmin([This] double2_mt a) => a.x.min(a.y);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 cmax([This] double2_mt4 a) => a.x.max(a.y);
+    public static double_mt cmax([This] double2_mt a) => a.x.max(a.y);
 
 }
 
-#endregion // double2_mt4
-#region double2_mt8
+#endregion // double2_mt
+#region double3_mt
 
-public partial struct double2_mt8
+public partial struct double3_mt
 {
     #region Constants
 
-    public static double2_mt8 Zero
+    public static double3_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static double2_mt8 One
+    public static double3_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1.0);
     }
 
-    public static double2_mt8 Two
+    public static double3_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new(2.0);
@@ -2492,76 +1014,76 @@ public partial struct double2_mt8
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator-(double2_mt8 a) => new(-a.x, -a.y);
+    public static double3_mt operator-(double3_mt a) => new(-a.x, -a.y, -a.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator+(double2_mt8 a, double2_mt8 b) => new(a.x + b.x, a.y + b.y);
+    public static double3_mt operator+(double3_mt a, double3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator+(double2_mt8 a, double_mt8 b) => new(a.x + b, a.y + b);
+    public static double3_mt operator+(double3_mt a, double_mt b) => new(a.x + b, a.y + b, a.z + b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator+(double_mt8 a, double2_mt8 b) => new(a + b.x, a + b.y);
+    public static double3_mt operator+(double_mt a, double3_mt b) => new(a + b.x, a + b.y, a + b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator-(double2_mt8 a, double2_mt8 b) => new(a.x - b.x, a.y - b.y);
+    public static double3_mt operator-(double3_mt a, double3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator-(double2_mt8 a, double_mt8 b) => new(a.x - b, a.y - b);
+    public static double3_mt operator-(double3_mt a, double_mt b) => new(a.x - b, a.y - b, a.z - b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator-(double_mt8 a, double2_mt8 b) => new(a - b.x, a - b.y);
+    public static double3_mt operator-(double_mt a, double3_mt b) => new(a - b.x, a - b.y, a - b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator*(double2_mt8 a, double2_mt8 b) => new(a.x * b.x, a.y * b.y);
+    public static double3_mt operator*(double3_mt a, double3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator*(double2_mt8 a, double_mt8 b) => new(a.x * b, a.y * b);
+    public static double3_mt operator*(double3_mt a, double_mt b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator*(double_mt8 a, double2_mt8 b) => new(a * b.x, a * b.y);
+    public static double3_mt operator*(double_mt a, double3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator*(double2_mt8 a, double b) => new(a.x * b, a.y * b);
+    public static double3_mt operator*(double3_mt a, double b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator*(double a, double2_mt8 b) => new(a * b.x, a * b.y);
+    public static double3_mt operator*(double a, double3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator/(double2_mt8 a, double2_mt8 b) => new(a.x / b.x, a.y / b.y);
+    public static double3_mt operator/(double3_mt a, double3_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator/(double_mt8 a, double2_mt8 b) => new(a / b.x, a / b.y);
+    public static double3_mt operator/(double_mt a, double3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator/(double2_mt8 a, double_mt8 b) => new(a.x / b, a.y / b);
+    public static double3_mt operator/(double3_mt a, double_mt b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator/(double a, double2_mt8 b) => new(a / b.x, a / b.y);
+    public static double3_mt operator/(double a, double3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator/(double2_mt8 a, double b) => new(a.x / b, a.y / b);
+    public static double3_mt operator/(double3_mt a, double b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator%(double2_mt8 a, double2_mt8 b) => math_mt.rem(a, b);
+    public static double3_mt operator%(double3_mt a, double3_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator%(double_mt8 a, double2_mt8 b) => math_mt.rem(a, b);
+    public static double3_mt operator%(double_mt a, double3_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator%(double2_mt8 a, double_mt8 b) => math_mt.rem(a, b);
+    public static double3_mt operator%(double3_mt a, double_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator%(double a, double2_mt8 b) => math_mt.rem(a, b);
+    public static double3_mt operator%(double a, double3_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator%(double2_mt8 a, double b) => math_mt.rem(a, b);
+    public static double3_mt operator%(double3_mt a, double b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator++(double2_mt8 a) => a + double_mt8.One;
+    public static double3_mt operator++(double3_mt a) => a + double_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator--(double2_mt8 a) => a - double_mt8.One;
+    public static double3_mt operator--(double3_mt a) => a - double_mt.One;
 
     #endregion // Operators
 }
@@ -2570,19 +1092,19 @@ public partial struct double2_mt8
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double2_mt8 abs([This] double2_mt8 a) => new(abs(a.x), abs(a.y));
+    public static double3_mt abs([This] double3_mt a) => new(abs(a.x), abs(a.y), abs(a.z));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 sign([This] double2_mt8 a) => new(sign(a.x), sign(a.y));
+    public static double3_mt sign([This] double3_mt a) => new(sign(a.x), sign(a.y), sign(a.z));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 min([This] double2_mt8 a, double2_mt8 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static double3_mt min([This] double3_mt a, double3_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 max([This] double2_mt8 a, double2_mt8 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static double3_mt max([This] double3_mt a, double3_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 clamp([This] double2_mt8 v, double2_mt8 min, double2_mt8 max) => math_mt.max(min, math_mt.min(max, v));
+    public static double3_mt clamp([This] double3_mt v, double3_mt min, double3_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2592,7 +1114,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt8 fma([This] double2_mt8 a, double2_mt8 b, double2_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static double3_mt fma([This] double3_mt a, double3_mt b, double3_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -2602,7 +1124,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt8 fms([This] double2_mt8 a, double2_mt8 b, double2_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static double3_mt fms([This] double3_mt a, double3_mt b, double3_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -2612,7 +1134,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt8 fnma([This] double2_mt8 a, double2_mt8 b, double2_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static double3_mt fnma([This] double3_mt a, double3_mt b, double3_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -2622,7 +1144,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt8 fsm([This] double2_mt8 c, double2_mt8 a, double2_mt8 b) => fnma(a, b, c);
+    public static double3_mt fsm([This] double3_mt c, double3_mt a, double3_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2632,7 +1154,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt8 fam([This] double2_mt8 c, double2_mt8 a, double2_mt8 b) => fma(a, b, c);
+    public static double3_mt fam([This] double3_mt c, double3_mt a, double3_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2642,90 +1164,97 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt8 mad([This] double2_mt8 a, double2_mt8 b, double2_mt8 c) => fma(a, b, c);
+    public static double3_mt mad([This] double3_mt a, double3_mt b, double3_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 lerp(double2_mt8 start, double2_mt8 end, [This] double2_mt8 t)
+    public static double3_mt lerp(double3_mt start, double3_mt end, [This] double3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 lerp(double2_mt8 start, double2_mt8 end, [This] double t)
+    public static double3_mt lerp(double3_mt start, double3_mt end, [This] double t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 lerp(double start, double end, [This] double2_mt8 t)
+    public static double3_mt lerp(double start, double end, [This] double3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 unlerp([This] double2_mt8 a, double2_mt8 start, double2_mt8 end) => (a - start) / (end - start);
+    public static double3_mt unlerp([This] double3_mt a, double3_mt start, double3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 unlerp([This] double a, double2_mt8 start, double2_mt8 end) => (a - start) / (end - start);
+    public static double3_mt unlerp([This] double a, double3_mt start, double3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 unlerp([This] double2_mt8 a, double start, double end) => (a - start) / (end - start);
+    public static double3_mt unlerp([This] double3_mt a, double start, double end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 remap([This] double2_mt8 a, double2_mt8 srcStart, double2_mt8 srcEnd, double2_mt8 dstStart, double2_mt8 dstEnd) => 
+    public static double3_mt remap([This] double3_mt a, double3_mt srcStart, double3_mt srcEnd, double3_mt dstStart, double3_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 remap([This] double2_mt8 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
+    public static double3_mt remap([This] double3_mt a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 square([This] double2_mt8 a) => a * a;
+    public static double3_mt square([This] double3_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 dot([This] double2_mt8 a, double2_mt8 b)
+    public static double_mt dot([This] double3_mt a, double3_mt b)
     {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
+        // a.x * b.x + a.y * b.y + a.z * b.z
+        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
     }
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 lengthsq([This] double2_mt8 a) => dot(a, a);
+    public static double3_mt cross([This] double3_mt a, double3_mt b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 distancesq([This] double2_mt8 a, double2_mt8 b) => lengthsq(b - a);
+    public static double_mt lengthsq([This] double3_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 csum([This] double2_mt8 a) => a.x + a.y;
+    public static double_mt distancesq([This] double3_mt a, double3_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 cmin([This] double2_mt8 a) => a.x.min(a.y);
+    public static double_mt csum([This] double3_mt a) => a.x + a.y + a.z;
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 cmax([This] double2_mt8 a) => a.x.max(a.y);
+    public static double_mt cmin([This] double3_mt a) => a.x.min(a.y).min(a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt cmax([This] double3_mt a) => a.x.max(a.y).max(a.z);
 
 }
 
-#endregion // double2_mt8
-#region double2_mt16
+#endregion // double3_mt
+#region double4_mt
 
-public partial struct double2_mt16
+public partial struct double4_mt
 {
     #region Constants
 
-    public static double2_mt16 Zero
+    public static double4_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static double2_mt16 One
+    public static double4_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1.0);
     }
 
-    public static double2_mt16 Two
+    public static double4_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new(2.0);
@@ -2736,76 +1265,76 @@ public partial struct double2_mt16
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator-(double2_mt16 a) => new(-a.x, -a.y);
+    public static double4_mt operator-(double4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator+(double2_mt16 a, double2_mt16 b) => new(a.x + b.x, a.y + b.y);
+    public static double4_mt operator+(double4_mt a, double4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator+(double2_mt16 a, double_mt16 b) => new(a.x + b, a.y + b);
+    public static double4_mt operator+(double4_mt a, double_mt b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator+(double_mt16 a, double2_mt16 b) => new(a + b.x, a + b.y);
+    public static double4_mt operator+(double_mt a, double4_mt b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator-(double2_mt16 a, double2_mt16 b) => new(a.x - b.x, a.y - b.y);
+    public static double4_mt operator-(double4_mt a, double4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator-(double2_mt16 a, double_mt16 b) => new(a.x - b, a.y - b);
+    public static double4_mt operator-(double4_mt a, double_mt b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator-(double_mt16 a, double2_mt16 b) => new(a - b.x, a - b.y);
+    public static double4_mt operator-(double_mt a, double4_mt b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator*(double2_mt16 a, double2_mt16 b) => new(a.x * b.x, a.y * b.y);
+    public static double4_mt operator*(double4_mt a, double4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator*(double2_mt16 a, double_mt16 b) => new(a.x * b, a.y * b);
+    public static double4_mt operator*(double4_mt a, double_mt b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator*(double_mt16 a, double2_mt16 b) => new(a * b.x, a * b.y);
+    public static double4_mt operator*(double_mt a, double4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator*(double2_mt16 a, double b) => new(a.x * b, a.y * b);
+    public static double4_mt operator*(double4_mt a, double b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator*(double a, double2_mt16 b) => new(a * b.x, a * b.y);
+    public static double4_mt operator*(double a, double4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator/(double2_mt16 a, double2_mt16 b) => new(a.x / b.x, a.y / b.y);
+    public static double4_mt operator/(double4_mt a, double4_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator/(double_mt16 a, double2_mt16 b) => new(a / b.x, a / b.y);
+    public static double4_mt operator/(double_mt a, double4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator/(double2_mt16 a, double_mt16 b) => new(a.x / b, a.y / b);
+    public static double4_mt operator/(double4_mt a, double_mt b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator/(double a, double2_mt16 b) => new(a / b.x, a / b.y);
+    public static double4_mt operator/(double a, double4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator/(double2_mt16 a, double b) => new(a.x / b, a.y / b);
+    public static double4_mt operator/(double4_mt a, double b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator%(double2_mt16 a, double2_mt16 b) => math_mt.rem(a, b);
+    public static double4_mt operator%(double4_mt a, double4_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator%(double_mt16 a, double2_mt16 b) => math_mt.rem(a, b);
+    public static double4_mt operator%(double_mt a, double4_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator%(double2_mt16 a, double_mt16 b) => math_mt.rem(a, b);
+    public static double4_mt operator%(double4_mt a, double_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator%(double a, double2_mt16 b) => math_mt.rem(a, b);
+    public static double4_mt operator%(double a, double4_mt b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator%(double2_mt16 a, double b) => math_mt.rem(a, b);
+    public static double4_mt operator%(double4_mt a, double b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator++(double2_mt16 a) => a + double_mt16.One;
+    public static double4_mt operator++(double4_mt a) => a + double_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator--(double2_mt16 a) => a - double_mt16.One;
+    public static double4_mt operator--(double4_mt a) => a - double_mt.One;
 
     #endregion // Operators
 }
@@ -2814,19 +1343,19 @@ public partial struct double2_mt16
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double2_mt16 abs([This] double2_mt16 a) => new(abs(a.x), abs(a.y));
+    public static double4_mt abs([This] double4_mt a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 sign([This] double2_mt16 a) => new(sign(a.x), sign(a.y));
+    public static double4_mt sign([This] double4_mt a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 min([This] double2_mt16 a, double2_mt16 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static double4_mt min([This] double4_mt a, double4_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 max([This] double2_mt16 a, double2_mt16 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static double4_mt max([This] double4_mt a, double4_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 clamp([This] double2_mt16 v, double2_mt16 min, double2_mt16 max) => math_mt.max(min, math_mt.min(max, v));
+    public static double4_mt clamp([This] double4_mt v, double4_mt min, double4_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2836,7 +1365,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt16 fma([This] double2_mt16 a, double2_mt16 b, double2_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static double4_mt fma([This] double4_mt a, double4_mt b, double4_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -2846,7 +1375,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt16 fms([This] double2_mt16 a, double2_mt16 b, double2_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static double4_mt fms([This] double4_mt a, double4_mt b, double4_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -2856,7 +1385,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt16 fnma([This] double2_mt16 a, double2_mt16 b, double2_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static double4_mt fnma([This] double4_mt a, double4_mt b, double4_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -2866,7 +1395,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt16 fsm([This] double2_mt16 c, double2_mt16 a, double2_mt16 b) => fnma(a, b, c);
+    public static double4_mt fsm([This] double4_mt c, double4_mt a, double4_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2876,7 +1405,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt16 fam([This] double2_mt16 c, double2_mt16 a, double2_mt16 b) => fma(a, b, c);
+    public static double4_mt fam([This] double4_mt c, double4_mt a, double4_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2886,1575 +1415,90 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2_mt16 mad([This] double2_mt16 a, double2_mt16 b, double2_mt16 c) => fma(a, b, c);
+    public static double4_mt mad([This] double4_mt a, double4_mt b, double4_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 lerp(double2_mt16 start, double2_mt16 end, [This] double2_mt16 t)
+    public static double4_mt lerp(double4_mt start, double4_mt end, [This] double4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 lerp(double2_mt16 start, double2_mt16 end, [This] double t)
+    public static double4_mt lerp(double4_mt start, double4_mt end, [This] double t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 lerp(double start, double end, [This] double2_mt16 t)
+    public static double4_mt lerp(double start, double end, [This] double4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 unlerp([This] double2_mt16 a, double2_mt16 start, double2_mt16 end) => (a - start) / (end - start);
+    public static double4_mt unlerp([This] double4_mt a, double4_mt start, double4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 unlerp([This] double a, double2_mt16 start, double2_mt16 end) => (a - start) / (end - start);
+    public static double4_mt unlerp([This] double a, double4_mt start, double4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 unlerp([This] double2_mt16 a, double start, double end) => (a - start) / (end - start);
+    public static double4_mt unlerp([This] double4_mt a, double start, double end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 remap([This] double2_mt16 a, double2_mt16 srcStart, double2_mt16 srcEnd, double2_mt16 dstStart, double2_mt16 dstEnd) => 
+    public static double4_mt remap([This] double4_mt a, double4_mt srcStart, double4_mt srcEnd, double4_mt dstStart, double4_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 remap([This] double2_mt16 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
+    public static double4_mt remap([This] double4_mt a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 square([This] double2_mt16 a) => a * a;
+    public static double4_mt square([This] double4_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static double_mt16 dot([This] double2_mt16 a, double2_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 lengthsq([This] double2_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 distancesq([This] double2_mt16 a, double2_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 csum([This] double2_mt16 a) => a.x + a.y;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 cmin([This] double2_mt16 a) => a.x.min(a.y);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 cmax([This] double2_mt16 a) => a.x.max(a.y);
-
-}
-
-#endregion // double2_mt16
-#region double3_mt4
-
-public partial struct double3_mt4
-{
-    #region Constants
-
-    public static double3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator-(double3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator+(double3_mt4 a, double3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator+(double3_mt4 a, double_mt4 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator+(double_mt4 a, double3_mt4 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator-(double3_mt4 a, double3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator-(double3_mt4 a, double_mt4 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator-(double_mt4 a, double3_mt4 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator*(double3_mt4 a, double3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator*(double3_mt4 a, double_mt4 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator*(double_mt4 a, double3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator*(double3_mt4 a, double b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator*(double a, double3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator/(double3_mt4 a, double3_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator/(double_mt4 a, double3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator/(double3_mt4 a, double_mt4 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator/(double a, double3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator/(double3_mt4 a, double b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator%(double3_mt4 a, double3_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator%(double_mt4 a, double3_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator%(double3_mt4 a, double_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator%(double a, double3_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator%(double3_mt4 a, double b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator++(double3_mt4 a) => a + double_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator--(double3_mt4 a) => a - double_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 abs([This] double3_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 sign([This] double3_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 min([This] double3_mt4 a, double3_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 max([This] double3_mt4 a, double3_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 clamp([This] double3_mt4 v, double3_mt4 min, double3_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 fma([This] double3_mt4 a, double3_mt4 b, double3_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 fms([This] double3_mt4 a, double3_mt4 b, double3_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 fnma([This] double3_mt4 a, double3_mt4 b, double3_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 fsm([This] double3_mt4 c, double3_mt4 a, double3_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 fam([This] double3_mt4 c, double3_mt4 a, double3_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 mad([This] double3_mt4 a, double3_mt4 b, double3_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 lerp(double3_mt4 start, double3_mt4 end, [This] double3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 lerp(double3_mt4 start, double3_mt4 end, [This] double t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 lerp(double start, double end, [This] double3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 unlerp([This] double3_mt4 a, double3_mt4 start, double3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 unlerp([This] double a, double3_mt4 start, double3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 unlerp([This] double3_mt4 a, double start, double end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 remap([This] double3_mt4 a, double3_mt4 srcStart, double3_mt4 srcEnd, double3_mt4 dstStart, double3_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 remap([This] double3_mt4 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 square([This] double3_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 dot([This] double3_mt4 a, double3_mt4 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 cross([This] double3_mt4 a, double3_mt4 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 lengthsq([This] double3_mt4 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 distancesq([This] double3_mt4 a, double3_mt4 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 csum([This] double3_mt4 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 cmin([This] double3_mt4 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 cmax([This] double3_mt4 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // double3_mt4
-#region double3_mt8
-
-public partial struct double3_mt8
-{
-    #region Constants
-
-    public static double3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator-(double3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator+(double3_mt8 a, double3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator+(double3_mt8 a, double_mt8 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator+(double_mt8 a, double3_mt8 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator-(double3_mt8 a, double3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator-(double3_mt8 a, double_mt8 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator-(double_mt8 a, double3_mt8 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator*(double3_mt8 a, double3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator*(double3_mt8 a, double_mt8 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator*(double_mt8 a, double3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator*(double3_mt8 a, double b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator*(double a, double3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator/(double3_mt8 a, double3_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator/(double_mt8 a, double3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator/(double3_mt8 a, double_mt8 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator/(double a, double3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator/(double3_mt8 a, double b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator%(double3_mt8 a, double3_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator%(double_mt8 a, double3_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator%(double3_mt8 a, double_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator%(double a, double3_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator%(double3_mt8 a, double b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator++(double3_mt8 a) => a + double_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator--(double3_mt8 a) => a - double_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 abs([This] double3_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 sign([This] double3_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 min([This] double3_mt8 a, double3_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 max([This] double3_mt8 a, double3_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 clamp([This] double3_mt8 v, double3_mt8 min, double3_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 fma([This] double3_mt8 a, double3_mt8 b, double3_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 fms([This] double3_mt8 a, double3_mt8 b, double3_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 fnma([This] double3_mt8 a, double3_mt8 b, double3_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 fsm([This] double3_mt8 c, double3_mt8 a, double3_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 fam([This] double3_mt8 c, double3_mt8 a, double3_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 mad([This] double3_mt8 a, double3_mt8 b, double3_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 lerp(double3_mt8 start, double3_mt8 end, [This] double3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 lerp(double3_mt8 start, double3_mt8 end, [This] double t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 lerp(double start, double end, [This] double3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 unlerp([This] double3_mt8 a, double3_mt8 start, double3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 unlerp([This] double a, double3_mt8 start, double3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 unlerp([This] double3_mt8 a, double start, double end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 remap([This] double3_mt8 a, double3_mt8 srcStart, double3_mt8 srcEnd, double3_mt8 dstStart, double3_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 remap([This] double3_mt8 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 square([This] double3_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 dot([This] double3_mt8 a, double3_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 cross([This] double3_mt8 a, double3_mt8 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 lengthsq([This] double3_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 distancesq([This] double3_mt8 a, double3_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 csum([This] double3_mt8 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 cmin([This] double3_mt8 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 cmax([This] double3_mt8 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // double3_mt8
-#region double3_mt16
-
-public partial struct double3_mt16
-{
-    #region Constants
-
-    public static double3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator-(double3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator+(double3_mt16 a, double3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator+(double3_mt16 a, double_mt16 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator+(double_mt16 a, double3_mt16 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator-(double3_mt16 a, double3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator-(double3_mt16 a, double_mt16 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator-(double_mt16 a, double3_mt16 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator*(double3_mt16 a, double3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator*(double3_mt16 a, double_mt16 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator*(double_mt16 a, double3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator*(double3_mt16 a, double b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator*(double a, double3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator/(double3_mt16 a, double3_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator/(double_mt16 a, double3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator/(double3_mt16 a, double_mt16 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator/(double a, double3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator/(double3_mt16 a, double b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator%(double3_mt16 a, double3_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator%(double_mt16 a, double3_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator%(double3_mt16 a, double_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator%(double a, double3_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator%(double3_mt16 a, double b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator++(double3_mt16 a) => a + double_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator--(double3_mt16 a) => a - double_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 abs([This] double3_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 sign([This] double3_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 min([This] double3_mt16 a, double3_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 max([This] double3_mt16 a, double3_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 clamp([This] double3_mt16 v, double3_mt16 min, double3_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 fma([This] double3_mt16 a, double3_mt16 b, double3_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 fms([This] double3_mt16 a, double3_mt16 b, double3_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 fnma([This] double3_mt16 a, double3_mt16 b, double3_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 fsm([This] double3_mt16 c, double3_mt16 a, double3_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 fam([This] double3_mt16 c, double3_mt16 a, double3_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 mad([This] double3_mt16 a, double3_mt16 b, double3_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 lerp(double3_mt16 start, double3_mt16 end, [This] double3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 lerp(double3_mt16 start, double3_mt16 end, [This] double t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 lerp(double start, double end, [This] double3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 unlerp([This] double3_mt16 a, double3_mt16 start, double3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 unlerp([This] double a, double3_mt16 start, double3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 unlerp([This] double3_mt16 a, double start, double end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 remap([This] double3_mt16 a, double3_mt16 srcStart, double3_mt16 srcEnd, double3_mt16 dstStart, double3_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 remap([This] double3_mt16 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 square([This] double3_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 dot([This] double3_mt16 a, double3_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 cross([This] double3_mt16 a, double3_mt16 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 lengthsq([This] double3_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 distancesq([This] double3_mt16 a, double3_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 csum([This] double3_mt16 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 cmin([This] double3_mt16 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 cmax([This] double3_mt16 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // double3_mt16
-#region double4_mt4
-
-public partial struct double4_mt4
-{
-    #region Constants
-
-    public static double4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator-(double4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator+(double4_mt4 a, double4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator+(double4_mt4 a, double_mt4 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator+(double_mt4 a, double4_mt4 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator-(double4_mt4 a, double4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator-(double4_mt4 a, double_mt4 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator-(double_mt4 a, double4_mt4 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator*(double4_mt4 a, double4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator*(double4_mt4 a, double_mt4 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator*(double_mt4 a, double4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator*(double4_mt4 a, double b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator*(double a, double4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator/(double4_mt4 a, double4_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator/(double_mt4 a, double4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator/(double4_mt4 a, double_mt4 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator/(double a, double4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator/(double4_mt4 a, double b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator%(double4_mt4 a, double4_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator%(double_mt4 a, double4_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator%(double4_mt4 a, double_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator%(double a, double4_mt4 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator%(double4_mt4 a, double b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator++(double4_mt4 a) => a + double_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator--(double4_mt4 a) => a - double_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 abs([This] double4_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 sign([This] double4_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 min([This] double4_mt4 a, double4_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 max([This] double4_mt4 a, double4_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 clamp([This] double4_mt4 v, double4_mt4 min, double4_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 fma([This] double4_mt4 a, double4_mt4 b, double4_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 fms([This] double4_mt4 a, double4_mt4 b, double4_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 fnma([This] double4_mt4 a, double4_mt4 b, double4_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 fsm([This] double4_mt4 c, double4_mt4 a, double4_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 fam([This] double4_mt4 c, double4_mt4 a, double4_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 mad([This] double4_mt4 a, double4_mt4 b, double4_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 lerp(double4_mt4 start, double4_mt4 end, [This] double4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 lerp(double4_mt4 start, double4_mt4 end, [This] double t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 lerp(double start, double end, [This] double4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 unlerp([This] double4_mt4 a, double4_mt4 start, double4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 unlerp([This] double a, double4_mt4 start, double4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 unlerp([This] double4_mt4 a, double start, double end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 remap([This] double4_mt4 a, double4_mt4 srcStart, double4_mt4 srcEnd, double4_mt4 dstStart, double4_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 remap([This] double4_mt4 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 square([This] double4_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 dot([This] double4_mt4 a, double4_mt4 b)
+    public static double_mt dot([This] double4_mt a, double4_mt b)
     {
         // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
         return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
     }
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 lengthsq([This] double4_mt4 a) => dot(a, a);
+    public static double_mt lengthsq([This] double4_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 distancesq([This] double4_mt4 a, double4_mt4 b) => lengthsq(b - a);
+    public static double_mt distancesq([This] double4_mt a, double4_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 csum([This] double4_mt4 a) => a.x + a.y + a.z + a.w;
+    public static double_mt csum([This] double4_mt a) => a.x + a.y + a.z + a.w;
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 cmin([This] double4_mt4 a) => a.x.min(a.y).min(a.z).min(a.w);
+    public static double_mt cmin([This] double4_mt a) => a.x.min(a.y).min(a.z).min(a.w);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 cmax([This] double4_mt4 a) => a.x.max(a.y).max(a.z).max(a.w);
+    public static double_mt cmax([This] double4_mt a) => a.x.max(a.y).max(a.z).max(a.w);
 
 }
 
-#endregion // double4_mt4
-#region double4_mt8
+#endregion // double4_mt
+#region int2_mt
 
-public partial struct double4_mt8
+public partial struct int2_mt
 {
     #region Constants
 
-    public static double4_mt8 Zero
+    public static int2_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static double4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator-(double4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator+(double4_mt8 a, double4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator+(double4_mt8 a, double_mt8 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator+(double_mt8 a, double4_mt8 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator-(double4_mt8 a, double4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator-(double4_mt8 a, double_mt8 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator-(double_mt8 a, double4_mt8 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator*(double4_mt8 a, double4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator*(double4_mt8 a, double_mt8 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator*(double_mt8 a, double4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator*(double4_mt8 a, double b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator*(double a, double4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator/(double4_mt8 a, double4_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator/(double_mt8 a, double4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator/(double4_mt8 a, double_mt8 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator/(double a, double4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator/(double4_mt8 a, double b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator%(double4_mt8 a, double4_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator%(double_mt8 a, double4_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator%(double4_mt8 a, double_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator%(double a, double4_mt8 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator%(double4_mt8 a, double b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator++(double4_mt8 a) => a + double_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator--(double4_mt8 a) => a - double_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 abs([This] double4_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 sign([This] double4_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 min([This] double4_mt8 a, double4_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 max([This] double4_mt8 a, double4_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 clamp([This] double4_mt8 v, double4_mt8 min, double4_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 fma([This] double4_mt8 a, double4_mt8 b, double4_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 fms([This] double4_mt8 a, double4_mt8 b, double4_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 fnma([This] double4_mt8 a, double4_mt8 b, double4_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 fsm([This] double4_mt8 c, double4_mt8 a, double4_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 fam([This] double4_mt8 c, double4_mt8 a, double4_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 mad([This] double4_mt8 a, double4_mt8 b, double4_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 lerp(double4_mt8 start, double4_mt8 end, [This] double4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 lerp(double4_mt8 start, double4_mt8 end, [This] double t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 lerp(double start, double end, [This] double4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 unlerp([This] double4_mt8 a, double4_mt8 start, double4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 unlerp([This] double a, double4_mt8 start, double4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 unlerp([This] double4_mt8 a, double start, double end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 remap([This] double4_mt8 a, double4_mt8 srcStart, double4_mt8 srcEnd, double4_mt8 dstStart, double4_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 remap([This] double4_mt8 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 square([This] double4_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 dot([This] double4_mt8 a, double4_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 lengthsq([This] double4_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 distancesq([This] double4_mt8 a, double4_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 csum([This] double4_mt8 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 cmin([This] double4_mt8 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 cmax([This] double4_mt8 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // double4_mt8
-#region double4_mt16
-
-public partial struct double4_mt16
-{
-    #region Constants
-
-    public static double4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator-(double4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator+(double4_mt16 a, double4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator+(double4_mt16 a, double_mt16 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator+(double_mt16 a, double4_mt16 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator-(double4_mt16 a, double4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator-(double4_mt16 a, double_mt16 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator-(double_mt16 a, double4_mt16 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator*(double4_mt16 a, double4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator*(double4_mt16 a, double_mt16 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator*(double_mt16 a, double4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator*(double4_mt16 a, double b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator*(double a, double4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator/(double4_mt16 a, double4_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator/(double_mt16 a, double4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator/(double4_mt16 a, double_mt16 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator/(double a, double4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator/(double4_mt16 a, double b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator%(double4_mt16 a, double4_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator%(double_mt16 a, double4_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator%(double4_mt16 a, double_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator%(double a, double4_mt16 b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator%(double4_mt16 a, double b) => math_mt.rem(a, b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator++(double4_mt16 a) => a + double_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator--(double4_mt16 a) => a - double_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 abs([This] double4_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 sign([This] double4_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 min([This] double4_mt16 a, double4_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 max([This] double4_mt16 a, double4_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 clamp([This] double4_mt16 v, double4_mt16 min, double4_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 fma([This] double4_mt16 a, double4_mt16 b, double4_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 fms([This] double4_mt16 a, double4_mt16 b, double4_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 fnma([This] double4_mt16 a, double4_mt16 b, double4_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 fsm([This] double4_mt16 c, double4_mt16 a, double4_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 fam([This] double4_mt16 c, double4_mt16 a, double4_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 mad([This] double4_mt16 a, double4_mt16 b, double4_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 lerp(double4_mt16 start, double4_mt16 end, [This] double4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 lerp(double4_mt16 start, double4_mt16 end, [This] double t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 lerp(double start, double end, [This] double4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 unlerp([This] double4_mt16 a, double4_mt16 start, double4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 unlerp([This] double a, double4_mt16 start, double4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 unlerp([This] double4_mt16 a, double start, double end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 remap([This] double4_mt16 a, double4_mt16 srcStart, double4_mt16 srcEnd, double4_mt16 dstStart, double4_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 remap([This] double4_mt16 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 square([This] double4_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 dot([This] double4_mt16 a, double4_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 lengthsq([This] double4_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 distancesq([This] double4_mt16 a, double4_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 csum([This] double4_mt16 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 cmin([This] double4_mt16 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 cmax([This] double4_mt16 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // double4_mt16
-#region int2_mt4
-
-public partial struct int2_mt4
-{
-    #region Constants
-
-    public static int2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int2_mt4 One
+    public static int2_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1);
     }
 
-    public static int2_mt4 Two
+    public static int2_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new((1 + 1));
@@ -4465,76 +1509,76 @@ public partial struct int2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator-(int2_mt4 a) => new(-a.x, -a.y);
+    public static int2_mt operator-(int2_mt a) => new(-a.x, -a.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator+(int2_mt4 a, int2_mt4 b) => new(a.x + b.x, a.y + b.y);
+    public static int2_mt operator+(int2_mt a, int2_mt b) => new(a.x + b.x, a.y + b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator+(int2_mt4 a, int_mt4 b) => new(a.x + b, a.y + b);
+    public static int2_mt operator+(int2_mt a, int_mt b) => new(a.x + b, a.y + b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator+(int_mt4 a, int2_mt4 b) => new(a + b.x, a + b.y);
+    public static int2_mt operator+(int_mt a, int2_mt b) => new(a + b.x, a + b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator-(int2_mt4 a, int2_mt4 b) => new(a.x - b.x, a.y - b.y);
+    public static int2_mt operator-(int2_mt a, int2_mt b) => new(a.x - b.x, a.y - b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator-(int2_mt4 a, int_mt4 b) => new(a.x - b, a.y - b);
+    public static int2_mt operator-(int2_mt a, int_mt b) => new(a.x - b, a.y - b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator-(int_mt4 a, int2_mt4 b) => new(a - b.x, a - b.y);
+    public static int2_mt operator-(int_mt a, int2_mt b) => new(a - b.x, a - b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator*(int2_mt4 a, int2_mt4 b) => new(a.x * b.x, a.y * b.y);
+    public static int2_mt operator*(int2_mt a, int2_mt b) => new(a.x * b.x, a.y * b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator*(int2_mt4 a, int_mt4 b) => new(a.x * b, a.y * b);
+    public static int2_mt operator*(int2_mt a, int_mt b) => new(a.x * b, a.y * b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator*(int_mt4 a, int2_mt4 b) => new(a * b.x, a * b.y);
+    public static int2_mt operator*(int_mt a, int2_mt b) => new(a * b.x, a * b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator*(int2_mt4 a, int b) => new(a.x * b, a.y * b);
+    public static int2_mt operator*(int2_mt a, int b) => new(a.x * b, a.y * b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator*(int a, int2_mt4 b) => new(a * b.x, a * b.y);
+    public static int2_mt operator*(int a, int2_mt b) => new(a * b.x, a * b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator/(int2_mt4 a, int2_mt4 b) => new(a.x / b.x, a.y / b.y);
+    public static int2_mt operator/(int2_mt a, int2_mt b) => new(a.x / b.x, a.y / b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator/(int_mt4 a, int2_mt4 b) => new(a / b.x, a / b.y);
+    public static int2_mt operator/(int_mt a, int2_mt b) => new(a / b.x, a / b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator/(int2_mt4 a, int_mt4 b) => new(a.x / b, a.y / b);
+    public static int2_mt operator/(int2_mt a, int_mt b) => new(a.x / b, a.y / b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator/(int a, int2_mt4 b) => new(a / b.x, a / b.y);
+    public static int2_mt operator/(int a, int2_mt b) => new(a / b.x, a / b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator/(int2_mt4 a, int b) => new(a.x / b, a.y / b);
+    public static int2_mt operator/(int2_mt a, int b) => new(a.x / b, a.y / b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator%(int2_mt4 a, int2_mt4 b) => a - (a / b) * b;
+    public static int2_mt operator%(int2_mt a, int2_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator%(int_mt4 a, int2_mt4 b) => a - (a / b) * b;
+    public static int2_mt operator%(int_mt a, int2_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator%(int2_mt4 a, int_mt4 b) => a - (a / b) * b;
+    public static int2_mt operator%(int2_mt a, int_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator%(int a, int2_mt4 b) => a - (a / b) * b;
+    public static int2_mt operator%(int a, int2_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator%(int2_mt4 a, int b) => a - (a / b) * b;
+    public static int2_mt operator%(int2_mt a, int b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator++(int2_mt4 a) => a + int_mt4.One;
+    public static int2_mt operator++(int2_mt a) => a + int_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator--(int2_mt4 a) => a - int_mt4.One;
+    public static int2_mt operator--(int2_mt a) => a - int_mt.One;
 
     #endregion // Operators
 }
@@ -4543,19 +1587,19 @@ public partial struct int2_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2_mt4 abs([This] int2_mt4 a) => new(abs(a.x), abs(a.y));
+    public static int2_mt abs([This] int2_mt a) => new(abs(a.x), abs(a.y));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 sign([This] int2_mt4 a) => new(sign(a.x), sign(a.y));
+    public static int2_mt sign([This] int2_mt a) => new(sign(a.x), sign(a.y));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 min([This] int2_mt4 a, int2_mt4 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static int2_mt min([This] int2_mt a, int2_mt b) => new(min(a.x, b.x), min(a.y, b.y));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 max([This] int2_mt4 a, int2_mt4 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static int2_mt max([This] int2_mt a, int2_mt b) => new(max(a.x, b.x), max(a.y, b.y));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 clamp([This] int2_mt4 v, int2_mt4 min, int2_mt4 max) => math_mt.max(min, math_mt.min(max, v));
+    public static int2_mt clamp([This] int2_mt v, int2_mt min, int2_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4565,7 +1609,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt4 fma([This] int2_mt4 a, int2_mt4 b, int2_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static int2_mt fma([This] int2_mt a, int2_mt b, int2_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -4575,7 +1619,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt4 fms([This] int2_mt4 a, int2_mt4 b, int2_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static int2_mt fms([This] int2_mt a, int2_mt b, int2_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -4585,7 +1629,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt4 fnma([This] int2_mt4 a, int2_mt4 b, int2_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static int2_mt fnma([This] int2_mt a, int2_mt b, int2_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -4595,7 +1639,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt4 fsm([This] int2_mt4 c, int2_mt4 a, int2_mt4 b) => fnma(a, b, c);
+    public static int2_mt fsm([This] int2_mt c, int2_mt a, int2_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4605,7 +1649,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt4 fam([This] int2_mt4 c, int2_mt4 a, int2_mt4 b) => fma(a, b, c);
+    public static int2_mt fam([This] int2_mt c, int2_mt a, int2_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4615,90 +1659,90 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt4 mad([This] int2_mt4 a, int2_mt4 b, int2_mt4 c) => fma(a, b, c);
+    public static int2_mt mad([This] int2_mt a, int2_mt b, int2_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 lerp(int2_mt4 start, int2_mt4 end, [This] int2_mt4 t)
+    public static int2_mt lerp(int2_mt start, int2_mt end, [This] int2_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 lerp(int2_mt4 start, int2_mt4 end, [This] int t)
+    public static int2_mt lerp(int2_mt start, int2_mt end, [This] int t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 lerp(int start, int end, [This] int2_mt4 t)
+    public static int2_mt lerp(int start, int end, [This] int2_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 unlerp([This] int2_mt4 a, int2_mt4 start, int2_mt4 end) => (a - start) / (end - start);
+    public static int2_mt unlerp([This] int2_mt a, int2_mt start, int2_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 unlerp([This] int a, int2_mt4 start, int2_mt4 end) => (a - start) / (end - start);
+    public static int2_mt unlerp([This] int a, int2_mt start, int2_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 unlerp([This] int2_mt4 a, int start, int end) => (a - start) / (end - start);
+    public static int2_mt unlerp([This] int2_mt a, int start, int end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 remap([This] int2_mt4 a, int2_mt4 srcStart, int2_mt4 srcEnd, int2_mt4 dstStart, int2_mt4 dstEnd) => 
+    public static int2_mt remap([This] int2_mt a, int2_mt srcStart, int2_mt srcEnd, int2_mt dstStart, int2_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 remap([This] int2_mt4 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
+    public static int2_mt remap([This] int2_mt a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 square([This] int2_mt4 a) => a * a;
+    public static int2_mt square([This] int2_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 dot([This] int2_mt4 a, int2_mt4 b)
+    public static int_mt dot([This] int2_mt a, int2_mt b)
     {
         // a.x * b.x + a.y * b.y
         return fma(a.y, b.y, a.x * b.x);
     }
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 lengthsq([This] int2_mt4 a) => dot(a, a);
+    public static int_mt lengthsq([This] int2_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 distancesq([This] int2_mt4 a, int2_mt4 b) => lengthsq(b - a);
+    public static int_mt distancesq([This] int2_mt a, int2_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 csum([This] int2_mt4 a) => a.x + a.y;
+    public static int_mt csum([This] int2_mt a) => a.x + a.y;
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 cmin([This] int2_mt4 a) => a.x.min(a.y);
+    public static int_mt cmin([This] int2_mt a) => a.x.min(a.y);
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 cmax([This] int2_mt4 a) => a.x.max(a.y);
+    public static int_mt cmax([This] int2_mt a) => a.x.max(a.y);
 
 }
 
-#endregion // int2_mt4
-#region int2_mt8
+#endregion // int2_mt
+#region int3_mt
 
-public partial struct int2_mt8
+public partial struct int3_mt
 {
     #region Constants
 
-    public static int2_mt8 Zero
+    public static int3_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static int2_mt8 One
+    public static int3_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1);
     }
 
-    public static int2_mt8 Two
+    public static int3_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new((1 + 1));
@@ -4709,76 +1753,76 @@ public partial struct int2_mt8
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator-(int2_mt8 a) => new(-a.x, -a.y);
+    public static int3_mt operator-(int3_mt a) => new(-a.x, -a.y, -a.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator+(int2_mt8 a, int2_mt8 b) => new(a.x + b.x, a.y + b.y);
+    public static int3_mt operator+(int3_mt a, int3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator+(int2_mt8 a, int_mt8 b) => new(a.x + b, a.y + b);
+    public static int3_mt operator+(int3_mt a, int_mt b) => new(a.x + b, a.y + b, a.z + b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator+(int_mt8 a, int2_mt8 b) => new(a + b.x, a + b.y);
+    public static int3_mt operator+(int_mt a, int3_mt b) => new(a + b.x, a + b.y, a + b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator-(int2_mt8 a, int2_mt8 b) => new(a.x - b.x, a.y - b.y);
+    public static int3_mt operator-(int3_mt a, int3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator-(int2_mt8 a, int_mt8 b) => new(a.x - b, a.y - b);
+    public static int3_mt operator-(int3_mt a, int_mt b) => new(a.x - b, a.y - b, a.z - b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator-(int_mt8 a, int2_mt8 b) => new(a - b.x, a - b.y);
+    public static int3_mt operator-(int_mt a, int3_mt b) => new(a - b.x, a - b.y, a - b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator*(int2_mt8 a, int2_mt8 b) => new(a.x * b.x, a.y * b.y);
+    public static int3_mt operator*(int3_mt a, int3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator*(int2_mt8 a, int_mt8 b) => new(a.x * b, a.y * b);
+    public static int3_mt operator*(int3_mt a, int_mt b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator*(int_mt8 a, int2_mt8 b) => new(a * b.x, a * b.y);
+    public static int3_mt operator*(int_mt a, int3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator*(int2_mt8 a, int b) => new(a.x * b, a.y * b);
+    public static int3_mt operator*(int3_mt a, int b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator*(int a, int2_mt8 b) => new(a * b.x, a * b.y);
+    public static int3_mt operator*(int a, int3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator/(int2_mt8 a, int2_mt8 b) => new(a.x / b.x, a.y / b.y);
+    public static int3_mt operator/(int3_mt a, int3_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator/(int_mt8 a, int2_mt8 b) => new(a / b.x, a / b.y);
+    public static int3_mt operator/(int_mt a, int3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator/(int2_mt8 a, int_mt8 b) => new(a.x / b, a.y / b);
+    public static int3_mt operator/(int3_mt a, int_mt b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator/(int a, int2_mt8 b) => new(a / b.x, a / b.y);
+    public static int3_mt operator/(int a, int3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator/(int2_mt8 a, int b) => new(a.x / b, a.y / b);
+    public static int3_mt operator/(int3_mt a, int b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator%(int2_mt8 a, int2_mt8 b) => a - (a / b) * b;
+    public static int3_mt operator%(int3_mt a, int3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator%(int_mt8 a, int2_mt8 b) => a - (a / b) * b;
+    public static int3_mt operator%(int_mt a, int3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator%(int2_mt8 a, int_mt8 b) => a - (a / b) * b;
+    public static int3_mt operator%(int3_mt a, int_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator%(int a, int2_mt8 b) => a - (a / b) * b;
+    public static int3_mt operator%(int a, int3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator%(int2_mt8 a, int b) => a - (a / b) * b;
+    public static int3_mt operator%(int3_mt a, int b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator++(int2_mt8 a) => a + int_mt8.One;
+    public static int3_mt operator++(int3_mt a) => a + int_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator--(int2_mt8 a) => a - int_mt8.One;
+    public static int3_mt operator--(int3_mt a) => a - int_mt.One;
 
     #endregion // Operators
 }
@@ -4787,19 +1831,19 @@ public partial struct int2_mt8
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2_mt8 abs([This] int2_mt8 a) => new(abs(a.x), abs(a.y));
+    public static int3_mt abs([This] int3_mt a) => new(abs(a.x), abs(a.y), abs(a.z));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 sign([This] int2_mt8 a) => new(sign(a.x), sign(a.y));
+    public static int3_mt sign([This] int3_mt a) => new(sign(a.x), sign(a.y), sign(a.z));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 min([This] int2_mt8 a, int2_mt8 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static int3_mt min([This] int3_mt a, int3_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 max([This] int2_mt8 a, int2_mt8 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static int3_mt max([This] int3_mt a, int3_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 clamp([This] int2_mt8 v, int2_mt8 min, int2_mt8 max) => math_mt.max(min, math_mt.min(max, v));
+    public static int3_mt clamp([This] int3_mt v, int3_mt min, int3_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4809,7 +1853,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt8 fma([This] int2_mt8 a, int2_mt8 b, int2_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static int3_mt fma([This] int3_mt a, int3_mt b, int3_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -4819,7 +1863,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt8 fms([This] int2_mt8 a, int2_mt8 b, int2_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static int3_mt fms([This] int3_mt a, int3_mt b, int3_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -4829,7 +1873,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt8 fnma([This] int2_mt8 a, int2_mt8 b, int2_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static int3_mt fnma([This] int3_mt a, int3_mt b, int3_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -4839,7 +1883,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt8 fsm([This] int2_mt8 c, int2_mt8 a, int2_mt8 b) => fnma(a, b, c);
+    public static int3_mt fsm([This] int3_mt c, int3_mt a, int3_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4849,7 +1893,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt8 fam([This] int2_mt8 c, int2_mt8 a, int2_mt8 b) => fma(a, b, c);
+    public static int3_mt fam([This] int3_mt c, int3_mt a, int3_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4859,90 +1903,97 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt8 mad([This] int2_mt8 a, int2_mt8 b, int2_mt8 c) => fma(a, b, c);
+    public static int3_mt mad([This] int3_mt a, int3_mt b, int3_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 lerp(int2_mt8 start, int2_mt8 end, [This] int2_mt8 t)
+    public static int3_mt lerp(int3_mt start, int3_mt end, [This] int3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 lerp(int2_mt8 start, int2_mt8 end, [This] int t)
+    public static int3_mt lerp(int3_mt start, int3_mt end, [This] int t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 lerp(int start, int end, [This] int2_mt8 t)
+    public static int3_mt lerp(int start, int end, [This] int3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 unlerp([This] int2_mt8 a, int2_mt8 start, int2_mt8 end) => (a - start) / (end - start);
+    public static int3_mt unlerp([This] int3_mt a, int3_mt start, int3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 unlerp([This] int a, int2_mt8 start, int2_mt8 end) => (a - start) / (end - start);
+    public static int3_mt unlerp([This] int a, int3_mt start, int3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 unlerp([This] int2_mt8 a, int start, int end) => (a - start) / (end - start);
+    public static int3_mt unlerp([This] int3_mt a, int start, int end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 remap([This] int2_mt8 a, int2_mt8 srcStart, int2_mt8 srcEnd, int2_mt8 dstStart, int2_mt8 dstEnd) => 
+    public static int3_mt remap([This] int3_mt a, int3_mt srcStart, int3_mt srcEnd, int3_mt dstStart, int3_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 remap([This] int2_mt8 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
+    public static int3_mt remap([This] int3_mt a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 square([This] int2_mt8 a) => a * a;
+    public static int3_mt square([This] int3_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static int_mt8 dot([This] int2_mt8 a, int2_mt8 b)
+    public static int_mt dot([This] int3_mt a, int3_mt b)
     {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
+        // a.x * b.x + a.y * b.y + a.z * b.z
+        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
     }
 
     [MethodImpl(256 | 512)]
-    public static int_mt8 lengthsq([This] int2_mt8 a) => dot(a, a);
+    public static int3_mt cross([This] int3_mt a, int3_mt b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
-    public static int_mt8 distancesq([This] int2_mt8 a, int2_mt8 b) => lengthsq(b - a);
+    public static int_mt lengthsq([This] int3_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static int_mt8 csum([This] int2_mt8 a) => a.x + a.y;
+    public static int_mt distancesq([This] int3_mt a, int3_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static int_mt8 cmin([This] int2_mt8 a) => a.x.min(a.y);
+    public static int_mt csum([This] int3_mt a) => a.x + a.y + a.z;
 
     [MethodImpl(256 | 512)]
-    public static int_mt8 cmax([This] int2_mt8 a) => a.x.max(a.y);
+    public static int_mt cmin([This] int3_mt a) => a.x.min(a.y).min(a.z);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt cmax([This] int3_mt a) => a.x.max(a.y).max(a.z);
 
 }
 
-#endregion // int2_mt8
-#region int2_mt16
+#endregion // int3_mt
+#region int4_mt
 
-public partial struct int2_mt16
+public partial struct int4_mt
 {
     #region Constants
 
-    public static int2_mt16 Zero
+    public static int4_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static int2_mt16 One
+    public static int4_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1);
     }
 
-    public static int2_mt16 Two
+    public static int4_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new((1 + 1));
@@ -4953,76 +2004,76 @@ public partial struct int2_mt16
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator-(int2_mt16 a) => new(-a.x, -a.y);
+    public static int4_mt operator-(int4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator+(int2_mt16 a, int2_mt16 b) => new(a.x + b.x, a.y + b.y);
+    public static int4_mt operator+(int4_mt a, int4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator+(int2_mt16 a, int_mt16 b) => new(a.x + b, a.y + b);
+    public static int4_mt operator+(int4_mt a, int_mt b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator+(int_mt16 a, int2_mt16 b) => new(a + b.x, a + b.y);
+    public static int4_mt operator+(int_mt a, int4_mt b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator-(int2_mt16 a, int2_mt16 b) => new(a.x - b.x, a.y - b.y);
+    public static int4_mt operator-(int4_mt a, int4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator-(int2_mt16 a, int_mt16 b) => new(a.x - b, a.y - b);
+    public static int4_mt operator-(int4_mt a, int_mt b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator-(int_mt16 a, int2_mt16 b) => new(a - b.x, a - b.y);
+    public static int4_mt operator-(int_mt a, int4_mt b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator*(int2_mt16 a, int2_mt16 b) => new(a.x * b.x, a.y * b.y);
+    public static int4_mt operator*(int4_mt a, int4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator*(int2_mt16 a, int_mt16 b) => new(a.x * b, a.y * b);
+    public static int4_mt operator*(int4_mt a, int_mt b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator*(int_mt16 a, int2_mt16 b) => new(a * b.x, a * b.y);
+    public static int4_mt operator*(int_mt a, int4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator*(int2_mt16 a, int b) => new(a.x * b, a.y * b);
+    public static int4_mt operator*(int4_mt a, int b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator*(int a, int2_mt16 b) => new(a * b.x, a * b.y);
+    public static int4_mt operator*(int a, int4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator/(int2_mt16 a, int2_mt16 b) => new(a.x / b.x, a.y / b.y);
+    public static int4_mt operator/(int4_mt a, int4_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator/(int_mt16 a, int2_mt16 b) => new(a / b.x, a / b.y);
+    public static int4_mt operator/(int_mt a, int4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator/(int2_mt16 a, int_mt16 b) => new(a.x / b, a.y / b);
+    public static int4_mt operator/(int4_mt a, int_mt b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator/(int a, int2_mt16 b) => new(a / b.x, a / b.y);
+    public static int4_mt operator/(int a, int4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator/(int2_mt16 a, int b) => new(a.x / b, a.y / b);
+    public static int4_mt operator/(int4_mt a, int b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator%(int2_mt16 a, int2_mt16 b) => a - (a / b) * b;
+    public static int4_mt operator%(int4_mt a, int4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator%(int_mt16 a, int2_mt16 b) => a - (a / b) * b;
+    public static int4_mt operator%(int_mt a, int4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator%(int2_mt16 a, int_mt16 b) => a - (a / b) * b;
+    public static int4_mt operator%(int4_mt a, int_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator%(int a, int2_mt16 b) => a - (a / b) * b;
+    public static int4_mt operator%(int a, int4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator%(int2_mt16 a, int b) => a - (a / b) * b;
+    public static int4_mt operator%(int4_mt a, int b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator++(int2_mt16 a) => a + int_mt16.One;
+    public static int4_mt operator++(int4_mt a) => a + int_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator--(int2_mt16 a) => a - int_mt16.One;
+    public static int4_mt operator--(int4_mt a) => a - int_mt.One;
 
     #endregion // Operators
 }
@@ -5031,19 +2082,19 @@ public partial struct int2_mt16
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2_mt16 abs([This] int2_mt16 a) => new(abs(a.x), abs(a.y));
+    public static int4_mt abs([This] int4_mt a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 sign([This] int2_mt16 a) => new(sign(a.x), sign(a.y));
+    public static int4_mt sign([This] int4_mt a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 min([This] int2_mt16 a, int2_mt16 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static int4_mt min([This] int4_mt a, int4_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 max([This] int2_mt16 a, int2_mt16 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static int4_mt max([This] int4_mt a, int4_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 clamp([This] int2_mt16 v, int2_mt16 min, int2_mt16 max) => math_mt.max(min, math_mt.min(max, v));
+    public static int4_mt clamp([This] int4_mt v, int4_mt min, int4_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5053,7 +2104,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt16 fma([This] int2_mt16 a, int2_mt16 b, int2_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static int4_mt fma([This] int4_mt a, int4_mt b, int4_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -5063,7 +2114,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt16 fms([This] int2_mt16 a, int2_mt16 b, int2_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static int4_mt fms([This] int4_mt a, int4_mt b, int4_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -5073,7 +2124,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt16 fnma([This] int2_mt16 a, int2_mt16 b, int2_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static int4_mt fnma([This] int4_mt a, int4_mt b, int4_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -5083,7 +2134,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt16 fsm([This] int2_mt16 c, int2_mt16 a, int2_mt16 b) => fnma(a, b, c);
+    public static int4_mt fsm([This] int4_mt c, int4_mt a, int4_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5093,7 +2144,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt16 fam([This] int2_mt16 c, int2_mt16 a, int2_mt16 b) => fma(a, b, c);
+    public static int4_mt fam([This] int4_mt c, int4_mt a, int4_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5103,1575 +2154,90 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2_mt16 mad([This] int2_mt16 a, int2_mt16 b, int2_mt16 c) => fma(a, b, c);
+    public static int4_mt mad([This] int4_mt a, int4_mt b, int4_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 lerp(int2_mt16 start, int2_mt16 end, [This] int2_mt16 t)
+    public static int4_mt lerp(int4_mt start, int4_mt end, [This] int4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 lerp(int2_mt16 start, int2_mt16 end, [This] int t)
+    public static int4_mt lerp(int4_mt start, int4_mt end, [This] int t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 lerp(int start, int end, [This] int2_mt16 t)
+    public static int4_mt lerp(int start, int end, [This] int4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 unlerp([This] int2_mt16 a, int2_mt16 start, int2_mt16 end) => (a - start) / (end - start);
+    public static int4_mt unlerp([This] int4_mt a, int4_mt start, int4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 unlerp([This] int a, int2_mt16 start, int2_mt16 end) => (a - start) / (end - start);
+    public static int4_mt unlerp([This] int a, int4_mt start, int4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 unlerp([This] int2_mt16 a, int start, int end) => (a - start) / (end - start);
+    public static int4_mt unlerp([This] int4_mt a, int start, int end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 remap([This] int2_mt16 a, int2_mt16 srcStart, int2_mt16 srcEnd, int2_mt16 dstStart, int2_mt16 dstEnd) => 
+    public static int4_mt remap([This] int4_mt a, int4_mt srcStart, int4_mt srcEnd, int4_mt dstStart, int4_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 remap([This] int2_mt16 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
+    public static int4_mt remap([This] int4_mt a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 square([This] int2_mt16 a) => a * a;
+    public static int4_mt square([This] int4_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static int_mt16 dot([This] int2_mt16 a, int2_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 lengthsq([This] int2_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 distancesq([This] int2_mt16 a, int2_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 csum([This] int2_mt16 a) => a.x + a.y;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 cmin([This] int2_mt16 a) => a.x.min(a.y);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 cmax([This] int2_mt16 a) => a.x.max(a.y);
-
-}
-
-#endregion // int2_mt16
-#region int3_mt4
-
-public partial struct int3_mt4
-{
-    #region Constants
-
-    public static int3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator-(int3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator+(int3_mt4 a, int3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator+(int3_mt4 a, int_mt4 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator+(int_mt4 a, int3_mt4 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator-(int3_mt4 a, int3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator-(int3_mt4 a, int_mt4 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator-(int_mt4 a, int3_mt4 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator*(int3_mt4 a, int3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator*(int3_mt4 a, int_mt4 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator*(int_mt4 a, int3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator*(int3_mt4 a, int b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator*(int a, int3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator/(int3_mt4 a, int3_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator/(int_mt4 a, int3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator/(int3_mt4 a, int_mt4 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator/(int a, int3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator/(int3_mt4 a, int b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator%(int3_mt4 a, int3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator%(int_mt4 a, int3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator%(int3_mt4 a, int_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator%(int a, int3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator%(int3_mt4 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator++(int3_mt4 a) => a + int_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator--(int3_mt4 a) => a - int_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 abs([This] int3_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 sign([This] int3_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 min([This] int3_mt4 a, int3_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 max([This] int3_mt4 a, int3_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 clamp([This] int3_mt4 v, int3_mt4 min, int3_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 fma([This] int3_mt4 a, int3_mt4 b, int3_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 fms([This] int3_mt4 a, int3_mt4 b, int3_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 fnma([This] int3_mt4 a, int3_mt4 b, int3_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 fsm([This] int3_mt4 c, int3_mt4 a, int3_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 fam([This] int3_mt4 c, int3_mt4 a, int3_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 mad([This] int3_mt4 a, int3_mt4 b, int3_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 lerp(int3_mt4 start, int3_mt4 end, [This] int3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 lerp(int3_mt4 start, int3_mt4 end, [This] int t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 lerp(int start, int end, [This] int3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 unlerp([This] int3_mt4 a, int3_mt4 start, int3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 unlerp([This] int a, int3_mt4 start, int3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 unlerp([This] int3_mt4 a, int start, int end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 remap([This] int3_mt4 a, int3_mt4 srcStart, int3_mt4 srcEnd, int3_mt4 dstStart, int3_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 remap([This] int3_mt4 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 square([This] int3_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 dot([This] int3_mt4 a, int3_mt4 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 cross([This] int3_mt4 a, int3_mt4 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 lengthsq([This] int3_mt4 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 distancesq([This] int3_mt4 a, int3_mt4 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 csum([This] int3_mt4 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 cmin([This] int3_mt4 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 cmax([This] int3_mt4 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // int3_mt4
-#region int3_mt8
-
-public partial struct int3_mt8
-{
-    #region Constants
-
-    public static int3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator-(int3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator+(int3_mt8 a, int3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator+(int3_mt8 a, int_mt8 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator+(int_mt8 a, int3_mt8 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator-(int3_mt8 a, int3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator-(int3_mt8 a, int_mt8 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator-(int_mt8 a, int3_mt8 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator*(int3_mt8 a, int3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator*(int3_mt8 a, int_mt8 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator*(int_mt8 a, int3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator*(int3_mt8 a, int b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator*(int a, int3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator/(int3_mt8 a, int3_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator/(int_mt8 a, int3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator/(int3_mt8 a, int_mt8 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator/(int a, int3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator/(int3_mt8 a, int b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator%(int3_mt8 a, int3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator%(int_mt8 a, int3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator%(int3_mt8 a, int_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator%(int a, int3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator%(int3_mt8 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator++(int3_mt8 a) => a + int_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator--(int3_mt8 a) => a - int_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 abs([This] int3_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 sign([This] int3_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 min([This] int3_mt8 a, int3_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 max([This] int3_mt8 a, int3_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 clamp([This] int3_mt8 v, int3_mt8 min, int3_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 fma([This] int3_mt8 a, int3_mt8 b, int3_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 fms([This] int3_mt8 a, int3_mt8 b, int3_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 fnma([This] int3_mt8 a, int3_mt8 b, int3_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 fsm([This] int3_mt8 c, int3_mt8 a, int3_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 fam([This] int3_mt8 c, int3_mt8 a, int3_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 mad([This] int3_mt8 a, int3_mt8 b, int3_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 lerp(int3_mt8 start, int3_mt8 end, [This] int3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 lerp(int3_mt8 start, int3_mt8 end, [This] int t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 lerp(int start, int end, [This] int3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 unlerp([This] int3_mt8 a, int3_mt8 start, int3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 unlerp([This] int a, int3_mt8 start, int3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 unlerp([This] int3_mt8 a, int start, int end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 remap([This] int3_mt8 a, int3_mt8 srcStart, int3_mt8 srcEnd, int3_mt8 dstStart, int3_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 remap([This] int3_mt8 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 square([This] int3_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 dot([This] int3_mt8 a, int3_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 cross([This] int3_mt8 a, int3_mt8 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 lengthsq([This] int3_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 distancesq([This] int3_mt8 a, int3_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 csum([This] int3_mt8 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 cmin([This] int3_mt8 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 cmax([This] int3_mt8 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // int3_mt8
-#region int3_mt16
-
-public partial struct int3_mt16
-{
-    #region Constants
-
-    public static int3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator-(int3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator+(int3_mt16 a, int3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator+(int3_mt16 a, int_mt16 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator+(int_mt16 a, int3_mt16 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator-(int3_mt16 a, int3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator-(int3_mt16 a, int_mt16 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator-(int_mt16 a, int3_mt16 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator*(int3_mt16 a, int3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator*(int3_mt16 a, int_mt16 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator*(int_mt16 a, int3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator*(int3_mt16 a, int b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator*(int a, int3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator/(int3_mt16 a, int3_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator/(int_mt16 a, int3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator/(int3_mt16 a, int_mt16 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator/(int a, int3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator/(int3_mt16 a, int b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator%(int3_mt16 a, int3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator%(int_mt16 a, int3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator%(int3_mt16 a, int_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator%(int a, int3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator%(int3_mt16 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator++(int3_mt16 a) => a + int_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator--(int3_mt16 a) => a - int_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 abs([This] int3_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 sign([This] int3_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 min([This] int3_mt16 a, int3_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 max([This] int3_mt16 a, int3_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 clamp([This] int3_mt16 v, int3_mt16 min, int3_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 fma([This] int3_mt16 a, int3_mt16 b, int3_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 fms([This] int3_mt16 a, int3_mt16 b, int3_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 fnma([This] int3_mt16 a, int3_mt16 b, int3_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 fsm([This] int3_mt16 c, int3_mt16 a, int3_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 fam([This] int3_mt16 c, int3_mt16 a, int3_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 mad([This] int3_mt16 a, int3_mt16 b, int3_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 lerp(int3_mt16 start, int3_mt16 end, [This] int3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 lerp(int3_mt16 start, int3_mt16 end, [This] int t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 lerp(int start, int end, [This] int3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 unlerp([This] int3_mt16 a, int3_mt16 start, int3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 unlerp([This] int a, int3_mt16 start, int3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 unlerp([This] int3_mt16 a, int start, int end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 remap([This] int3_mt16 a, int3_mt16 srcStart, int3_mt16 srcEnd, int3_mt16 dstStart, int3_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 remap([This] int3_mt16 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 square([This] int3_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 dot([This] int3_mt16 a, int3_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 cross([This] int3_mt16 a, int3_mt16 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 lengthsq([This] int3_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 distancesq([This] int3_mt16 a, int3_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 csum([This] int3_mt16 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 cmin([This] int3_mt16 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 cmax([This] int3_mt16 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // int3_mt16
-#region int4_mt4
-
-public partial struct int4_mt4
-{
-    #region Constants
-
-    public static int4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator-(int4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator+(int4_mt4 a, int4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator+(int4_mt4 a, int_mt4 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator+(int_mt4 a, int4_mt4 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator-(int4_mt4 a, int4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator-(int4_mt4 a, int_mt4 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator-(int_mt4 a, int4_mt4 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator*(int4_mt4 a, int4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator*(int4_mt4 a, int_mt4 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator*(int_mt4 a, int4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator*(int4_mt4 a, int b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator*(int a, int4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator/(int4_mt4 a, int4_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator/(int_mt4 a, int4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator/(int4_mt4 a, int_mt4 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator/(int a, int4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator/(int4_mt4 a, int b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator%(int4_mt4 a, int4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator%(int_mt4 a, int4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator%(int4_mt4 a, int_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator%(int a, int4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator%(int4_mt4 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator++(int4_mt4 a) => a + int_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator--(int4_mt4 a) => a - int_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 abs([This] int4_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 sign([This] int4_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 min([This] int4_mt4 a, int4_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 max([This] int4_mt4 a, int4_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 clamp([This] int4_mt4 v, int4_mt4 min, int4_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 fma([This] int4_mt4 a, int4_mt4 b, int4_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 fms([This] int4_mt4 a, int4_mt4 b, int4_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 fnma([This] int4_mt4 a, int4_mt4 b, int4_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 fsm([This] int4_mt4 c, int4_mt4 a, int4_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 fam([This] int4_mt4 c, int4_mt4 a, int4_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 mad([This] int4_mt4 a, int4_mt4 b, int4_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 lerp(int4_mt4 start, int4_mt4 end, [This] int4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 lerp(int4_mt4 start, int4_mt4 end, [This] int t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 lerp(int start, int end, [This] int4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 unlerp([This] int4_mt4 a, int4_mt4 start, int4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 unlerp([This] int a, int4_mt4 start, int4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 unlerp([This] int4_mt4 a, int start, int end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 remap([This] int4_mt4 a, int4_mt4 srcStart, int4_mt4 srcEnd, int4_mt4 dstStart, int4_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 remap([This] int4_mt4 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 square([This] int4_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 dot([This] int4_mt4 a, int4_mt4 b)
+    public static int_mt dot([This] int4_mt a, int4_mt b)
     {
         // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
         return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
     }
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 lengthsq([This] int4_mt4 a) => dot(a, a);
+    public static int_mt lengthsq([This] int4_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 distancesq([This] int4_mt4 a, int4_mt4 b) => lengthsq(b - a);
+    public static int_mt distancesq([This] int4_mt a, int4_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 csum([This] int4_mt4 a) => a.x + a.y + a.z + a.w;
+    public static int_mt csum([This] int4_mt a) => a.x + a.y + a.z + a.w;
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 cmin([This] int4_mt4 a) => a.x.min(a.y).min(a.z).min(a.w);
+    public static int_mt cmin([This] int4_mt a) => a.x.min(a.y).min(a.z).min(a.w);
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 cmax([This] int4_mt4 a) => a.x.max(a.y).max(a.z).max(a.w);
+    public static int_mt cmax([This] int4_mt a) => a.x.max(a.y).max(a.z).max(a.w);
 
 }
 
-#endregion // int4_mt4
-#region int4_mt8
+#endregion // int4_mt
+#region uint2_mt
 
-public partial struct int4_mt8
+public partial struct uint2_mt
 {
     #region Constants
 
-    public static int4_mt8 Zero
+    public static uint2_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static int4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator-(int4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator+(int4_mt8 a, int4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator+(int4_mt8 a, int_mt8 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator+(int_mt8 a, int4_mt8 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator-(int4_mt8 a, int4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator-(int4_mt8 a, int_mt8 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator-(int_mt8 a, int4_mt8 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator*(int4_mt8 a, int4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator*(int4_mt8 a, int_mt8 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator*(int_mt8 a, int4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator*(int4_mt8 a, int b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator*(int a, int4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator/(int4_mt8 a, int4_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator/(int_mt8 a, int4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator/(int4_mt8 a, int_mt8 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator/(int a, int4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator/(int4_mt8 a, int b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator%(int4_mt8 a, int4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator%(int_mt8 a, int4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator%(int4_mt8 a, int_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator%(int a, int4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator%(int4_mt8 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator++(int4_mt8 a) => a + int_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator--(int4_mt8 a) => a - int_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 abs([This] int4_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 sign([This] int4_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 min([This] int4_mt8 a, int4_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 max([This] int4_mt8 a, int4_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 clamp([This] int4_mt8 v, int4_mt8 min, int4_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 fma([This] int4_mt8 a, int4_mt8 b, int4_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 fms([This] int4_mt8 a, int4_mt8 b, int4_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 fnma([This] int4_mt8 a, int4_mt8 b, int4_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 fsm([This] int4_mt8 c, int4_mt8 a, int4_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 fam([This] int4_mt8 c, int4_mt8 a, int4_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 mad([This] int4_mt8 a, int4_mt8 b, int4_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 lerp(int4_mt8 start, int4_mt8 end, [This] int4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 lerp(int4_mt8 start, int4_mt8 end, [This] int t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 lerp(int start, int end, [This] int4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 unlerp([This] int4_mt8 a, int4_mt8 start, int4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 unlerp([This] int a, int4_mt8 start, int4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 unlerp([This] int4_mt8 a, int start, int end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 remap([This] int4_mt8 a, int4_mt8 srcStart, int4_mt8 srcEnd, int4_mt8 dstStart, int4_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 remap([This] int4_mt8 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 square([This] int4_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 dot([This] int4_mt8 a, int4_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 lengthsq([This] int4_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 distancesq([This] int4_mt8 a, int4_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 csum([This] int4_mt8 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 cmin([This] int4_mt8 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 cmax([This] int4_mt8 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // int4_mt8
-#region int4_mt16
-
-public partial struct int4_mt16
-{
-    #region Constants
-
-    public static int4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator-(int4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator+(int4_mt16 a, int4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator+(int4_mt16 a, int_mt16 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator+(int_mt16 a, int4_mt16 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator-(int4_mt16 a, int4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator-(int4_mt16 a, int_mt16 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator-(int_mt16 a, int4_mt16 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator*(int4_mt16 a, int4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator*(int4_mt16 a, int_mt16 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator*(int_mt16 a, int4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator*(int4_mt16 a, int b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator*(int a, int4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator/(int4_mt16 a, int4_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator/(int_mt16 a, int4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator/(int4_mt16 a, int_mt16 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator/(int a, int4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator/(int4_mt16 a, int b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator%(int4_mt16 a, int4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator%(int_mt16 a, int4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator%(int4_mt16 a, int_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator%(int a, int4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator%(int4_mt16 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator++(int4_mt16 a) => a + int_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator--(int4_mt16 a) => a - int_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 abs([This] int4_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 sign([This] int4_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 min([This] int4_mt16 a, int4_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 max([This] int4_mt16 a, int4_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 clamp([This] int4_mt16 v, int4_mt16 min, int4_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 fma([This] int4_mt16 a, int4_mt16 b, int4_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 fms([This] int4_mt16 a, int4_mt16 b, int4_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 fnma([This] int4_mt16 a, int4_mt16 b, int4_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 fsm([This] int4_mt16 c, int4_mt16 a, int4_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 fam([This] int4_mt16 c, int4_mt16 a, int4_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 mad([This] int4_mt16 a, int4_mt16 b, int4_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 lerp(int4_mt16 start, int4_mt16 end, [This] int4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 lerp(int4_mt16 start, int4_mt16 end, [This] int t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 lerp(int start, int end, [This] int4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 unlerp([This] int4_mt16 a, int4_mt16 start, int4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 unlerp([This] int a, int4_mt16 start, int4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 unlerp([This] int4_mt16 a, int start, int end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 remap([This] int4_mt16 a, int4_mt16 srcStart, int4_mt16 srcEnd, int4_mt16 dstStart, int4_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 remap([This] int4_mt16 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 square([This] int4_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 dot([This] int4_mt16 a, int4_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 lengthsq([This] int4_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 distancesq([This] int4_mt16 a, int4_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 csum([This] int4_mt16 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 cmin([This] int4_mt16 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 cmax([This] int4_mt16 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // int4_mt16
-#region uint2_mt4
-
-public partial struct uint2_mt4
-{
-    #region Constants
-
-    public static uint2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint2_mt4 One
+    public static uint2_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1u);
     }
 
-    public static uint2_mt4 Two
+    public static uint2_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new((1u + 1u));
@@ -6682,76 +2248,76 @@ public partial struct uint2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator-(uint2_mt4 a) => new(-a.x, -a.y);
+    public static uint2_mt operator-(uint2_mt a) => new(-a.x, -a.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator+(uint2_mt4 a, uint2_mt4 b) => new(a.x + b.x, a.y + b.y);
+    public static uint2_mt operator+(uint2_mt a, uint2_mt b) => new(a.x + b.x, a.y + b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator+(uint2_mt4 a, uint_mt4 b) => new(a.x + b, a.y + b);
+    public static uint2_mt operator+(uint2_mt a, uint_mt b) => new(a.x + b, a.y + b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator+(uint_mt4 a, uint2_mt4 b) => new(a + b.x, a + b.y);
+    public static uint2_mt operator+(uint_mt a, uint2_mt b) => new(a + b.x, a + b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator-(uint2_mt4 a, uint2_mt4 b) => new(a.x - b.x, a.y - b.y);
+    public static uint2_mt operator-(uint2_mt a, uint2_mt b) => new(a.x - b.x, a.y - b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator-(uint2_mt4 a, uint_mt4 b) => new(a.x - b, a.y - b);
+    public static uint2_mt operator-(uint2_mt a, uint_mt b) => new(a.x - b, a.y - b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator-(uint_mt4 a, uint2_mt4 b) => new(a - b.x, a - b.y);
+    public static uint2_mt operator-(uint_mt a, uint2_mt b) => new(a - b.x, a - b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator*(uint2_mt4 a, uint2_mt4 b) => new(a.x * b.x, a.y * b.y);
+    public static uint2_mt operator*(uint2_mt a, uint2_mt b) => new(a.x * b.x, a.y * b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator*(uint2_mt4 a, uint_mt4 b) => new(a.x * b, a.y * b);
+    public static uint2_mt operator*(uint2_mt a, uint_mt b) => new(a.x * b, a.y * b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator*(uint_mt4 a, uint2_mt4 b) => new(a * b.x, a * b.y);
+    public static uint2_mt operator*(uint_mt a, uint2_mt b) => new(a * b.x, a * b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator*(uint2_mt4 a, uint b) => new(a.x * b, a.y * b);
+    public static uint2_mt operator*(uint2_mt a, uint b) => new(a.x * b, a.y * b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator*(uint a, uint2_mt4 b) => new(a * b.x, a * b.y);
+    public static uint2_mt operator*(uint a, uint2_mt b) => new(a * b.x, a * b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator/(uint2_mt4 a, uint2_mt4 b) => new(a.x / b.x, a.y / b.y);
+    public static uint2_mt operator/(uint2_mt a, uint2_mt b) => new(a.x / b.x, a.y / b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator/(uint_mt4 a, uint2_mt4 b) => new(a / b.x, a / b.y);
+    public static uint2_mt operator/(uint_mt a, uint2_mt b) => new(a / b.x, a / b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator/(uint2_mt4 a, uint_mt4 b) => new(a.x / b, a.y / b);
+    public static uint2_mt operator/(uint2_mt a, uint_mt b) => new(a.x / b, a.y / b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator/(uint a, uint2_mt4 b) => new(a / b.x, a / b.y);
+    public static uint2_mt operator/(uint a, uint2_mt b) => new(a / b.x, a / b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator/(uint2_mt4 a, uint b) => new(a.x / b, a.y / b);
+    public static uint2_mt operator/(uint2_mt a, uint b) => new(a.x / b, a.y / b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator%(uint2_mt4 a, uint2_mt4 b) => a - (a / b) * b;
+    public static uint2_mt operator%(uint2_mt a, uint2_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator%(uint_mt4 a, uint2_mt4 b) => a - (a / b) * b;
+    public static uint2_mt operator%(uint_mt a, uint2_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator%(uint2_mt4 a, uint_mt4 b) => a - (a / b) * b;
+    public static uint2_mt operator%(uint2_mt a, uint_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator%(uint a, uint2_mt4 b) => a - (a / b) * b;
+    public static uint2_mt operator%(uint a, uint2_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator%(uint2_mt4 a, uint b) => a - (a / b) * b;
+    public static uint2_mt operator%(uint2_mt a, uint b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator++(uint2_mt4 a) => a + uint_mt4.One;
+    public static uint2_mt operator++(uint2_mt a) => a + uint_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator--(uint2_mt4 a) => a - uint_mt4.One;
+    public static uint2_mt operator--(uint2_mt a) => a - uint_mt.One;
 
     #endregion // Operators
 }
@@ -6760,19 +2326,19 @@ public partial struct uint2_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 abs([This] uint2_mt4 a) => new(abs(a.x), abs(a.y));
+    public static uint2_mt abs([This] uint2_mt a) => new(abs(a.x), abs(a.y));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 sign([This] uint2_mt4 a) => new(sign(a.x), sign(a.y));
+    public static uint2_mt sign([This] uint2_mt a) => new(sign(a.x), sign(a.y));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 min([This] uint2_mt4 a, uint2_mt4 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static uint2_mt min([This] uint2_mt a, uint2_mt b) => new(min(a.x, b.x), min(a.y, b.y));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 max([This] uint2_mt4 a, uint2_mt4 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static uint2_mt max([This] uint2_mt a, uint2_mt b) => new(max(a.x, b.x), max(a.y, b.y));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 clamp([This] uint2_mt4 v, uint2_mt4 min, uint2_mt4 max) => math_mt.max(min, math_mt.min(max, v));
+    public static uint2_mt clamp([This] uint2_mt v, uint2_mt min, uint2_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6782,7 +2348,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 fma([This] uint2_mt4 a, uint2_mt4 b, uint2_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static uint2_mt fma([This] uint2_mt a, uint2_mt b, uint2_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -6792,7 +2358,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 fms([This] uint2_mt4 a, uint2_mt4 b, uint2_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static uint2_mt fms([This] uint2_mt a, uint2_mt b, uint2_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -6802,7 +2368,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 fnma([This] uint2_mt4 a, uint2_mt4 b, uint2_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static uint2_mt fnma([This] uint2_mt a, uint2_mt b, uint2_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -6812,7 +2378,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 fsm([This] uint2_mt4 c, uint2_mt4 a, uint2_mt4 b) => fnma(a, b, c);
+    public static uint2_mt fsm([This] uint2_mt c, uint2_mt a, uint2_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6822,7 +2388,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 fam([This] uint2_mt4 c, uint2_mt4 a, uint2_mt4 b) => fma(a, b, c);
+    public static uint2_mt fam([This] uint2_mt c, uint2_mt a, uint2_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6832,90 +2398,90 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 mad([This] uint2_mt4 a, uint2_mt4 b, uint2_mt4 c) => fma(a, b, c);
+    public static uint2_mt mad([This] uint2_mt a, uint2_mt b, uint2_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 lerp(uint2_mt4 start, uint2_mt4 end, [This] uint2_mt4 t)
+    public static uint2_mt lerp(uint2_mt start, uint2_mt end, [This] uint2_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 lerp(uint2_mt4 start, uint2_mt4 end, [This] uint t)
+    public static uint2_mt lerp(uint2_mt start, uint2_mt end, [This] uint t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 lerp(uint start, uint end, [This] uint2_mt4 t)
+    public static uint2_mt lerp(uint start, uint end, [This] uint2_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 unlerp([This] uint2_mt4 a, uint2_mt4 start, uint2_mt4 end) => (a - start) / (end - start);
+    public static uint2_mt unlerp([This] uint2_mt a, uint2_mt start, uint2_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 unlerp([This] uint a, uint2_mt4 start, uint2_mt4 end) => (a - start) / (end - start);
+    public static uint2_mt unlerp([This] uint a, uint2_mt start, uint2_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 unlerp([This] uint2_mt4 a, uint start, uint end) => (a - start) / (end - start);
+    public static uint2_mt unlerp([This] uint2_mt a, uint start, uint end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 remap([This] uint2_mt4 a, uint2_mt4 srcStart, uint2_mt4 srcEnd, uint2_mt4 dstStart, uint2_mt4 dstEnd) => 
+    public static uint2_mt remap([This] uint2_mt a, uint2_mt srcStart, uint2_mt srcEnd, uint2_mt dstStart, uint2_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 remap([This] uint2_mt4 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
+    public static uint2_mt remap([This] uint2_mt a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 square([This] uint2_mt4 a) => a * a;
+    public static uint2_mt square([This] uint2_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static uint_mt4 dot([This] uint2_mt4 a, uint2_mt4 b)
+    public static uint_mt dot([This] uint2_mt a, uint2_mt b)
     {
         // a.x * b.x + a.y * b.y
         return fma(a.y, b.y, a.x * b.x);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint_mt4 lengthsq([This] uint2_mt4 a) => dot(a, a);
+    public static uint_mt lengthsq([This] uint2_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt4 distancesq([This] uint2_mt4 a, uint2_mt4 b) => lengthsq(b - a);
+    public static uint_mt distancesq([This] uint2_mt a, uint2_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt4 csum([This] uint2_mt4 a) => a.x + a.y;
+    public static uint_mt csum([This] uint2_mt a) => a.x + a.y;
 
     [MethodImpl(256 | 512)]
-    public static uint_mt4 cmin([This] uint2_mt4 a) => a.x.min(a.y);
+    public static uint_mt cmin([This] uint2_mt a) => a.x.min(a.y);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt4 cmax([This] uint2_mt4 a) => a.x.max(a.y);
+    public static uint_mt cmax([This] uint2_mt a) => a.x.max(a.y);
 
 }
 
-#endregion // uint2_mt4
-#region uint2_mt8
+#endregion // uint2_mt
+#region uint3_mt
 
-public partial struct uint2_mt8
+public partial struct uint3_mt
 {
     #region Constants
 
-    public static uint2_mt8 Zero
+    public static uint3_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static uint2_mt8 One
+    public static uint3_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1u);
     }
 
-    public static uint2_mt8 Two
+    public static uint3_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new((1u + 1u));
@@ -6926,76 +2492,76 @@ public partial struct uint2_mt8
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator-(uint2_mt8 a) => new(-a.x, -a.y);
+    public static uint3_mt operator-(uint3_mt a) => new(-a.x, -a.y, -a.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator+(uint2_mt8 a, uint2_mt8 b) => new(a.x + b.x, a.y + b.y);
+    public static uint3_mt operator+(uint3_mt a, uint3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator+(uint2_mt8 a, uint_mt8 b) => new(a.x + b, a.y + b);
+    public static uint3_mt operator+(uint3_mt a, uint_mt b) => new(a.x + b, a.y + b, a.z + b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator+(uint_mt8 a, uint2_mt8 b) => new(a + b.x, a + b.y);
+    public static uint3_mt operator+(uint_mt a, uint3_mt b) => new(a + b.x, a + b.y, a + b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator-(uint2_mt8 a, uint2_mt8 b) => new(a.x - b.x, a.y - b.y);
+    public static uint3_mt operator-(uint3_mt a, uint3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator-(uint2_mt8 a, uint_mt8 b) => new(a.x - b, a.y - b);
+    public static uint3_mt operator-(uint3_mt a, uint_mt b) => new(a.x - b, a.y - b, a.z - b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator-(uint_mt8 a, uint2_mt8 b) => new(a - b.x, a - b.y);
+    public static uint3_mt operator-(uint_mt a, uint3_mt b) => new(a - b.x, a - b.y, a - b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator*(uint2_mt8 a, uint2_mt8 b) => new(a.x * b.x, a.y * b.y);
+    public static uint3_mt operator*(uint3_mt a, uint3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator*(uint2_mt8 a, uint_mt8 b) => new(a.x * b, a.y * b);
+    public static uint3_mt operator*(uint3_mt a, uint_mt b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator*(uint_mt8 a, uint2_mt8 b) => new(a * b.x, a * b.y);
+    public static uint3_mt operator*(uint_mt a, uint3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator*(uint2_mt8 a, uint b) => new(a.x * b, a.y * b);
+    public static uint3_mt operator*(uint3_mt a, uint b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator*(uint a, uint2_mt8 b) => new(a * b.x, a * b.y);
+    public static uint3_mt operator*(uint a, uint3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator/(uint2_mt8 a, uint2_mt8 b) => new(a.x / b.x, a.y / b.y);
+    public static uint3_mt operator/(uint3_mt a, uint3_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator/(uint_mt8 a, uint2_mt8 b) => new(a / b.x, a / b.y);
+    public static uint3_mt operator/(uint_mt a, uint3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator/(uint2_mt8 a, uint_mt8 b) => new(a.x / b, a.y / b);
+    public static uint3_mt operator/(uint3_mt a, uint_mt b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator/(uint a, uint2_mt8 b) => new(a / b.x, a / b.y);
+    public static uint3_mt operator/(uint a, uint3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator/(uint2_mt8 a, uint b) => new(a.x / b, a.y / b);
+    public static uint3_mt operator/(uint3_mt a, uint b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator%(uint2_mt8 a, uint2_mt8 b) => a - (a / b) * b;
+    public static uint3_mt operator%(uint3_mt a, uint3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator%(uint_mt8 a, uint2_mt8 b) => a - (a / b) * b;
+    public static uint3_mt operator%(uint_mt a, uint3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator%(uint2_mt8 a, uint_mt8 b) => a - (a / b) * b;
+    public static uint3_mt operator%(uint3_mt a, uint_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator%(uint a, uint2_mt8 b) => a - (a / b) * b;
+    public static uint3_mt operator%(uint a, uint3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator%(uint2_mt8 a, uint b) => a - (a / b) * b;
+    public static uint3_mt operator%(uint3_mt a, uint b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator++(uint2_mt8 a) => a + uint_mt8.One;
+    public static uint3_mt operator++(uint3_mt a) => a + uint_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator--(uint2_mt8 a) => a - uint_mt8.One;
+    public static uint3_mt operator--(uint3_mt a) => a - uint_mt.One;
 
     #endregion // Operators
 }
@@ -7004,19 +2570,19 @@ public partial struct uint2_mt8
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 abs([This] uint2_mt8 a) => new(abs(a.x), abs(a.y));
+    public static uint3_mt abs([This] uint3_mt a) => new(abs(a.x), abs(a.y), abs(a.z));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 sign([This] uint2_mt8 a) => new(sign(a.x), sign(a.y));
+    public static uint3_mt sign([This] uint3_mt a) => new(sign(a.x), sign(a.y), sign(a.z));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 min([This] uint2_mt8 a, uint2_mt8 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static uint3_mt min([This] uint3_mt a, uint3_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 max([This] uint2_mt8 a, uint2_mt8 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static uint3_mt max([This] uint3_mt a, uint3_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 clamp([This] uint2_mt8 v, uint2_mt8 min, uint2_mt8 max) => math_mt.max(min, math_mt.min(max, v));
+    public static uint3_mt clamp([This] uint3_mt v, uint3_mt min, uint3_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7026,7 +2592,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 fma([This] uint2_mt8 a, uint2_mt8 b, uint2_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static uint3_mt fma([This] uint3_mt a, uint3_mt b, uint3_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -7036,7 +2602,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 fms([This] uint2_mt8 a, uint2_mt8 b, uint2_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static uint3_mt fms([This] uint3_mt a, uint3_mt b, uint3_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -7046,7 +2612,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 fnma([This] uint2_mt8 a, uint2_mt8 b, uint2_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static uint3_mt fnma([This] uint3_mt a, uint3_mt b, uint3_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -7056,7 +2622,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 fsm([This] uint2_mt8 c, uint2_mt8 a, uint2_mt8 b) => fnma(a, b, c);
+    public static uint3_mt fsm([This] uint3_mt c, uint3_mt a, uint3_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7066,7 +2632,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 fam([This] uint2_mt8 c, uint2_mt8 a, uint2_mt8 b) => fma(a, b, c);
+    public static uint3_mt fam([This] uint3_mt c, uint3_mt a, uint3_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7076,90 +2642,97 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 mad([This] uint2_mt8 a, uint2_mt8 b, uint2_mt8 c) => fma(a, b, c);
+    public static uint3_mt mad([This] uint3_mt a, uint3_mt b, uint3_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 lerp(uint2_mt8 start, uint2_mt8 end, [This] uint2_mt8 t)
+    public static uint3_mt lerp(uint3_mt start, uint3_mt end, [This] uint3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 lerp(uint2_mt8 start, uint2_mt8 end, [This] uint t)
+    public static uint3_mt lerp(uint3_mt start, uint3_mt end, [This] uint t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 lerp(uint start, uint end, [This] uint2_mt8 t)
+    public static uint3_mt lerp(uint start, uint end, [This] uint3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 unlerp([This] uint2_mt8 a, uint2_mt8 start, uint2_mt8 end) => (a - start) / (end - start);
+    public static uint3_mt unlerp([This] uint3_mt a, uint3_mt start, uint3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 unlerp([This] uint a, uint2_mt8 start, uint2_mt8 end) => (a - start) / (end - start);
+    public static uint3_mt unlerp([This] uint a, uint3_mt start, uint3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 unlerp([This] uint2_mt8 a, uint start, uint end) => (a - start) / (end - start);
+    public static uint3_mt unlerp([This] uint3_mt a, uint start, uint end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 remap([This] uint2_mt8 a, uint2_mt8 srcStart, uint2_mt8 srcEnd, uint2_mt8 dstStart, uint2_mt8 dstEnd) => 
+    public static uint3_mt remap([This] uint3_mt a, uint3_mt srcStart, uint3_mt srcEnd, uint3_mt dstStart, uint3_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 remap([This] uint2_mt8 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
+    public static uint3_mt remap([This] uint3_mt a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 square([This] uint2_mt8 a) => a * a;
+    public static uint3_mt square([This] uint3_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static uint_mt8 dot([This] uint2_mt8 a, uint2_mt8 b)
+    public static uint_mt dot([This] uint3_mt a, uint3_mt b)
     {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
+        // a.x * b.x + a.y * b.y + a.z * b.z
+        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
     }
 
     [MethodImpl(256 | 512)]
-    public static uint_mt8 lengthsq([This] uint2_mt8 a) => dot(a, a);
+    public static uint3_mt cross([This] uint3_mt a, uint3_mt b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
-    public static uint_mt8 distancesq([This] uint2_mt8 a, uint2_mt8 b) => lengthsq(b - a);
+    public static uint_mt lengthsq([This] uint3_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt8 csum([This] uint2_mt8 a) => a.x + a.y;
+    public static uint_mt distancesq([This] uint3_mt a, uint3_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt8 cmin([This] uint2_mt8 a) => a.x.min(a.y);
+    public static uint_mt csum([This] uint3_mt a) => a.x + a.y + a.z;
 
     [MethodImpl(256 | 512)]
-    public static uint_mt8 cmax([This] uint2_mt8 a) => a.x.max(a.y);
+    public static uint_mt cmin([This] uint3_mt a) => a.x.min(a.y).min(a.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt cmax([This] uint3_mt a) => a.x.max(a.y).max(a.z);
 
 }
 
-#endregion // uint2_mt8
-#region uint2_mt16
+#endregion // uint3_mt
+#region uint4_mt
 
-public partial struct uint2_mt16
+public partial struct uint4_mt
 {
     #region Constants
 
-    public static uint2_mt16 Zero
+    public static uint4_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static uint2_mt16 One
+    public static uint4_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1u);
     }
 
-    public static uint2_mt16 Two
+    public static uint4_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new((1u + 1u));
@@ -7170,76 +2743,76 @@ public partial struct uint2_mt16
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator-(uint2_mt16 a) => new(-a.x, -a.y);
+    public static uint4_mt operator-(uint4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator+(uint2_mt16 a, uint2_mt16 b) => new(a.x + b.x, a.y + b.y);
+    public static uint4_mt operator+(uint4_mt a, uint4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator+(uint2_mt16 a, uint_mt16 b) => new(a.x + b, a.y + b);
+    public static uint4_mt operator+(uint4_mt a, uint_mt b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator+(uint_mt16 a, uint2_mt16 b) => new(a + b.x, a + b.y);
+    public static uint4_mt operator+(uint_mt a, uint4_mt b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator-(uint2_mt16 a, uint2_mt16 b) => new(a.x - b.x, a.y - b.y);
+    public static uint4_mt operator-(uint4_mt a, uint4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator-(uint2_mt16 a, uint_mt16 b) => new(a.x - b, a.y - b);
+    public static uint4_mt operator-(uint4_mt a, uint_mt b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator-(uint_mt16 a, uint2_mt16 b) => new(a - b.x, a - b.y);
+    public static uint4_mt operator-(uint_mt a, uint4_mt b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator*(uint2_mt16 a, uint2_mt16 b) => new(a.x * b.x, a.y * b.y);
+    public static uint4_mt operator*(uint4_mt a, uint4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator*(uint2_mt16 a, uint_mt16 b) => new(a.x * b, a.y * b);
+    public static uint4_mt operator*(uint4_mt a, uint_mt b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator*(uint_mt16 a, uint2_mt16 b) => new(a * b.x, a * b.y);
+    public static uint4_mt operator*(uint_mt a, uint4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator*(uint2_mt16 a, uint b) => new(a.x * b, a.y * b);
+    public static uint4_mt operator*(uint4_mt a, uint b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator*(uint a, uint2_mt16 b) => new(a * b.x, a * b.y);
+    public static uint4_mt operator*(uint a, uint4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator/(uint2_mt16 a, uint2_mt16 b) => new(a.x / b.x, a.y / b.y);
+    public static uint4_mt operator/(uint4_mt a, uint4_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator/(uint_mt16 a, uint2_mt16 b) => new(a / b.x, a / b.y);
+    public static uint4_mt operator/(uint_mt a, uint4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator/(uint2_mt16 a, uint_mt16 b) => new(a.x / b, a.y / b);
+    public static uint4_mt operator/(uint4_mt a, uint_mt b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator/(uint a, uint2_mt16 b) => new(a / b.x, a / b.y);
+    public static uint4_mt operator/(uint a, uint4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator/(uint2_mt16 a, uint b) => new(a.x / b, a.y / b);
+    public static uint4_mt operator/(uint4_mt a, uint b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator%(uint2_mt16 a, uint2_mt16 b) => a - (a / b) * b;
+    public static uint4_mt operator%(uint4_mt a, uint4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator%(uint_mt16 a, uint2_mt16 b) => a - (a / b) * b;
+    public static uint4_mt operator%(uint_mt a, uint4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator%(uint2_mt16 a, uint_mt16 b) => a - (a / b) * b;
+    public static uint4_mt operator%(uint4_mt a, uint_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator%(uint a, uint2_mt16 b) => a - (a / b) * b;
+    public static uint4_mt operator%(uint a, uint4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator%(uint2_mt16 a, uint b) => a - (a / b) * b;
+    public static uint4_mt operator%(uint4_mt a, uint b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator++(uint2_mt16 a) => a + uint_mt16.One;
+    public static uint4_mt operator++(uint4_mt a) => a + uint_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator--(uint2_mt16 a) => a - uint_mt16.One;
+    public static uint4_mt operator--(uint4_mt a) => a - uint_mt.One;
 
     #endregion // Operators
 }
@@ -7248,19 +2821,19 @@ public partial struct uint2_mt16
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 abs([This] uint2_mt16 a) => new(abs(a.x), abs(a.y));
+    public static uint4_mt abs([This] uint4_mt a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 sign([This] uint2_mt16 a) => new(sign(a.x), sign(a.y));
+    public static uint4_mt sign([This] uint4_mt a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 min([This] uint2_mt16 a, uint2_mt16 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static uint4_mt min([This] uint4_mt a, uint4_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 max([This] uint2_mt16 a, uint2_mt16 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static uint4_mt max([This] uint4_mt a, uint4_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 clamp([This] uint2_mt16 v, uint2_mt16 min, uint2_mt16 max) => math_mt.max(min, math_mt.min(max, v));
+    public static uint4_mt clamp([This] uint4_mt v, uint4_mt min, uint4_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7270,7 +2843,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 fma([This] uint2_mt16 a, uint2_mt16 b, uint2_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static uint4_mt fma([This] uint4_mt a, uint4_mt b, uint4_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -7280,7 +2853,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 fms([This] uint2_mt16 a, uint2_mt16 b, uint2_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static uint4_mt fms([This] uint4_mt a, uint4_mt b, uint4_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -7290,7 +2863,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 fnma([This] uint2_mt16 a, uint2_mt16 b, uint2_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static uint4_mt fnma([This] uint4_mt a, uint4_mt b, uint4_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -7300,7 +2873,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 fsm([This] uint2_mt16 c, uint2_mt16 a, uint2_mt16 b) => fnma(a, b, c);
+    public static uint4_mt fsm([This] uint4_mt c, uint4_mt a, uint4_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7310,7 +2883,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 fam([This] uint2_mt16 c, uint2_mt16 a, uint2_mt16 b) => fma(a, b, c);
+    public static uint4_mt fam([This] uint4_mt c, uint4_mt a, uint4_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7320,1575 +2893,334 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 mad([This] uint2_mt16 a, uint2_mt16 b, uint2_mt16 c) => fma(a, b, c);
+    public static uint4_mt mad([This] uint4_mt a, uint4_mt b, uint4_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 lerp(uint2_mt16 start, uint2_mt16 end, [This] uint2_mt16 t)
+    public static uint4_mt lerp(uint4_mt start, uint4_mt end, [This] uint4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 lerp(uint2_mt16 start, uint2_mt16 end, [This] uint t)
+    public static uint4_mt lerp(uint4_mt start, uint4_mt end, [This] uint t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 lerp(uint start, uint end, [This] uint2_mt16 t)
+    public static uint4_mt lerp(uint start, uint end, [This] uint4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 unlerp([This] uint2_mt16 a, uint2_mt16 start, uint2_mt16 end) => (a - start) / (end - start);
+    public static uint4_mt unlerp([This] uint4_mt a, uint4_mt start, uint4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 unlerp([This] uint a, uint2_mt16 start, uint2_mt16 end) => (a - start) / (end - start);
+    public static uint4_mt unlerp([This] uint a, uint4_mt start, uint4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 unlerp([This] uint2_mt16 a, uint start, uint end) => (a - start) / (end - start);
+    public static uint4_mt unlerp([This] uint4_mt a, uint start, uint end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 remap([This] uint2_mt16 a, uint2_mt16 srcStart, uint2_mt16 srcEnd, uint2_mt16 dstStart, uint2_mt16 dstEnd) => 
+    public static uint4_mt remap([This] uint4_mt a, uint4_mt srcStart, uint4_mt srcEnd, uint4_mt dstStart, uint4_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 remap([This] uint2_mt16 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
+    public static uint4_mt remap([This] uint4_mt a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 square([This] uint2_mt16 a) => a * a;
+    public static uint4_mt square([This] uint4_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static uint_mt16 dot([This] uint2_mt16 a, uint2_mt16 b)
+    public static uint_mt dot([This] uint4_mt a, uint4_mt b)
+    {
+        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
+        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt lengthsq([This] uint4_mt a) => dot(a, a);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt distancesq([This] uint4_mt a, uint4_mt b) => lengthsq(b - a);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt csum([This] uint4_mt a) => a.x + a.y + a.z + a.w;
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt cmin([This] uint4_mt a) => a.x.min(a.y).min(a.z).min(a.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt cmax([This] uint4_mt a) => a.x.max(a.y).max(a.z).max(a.w);
+
+}
+
+#endregion // uint4_mt
+#region long2_mt
+
+public partial struct long2_mt
+{
+    #region Constants
+
+    public static long2_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long2_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long2_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
+    }
+
+    #endregion
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator-(long2_mt a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator+(long2_mt a, long2_mt b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator+(long2_mt a, long_mt b) => new(a.x + b, a.y + b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator+(long_mt a, long2_mt b) => new(a + b.x, a + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator-(long2_mt a, long2_mt b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator-(long2_mt a, long_mt b) => new(a.x - b, a.y - b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator-(long_mt a, long2_mt b) => new(a - b.x, a - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator*(long2_mt a, long2_mt b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator*(long2_mt a, long_mt b) => new(a.x * b, a.y * b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator*(long_mt a, long2_mt b) => new(a * b.x, a * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator*(long2_mt a, long b) => new(a.x * b, a.y * b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator*(long a, long2_mt b) => new(a * b.x, a * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator/(long2_mt a, long2_mt b) => new(a.x / b.x, a.y / b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator/(long_mt a, long2_mt b) => new(a / b.x, a / b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator/(long2_mt a, long_mt b) => new(a.x / b, a.y / b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator/(long a, long2_mt b) => new(a / b.x, a / b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator/(long2_mt a, long b) => new(a.x / b, a.y / b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator%(long2_mt a, long2_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator%(long_mt a, long2_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator%(long2_mt a, long_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator%(long a, long2_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator%(long2_mt a, long b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator++(long2_mt a) => a + long_mt.One;
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator--(long2_mt a) => a - long_mt.One;
+
+    #endregion // Operators
+}
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static long2_mt abs([This] long2_mt a) => new(abs(a.x), abs(a.y));
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt sign([This] long2_mt a) => new(sign(a.x), sign(a.y));
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt min([This] long2_mt a, long2_mt b) => new(min(a.x, b.x), min(a.y, b.y));
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt max([This] long2_mt a, long2_mt b) => new(max(a.x, b.x), max(a.y, b.y));
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt clamp([This] long2_mt v, long2_mt min, long2_mt max) => math_mt.max(min, math_mt.min(max, v));
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static long2_mt fma([This] long2_mt a, long2_mt b, long2_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+
+    /// <summary>
+    /// Fusion Subtraction and Multiplication
+    /// <code>(a * b) - c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Subtrahend c</param>
+    [MethodImpl(256 | 512)]
+    public static long2_mt fms([This] long2_mt a, long2_mt b, long2_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+
+    /// <summary>
+    /// Fusion Multiplication and Subtraction
+    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Minuend c</param>
+    [MethodImpl(256 | 512)]
+    public static long2_mt fnma([This] long2_mt a, long2_mt b, long2_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+
+    /// <summary>
+    /// Fusion Multiplication and Subtraction
+    /// <code>c - (a * b)</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Minuend c</param>
+    [MethodImpl(256 | 512)]
+    public static long2_mt fsm([This] long2_mt c, long2_mt a, long2_mt b) => fnma(a, b, c);
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>c + (a * b)</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static long2_mt fam([This] long2_mt c, long2_mt a, long2_mt b) => fma(a, b, c);
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static long2_mt mad([This] long2_mt a, long2_mt b, long2_mt c) => fma(a, b, c);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt lerp(long2_mt start, long2_mt end, [This] long2_mt t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt lerp(long2_mt start, long2_mt end, [This] long t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt lerp(long start, long end, [This] long2_mt t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt unlerp([This] long2_mt a, long2_mt start, long2_mt end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt unlerp([This] long a, long2_mt start, long2_mt end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt unlerp([This] long2_mt a, long start, long end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt remap([This] long2_mt a, long2_mt srcStart, long2_mt srcEnd, long2_mt dstStart, long2_mt dstEnd) => 
+        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt remap([This] long2_mt a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
+        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt square([This] long2_mt a) => a * a;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt dot([This] long2_mt a, long2_mt b)
     {
         // a.x * b.x + a.y * b.y
         return fma(a.y, b.y, a.x * b.x);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint_mt16 lengthsq([This] uint2_mt16 a) => dot(a, a);
+    public static long_mt lengthsq([This] long2_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt16 distancesq([This] uint2_mt16 a, uint2_mt16 b) => lengthsq(b - a);
+    public static long_mt distancesq([This] long2_mt a, long2_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt16 csum([This] uint2_mt16 a) => a.x + a.y;
+    public static long_mt csum([This] long2_mt a) => a.x + a.y;
 
     [MethodImpl(256 | 512)]
-    public static uint_mt16 cmin([This] uint2_mt16 a) => a.x.min(a.y);
+    public static long_mt cmin([This] long2_mt a) => a.x.min(a.y);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt16 cmax([This] uint2_mt16 a) => a.x.max(a.y);
+    public static long_mt cmax([This] long2_mt a) => a.x.max(a.y);
 
 }
 
-#endregion // uint2_mt16
-#region uint3_mt4
+#endregion // long2_mt
+#region long3_mt
 
-public partial struct uint3_mt4
+public partial struct long3_mt
 {
     #region Constants
 
-    public static uint3_mt4 Zero
+    public static long3_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static uint3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator-(uint3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator+(uint3_mt4 a, uint3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator+(uint3_mt4 a, uint_mt4 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator+(uint_mt4 a, uint3_mt4 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator-(uint3_mt4 a, uint3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator-(uint3_mt4 a, uint_mt4 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator-(uint_mt4 a, uint3_mt4 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator*(uint3_mt4 a, uint3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator*(uint3_mt4 a, uint_mt4 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator*(uint_mt4 a, uint3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator*(uint3_mt4 a, uint b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator*(uint a, uint3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator/(uint3_mt4 a, uint3_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator/(uint_mt4 a, uint3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator/(uint3_mt4 a, uint_mt4 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator/(uint a, uint3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator/(uint3_mt4 a, uint b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator%(uint3_mt4 a, uint3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator%(uint_mt4 a, uint3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator%(uint3_mt4 a, uint_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator%(uint a, uint3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator%(uint3_mt4 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator++(uint3_mt4 a) => a + uint_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator--(uint3_mt4 a) => a - uint_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 abs([This] uint3_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 sign([This] uint3_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 min([This] uint3_mt4 a, uint3_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 max([This] uint3_mt4 a, uint3_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 clamp([This] uint3_mt4 v, uint3_mt4 min, uint3_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 fma([This] uint3_mt4 a, uint3_mt4 b, uint3_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 fms([This] uint3_mt4 a, uint3_mt4 b, uint3_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 fnma([This] uint3_mt4 a, uint3_mt4 b, uint3_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 fsm([This] uint3_mt4 c, uint3_mt4 a, uint3_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 fam([This] uint3_mt4 c, uint3_mt4 a, uint3_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 mad([This] uint3_mt4 a, uint3_mt4 b, uint3_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 lerp(uint3_mt4 start, uint3_mt4 end, [This] uint3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 lerp(uint3_mt4 start, uint3_mt4 end, [This] uint t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 lerp(uint start, uint end, [This] uint3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 unlerp([This] uint3_mt4 a, uint3_mt4 start, uint3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 unlerp([This] uint a, uint3_mt4 start, uint3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 unlerp([This] uint3_mt4 a, uint start, uint end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 remap([This] uint3_mt4 a, uint3_mt4 srcStart, uint3_mt4 srcEnd, uint3_mt4 dstStart, uint3_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 remap([This] uint3_mt4 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 square([This] uint3_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 dot([This] uint3_mt4 a, uint3_mt4 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 cross([This] uint3_mt4 a, uint3_mt4 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 lengthsq([This] uint3_mt4 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 distancesq([This] uint3_mt4 a, uint3_mt4 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 csum([This] uint3_mt4 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 cmin([This] uint3_mt4 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 cmax([This] uint3_mt4 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // uint3_mt4
-#region uint3_mt8
-
-public partial struct uint3_mt8
-{
-    #region Constants
-
-    public static uint3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator-(uint3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator+(uint3_mt8 a, uint3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator+(uint3_mt8 a, uint_mt8 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator+(uint_mt8 a, uint3_mt8 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator-(uint3_mt8 a, uint3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator-(uint3_mt8 a, uint_mt8 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator-(uint_mt8 a, uint3_mt8 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator*(uint3_mt8 a, uint3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator*(uint3_mt8 a, uint_mt8 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator*(uint_mt8 a, uint3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator*(uint3_mt8 a, uint b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator*(uint a, uint3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator/(uint3_mt8 a, uint3_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator/(uint_mt8 a, uint3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator/(uint3_mt8 a, uint_mt8 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator/(uint a, uint3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator/(uint3_mt8 a, uint b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator%(uint3_mt8 a, uint3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator%(uint_mt8 a, uint3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator%(uint3_mt8 a, uint_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator%(uint a, uint3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator%(uint3_mt8 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator++(uint3_mt8 a) => a + uint_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator--(uint3_mt8 a) => a - uint_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 abs([This] uint3_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 sign([This] uint3_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 min([This] uint3_mt8 a, uint3_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 max([This] uint3_mt8 a, uint3_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 clamp([This] uint3_mt8 v, uint3_mt8 min, uint3_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 fma([This] uint3_mt8 a, uint3_mt8 b, uint3_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 fms([This] uint3_mt8 a, uint3_mt8 b, uint3_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 fnma([This] uint3_mt8 a, uint3_mt8 b, uint3_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 fsm([This] uint3_mt8 c, uint3_mt8 a, uint3_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 fam([This] uint3_mt8 c, uint3_mt8 a, uint3_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 mad([This] uint3_mt8 a, uint3_mt8 b, uint3_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 lerp(uint3_mt8 start, uint3_mt8 end, [This] uint3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 lerp(uint3_mt8 start, uint3_mt8 end, [This] uint t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 lerp(uint start, uint end, [This] uint3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 unlerp([This] uint3_mt8 a, uint3_mt8 start, uint3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 unlerp([This] uint a, uint3_mt8 start, uint3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 unlerp([This] uint3_mt8 a, uint start, uint end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 remap([This] uint3_mt8 a, uint3_mt8 srcStart, uint3_mt8 srcEnd, uint3_mt8 dstStart, uint3_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 remap([This] uint3_mt8 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 square([This] uint3_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 dot([This] uint3_mt8 a, uint3_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 cross([This] uint3_mt8 a, uint3_mt8 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 lengthsq([This] uint3_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 distancesq([This] uint3_mt8 a, uint3_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 csum([This] uint3_mt8 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 cmin([This] uint3_mt8 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 cmax([This] uint3_mt8 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // uint3_mt8
-#region uint3_mt16
-
-public partial struct uint3_mt16
-{
-    #region Constants
-
-    public static uint3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator-(uint3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator+(uint3_mt16 a, uint3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator+(uint3_mt16 a, uint_mt16 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator+(uint_mt16 a, uint3_mt16 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator-(uint3_mt16 a, uint3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator-(uint3_mt16 a, uint_mt16 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator-(uint_mt16 a, uint3_mt16 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator*(uint3_mt16 a, uint3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator*(uint3_mt16 a, uint_mt16 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator*(uint_mt16 a, uint3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator*(uint3_mt16 a, uint b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator*(uint a, uint3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator/(uint3_mt16 a, uint3_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator/(uint_mt16 a, uint3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator/(uint3_mt16 a, uint_mt16 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator/(uint a, uint3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator/(uint3_mt16 a, uint b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator%(uint3_mt16 a, uint3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator%(uint_mt16 a, uint3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator%(uint3_mt16 a, uint_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator%(uint a, uint3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator%(uint3_mt16 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator++(uint3_mt16 a) => a + uint_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator--(uint3_mt16 a) => a - uint_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 abs([This] uint3_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 sign([This] uint3_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 min([This] uint3_mt16 a, uint3_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 max([This] uint3_mt16 a, uint3_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 clamp([This] uint3_mt16 v, uint3_mt16 min, uint3_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 fma([This] uint3_mt16 a, uint3_mt16 b, uint3_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 fms([This] uint3_mt16 a, uint3_mt16 b, uint3_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 fnma([This] uint3_mt16 a, uint3_mt16 b, uint3_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 fsm([This] uint3_mt16 c, uint3_mt16 a, uint3_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 fam([This] uint3_mt16 c, uint3_mt16 a, uint3_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 mad([This] uint3_mt16 a, uint3_mt16 b, uint3_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 lerp(uint3_mt16 start, uint3_mt16 end, [This] uint3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 lerp(uint3_mt16 start, uint3_mt16 end, [This] uint t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 lerp(uint start, uint end, [This] uint3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 unlerp([This] uint3_mt16 a, uint3_mt16 start, uint3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 unlerp([This] uint a, uint3_mt16 start, uint3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 unlerp([This] uint3_mt16 a, uint start, uint end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 remap([This] uint3_mt16 a, uint3_mt16 srcStart, uint3_mt16 srcEnd, uint3_mt16 dstStart, uint3_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 remap([This] uint3_mt16 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 square([This] uint3_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 dot([This] uint3_mt16 a, uint3_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 cross([This] uint3_mt16 a, uint3_mt16 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 lengthsq([This] uint3_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 distancesq([This] uint3_mt16 a, uint3_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 csum([This] uint3_mt16 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 cmin([This] uint3_mt16 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 cmax([This] uint3_mt16 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // uint3_mt16
-#region uint4_mt4
-
-public partial struct uint4_mt4
-{
-    #region Constants
-
-    public static uint4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator-(uint4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator+(uint4_mt4 a, uint4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator+(uint4_mt4 a, uint_mt4 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator+(uint_mt4 a, uint4_mt4 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator-(uint4_mt4 a, uint4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator-(uint4_mt4 a, uint_mt4 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator-(uint_mt4 a, uint4_mt4 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator*(uint4_mt4 a, uint4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator*(uint4_mt4 a, uint_mt4 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator*(uint_mt4 a, uint4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator*(uint4_mt4 a, uint b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator*(uint a, uint4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator/(uint4_mt4 a, uint4_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator/(uint_mt4 a, uint4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator/(uint4_mt4 a, uint_mt4 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator/(uint a, uint4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator/(uint4_mt4 a, uint b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator%(uint4_mt4 a, uint4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator%(uint_mt4 a, uint4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator%(uint4_mt4 a, uint_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator%(uint a, uint4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator%(uint4_mt4 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator++(uint4_mt4 a) => a + uint_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator--(uint4_mt4 a) => a - uint_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 abs([This] uint4_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 sign([This] uint4_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 min([This] uint4_mt4 a, uint4_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 max([This] uint4_mt4 a, uint4_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 clamp([This] uint4_mt4 v, uint4_mt4 min, uint4_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 fma([This] uint4_mt4 a, uint4_mt4 b, uint4_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 fms([This] uint4_mt4 a, uint4_mt4 b, uint4_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 fnma([This] uint4_mt4 a, uint4_mt4 b, uint4_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 fsm([This] uint4_mt4 c, uint4_mt4 a, uint4_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 fam([This] uint4_mt4 c, uint4_mt4 a, uint4_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 mad([This] uint4_mt4 a, uint4_mt4 b, uint4_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 lerp(uint4_mt4 start, uint4_mt4 end, [This] uint4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 lerp(uint4_mt4 start, uint4_mt4 end, [This] uint t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 lerp(uint start, uint end, [This] uint4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 unlerp([This] uint4_mt4 a, uint4_mt4 start, uint4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 unlerp([This] uint a, uint4_mt4 start, uint4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 unlerp([This] uint4_mt4 a, uint start, uint end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 remap([This] uint4_mt4 a, uint4_mt4 srcStart, uint4_mt4 srcEnd, uint4_mt4 dstStart, uint4_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 remap([This] uint4_mt4 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 square([This] uint4_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 dot([This] uint4_mt4 a, uint4_mt4 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 lengthsq([This] uint4_mt4 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 distancesq([This] uint4_mt4 a, uint4_mt4 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 csum([This] uint4_mt4 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 cmin([This] uint4_mt4 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 cmax([This] uint4_mt4 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // uint4_mt4
-#region uint4_mt8
-
-public partial struct uint4_mt8
-{
-    #region Constants
-
-    public static uint4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator-(uint4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator+(uint4_mt8 a, uint4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator+(uint4_mt8 a, uint_mt8 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator+(uint_mt8 a, uint4_mt8 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator-(uint4_mt8 a, uint4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator-(uint4_mt8 a, uint_mt8 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator-(uint_mt8 a, uint4_mt8 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator*(uint4_mt8 a, uint4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator*(uint4_mt8 a, uint_mt8 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator*(uint_mt8 a, uint4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator*(uint4_mt8 a, uint b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator*(uint a, uint4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator/(uint4_mt8 a, uint4_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator/(uint_mt8 a, uint4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator/(uint4_mt8 a, uint_mt8 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator/(uint a, uint4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator/(uint4_mt8 a, uint b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator%(uint4_mt8 a, uint4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator%(uint_mt8 a, uint4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator%(uint4_mt8 a, uint_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator%(uint a, uint4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator%(uint4_mt8 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator++(uint4_mt8 a) => a + uint_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator--(uint4_mt8 a) => a - uint_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 abs([This] uint4_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 sign([This] uint4_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 min([This] uint4_mt8 a, uint4_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 max([This] uint4_mt8 a, uint4_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 clamp([This] uint4_mt8 v, uint4_mt8 min, uint4_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 fma([This] uint4_mt8 a, uint4_mt8 b, uint4_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 fms([This] uint4_mt8 a, uint4_mt8 b, uint4_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 fnma([This] uint4_mt8 a, uint4_mt8 b, uint4_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 fsm([This] uint4_mt8 c, uint4_mt8 a, uint4_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 fam([This] uint4_mt8 c, uint4_mt8 a, uint4_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 mad([This] uint4_mt8 a, uint4_mt8 b, uint4_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 lerp(uint4_mt8 start, uint4_mt8 end, [This] uint4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 lerp(uint4_mt8 start, uint4_mt8 end, [This] uint t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 lerp(uint start, uint end, [This] uint4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 unlerp([This] uint4_mt8 a, uint4_mt8 start, uint4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 unlerp([This] uint a, uint4_mt8 start, uint4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 unlerp([This] uint4_mt8 a, uint start, uint end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 remap([This] uint4_mt8 a, uint4_mt8 srcStart, uint4_mt8 srcEnd, uint4_mt8 dstStart, uint4_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 remap([This] uint4_mt8 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 square([This] uint4_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 dot([This] uint4_mt8 a, uint4_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 lengthsq([This] uint4_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 distancesq([This] uint4_mt8 a, uint4_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 csum([This] uint4_mt8 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 cmin([This] uint4_mt8 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 cmax([This] uint4_mt8 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // uint4_mt8
-#region uint4_mt16
-
-public partial struct uint4_mt16
-{
-    #region Constants
-
-    public static uint4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator-(uint4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator+(uint4_mt16 a, uint4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator+(uint4_mt16 a, uint_mt16 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator+(uint_mt16 a, uint4_mt16 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator-(uint4_mt16 a, uint4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator-(uint4_mt16 a, uint_mt16 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator-(uint_mt16 a, uint4_mt16 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator*(uint4_mt16 a, uint4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator*(uint4_mt16 a, uint_mt16 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator*(uint_mt16 a, uint4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator*(uint4_mt16 a, uint b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator*(uint a, uint4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator/(uint4_mt16 a, uint4_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator/(uint_mt16 a, uint4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator/(uint4_mt16 a, uint_mt16 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator/(uint a, uint4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator/(uint4_mt16 a, uint b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator%(uint4_mt16 a, uint4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator%(uint_mt16 a, uint4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator%(uint4_mt16 a, uint_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator%(uint a, uint4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator%(uint4_mt16 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator++(uint4_mt16 a) => a + uint_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator--(uint4_mt16 a) => a - uint_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 abs([This] uint4_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 sign([This] uint4_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 min([This] uint4_mt16 a, uint4_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 max([This] uint4_mt16 a, uint4_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 clamp([This] uint4_mt16 v, uint4_mt16 min, uint4_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 fma([This] uint4_mt16 a, uint4_mt16 b, uint4_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 fms([This] uint4_mt16 a, uint4_mt16 b, uint4_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 fnma([This] uint4_mt16 a, uint4_mt16 b, uint4_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 fsm([This] uint4_mt16 c, uint4_mt16 a, uint4_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 fam([This] uint4_mt16 c, uint4_mt16 a, uint4_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 mad([This] uint4_mt16 a, uint4_mt16 b, uint4_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 lerp(uint4_mt16 start, uint4_mt16 end, [This] uint4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 lerp(uint4_mt16 start, uint4_mt16 end, [This] uint t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 lerp(uint start, uint end, [This] uint4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 unlerp([This] uint4_mt16 a, uint4_mt16 start, uint4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 unlerp([This] uint a, uint4_mt16 start, uint4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 unlerp([This] uint4_mt16 a, uint start, uint end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 remap([This] uint4_mt16 a, uint4_mt16 srcStart, uint4_mt16 srcEnd, uint4_mt16 dstStart, uint4_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 remap([This] uint4_mt16 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 square([This] uint4_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 dot([This] uint4_mt16 a, uint4_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 lengthsq([This] uint4_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 distancesq([This] uint4_mt16 a, uint4_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 csum([This] uint4_mt16 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 cmin([This] uint4_mt16 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 cmax([This] uint4_mt16 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // uint4_mt16
-#region long2_mt4
-
-public partial struct long2_mt4
-{
-    #region Constants
-
-    public static long2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long2_mt4 One
+    public static long3_mt One
     {
         [MethodImpl(256 | 512)]
         get => new(1L);
     }
 
-    public static long2_mt4 Two
+    public static long3_mt Two
     {
         [MethodImpl(256 | 512)]
         get => new((1L + 1L));
@@ -8899,76 +3231,76 @@ public partial struct long2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator-(long2_mt4 a) => new(-a.x, -a.y);
+    public static long3_mt operator-(long3_mt a) => new(-a.x, -a.y, -a.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator+(long2_mt4 a, long2_mt4 b) => new(a.x + b.x, a.y + b.y);
+    public static long3_mt operator+(long3_mt a, long3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator+(long2_mt4 a, long_mt4 b) => new(a.x + b, a.y + b);
+    public static long3_mt operator+(long3_mt a, long_mt b) => new(a.x + b, a.y + b, a.z + b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator+(long_mt4 a, long2_mt4 b) => new(a + b.x, a + b.y);
+    public static long3_mt operator+(long_mt a, long3_mt b) => new(a + b.x, a + b.y, a + b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator-(long2_mt4 a, long2_mt4 b) => new(a.x - b.x, a.y - b.y);
+    public static long3_mt operator-(long3_mt a, long3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator-(long2_mt4 a, long_mt4 b) => new(a.x - b, a.y - b);
+    public static long3_mt operator-(long3_mt a, long_mt b) => new(a.x - b, a.y - b, a.z - b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator-(long_mt4 a, long2_mt4 b) => new(a - b.x, a - b.y);
+    public static long3_mt operator-(long_mt a, long3_mt b) => new(a - b.x, a - b.y, a - b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator*(long2_mt4 a, long2_mt4 b) => new(a.x * b.x, a.y * b.y);
+    public static long3_mt operator*(long3_mt a, long3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator*(long2_mt4 a, long_mt4 b) => new(a.x * b, a.y * b);
+    public static long3_mt operator*(long3_mt a, long_mt b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator*(long_mt4 a, long2_mt4 b) => new(a * b.x, a * b.y);
+    public static long3_mt operator*(long_mt a, long3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator*(long2_mt4 a, long b) => new(a.x * b, a.y * b);
+    public static long3_mt operator*(long3_mt a, long b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator*(long a, long2_mt4 b) => new(a * b.x, a * b.y);
+    public static long3_mt operator*(long a, long3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator/(long2_mt4 a, long2_mt4 b) => new(a.x / b.x, a.y / b.y);
+    public static long3_mt operator/(long3_mt a, long3_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator/(long_mt4 a, long2_mt4 b) => new(a / b.x, a / b.y);
+    public static long3_mt operator/(long_mt a, long3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator/(long2_mt4 a, long_mt4 b) => new(a.x / b, a.y / b);
+    public static long3_mt operator/(long3_mt a, long_mt b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator/(long a, long2_mt4 b) => new(a / b.x, a / b.y);
+    public static long3_mt operator/(long a, long3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator/(long2_mt4 a, long b) => new(a.x / b, a.y / b);
+    public static long3_mt operator/(long3_mt a, long b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator%(long2_mt4 a, long2_mt4 b) => a - (a / b) * b;
+    public static long3_mt operator%(long3_mt a, long3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator%(long_mt4 a, long2_mt4 b) => a - (a / b) * b;
+    public static long3_mt operator%(long_mt a, long3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator%(long2_mt4 a, long_mt4 b) => a - (a / b) * b;
+    public static long3_mt operator%(long3_mt a, long_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator%(long a, long2_mt4 b) => a - (a / b) * b;
+    public static long3_mt operator%(long a, long3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator%(long2_mt4 a, long b) => a - (a / b) * b;
+    public static long3_mt operator%(long3_mt a, long b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator++(long2_mt4 a) => a + long_mt4.One;
+    public static long3_mt operator++(long3_mt a) => a + long_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator--(long2_mt4 a) => a - long_mt4.One;
+    public static long3_mt operator--(long3_mt a) => a - long_mt.One;
 
     #endregion // Operators
 }
@@ -8977,19 +3309,19 @@ public partial struct long2_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static long2_mt4 abs([This] long2_mt4 a) => new(abs(a.x), abs(a.y));
+    public static long3_mt abs([This] long3_mt a) => new(abs(a.x), abs(a.y), abs(a.z));
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 sign([This] long2_mt4 a) => new(sign(a.x), sign(a.y));
+    public static long3_mt sign([This] long3_mt a) => new(sign(a.x), sign(a.y), sign(a.z));
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 min([This] long2_mt4 a, long2_mt4 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static long3_mt min([This] long3_mt a, long3_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 max([This] long2_mt4 a, long2_mt4 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static long3_mt max([This] long3_mt a, long3_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 clamp([This] long2_mt4 v, long2_mt4 min, long2_mt4 max) => math_mt.max(min, math_mt.min(max, v));
+    public static long3_mt clamp([This] long3_mt v, long3_mt min, long3_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8999,7 +3331,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt4 fma([This] long2_mt4 a, long2_mt4 b, long2_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static long3_mt fma([This] long3_mt a, long3_mt b, long3_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -9009,7 +3341,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt4 fms([This] long2_mt4 a, long2_mt4 b, long2_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static long3_mt fms([This] long3_mt a, long3_mt b, long3_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -9019,7 +3351,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt4 fnma([This] long2_mt4 a, long2_mt4 b, long2_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static long3_mt fnma([This] long3_mt a, long3_mt b, long3_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -9029,7 +3361,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt4 fsm([This] long2_mt4 c, long2_mt4 a, long2_mt4 b) => fnma(a, b, c);
+    public static long3_mt fsm([This] long3_mt c, long3_mt a, long3_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9039,7 +3371,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt4 fam([This] long2_mt4 c, long2_mt4 a, long2_mt4 b) => fma(a, b, c);
+    public static long3_mt fam([This] long3_mt c, long3_mt a, long3_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9049,93 +3381,588 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt4 mad([This] long2_mt4 a, long2_mt4 b, long2_mt4 c) => fma(a, b, c);
+    public static long3_mt mad([This] long3_mt a, long3_mt b, long3_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 lerp(long2_mt4 start, long2_mt4 end, [This] long2_mt4 t)
+    public static long3_mt lerp(long3_mt start, long3_mt end, [This] long3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 lerp(long2_mt4 start, long2_mt4 end, [This] long t)
+    public static long3_mt lerp(long3_mt start, long3_mt end, [This] long t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 lerp(long start, long end, [This] long2_mt4 t)
+    public static long3_mt lerp(long start, long end, [This] long3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 unlerp([This] long2_mt4 a, long2_mt4 start, long2_mt4 end) => (a - start) / (end - start);
+    public static long3_mt unlerp([This] long3_mt a, long3_mt start, long3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 unlerp([This] long a, long2_mt4 start, long2_mt4 end) => (a - start) / (end - start);
+    public static long3_mt unlerp([This] long a, long3_mt start, long3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 unlerp([This] long2_mt4 a, long start, long end) => (a - start) / (end - start);
+    public static long3_mt unlerp([This] long3_mt a, long start, long end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 remap([This] long2_mt4 a, long2_mt4 srcStart, long2_mt4 srcEnd, long2_mt4 dstStart, long2_mt4 dstEnd) => 
+    public static long3_mt remap([This] long3_mt a, long3_mt srcStart, long3_mt srcEnd, long3_mt dstStart, long3_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 remap([This] long2_mt4 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
+    public static long3_mt remap([This] long3_mt a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 square([This] long2_mt4 a) => a * a;
+    public static long3_mt square([This] long3_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 dot([This] long2_mt4 a, long2_mt4 b)
+    public static long_mt dot([This] long3_mt a, long3_mt b)
+    {
+        // a.x * b.x + a.y * b.y + a.z * b.z
+        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt cross([This] long3_mt a, long3_mt b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long_mt lengthsq([This] long3_mt a) => dot(a, a);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt distancesq([This] long3_mt a, long3_mt b) => lengthsq(b - a);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt csum([This] long3_mt a) => a.x + a.y + a.z;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt cmin([This] long3_mt a) => a.x.min(a.y).min(a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt cmax([This] long3_mt a) => a.x.max(a.y).max(a.z);
+
+}
+
+#endregion // long3_mt
+#region long4_mt
+
+public partial struct long4_mt
+{
+    #region Constants
+
+    public static long4_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long4_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long4_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
+    }
+
+    #endregion
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator-(long4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator+(long4_mt a, long4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator+(long4_mt a, long_mt b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator+(long_mt a, long4_mt b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator-(long4_mt a, long4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator-(long4_mt a, long_mt b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator-(long_mt a, long4_mt b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator*(long4_mt a, long4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator*(long4_mt a, long_mt b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator*(long_mt a, long4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator*(long4_mt a, long b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator*(long a, long4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator/(long4_mt a, long4_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator/(long_mt a, long4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator/(long4_mt a, long_mt b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator/(long a, long4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator/(long4_mt a, long b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator%(long4_mt a, long4_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator%(long_mt a, long4_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator%(long4_mt a, long_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator%(long a, long4_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator%(long4_mt a, long b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator++(long4_mt a) => a + long_mt.One;
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator--(long4_mt a) => a - long_mt.One;
+
+    #endregion // Operators
+}
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static long4_mt abs([This] long4_mt a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt sign([This] long4_mt a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt min([This] long4_mt a, long4_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt max([This] long4_mt a, long4_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt clamp([This] long4_mt v, long4_mt min, long4_mt max) => math_mt.max(min, math_mt.min(max, v));
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static long4_mt fma([This] long4_mt a, long4_mt b, long4_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
+
+    /// <summary>
+    /// Fusion Subtraction and Multiplication
+    /// <code>(a * b) - c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Subtrahend c</param>
+    [MethodImpl(256 | 512)]
+    public static long4_mt fms([This] long4_mt a, long4_mt b, long4_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
+
+    /// <summary>
+    /// Fusion Multiplication and Subtraction
+    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Minuend c</param>
+    [MethodImpl(256 | 512)]
+    public static long4_mt fnma([This] long4_mt a, long4_mt b, long4_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
+
+    /// <summary>
+    /// Fusion Multiplication and Subtraction
+    /// <code>c - (a * b)</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Minuend c</param>
+    [MethodImpl(256 | 512)]
+    public static long4_mt fsm([This] long4_mt c, long4_mt a, long4_mt b) => fnma(a, b, c);
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>c + (a * b)</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static long4_mt fam([This] long4_mt c, long4_mt a, long4_mt b) => fma(a, b, c);
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static long4_mt mad([This] long4_mt a, long4_mt b, long4_mt c) => fma(a, b, c);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt lerp(long4_mt start, long4_mt end, [This] long4_mt t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt lerp(long4_mt start, long4_mt end, [This] long t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt lerp(long start, long end, [This] long4_mt t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt unlerp([This] long4_mt a, long4_mt start, long4_mt end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt unlerp([This] long a, long4_mt start, long4_mt end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt unlerp([This] long4_mt a, long start, long end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt remap([This] long4_mt a, long4_mt srcStart, long4_mt srcEnd, long4_mt dstStart, long4_mt dstEnd) => 
+        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt remap([This] long4_mt a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
+        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt square([This] long4_mt a) => a * a;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt dot([This] long4_mt a, long4_mt b)
+    {
+        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
+        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long_mt lengthsq([This] long4_mt a) => dot(a, a);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt distancesq([This] long4_mt a, long4_mt b) => lengthsq(b - a);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt csum([This] long4_mt a) => a.x + a.y + a.z + a.w;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt cmin([This] long4_mt a) => a.x.min(a.y).min(a.z).min(a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt cmax([This] long4_mt a) => a.x.max(a.y).max(a.z).max(a.w);
+
+}
+
+#endregion // long4_mt
+#region ulong2_mt
+
+public partial struct ulong2_mt
+{
+    #region Constants
+
+    public static ulong2_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong2_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong2_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
+    }
+
+    #endregion
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator-(ulong2_mt a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator+(ulong2_mt a, ulong2_mt b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator+(ulong2_mt a, ulong_mt b) => new(a.x + b, a.y + b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator+(ulong_mt a, ulong2_mt b) => new(a + b.x, a + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator-(ulong2_mt a, ulong2_mt b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator-(ulong2_mt a, ulong_mt b) => new(a.x - b, a.y - b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator-(ulong_mt a, ulong2_mt b) => new(a - b.x, a - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator*(ulong2_mt a, ulong2_mt b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator*(ulong2_mt a, ulong_mt b) => new(a.x * b, a.y * b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator*(ulong_mt a, ulong2_mt b) => new(a * b.x, a * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator*(ulong2_mt a, ulong b) => new(a.x * b, a.y * b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator*(ulong a, ulong2_mt b) => new(a * b.x, a * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator/(ulong2_mt a, ulong2_mt b) => new(a.x / b.x, a.y / b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator/(ulong_mt a, ulong2_mt b) => new(a / b.x, a / b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator/(ulong2_mt a, ulong_mt b) => new(a.x / b, a.y / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator/(ulong a, ulong2_mt b) => new(a / b.x, a / b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator/(ulong2_mt a, ulong b) => new(a.x / b, a.y / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator%(ulong2_mt a, ulong2_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator%(ulong_mt a, ulong2_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator%(ulong2_mt a, ulong_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator%(ulong a, ulong2_mt b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator%(ulong2_mt a, ulong b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator++(ulong2_mt a) => a + ulong_mt.One;
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator--(ulong2_mt a) => a - ulong_mt.One;
+
+    #endregion // Operators
+}
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt abs([This] ulong2_mt a) => new(abs(a.x), abs(a.y));
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt sign([This] ulong2_mt a) => new(sign(a.x), sign(a.y));
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt min([This] ulong2_mt a, ulong2_mt b) => new(min(a.x, b.x), min(a.y, b.y));
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt max([This] ulong2_mt a, ulong2_mt b) => new(max(a.x, b.x), max(a.y, b.y));
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt clamp([This] ulong2_mt v, ulong2_mt min, ulong2_mt max) => math_mt.max(min, math_mt.min(max, v));
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt fma([This] ulong2_mt a, ulong2_mt b, ulong2_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+
+    /// <summary>
+    /// Fusion Subtraction and Multiplication
+    /// <code>(a * b) - c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Subtrahend c</param>
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt fms([This] ulong2_mt a, ulong2_mt b, ulong2_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+
+    /// <summary>
+    /// Fusion Multiplication and Subtraction
+    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Minuend c</param>
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt fnma([This] ulong2_mt a, ulong2_mt b, ulong2_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+
+    /// <summary>
+    /// Fusion Multiplication and Subtraction
+    /// <code>c - (a * b)</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Minuend c</param>
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt fsm([This] ulong2_mt c, ulong2_mt a, ulong2_mt b) => fnma(a, b, c);
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>c + (a * b)</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt fam([This] ulong2_mt c, ulong2_mt a, ulong2_mt b) => fma(a, b, c);
+
+    /// <summary>
+    /// Fusion Addition and Multiplication
+    /// <code>(a * b) + c</code>
+    /// </summary>
+    /// <param name="a">Multiplier a</param>
+    /// <param name="b">Multiplier b</param>
+    /// <param name="c">Addend c</param>
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt mad([This] ulong2_mt a, ulong2_mt b, ulong2_mt c) => fma(a, b, c);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt lerp(ulong2_mt start, ulong2_mt end, [This] ulong2_mt t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt lerp(ulong2_mt start, ulong2_mt end, [This] ulong t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt lerp(ulong start, ulong end, [This] ulong2_mt t)
+    {
+        return fma(t, end - start, start);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt unlerp([This] ulong2_mt a, ulong2_mt start, ulong2_mt end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt unlerp([This] ulong a, ulong2_mt start, ulong2_mt end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt unlerp([This] ulong2_mt a, ulong start, ulong end) => (a - start) / (end - start);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt remap([This] ulong2_mt a, ulong2_mt srcStart, ulong2_mt srcEnd, ulong2_mt dstStart, ulong2_mt dstEnd) => 
+        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt remap([This] ulong2_mt a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
+        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt square([This] ulong2_mt a) => a * a;
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt dot([This] ulong2_mt a, ulong2_mt b)
     {
         // a.x * b.x + a.y * b.y
         return fma(a.y, b.y, a.x * b.x);
     }
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 lengthsq([This] long2_mt4 a) => dot(a, a);
+    public static ulong_mt lengthsq([This] ulong2_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 distancesq([This] long2_mt4 a, long2_mt4 b) => lengthsq(b - a);
+    public static ulong_mt distancesq([This] ulong2_mt a, ulong2_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 csum([This] long2_mt4 a) => a.x + a.y;
+    public static ulong_mt csum([This] ulong2_mt a) => a.x + a.y;
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 cmin([This] long2_mt4 a) => a.x.min(a.y);
+    public static ulong_mt cmin([This] ulong2_mt a) => a.x.min(a.y);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 cmax([This] long2_mt4 a) => a.x.max(a.y);
+    public static ulong_mt cmax([This] ulong2_mt a) => a.x.max(a.y);
 
 }
 
-#endregion // long2_mt4
-#region long2_mt8
+#endregion // ulong2_mt
+#region ulong3_mt
 
-public partial struct long2_mt8
+public partial struct ulong3_mt
 {
     #region Constants
 
-    public static long2_mt8 Zero
+    public static ulong3_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static long2_mt8 One
+    public static ulong3_mt One
     {
         [MethodImpl(256 | 512)]
-        get => new(1L);
+        get => new(1UL);
     }
 
-    public static long2_mt8 Two
+    public static ulong3_mt Two
     {
         [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -9143,76 +3970,76 @@ public partial struct long2_mt8
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator-(long2_mt8 a) => new(-a.x, -a.y);
+    public static ulong3_mt operator-(ulong3_mt a) => new(-a.x, -a.y, -a.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator+(long2_mt8 a, long2_mt8 b) => new(a.x + b.x, a.y + b.y);
+    public static ulong3_mt operator+(ulong3_mt a, ulong3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator+(long2_mt8 a, long_mt8 b) => new(a.x + b, a.y + b);
+    public static ulong3_mt operator+(ulong3_mt a, ulong_mt b) => new(a.x + b, a.y + b, a.z + b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator+(long_mt8 a, long2_mt8 b) => new(a + b.x, a + b.y);
+    public static ulong3_mt operator+(ulong_mt a, ulong3_mt b) => new(a + b.x, a + b.y, a + b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator-(long2_mt8 a, long2_mt8 b) => new(a.x - b.x, a.y - b.y);
+    public static ulong3_mt operator-(ulong3_mt a, ulong3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator-(long2_mt8 a, long_mt8 b) => new(a.x - b, a.y - b);
+    public static ulong3_mt operator-(ulong3_mt a, ulong_mt b) => new(a.x - b, a.y - b, a.z - b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator-(long_mt8 a, long2_mt8 b) => new(a - b.x, a - b.y);
+    public static ulong3_mt operator-(ulong_mt a, ulong3_mt b) => new(a - b.x, a - b.y, a - b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator*(long2_mt8 a, long2_mt8 b) => new(a.x * b.x, a.y * b.y);
+    public static ulong3_mt operator*(ulong3_mt a, ulong3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator*(long2_mt8 a, long_mt8 b) => new(a.x * b, a.y * b);
+    public static ulong3_mt operator*(ulong3_mt a, ulong_mt b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator*(long_mt8 a, long2_mt8 b) => new(a * b.x, a * b.y);
+    public static ulong3_mt operator*(ulong_mt a, ulong3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator*(long2_mt8 a, long b) => new(a.x * b, a.y * b);
+    public static ulong3_mt operator*(ulong3_mt a, ulong b) => new(a.x * b, a.y * b, a.z * b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator*(long a, long2_mt8 b) => new(a * b.x, a * b.y);
+    public static ulong3_mt operator*(ulong a, ulong3_mt b) => new(a * b.x, a * b.y, a * b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator/(long2_mt8 a, long2_mt8 b) => new(a.x / b.x, a.y / b.y);
+    public static ulong3_mt operator/(ulong3_mt a, ulong3_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator/(long_mt8 a, long2_mt8 b) => new(a / b.x, a / b.y);
+    public static ulong3_mt operator/(ulong_mt a, ulong3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator/(long2_mt8 a, long_mt8 b) => new(a.x / b, a.y / b);
+    public static ulong3_mt operator/(ulong3_mt a, ulong_mt b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator/(long a, long2_mt8 b) => new(a / b.x, a / b.y);
+    public static ulong3_mt operator/(ulong a, ulong3_mt b) => new(a / b.x, a / b.y, a / b.z);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator/(long2_mt8 a, long b) => new(a.x / b, a.y / b);
+    public static ulong3_mt operator/(ulong3_mt a, ulong b) => new(a.x / b, a.y / b, a.z / b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator%(long2_mt8 a, long2_mt8 b) => a - (a / b) * b;
+    public static ulong3_mt operator%(ulong3_mt a, ulong3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator%(long_mt8 a, long2_mt8 b) => a - (a / b) * b;
+    public static ulong3_mt operator%(ulong_mt a, ulong3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator%(long2_mt8 a, long_mt8 b) => a - (a / b) * b;
+    public static ulong3_mt operator%(ulong3_mt a, ulong_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator%(long a, long2_mt8 b) => a - (a / b) * b;
+    public static ulong3_mt operator%(ulong a, ulong3_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator%(long2_mt8 a, long b) => a - (a / b) * b;
+    public static ulong3_mt operator%(ulong3_mt a, ulong b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator++(long2_mt8 a) => a + long_mt8.One;
+    public static ulong3_mt operator++(ulong3_mt a) => a + ulong_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator--(long2_mt8 a) => a - long_mt8.One;
+    public static ulong3_mt operator--(ulong3_mt a) => a - ulong_mt.One;
 
     #endregion // Operators
 }
@@ -9221,19 +4048,19 @@ public partial struct long2_mt8
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static long2_mt8 abs([This] long2_mt8 a) => new(abs(a.x), abs(a.y));
+    public static ulong3_mt abs([This] ulong3_mt a) => new(abs(a.x), abs(a.y), abs(a.z));
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 sign([This] long2_mt8 a) => new(sign(a.x), sign(a.y));
+    public static ulong3_mt sign([This] ulong3_mt a) => new(sign(a.x), sign(a.y), sign(a.z));
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 min([This] long2_mt8 a, long2_mt8 b) => new(min(a.x, b.x), min(a.y, b.y));
+    public static ulong3_mt min([This] ulong3_mt a, ulong3_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 max([This] long2_mt8 a, long2_mt8 b) => new(max(a.x, b.x), max(a.y, b.y));
+    public static ulong3_mt max([This] ulong3_mt a, ulong3_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 clamp([This] long2_mt8 v, long2_mt8 min, long2_mt8 max) => math_mt.max(min, math_mt.min(max, v));
+    public static ulong3_mt clamp([This] ulong3_mt v, ulong3_mt min, ulong3_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9243,7 +4070,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt8 fma([This] long2_mt8 a, long2_mt8 b, long2_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
+    public static ulong3_mt fma([This] ulong3_mt a, ulong3_mt b, ulong3_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -9253,7 +4080,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt8 fms([This] long2_mt8 a, long2_mt8 b, long2_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
+    public static ulong3_mt fms([This] ulong3_mt a, ulong3_mt b, ulong3_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -9263,7 +4090,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt8 fnma([This] long2_mt8 a, long2_mt8 b, long2_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
+    public static ulong3_mt fnma([This] ulong3_mt a, ulong3_mt b, ulong3_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -9273,7 +4100,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt8 fsm([This] long2_mt8 c, long2_mt8 a, long2_mt8 b) => fnma(a, b, c);
+    public static ulong3_mt fsm([This] ulong3_mt c, ulong3_mt a, ulong3_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9283,7 +4110,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt8 fam([This] long2_mt8 c, long2_mt8 a, long2_mt8 b) => fma(a, b, c);
+    public static ulong3_mt fam([This] ulong3_mt c, ulong3_mt a, ulong3_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9293,588 +4120,100 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2_mt8 mad([This] long2_mt8 a, long2_mt8 b, long2_mt8 c) => fma(a, b, c);
+    public static ulong3_mt mad([This] ulong3_mt a, ulong3_mt b, ulong3_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 lerp(long2_mt8 start, long2_mt8 end, [This] long2_mt8 t)
+    public static ulong3_mt lerp(ulong3_mt start, ulong3_mt end, [This] ulong3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 lerp(long2_mt8 start, long2_mt8 end, [This] long t)
+    public static ulong3_mt lerp(ulong3_mt start, ulong3_mt end, [This] ulong t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 lerp(long start, long end, [This] long2_mt8 t)
+    public static ulong3_mt lerp(ulong start, ulong end, [This] ulong3_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 unlerp([This] long2_mt8 a, long2_mt8 start, long2_mt8 end) => (a - start) / (end - start);
+    public static ulong3_mt unlerp([This] ulong3_mt a, ulong3_mt start, ulong3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 unlerp([This] long a, long2_mt8 start, long2_mt8 end) => (a - start) / (end - start);
+    public static ulong3_mt unlerp([This] ulong a, ulong3_mt start, ulong3_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 unlerp([This] long2_mt8 a, long start, long end) => (a - start) / (end - start);
+    public static ulong3_mt unlerp([This] ulong3_mt a, ulong start, ulong end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 remap([This] long2_mt8 a, long2_mt8 srcStart, long2_mt8 srcEnd, long2_mt8 dstStart, long2_mt8 dstEnd) => 
+    public static ulong3_mt remap([This] ulong3_mt a, ulong3_mt srcStart, ulong3_mt srcEnd, ulong3_mt dstStart, ulong3_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 remap([This] long2_mt8 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
+    public static ulong3_mt remap([This] ulong3_mt a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 square([This] long2_mt8 a) => a * a;
+    public static ulong3_mt square([This] ulong3_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static long_mt8 dot([This] long2_mt8 a, long2_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 lengthsq([This] long2_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 distancesq([This] long2_mt8 a, long2_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 csum([This] long2_mt8 a) => a.x + a.y;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 cmin([This] long2_mt8 a) => a.x.min(a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 cmax([This] long2_mt8 a) => a.x.max(a.y);
-
-}
-
-#endregion // long2_mt8
-#region long2_mt16
-
-public partial struct long2_mt16
-{
-    #region Constants
-
-    public static long2_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long2_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long2_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator-(long2_mt16 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator+(long2_mt16 a, long2_mt16 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator+(long2_mt16 a, long_mt16 b) => new(a.x + b, a.y + b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator+(long_mt16 a, long2_mt16 b) => new(a + b.x, a + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator-(long2_mt16 a, long2_mt16 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator-(long2_mt16 a, long_mt16 b) => new(a.x - b, a.y - b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator-(long_mt16 a, long2_mt16 b) => new(a - b.x, a - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator*(long2_mt16 a, long2_mt16 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator*(long2_mt16 a, long_mt16 b) => new(a.x * b, a.y * b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator*(long_mt16 a, long2_mt16 b) => new(a * b.x, a * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator*(long2_mt16 a, long b) => new(a.x * b, a.y * b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator*(long a, long2_mt16 b) => new(a * b.x, a * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator/(long2_mt16 a, long2_mt16 b) => new(a.x / b.x, a.y / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator/(long_mt16 a, long2_mt16 b) => new(a / b.x, a / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator/(long2_mt16 a, long_mt16 b) => new(a.x / b, a.y / b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator/(long a, long2_mt16 b) => new(a / b.x, a / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator/(long2_mt16 a, long b) => new(a.x / b, a.y / b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator%(long2_mt16 a, long2_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator%(long_mt16 a, long2_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator%(long2_mt16 a, long_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator%(long a, long2_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator%(long2_mt16 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator++(long2_mt16 a) => a + long_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator--(long2_mt16 a) => a - long_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 abs([This] long2_mt16 a) => new(abs(a.x), abs(a.y));
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 sign([This] long2_mt16 a) => new(sign(a.x), sign(a.y));
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 min([This] long2_mt16 a, long2_mt16 b) => new(min(a.x, b.x), min(a.y, b.y));
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 max([This] long2_mt16 a, long2_mt16 b) => new(max(a.x, b.x), max(a.y, b.y));
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 clamp([This] long2_mt16 v, long2_mt16 min, long2_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 fma([This] long2_mt16 a, long2_mt16 b, long2_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 fms([This] long2_mt16 a, long2_mt16 b, long2_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 fnma([This] long2_mt16 a, long2_mt16 b, long2_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 fsm([This] long2_mt16 c, long2_mt16 a, long2_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 fam([This] long2_mt16 c, long2_mt16 a, long2_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 mad([This] long2_mt16 a, long2_mt16 b, long2_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 lerp(long2_mt16 start, long2_mt16 end, [This] long2_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 lerp(long2_mt16 start, long2_mt16 end, [This] long t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 lerp(long start, long end, [This] long2_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 unlerp([This] long2_mt16 a, long2_mt16 start, long2_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 unlerp([This] long a, long2_mt16 start, long2_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 unlerp([This] long2_mt16 a, long start, long end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 remap([This] long2_mt16 a, long2_mt16 srcStart, long2_mt16 srcEnd, long2_mt16 dstStart, long2_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 remap([This] long2_mt16 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 square([This] long2_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 dot([This] long2_mt16 a, long2_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 lengthsq([This] long2_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 distancesq([This] long2_mt16 a, long2_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 csum([This] long2_mt16 a) => a.x + a.y;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 cmin([This] long2_mt16 a) => a.x.min(a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 cmax([This] long2_mt16 a) => a.x.max(a.y);
-
-}
-
-#endregion // long2_mt16
-#region long3_mt4
-
-public partial struct long3_mt4
-{
-    #region Constants
-
-    public static long3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator-(long3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator+(long3_mt4 a, long3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator+(long3_mt4 a, long_mt4 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator+(long_mt4 a, long3_mt4 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator-(long3_mt4 a, long3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator-(long3_mt4 a, long_mt4 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator-(long_mt4 a, long3_mt4 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator*(long3_mt4 a, long3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator*(long3_mt4 a, long_mt4 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator*(long_mt4 a, long3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator*(long3_mt4 a, long b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator*(long a, long3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator/(long3_mt4 a, long3_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator/(long_mt4 a, long3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator/(long3_mt4 a, long_mt4 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator/(long a, long3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator/(long3_mt4 a, long b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator%(long3_mt4 a, long3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator%(long_mt4 a, long3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator%(long3_mt4 a, long_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator%(long a, long3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator%(long3_mt4 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator++(long3_mt4 a) => a + long_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator--(long3_mt4 a) => a - long_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 abs([This] long3_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 sign([This] long3_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 min([This] long3_mt4 a, long3_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 max([This] long3_mt4 a, long3_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 clamp([This] long3_mt4 v, long3_mt4 min, long3_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 fma([This] long3_mt4 a, long3_mt4 b, long3_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 fms([This] long3_mt4 a, long3_mt4 b, long3_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 fnma([This] long3_mt4 a, long3_mt4 b, long3_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 fsm([This] long3_mt4 c, long3_mt4 a, long3_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 fam([This] long3_mt4 c, long3_mt4 a, long3_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 mad([This] long3_mt4 a, long3_mt4 b, long3_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 lerp(long3_mt4 start, long3_mt4 end, [This] long3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 lerp(long3_mt4 start, long3_mt4 end, [This] long t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 lerp(long start, long end, [This] long3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 unlerp([This] long3_mt4 a, long3_mt4 start, long3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 unlerp([This] long a, long3_mt4 start, long3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 unlerp([This] long3_mt4 a, long start, long end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 remap([This] long3_mt4 a, long3_mt4 srcStart, long3_mt4 srcEnd, long3_mt4 dstStart, long3_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 remap([This] long3_mt4 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 square([This] long3_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 dot([This] long3_mt4 a, long3_mt4 b)
+    public static ulong_mt dot([This] ulong3_mt a, ulong3_mt b)
     {
         // a.x * b.x + a.y * b.y + a.z * b.z
         return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
     }
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 cross([This] long3_mt4 a, long3_mt4 b)
+    public static ulong3_mt cross([This] ulong3_mt a, ulong3_mt b)
     {
         // (a * b.yzx - a.yzx * b).yzx;
         return fnma(a.yzx, b, a * b.yzx).yzx;
     }
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 lengthsq([This] long3_mt4 a) => dot(a, a);
+    public static ulong_mt lengthsq([This] ulong3_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 distancesq([This] long3_mt4 a, long3_mt4 b) => lengthsq(b - a);
+    public static ulong_mt distancesq([This] ulong3_mt a, ulong3_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 csum([This] long3_mt4 a) => a.x + a.y + a.z;
+    public static ulong_mt csum([This] ulong3_mt a) => a.x + a.y + a.z;
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 cmin([This] long3_mt4 a) => a.x.min(a.y).min(a.z);
+    public static ulong_mt cmin([This] ulong3_mt a) => a.x.min(a.y).min(a.z);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 cmax([This] long3_mt4 a) => a.x.max(a.y).max(a.z);
+    public static ulong_mt cmax([This] ulong3_mt a) => a.x.max(a.y).max(a.z);
 
 }
 
-#endregion // long3_mt4
-#region long3_mt8
+#endregion // ulong3_mt
+#region ulong4_mt
 
-public partial struct long3_mt8
+public partial struct ulong4_mt
 {
     #region Constants
 
-    public static long3_mt8 Zero
+    public static ulong4_mt Zero
     {
         [MethodImpl(256 | 512)]
         get => default;
     }
 
-    public static long3_mt8 One
+    public static ulong4_mt One
     {
         [MethodImpl(256 | 512)]
-        get => new(1L);
+        get => new(1UL);
     }
 
-    public static long3_mt8 Two
+    public static ulong4_mt Two
     {
         [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -9882,76 +4221,76 @@ public partial struct long3_mt8
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator-(long3_mt8 a) => new(-a.x, -a.y, -a.z);
+    public static ulong4_mt operator-(ulong4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator+(long3_mt8 a, long3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+    public static ulong4_mt operator+(ulong4_mt a, ulong4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator+(long3_mt8 a, long_mt8 b) => new(a.x + b, a.y + b, a.z + b);
+    public static ulong4_mt operator+(ulong4_mt a, ulong_mt b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator+(long_mt8 a, long3_mt8 b) => new(a + b.x, a + b.y, a + b.z);
+    public static ulong4_mt operator+(ulong_mt a, ulong4_mt b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator-(long3_mt8 a, long3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+    public static ulong4_mt operator-(ulong4_mt a, ulong4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator-(long3_mt8 a, long_mt8 b) => new(a.x - b, a.y - b, a.z - b);
+    public static ulong4_mt operator-(ulong4_mt a, ulong_mt b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator-(long_mt8 a, long3_mt8 b) => new(a - b.x, a - b.y, a - b.z);
+    public static ulong4_mt operator-(ulong_mt a, ulong4_mt b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator*(long3_mt8 a, long3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+    public static ulong4_mt operator*(ulong4_mt a, ulong4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator*(long3_mt8 a, long_mt8 b) => new(a.x * b, a.y * b, a.z * b);
+    public static ulong4_mt operator*(ulong4_mt a, ulong_mt b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator*(long_mt8 a, long3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
+    public static ulong4_mt operator*(ulong_mt a, ulong4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator*(long3_mt8 a, long b) => new(a.x * b, a.y * b, a.z * b);
+    public static ulong4_mt operator*(ulong4_mt a, ulong b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator*(long a, long3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
+    public static ulong4_mt operator*(ulong a, ulong4_mt b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator/(long3_mt8 a, long3_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
+    public static ulong4_mt operator/(ulong4_mt a, ulong4_mt b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator/(long_mt8 a, long3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
+    public static ulong4_mt operator/(ulong_mt a, ulong4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator/(long3_mt8 a, long_mt8 b) => new(a.x / b, a.y / b, a.z / b);
+    public static ulong4_mt operator/(ulong4_mt a, ulong_mt b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator/(long a, long3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
+    public static ulong4_mt operator/(ulong a, ulong4_mt b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator/(long3_mt8 a, long b) => new(a.x / b, a.y / b, a.z / b);
+    public static ulong4_mt operator/(ulong4_mt a, ulong b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator%(long3_mt8 a, long3_mt8 b) => a - (a / b) * b;
+    public static ulong4_mt operator%(ulong4_mt a, ulong4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator%(long_mt8 a, long3_mt8 b) => a - (a / b) * b;
+    public static ulong4_mt operator%(ulong_mt a, ulong4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator%(long3_mt8 a, long_mt8 b) => a - (a / b) * b;
+    public static ulong4_mt operator%(ulong4_mt a, ulong_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator%(long a, long3_mt8 b) => a - (a / b) * b;
+    public static ulong4_mt operator%(ulong a, ulong4_mt b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator%(long3_mt8 a, long b) => a - (a / b) * b;
+    public static ulong4_mt operator%(ulong4_mt a, ulong b) => a - (a / b) * b;
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator++(long3_mt8 a) => a + long_mt8.One;
+    public static ulong4_mt operator++(ulong4_mt a) => a + ulong_mt.One;
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator--(long3_mt8 a) => a - long_mt8.One;
+    public static ulong4_mt operator--(ulong4_mt a) => a - ulong_mt.One;
 
     #endregion // Operators
 }
@@ -9960,19 +4299,19 @@ public partial struct long3_mt8
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static long3_mt8 abs([This] long3_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z));
+    public static ulong4_mt abs([This] ulong4_mt a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 sign([This] long3_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z));
+    public static ulong4_mt sign([This] ulong4_mt a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 min([This] long3_mt8 a, long3_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
+    public static ulong4_mt min([This] ulong4_mt a, ulong4_mt b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 max([This] long3_mt8 a, long3_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
+    public static ulong4_mt max([This] ulong4_mt a, ulong4_mt b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 clamp([This] long3_mt8 v, long3_mt8 min, long3_mt8 max) => math_mt.max(min, math_mt.min(max, v));
+    public static ulong4_mt clamp([This] ulong4_mt v, ulong4_mt min, ulong4_mt max) => math_mt.max(min, math_mt.min(max, v));
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9982,7 +4321,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 fma([This] long3_mt8 a, long3_mt8 b, long3_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
+    public static ulong4_mt fma([This] ulong4_mt a, ulong4_mt b, ulong4_mt c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Subtraction and Multiplication
@@ -9992,7 +4331,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 fms([This] long3_mt8 a, long3_mt8 b, long3_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
+    public static ulong4_mt fms([This] ulong4_mt a, ulong4_mt b, ulong4_mt c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -10002,7 +4341,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 fnma([This] long3_mt8 a, long3_mt8 b, long3_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
+    public static ulong4_mt fnma([This] ulong4_mt a, ulong4_mt b, ulong4_mt c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
 
     /// <summary>
     /// Fusion Multiplication and Subtraction
@@ -10012,7 +4351,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 fsm([This] long3_mt8 c, long3_mt8 a, long3_mt8 b) => fnma(a, b, c);
+    public static ulong4_mt fsm([This] ulong4_mt c, ulong4_mt a, ulong4_mt b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -10022,7 +4361,7 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 fam([This] long3_mt8 c, long3_mt8 a, long3_mt8 b) => fma(a, b, c);
+    public static ulong4_mt fam([This] ulong4_mt c, ulong4_mt a, ulong4_mt b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -10032,3275 +4371,68 @@ public static partial class math_mt
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 mad([This] long3_mt8 a, long3_mt8 b, long3_mt8 c) => fma(a, b, c);
+    public static ulong4_mt mad([This] ulong4_mt a, ulong4_mt b, ulong4_mt c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 lerp(long3_mt8 start, long3_mt8 end, [This] long3_mt8 t)
+    public static ulong4_mt lerp(ulong4_mt start, ulong4_mt end, [This] ulong4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 lerp(long3_mt8 start, long3_mt8 end, [This] long t)
+    public static ulong4_mt lerp(ulong4_mt start, ulong4_mt end, [This] ulong t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 lerp(long start, long end, [This] long3_mt8 t)
+    public static ulong4_mt lerp(ulong start, ulong end, [This] ulong4_mt t)
     {
         return fma(t, end - start, start);
     }
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 unlerp([This] long3_mt8 a, long3_mt8 start, long3_mt8 end) => (a - start) / (end - start);
+    public static ulong4_mt unlerp([This] ulong4_mt a, ulong4_mt start, ulong4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 unlerp([This] long a, long3_mt8 start, long3_mt8 end) => (a - start) / (end - start);
+    public static ulong4_mt unlerp([This] ulong a, ulong4_mt start, ulong4_mt end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 unlerp([This] long3_mt8 a, long start, long end) => (a - start) / (end - start);
+    public static ulong4_mt unlerp([This] ulong4_mt a, ulong start, ulong end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 remap([This] long3_mt8 a, long3_mt8 srcStart, long3_mt8 srcEnd, long3_mt8 dstStart, long3_mt8 dstEnd) => 
+    public static ulong4_mt remap([This] ulong4_mt a, ulong4_mt srcStart, ulong4_mt srcEnd, ulong4_mt dstStart, ulong4_mt dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 remap([This] long3_mt8 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
+    public static ulong4_mt remap([This] ulong4_mt a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 square([This] long3_mt8 a) => a * a;
+    public static ulong4_mt square([This] ulong4_mt a) => a * a;
 
     [MethodImpl(256 | 512)]
-    public static long_mt8 dot([This] long3_mt8 a, long3_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 cross([This] long3_mt8 a, long3_mt8 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 lengthsq([This] long3_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 distancesq([This] long3_mt8 a, long3_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 csum([This] long3_mt8 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 cmin([This] long3_mt8 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 cmax([This] long3_mt8 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // long3_mt8
-#region long3_mt16
-
-public partial struct long3_mt16
-{
-    #region Constants
-
-    public static long3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator-(long3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator+(long3_mt16 a, long3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator+(long3_mt16 a, long_mt16 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator+(long_mt16 a, long3_mt16 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator-(long3_mt16 a, long3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator-(long3_mt16 a, long_mt16 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator-(long_mt16 a, long3_mt16 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator*(long3_mt16 a, long3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator*(long3_mt16 a, long_mt16 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator*(long_mt16 a, long3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator*(long3_mt16 a, long b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator*(long a, long3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator/(long3_mt16 a, long3_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator/(long_mt16 a, long3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator/(long3_mt16 a, long_mt16 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator/(long a, long3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator/(long3_mt16 a, long b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator%(long3_mt16 a, long3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator%(long_mt16 a, long3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator%(long3_mt16 a, long_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator%(long a, long3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator%(long3_mt16 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator++(long3_mt16 a) => a + long_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator--(long3_mt16 a) => a - long_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 abs([This] long3_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 sign([This] long3_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 min([This] long3_mt16 a, long3_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 max([This] long3_mt16 a, long3_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 clamp([This] long3_mt16 v, long3_mt16 min, long3_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 fma([This] long3_mt16 a, long3_mt16 b, long3_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 fms([This] long3_mt16 a, long3_mt16 b, long3_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 fnma([This] long3_mt16 a, long3_mt16 b, long3_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 fsm([This] long3_mt16 c, long3_mt16 a, long3_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 fam([This] long3_mt16 c, long3_mt16 a, long3_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 mad([This] long3_mt16 a, long3_mt16 b, long3_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 lerp(long3_mt16 start, long3_mt16 end, [This] long3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 lerp(long3_mt16 start, long3_mt16 end, [This] long t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 lerp(long start, long end, [This] long3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 unlerp([This] long3_mt16 a, long3_mt16 start, long3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 unlerp([This] long a, long3_mt16 start, long3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 unlerp([This] long3_mt16 a, long start, long end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 remap([This] long3_mt16 a, long3_mt16 srcStart, long3_mt16 srcEnd, long3_mt16 dstStart, long3_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 remap([This] long3_mt16 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 square([This] long3_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 dot([This] long3_mt16 a, long3_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 cross([This] long3_mt16 a, long3_mt16 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 lengthsq([This] long3_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 distancesq([This] long3_mt16 a, long3_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 csum([This] long3_mt16 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 cmin([This] long3_mt16 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 cmax([This] long3_mt16 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // long3_mt16
-#region long4_mt4
-
-public partial struct long4_mt4
-{
-    #region Constants
-
-    public static long4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator-(long4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator+(long4_mt4 a, long4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator+(long4_mt4 a, long_mt4 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator+(long_mt4 a, long4_mt4 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator-(long4_mt4 a, long4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator-(long4_mt4 a, long_mt4 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator-(long_mt4 a, long4_mt4 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator*(long4_mt4 a, long4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator*(long4_mt4 a, long_mt4 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator*(long_mt4 a, long4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator*(long4_mt4 a, long b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator*(long a, long4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator/(long4_mt4 a, long4_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator/(long_mt4 a, long4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator/(long4_mt4 a, long_mt4 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator/(long a, long4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator/(long4_mt4 a, long b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator%(long4_mt4 a, long4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator%(long_mt4 a, long4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator%(long4_mt4 a, long_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator%(long a, long4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator%(long4_mt4 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator++(long4_mt4 a) => a + long_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator--(long4_mt4 a) => a - long_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 abs([This] long4_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 sign([This] long4_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 min([This] long4_mt4 a, long4_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 max([This] long4_mt4 a, long4_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 clamp([This] long4_mt4 v, long4_mt4 min, long4_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 fma([This] long4_mt4 a, long4_mt4 b, long4_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 fms([This] long4_mt4 a, long4_mt4 b, long4_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 fnma([This] long4_mt4 a, long4_mt4 b, long4_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 fsm([This] long4_mt4 c, long4_mt4 a, long4_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 fam([This] long4_mt4 c, long4_mt4 a, long4_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 mad([This] long4_mt4 a, long4_mt4 b, long4_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 lerp(long4_mt4 start, long4_mt4 end, [This] long4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 lerp(long4_mt4 start, long4_mt4 end, [This] long t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 lerp(long start, long end, [This] long4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 unlerp([This] long4_mt4 a, long4_mt4 start, long4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 unlerp([This] long a, long4_mt4 start, long4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 unlerp([This] long4_mt4 a, long start, long end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 remap([This] long4_mt4 a, long4_mt4 srcStart, long4_mt4 srcEnd, long4_mt4 dstStart, long4_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 remap([This] long4_mt4 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 square([This] long4_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 dot([This] long4_mt4 a, long4_mt4 b)
+    public static ulong_mt dot([This] ulong4_mt a, ulong4_mt b)
     {
         // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
         return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
     }
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 lengthsq([This] long4_mt4 a) => dot(a, a);
+    public static ulong_mt lengthsq([This] ulong4_mt a) => dot(a, a);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 distancesq([This] long4_mt4 a, long4_mt4 b) => lengthsq(b - a);
+    public static ulong_mt distancesq([This] ulong4_mt a, ulong4_mt b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 csum([This] long4_mt4 a) => a.x + a.y + a.z + a.w;
+    public static ulong_mt csum([This] ulong4_mt a) => a.x + a.y + a.z + a.w;
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 cmin([This] long4_mt4 a) => a.x.min(a.y).min(a.z).min(a.w);
+    public static ulong_mt cmin([This] ulong4_mt a) => a.x.min(a.y).min(a.z).min(a.w);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 cmax([This] long4_mt4 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // long4_mt4
-#region long4_mt8
-
-public partial struct long4_mt8
-{
-    #region Constants
-
-    public static long4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator-(long4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator+(long4_mt8 a, long4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator+(long4_mt8 a, long_mt8 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator+(long_mt8 a, long4_mt8 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator-(long4_mt8 a, long4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator-(long4_mt8 a, long_mt8 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator-(long_mt8 a, long4_mt8 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator*(long4_mt8 a, long4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator*(long4_mt8 a, long_mt8 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator*(long_mt8 a, long4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator*(long4_mt8 a, long b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator*(long a, long4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator/(long4_mt8 a, long4_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator/(long_mt8 a, long4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator/(long4_mt8 a, long_mt8 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator/(long a, long4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator/(long4_mt8 a, long b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator%(long4_mt8 a, long4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator%(long_mt8 a, long4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator%(long4_mt8 a, long_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator%(long a, long4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator%(long4_mt8 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator++(long4_mt8 a) => a + long_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator--(long4_mt8 a) => a - long_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 abs([This] long4_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 sign([This] long4_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 min([This] long4_mt8 a, long4_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 max([This] long4_mt8 a, long4_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 clamp([This] long4_mt8 v, long4_mt8 min, long4_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 fma([This] long4_mt8 a, long4_mt8 b, long4_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 fms([This] long4_mt8 a, long4_mt8 b, long4_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 fnma([This] long4_mt8 a, long4_mt8 b, long4_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 fsm([This] long4_mt8 c, long4_mt8 a, long4_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 fam([This] long4_mt8 c, long4_mt8 a, long4_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 mad([This] long4_mt8 a, long4_mt8 b, long4_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 lerp(long4_mt8 start, long4_mt8 end, [This] long4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 lerp(long4_mt8 start, long4_mt8 end, [This] long t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 lerp(long start, long end, [This] long4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 unlerp([This] long4_mt8 a, long4_mt8 start, long4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 unlerp([This] long a, long4_mt8 start, long4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 unlerp([This] long4_mt8 a, long start, long end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 remap([This] long4_mt8 a, long4_mt8 srcStart, long4_mt8 srcEnd, long4_mt8 dstStart, long4_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 remap([This] long4_mt8 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 square([This] long4_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 dot([This] long4_mt8 a, long4_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 lengthsq([This] long4_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 distancesq([This] long4_mt8 a, long4_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 csum([This] long4_mt8 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 cmin([This] long4_mt8 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 cmax([This] long4_mt8 a) => a.x.max(a.y).max(a.z).max(a.w);
+    public static ulong_mt cmax([This] ulong4_mt a) => a.x.max(a.y).max(a.z).max(a.w);
 
 }
 
-#endregion // long4_mt8
-#region long4_mt16
-
-public partial struct long4_mt16
-{
-    #region Constants
-
-    public static long4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator-(long4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator+(long4_mt16 a, long4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator+(long4_mt16 a, long_mt16 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator+(long_mt16 a, long4_mt16 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator-(long4_mt16 a, long4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator-(long4_mt16 a, long_mt16 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator-(long_mt16 a, long4_mt16 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator*(long4_mt16 a, long4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator*(long4_mt16 a, long_mt16 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator*(long_mt16 a, long4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator*(long4_mt16 a, long b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator*(long a, long4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator/(long4_mt16 a, long4_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator/(long_mt16 a, long4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator/(long4_mt16 a, long_mt16 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator/(long a, long4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator/(long4_mt16 a, long b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator%(long4_mt16 a, long4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator%(long_mt16 a, long4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator%(long4_mt16 a, long_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator%(long a, long4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator%(long4_mt16 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator++(long4_mt16 a) => a + long_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator--(long4_mt16 a) => a - long_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 abs([This] long4_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 sign([This] long4_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 min([This] long4_mt16 a, long4_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 max([This] long4_mt16 a, long4_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 clamp([This] long4_mt16 v, long4_mt16 min, long4_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 fma([This] long4_mt16 a, long4_mt16 b, long4_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 fms([This] long4_mt16 a, long4_mt16 b, long4_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 fnma([This] long4_mt16 a, long4_mt16 b, long4_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 fsm([This] long4_mt16 c, long4_mt16 a, long4_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 fam([This] long4_mt16 c, long4_mt16 a, long4_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 mad([This] long4_mt16 a, long4_mt16 b, long4_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 lerp(long4_mt16 start, long4_mt16 end, [This] long4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 lerp(long4_mt16 start, long4_mt16 end, [This] long t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 lerp(long start, long end, [This] long4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 unlerp([This] long4_mt16 a, long4_mt16 start, long4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 unlerp([This] long a, long4_mt16 start, long4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 unlerp([This] long4_mt16 a, long start, long end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 remap([This] long4_mt16 a, long4_mt16 srcStart, long4_mt16 srcEnd, long4_mt16 dstStart, long4_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 remap([This] long4_mt16 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 square([This] long4_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 dot([This] long4_mt16 a, long4_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 lengthsq([This] long4_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 distancesq([This] long4_mt16 a, long4_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 csum([This] long4_mt16 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 cmin([This] long4_mt16 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 cmax([This] long4_mt16 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // long4_mt16
-#region ulong2_mt4
-
-public partial struct ulong2_mt4
-{
-    #region Constants
-
-    public static ulong2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong2_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong2_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator-(ulong2_mt4 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator+(ulong2_mt4 a, ulong2_mt4 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator+(ulong2_mt4 a, ulong_mt4 b) => new(a.x + b, a.y + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator+(ulong_mt4 a, ulong2_mt4 b) => new(a + b.x, a + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator-(ulong2_mt4 a, ulong2_mt4 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator-(ulong2_mt4 a, ulong_mt4 b) => new(a.x - b, a.y - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator-(ulong_mt4 a, ulong2_mt4 b) => new(a - b.x, a - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator*(ulong2_mt4 a, ulong2_mt4 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator*(ulong2_mt4 a, ulong_mt4 b) => new(a.x * b, a.y * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator*(ulong_mt4 a, ulong2_mt4 b) => new(a * b.x, a * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator*(ulong2_mt4 a, ulong b) => new(a.x * b, a.y * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator*(ulong a, ulong2_mt4 b) => new(a * b.x, a * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator/(ulong2_mt4 a, ulong2_mt4 b) => new(a.x / b.x, a.y / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator/(ulong_mt4 a, ulong2_mt4 b) => new(a / b.x, a / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator/(ulong2_mt4 a, ulong_mt4 b) => new(a.x / b, a.y / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator/(ulong a, ulong2_mt4 b) => new(a / b.x, a / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator/(ulong2_mt4 a, ulong b) => new(a.x / b, a.y / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator%(ulong2_mt4 a, ulong2_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator%(ulong_mt4 a, ulong2_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator%(ulong2_mt4 a, ulong_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator%(ulong a, ulong2_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator%(ulong2_mt4 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator++(ulong2_mt4 a) => a + ulong_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator--(ulong2_mt4 a) => a - ulong_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 abs([This] ulong2_mt4 a) => new(abs(a.x), abs(a.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 sign([This] ulong2_mt4 a) => new(sign(a.x), sign(a.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 min([This] ulong2_mt4 a, ulong2_mt4 b) => new(min(a.x, b.x), min(a.y, b.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 max([This] ulong2_mt4 a, ulong2_mt4 b) => new(max(a.x, b.x), max(a.y, b.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 clamp([This] ulong2_mt4 v, ulong2_mt4 min, ulong2_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 fma([This] ulong2_mt4 a, ulong2_mt4 b, ulong2_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 fms([This] ulong2_mt4 a, ulong2_mt4 b, ulong2_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 fnma([This] ulong2_mt4 a, ulong2_mt4 b, ulong2_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 fsm([This] ulong2_mt4 c, ulong2_mt4 a, ulong2_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 fam([This] ulong2_mt4 c, ulong2_mt4 a, ulong2_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 mad([This] ulong2_mt4 a, ulong2_mt4 b, ulong2_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 lerp(ulong2_mt4 start, ulong2_mt4 end, [This] ulong2_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 lerp(ulong2_mt4 start, ulong2_mt4 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 lerp(ulong start, ulong end, [This] ulong2_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 unlerp([This] ulong2_mt4 a, ulong2_mt4 start, ulong2_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 unlerp([This] ulong a, ulong2_mt4 start, ulong2_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 unlerp([This] ulong2_mt4 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 remap([This] ulong2_mt4 a, ulong2_mt4 srcStart, ulong2_mt4 srcEnd, ulong2_mt4 dstStart, ulong2_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 remap([This] ulong2_mt4 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 square([This] ulong2_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 dot([This] ulong2_mt4 a, ulong2_mt4 b)
-    {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 lengthsq([This] ulong2_mt4 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 distancesq([This] ulong2_mt4 a, ulong2_mt4 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 csum([This] ulong2_mt4 a) => a.x + a.y;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 cmin([This] ulong2_mt4 a) => a.x.min(a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 cmax([This] ulong2_mt4 a) => a.x.max(a.y);
-
-}
-
-#endregion // ulong2_mt4
-#region ulong2_mt8
-
-public partial struct ulong2_mt8
-{
-    #region Constants
-
-    public static ulong2_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong2_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong2_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator-(ulong2_mt8 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator+(ulong2_mt8 a, ulong2_mt8 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator+(ulong2_mt8 a, ulong_mt8 b) => new(a.x + b, a.y + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator+(ulong_mt8 a, ulong2_mt8 b) => new(a + b.x, a + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator-(ulong2_mt8 a, ulong2_mt8 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator-(ulong2_mt8 a, ulong_mt8 b) => new(a.x - b, a.y - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator-(ulong_mt8 a, ulong2_mt8 b) => new(a - b.x, a - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator*(ulong2_mt8 a, ulong2_mt8 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator*(ulong2_mt8 a, ulong_mt8 b) => new(a.x * b, a.y * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator*(ulong_mt8 a, ulong2_mt8 b) => new(a * b.x, a * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator*(ulong2_mt8 a, ulong b) => new(a.x * b, a.y * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator*(ulong a, ulong2_mt8 b) => new(a * b.x, a * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator/(ulong2_mt8 a, ulong2_mt8 b) => new(a.x / b.x, a.y / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator/(ulong_mt8 a, ulong2_mt8 b) => new(a / b.x, a / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator/(ulong2_mt8 a, ulong_mt8 b) => new(a.x / b, a.y / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator/(ulong a, ulong2_mt8 b) => new(a / b.x, a / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator/(ulong2_mt8 a, ulong b) => new(a.x / b, a.y / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator%(ulong2_mt8 a, ulong2_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator%(ulong_mt8 a, ulong2_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator%(ulong2_mt8 a, ulong_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator%(ulong a, ulong2_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator%(ulong2_mt8 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator++(ulong2_mt8 a) => a + ulong_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator--(ulong2_mt8 a) => a - ulong_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 abs([This] ulong2_mt8 a) => new(abs(a.x), abs(a.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 sign([This] ulong2_mt8 a) => new(sign(a.x), sign(a.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 min([This] ulong2_mt8 a, ulong2_mt8 b) => new(min(a.x, b.x), min(a.y, b.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 max([This] ulong2_mt8 a, ulong2_mt8 b) => new(max(a.x, b.x), max(a.y, b.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 clamp([This] ulong2_mt8 v, ulong2_mt8 min, ulong2_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 fma([This] ulong2_mt8 a, ulong2_mt8 b, ulong2_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 fms([This] ulong2_mt8 a, ulong2_mt8 b, ulong2_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 fnma([This] ulong2_mt8 a, ulong2_mt8 b, ulong2_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 fsm([This] ulong2_mt8 c, ulong2_mt8 a, ulong2_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 fam([This] ulong2_mt8 c, ulong2_mt8 a, ulong2_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 mad([This] ulong2_mt8 a, ulong2_mt8 b, ulong2_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 lerp(ulong2_mt8 start, ulong2_mt8 end, [This] ulong2_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 lerp(ulong2_mt8 start, ulong2_mt8 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 lerp(ulong start, ulong end, [This] ulong2_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 unlerp([This] ulong2_mt8 a, ulong2_mt8 start, ulong2_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 unlerp([This] ulong a, ulong2_mt8 start, ulong2_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 unlerp([This] ulong2_mt8 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 remap([This] ulong2_mt8 a, ulong2_mt8 srcStart, ulong2_mt8 srcEnd, ulong2_mt8 dstStart, ulong2_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 remap([This] ulong2_mt8 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 square([This] ulong2_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 dot([This] ulong2_mt8 a, ulong2_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 lengthsq([This] ulong2_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 distancesq([This] ulong2_mt8 a, ulong2_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 csum([This] ulong2_mt8 a) => a.x + a.y;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 cmin([This] ulong2_mt8 a) => a.x.min(a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 cmax([This] ulong2_mt8 a) => a.x.max(a.y);
-
-}
-
-#endregion // ulong2_mt8
-#region ulong2_mt16
-
-public partial struct ulong2_mt16
-{
-    #region Constants
-
-    public static ulong2_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong2_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong2_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator-(ulong2_mt16 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator+(ulong2_mt16 a, ulong2_mt16 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator+(ulong2_mt16 a, ulong_mt16 b) => new(a.x + b, a.y + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator+(ulong_mt16 a, ulong2_mt16 b) => new(a + b.x, a + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator-(ulong2_mt16 a, ulong2_mt16 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator-(ulong2_mt16 a, ulong_mt16 b) => new(a.x - b, a.y - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator-(ulong_mt16 a, ulong2_mt16 b) => new(a - b.x, a - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator*(ulong2_mt16 a, ulong2_mt16 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator*(ulong2_mt16 a, ulong_mt16 b) => new(a.x * b, a.y * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator*(ulong_mt16 a, ulong2_mt16 b) => new(a * b.x, a * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator*(ulong2_mt16 a, ulong b) => new(a.x * b, a.y * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator*(ulong a, ulong2_mt16 b) => new(a * b.x, a * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator/(ulong2_mt16 a, ulong2_mt16 b) => new(a.x / b.x, a.y / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator/(ulong_mt16 a, ulong2_mt16 b) => new(a / b.x, a / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator/(ulong2_mt16 a, ulong_mt16 b) => new(a.x / b, a.y / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator/(ulong a, ulong2_mt16 b) => new(a / b.x, a / b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator/(ulong2_mt16 a, ulong b) => new(a.x / b, a.y / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator%(ulong2_mt16 a, ulong2_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator%(ulong_mt16 a, ulong2_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator%(ulong2_mt16 a, ulong_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator%(ulong a, ulong2_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator%(ulong2_mt16 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator++(ulong2_mt16 a) => a + ulong_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator--(ulong2_mt16 a) => a - ulong_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 abs([This] ulong2_mt16 a) => new(abs(a.x), abs(a.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 sign([This] ulong2_mt16 a) => new(sign(a.x), sign(a.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 min([This] ulong2_mt16 a, ulong2_mt16 b) => new(min(a.x, b.x), min(a.y, b.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 max([This] ulong2_mt16 a, ulong2_mt16 b) => new(max(a.x, b.x), max(a.y, b.y));
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 clamp([This] ulong2_mt16 v, ulong2_mt16 min, ulong2_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 fma([This] ulong2_mt16 a, ulong2_mt16 b, ulong2_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 fms([This] ulong2_mt16 a, ulong2_mt16 b, ulong2_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 fnma([This] ulong2_mt16 a, ulong2_mt16 b, ulong2_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 fsm([This] ulong2_mt16 c, ulong2_mt16 a, ulong2_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 fam([This] ulong2_mt16 c, ulong2_mt16 a, ulong2_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 mad([This] ulong2_mt16 a, ulong2_mt16 b, ulong2_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 lerp(ulong2_mt16 start, ulong2_mt16 end, [This] ulong2_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 lerp(ulong2_mt16 start, ulong2_mt16 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 lerp(ulong start, ulong end, [This] ulong2_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 unlerp([This] ulong2_mt16 a, ulong2_mt16 start, ulong2_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 unlerp([This] ulong a, ulong2_mt16 start, ulong2_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 unlerp([This] ulong2_mt16 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 remap([This] ulong2_mt16 a, ulong2_mt16 srcStart, ulong2_mt16 srcEnd, ulong2_mt16 dstStart, ulong2_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 remap([This] ulong2_mt16 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 square([This] ulong2_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 dot([This] ulong2_mt16 a, ulong2_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y
-        return fma(a.y, b.y, a.x * b.x);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 lengthsq([This] ulong2_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 distancesq([This] ulong2_mt16 a, ulong2_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 csum([This] ulong2_mt16 a) => a.x + a.y;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 cmin([This] ulong2_mt16 a) => a.x.min(a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 cmax([This] ulong2_mt16 a) => a.x.max(a.y);
-
-}
-
-#endregion // ulong2_mt16
-#region ulong3_mt4
-
-public partial struct ulong3_mt4
-{
-    #region Constants
-
-    public static ulong3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator-(ulong3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator+(ulong3_mt4 a, ulong3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator+(ulong3_mt4 a, ulong_mt4 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator+(ulong_mt4 a, ulong3_mt4 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator-(ulong3_mt4 a, ulong3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator-(ulong3_mt4 a, ulong_mt4 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator-(ulong_mt4 a, ulong3_mt4 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator*(ulong3_mt4 a, ulong3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator*(ulong3_mt4 a, ulong_mt4 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator*(ulong_mt4 a, ulong3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator*(ulong3_mt4 a, ulong b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator*(ulong a, ulong3_mt4 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator/(ulong3_mt4 a, ulong3_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator/(ulong_mt4 a, ulong3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator/(ulong3_mt4 a, ulong_mt4 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator/(ulong a, ulong3_mt4 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator/(ulong3_mt4 a, ulong b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator%(ulong3_mt4 a, ulong3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator%(ulong_mt4 a, ulong3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator%(ulong3_mt4 a, ulong_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator%(ulong a, ulong3_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator%(ulong3_mt4 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator++(ulong3_mt4 a) => a + ulong_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator--(ulong3_mt4 a) => a - ulong_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 abs([This] ulong3_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 sign([This] ulong3_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 min([This] ulong3_mt4 a, ulong3_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 max([This] ulong3_mt4 a, ulong3_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 clamp([This] ulong3_mt4 v, ulong3_mt4 min, ulong3_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 fma([This] ulong3_mt4 a, ulong3_mt4 b, ulong3_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 fms([This] ulong3_mt4 a, ulong3_mt4 b, ulong3_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 fnma([This] ulong3_mt4 a, ulong3_mt4 b, ulong3_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 fsm([This] ulong3_mt4 c, ulong3_mt4 a, ulong3_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 fam([This] ulong3_mt4 c, ulong3_mt4 a, ulong3_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 mad([This] ulong3_mt4 a, ulong3_mt4 b, ulong3_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 lerp(ulong3_mt4 start, ulong3_mt4 end, [This] ulong3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 lerp(ulong3_mt4 start, ulong3_mt4 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 lerp(ulong start, ulong end, [This] ulong3_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 unlerp([This] ulong3_mt4 a, ulong3_mt4 start, ulong3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 unlerp([This] ulong a, ulong3_mt4 start, ulong3_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 unlerp([This] ulong3_mt4 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 remap([This] ulong3_mt4 a, ulong3_mt4 srcStart, ulong3_mt4 srcEnd, ulong3_mt4 dstStart, ulong3_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 remap([This] ulong3_mt4 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 square([This] ulong3_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 dot([This] ulong3_mt4 a, ulong3_mt4 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 cross([This] ulong3_mt4 a, ulong3_mt4 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 lengthsq([This] ulong3_mt4 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 distancesq([This] ulong3_mt4 a, ulong3_mt4 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 csum([This] ulong3_mt4 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 cmin([This] ulong3_mt4 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 cmax([This] ulong3_mt4 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // ulong3_mt4
-#region ulong3_mt8
-
-public partial struct ulong3_mt8
-{
-    #region Constants
-
-    public static ulong3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator-(ulong3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator+(ulong3_mt8 a, ulong3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator+(ulong3_mt8 a, ulong_mt8 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator+(ulong_mt8 a, ulong3_mt8 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator-(ulong3_mt8 a, ulong3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator-(ulong3_mt8 a, ulong_mt8 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator-(ulong_mt8 a, ulong3_mt8 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator*(ulong3_mt8 a, ulong3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator*(ulong3_mt8 a, ulong_mt8 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator*(ulong_mt8 a, ulong3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator*(ulong3_mt8 a, ulong b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator*(ulong a, ulong3_mt8 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator/(ulong3_mt8 a, ulong3_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator/(ulong_mt8 a, ulong3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator/(ulong3_mt8 a, ulong_mt8 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator/(ulong a, ulong3_mt8 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator/(ulong3_mt8 a, ulong b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator%(ulong3_mt8 a, ulong3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator%(ulong_mt8 a, ulong3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator%(ulong3_mt8 a, ulong_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator%(ulong a, ulong3_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator%(ulong3_mt8 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator++(ulong3_mt8 a) => a + ulong_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator--(ulong3_mt8 a) => a - ulong_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 abs([This] ulong3_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 sign([This] ulong3_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 min([This] ulong3_mt8 a, ulong3_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 max([This] ulong3_mt8 a, ulong3_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 clamp([This] ulong3_mt8 v, ulong3_mt8 min, ulong3_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 fma([This] ulong3_mt8 a, ulong3_mt8 b, ulong3_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 fms([This] ulong3_mt8 a, ulong3_mt8 b, ulong3_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 fnma([This] ulong3_mt8 a, ulong3_mt8 b, ulong3_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 fsm([This] ulong3_mt8 c, ulong3_mt8 a, ulong3_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 fam([This] ulong3_mt8 c, ulong3_mt8 a, ulong3_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 mad([This] ulong3_mt8 a, ulong3_mt8 b, ulong3_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 lerp(ulong3_mt8 start, ulong3_mt8 end, [This] ulong3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 lerp(ulong3_mt8 start, ulong3_mt8 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 lerp(ulong start, ulong end, [This] ulong3_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 unlerp([This] ulong3_mt8 a, ulong3_mt8 start, ulong3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 unlerp([This] ulong a, ulong3_mt8 start, ulong3_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 unlerp([This] ulong3_mt8 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 remap([This] ulong3_mt8 a, ulong3_mt8 srcStart, ulong3_mt8 srcEnd, ulong3_mt8 dstStart, ulong3_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 remap([This] ulong3_mt8 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 square([This] ulong3_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 dot([This] ulong3_mt8 a, ulong3_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 cross([This] ulong3_mt8 a, ulong3_mt8 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 lengthsq([This] ulong3_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 distancesq([This] ulong3_mt8 a, ulong3_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 csum([This] ulong3_mt8 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 cmin([This] ulong3_mt8 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 cmax([This] ulong3_mt8 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // ulong3_mt8
-#region ulong3_mt16
-
-public partial struct ulong3_mt16
-{
-    #region Constants
-
-    public static ulong3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator-(ulong3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator+(ulong3_mt16 a, ulong3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator+(ulong3_mt16 a, ulong_mt16 b) => new(a.x + b, a.y + b, a.z + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator+(ulong_mt16 a, ulong3_mt16 b) => new(a + b.x, a + b.y, a + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator-(ulong3_mt16 a, ulong3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator-(ulong3_mt16 a, ulong_mt16 b) => new(a.x - b, a.y - b, a.z - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator-(ulong_mt16 a, ulong3_mt16 b) => new(a - b.x, a - b.y, a - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator*(ulong3_mt16 a, ulong3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator*(ulong3_mt16 a, ulong_mt16 b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator*(ulong_mt16 a, ulong3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator*(ulong3_mt16 a, ulong b) => new(a.x * b, a.y * b, a.z * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator*(ulong a, ulong3_mt16 b) => new(a * b.x, a * b.y, a * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator/(ulong3_mt16 a, ulong3_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator/(ulong_mt16 a, ulong3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator/(ulong3_mt16 a, ulong_mt16 b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator/(ulong a, ulong3_mt16 b) => new(a / b.x, a / b.y, a / b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator/(ulong3_mt16 a, ulong b) => new(a.x / b, a.y / b, a.z / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator%(ulong3_mt16 a, ulong3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator%(ulong_mt16 a, ulong3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator%(ulong3_mt16 a, ulong_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator%(ulong a, ulong3_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator%(ulong3_mt16 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator++(ulong3_mt16 a) => a + ulong_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator--(ulong3_mt16 a) => a - ulong_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 abs([This] ulong3_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 sign([This] ulong3_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 min([This] ulong3_mt16 a, ulong3_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 max([This] ulong3_mt16 a, ulong3_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z));
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 clamp([This] ulong3_mt16 v, ulong3_mt16 min, ulong3_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 fma([This] ulong3_mt16 a, ulong3_mt16 b, ulong3_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 fms([This] ulong3_mt16 a, ulong3_mt16 b, ulong3_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 fnma([This] ulong3_mt16 a, ulong3_mt16 b, ulong3_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 fsm([This] ulong3_mt16 c, ulong3_mt16 a, ulong3_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 fam([This] ulong3_mt16 c, ulong3_mt16 a, ulong3_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 mad([This] ulong3_mt16 a, ulong3_mt16 b, ulong3_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 lerp(ulong3_mt16 start, ulong3_mt16 end, [This] ulong3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 lerp(ulong3_mt16 start, ulong3_mt16 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 lerp(ulong start, ulong end, [This] ulong3_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 unlerp([This] ulong3_mt16 a, ulong3_mt16 start, ulong3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 unlerp([This] ulong a, ulong3_mt16 start, ulong3_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 unlerp([This] ulong3_mt16 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 remap([This] ulong3_mt16 a, ulong3_mt16 srcStart, ulong3_mt16 srcEnd, ulong3_mt16 dstStart, ulong3_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 remap([This] ulong3_mt16 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 square([This] ulong3_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 dot([This] ulong3_mt16 a, ulong3_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z
-        return fma(a.z, b.z, fma(a.y, b.y, a.x * b.x));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 cross([This] ulong3_mt16 a, ulong3_mt16 b)
-    {
-        // (a * b.yzx - a.yzx * b).yzx;
-        return fnma(a.yzx, b, a * b.yzx).yzx;
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 lengthsq([This] ulong3_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 distancesq([This] ulong3_mt16 a, ulong3_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 csum([This] ulong3_mt16 a) => a.x + a.y + a.z;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 cmin([This] ulong3_mt16 a) => a.x.min(a.y).min(a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 cmax([This] ulong3_mt16 a) => a.x.max(a.y).max(a.z);
-
-}
-
-#endregion // ulong3_mt16
-#region ulong4_mt4
-
-public partial struct ulong4_mt4
-{
-    #region Constants
-
-    public static ulong4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator-(ulong4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator+(ulong4_mt4 a, ulong4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator+(ulong4_mt4 a, ulong_mt4 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator+(ulong_mt4 a, ulong4_mt4 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator-(ulong4_mt4 a, ulong4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator-(ulong4_mt4 a, ulong_mt4 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator-(ulong_mt4 a, ulong4_mt4 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator*(ulong4_mt4 a, ulong4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator*(ulong4_mt4 a, ulong_mt4 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator*(ulong_mt4 a, ulong4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator*(ulong4_mt4 a, ulong b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator*(ulong a, ulong4_mt4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator/(ulong4_mt4 a, ulong4_mt4 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator/(ulong_mt4 a, ulong4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator/(ulong4_mt4 a, ulong_mt4 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator/(ulong a, ulong4_mt4 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator/(ulong4_mt4 a, ulong b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator%(ulong4_mt4 a, ulong4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator%(ulong_mt4 a, ulong4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator%(ulong4_mt4 a, ulong_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator%(ulong a, ulong4_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator%(ulong4_mt4 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator++(ulong4_mt4 a) => a + ulong_mt4.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator--(ulong4_mt4 a) => a - ulong_mt4.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 abs([This] ulong4_mt4 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 sign([This] ulong4_mt4 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 min([This] ulong4_mt4 a, ulong4_mt4 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 max([This] ulong4_mt4 a, ulong4_mt4 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 clamp([This] ulong4_mt4 v, ulong4_mt4 min, ulong4_mt4 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 fma([This] ulong4_mt4 a, ulong4_mt4 b, ulong4_mt4 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 fms([This] ulong4_mt4 a, ulong4_mt4 b, ulong4_mt4 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 fnma([This] ulong4_mt4 a, ulong4_mt4 b, ulong4_mt4 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 fsm([This] ulong4_mt4 c, ulong4_mt4 a, ulong4_mt4 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 fam([This] ulong4_mt4 c, ulong4_mt4 a, ulong4_mt4 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 mad([This] ulong4_mt4 a, ulong4_mt4 b, ulong4_mt4 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 lerp(ulong4_mt4 start, ulong4_mt4 end, [This] ulong4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 lerp(ulong4_mt4 start, ulong4_mt4 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 lerp(ulong start, ulong end, [This] ulong4_mt4 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 unlerp([This] ulong4_mt4 a, ulong4_mt4 start, ulong4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 unlerp([This] ulong a, ulong4_mt4 start, ulong4_mt4 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 unlerp([This] ulong4_mt4 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 remap([This] ulong4_mt4 a, ulong4_mt4 srcStart, ulong4_mt4 srcEnd, ulong4_mt4 dstStart, ulong4_mt4 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 remap([This] ulong4_mt4 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 square([This] ulong4_mt4 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 dot([This] ulong4_mt4 a, ulong4_mt4 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 lengthsq([This] ulong4_mt4 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 distancesq([This] ulong4_mt4 a, ulong4_mt4 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 csum([This] ulong4_mt4 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 cmin([This] ulong4_mt4 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 cmax([This] ulong4_mt4 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // ulong4_mt4
-#region ulong4_mt8
-
-public partial struct ulong4_mt8
-{
-    #region Constants
-
-    public static ulong4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator-(ulong4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator+(ulong4_mt8 a, ulong4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator+(ulong4_mt8 a, ulong_mt8 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator+(ulong_mt8 a, ulong4_mt8 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator-(ulong4_mt8 a, ulong4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator-(ulong4_mt8 a, ulong_mt8 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator-(ulong_mt8 a, ulong4_mt8 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator*(ulong4_mt8 a, ulong4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator*(ulong4_mt8 a, ulong_mt8 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator*(ulong_mt8 a, ulong4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator*(ulong4_mt8 a, ulong b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator*(ulong a, ulong4_mt8 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator/(ulong4_mt8 a, ulong4_mt8 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator/(ulong_mt8 a, ulong4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator/(ulong4_mt8 a, ulong_mt8 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator/(ulong a, ulong4_mt8 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator/(ulong4_mt8 a, ulong b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator%(ulong4_mt8 a, ulong4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator%(ulong_mt8 a, ulong4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator%(ulong4_mt8 a, ulong_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator%(ulong a, ulong4_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator%(ulong4_mt8 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator++(ulong4_mt8 a) => a + ulong_mt8.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator--(ulong4_mt8 a) => a - ulong_mt8.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 abs([This] ulong4_mt8 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 sign([This] ulong4_mt8 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 min([This] ulong4_mt8 a, ulong4_mt8 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 max([This] ulong4_mt8 a, ulong4_mt8 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 clamp([This] ulong4_mt8 v, ulong4_mt8 min, ulong4_mt8 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 fma([This] ulong4_mt8 a, ulong4_mt8 b, ulong4_mt8 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 fms([This] ulong4_mt8 a, ulong4_mt8 b, ulong4_mt8 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 fnma([This] ulong4_mt8 a, ulong4_mt8 b, ulong4_mt8 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 fsm([This] ulong4_mt8 c, ulong4_mt8 a, ulong4_mt8 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 fam([This] ulong4_mt8 c, ulong4_mt8 a, ulong4_mt8 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 mad([This] ulong4_mt8 a, ulong4_mt8 b, ulong4_mt8 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 lerp(ulong4_mt8 start, ulong4_mt8 end, [This] ulong4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 lerp(ulong4_mt8 start, ulong4_mt8 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 lerp(ulong start, ulong end, [This] ulong4_mt8 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 unlerp([This] ulong4_mt8 a, ulong4_mt8 start, ulong4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 unlerp([This] ulong a, ulong4_mt8 start, ulong4_mt8 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 unlerp([This] ulong4_mt8 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 remap([This] ulong4_mt8 a, ulong4_mt8 srcStart, ulong4_mt8 srcEnd, ulong4_mt8 dstStart, ulong4_mt8 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 remap([This] ulong4_mt8 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 square([This] ulong4_mt8 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 dot([This] ulong4_mt8 a, ulong4_mt8 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 lengthsq([This] ulong4_mt8 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 distancesq([This] ulong4_mt8 a, ulong4_mt8 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 csum([This] ulong4_mt8 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 cmin([This] ulong4_mt8 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 cmax([This] ulong4_mt8 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // ulong4_mt8
-#region ulong4_mt16
-
-public partial struct ulong4_mt16
-{
-    #region Constants
-
-    public static ulong4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
-    }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator-(ulong4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator+(ulong4_mt16 a, ulong4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator+(ulong4_mt16 a, ulong_mt16 b) => new(a.x + b, a.y + b, a.z + b, a.w + b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator+(ulong_mt16 a, ulong4_mt16 b) => new(a + b.x, a + b.y, a + b.z, a + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator-(ulong4_mt16 a, ulong4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator-(ulong4_mt16 a, ulong_mt16 b) => new(a.x - b, a.y - b, a.z - b, a.w - b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator-(ulong_mt16 a, ulong4_mt16 b) => new(a - b.x, a - b.y, a - b.z, a - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator*(ulong4_mt16 a, ulong4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator*(ulong4_mt16 a, ulong_mt16 b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator*(ulong_mt16 a, ulong4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator*(ulong4_mt16 a, ulong b) => new(a.x * b, a.y * b, a.z * b, a.w * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator*(ulong a, ulong4_mt16 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator/(ulong4_mt16 a, ulong4_mt16 b) => new(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator/(ulong_mt16 a, ulong4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator/(ulong4_mt16 a, ulong_mt16 b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator/(ulong a, ulong4_mt16 b) => new(a / b.x, a / b.y, a / b.z, a / b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator/(ulong4_mt16 a, ulong b) => new(a.x / b, a.y / b, a.z / b, a.w / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator%(ulong4_mt16 a, ulong4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator%(ulong_mt16 a, ulong4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator%(ulong4_mt16 a, ulong_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator%(ulong a, ulong4_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator%(ulong4_mt16 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator++(ulong4_mt16 a) => a + ulong_mt16.One;
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator--(ulong4_mt16 a) => a - ulong_mt16.One;
-
-    #endregion // Operators
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 abs([This] ulong4_mt16 a) => new(abs(a.x), abs(a.y), abs(a.z), abs(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 sign([This] ulong4_mt16 a) => new(sign(a.x), sign(a.y), sign(a.z), sign(a.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 min([This] ulong4_mt16 a, ulong4_mt16 b) => new(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z), min(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 max([This] ulong4_mt16 a, ulong4_mt16 b) => new(max(a.x, b.x), max(a.y, b.y), max(a.z, b.z), max(a.w, b.w));
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 clamp([This] ulong4_mt16 v, ulong4_mt16 min, ulong4_mt16 max) => math_mt.max(min, math_mt.min(max, v));
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 fma([This] ulong4_mt16 a, ulong4_mt16 b, ulong4_mt16 c) => new(fma(a.x, b.x, c.x), fma(a.y, b.y, c.y), fma(a.z, b.z, c.z), fma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Subtraction and Multiplication
-    /// <code>(a * b) - c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Subtrahend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 fms([This] ulong4_mt16 a, ulong4_mt16 b, ulong4_mt16 c) => new(fms(a.x, b.x, c.x), fms(a.y, b.y, c.y), fms(a.z, b.z, c.z), fms(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 fnma([This] ulong4_mt16 a, ulong4_mt16 b, ulong4_mt16 c) => new(fnma(a.x, b.x, c.x), fnma(a.y, b.y, c.y), fnma(a.z, b.z, c.z), fnma(a.w, b.w, c.w));
-
-    /// <summary>
-    /// Fusion Multiplication and Subtraction
-    /// <code>c - (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 fsm([This] ulong4_mt16 c, ulong4_mt16 a, ulong4_mt16 b) => fnma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>c + (a * b)</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 fam([This] ulong4_mt16 c, ulong4_mt16 a, ulong4_mt16 b) => fma(a, b, c);
-
-    /// <summary>
-    /// Fusion Addition and Multiplication
-    /// <code>(a * b) + c</code>
-    /// </summary>
-    /// <param name="a">Multiplier a</param>
-    /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 mad([This] ulong4_mt16 a, ulong4_mt16 b, ulong4_mt16 c) => fma(a, b, c);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 lerp(ulong4_mt16 start, ulong4_mt16 end, [This] ulong4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 lerp(ulong4_mt16 start, ulong4_mt16 end, [This] ulong t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 lerp(ulong start, ulong end, [This] ulong4_mt16 t)
-    {
-        return fma(t, end - start, start);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 unlerp([This] ulong4_mt16 a, ulong4_mt16 start, ulong4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 unlerp([This] ulong a, ulong4_mt16 start, ulong4_mt16 end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 unlerp([This] ulong4_mt16 a, ulong start, ulong end) => (a - start) / (end - start);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 remap([This] ulong4_mt16 a, ulong4_mt16 srcStart, ulong4_mt16 srcEnd, ulong4_mt16 dstStart, ulong4_mt16 dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 remap([This] ulong4_mt16 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
-        a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 square([This] ulong4_mt16 a) => a * a;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 dot([This] ulong4_mt16 a, ulong4_mt16 b)
-    {
-        // a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-        return fma(a.w, b.w, fma(a.z, b.z, fma(a.y, b.y, a.x * b.x)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 lengthsq([This] ulong4_mt16 a) => dot(a, a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 distancesq([This] ulong4_mt16 a, ulong4_mt16 b) => lengthsq(b - a);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 csum([This] ulong4_mt16 a) => a.x + a.y + a.z + a.w;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 cmin([This] ulong4_mt16 a) => a.x.min(a.y).min(a.z).min(a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 cmax([This] ulong4_mt16 a) => a.x.max(a.y).max(a.z).max(a.w);
-
-}
-
-#endregion // ulong4_mt16
+#endregion // ulong4_mt

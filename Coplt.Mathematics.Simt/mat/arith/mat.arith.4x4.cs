@@ -2,15 +2,15 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float4x4_mt4
+#region float4x4_mt
 
-public partial struct float4x4_mt4
+public partial struct float4x4_mt
 {
-    /// <summary>Constructs a float4x4_mt4 from a float3x3_mt4 rotation matrix and a float3_mt4 translation vector</summary>
-    /// <param name="rotation">The float3x3_mt4 rotation matrix</param>
+    /// <summary>Constructs a float4x4_mt from a float3x3_mt rotation matrix and a float3_mt translation vector</summary>
+    /// <param name="rotation">The float3x3_mt rotation matrix</param>
     /// <param name="translation">The translation vector</param>
     [MethodImpl(256 | 512)]
-    public float4x4_mt4(float3x3_mt4 rotation, float3_mt4 translation)
+    public float4x4_mt(float3x3_mt rotation, float3_mt translation)
     {
         c0 = new(rotation.c0, default);
         c1 = new(rotation.c1, default);
@@ -18,32 +18,32 @@ public partial struct float4x4_mt4
         c3 = new(translation, 1.0f);
     }
 
-    /// <summary>Constructs a float4x4_mt4 from a quaternion and a float3_mt4 translation vector</summary>
+    /// <summary>Constructs a float4x4_mt from a quaternion and a float3_mt translation vector</summary>
     /// <param name="rotation">The quaternion rotation</param>
     /// <param name="translation">The translation vector</param>
     [MethodImpl(256 | 512)]
-    public float4x4_mt4(quaternion_mt4 rotation, float3_mt4 translation) 
-        : this(new float3x3_mt4(rotation), translation) {}
+    public float4x4_mt(quaternion_mt rotation, float3_mt translation) 
+        : this(new float3x3_mt(rotation), translation) {}
 
     /// <summary>
-    /// Returns a float4x4_mt4 matrix representing a rotation around a unit axis by an angle in radians
+    /// Returns a float4x4_mt matrix representing a rotation around a unit axis by an angle in radians
     /// The rotation direction is clockwise when looking along the rotation axis towards the origin
     /// </summary>
     /// <param name="axis">The axis of rotation</param>
     /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float4x4_mt4 matrix representing the rotation about an axis</returns>
+    /// <returns>The float4x4_mt matrix representing the rotation about an axis</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 AxisAngle(float3_mt4 axis, float_mt4 angle)
+    public static float4x4_mt AxisAngle(float3_mt axis, float_mt angle)
     {
         angle.sincos(out var sina, out var cosa);
-        var u = new float4_mt4(axis, default);
+        var u = new float4_mt(axis, default);
         var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new float4_mt4(u.xyz * sina, cosa);
+        var t = new float4_mt(u.xyz * sina, cosa);
 
-        var ppnp = new uint4_mt4(default, default, 0x80000000, default).asfloat();
-        var nppp = new uint4_mt4(0x80000000, default, default, default).asfloat();
-        var pnpp = new uint4_mt4(default, 0x80000000, default, default).asfloat();
-        var mask = new int4_mt4(-1, -1, -1, default).asfloat();
+        var ppnp = new uint4_mt(default, default, 0x80000000, default).asfloat();
+        var nppp = new uint4_mt(0x80000000, default, default, default).asfloat();
+        var pnpp = new uint4_mt(default, 0x80000000, default, default).asfloat();
+        var mask = new int4_mt(-1, -1, -1, default).asfloat();
 
         return new(
             u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
@@ -54,24 +54,24 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 matrix representing a rotation around a unit axis by an angle in radians
+    /// Returns a float4x4_mt matrix representing a rotation around a unit axis by an angle in radians
     /// The rotation direction is clockwise when looking along the rotation axis towards the origin
     /// </summary>
     /// <param name="axis">The axis of rotation</param>
     /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float4x4_mt4 matrix representing the rotation about an axis</returns>
+    /// <returns>The float4x4_mt matrix representing the rotation about an axis</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 AxisAngle(float3_mt4 axis, float angle)
+    public static float4x4_mt AxisAngle(float3_mt axis, float angle)
     {
         angle.sincos(out var sina, out var cosa);
-        var u = new float4_mt4(axis, default);
+        var u = new float4_mt(axis, default);
         var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new float4_mt4(u.xyz * sina, cosa);
+        var t = new float4_mt(u.xyz * sina, cosa);
 
-        var ppnp = new uint4_mt4(default, default, 0x80000000, default).asfloat();
-        var nppp = new uint4_mt4(0x80000000, default, default, default).asfloat();
-        var pnpp = new uint4_mt4(default, 0x80000000, default, default).asfloat();
-        var mask = new int4_mt4(-1, -1, -1, default).asfloat();
+        var ppnp = new uint4_mt(default, default, 0x80000000, default).asfloat();
+        var nppp = new uint4_mt(0x80000000, default, default, default).asfloat();
+        var pnpp = new uint4_mt(default, 0x80000000, default, default).asfloat();
+        var mask = new int4_mt(-1, -1, -1, default).asfloat();
 
         return new(
             u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
@@ -82,13 +82,13 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
+    /// Returns a float4x4_mt rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix of the Euler angle rotation in x-y-z order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float4x4_mt rotation matrix of the Euler angle rotation in x-y-z order</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 EulerXYZ(float3_mt4 xyz)
+    public static float4x4_mt EulerXYZ(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -100,13 +100,13 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
+    /// Returns a float4x4_mt rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix of the Euler angle rotation in x-z-y order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float4x4_mt rotation matrix of the Euler angle rotation in x-z-y order</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 EulerXZY(float3_mt4 xyz)
+    public static float4x4_mt EulerXZY(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -118,13 +118,13 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
+    /// Returns a float4x4_mt rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix of the Euler angle rotation in y-x-z order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float4x4_mt rotation matrix of the Euler angle rotation in y-x-z order</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 EulerYXZ(float3_mt4 xyz)
+    public static float4x4_mt EulerYXZ(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -136,13 +136,13 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
+    /// Returns a float4x4_mt rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix of the Euler angle rotation in y-z-x order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float4x4_mt rotation matrix of the Euler angle rotation in y-z-x order</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 EulerYZX(float3_mt4 xyz)
+    public static float4x4_mt EulerYZX(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -154,13 +154,13 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
+    /// Returns a float4x4_mt rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix of the Euler angle rotation in z-x-y order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float4x4_mt rotation matrix of the Euler angle rotation in z-x-y order</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 EulerZXY(float3_mt4 xyz)
+    public static float4x4_mt EulerZXY(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -172,13 +172,13 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
+    /// Returns a float4x4_mt rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix of the Euler angle rotation in z-y-x order</returns>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The float4x4_mt rotation matrix of the Euler angle rotation in z-y-x order</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 EulerZYX(float3_mt4 xyz)
+    public static float4x4_mt EulerZYX(float3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -189,11 +189,11 @@ public partial struct float4x4_mt4
         );
     }
 
-    /// <summary>Returns a float4x4_mt4 matrix that rotates around the x-axis by a given number of radians</summary>
+    /// <summary>Returns a float4x4_mt matrix that rotates around the x-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix that rotates around the x-axis</returns>
+    /// <returns>The float4x4_mt rotation matrix that rotates around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 RotateX(float_mt4 angle)
+    public static float4x4_mt RotateX(float_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -204,11 +204,11 @@ public partial struct float4x4_mt4
         );
     }
 
-    /// <summary>Returns a float4x4_mt4 matrix that rotates around the x-axis by a given number of radians</summary>
+    /// <summary>Returns a float4x4_mt matrix that rotates around the x-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix that rotates around the x-axis</returns>
+    /// <returns>The float4x4_mt rotation matrix that rotates around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 RotateX(float angle)
+    public static float4x4_mt RotateX(float angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -219,11 +219,11 @@ public partial struct float4x4_mt4
         );
     }
 
-    /// <summary>Returns a float4x4_mt4 matrix that rotates around the y-axis by a given number of radians</summary>
+    /// <summary>Returns a float4x4_mt matrix that rotates around the y-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix that rotates around the y-axis</returns>
+    /// <returns>The float4x4_mt rotation matrix that rotates around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 RotateY(float_mt4 angle)
+    public static float4x4_mt RotateY(float_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -234,11 +234,11 @@ public partial struct float4x4_mt4
         );
     }
 
-    /// <summary>Returns a float4x4_mt4 matrix that rotates around the y-axis by a given number of radians</summary>
+    /// <summary>Returns a float4x4_mt matrix that rotates around the y-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix that rotates around the y-axis</returns>
+    /// <returns>The float4x4_mt rotation matrix that rotates around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 RotateY(float angle)
+    public static float4x4_mt RotateY(float angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -249,11 +249,11 @@ public partial struct float4x4_mt4
         );
     }
 
-    /// <summary>Returns a float4x4_mt4 matrix that rotates around the z-axis by a given number of radians</summary>
+    /// <summary>Returns a float4x4_mt matrix that rotates around the z-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix that rotates around the z-axis</returns>
+    /// <returns>The float4x4_mt rotation matrix that rotates around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 RotateZ(float_mt4 angle)
+    public static float4x4_mt RotateZ(float_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -264,11 +264,11 @@ public partial struct float4x4_mt4
         );
     }
 
-    /// <summary>Returns a float4x4_mt4 matrix that rotates around the z-axis by a given number of radians</summary>
+    /// <summary>Returns a float4x4_mt matrix that rotates around the z-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt4 rotation matrix that rotates around the z-axis</returns>
+    /// <returns>The float4x4_mt rotation matrix that rotates around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 RotateZ(float angle)
+    public static float4x4_mt RotateZ(float angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -280,98 +280,98 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed float4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a left-handed float4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookAt(float3_mt4 eye, float3_mt4 target, float3_mt4 up) 
+    public static float4x4_mt LookAt(float3_mt eye, float3_mt target, float3_mt up) 
         => LookTo(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a right-handed float4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a right-handed float4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookAt_RH(float3_mt4 eye, float3_mt4 target, float3_mt4 up) 
+    public static float4x4_mt LookAt_RH(float3_mt eye, float3_mt target, float3_mt up) 
         => LookTo_RH(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a left-handed row-major float4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a left-handed row-major float4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookAt_Row(float3_mt4 eye, float3_mt4 target, float3_mt4 up) 
+    public static float4x4_mt LookAt_Row(float3_mt eye, float3_mt target, float3_mt up) 
         => LookTo_Row(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a right-handed row-major float4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a right-handed row-major float4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookAt_RH_Row(float3_mt4 eye, float3_mt4 target, float3_mt4 up) 
+    public static float4x4_mt LookAt_RH_Row(float3_mt eye, float3_mt target, float3_mt up) 
         => LookTo_RH_Row(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a float4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a float4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookAt_GL(float3_mt4 eye, float3_mt4 target, float3_mt4 up) 
+    public static float4x4_mt LookAt_GL(float3_mt eye, float3_mt target, float3_mt up) 
         => LookTo_GL(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a left-handed float4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a left-handed float4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookTo(float3_mt4 eye, float3_mt4 dir, float3_mt4 up)
+    public static float4x4_mt LookTo(float3_mt eye, float3_mt dir, float3_mt up)
         => LookTo_RH(eye, -dir, up);
 
     /// <summary>
-    /// Returns a right-handed float4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a right-handed float4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookTo_RH(float3_mt4 eye, float3_mt4 dir, float3_mt4 up)
+    public static float4x4_mt LookTo_RH(float3_mt eye, float3_mt dir, float3_mt up)
     {
         var f = dir.normalize();
         var s = f.cross(up).normalize();
         var u = s.cross(f);
 
-        var m3x3 = new float3x3_mt4(s, u, -f).transpose();
+        var m3x3 = new float3x3_mt(s, u, -f).transpose();
         
         return new(
             new(m3x3.c0),
@@ -382,27 +382,27 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed row-major float4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a left-handed row-major float4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookTo_Row(float3_mt4 eye, float3_mt4 dir, float3_mt4 up)
+    public static float4x4_mt LookTo_Row(float3_mt eye, float3_mt dir, float3_mt up)
         => LookTo_RH_Row(eye, -dir, up);
 
     /// <summary>
-    /// Returns a right-handed row-major float4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a right-handed row-major float4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookTo_RH_Row(float3_mt4 eye, float3_mt4 dir, float3_mt4 up)
+    public static float4x4_mt LookTo_RH_Row(float3_mt eye, float3_mt dir, float3_mt up)
     {
         var f = dir.normalize();
         var s = f.cross(up).normalize();
@@ -417,17 +417,17 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a float4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt4 view matrix.</returns>
+    /// <returns>The float4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 LookTo_GL(float3_mt4 eye, float3_mt4 dir, float3_mt4 up)
+    public static float4x4_mt LookTo_GL(float3_mt eye, float3_mt dir, float3_mt up)
     {
-        var rot = float3x3_mt4.LookRotation(dir.normalize(), up);
+        var rot = float3x3_mt.LookRotation(dir.normalize(), up);
         return new(
             new(rot.c0, default),
             new(rot.c1, default),
@@ -437,15 +437,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed float4x4_mt4 centered orthographic projection matrix.
+    /// Returns a left-handed float4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho(float_mt4 width, float_mt4 height, float_mt4 near, float_mt4 far)
+    public static float4x4_mt Ortho(float_mt width, float_mt height, float_mt near, float_mt far)
     {
         var rcp_width = 1.0f / width;
         var rcp_height = 1.0f / height;
@@ -460,15 +460,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed float4x4_mt4 centered orthographic projection matrix.
+    /// Returns a left-handed float4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho(float width, float height, float near, float far)
+    public static float4x4_mt Ortho(float width, float height, float near, float far)
     {
         var rcp_width = 1.0f / width;
         var rcp_height = 1.0f / height;
@@ -483,7 +483,7 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed float4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a left-handed float4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -491,9 +491,9 @@ public partial struct float4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho(float_mt4 left, float_mt4 right, float_mt4 bottom, float_mt4 top, float_mt4 near, float_mt4 far)
+    public static float4x4_mt Ortho(float_mt left, float_mt right, float_mt bottom, float_mt top, float_mt near, float_mt far)
     {
         var rcp_width = 1.0f / (right - left);
         var rcp_height = 1.0f / (top - bottom);
@@ -508,7 +508,7 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed float4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a left-handed float4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -516,9 +516,9 @@ public partial struct float4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho(float left, float right, float bottom, float top, float near, float far)
+    public static float4x4_mt Ortho(float left, float right, float bottom, float top, float near, float far)
     {
         var rcp_width = 1.0f / (right - left);
         var rcp_height = 1.0f / (top - bottom);
@@ -533,15 +533,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed float4x4_mt4 centered orthographic projection matrix.
+    /// Returns a right-handed float4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho_RH(float_mt4 width, float_mt4 height, float_mt4 near, float_mt4 far)
+    public static float4x4_mt Ortho_RH(float_mt width, float_mt height, float_mt near, float_mt far)
     {
         var rcp_width = 1.0f / width;
         var rcp_height = 1.0f / height;
@@ -556,15 +556,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed float4x4_mt4 centered orthographic projection matrix.
+    /// Returns a right-handed float4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho_RH(float width, float height, float near, float far)
+    public static float4x4_mt Ortho_RH(float width, float height, float near, float far)
     {
         var rcp_width = 1.0f / width;
         var rcp_height = 1.0f / height;
@@ -579,7 +579,7 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed float4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a right-handed float4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -587,9 +587,9 @@ public partial struct float4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho_RH(float_mt4 left, float_mt4 right, float_mt4 bottom, float_mt4 top, float_mt4 near, float_mt4 far)
+    public static float4x4_mt Ortho_RH(float_mt left, float_mt right, float_mt bottom, float_mt top, float_mt near, float_mt far)
     {
         var rcp_width = 1.0f / (right - left);
         var rcp_height = 1.0f / (top - bottom);
@@ -604,7 +604,7 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed float4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a right-handed float4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -612,9 +612,9 @@ public partial struct float4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho_RH(float left, float right, float bottom, float top, float near, float far)
+    public static float4x4_mt Ortho_RH(float left, float right, float bottom, float top, float near, float far)
     {
         var rcp_width = 1.0f / (right - left);
         var rcp_height = 1.0f / (top - bottom);
@@ -629,15 +629,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 centered orthographic projection matrix.
+    /// Returns a float4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho_GL(float_mt4 width, float_mt4 height, float_mt4 near, float_mt4 far)
+    public static float4x4_mt Ortho_GL(float_mt width, float_mt height, float_mt near, float_mt far)
     {
         var rcpdx = 1.0f / width;
         var rcpdy = 1.0f / height;
@@ -652,15 +652,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 centered orthographic projection matrix.
+    /// Returns a float4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho_GL(float width, float height, float near, float far)
+    public static float4x4_mt Ortho_GL(float width, float height, float near, float far)
     {
         var rcpdx = 1.0f / width;
         var rcpdy = 1.0f / height;
@@ -675,7 +675,7 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a float4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -683,9 +683,9 @@ public partial struct float4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho_GL(float_mt4 left, float_mt4 right, float_mt4 bottom, float_mt4 top, float_mt4 near, float_mt4 far)
+    public static float4x4_mt Ortho_GL(float_mt left, float_mt right, float_mt bottom, float_mt top, float_mt near, float_mt far)
     {
         var rcpdx = 1.0f / (right - left);
         var rcpdy = 1.0f / (top - bottom);
@@ -700,7 +700,7 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a float4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -708,9 +708,9 @@ public partial struct float4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The float4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Ortho_GL(float left, float right, float bottom, float top, float near, float far)
+    public static float4x4_mt Ortho_GL(float left, float right, float bottom, float top, float near, float far)
     {
         var rcpdx = 1.0f / (right - left);
         var rcpdy = 1.0f / (top - bottom);
@@ -725,15 +725,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a left-handed float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near, float_mt4 far)
+    public static float4x4_mt PerspectiveFov(float_mt verticalFov, float_mt aspect, float_mt near, float_mt far)
     {
         var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -748,15 +748,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a left-handed float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov(float verticalFov, float aspect, float near, float far)
+    public static float4x4_mt PerspectiveFov(float verticalFov, float aspect, float near, float far)
     {
         var h = 1.0f / math.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -771,15 +771,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a right-handed float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_RH(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near, float_mt4 far)
+    public static float4x4_mt PerspectiveFov_RH(float_mt verticalFov, float_mt aspect, float_mt near, float_mt far)
     {
         var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -794,15 +794,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a right-handed float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_RH(float verticalFov, float aspect, float near, float far)
+    public static float4x4_mt PerspectiveFov_RH(float verticalFov, float aspect, float near, float far)
     {
         var h = 1.0f / math.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -817,15 +817,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed row-major float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a left-handed row-major float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_Row(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near, float_mt4 far)
+    public static float4x4_mt PerspectiveFov_Row(float_mt verticalFov, float_mt aspect, float_mt near, float_mt far)
     {
         var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -840,15 +840,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed row-major float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a left-handed row-major float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_Row(float verticalFov, float aspect, float near, float far)
+    public static float4x4_mt PerspectiveFov_Row(float verticalFov, float aspect, float near, float far)
     {
         var h = 1.0f / math.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -863,15 +863,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed row-major float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a right-handed row-major float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_RH_Row(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near, float_mt4 far)
+    public static float4x4_mt PerspectiveFov_RH_Row(float_mt verticalFov, float_mt aspect, float_mt near, float_mt far)
     {
         var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -886,15 +886,15 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed row-major float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a right-handed row-major float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_RH_Row(float verticalFov, float aspect, float near, float far)
+    public static float4x4_mt PerspectiveFov_RH_Row(float verticalFov, float aspect, float near, float far)
     {
         var h = 1.0f / math.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -909,16 +909,16 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a float4x4_mt perspective projection matrix based on field of view.
     /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_GL(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near, float_mt4 far)
+    public static float4x4_mt PerspectiveFov_GL(float_mt verticalFov, float_mt aspect, float_mt near, float_mt far)
     {
         var cotangent = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var rcpdz = 1.0f / (near - far);
@@ -932,16 +932,16 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a float4x4_mt perspective projection matrix based on field of view.
     /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_GL(float verticalFov, float aspect, float near, float far)
+    public static float4x4_mt PerspectiveFov_GL(float verticalFov, float aspect, float near, float far)
     {
         var cotangent = 1.0f / math.tan(verticalFov * 0.5f);
         var rcpdz = 1.0f / (near - far);
@@ -955,14 +955,14 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite left-handed float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite left-handed float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near)
+    public static float4x4_mt PerspectiveFov(float_mt verticalFov, float_mt aspect, float_mt near)
     {
         var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -976,14 +976,14 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite left-handed float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite left-handed float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov(float verticalFov, float aspect, float near)
+    public static float4x4_mt PerspectiveFov(float verticalFov, float aspect, float near)
     {
         var h = 1.0f / math.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -997,14 +997,14 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite right-handed float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite right-handed float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_RH(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near)
+    public static float4x4_mt PerspectiveFov_RH(float_mt verticalFov, float_mt aspect, float_mt near)
     {
         var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -1018,14 +1018,14 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite right-handed float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite right-handed float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_RH(float verticalFov, float aspect, float near)
+    public static float4x4_mt PerspectiveFov_RH(float verticalFov, float aspect, float near)
     {
         var h = 1.0f / math.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -1039,14 +1039,14 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite left-handed row-major float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite left-handed row-major float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_Row(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near)
+    public static float4x4_mt PerspectiveFov_Row(float_mt verticalFov, float_mt aspect, float_mt near)
     {
         var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -1060,14 +1060,14 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite left-handed row-major float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite left-handed row-major float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_Row(float verticalFov, float aspect, float near)
+    public static float4x4_mt PerspectiveFov_Row(float verticalFov, float aspect, float near)
     {
         var h = 1.0f / math.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -1081,14 +1081,14 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite right-handed row-major float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite right-handed row-major float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_RH_Row(float_mt4 verticalFov, float_mt4 aspect, float_mt4 near)
+    public static float4x4_mt PerspectiveFov_RH_Row(float_mt verticalFov, float_mt aspect, float_mt near)
     {
         var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -1102,14 +1102,14 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite right-handed row-major float4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite right-handed row-major float4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The float4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 PerspectiveFov_RH_Row(float verticalFov, float aspect, float near)
+    public static float4x4_mt PerspectiveFov_RH_Row(float verticalFov, float aspect, float near)
     {
         var h = 1.0f / math.tan(verticalFov * 0.5f);
         var w = h / aspect;
@@ -1123,17 +1123,17 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 matrix representing a combined scale-, rotation- and translation transform.
+    /// Returns a float4x4_mt matrix representing a combined scale-, rotation- and translation transform.
     /// Equivalent to mul(translationTransform, mul(rotationTransform, scaleTransform))
     /// </summary>
     /// <param name="translation">The translation vector</param>
     /// <param name="rotation">The quaternion rotation</param>
     /// <param name="scale">The scaling factors of each axis</param>
-    /// <returns>The float4x4_mt4 matrix representing the translation, rotation, and scale by the inputs</returns>
+    /// <returns>The float4x4_mt matrix representing the translation, rotation, and scale by the inputs</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 TRS(float3_mt4 translation, quaternion_mt4 rotation, float3_mt4 scale)
+    public static float4x4_mt TRS(float3_mt translation, quaternion_mt rotation, float3_mt scale)
     {
-        var r = new float3x3_mt4(rotation);
+        var r = new float3x3_mt(rotation);
         r.c0 *= scale.xxx;
         r.c1 *= scale.yyy;
         r.c2 *= scale.zzz;
@@ -1141,54 +1141,54 @@ public partial struct float4x4_mt4
     }
 
     /// <summary>
-    /// Returns a float4x4_mt4 matrix representing a combined rotation- and translation transform.
+    /// Returns a float4x4_mt matrix representing a combined rotation- and translation transform.
     /// Equivalent to mul(translationTransform, rotationTransform)
     /// </summary>
     /// <param name="translation">The translation vector</param>
     /// <param name="rotation">The quaternion rotation</param>
-    /// <returns>The float4x4_mt4 matrix representing the translation and rotation by the inputs</returns>
+    /// <returns>The float4x4_mt matrix representing the translation and rotation by the inputs</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 TR(float3_mt4 translation, quaternion_mt4 rotation)
+    public static float4x4_mt TR(float3_mt translation, quaternion_mt rotation)
     {
-        var r = new float3x3_mt4(rotation);
+        var r = new float3x3_mt(rotation);
         return new(r, translation);
     }
 
-    /// <summary>Returns a float4x4_mt4 scale matrix given 3 axis scales</summary>
+    /// <summary>Returns a float4x4_mt scale matrix given 3 axis scales</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The float4x4_mt4 matrix that represents a uniform scale</returns>
+    /// <returns>The float4x4_mt matrix that represents a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Scale(float_mt4 s) => new(
+    public static float4x4_mt Scale(float_mt s) => new(
         s,    default, default, default,
         default, s,    default, default,
         default, default, s,    default,
         default, default, default, 1.0f
     );
 
-    /// <summary>Returns a float4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a float4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The float4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The float4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Scale(float_mt4 x, float_mt4 y, float_mt4 z) => new(
+    public static float4x4_mt Scale(float_mt x, float_mt y, float_mt z) => new(
         x,    default, default, default,
         default, y,    default, default,
         default, default, z,    default,
         default, default, default, 1.0f
     );
 
-    /// <summary>Returns a float4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a float4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The float4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The float4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Scale(float3_mt4 scales) => Scale(scales.x, scales.y, scales.z);
+    public static float4x4_mt Scale(float3_mt scales) => Scale(scales.x, scales.y, scales.z);
 
-    /// <summary>Returns a float4x4_mt4 translation matrix given a float3 translation vector</summary>
+    /// <summary>Returns a float4x4_mt translation matrix given a float3 translation vector</summary>
     /// <param name="vector">The translation vector</param>
-    /// <returns>The float4x4_mt4 translation matrix</returns>
+    /// <returns>The float4x4_mt translation matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 Translate(float3_mt4 vector) => new(
+    public static float4x4_mt Translate(float3_mt vector) => new(
         new(1.0f, default, default, default),
         new(default, 1.0f, default, default),
         new(default, default, 1.0f, default),
@@ -1200,17 +1200,17 @@ public partial struct float4x4_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3_mt4 rotate([This] float4x4_mt4 a, float3_mt4 b) 
+    public static float3_mt rotate([This] float4x4_mt a, float3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 transform([This] float4x4_mt4 a, float3_mt4 b) 
+    public static float3_mt transform([This] float4x4_mt a, float3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 inverse([This] float4x4_mt4 m)
+    public static float4x4_mt inverse([This] float4x4_mt m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -1218,30 +1218,30 @@ public static partial class math_mt
         //var r0z_r1z_r0w_r1w = movelh(c2, c3); // (x2, y2, x3, y3)
         //var r2y_r3y_r2x_r3x = movehl(c0, c1); // (z1, w1, z0, w0)
         //var r2z_r3z_r2w_r3w = movehl(c3, c2); // (z2, w2, z3, w3)
-        float4_mt4 r0y_r1y_r0x_r1x = new(m.c1.x, m.c1.y, m.c0.x, m.c0.y);
-        float4_mt4 r0z_r1z_r0w_r1w = new(m.c2.x, m.c2.y, m.c3.x, m.c3.y);
-        float4_mt4 r2y_r3y_r2x_r3x = new(m.c1.z, m.c1.w, m.c0.z, m.c0.w);
-        float4_mt4 r2z_r3z_r2w_r3w = new(m.c2.z, m.c2.w, m.c3.z, m.c3.w);
+        float4_mt r0y_r1y_r0x_r1x = new(m.c1.x, m.c1.y, m.c0.x, m.c0.y);
+        float4_mt r0z_r1z_r0w_r1w = new(m.c2.x, m.c2.y, m.c3.x, m.c3.y);
+        float4_mt r2y_r3y_r2x_r3x = new(m.c1.z, m.c1.w, m.c0.z, m.c0.w);
+        float4_mt r2z_r3z_r2w_r3w = new(m.c2.z, m.c2.w, m.c3.z, m.c3.w);
 
         //var r0_wzyx = shuffle_zx_xz(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // x3 x2 x1 x0
         //var r1_wzyx = shuffle_wy_yw(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // y3 y2 y1 y0
         //var r2_wzyx = shuffle_zx_xz(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // z3 z2 z1 z0
         //var r3_wzyx = shuffle_wy_yw(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // w3 w2 w1 w0
         //var r0_xyzw = r0_wzyx.wzyx; // x0 x1 x2 x3
-        float4_mt4 r0_wzyx = new(m.c3.x, m.c2.x, m.c1.x, m.c0.x);
-        float4_mt4 r1_wzyx = new(m.c3.y, m.c2.y, m.c1.y, m.c0.y);
-        float4_mt4 r2_wzyx = new(m.c3.z, m.c2.z, m.c1.z, m.c0.z);
-        float4_mt4 r3_wzyx = new(m.c3.w, m.c2.w, m.c1.w, m.c0.w);
-        float4_mt4 r0_xyzw = new(m.c0.x, m.c1.x, m.c2.x, m.c3.x);
+        float4_mt r0_wzyx = new(m.c3.x, m.c2.x, m.c1.x, m.c0.x);
+        float4_mt r1_wzyx = new(m.c3.y, m.c2.y, m.c1.y, m.c0.y);
+        float4_mt r2_wzyx = new(m.c3.z, m.c2.z, m.c1.z, m.c0.z);
+        float4_mt r3_wzyx = new(m.c3.w, m.c2.w, m.c1.w, m.c0.w);
+        float4_mt r0_xyzw = new(m.c0.x, m.c1.x, m.c2.x, m.c3.x);
 
         //var r1y_r2y_r1x_r2x = shuffle_yz_yz(c1, c0); // (y1, z1, y0, z0)
         //var r1z_r2z_r1w_r2w = shuffle_yz_yz(c2, c3); // (y2, z2, y3, z3)
         //var r3y_r0y_r3x_r0x = shuffle_wx_wx(c1, c0); // (w1, x1, w0, x0)
         //var r3z_r0z_r3w_r0w = shuffle_wx_wx(c2, c3); // (w2, x2, w3, x3)
-        float4_mt4 r1y_r2y_r1x_r2x = new(m.c1.y, m.c1.z, m.c0.y, m.c0.z);
-        float4_mt4 r1z_r2z_r1w_r2w = new(m.c2.y, m.c2.z, m.c3.y, m.c3.z);
-        float4_mt4 r3y_r0y_r3x_r0x = new(m.c1.w, m.c1.x, m.c0.w, m.c0.x);
-        float4_mt4 r3z_r0z_r3w_r0w = new(m.c2.w, m.c2.x, m.c3.w, m.c3.x);
+        float4_mt r1y_r2y_r1x_r2x = new(m.c1.y, m.c1.z, m.c0.y, m.c0.z);
+        float4_mt r1z_r2z_r1w_r2w = new(m.c2.y, m.c2.z, m.c3.y, m.c3.z);
+        float4_mt r3y_r0y_r3x_r0x = new(m.c1.w, m.c1.x, m.c0.w, m.c0.x);
+        float4_mt r3z_r0z_r3w_r0w = new(m.c2.w, m.c2.x, m.c3.w, m.c3.x);
 
         // Calculate remaining inner term pairs. inner terms have zw=-xy, so we only have to calculate xy and can pack two pairs per vector
         // var inner12_23 = r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w - r1z_r2z_r1w_r2w * r2y_r3y_r2x_r3x;
@@ -1268,7 +1268,7 @@ public static partial class math_mt
         denom += denom.yxwz; // x+y        x+y            z+w            z+w
         denom -= denom.zzxx; // x+y-z-w  x+y-z-w        z+w-x-y        z+w-x-y
 
-        var rcp_denom_ppnn = float4_mt4.One / denom;
+        var rcp_denom_ppnn = float4_mt.One / denom;
         var rc0 = minors0 * rcp_denom_ppnn;
 
         var inner30 = inner30_01.xzzx;
@@ -1293,21 +1293,21 @@ public static partial class math_mt
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4_mt4 fastinverse([This] float4x4_mt4 m)
+    public static float4x4_mt fastinverse([This] float4x4_mt m)
     {
         var (c0, c1, c2, pos) = m;
 
         // unpacklo a b => a.x, b.x, a.y, b.y
         // unpackhi a b => a.z, b.z, a.w, b.w
 
-        float4_mt4 t0 = new(c0.x, c2.x, c0.y, c2.y);           // unpacklo(c0, c2);
-        float4_mt4 t1 = new(c1.x, default, c1.y, default);     // unpacklo(c1, default);
-        float4_mt4 t2 = new(c0.z, c2.z, c0.w, c2.w);           // unpackhi(c0, c2);
-        float4_mt4 t3 = new(c1.z, default, c1.w, default);     // unpackhi(c1, default);
+        float4_mt t0 = new(c0.x, c2.x, c0.y, c2.y);           // unpacklo(c0, c2);
+        float4_mt t1 = new(c1.x, default, c1.y, default);     // unpacklo(c1, default);
+        float4_mt t2 = new(c0.z, c2.z, c0.w, c2.w);           // unpackhi(c0, c2);
+        float4_mt t3 = new(c1.z, default, c1.w, default);     // unpackhi(c1, default);
 
-        float4_mt4 r0 = new(t0.x, t1.x, t0.y, t1.y);           // unpacklo(t0, t1);
-        float4_mt4 r1 = new(t0.z, t1.z, t0.w, t1.w);           // unpackhi(t0, t1);
-        float4_mt4 r2 = new(t2.x, t3.x, t2.y, t3.y);           // unpacklo(t2, t3);
+        float4_mt r0 = new(t0.x, t1.x, t0.y, t1.y);           // unpacklo(t0, t1);
+        float4_mt r1 = new(t0.z, t1.z, t0.w, t1.w);           // unpackhi(t0, t1);
+        float4_mt r2 = new(t2.x, t3.x, t2.y, t3.y);           // unpacklo(t2, t3);
 
         //pos = -(r0 * pos.x + r1 * pos.y + r2 * pos.z);
         pos = -fam(fam(r0 * pos.x, r1, pos.y), r2, pos.z);
@@ -1316,11 +1316,11 @@ public static partial class math_mt
         return new(r0, r1, r2, pos);
     }
 
-    /// <summary>Returns the determinant of a float4x4_mt4 matrix</summary>
+    /// <summary>Returns the determinant of a float4x4_mt matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float_mt4 determinant([This] float4x4_mt4 m)
+    public static float_mt determinant([This] float4x4_mt m)
     {
         var (c0, c1, c2, c3) = m;
     
@@ -1338,2693 +1338,17 @@ public static partial class math_mt
     }
 }
 
-#endregion // float4x4_mt4
+#endregion // float4x4_mt
 
-#region float4x4_mt8
+#region double4x4_mt
 
-public partial struct float4x4_mt8
+public partial struct double4x4_mt
 {
-    /// <summary>Constructs a float4x4_mt8 from a float3x3_mt8 rotation matrix and a float3_mt8 translation vector</summary>
-    /// <param name="rotation">The float3x3_mt8 rotation matrix</param>
+    /// <summary>Constructs a double4x4_mt from a double3x3_mt rotation matrix and a double3_mt translation vector</summary>
+    /// <param name="rotation">The double3x3_mt rotation matrix</param>
     /// <param name="translation">The translation vector</param>
     [MethodImpl(256 | 512)]
-    public float4x4_mt8(float3x3_mt8 rotation, float3_mt8 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1.0f);
-    }
-
-    /// <summary>Constructs a float4x4_mt8 from a quaternion and a float3_mt8 translation vector</summary>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public float4x4_mt8(quaternion_mt8 rotation, float3_mt8 translation) 
-        : this(new float3x3_mt8(rotation), translation) {}
-
-    /// <summary>
-    /// Returns a float4x4_mt8 matrix representing a rotation around a unit axis by an angle in radians
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float4x4_mt8 matrix representing the rotation about an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 AxisAngle(float3_mt8 axis, float_mt8 angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = new float4_mt8(axis, default);
-        var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new float4_mt8(u.xyz * sina, cosa);
-
-        var ppnp = new uint4_mt8(default, default, 0x80000000, default).asfloat();
-        var nppp = new uint4_mt8(0x80000000, default, default, default).asfloat();
-        var pnpp = new uint4_mt8(default, 0x80000000, default, default).asfloat();
-        var mask = new int4_mt8(-1, -1, -1, default).asfloat();
-
-        return new(
-            u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
-            u.yyyy.fma(u_inv_cosa, (t.zwxx ^ nppp) & mask),
-            u.zzzz.fma(u_inv_cosa, (t.yxwx ^ pnpp) & mask),
-            new(default, default, default, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 matrix representing a rotation around a unit axis by an angle in radians
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float4x4_mt8 matrix representing the rotation about an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 AxisAngle(float3_mt8 axis, float angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = new float4_mt8(axis, default);
-        var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new float4_mt8(u.xyz * sina, cosa);
-
-        var ppnp = new uint4_mt8(default, default, 0x80000000, default).asfloat();
-        var nppp = new uint4_mt8(0x80000000, default, default, default).asfloat();
-        var pnpp = new uint4_mt8(default, 0x80000000, default, default).asfloat();
-        var mask = new int4_mt8(-1, -1, -1, default).asfloat();
-
-        return new(
-            u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
-            u.yyyy.fma(u_inv_cosa, (t.zwxx ^ nppp) & mask),
-            u.zzzz.fma(u_inv_cosa, (t.yxwx ^ pnpp) & mask),
-            new(default, default, default, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix of the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 EulerXYZ(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (c.z * s.x * s.y - c.x * s.z),    (c.x * c.z * s.y + s.x * s.z),    default,
-            (c.y * s.z),  (c.x * c.z + s.x * s.y * s.z),    (c.x * s.y * s.z - c.z * s.x),    default,
-            (-s.y),       (c.y * s.x),                      (c.x * c.y),                      default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix of the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 EulerXZY(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (s.x * s.y - c.x * c.y * s.z),    (c.x * s.y + c.y * s.x * s.z),    default,
-            (s.z),        (c.x * c.z),                      (-c.z * s.x),                     default,
-            (-c.z * s.y), (c.y * s.x + c.x * s.y * s.z),    (c.x * c.y - s.x * s.y * s.z),    default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix of the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 EulerYXZ(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z - s.x * s.y * s.z),    (-c.x * s.z), (c.z * s.y + c.y * s.x * s.z),    default,
-            (c.z * s.x * s.y + c.y * s.z),    (c.x * c.z),  (s.y * s.z - c.y * c.z * s.x),    default,
-            (-c.x * s.y),                     (s.x),        (c.x * c.y),                      default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix of the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 EulerYZX(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-s.z),       (c.z * s.y),                      default,
-            (s.x * s.y + c.x * c.y * s.z),    (c.x * c.z),  (c.x * s.y * s.z - c.y * s.x),    default,
-            (c.y * s.x * s.z - c.x * s.y),    (c.z * s.x),  (c.x * c.y + s.x * s.y * s.z),    default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix of the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 EulerZXY(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z + s.x * s.y * s.z),    (c.z * s.x * s.y - c.y * s.z),    (c.x * s.y),  default,
-            (c.x * s.z),                      (c.x * c.z),                      (-s.x),       default,
-            (c.y * s.x * s.z - c.z * s.y),    (c.y * c.z * s.x + s.y * s.z),    (c.x * c.y),  default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix of the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 EulerZYX(float3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-c.y * s.z),                     (s.y),        default,
-            (c.z * s.x * s.y + c.x * s.z),    (c.x * c.z - s.x * s.y * s.z),    (-c.y * s.x), default,
-            (s.x * s.z - c.x * c.z * s.y),    (c.z * s.x + c.x * s.y * s.z),    (c.x * c.y),  default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt8 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 RotateX(float_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0f, default, default, default,
-            default, c,     -s,    default,
-            default, s,     c,     default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt8 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 RotateX(float angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0f, default, default, default,
-            default, c,     -s,    default,
-            default, s,     c,     default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt8 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 RotateY(float_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,     default,
-            default, 1.0f, default, default,
-            -s,    default, c,     default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt8 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 RotateY(float angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,     default,
-            default, 1.0f, default, default,
-            -s,    default, c,     default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt8 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 RotateZ(float_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default, default,
-            s,     c,     default, default,
-            default, default, 1.0f, default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt8 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt8 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 RotateZ(float angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default, default,
-            s,     c,     default, default,
-            default, default, 1.0f, default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookAt(float3_mt8 eye, float3_mt8 target, float3_mt8 up) 
-        => LookTo(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookAt_RH(float3_mt8 eye, float3_mt8 target, float3_mt8 up) 
-        => LookTo_RH(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a left-handed row-major float4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookAt_Row(float3_mt8 eye, float3_mt8 target, float3_mt8 up) 
-        => LookTo_Row(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a right-handed row-major float4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookAt_RH_Row(float3_mt8 eye, float3_mt8 target, float3_mt8 up) 
-        => LookTo_RH_Row(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a float4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookAt_GL(float3_mt8 eye, float3_mt8 target, float3_mt8 up) 
-        => LookTo_GL(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookTo(float3_mt8 eye, float3_mt8 dir, float3_mt8 up)
-        => LookTo_RH(eye, -dir, up);
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookTo_RH(float3_mt8 eye, float3_mt8 dir, float3_mt8 up)
-    {
-        var f = dir.normalize();
-        var s = f.cross(up).normalize();
-        var u = s.cross(f);
-
-        var m3x3 = new float3x3_mt8(s, u, -f).transpose();
-        
-        return new(
-            new(m3x3.c0),
-            new(m3x3.c1),
-            new(m3x3.c2),
-            new(-eye.dot(s), -eye.dot(u), eye.dot(f), 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major float4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookTo_Row(float3_mt8 eye, float3_mt8 dir, float3_mt8 up)
-        => LookTo_RH_Row(eye, -dir, up);
-
-    /// <summary>
-    /// Returns a right-handed row-major float4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookTo_RH_Row(float3_mt8 eye, float3_mt8 dir, float3_mt8 up)
-    {
-        var f = dir.normalize();
-        var s = f.cross(up).normalize();
-        var u = s.cross(f);
-        
-        return new(
-            new(s, -eye.dot(s)),
-            new(u, -eye.dot(u)),
-            new(-f, eye.dot(f)),
-            new(default, default, default, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 LookTo_GL(float3_mt8 eye, float3_mt8 dir, float3_mt8 up)
-    {
-        var rot = float3x3_mt8.LookRotation(dir.normalize(), up);
-        return new(
-            new(rot.c0, default),
-            new(rot.c1, default),
-            new(rot.c2, default),
-            new(eye, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho(float_mt8 width, float_mt8 height, float_mt8 near, float_mt8 far)
-    {
-        var rcp_width = 1.0f / width;
-        var rcp_height = 1.0f / height;
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (-r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho(float width, float height, float near, float far)
-    {
-        var rcp_width = 1.0f / width;
-        var rcp_height = 1.0f / height;
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (-r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho(float_mt8 left, float_mt8 right, float_mt8 bottom, float_mt8 top, float_mt8 near, float_mt8 far)
-    {
-        var rcp_width = 1.0f / (right - left);
-        var rcp_height = 1.0f / (top - bottom);
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (-r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho(float left, float right, float bottom, float top, float near, float far)
-    {
-        var rcp_width = 1.0f / (right - left);
-        var rcp_height = 1.0f / (top - bottom);
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (-r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho_RH(float_mt8 width, float_mt8 height, float_mt8 near, float_mt8 far)
-    {
-        var rcp_width = 1.0f / width;
-        var rcp_height = 1.0f / height;
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho_RH(float width, float height, float near, float far)
-    {
-        var rcp_width = 1.0f / width;
-        var rcp_height = 1.0f / height;
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho_RH(float_mt8 left, float_mt8 right, float_mt8 bottom, float_mt8 top, float_mt8 near, float_mt8 far)
-    {
-        var rcp_width = 1.0f / (right - left);
-        var rcp_height = 1.0f / (top - bottom);
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho_RH(float left, float right, float bottom, float top, float near, float far)
-    {
-        var rcp_width = 1.0f / (right - left);
-        var rcp_height = 1.0f / (top - bottom);
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho_GL(float_mt8 width, float_mt8 height, float_mt8 near, float_mt8 far)
-    {
-        var rcpdx = 1.0f / width;
-        var rcpdy = 1.0f / height;
-        var rcpdz = 1.0f / (far - near);
-
-        return new(
-            (2.0f * rcpdx),       default,            default,            default,
-            default,           (2.0f * rcpdy),        default,            default,
-            default,           default,            (-2.0f * rcpdz),       (-(far + near) * rcpdz),
-            default,           default,            default,            1.0f
-       );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho_GL(float width, float height, float near, float far)
-    {
-        var rcpdx = 1.0f / width;
-        var rcpdy = 1.0f / height;
-        var rcpdz = 1.0f / (far - near);
-
-        return new(
-            (2.0f * rcpdx),       default,            default,            default,
-            default,           (2.0f * rcpdy),        default,            default,
-            default,           default,            (-2.0f * rcpdz),       (-(far + near) * rcpdz),
-            default,           default,            default,            1.0f
-       );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho_GL(float_mt8 left, float_mt8 right, float_mt8 bottom, float_mt8 top, float_mt8 near, float_mt8 far)
-    {
-        var rcpdx = 1.0f / (right - left);
-        var rcpdy = 1.0f / (top - bottom);
-        var rcpdz = 1.0f / (far - near);
-
-        return new(
-            (2.0f * rcpdx),      default,           default,                (-(right + left) * rcpdx),
-            default,           (2.0f * rcpdy),      default,                (-(top + bottom) * rcpdy),
-            default,           default,           (-2.0f * rcpdz),          (-(far + near) * rcpdz),
-            default,           default,           default,                1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Ortho_GL(float left, float right, float bottom, float top, float near, float far)
-    {
-        var rcpdx = 1.0f / (right - left);
-        var rcpdy = 1.0f / (top - bottom);
-        var rcpdz = 1.0f / (far - near);
-
-        return new(
-            (2.0f * rcpdx),      default,           default,                (-(right + left) * rcpdx),
-            default,           (2.0f * rcpdy),      default,                (-(top + bottom) * rcpdy),
-            default,           default,           (-2.0f * rcpdz),          (-(far + near) * rcpdz),
-            default,           default,           default,                1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near, float_mt8 far)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            1.0f),
-            new(default,               default,       (-r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov(float verticalFov, float aspect, float near, float far)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            1.0f),
-            new(default,               default,       (-r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_RH(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near, float_mt8 far)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            -1.0f),
-            new(default,               default,       (r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_RH(float verticalFov, float aspect, float near, float far)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            -1.0f),
-            new(default,               default,       (r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_Row(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near, float_mt8 far)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            1.0f,
-            default,               default,       (-r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_Row(float verticalFov, float aspect, float near, float far)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            1.0f,
-            default,               default,       (-r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed row-major float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_RH_Row(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near, float_mt8 far)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            -1.0f,
-            default,               default,       (r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed row-major float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_RH_Row(float verticalFov, float aspect, float near, float far)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            -1.0f,
-            default,               default,       (r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 perspective projection matrix based on field of view.
-    /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_GL(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near, float_mt8 far)
-    {
-        var cotangent = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var rcpdz = 1.0f / (near - far);
-
-        return new(
-            (cotangent / aspect),    default,       default,                   default,
-            default,               cotangent,     default,                   default,
-            default,               default,       ((far + near) * rcpdz),      (2.0f * near * far * rcpdz),
-            default,               default,       -1.0f,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 perspective projection matrix based on field of view.
-    /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_GL(float verticalFov, float aspect, float near, float far)
-    {
-        var cotangent = 1.0f / math.tan(verticalFov * 0.5f);
-        var rcpdz = 1.0f / (near - far);
-
-        return new(
-            (cotangent / aspect),    default,       default,                   default,
-            default,               cotangent,     default,                   default,
-            default,               default,       ((far + near) * rcpdz),      (2.0f * near * far * rcpdz),
-            default,               default,       -1.0f,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       1.0f,                            1.0f),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov(float verticalFov, float aspect, float near)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       1.0f,                            1.0f),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_RH(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       -1.0f,                            -1.0f),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_RH(float verticalFov, float aspect, float near)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       -1.0f,                            -1.0f),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed row-major float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_Row(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       1.0f,                            1.0f,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed row-major float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_Row(float verticalFov, float aspect, float near)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       1.0f,                            1.0f,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed row-major float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_RH_Row(float_mt8 verticalFov, float_mt8 aspect, float_mt8 near)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       -1.0f,                            -1.0f,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed row-major float4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 PerspectiveFov_RH_Row(float verticalFov, float aspect, float near)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       -1.0f,                            -1.0f,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 matrix representing a combined scale-, rotation- and translation transform.
-    /// Equivalent to mul(translationTransform, mul(rotationTransform, scaleTransform))
-    /// </summary>
-    /// <param name="translation">The translation vector</param>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <param name="scale">The scaling factors of each axis</param>
-    /// <returns>The float4x4_mt8 matrix representing the translation, rotation, and scale by the inputs</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 TRS(float3_mt8 translation, quaternion_mt8 rotation, float3_mt8 scale)
-    {
-        var r = new float3x3_mt8(rotation);
-        r.c0 *= scale.xxx;
-        r.c1 *= scale.yyy;
-        r.c2 *= scale.zzz;
-        return new(r, translation);
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt8 matrix representing a combined rotation- and translation transform.
-    /// Equivalent to mul(translationTransform, rotationTransform)
-    /// </summary>
-    /// <param name="translation">The translation vector</param>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <returns>The float4x4_mt8 matrix representing the translation and rotation by the inputs</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 TR(float3_mt8 translation, quaternion_mt8 rotation)
-    {
-        var r = new float3x3_mt8(rotation);
-        return new(r, translation);
-    }
-
-    /// <summary>Returns a float4x4_mt8 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The float4x4_mt8 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Scale(float_mt8 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1.0f
-    );
-
-    /// <summary>Returns a float4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The float4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Scale(float_mt8 x, float_mt8 y, float_mt8 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1.0f
-    );
-
-    /// <summary>Returns a float4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The float4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Scale(float3_mt8 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a float4x4_mt8 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The float4x4_mt8 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 Translate(float3_mt8 vector) => new(
-        new(1.0f, default, default, default),
-        new(default, 1.0f, default, default),
-        new(default, default, 1.0f, default),
-        new(vector, 1.0f)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 rotate([This] float4x4_mt8 a, float3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 transform([This] float4x4_mt8 a, float3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 inverse([This] float4x4_mt8 m)
-    {
-        var (c0, c1, c2, c3) = m;
-
-        //var r0y_r1y_r0x_r1x = movelh(c1, c0); // (x1, y1, x0, y0)
-        //var r0z_r1z_r0w_r1w = movelh(c2, c3); // (x2, y2, x3, y3)
-        //var r2y_r3y_r2x_r3x = movehl(c0, c1); // (z1, w1, z0, w0)
-        //var r2z_r3z_r2w_r3w = movehl(c3, c2); // (z2, w2, z3, w3)
-        float4_mt8 r0y_r1y_r0x_r1x = new(m.c1.x, m.c1.y, m.c0.x, m.c0.y);
-        float4_mt8 r0z_r1z_r0w_r1w = new(m.c2.x, m.c2.y, m.c3.x, m.c3.y);
-        float4_mt8 r2y_r3y_r2x_r3x = new(m.c1.z, m.c1.w, m.c0.z, m.c0.w);
-        float4_mt8 r2z_r3z_r2w_r3w = new(m.c2.z, m.c2.w, m.c3.z, m.c3.w);
-
-        //var r0_wzyx = shuffle_zx_xz(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // x3 x2 x1 x0
-        //var r1_wzyx = shuffle_wy_yw(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // y3 y2 y1 y0
-        //var r2_wzyx = shuffle_zx_xz(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // z3 z2 z1 z0
-        //var r3_wzyx = shuffle_wy_yw(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // w3 w2 w1 w0
-        //var r0_xyzw = r0_wzyx.wzyx; // x0 x1 x2 x3
-        float4_mt8 r0_wzyx = new(m.c3.x, m.c2.x, m.c1.x, m.c0.x);
-        float4_mt8 r1_wzyx = new(m.c3.y, m.c2.y, m.c1.y, m.c0.y);
-        float4_mt8 r2_wzyx = new(m.c3.z, m.c2.z, m.c1.z, m.c0.z);
-        float4_mt8 r3_wzyx = new(m.c3.w, m.c2.w, m.c1.w, m.c0.w);
-        float4_mt8 r0_xyzw = new(m.c0.x, m.c1.x, m.c2.x, m.c3.x);
-
-        //var r1y_r2y_r1x_r2x = shuffle_yz_yz(c1, c0); // (y1, z1, y0, z0)
-        //var r1z_r2z_r1w_r2w = shuffle_yz_yz(c2, c3); // (y2, z2, y3, z3)
-        //var r3y_r0y_r3x_r0x = shuffle_wx_wx(c1, c0); // (w1, x1, w0, x0)
-        //var r3z_r0z_r3w_r0w = shuffle_wx_wx(c2, c3); // (w2, x2, w3, x3)
-        float4_mt8 r1y_r2y_r1x_r2x = new(m.c1.y, m.c1.z, m.c0.y, m.c0.z);
-        float4_mt8 r1z_r2z_r1w_r2w = new(m.c2.y, m.c2.z, m.c3.y, m.c3.z);
-        float4_mt8 r3y_r0y_r3x_r0x = new(m.c1.w, m.c1.x, m.c0.w, m.c0.x);
-        float4_mt8 r3z_r0z_r3w_r0w = new(m.c2.w, m.c2.x, m.c3.w, m.c3.x);
-
-        // Calculate remaining inner term pairs. inner terms have zw=-xy, so we only have to calculate xy and can pack two pairs per vector
-        // var inner12_23 = r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w - r1z_r2z_r1w_r2w * r2y_r3y_r2x_r3x;
-        // var inner02_13 = r0y_r1y_r0x_r1x * r2z_r3z_r2w_r3w - r0z_r1z_r0w_r1w * r2y_r3y_r2x_r3x;
-        // var inner30_01 = r3z_r0z_r3w_r0w * r0y_r1y_r0x_r1x - r3y_r0y_r3x_r0x * r0z_r1z_r0w_r1w;
-        var inner12_23 = fsm(r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w, r1z_r2z_r1w_r2w, r2y_r3y_r2x_r3x);
-        var inner02_13 = fsm(r0y_r1y_r0x_r1x * r2z_r3z_r2w_r3w, r0z_r1z_r0w_r1w, r2y_r3y_r2x_r3x);
-        var inner30_01 = fsm(r3z_r0z_r3w_r0w * r0y_r1y_r0x_r1x, r3y_r0y_r3x_r0x, r0z_r1z_r0w_r1w);
-
-        // Expand inner terms back to 4 components. zw signs still need to be flipped
-        var inner12 = inner12_23.xzzx;
-        var inner23 = inner12_23.ywwy;
-
-        var inner02 = inner02_13.xzzx;
-        var inner13 = inner02_13.ywwy;
-
-        // Calculate minors
-        // var minors0 = r3_wzyx * inner12 - r2_wzyx * inner13 + r1_wzyx * inner23;
-        var minors0 = fam(fsm(r3_wzyx * inner12, r2_wzyx, inner13), r1_wzyx, inner23);
-
-        var denom = r0_xyzw * minors0;
-
-        // Horizontal sum of denominator. Free sign flip of z and w compensates for missing flip in inner terms
-        denom += denom.yxwz; // x+y        x+y            z+w            z+w
-        denom -= denom.zzxx; // x+y-z-w  x+y-z-w        z+w-x-y        z+w-x-y
-
-        var rcp_denom_ppnn = float4_mt8.One / denom;
-        var rc0 = minors0 * rcp_denom_ppnn;
-
-        var inner30 = inner30_01.xzzx;
-        var inner01 = inner30_01.ywwy;
-
-        // var minors1 = r2_wzyx * inner30 - r0_wzyx * inner23 - r3_wzyx * inner02;
-        var minors1 = fsm(fsm(r2_wzyx * inner30, r0_wzyx, inner23), r3_wzyx, inner02);
-        var rc1 = minors1 * rcp_denom_ppnn;
-
-        // var minors2 = r0_wzyx * inner13 - r1_wzyx * inner30 - r3_wzyx * inner01;
-        var minors2 = fsm(fsm(r0_wzyx * inner13, r1_wzyx, inner30), r3_wzyx, inner01);
-        var rc2 = minors2 * rcp_denom_ppnn;
-
-        // var minors3 = r1_wzyx * inner02 - r0_wzyx * inner12 + r2_wzyx * inner01;
-        var minors3 = fsm(fsm(r1_wzyx * inner02, r0_wzyx, inner12), r2_wzyx, inner01);
-        var rc3 = minors3 * rcp_denom_ppnn;
-
-        return new(rc0, rc1, rc2, rc3);
-    }
-
-    /// <summary>Fast matrix inverse for rigid transforms (orthonormal basis and translation)</summary>
-    /// <param name="m">Matrix to invert</param>
-    /// <returns>The inverted matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 fastinverse([This] float4x4_mt8 m)
-    {
-        var (c0, c1, c2, pos) = m;
-
-        // unpacklo a b => a.x, b.x, a.y, b.y
-        // unpackhi a b => a.z, b.z, a.w, b.w
-
-        float4_mt8 t0 = new(c0.x, c2.x, c0.y, c2.y);           // unpacklo(c0, c2);
-        float4_mt8 t1 = new(c1.x, default, c1.y, default);     // unpacklo(c1, default);
-        float4_mt8 t2 = new(c0.z, c2.z, c0.w, c2.w);           // unpackhi(c0, c2);
-        float4_mt8 t3 = new(c1.z, default, c1.w, default);     // unpackhi(c1, default);
-
-        float4_mt8 r0 = new(t0.x, t1.x, t0.y, t1.y);           // unpacklo(t0, t1);
-        float4_mt8 r1 = new(t0.z, t1.z, t0.w, t1.w);           // unpackhi(t0, t1);
-        float4_mt8 r2 = new(t2.x, t3.x, t2.y, t3.y);           // unpacklo(t2, t3);
-
-        //pos = -(r0 * pos.x + r1 * pos.y + r2 * pos.z);
-        pos = -fam(fam(r0 * pos.x, r1, pos.y), r2, pos.z);
-        pos.w = 1.0f;
-
-        return new(r0, r1, r2, pos);
-    }
-
-    /// <summary>Returns the determinant of a float4x4_mt8 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float_mt8 determinant([This] float4x4_mt8 m)
-    {
-        var (c0, c1, c2, c3) = m;
-    
-        // var m00 = c1.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c1.z * c3.w - c1.w * c3.z) + c3.y * (c1.z * c2.w - c1.w * c2.z);
-        // var m01 = c0.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c2.w - c0.w * c2.z);
-        // var m02 = c0.y * (c1.z * c3.w - c1.w * c3.z) - c1.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c1.w - c0.w * c1.z);
-        // var m03 = c0.y * (c1.z * c2.w - c1.w * c2.z) - c1.y * (c0.z * c2.w - c0.w * c2.z) + c2.y * (c0.z * c1.w - c0.w * c1.z);
-        var m00 = fam(fsm(c1.y * fsm(c2.z * c3.w, c2.w, c3.z), c2.y, fsm(c1.z * c3.w, c1.w, c3.z)), c3.y, fsm(c1.z * c2.w, c1.w, c2.z));
-        var m01 = fam(fsm(c0.y * fsm(c2.z * c3.w, c2.w, c3.z), c2.y, fsm(c0.z * c3.w, c0.w, c3.z)), c3.y, fsm(c0.z * c2.w, c0.w, c2.z));
-        var m02 = fam(fsm(c0.y * fsm(c1.z * c3.w, c1.w, c3.z), c1.y, fsm(c0.z * c3.w, c0.w, c3.z)), c3.y, fsm(c0.z * c1.w, c0.w, c1.z));
-        var m03 = fam(fsm(c0.y * fsm(c1.z * c2.w, c1.w, c2.z), c1.y, fsm(c0.z * c2.w, c0.w, c2.z)), c2.y, fsm(c0.z * c1.w, c0.w, c1.z));
-
-        // return c0.x * m00 - c1.x * m01 + c2.x * m02 - c3.x * m03;
-        return fsm(fam(fsm(c0.x * m00, c1.x, m01), c2.x, m02), c3.x, m03);
-    }
-}
-
-#endregion // float4x4_mt8
-
-#region float4x4_mt16
-
-public partial struct float4x4_mt16
-{
-    /// <summary>Constructs a float4x4_mt16 from a float3x3_mt16 rotation matrix and a float3_mt16 translation vector</summary>
-    /// <param name="rotation">The float3x3_mt16 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public float4x4_mt16(float3x3_mt16 rotation, float3_mt16 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1.0f);
-    }
-
-    /// <summary>Constructs a float4x4_mt16 from a quaternion and a float3_mt16 translation vector</summary>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public float4x4_mt16(quaternion_mt16 rotation, float3_mt16 translation) 
-        : this(new float3x3_mt16(rotation), translation) {}
-
-    /// <summary>
-    /// Returns a float4x4_mt16 matrix representing a rotation around a unit axis by an angle in radians
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float4x4_mt16 matrix representing the rotation about an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 AxisAngle(float3_mt16 axis, float_mt16 angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = new float4_mt16(axis, default);
-        var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new float4_mt16(u.xyz * sina, cosa);
-
-        var ppnp = new uint4_mt16(default, default, 0x80000000, default).asfloat();
-        var nppp = new uint4_mt16(0x80000000, default, default, default).asfloat();
-        var pnpp = new uint4_mt16(default, 0x80000000, default, default).asfloat();
-        var mask = new int4_mt16(-1, -1, -1, default).asfloat();
-
-        return new(
-            u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
-            u.yyyy.fma(u_inv_cosa, (t.zwxx ^ nppp) & mask),
-            u.zzzz.fma(u_inv_cosa, (t.yxwx ^ pnpp) & mask),
-            new(default, default, default, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 matrix representing a rotation around a unit axis by an angle in radians
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The float4x4_mt16 matrix representing the rotation about an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 AxisAngle(float3_mt16 axis, float angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = new float4_mt16(axis, default);
-        var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new float4_mt16(u.xyz * sina, cosa);
-
-        var ppnp = new uint4_mt16(default, default, 0x80000000, default).asfloat();
-        var nppp = new uint4_mt16(0x80000000, default, default, default).asfloat();
-        var pnpp = new uint4_mt16(default, 0x80000000, default, default).asfloat();
-        var mask = new int4_mt16(-1, -1, -1, default).asfloat();
-
-        return new(
-            u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
-            u.yyyy.fma(u_inv_cosa, (t.zwxx ^ nppp) & mask),
-            u.zzzz.fma(u_inv_cosa, (t.yxwx ^ pnpp) & mask),
-            new(default, default, default, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix of the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 EulerXYZ(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (c.z * s.x * s.y - c.x * s.z),    (c.x * c.z * s.y + s.x * s.z),    default,
-            (c.y * s.z),  (c.x * c.z + s.x * s.y * s.z),    (c.x * s.y * s.z - c.z * s.x),    default,
-            (-s.y),       (c.y * s.x),                      (c.x * c.y),                      default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix of the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 EulerXZY(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (s.x * s.y - c.x * c.y * s.z),    (c.x * s.y + c.y * s.x * s.z),    default,
-            (s.z),        (c.x * c.z),                      (-c.z * s.x),                     default,
-            (-c.z * s.y), (c.y * s.x + c.x * s.y * s.z),    (c.x * c.y - s.x * s.y * s.z),    default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix of the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 EulerYXZ(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z - s.x * s.y * s.z),    (-c.x * s.z), (c.z * s.y + c.y * s.x * s.z),    default,
-            (c.z * s.x * s.y + c.y * s.z),    (c.x * c.z),  (s.y * s.z - c.y * c.z * s.x),    default,
-            (-c.x * s.y),                     (s.x),        (c.x * c.y),                      default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix of the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 EulerYZX(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-s.z),       (c.z * s.y),                      default,
-            (s.x * s.y + c.x * c.y * s.z),    (c.x * c.z),  (c.x * s.y * s.z - c.y * s.x),    default,
-            (c.y * s.x * s.z - c.x * s.y),    (c.z * s.x),  (c.x * c.y + s.x * s.y * s.z),    default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix of the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 EulerZXY(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z + s.x * s.y * s.z),    (c.z * s.x * s.y - c.y * s.z),    (c.x * s.y),  default,
-            (c.x * s.z),                      (c.x * c.z),                      (-s.x),       default,
-            (c.y * s.x * s.z - c.z * s.y),    (c.y * c.z * s.x + s.y * s.z),    (c.x * c.y),  default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix of the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 EulerZYX(float3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-c.y * s.z),                     (s.y),        default,
-            (c.z * s.x * s.y + c.x * s.z),    (c.x * c.z - s.x * s.y * s.z),    (-c.y * s.x), default,
-            (s.x * s.z - c.x * c.z * s.y),    (c.z * s.x + c.x * s.y * s.z),    (c.x * c.y),  default,
-            default,                        default,                        default,       1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt16 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 RotateX(float_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0f, default, default, default,
-            default, c,     -s,    default,
-            default, s,     c,     default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt16 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 RotateX(float angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0f, default, default, default,
-            default, c,     -s,    default,
-            default, s,     c,     default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt16 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 RotateY(float_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,     default,
-            default, 1.0f, default, default,
-            -s,    default, c,     default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt16 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 RotateY(float angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,     default,
-            default, 1.0f, default, default,
-            -s,    default, c,     default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt16 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 RotateZ(float_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default, default,
-            s,     c,     default, default,
-            default, default, 1.0f, default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>Returns a float4x4_mt16 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The float4x4_mt16 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 RotateZ(float angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default, default,
-            s,     c,     default, default,
-            default, default, 1.0f, default,
-            default, default, default, 1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookAt(float3_mt16 eye, float3_mt16 target, float3_mt16 up) 
-        => LookTo(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookAt_RH(float3_mt16 eye, float3_mt16 target, float3_mt16 up) 
-        => LookTo_RH(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a left-handed row-major float4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookAt_Row(float3_mt16 eye, float3_mt16 target, float3_mt16 up) 
-        => LookTo_Row(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a right-handed row-major float4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookAt_RH_Row(float3_mt16 eye, float3_mt16 target, float3_mt16 up) 
-        => LookTo_RH_Row(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a float4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookAt_GL(float3_mt16 eye, float3_mt16 target, float3_mt16 up) 
-        => LookTo_GL(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookTo(float3_mt16 eye, float3_mt16 dir, float3_mt16 up)
-        => LookTo_RH(eye, -dir, up);
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookTo_RH(float3_mt16 eye, float3_mt16 dir, float3_mt16 up)
-    {
-        var f = dir.normalize();
-        var s = f.cross(up).normalize();
-        var u = s.cross(f);
-
-        var m3x3 = new float3x3_mt16(s, u, -f).transpose();
-        
-        return new(
-            new(m3x3.c0),
-            new(m3x3.c1),
-            new(m3x3.c2),
-            new(-eye.dot(s), -eye.dot(u), eye.dot(f), 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major float4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookTo_Row(float3_mt16 eye, float3_mt16 dir, float3_mt16 up)
-        => LookTo_RH_Row(eye, -dir, up);
-
-    /// <summary>
-    /// Returns a right-handed row-major float4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookTo_RH_Row(float3_mt16 eye, float3_mt16 dir, float3_mt16 up)
-    {
-        var f = dir.normalize();
-        var s = f.cross(up).normalize();
-        var u = s.cross(f);
-        
-        return new(
-            new(s, -eye.dot(s)),
-            new(u, -eye.dot(u)),
-            new(-f, eye.dot(f)),
-            new(default, default, default, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The float4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 LookTo_GL(float3_mt16 eye, float3_mt16 dir, float3_mt16 up)
-    {
-        var rot = float3x3_mt16.LookRotation(dir.normalize(), up);
-        return new(
-            new(rot.c0, default),
-            new(rot.c1, default),
-            new(rot.c2, default),
-            new(eye, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho(float_mt16 width, float_mt16 height, float_mt16 near, float_mt16 far)
-    {
-        var rcp_width = 1.0f / width;
-        var rcp_height = 1.0f / height;
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (-r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho(float width, float height, float near, float far)
-    {
-        var rcp_width = 1.0f / width;
-        var rcp_height = 1.0f / height;
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (-r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho(float_mt16 left, float_mt16 right, float_mt16 bottom, float_mt16 top, float_mt16 near, float_mt16 far)
-    {
-        var rcp_width = 1.0f / (right - left);
-        var rcp_height = 1.0f / (top - bottom);
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (-r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho(float left, float right, float bottom, float top, float near, float far)
-    {
-        var rcp_width = 1.0f / (right - left);
-        var rcp_height = 1.0f / (top - bottom);
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (-r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho_RH(float_mt16 width, float_mt16 height, float_mt16 near, float_mt16 far)
-    {
-        var rcp_width = 1.0f / width;
-        var rcp_height = 1.0f / height;
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho_RH(float width, float height, float near, float far)
-    {
-        var rcp_width = 1.0f / width;
-        var rcp_height = 1.0f / height;
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho_RH(float_mt16 left, float_mt16 right, float_mt16 bottom, float_mt16 top, float_mt16 near, float_mt16 far)
-    {
-        var rcp_width = 1.0f / (right - left);
-        var rcp_height = 1.0f / (top - bottom);
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho_RH(float left, float right, float bottom, float top, float near, float far)
-    {
-        var rcp_width = 1.0f / (right - left);
-        var rcp_height = 1.0f / (top - bottom);
-        var r = 1.0f / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (r * near), 1.0f)
-       );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho_GL(float_mt16 width, float_mt16 height, float_mt16 near, float_mt16 far)
-    {
-        var rcpdx = 1.0f / width;
-        var rcpdy = 1.0f / height;
-        var rcpdz = 1.0f / (far - near);
-
-        return new(
-            (2.0f * rcpdx),       default,            default,            default,
-            default,           (2.0f * rcpdy),        default,            default,
-            default,           default,            (-2.0f * rcpdz),       (-(far + near) * rcpdz),
-            default,           default,            default,            1.0f
-       );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho_GL(float width, float height, float near, float far)
-    {
-        var rcpdx = 1.0f / width;
-        var rcpdy = 1.0f / height;
-        var rcpdz = 1.0f / (far - near);
-
-        return new(
-            (2.0f * rcpdx),       default,            default,            default,
-            default,           (2.0f * rcpdy),        default,            default,
-            default,           default,            (-2.0f * rcpdz),       (-(far + near) * rcpdz),
-            default,           default,            default,            1.0f
-       );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho_GL(float_mt16 left, float_mt16 right, float_mt16 bottom, float_mt16 top, float_mt16 near, float_mt16 far)
-    {
-        var rcpdx = 1.0f / (right - left);
-        var rcpdy = 1.0f / (top - bottom);
-        var rcpdz = 1.0f / (far - near);
-
-        return new(
-            (2.0f * rcpdx),      default,           default,                (-(right + left) * rcpdx),
-            default,           (2.0f * rcpdy),      default,                (-(top + bottom) * rcpdy),
-            default,           default,           (-2.0f * rcpdz),          (-(far + near) * rcpdz),
-            default,           default,           default,                1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The float4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Ortho_GL(float left, float right, float bottom, float top, float near, float far)
-    {
-        var rcpdx = 1.0f / (right - left);
-        var rcpdy = 1.0f / (top - bottom);
-        var rcpdz = 1.0f / (far - near);
-
-        return new(
-            (2.0f * rcpdx),      default,           default,                (-(right + left) * rcpdx),
-            default,           (2.0f * rcpdy),      default,                (-(top + bottom) * rcpdy),
-            default,           default,           (-2.0f * rcpdz),          (-(far + near) * rcpdz),
-            default,           default,           default,                1.0f
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near, float_mt16 far)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            1.0f),
-            new(default,               default,       (-r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov(float verticalFov, float aspect, float near, float far)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            1.0f),
-            new(default,               default,       (-r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_RH(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near, float_mt16 far)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            -1.0f),
-            new(default,               default,       (r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_RH(float verticalFov, float aspect, float near, float far)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            -1.0f),
-            new(default,               default,       (r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_Row(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near, float_mt16 far)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            1.0f,
-            default,               default,       (-r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_Row(float verticalFov, float aspect, float near, float far)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            1.0f,
-            default,               default,       (-r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed row-major float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_RH_Row(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near, float_mt16 far)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            -1.0f,
-            default,               default,       (r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed row-major float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_RH_Row(float verticalFov, float aspect, float near, float far)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            -1.0f,
-            default,               default,       (r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 perspective projection matrix based on field of view.
-    /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_GL(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near, float_mt16 far)
-    {
-        var cotangent = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var rcpdz = 1.0f / (near - far);
-
-        return new(
-            (cotangent / aspect),    default,       default,                   default,
-            default,               cotangent,     default,                   default,
-            default,               default,       ((far + near) * rcpdz),      (2.0f * near * far * rcpdz),
-            default,               default,       -1.0f,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 perspective projection matrix based on field of view.
-    /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_GL(float verticalFov, float aspect, float near, float far)
-    {
-        var cotangent = 1.0f / math.tan(verticalFov * 0.5f);
-        var rcpdz = 1.0f / (near - far);
-
-        return new(
-            (cotangent / aspect),    default,       default,                   default,
-            default,               cotangent,     default,                   default,
-            default,               default,       ((far + near) * rcpdz),      (2.0f * near * far * rcpdz),
-            default,               default,       -1.0f,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       1.0f,                            1.0f),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov(float verticalFov, float aspect, float near)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       1.0f,                            1.0f),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_RH(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       -1.0f,                            -1.0f),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_RH(float verticalFov, float aspect, float near)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       -1.0f,                            -1.0f),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed row-major float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_Row(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       1.0f,                            1.0f,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed row-major float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_Row(float verticalFov, float aspect, float near)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       1.0f,                            1.0f,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed row-major float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_RH_Row(float_mt16 verticalFov, float_mt16 aspect, float_mt16 near)
-    {
-        var h = 1.0f / math_mt.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       -1.0f,                            -1.0f,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed row-major float4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The float4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 PerspectiveFov_RH_Row(float verticalFov, float aspect, float near)
-    {
-        var h = 1.0f / math.tan(verticalFov * 0.5f);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       -1.0f,                            -1.0f,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 matrix representing a combined scale-, rotation- and translation transform.
-    /// Equivalent to mul(translationTransform, mul(rotationTransform, scaleTransform))
-    /// </summary>
-    /// <param name="translation">The translation vector</param>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <param name="scale">The scaling factors of each axis</param>
-    /// <returns>The float4x4_mt16 matrix representing the translation, rotation, and scale by the inputs</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 TRS(float3_mt16 translation, quaternion_mt16 rotation, float3_mt16 scale)
-    {
-        var r = new float3x3_mt16(rotation);
-        r.c0 *= scale.xxx;
-        r.c1 *= scale.yyy;
-        r.c2 *= scale.zzz;
-        return new(r, translation);
-    }
-
-    /// <summary>
-    /// Returns a float4x4_mt16 matrix representing a combined rotation- and translation transform.
-    /// Equivalent to mul(translationTransform, rotationTransform)
-    /// </summary>
-    /// <param name="translation">The translation vector</param>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <returns>The float4x4_mt16 matrix representing the translation and rotation by the inputs</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 TR(float3_mt16 translation, quaternion_mt16 rotation)
-    {
-        var r = new float3x3_mt16(rotation);
-        return new(r, translation);
-    }
-
-    /// <summary>Returns a float4x4_mt16 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The float4x4_mt16 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Scale(float_mt16 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1.0f
-    );
-
-    /// <summary>Returns a float4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The float4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Scale(float_mt16 x, float_mt16 y, float_mt16 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1.0f
-    );
-
-    /// <summary>Returns a float4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The float4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Scale(float3_mt16 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a float4x4_mt16 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The float4x4_mt16 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 Translate(float3_mt16 vector) => new(
-        new(1.0f, default, default, default),
-        new(default, 1.0f, default, default),
-        new(default, default, 1.0f, default),
-        new(vector, 1.0f)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 rotate([This] float4x4_mt16 a, float3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 transform([This] float4x4_mt16 a, float3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 inverse([This] float4x4_mt16 m)
-    {
-        var (c0, c1, c2, c3) = m;
-
-        //var r0y_r1y_r0x_r1x = movelh(c1, c0); // (x1, y1, x0, y0)
-        //var r0z_r1z_r0w_r1w = movelh(c2, c3); // (x2, y2, x3, y3)
-        //var r2y_r3y_r2x_r3x = movehl(c0, c1); // (z1, w1, z0, w0)
-        //var r2z_r3z_r2w_r3w = movehl(c3, c2); // (z2, w2, z3, w3)
-        float4_mt16 r0y_r1y_r0x_r1x = new(m.c1.x, m.c1.y, m.c0.x, m.c0.y);
-        float4_mt16 r0z_r1z_r0w_r1w = new(m.c2.x, m.c2.y, m.c3.x, m.c3.y);
-        float4_mt16 r2y_r3y_r2x_r3x = new(m.c1.z, m.c1.w, m.c0.z, m.c0.w);
-        float4_mt16 r2z_r3z_r2w_r3w = new(m.c2.z, m.c2.w, m.c3.z, m.c3.w);
-
-        //var r0_wzyx = shuffle_zx_xz(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // x3 x2 x1 x0
-        //var r1_wzyx = shuffle_wy_yw(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // y3 y2 y1 y0
-        //var r2_wzyx = shuffle_zx_xz(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // z3 z2 z1 z0
-        //var r3_wzyx = shuffle_wy_yw(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // w3 w2 w1 w0
-        //var r0_xyzw = r0_wzyx.wzyx; // x0 x1 x2 x3
-        float4_mt16 r0_wzyx = new(m.c3.x, m.c2.x, m.c1.x, m.c0.x);
-        float4_mt16 r1_wzyx = new(m.c3.y, m.c2.y, m.c1.y, m.c0.y);
-        float4_mt16 r2_wzyx = new(m.c3.z, m.c2.z, m.c1.z, m.c0.z);
-        float4_mt16 r3_wzyx = new(m.c3.w, m.c2.w, m.c1.w, m.c0.w);
-        float4_mt16 r0_xyzw = new(m.c0.x, m.c1.x, m.c2.x, m.c3.x);
-
-        //var r1y_r2y_r1x_r2x = shuffle_yz_yz(c1, c0); // (y1, z1, y0, z0)
-        //var r1z_r2z_r1w_r2w = shuffle_yz_yz(c2, c3); // (y2, z2, y3, z3)
-        //var r3y_r0y_r3x_r0x = shuffle_wx_wx(c1, c0); // (w1, x1, w0, x0)
-        //var r3z_r0z_r3w_r0w = shuffle_wx_wx(c2, c3); // (w2, x2, w3, x3)
-        float4_mt16 r1y_r2y_r1x_r2x = new(m.c1.y, m.c1.z, m.c0.y, m.c0.z);
-        float4_mt16 r1z_r2z_r1w_r2w = new(m.c2.y, m.c2.z, m.c3.y, m.c3.z);
-        float4_mt16 r3y_r0y_r3x_r0x = new(m.c1.w, m.c1.x, m.c0.w, m.c0.x);
-        float4_mt16 r3z_r0z_r3w_r0w = new(m.c2.w, m.c2.x, m.c3.w, m.c3.x);
-
-        // Calculate remaining inner term pairs. inner terms have zw=-xy, so we only have to calculate xy and can pack two pairs per vector
-        // var inner12_23 = r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w - r1z_r2z_r1w_r2w * r2y_r3y_r2x_r3x;
-        // var inner02_13 = r0y_r1y_r0x_r1x * r2z_r3z_r2w_r3w - r0z_r1z_r0w_r1w * r2y_r3y_r2x_r3x;
-        // var inner30_01 = r3z_r0z_r3w_r0w * r0y_r1y_r0x_r1x - r3y_r0y_r3x_r0x * r0z_r1z_r0w_r1w;
-        var inner12_23 = fsm(r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w, r1z_r2z_r1w_r2w, r2y_r3y_r2x_r3x);
-        var inner02_13 = fsm(r0y_r1y_r0x_r1x * r2z_r3z_r2w_r3w, r0z_r1z_r0w_r1w, r2y_r3y_r2x_r3x);
-        var inner30_01 = fsm(r3z_r0z_r3w_r0w * r0y_r1y_r0x_r1x, r3y_r0y_r3x_r0x, r0z_r1z_r0w_r1w);
-
-        // Expand inner terms back to 4 components. zw signs still need to be flipped
-        var inner12 = inner12_23.xzzx;
-        var inner23 = inner12_23.ywwy;
-
-        var inner02 = inner02_13.xzzx;
-        var inner13 = inner02_13.ywwy;
-
-        // Calculate minors
-        // var minors0 = r3_wzyx * inner12 - r2_wzyx * inner13 + r1_wzyx * inner23;
-        var minors0 = fam(fsm(r3_wzyx * inner12, r2_wzyx, inner13), r1_wzyx, inner23);
-
-        var denom = r0_xyzw * minors0;
-
-        // Horizontal sum of denominator. Free sign flip of z and w compensates for missing flip in inner terms
-        denom += denom.yxwz; // x+y        x+y            z+w            z+w
-        denom -= denom.zzxx; // x+y-z-w  x+y-z-w        z+w-x-y        z+w-x-y
-
-        var rcp_denom_ppnn = float4_mt16.One / denom;
-        var rc0 = minors0 * rcp_denom_ppnn;
-
-        var inner30 = inner30_01.xzzx;
-        var inner01 = inner30_01.ywwy;
-
-        // var minors1 = r2_wzyx * inner30 - r0_wzyx * inner23 - r3_wzyx * inner02;
-        var minors1 = fsm(fsm(r2_wzyx * inner30, r0_wzyx, inner23), r3_wzyx, inner02);
-        var rc1 = minors1 * rcp_denom_ppnn;
-
-        // var minors2 = r0_wzyx * inner13 - r1_wzyx * inner30 - r3_wzyx * inner01;
-        var minors2 = fsm(fsm(r0_wzyx * inner13, r1_wzyx, inner30), r3_wzyx, inner01);
-        var rc2 = minors2 * rcp_denom_ppnn;
-
-        // var minors3 = r1_wzyx * inner02 - r0_wzyx * inner12 + r2_wzyx * inner01;
-        var minors3 = fsm(fsm(r1_wzyx * inner02, r0_wzyx, inner12), r2_wzyx, inner01);
-        var rc3 = minors3 * rcp_denom_ppnn;
-
-        return new(rc0, rc1, rc2, rc3);
-    }
-
-    /// <summary>Fast matrix inverse for rigid transforms (orthonormal basis and translation)</summary>
-    /// <param name="m">Matrix to invert</param>
-    /// <returns>The inverted matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt16 fastinverse([This] float4x4_mt16 m)
-    {
-        var (c0, c1, c2, pos) = m;
-
-        // unpacklo a b => a.x, b.x, a.y, b.y
-        // unpackhi a b => a.z, b.z, a.w, b.w
-
-        float4_mt16 t0 = new(c0.x, c2.x, c0.y, c2.y);           // unpacklo(c0, c2);
-        float4_mt16 t1 = new(c1.x, default, c1.y, default);     // unpacklo(c1, default);
-        float4_mt16 t2 = new(c0.z, c2.z, c0.w, c2.w);           // unpackhi(c0, c2);
-        float4_mt16 t3 = new(c1.z, default, c1.w, default);     // unpackhi(c1, default);
-
-        float4_mt16 r0 = new(t0.x, t1.x, t0.y, t1.y);           // unpacklo(t0, t1);
-        float4_mt16 r1 = new(t0.z, t1.z, t0.w, t1.w);           // unpackhi(t0, t1);
-        float4_mt16 r2 = new(t2.x, t3.x, t2.y, t3.y);           // unpacklo(t2, t3);
-
-        //pos = -(r0 * pos.x + r1 * pos.y + r2 * pos.z);
-        pos = -fam(fam(r0 * pos.x, r1, pos.y), r2, pos.z);
-        pos.w = 1.0f;
-
-        return new(r0, r1, r2, pos);
-    }
-
-    /// <summary>Returns the determinant of a float4x4_mt16 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float_mt16 determinant([This] float4x4_mt16 m)
-    {
-        var (c0, c1, c2, c3) = m;
-    
-        // var m00 = c1.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c1.z * c3.w - c1.w * c3.z) + c3.y * (c1.z * c2.w - c1.w * c2.z);
-        // var m01 = c0.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c2.w - c0.w * c2.z);
-        // var m02 = c0.y * (c1.z * c3.w - c1.w * c3.z) - c1.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c1.w - c0.w * c1.z);
-        // var m03 = c0.y * (c1.z * c2.w - c1.w * c2.z) - c1.y * (c0.z * c2.w - c0.w * c2.z) + c2.y * (c0.z * c1.w - c0.w * c1.z);
-        var m00 = fam(fsm(c1.y * fsm(c2.z * c3.w, c2.w, c3.z), c2.y, fsm(c1.z * c3.w, c1.w, c3.z)), c3.y, fsm(c1.z * c2.w, c1.w, c2.z));
-        var m01 = fam(fsm(c0.y * fsm(c2.z * c3.w, c2.w, c3.z), c2.y, fsm(c0.z * c3.w, c0.w, c3.z)), c3.y, fsm(c0.z * c2.w, c0.w, c2.z));
-        var m02 = fam(fsm(c0.y * fsm(c1.z * c3.w, c1.w, c3.z), c1.y, fsm(c0.z * c3.w, c0.w, c3.z)), c3.y, fsm(c0.z * c1.w, c0.w, c1.z));
-        var m03 = fam(fsm(c0.y * fsm(c1.z * c2.w, c1.w, c2.z), c1.y, fsm(c0.z * c2.w, c0.w, c2.z)), c2.y, fsm(c0.z * c1.w, c0.w, c1.z));
-
-        // return c0.x * m00 - c1.x * m01 + c2.x * m02 - c3.x * m03;
-        return fsm(fam(fsm(c0.x * m00, c1.x, m01), c2.x, m02), c3.x, m03);
-    }
-}
-
-#endregion // float4x4_mt16
-
-#region double4x4_mt4
-
-public partial struct double4x4_mt4
-{
-    /// <summary>Constructs a double4x4_mt4 from a double3x3_mt4 rotation matrix and a double3_mt4 translation vector</summary>
-    /// <param name="rotation">The double3x3_mt4 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public double4x4_mt4(double3x3_mt4 rotation, double3_mt4 translation)
+    public double4x4_mt(double3x3_mt rotation, double3_mt translation)
     {
         c0 = new(rotation.c0, default);
         c1 = new(rotation.c1, default);
@@ -4032,32 +1356,32 @@ public partial struct double4x4_mt4
         c3 = new(translation, 1.0);
     }
 
-    /// <summary>Constructs a double4x4_mt4 from a quaternion and a double3_mt4 translation vector</summary>
+    /// <summary>Constructs a double4x4_mt from a quaternion and a double3_mt translation vector</summary>
     /// <param name="rotation">The quaternion rotation</param>
     /// <param name="translation">The translation vector</param>
     [MethodImpl(256 | 512)]
-    public double4x4_mt4(quaternion_d_mt4 rotation, double3_mt4 translation) 
-        : this(new double3x3_mt4(rotation), translation) {}
+    public double4x4_mt(quaternion_d_mt rotation, double3_mt translation) 
+        : this(new double3x3_mt(rotation), translation) {}
 
     /// <summary>
-    /// Returns a double4x4_mt4 matrix representing a rotation around a unit axis by an angle in radians
+    /// Returns a double4x4_mt matrix representing a rotation around a unit axis by an angle in radians
     /// The rotation direction is clockwise when looking along the rotation axis towards the origin
     /// </summary>
     /// <param name="axis">The axis of rotation</param>
     /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double4x4_mt4 matrix representing the rotation about an axis</returns>
+    /// <returns>The double4x4_mt matrix representing the rotation about an axis</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 AxisAngle(double3_mt4 axis, double_mt4 angle)
+    public static double4x4_mt AxisAngle(double3_mt axis, double_mt angle)
     {
         angle.sincos(out var sina, out var cosa);
-        var u = new double4_mt4(axis, default);
+        var u = new double4_mt(axis, default);
         var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new double4_mt4(u.xyz * sina, cosa);
+        var t = new double4_mt(u.xyz * sina, cosa);
 
-        var ppnp = new ulong4_mt4(default, default, 0x8000000000000000, default).asdouble();
-        var nppp = new ulong4_mt4(0x8000000000000000, default, default, default).asdouble();
-        var pnpp = new ulong4_mt4(default, 0x8000000000000000, default, default).asdouble();
-        var mask = new long4_mt4(-1, -1, -1, default).asdouble();
+        var ppnp = new ulong4_mt(default, default, 0x8000000000000000, default).asdouble();
+        var nppp = new ulong4_mt(0x8000000000000000, default, default, default).asdouble();
+        var pnpp = new ulong4_mt(default, 0x8000000000000000, default, default).asdouble();
+        var mask = new long4_mt(-1, -1, -1, default).asdouble();
 
         return new(
             u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
@@ -4068,24 +1392,24 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 matrix representing a rotation around a unit axis by an angle in radians
+    /// Returns a double4x4_mt matrix representing a rotation around a unit axis by an angle in radians
     /// The rotation direction is clockwise when looking along the rotation axis towards the origin
     /// </summary>
     /// <param name="axis">The axis of rotation</param>
     /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double4x4_mt4 matrix representing the rotation about an axis</returns>
+    /// <returns>The double4x4_mt matrix representing the rotation about an axis</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 AxisAngle(double3_mt4 axis, double angle)
+    public static double4x4_mt AxisAngle(double3_mt axis, double angle)
     {
         angle.sincos(out var sina, out var cosa);
-        var u = new double4_mt4(axis, default);
+        var u = new double4_mt(axis, default);
         var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new double4_mt4(u.xyz * sina, cosa);
+        var t = new double4_mt(u.xyz * sina, cosa);
 
-        var ppnp = new ulong4_mt4(default, default, 0x8000000000000000, default).asdouble();
-        var nppp = new ulong4_mt4(0x8000000000000000, default, default, default).asdouble();
-        var pnpp = new ulong4_mt4(default, 0x8000000000000000, default, default).asdouble();
-        var mask = new long4_mt4(-1, -1, -1, default).asdouble();
+        var ppnp = new ulong4_mt(default, default, 0x8000000000000000, default).asdouble();
+        var nppp = new ulong4_mt(0x8000000000000000, default, default, default).asdouble();
+        var pnpp = new ulong4_mt(default, 0x8000000000000000, default, default).asdouble();
+        var mask = new long4_mt(-1, -1, -1, default).asdouble();
 
         return new(
             u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
@@ -4096,13 +1420,13 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
+    /// Returns a double4x4_mt rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix of the Euler angle rotation in x-y-z order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double4x4_mt rotation matrix of the Euler angle rotation in x-y-z order</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 EulerXYZ(double3_mt4 xyz)
+    public static double4x4_mt EulerXYZ(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -4114,13 +1438,13 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
+    /// Returns a double4x4_mt rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix of the Euler angle rotation in x-z-y order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double4x4_mt rotation matrix of the Euler angle rotation in x-z-y order</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 EulerXZY(double3_mt4 xyz)
+    public static double4x4_mt EulerXZY(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -4132,13 +1456,13 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
+    /// Returns a double4x4_mt rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix of the Euler angle rotation in y-x-z order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double4x4_mt rotation matrix of the Euler angle rotation in y-x-z order</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 EulerYXZ(double3_mt4 xyz)
+    public static double4x4_mt EulerYXZ(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -4150,13 +1474,13 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
+    /// Returns a double4x4_mt rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix of the Euler angle rotation in y-z-x order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double4x4_mt rotation matrix of the Euler angle rotation in y-z-x order</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 EulerYZX(double3_mt4 xyz)
+    public static double4x4_mt EulerYZX(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -4168,13 +1492,13 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
+    /// Returns a double4x4_mt rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix of the Euler angle rotation in z-x-y order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double4x4_mt rotation matrix of the Euler angle rotation in z-x-y order</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 EulerZXY(double3_mt4 xyz)
+    public static double4x4_mt EulerZXY(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -4186,13 +1510,13 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
+    /// Returns a double4x4_mt rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix of the Euler angle rotation in z-y-x order</returns>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <returns>The double4x4_mt rotation matrix of the Euler angle rotation in z-y-x order</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 EulerZYX(double3_mt4 xyz)
+    public static double4x4_mt EulerZYX(double3_mt xyz)
     {
         xyz.sincos(out var s, out var c);
         return new(
@@ -4203,11 +1527,11 @@ public partial struct double4x4_mt4
         );
     }
 
-    /// <summary>Returns a double4x4_mt4 matrix that rotates around the x-axis by a given number of radians</summary>
+    /// <summary>Returns a double4x4_mt matrix that rotates around the x-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix that rotates around the x-axis</returns>
+    /// <returns>The double4x4_mt rotation matrix that rotates around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 RotateX(double_mt4 angle)
+    public static double4x4_mt RotateX(double_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -4218,11 +1542,11 @@ public partial struct double4x4_mt4
         );
     }
 
-    /// <summary>Returns a double4x4_mt4 matrix that rotates around the x-axis by a given number of radians</summary>
+    /// <summary>Returns a double4x4_mt matrix that rotates around the x-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix that rotates around the x-axis</returns>
+    /// <returns>The double4x4_mt rotation matrix that rotates around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 RotateX(double angle)
+    public static double4x4_mt RotateX(double angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -4233,11 +1557,11 @@ public partial struct double4x4_mt4
         );
     }
 
-    /// <summary>Returns a double4x4_mt4 matrix that rotates around the y-axis by a given number of radians</summary>
+    /// <summary>Returns a double4x4_mt matrix that rotates around the y-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix that rotates around the y-axis</returns>
+    /// <returns>The double4x4_mt rotation matrix that rotates around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 RotateY(double_mt4 angle)
+    public static double4x4_mt RotateY(double_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -4248,11 +1572,11 @@ public partial struct double4x4_mt4
         );
     }
 
-    /// <summary>Returns a double4x4_mt4 matrix that rotates around the y-axis by a given number of radians</summary>
+    /// <summary>Returns a double4x4_mt matrix that rotates around the y-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix that rotates around the y-axis</returns>
+    /// <returns>The double4x4_mt rotation matrix that rotates around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 RotateY(double angle)
+    public static double4x4_mt RotateY(double angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -4263,11 +1587,11 @@ public partial struct double4x4_mt4
         );
     }
 
-    /// <summary>Returns a double4x4_mt4 matrix that rotates around the z-axis by a given number of radians</summary>
+    /// <summary>Returns a double4x4_mt matrix that rotates around the z-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix that rotates around the z-axis</returns>
+    /// <returns>The double4x4_mt rotation matrix that rotates around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 RotateZ(double_mt4 angle)
+    public static double4x4_mt RotateZ(double_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -4278,11 +1602,11 @@ public partial struct double4x4_mt4
         );
     }
 
-    /// <summary>Returns a double4x4_mt4 matrix that rotates around the z-axis by a given number of radians</summary>
+    /// <summary>Returns a double4x4_mt matrix that rotates around the z-axis by a given number of radians</summary>
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt4 rotation matrix that rotates around the z-axis</returns>
+    /// <returns>The double4x4_mt rotation matrix that rotates around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 RotateZ(double angle)
+    public static double4x4_mt RotateZ(double angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -4294,98 +1618,98 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed double4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a left-handed double4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookAt(double3_mt4 eye, double3_mt4 target, double3_mt4 up) 
+    public static double4x4_mt LookAt(double3_mt eye, double3_mt target, double3_mt up) 
         => LookTo(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a right-handed double4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a right-handed double4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookAt_RH(double3_mt4 eye, double3_mt4 target, double3_mt4 up) 
+    public static double4x4_mt LookAt_RH(double3_mt eye, double3_mt target, double3_mt up) 
         => LookTo_RH(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a left-handed row-major double4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a left-handed row-major double4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookAt_Row(double3_mt4 eye, double3_mt4 target, double3_mt4 up) 
+    public static double4x4_mt LookAt_Row(double3_mt eye, double3_mt target, double3_mt up) 
         => LookTo_Row(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a right-handed row-major double4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a right-handed row-major double4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookAt_RH_Row(double3_mt4 eye, double3_mt4 target, double3_mt4 up) 
+    public static double4x4_mt LookAt_RH_Row(double3_mt eye, double3_mt target, double3_mt up) 
         => LookTo_RH_Row(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a double4x4_mt4 view matrix given an eye position, a target point and a unit length up vector.
+    /// Returns a double4x4_mt view matrix given an eye position, a target point and a unit length up vector.
     /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
     /// the vector between them is assumes to be collinear with the up vector.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="target">The view target position</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookAt_GL(double3_mt4 eye, double3_mt4 target, double3_mt4 up) 
+    public static double4x4_mt LookAt_GL(double3_mt eye, double3_mt target, double3_mt up) 
         => LookTo_GL(eye, target - eye, up);
 
     /// <summary>
-    /// Returns a left-handed double4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a left-handed double4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookTo(double3_mt4 eye, double3_mt4 dir, double3_mt4 up)
+    public static double4x4_mt LookTo(double3_mt eye, double3_mt dir, double3_mt up)
         => LookTo_RH(eye, -dir, up);
 
     /// <summary>
-    /// Returns a right-handed double4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a right-handed double4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookTo_RH(double3_mt4 eye, double3_mt4 dir, double3_mt4 up)
+    public static double4x4_mt LookTo_RH(double3_mt eye, double3_mt dir, double3_mt up)
     {
         var f = dir.normalize();
         var s = f.cross(up).normalize();
         var u = s.cross(f);
 
-        var m3x3 = new double3x3_mt4(s, u, -f).transpose();
+        var m3x3 = new double3x3_mt(s, u, -f).transpose();
         
         return new(
             new(m3x3.c0),
@@ -4396,27 +1720,27 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed row-major double4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a left-handed row-major double4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookTo_Row(double3_mt4 eye, double3_mt4 dir, double3_mt4 up)
+    public static double4x4_mt LookTo_Row(double3_mt eye, double3_mt dir, double3_mt up)
         => LookTo_RH_Row(eye, -dir, up);
 
     /// <summary>
-    /// Returns a right-handed row-major double4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a right-handed row-major double4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookTo_RH_Row(double3_mt4 eye, double3_mt4 dir, double3_mt4 up)
+    public static double4x4_mt LookTo_RH_Row(double3_mt eye, double3_mt dir, double3_mt up)
     {
         var f = dir.normalize();
         var s = f.cross(up).normalize();
@@ -4431,17 +1755,17 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 view matrix given an eye position, a target direction and a unit length up vector.
+    /// Returns a double4x4_mt view matrix given an eye position, a target direction and a unit length up vector.
     /// The up vector is assumed to be unit length.
     /// </summary>
     /// <param name="eye">The eye position</param>
     /// <param name="dir">The view target direction</param>
     /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt4 view matrix.</returns>
+    /// <returns>The double4x4_mt view matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 LookTo_GL(double3_mt4 eye, double3_mt4 dir, double3_mt4 up)
+    public static double4x4_mt LookTo_GL(double3_mt eye, double3_mt dir, double3_mt up)
     {
-        var rot = double3x3_mt4.LookRotation(dir.normalize(), up);
+        var rot = double3x3_mt.LookRotation(dir.normalize(), up);
         return new(
             new(rot.c0, default),
             new(rot.c1, default),
@@ -4451,15 +1775,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed double4x4_mt4 centered orthographic projection matrix.
+    /// Returns a left-handed double4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho(double_mt4 width, double_mt4 height, double_mt4 near, double_mt4 far)
+    public static double4x4_mt Ortho(double_mt width, double_mt height, double_mt near, double_mt far)
     {
         var rcp_width = 1.0 / width;
         var rcp_height = 1.0 / height;
@@ -4474,15 +1798,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed double4x4_mt4 centered orthographic projection matrix.
+    /// Returns a left-handed double4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho(double width, double height, double near, double far)
+    public static double4x4_mt Ortho(double width, double height, double near, double far)
     {
         var rcp_width = 1.0 / width;
         var rcp_height = 1.0 / height;
@@ -4497,7 +1821,7 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed double4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a left-handed double4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -4505,9 +1829,9 @@ public partial struct double4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho(double_mt4 left, double_mt4 right, double_mt4 bottom, double_mt4 top, double_mt4 near, double_mt4 far)
+    public static double4x4_mt Ortho(double_mt left, double_mt right, double_mt bottom, double_mt top, double_mt near, double_mt far)
     {
         var rcp_width = 1.0 / (right - left);
         var rcp_height = 1.0 / (top - bottom);
@@ -4522,7 +1846,7 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed double4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a left-handed double4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -4530,9 +1854,9 @@ public partial struct double4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho(double left, double right, double bottom, double top, double near, double far)
+    public static double4x4_mt Ortho(double left, double right, double bottom, double top, double near, double far)
     {
         var rcp_width = 1.0 / (right - left);
         var rcp_height = 1.0 / (top - bottom);
@@ -4547,15 +1871,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed double4x4_mt4 centered orthographic projection matrix.
+    /// Returns a right-handed double4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho_RH(double_mt4 width, double_mt4 height, double_mt4 near, double_mt4 far)
+    public static double4x4_mt Ortho_RH(double_mt width, double_mt height, double_mt near, double_mt far)
     {
         var rcp_width = 1.0 / width;
         var rcp_height = 1.0 / height;
@@ -4570,15 +1894,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed double4x4_mt4 centered orthographic projection matrix.
+    /// Returns a right-handed double4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho_RH(double width, double height, double near, double far)
+    public static double4x4_mt Ortho_RH(double width, double height, double near, double far)
     {
         var rcp_width = 1.0 / width;
         var rcp_height = 1.0 / height;
@@ -4593,7 +1917,7 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed double4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a right-handed double4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -4601,9 +1925,9 @@ public partial struct double4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho_RH(double_mt4 left, double_mt4 right, double_mt4 bottom, double_mt4 top, double_mt4 near, double_mt4 far)
+    public static double4x4_mt Ortho_RH(double_mt left, double_mt right, double_mt bottom, double_mt top, double_mt near, double_mt far)
     {
         var rcp_width = 1.0 / (right - left);
         var rcp_height = 1.0 / (top - bottom);
@@ -4618,7 +1942,7 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed double4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a right-handed double4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -4626,9 +1950,9 @@ public partial struct double4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho_RH(double left, double right, double bottom, double top, double near, double far)
+    public static double4x4_mt Ortho_RH(double left, double right, double bottom, double top, double near, double far)
     {
         var rcp_width = 1.0 / (right - left);
         var rcp_height = 1.0 / (top - bottom);
@@ -4643,15 +1967,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 centered orthographic projection matrix.
+    /// Returns a double4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho_GL(double_mt4 width, double_mt4 height, double_mt4 near, double_mt4 far)
+    public static double4x4_mt Ortho_GL(double_mt width, double_mt height, double_mt near, double_mt far)
     {
         var rcpdx = 1.0 / width;
         var rcpdy = 1.0 / height;
@@ -4666,15 +1990,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 centered orthographic projection matrix.
+    /// Returns a double4x4_mt centered orthographic projection matrix.
     /// </summary>
     /// <param name="width">The width of the view volume</param>
     /// <param name="height">The height of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 centered orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt centered orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho_GL(double width, double height, double near, double far)
+    public static double4x4_mt Ortho_GL(double width, double height, double near, double far)
     {
         var rcpdx = 1.0 / width;
         var rcpdy = 1.0 / height;
@@ -4689,7 +2013,7 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a double4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -4697,9 +2021,9 @@ public partial struct double4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho_GL(double_mt4 left, double_mt4 right, double_mt4 bottom, double_mt4 top, double_mt4 near, double_mt4 far)
+    public static double4x4_mt Ortho_GL(double_mt left, double_mt right, double_mt bottom, double_mt top, double_mt near, double_mt far)
     {
         var rcpdx = 1.0 / (right - left);
         var rcpdy = 1.0 / (top - bottom);
@@ -4714,7 +2038,7 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 off-center orthographic projection matrix.
+    /// Returns a double4x4_mt off-center orthographic projection matrix.
     /// </summary>
     /// <param name="left">The minimum x-coordinate of the view volume</param>
     /// <param name="right">The maximum x-coordinate of the view volume</param>
@@ -4722,9 +2046,9 @@ public partial struct double4x4_mt4
     /// <param name="top">The minimum y-coordinate of the view volume</param>
     /// <param name="near">The distance to the near plane</param>
     /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt4 off-center orthographic projection matrix.</returns>
+    /// <returns>The double4x4_mt off-center orthographic projection matrix.</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Ortho_GL(double left, double right, double bottom, double top, double near, double far)
+    public static double4x4_mt Ortho_GL(double left, double right, double bottom, double top, double near, double far)
     {
         var rcpdx = 1.0 / (right - left);
         var rcpdy = 1.0 / (top - bottom);
@@ -4739,15 +2063,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a left-handed double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near, double_mt4 far)
+    public static double4x4_mt PerspectiveFov(double_mt verticalFov, double_mt aspect, double_mt near, double_mt far)
     {
         var h = 1.0 / math_mt.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4762,15 +2086,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a left-handed double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov(double verticalFov, double aspect, double near, double far)
+    public static double4x4_mt PerspectiveFov(double verticalFov, double aspect, double near, double far)
     {
         var h = 1.0 / math.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4785,15 +2109,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a right-handed double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_RH(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near, double_mt4 far)
+    public static double4x4_mt PerspectiveFov_RH(double_mt verticalFov, double_mt aspect, double_mt near, double_mt far)
     {
         var h = 1.0 / math_mt.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4808,15 +2132,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a right-handed double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_RH(double verticalFov, double aspect, double near, double far)
+    public static double4x4_mt PerspectiveFov_RH(double verticalFov, double aspect, double near, double far)
     {
         var h = 1.0 / math.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4831,15 +2155,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed row-major double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a left-handed row-major double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_Row(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near, double_mt4 far)
+    public static double4x4_mt PerspectiveFov_Row(double_mt verticalFov, double_mt aspect, double_mt near, double_mt far)
     {
         var h = 1.0 / math_mt.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4854,15 +2178,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a left-handed row-major double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a left-handed row-major double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_Row(double verticalFov, double aspect, double near, double far)
+    public static double4x4_mt PerspectiveFov_Row(double verticalFov, double aspect, double near, double far)
     {
         var h = 1.0 / math.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4877,15 +2201,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed row-major double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a right-handed row-major double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_RH_Row(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near, double_mt4 far)
+    public static double4x4_mt PerspectiveFov_RH_Row(double_mt verticalFov, double_mt aspect, double_mt near, double_mt far)
     {
         var h = 1.0 / math_mt.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4900,15 +2224,15 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a right-handed row-major double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a right-handed row-major double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_RH_Row(double verticalFov, double aspect, double near, double far)
+    public static double4x4_mt PerspectiveFov_RH_Row(double verticalFov, double aspect, double near, double far)
     {
         var h = 1.0 / math.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4923,16 +2247,16 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a double4x4_mt perspective projection matrix based on field of view.
     /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_GL(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near, double_mt4 far)
+    public static double4x4_mt PerspectiveFov_GL(double_mt verticalFov, double_mt aspect, double_mt near, double_mt far)
     {
         var cotangent = 1.0 / math_mt.tan(verticalFov * 0.5);
         var rcpdz = 1.0 / (near - far);
@@ -4946,16 +2270,16 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns a double4x4_mt perspective projection matrix based on field of view.
     /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
     /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_GL(double verticalFov, double aspect, double near, double far)
+    public static double4x4_mt PerspectiveFov_GL(double verticalFov, double aspect, double near, double far)
     {
         var cotangent = 1.0 / math.tan(verticalFov * 0.5);
         var rcpdz = 1.0 / (near - far);
@@ -4969,14 +2293,14 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite left-handed double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite left-handed double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near)
+    public static double4x4_mt PerspectiveFov(double_mt verticalFov, double_mt aspect, double_mt near)
     {
         var h = 1.0 / math_mt.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -4990,14 +2314,14 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite left-handed double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite left-handed double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov(double verticalFov, double aspect, double near)
+    public static double4x4_mt PerspectiveFov(double verticalFov, double aspect, double near)
     {
         var h = 1.0 / math.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -5011,14 +2335,14 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite right-handed double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite right-handed double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_RH(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near)
+    public static double4x4_mt PerspectiveFov_RH(double_mt verticalFov, double_mt aspect, double_mt near)
     {
         var h = 1.0 / math_mt.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -5032,14 +2356,14 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite right-handed double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite right-handed double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_RH(double verticalFov, double aspect, double near)
+    public static double4x4_mt PerspectiveFov_RH(double verticalFov, double aspect, double near)
     {
         var h = 1.0 / math.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -5053,14 +2377,14 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite left-handed row-major double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite left-handed row-major double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_Row(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near)
+    public static double4x4_mt PerspectiveFov_Row(double_mt verticalFov, double_mt aspect, double_mt near)
     {
         var h = 1.0 / math_mt.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -5074,14 +2398,14 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite left-handed row-major double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite left-handed row-major double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_Row(double verticalFov, double aspect, double near)
+    public static double4x4_mt PerspectiveFov_Row(double verticalFov, double aspect, double near)
     {
         var h = 1.0 / math.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -5095,14 +2419,14 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite right-handed row-major double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite right-handed row-major double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_RH_Row(double_mt4 verticalFov, double_mt4 aspect, double_mt4 near)
+    public static double4x4_mt PerspectiveFov_RH_Row(double_mt verticalFov, double_mt aspect, double_mt near)
     {
         var h = 1.0 / math_mt.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -5116,14 +2440,14 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns an infinite right-handed row-major double4x4_mt4 perspective projection matrix based on field of view.
+    /// Returns an infinite right-handed row-major double4x4_mt perspective projection matrix based on field of view.
     /// </summary>
     /// <param name="verticalFov">Vertical Field of view in radians</param>
     /// <param name="aspect">X:Y aspect ratio</param>
     /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt4 perspective projection matrix</returns>
+    /// <returns>The double4x4_mt perspective projection matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 PerspectiveFov_RH_Row(double verticalFov, double aspect, double near)
+    public static double4x4_mt PerspectiveFov_RH_Row(double verticalFov, double aspect, double near)
     {
         var h = 1.0 / math.tan(verticalFov * 0.5);
         var w = h / aspect;
@@ -5137,17 +2461,17 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 matrix representing a combined scale-, rotation- and translation transform.
+    /// Returns a double4x4_mt matrix representing a combined scale-, rotation- and translation transform.
     /// Equivalent to mul(translationTransform, mul(rotationTransform, scaleTransform))
     /// </summary>
     /// <param name="translation">The translation vector</param>
     /// <param name="rotation">The quaternion rotation</param>
     /// <param name="scale">The scaling factors of each axis</param>
-    /// <returns>The double4x4_mt4 matrix representing the translation, rotation, and scale by the inputs</returns>
+    /// <returns>The double4x4_mt matrix representing the translation, rotation, and scale by the inputs</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 TRS(double3_mt4 translation, quaternion_d_mt4 rotation, double3_mt4 scale)
+    public static double4x4_mt TRS(double3_mt translation, quaternion_d_mt rotation, double3_mt scale)
     {
-        var r = new double3x3_mt4(rotation);
+        var r = new double3x3_mt(rotation);
         r.c0 *= scale.xxx;
         r.c1 *= scale.yyy;
         r.c2 *= scale.zzz;
@@ -5155,54 +2479,54 @@ public partial struct double4x4_mt4
     }
 
     /// <summary>
-    /// Returns a double4x4_mt4 matrix representing a combined rotation- and translation transform.
+    /// Returns a double4x4_mt matrix representing a combined rotation- and translation transform.
     /// Equivalent to mul(translationTransform, rotationTransform)
     /// </summary>
     /// <param name="translation">The translation vector</param>
     /// <param name="rotation">The quaternion rotation</param>
-    /// <returns>The double4x4_mt4 matrix representing the translation and rotation by the inputs</returns>
+    /// <returns>The double4x4_mt matrix representing the translation and rotation by the inputs</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 TR(double3_mt4 translation, quaternion_d_mt4 rotation)
+    public static double4x4_mt TR(double3_mt translation, quaternion_d_mt rotation)
     {
-        var r = new double3x3_mt4(rotation);
+        var r = new double3x3_mt(rotation);
         return new(r, translation);
     }
 
-    /// <summary>Returns a double4x4_mt4 scale matrix given 3 axis scales</summary>
+    /// <summary>Returns a double4x4_mt scale matrix given 3 axis scales</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The double4x4_mt4 matrix that represents a uniform scale</returns>
+    /// <returns>The double4x4_mt matrix that represents a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Scale(double_mt4 s) => new(
+    public static double4x4_mt Scale(double_mt s) => new(
         s,    default, default, default,
         default, s,    default, default,
         default, default, s,    default,
         default, default, default, 1.0
     );
 
-    /// <summary>Returns a double4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a double4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The double4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The double4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Scale(double_mt4 x, double_mt4 y, double_mt4 z) => new(
+    public static double4x4_mt Scale(double_mt x, double_mt y, double_mt z) => new(
         x,    default, default, default,
         default, y,    default, default,
         default, default, z,    default,
         default, default, default, 1.0
     );
 
-    /// <summary>Returns a double4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a double4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The double4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The double4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Scale(double3_mt4 scales) => Scale(scales.x, scales.y, scales.z);
+    public static double4x4_mt Scale(double3_mt scales) => Scale(scales.x, scales.y, scales.z);
 
-    /// <summary>Returns a double4x4_mt4 translation matrix given a float3 translation vector</summary>
+    /// <summary>Returns a double4x4_mt translation matrix given a float3 translation vector</summary>
     /// <param name="vector">The translation vector</param>
-    /// <returns>The double4x4_mt4 translation matrix</returns>
+    /// <returns>The double4x4_mt translation matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 Translate(double3_mt4 vector) => new(
+    public static double4x4_mt Translate(double3_mt vector) => new(
         new(1.0, default, default, default),
         new(default, 1.0, default, default),
         new(default, default, 1.0, default),
@@ -5214,17 +2538,17 @@ public partial struct double4x4_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3_mt4 rotate([This] double4x4_mt4 a, double3_mt4 b) 
+    public static double3_mt rotate([This] double4x4_mt a, double3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 transform([This] double4x4_mt4 a, double3_mt4 b) 
+    public static double3_mt transform([This] double4x4_mt a, double3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 inverse([This] double4x4_mt4 m)
+    public static double4x4_mt inverse([This] double4x4_mt m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -5232,30 +2556,30 @@ public static partial class math_mt
         //var r0z_r1z_r0w_r1w = movelh(c2, c3); // (x2, y2, x3, y3)
         //var r2y_r3y_r2x_r3x = movehl(c0, c1); // (z1, w1, z0, w0)
         //var r2z_r3z_r2w_r3w = movehl(c3, c2); // (z2, w2, z3, w3)
-        double4_mt4 r0y_r1y_r0x_r1x = new(m.c1.x, m.c1.y, m.c0.x, m.c0.y);
-        double4_mt4 r0z_r1z_r0w_r1w = new(m.c2.x, m.c2.y, m.c3.x, m.c3.y);
-        double4_mt4 r2y_r3y_r2x_r3x = new(m.c1.z, m.c1.w, m.c0.z, m.c0.w);
-        double4_mt4 r2z_r3z_r2w_r3w = new(m.c2.z, m.c2.w, m.c3.z, m.c3.w);
+        double4_mt r0y_r1y_r0x_r1x = new(m.c1.x, m.c1.y, m.c0.x, m.c0.y);
+        double4_mt r0z_r1z_r0w_r1w = new(m.c2.x, m.c2.y, m.c3.x, m.c3.y);
+        double4_mt r2y_r3y_r2x_r3x = new(m.c1.z, m.c1.w, m.c0.z, m.c0.w);
+        double4_mt r2z_r3z_r2w_r3w = new(m.c2.z, m.c2.w, m.c3.z, m.c3.w);
 
         //var r0_wzyx = shuffle_zx_xz(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // x3 x2 x1 x0
         //var r1_wzyx = shuffle_wy_yw(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // y3 y2 y1 y0
         //var r2_wzyx = shuffle_zx_xz(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // z3 z2 z1 z0
         //var r3_wzyx = shuffle_wy_yw(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // w3 w2 w1 w0
         //var r0_xyzw = r0_wzyx.wzyx; // x0 x1 x2 x3
-        double4_mt4 r0_wzyx = new(m.c3.x, m.c2.x, m.c1.x, m.c0.x);
-        double4_mt4 r1_wzyx = new(m.c3.y, m.c2.y, m.c1.y, m.c0.y);
-        double4_mt4 r2_wzyx = new(m.c3.z, m.c2.z, m.c1.z, m.c0.z);
-        double4_mt4 r3_wzyx = new(m.c3.w, m.c2.w, m.c1.w, m.c0.w);
-        double4_mt4 r0_xyzw = new(m.c0.x, m.c1.x, m.c2.x, m.c3.x);
+        double4_mt r0_wzyx = new(m.c3.x, m.c2.x, m.c1.x, m.c0.x);
+        double4_mt r1_wzyx = new(m.c3.y, m.c2.y, m.c1.y, m.c0.y);
+        double4_mt r2_wzyx = new(m.c3.z, m.c2.z, m.c1.z, m.c0.z);
+        double4_mt r3_wzyx = new(m.c3.w, m.c2.w, m.c1.w, m.c0.w);
+        double4_mt r0_xyzw = new(m.c0.x, m.c1.x, m.c2.x, m.c3.x);
 
         //var r1y_r2y_r1x_r2x = shuffle_yz_yz(c1, c0); // (y1, z1, y0, z0)
         //var r1z_r2z_r1w_r2w = shuffle_yz_yz(c2, c3); // (y2, z2, y3, z3)
         //var r3y_r0y_r3x_r0x = shuffle_wx_wx(c1, c0); // (w1, x1, w0, x0)
         //var r3z_r0z_r3w_r0w = shuffle_wx_wx(c2, c3); // (w2, x2, w3, x3)
-        double4_mt4 r1y_r2y_r1x_r2x = new(m.c1.y, m.c1.z, m.c0.y, m.c0.z);
-        double4_mt4 r1z_r2z_r1w_r2w = new(m.c2.y, m.c2.z, m.c3.y, m.c3.z);
-        double4_mt4 r3y_r0y_r3x_r0x = new(m.c1.w, m.c1.x, m.c0.w, m.c0.x);
-        double4_mt4 r3z_r0z_r3w_r0w = new(m.c2.w, m.c2.x, m.c3.w, m.c3.x);
+        double4_mt r1y_r2y_r1x_r2x = new(m.c1.y, m.c1.z, m.c0.y, m.c0.z);
+        double4_mt r1z_r2z_r1w_r2w = new(m.c2.y, m.c2.z, m.c3.y, m.c3.z);
+        double4_mt r3y_r0y_r3x_r0x = new(m.c1.w, m.c1.x, m.c0.w, m.c0.x);
+        double4_mt r3z_r0z_r3w_r0w = new(m.c2.w, m.c2.x, m.c3.w, m.c3.x);
 
         // Calculate remaining inner term pairs. inner terms have zw=-xy, so we only have to calculate xy and can pack two pairs per vector
         // var inner12_23 = r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w - r1z_r2z_r1w_r2w * r2y_r3y_r2x_r3x;
@@ -5282,7 +2606,7 @@ public static partial class math_mt
         denom += denom.yxwz; // x+y        x+y            z+w            z+w
         denom -= denom.zzxx; // x+y-z-w  x+y-z-w        z+w-x-y        z+w-x-y
 
-        var rcp_denom_ppnn = double4_mt4.One / denom;
+        var rcp_denom_ppnn = double4_mt.One / denom;
         var rc0 = minors0 * rcp_denom_ppnn;
 
         var inner30 = inner30_01.xzzx;
@@ -5307,21 +2631,21 @@ public static partial class math_mt
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4_mt4 fastinverse([This] double4x4_mt4 m)
+    public static double4x4_mt fastinverse([This] double4x4_mt m)
     {
         var (c0, c1, c2, pos) = m;
 
         // unpacklo a b => a.x, b.x, a.y, b.y
         // unpackhi a b => a.z, b.z, a.w, b.w
 
-        double4_mt4 t0 = new(c0.x, c2.x, c0.y, c2.y);           // unpacklo(c0, c2);
-        double4_mt4 t1 = new(c1.x, default, c1.y, default);     // unpacklo(c1, default);
-        double4_mt4 t2 = new(c0.z, c2.z, c0.w, c2.w);           // unpackhi(c0, c2);
-        double4_mt4 t3 = new(c1.z, default, c1.w, default);     // unpackhi(c1, default);
+        double4_mt t0 = new(c0.x, c2.x, c0.y, c2.y);           // unpacklo(c0, c2);
+        double4_mt t1 = new(c1.x, default, c1.y, default);     // unpacklo(c1, default);
+        double4_mt t2 = new(c0.z, c2.z, c0.w, c2.w);           // unpackhi(c0, c2);
+        double4_mt t3 = new(c1.z, default, c1.w, default);     // unpackhi(c1, default);
 
-        double4_mt4 r0 = new(t0.x, t1.x, t0.y, t1.y);           // unpacklo(t0, t1);
-        double4_mt4 r1 = new(t0.z, t1.z, t0.w, t1.w);           // unpackhi(t0, t1);
-        double4_mt4 r2 = new(t2.x, t3.x, t2.y, t3.y);           // unpacklo(t2, t3);
+        double4_mt r0 = new(t0.x, t1.x, t0.y, t1.y);           // unpacklo(t0, t1);
+        double4_mt r1 = new(t0.z, t1.z, t0.w, t1.w);           // unpackhi(t0, t1);
+        double4_mt r2 = new(t2.x, t3.x, t2.y, t3.y);           // unpacklo(t2, t3);
 
         //pos = -(r0 * pos.x + r1 * pos.y + r2 * pos.z);
         pos = -fam(fam(r0 * pos.x, r1, pos.y), r2, pos.z);
@@ -5330,11 +2654,11 @@ public static partial class math_mt
         return new(r0, r1, r2, pos);
     }
 
-    /// <summary>Returns the determinant of a double4x4_mt4 matrix</summary>
+    /// <summary>Returns the determinant of a double4x4_mt matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double_mt4 determinant([This] double4x4_mt4 m)
+    public static double_mt determinant([This] double4x4_mt m)
     {
         var (c0, c1, c2, c3) = m;
     
@@ -5352,2693 +2676,17 @@ public static partial class math_mt
     }
 }
 
-#endregion // double4x4_mt4
+#endregion // double4x4_mt
 
-#region double4x4_mt8
+#region int4x4_mt
 
-public partial struct double4x4_mt8
+public partial struct int4x4_mt
 {
-    /// <summary>Constructs a double4x4_mt8 from a double3x3_mt8 rotation matrix and a double3_mt8 translation vector</summary>
-    /// <param name="rotation">The double3x3_mt8 rotation matrix</param>
+    /// <summary>Constructs a int4x4_mt from a int3x3_mt rotation matrix and a int3_mt translation vector</summary>
+    /// <param name="rotation">The int3x3_mt rotation matrix</param>
     /// <param name="translation">The translation vector</param>
     [MethodImpl(256 | 512)]
-    public double4x4_mt8(double3x3_mt8 rotation, double3_mt8 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1.0);
-    }
-
-    /// <summary>Constructs a double4x4_mt8 from a quaternion and a double3_mt8 translation vector</summary>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public double4x4_mt8(quaternion_d_mt8 rotation, double3_mt8 translation) 
-        : this(new double3x3_mt8(rotation), translation) {}
-
-    /// <summary>
-    /// Returns a double4x4_mt8 matrix representing a rotation around a unit axis by an angle in radians
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double4x4_mt8 matrix representing the rotation about an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 AxisAngle(double3_mt8 axis, double_mt8 angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = new double4_mt8(axis, default);
-        var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new double4_mt8(u.xyz * sina, cosa);
-
-        var ppnp = new ulong4_mt8(default, default, 0x8000000000000000, default).asdouble();
-        var nppp = new ulong4_mt8(0x8000000000000000, default, default, default).asdouble();
-        var pnpp = new ulong4_mt8(default, 0x8000000000000000, default, default).asdouble();
-        var mask = new long4_mt8(-1, -1, -1, default).asdouble();
-
-        return new(
-            u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
-            u.yyyy.fma(u_inv_cosa, (t.zwxx ^ nppp) & mask),
-            u.zzzz.fma(u_inv_cosa, (t.yxwx ^ pnpp) & mask),
-            new(default, default, default, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 matrix representing a rotation around a unit axis by an angle in radians
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double4x4_mt8 matrix representing the rotation about an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 AxisAngle(double3_mt8 axis, double angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = new double4_mt8(axis, default);
-        var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new double4_mt8(u.xyz * sina, cosa);
-
-        var ppnp = new ulong4_mt8(default, default, 0x8000000000000000, default).asdouble();
-        var nppp = new ulong4_mt8(0x8000000000000000, default, default, default).asdouble();
-        var pnpp = new ulong4_mt8(default, 0x8000000000000000, default, default).asdouble();
-        var mask = new long4_mt8(-1, -1, -1, default).asdouble();
-
-        return new(
-            u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
-            u.yyyy.fma(u_inv_cosa, (t.zwxx ^ nppp) & mask),
-            u.zzzz.fma(u_inv_cosa, (t.yxwx ^ pnpp) & mask),
-            new(default, default, default, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix of the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 EulerXYZ(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (c.z * s.x * s.y - c.x * s.z),    (c.x * c.z * s.y + s.x * s.z),    default,
-            (c.y * s.z),  (c.x * c.z + s.x * s.y * s.z),    (c.x * s.y * s.z - c.z * s.x),    default,
-            (-s.y),       (c.y * s.x),                      (c.x * c.y),                      default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix of the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 EulerXZY(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (s.x * s.y - c.x * c.y * s.z),    (c.x * s.y + c.y * s.x * s.z),    default,
-            (s.z),        (c.x * c.z),                      (-c.z * s.x),                     default,
-            (-c.z * s.y), (c.y * s.x + c.x * s.y * s.z),    (c.x * c.y - s.x * s.y * s.z),    default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix of the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 EulerYXZ(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z - s.x * s.y * s.z),    (-c.x * s.z), (c.z * s.y + c.y * s.x * s.z),    default,
-            (c.z * s.x * s.y + c.y * s.z),    (c.x * c.z),  (s.y * s.z - c.y * c.z * s.x),    default,
-            (-c.x * s.y),                     (s.x),        (c.x * c.y),                      default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix of the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 EulerYZX(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-s.z),       (c.z * s.y),                      default,
-            (s.x * s.y + c.x * c.y * s.z),    (c.x * c.z),  (c.x * s.y * s.z - c.y * s.x),    default,
-            (c.y * s.x * s.z - c.x * s.y),    (c.z * s.x),  (c.x * c.y + s.x * s.y * s.z),    default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix of the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 EulerZXY(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z + s.x * s.y * s.z),    (c.z * s.x * s.y - c.y * s.z),    (c.x * s.y),  default,
-            (c.x * s.z),                      (c.x * c.z),                      (-s.x),       default,
-            (c.y * s.x * s.z - c.z * s.y),    (c.y * c.z * s.x + s.y * s.z),    (c.x * c.y),  default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix of the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 EulerZYX(double3_mt8 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-c.y * s.z),                     (s.y),        default,
-            (c.z * s.x * s.y + c.x * s.z),    (c.x * c.z - s.x * s.y * s.z),    (-c.y * s.x), default,
-            (s.x * s.z - c.x * c.z * s.y),    (c.z * s.x + c.x * s.y * s.z),    (c.x * c.y),  default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt8 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 RotateX(double_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0, default, default, default,
-            default, c,     -s,    default,
-            default, s,     c,     default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt8 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 RotateX(double angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0, default, default, default,
-            default, c,     -s,    default,
-            default, s,     c,     default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt8 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 RotateY(double_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,     default,
-            default, 1.0, default, default,
-            -s,    default, c,     default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt8 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 RotateY(double angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,     default,
-            default, 1.0, default, default,
-            -s,    default, c,     default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt8 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 RotateZ(double_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default, default,
-            s,     c,     default, default,
-            default, default, 1.0, default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt8 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt8 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 RotateZ(double angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default, default,
-            s,     c,     default, default,
-            default, default, 1.0, default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookAt(double3_mt8 eye, double3_mt8 target, double3_mt8 up) 
-        => LookTo(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookAt_RH(double3_mt8 eye, double3_mt8 target, double3_mt8 up) 
-        => LookTo_RH(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a left-handed row-major double4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookAt_Row(double3_mt8 eye, double3_mt8 target, double3_mt8 up) 
-        => LookTo_Row(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a right-handed row-major double4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookAt_RH_Row(double3_mt8 eye, double3_mt8 target, double3_mt8 up) 
-        => LookTo_RH_Row(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a double4x4_mt8 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookAt_GL(double3_mt8 eye, double3_mt8 target, double3_mt8 up) 
-        => LookTo_GL(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookTo(double3_mt8 eye, double3_mt8 dir, double3_mt8 up)
-        => LookTo_RH(eye, -dir, up);
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookTo_RH(double3_mt8 eye, double3_mt8 dir, double3_mt8 up)
-    {
-        var f = dir.normalize();
-        var s = f.cross(up).normalize();
-        var u = s.cross(f);
-
-        var m3x3 = new double3x3_mt8(s, u, -f).transpose();
-        
-        return new(
-            new(m3x3.c0),
-            new(m3x3.c1),
-            new(m3x3.c2),
-            new(-eye.dot(s), -eye.dot(u), eye.dot(f), 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major double4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookTo_Row(double3_mt8 eye, double3_mt8 dir, double3_mt8 up)
-        => LookTo_RH_Row(eye, -dir, up);
-
-    /// <summary>
-    /// Returns a right-handed row-major double4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookTo_RH_Row(double3_mt8 eye, double3_mt8 dir, double3_mt8 up)
-    {
-        var f = dir.normalize();
-        var s = f.cross(up).normalize();
-        var u = s.cross(f);
-        
-        return new(
-            new(s, -eye.dot(s)),
-            new(u, -eye.dot(u)),
-            new(-f, eye.dot(f)),
-            new(default, default, default, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt8 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 LookTo_GL(double3_mt8 eye, double3_mt8 dir, double3_mt8 up)
-    {
-        var rot = double3x3_mt8.LookRotation(dir.normalize(), up);
-        return new(
-            new(rot.c0, default),
-            new(rot.c1, default),
-            new(rot.c2, default),
-            new(eye, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho(double_mt8 width, double_mt8 height, double_mt8 near, double_mt8 far)
-    {
-        var rcp_width = 1.0 / width;
-        var rcp_height = 1.0 / height;
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (-r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho(double width, double height, double near, double far)
-    {
-        var rcp_width = 1.0 / width;
-        var rcp_height = 1.0 / height;
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (-r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho(double_mt8 left, double_mt8 right, double_mt8 bottom, double_mt8 top, double_mt8 near, double_mt8 far)
-    {
-        var rcp_width = 1.0 / (right - left);
-        var rcp_height = 1.0 / (top - bottom);
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (-r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho(double left, double right, double bottom, double top, double near, double far)
-    {
-        var rcp_width = 1.0 / (right - left);
-        var rcp_height = 1.0 / (top - bottom);
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (-r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho_RH(double_mt8 width, double_mt8 height, double_mt8 near, double_mt8 far)
-    {
-        var rcp_width = 1.0 / width;
-        var rcp_height = 1.0 / height;
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho_RH(double width, double height, double near, double far)
-    {
-        var rcp_width = 1.0 / width;
-        var rcp_height = 1.0 / height;
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho_RH(double_mt8 left, double_mt8 right, double_mt8 bottom, double_mt8 top, double_mt8 near, double_mt8 far)
-    {
-        var rcp_width = 1.0 / (right - left);
-        var rcp_height = 1.0 / (top - bottom);
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho_RH(double left, double right, double bottom, double top, double near, double far)
-    {
-        var rcp_width = 1.0 / (right - left);
-        var rcp_height = 1.0 / (top - bottom);
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho_GL(double_mt8 width, double_mt8 height, double_mt8 near, double_mt8 far)
-    {
-        var rcpdx = 1.0 / width;
-        var rcpdy = 1.0 / height;
-        var rcpdz = 1.0 / (far - near);
-
-        return new(
-            (2.0 * rcpdx),       default,            default,            default,
-            default,           (2.0 * rcpdy),        default,            default,
-            default,           default,            (-2.0 * rcpdz),       (-(far + near) * rcpdz),
-            default,           default,            default,            1.0
-       );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho_GL(double width, double height, double near, double far)
-    {
-        var rcpdx = 1.0 / width;
-        var rcpdy = 1.0 / height;
-        var rcpdz = 1.0 / (far - near);
-
-        return new(
-            (2.0 * rcpdx),       default,            default,            default,
-            default,           (2.0 * rcpdy),        default,            default,
-            default,           default,            (-2.0 * rcpdz),       (-(far + near) * rcpdz),
-            default,           default,            default,            1.0
-       );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho_GL(double_mt8 left, double_mt8 right, double_mt8 bottom, double_mt8 top, double_mt8 near, double_mt8 far)
-    {
-        var rcpdx = 1.0 / (right - left);
-        var rcpdy = 1.0 / (top - bottom);
-        var rcpdz = 1.0 / (far - near);
-
-        return new(
-            (2.0 * rcpdx),      default,           default,                (-(right + left) * rcpdx),
-            default,           (2.0 * rcpdy),      default,                (-(top + bottom) * rcpdy),
-            default,           default,           (-2.0 * rcpdz),          (-(far + near) * rcpdz),
-            default,           default,           default,                1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt8 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Ortho_GL(double left, double right, double bottom, double top, double near, double far)
-    {
-        var rcpdx = 1.0 / (right - left);
-        var rcpdy = 1.0 / (top - bottom);
-        var rcpdz = 1.0 / (far - near);
-
-        return new(
-            (2.0 * rcpdx),      default,           default,                (-(right + left) * rcpdx),
-            default,           (2.0 * rcpdy),      default,                (-(top + bottom) * rcpdy),
-            default,           default,           (-2.0 * rcpdz),          (-(far + near) * rcpdz),
-            default,           default,           default,                1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near, double_mt8 far)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            1.0),
-            new(default,               default,       (-r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov(double verticalFov, double aspect, double near, double far)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            1.0),
-            new(default,               default,       (-r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_RH(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near, double_mt8 far)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            -1.0),
-            new(default,               default,       (r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_RH(double verticalFov, double aspect, double near, double far)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            -1.0),
-            new(default,               default,       (r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_Row(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near, double_mt8 far)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            1.0,
-            default,               default,       (-r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_Row(double verticalFov, double aspect, double near, double far)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            1.0,
-            default,               default,       (-r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed row-major double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_RH_Row(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near, double_mt8 far)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            -1.0,
-            default,               default,       (r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed row-major double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_RH_Row(double verticalFov, double aspect, double near, double far)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            -1.0,
-            default,               default,       (r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 perspective projection matrix based on field of view.
-    /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_GL(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near, double_mt8 far)
-    {
-        var cotangent = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var rcpdz = 1.0 / (near - far);
-
-        return new(
-            (cotangent / aspect),    default,       default,                   default,
-            default,               cotangent,     default,                   default,
-            default,               default,       ((far + near) * rcpdz),      (2.0 * near * far * rcpdz),
-            default,               default,       -1.0,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 perspective projection matrix based on field of view.
-    /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_GL(double verticalFov, double aspect, double near, double far)
-    {
-        var cotangent = 1.0 / math.tan(verticalFov * 0.5);
-        var rcpdz = 1.0 / (near - far);
-
-        return new(
-            (cotangent / aspect),    default,       default,                   default,
-            default,               cotangent,     default,                   default,
-            default,               default,       ((far + near) * rcpdz),      (2.0 * near * far * rcpdz),
-            default,               default,       -1.0,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       1.0,                            1.0),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov(double verticalFov, double aspect, double near)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       1.0,                            1.0),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_RH(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       -1.0,                            -1.0),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_RH(double verticalFov, double aspect, double near)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       -1.0,                            -1.0),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed row-major double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_Row(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       1.0,                            1.0,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed row-major double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_Row(double verticalFov, double aspect, double near)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       1.0,                            1.0,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed row-major double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_RH_Row(double_mt8 verticalFov, double_mt8 aspect, double_mt8 near)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       -1.0,                            -1.0,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed row-major double4x4_mt8 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt8 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 PerspectiveFov_RH_Row(double verticalFov, double aspect, double near)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       -1.0,                            -1.0,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 matrix representing a combined scale-, rotation- and translation transform.
-    /// Equivalent to mul(translationTransform, mul(rotationTransform, scaleTransform))
-    /// </summary>
-    /// <param name="translation">The translation vector</param>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <param name="scale">The scaling factors of each axis</param>
-    /// <returns>The double4x4_mt8 matrix representing the translation, rotation, and scale by the inputs</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 TRS(double3_mt8 translation, quaternion_d_mt8 rotation, double3_mt8 scale)
-    {
-        var r = new double3x3_mt8(rotation);
-        r.c0 *= scale.xxx;
-        r.c1 *= scale.yyy;
-        r.c2 *= scale.zzz;
-        return new(r, translation);
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt8 matrix representing a combined rotation- and translation transform.
-    /// Equivalent to mul(translationTransform, rotationTransform)
-    /// </summary>
-    /// <param name="translation">The translation vector</param>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <returns>The double4x4_mt8 matrix representing the translation and rotation by the inputs</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 TR(double3_mt8 translation, quaternion_d_mt8 rotation)
-    {
-        var r = new double3x3_mt8(rotation);
-        return new(r, translation);
-    }
-
-    /// <summary>Returns a double4x4_mt8 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The double4x4_mt8 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Scale(double_mt8 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1.0
-    );
-
-    /// <summary>Returns a double4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The double4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Scale(double_mt8 x, double_mt8 y, double_mt8 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1.0
-    );
-
-    /// <summary>Returns a double4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The double4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Scale(double3_mt8 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a double4x4_mt8 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The double4x4_mt8 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 Translate(double3_mt8 vector) => new(
-        new(1.0, default, default, default),
-        new(default, 1.0, default, default),
-        new(default, default, 1.0, default),
-        new(vector, 1.0)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 rotate([This] double4x4_mt8 a, double3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 transform([This] double4x4_mt8 a, double3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 inverse([This] double4x4_mt8 m)
-    {
-        var (c0, c1, c2, c3) = m;
-
-        //var r0y_r1y_r0x_r1x = movelh(c1, c0); // (x1, y1, x0, y0)
-        //var r0z_r1z_r0w_r1w = movelh(c2, c3); // (x2, y2, x3, y3)
-        //var r2y_r3y_r2x_r3x = movehl(c0, c1); // (z1, w1, z0, w0)
-        //var r2z_r3z_r2w_r3w = movehl(c3, c2); // (z2, w2, z3, w3)
-        double4_mt8 r0y_r1y_r0x_r1x = new(m.c1.x, m.c1.y, m.c0.x, m.c0.y);
-        double4_mt8 r0z_r1z_r0w_r1w = new(m.c2.x, m.c2.y, m.c3.x, m.c3.y);
-        double4_mt8 r2y_r3y_r2x_r3x = new(m.c1.z, m.c1.w, m.c0.z, m.c0.w);
-        double4_mt8 r2z_r3z_r2w_r3w = new(m.c2.z, m.c2.w, m.c3.z, m.c3.w);
-
-        //var r0_wzyx = shuffle_zx_xz(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // x3 x2 x1 x0
-        //var r1_wzyx = shuffle_wy_yw(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // y3 y2 y1 y0
-        //var r2_wzyx = shuffle_zx_xz(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // z3 z2 z1 z0
-        //var r3_wzyx = shuffle_wy_yw(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // w3 w2 w1 w0
-        //var r0_xyzw = r0_wzyx.wzyx; // x0 x1 x2 x3
-        double4_mt8 r0_wzyx = new(m.c3.x, m.c2.x, m.c1.x, m.c0.x);
-        double4_mt8 r1_wzyx = new(m.c3.y, m.c2.y, m.c1.y, m.c0.y);
-        double4_mt8 r2_wzyx = new(m.c3.z, m.c2.z, m.c1.z, m.c0.z);
-        double4_mt8 r3_wzyx = new(m.c3.w, m.c2.w, m.c1.w, m.c0.w);
-        double4_mt8 r0_xyzw = new(m.c0.x, m.c1.x, m.c2.x, m.c3.x);
-
-        //var r1y_r2y_r1x_r2x = shuffle_yz_yz(c1, c0); // (y1, z1, y0, z0)
-        //var r1z_r2z_r1w_r2w = shuffle_yz_yz(c2, c3); // (y2, z2, y3, z3)
-        //var r3y_r0y_r3x_r0x = shuffle_wx_wx(c1, c0); // (w1, x1, w0, x0)
-        //var r3z_r0z_r3w_r0w = shuffle_wx_wx(c2, c3); // (w2, x2, w3, x3)
-        double4_mt8 r1y_r2y_r1x_r2x = new(m.c1.y, m.c1.z, m.c0.y, m.c0.z);
-        double4_mt8 r1z_r2z_r1w_r2w = new(m.c2.y, m.c2.z, m.c3.y, m.c3.z);
-        double4_mt8 r3y_r0y_r3x_r0x = new(m.c1.w, m.c1.x, m.c0.w, m.c0.x);
-        double4_mt8 r3z_r0z_r3w_r0w = new(m.c2.w, m.c2.x, m.c3.w, m.c3.x);
-
-        // Calculate remaining inner term pairs. inner terms have zw=-xy, so we only have to calculate xy and can pack two pairs per vector
-        // var inner12_23 = r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w - r1z_r2z_r1w_r2w * r2y_r3y_r2x_r3x;
-        // var inner02_13 = r0y_r1y_r0x_r1x * r2z_r3z_r2w_r3w - r0z_r1z_r0w_r1w * r2y_r3y_r2x_r3x;
-        // var inner30_01 = r3z_r0z_r3w_r0w * r0y_r1y_r0x_r1x - r3y_r0y_r3x_r0x * r0z_r1z_r0w_r1w;
-        var inner12_23 = fsm(r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w, r1z_r2z_r1w_r2w, r2y_r3y_r2x_r3x);
-        var inner02_13 = fsm(r0y_r1y_r0x_r1x * r2z_r3z_r2w_r3w, r0z_r1z_r0w_r1w, r2y_r3y_r2x_r3x);
-        var inner30_01 = fsm(r3z_r0z_r3w_r0w * r0y_r1y_r0x_r1x, r3y_r0y_r3x_r0x, r0z_r1z_r0w_r1w);
-
-        // Expand inner terms back to 4 components. zw signs still need to be flipped
-        var inner12 = inner12_23.xzzx;
-        var inner23 = inner12_23.ywwy;
-
-        var inner02 = inner02_13.xzzx;
-        var inner13 = inner02_13.ywwy;
-
-        // Calculate minors
-        // var minors0 = r3_wzyx * inner12 - r2_wzyx * inner13 + r1_wzyx * inner23;
-        var minors0 = fam(fsm(r3_wzyx * inner12, r2_wzyx, inner13), r1_wzyx, inner23);
-
-        var denom = r0_xyzw * minors0;
-
-        // Horizontal sum of denominator. Free sign flip of z and w compensates for missing flip in inner terms
-        denom += denom.yxwz; // x+y        x+y            z+w            z+w
-        denom -= denom.zzxx; // x+y-z-w  x+y-z-w        z+w-x-y        z+w-x-y
-
-        var rcp_denom_ppnn = double4_mt8.One / denom;
-        var rc0 = minors0 * rcp_denom_ppnn;
-
-        var inner30 = inner30_01.xzzx;
-        var inner01 = inner30_01.ywwy;
-
-        // var minors1 = r2_wzyx * inner30 - r0_wzyx * inner23 - r3_wzyx * inner02;
-        var minors1 = fsm(fsm(r2_wzyx * inner30, r0_wzyx, inner23), r3_wzyx, inner02);
-        var rc1 = minors1 * rcp_denom_ppnn;
-
-        // var minors2 = r0_wzyx * inner13 - r1_wzyx * inner30 - r3_wzyx * inner01;
-        var minors2 = fsm(fsm(r0_wzyx * inner13, r1_wzyx, inner30), r3_wzyx, inner01);
-        var rc2 = minors2 * rcp_denom_ppnn;
-
-        // var minors3 = r1_wzyx * inner02 - r0_wzyx * inner12 + r2_wzyx * inner01;
-        var minors3 = fsm(fsm(r1_wzyx * inner02, r0_wzyx, inner12), r2_wzyx, inner01);
-        var rc3 = minors3 * rcp_denom_ppnn;
-
-        return new(rc0, rc1, rc2, rc3);
-    }
-
-    /// <summary>Fast matrix inverse for rigid transforms (orthonormal basis and translation)</summary>
-    /// <param name="m">Matrix to invert</param>
-    /// <returns>The inverted matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 fastinverse([This] double4x4_mt8 m)
-    {
-        var (c0, c1, c2, pos) = m;
-
-        // unpacklo a b => a.x, b.x, a.y, b.y
-        // unpackhi a b => a.z, b.z, a.w, b.w
-
-        double4_mt8 t0 = new(c0.x, c2.x, c0.y, c2.y);           // unpacklo(c0, c2);
-        double4_mt8 t1 = new(c1.x, default, c1.y, default);     // unpacklo(c1, default);
-        double4_mt8 t2 = new(c0.z, c2.z, c0.w, c2.w);           // unpackhi(c0, c2);
-        double4_mt8 t3 = new(c1.z, default, c1.w, default);     // unpackhi(c1, default);
-
-        double4_mt8 r0 = new(t0.x, t1.x, t0.y, t1.y);           // unpacklo(t0, t1);
-        double4_mt8 r1 = new(t0.z, t1.z, t0.w, t1.w);           // unpackhi(t0, t1);
-        double4_mt8 r2 = new(t2.x, t3.x, t2.y, t3.y);           // unpacklo(t2, t3);
-
-        //pos = -(r0 * pos.x + r1 * pos.y + r2 * pos.z);
-        pos = -fam(fam(r0 * pos.x, r1, pos.y), r2, pos.z);
-        pos.w = 1.0;
-
-        return new(r0, r1, r2, pos);
-    }
-
-    /// <summary>Returns the determinant of a double4x4_mt8 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double_mt8 determinant([This] double4x4_mt8 m)
-    {
-        var (c0, c1, c2, c3) = m;
-    
-        // var m00 = c1.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c1.z * c3.w - c1.w * c3.z) + c3.y * (c1.z * c2.w - c1.w * c2.z);
-        // var m01 = c0.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c2.w - c0.w * c2.z);
-        // var m02 = c0.y * (c1.z * c3.w - c1.w * c3.z) - c1.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c1.w - c0.w * c1.z);
-        // var m03 = c0.y * (c1.z * c2.w - c1.w * c2.z) - c1.y * (c0.z * c2.w - c0.w * c2.z) + c2.y * (c0.z * c1.w - c0.w * c1.z);
-        var m00 = fam(fsm(c1.y * fsm(c2.z * c3.w, c2.w, c3.z), c2.y, fsm(c1.z * c3.w, c1.w, c3.z)), c3.y, fsm(c1.z * c2.w, c1.w, c2.z));
-        var m01 = fam(fsm(c0.y * fsm(c2.z * c3.w, c2.w, c3.z), c2.y, fsm(c0.z * c3.w, c0.w, c3.z)), c3.y, fsm(c0.z * c2.w, c0.w, c2.z));
-        var m02 = fam(fsm(c0.y * fsm(c1.z * c3.w, c1.w, c3.z), c1.y, fsm(c0.z * c3.w, c0.w, c3.z)), c3.y, fsm(c0.z * c1.w, c0.w, c1.z));
-        var m03 = fam(fsm(c0.y * fsm(c1.z * c2.w, c1.w, c2.z), c1.y, fsm(c0.z * c2.w, c0.w, c2.z)), c2.y, fsm(c0.z * c1.w, c0.w, c1.z));
-
-        // return c0.x * m00 - c1.x * m01 + c2.x * m02 - c3.x * m03;
-        return fsm(fam(fsm(c0.x * m00, c1.x, m01), c2.x, m02), c3.x, m03);
-    }
-}
-
-#endregion // double4x4_mt8
-
-#region double4x4_mt16
-
-public partial struct double4x4_mt16
-{
-    /// <summary>Constructs a double4x4_mt16 from a double3x3_mt16 rotation matrix and a double3_mt16 translation vector</summary>
-    /// <param name="rotation">The double3x3_mt16 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public double4x4_mt16(double3x3_mt16 rotation, double3_mt16 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1.0);
-    }
-
-    /// <summary>Constructs a double4x4_mt16 from a quaternion and a double3_mt16 translation vector</summary>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public double4x4_mt16(quaternion_d_mt16 rotation, double3_mt16 translation) 
-        : this(new double3x3_mt16(rotation), translation) {}
-
-    /// <summary>
-    /// Returns a double4x4_mt16 matrix representing a rotation around a unit axis by an angle in radians
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double4x4_mt16 matrix representing the rotation about an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 AxisAngle(double3_mt16 axis, double_mt16 angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = new double4_mt16(axis, default);
-        var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new double4_mt16(u.xyz * sina, cosa);
-
-        var ppnp = new ulong4_mt16(default, default, 0x8000000000000000, default).asdouble();
-        var nppp = new ulong4_mt16(0x8000000000000000, default, default, default).asdouble();
-        var pnpp = new ulong4_mt16(default, 0x8000000000000000, default, default).asdouble();
-        var mask = new long4_mt16(-1, -1, -1, default).asdouble();
-
-        return new(
-            u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
-            u.yyyy.fma(u_inv_cosa, (t.zwxx ^ nppp) & mask),
-            u.zzzz.fma(u_inv_cosa, (t.yxwx ^ pnpp) & mask),
-            new(default, default, default, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 matrix representing a rotation around a unit axis by an angle in radians
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The double4x4_mt16 matrix representing the rotation about an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 AxisAngle(double3_mt16 axis, double angle)
-    {
-        angle.sincos(out var sina, out var cosa);
-        var u = new double4_mt16(axis, default);
-        var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
-        var t = new double4_mt16(u.xyz * sina, cosa);
-
-        var ppnp = new ulong4_mt16(default, default, 0x8000000000000000, default).asdouble();
-        var nppp = new ulong4_mt16(0x8000000000000000, default, default, default).asdouble();
-        var pnpp = new ulong4_mt16(default, 0x8000000000000000, default, default).asdouble();
-        var mask = new long4_mt16(-1, -1, -1, default).asdouble();
-
-        return new(
-            u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
-            u.yyyy.fma(u_inv_cosa, (t.zwxx ^ nppp) & mask),
-            u.zzzz.fma(u_inv_cosa, (t.yxwx ^ pnpp) & mask),
-            new(default, default, default, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 rotation matrix constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix of the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 EulerXYZ(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (c.z * s.x * s.y - c.x * s.z),    (c.x * c.z * s.y + s.x * s.z),    default,
-            (c.y * s.z),  (c.x * c.z + s.x * s.y * s.z),    (c.x * s.y * s.z - c.z * s.x),    default,
-            (-s.y),       (c.y * s.x),                      (c.x * c.y),                      default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 rotation matrix constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix of the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 EulerXZY(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),  (s.x * s.y - c.x * c.y * s.z),    (c.x * s.y + c.y * s.x * s.z),    default,
-            (s.z),        (c.x * c.z),                      (-c.z * s.x),                     default,
-            (-c.z * s.y), (c.y * s.x + c.x * s.y * s.z),    (c.x * c.y - s.x * s.y * s.z),    default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 rotation matrix constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix of the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 EulerYXZ(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z - s.x * s.y * s.z),    (-c.x * s.z), (c.z * s.y + c.y * s.x * s.z),    default,
-            (c.z * s.x * s.y + c.y * s.z),    (c.x * c.z),  (s.y * s.z - c.y * c.z * s.x),    default,
-            (-c.x * s.y),                     (s.x),        (c.x * c.y),                      default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 rotation matrix constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix of the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 EulerYZX(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-s.z),       (c.z * s.y),                      default,
-            (s.x * s.y + c.x * c.y * s.z),    (c.x * c.z),  (c.x * s.y * s.z - c.y * s.x),    default,
-            (c.y * s.x * s.z - c.x * s.y),    (c.z * s.x),  (c.x * c.y + s.x * s.y * s.z),    default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 rotation matrix constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix of the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 EulerZXY(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z + s.x * s.y * s.z),    (c.z * s.x * s.y - c.y * s.z),    (c.x * s.y),  default,
-            (c.x * s.z),                      (c.x * c.z),                      (-s.x),       default,
-            (c.y * s.x * s.z - c.z * s.y),    (c.y * c.z * s.x + s.y * s.z),    (c.x * c.y),  default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 rotation matrix constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix of the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 EulerZYX(double3_mt16 xyz)
-    {
-        xyz.sincos(out var s, out var c);
-        return new(
-            (c.y * c.z),                      (-c.y * s.z),                     (s.y),        default,
-            (c.z * s.x * s.y + c.x * s.z),    (c.x * c.z - s.x * s.y * s.z),    (-c.y * s.x), default,
-            (s.x * s.z - c.x * c.z * s.y),    (c.z * s.x + c.x * s.y * s.z),    (c.x * c.y),  default,
-            default,                        default,                        default,       1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt16 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 RotateX(double_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0, default, default, default,
-            default, c,     -s,    default,
-            default, s,     c,     default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt16 matrix that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix that rotates around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 RotateX(double angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            1.0, default, default, default,
-            default, c,     -s,    default,
-            default, s,     c,     default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt16 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 RotateY(double_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,     default,
-            default, 1.0, default, default,
-            -s,    default, c,     default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt16 matrix that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix that rotates around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 RotateY(double angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     default, s,     default,
-            default, 1.0, default, default,
-            -s,    default, c,     default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt16 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 RotateZ(double_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default, default,
-            s,     c,     default, default,
-            default, default, 1.0, default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>Returns a double4x4_mt16 matrix that rotates around the z-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The double4x4_mt16 rotation matrix that rotates around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 RotateZ(double angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c,     -s,    default, default,
-            s,     c,     default, default,
-            default, default, 1.0, default,
-            default, default, default, 1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookAt(double3_mt16 eye, double3_mt16 target, double3_mt16 up) 
-        => LookTo(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookAt_RH(double3_mt16 eye, double3_mt16 target, double3_mt16 up) 
-        => LookTo_RH(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a left-handed row-major double4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookAt_Row(double3_mt16 eye, double3_mt16 target, double3_mt16 up) 
-        => LookTo_Row(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a right-handed row-major double4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookAt_RH_Row(double3_mt16 eye, double3_mt16 target, double3_mt16 up) 
-        => LookTo_RH_Row(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a double4x4_mt16 view matrix given an eye position, a target point and a unit length up vector.
-    /// The up vector is assumed to be unit length, the eye and target points are assumed to be distinct and
-    /// the vector between them is assumes to be collinear with the up vector.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="target">The view target position</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookAt_GL(double3_mt16 eye, double3_mt16 target, double3_mt16 up) 
-        => LookTo_GL(eye, target - eye, up);
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookTo(double3_mt16 eye, double3_mt16 dir, double3_mt16 up)
-        => LookTo_RH(eye, -dir, up);
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookTo_RH(double3_mt16 eye, double3_mt16 dir, double3_mt16 up)
-    {
-        var f = dir.normalize();
-        var s = f.cross(up).normalize();
-        var u = s.cross(f);
-
-        var m3x3 = new double3x3_mt16(s, u, -f).transpose();
-        
-        return new(
-            new(m3x3.c0),
-            new(m3x3.c1),
-            new(m3x3.c2),
-            new(-eye.dot(s), -eye.dot(u), eye.dot(f), 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major double4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookTo_Row(double3_mt16 eye, double3_mt16 dir, double3_mt16 up)
-        => LookTo_RH_Row(eye, -dir, up);
-
-    /// <summary>
-    /// Returns a right-handed row-major double4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookTo_RH_Row(double3_mt16 eye, double3_mt16 dir, double3_mt16 up)
-    {
-        var f = dir.normalize();
-        var s = f.cross(up).normalize();
-        var u = s.cross(f);
-        
-        return new(
-            new(s, -eye.dot(s)),
-            new(u, -eye.dot(u)),
-            new(-f, eye.dot(f)),
-            new(default, default, default, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 view matrix given an eye position, a target direction and a unit length up vector.
-    /// The up vector is assumed to be unit length.
-    /// </summary>
-    /// <param name="eye">The eye position</param>
-    /// <param name="dir">The view target direction</param>
-    /// <param name="up">The eye up direction</param>
-    /// <returns>The double4x4_mt16 view matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 LookTo_GL(double3_mt16 eye, double3_mt16 dir, double3_mt16 up)
-    {
-        var rot = double3x3_mt16.LookRotation(dir.normalize(), up);
-        return new(
-            new(rot.c0, default),
-            new(rot.c1, default),
-            new(rot.c2, default),
-            new(eye, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho(double_mt16 width, double_mt16 height, double_mt16 near, double_mt16 far)
-    {
-        var rcp_width = 1.0 / width;
-        var rcp_height = 1.0 / height;
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (-r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho(double width, double height, double near, double far)
-    {
-        var rcp_width = 1.0 / width;
-        var rcp_height = 1.0 / height;
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (-r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho(double_mt16 left, double_mt16 right, double_mt16 bottom, double_mt16 top, double_mt16 near, double_mt16 far)
-    {
-        var rcp_width = 1.0 / (right - left);
-        var rcp_height = 1.0 / (top - bottom);
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (-r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho(double left, double right, double bottom, double top, double near, double far)
-    {
-        var rcp_width = 1.0 / (right - left);
-        var rcp_height = 1.0 / (top - bottom);
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (-r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho_RH(double_mt16 width, double_mt16 height, double_mt16 near, double_mt16 far)
-    {
-        var rcp_width = 1.0 / width;
-        var rcp_height = 1.0 / height;
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho_RH(double width, double height, double near, double far)
-    {
-        var rcp_width = 1.0 / width;
-        var rcp_height = 1.0 / height;
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new(default,           default,            (r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho_RH(double_mt16 left, double_mt16 right, double_mt16 bottom, double_mt16 top, double_mt16 near, double_mt16 far)
-    {
-        var rcp_width = 1.0 / (right - left);
-        var rcp_height = 1.0 / (top - bottom);
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho_RH(double left, double right, double bottom, double top, double near, double far)
-    {
-        var rcp_width = 1.0 / (right - left);
-        var rcp_height = 1.0 / (top - bottom);
-        var r = 1.0 / (far - near);
-
-        return new(
-            new((rcp_width + rcp_width),       default,            default,            default),
-            new(default,           (rcp_height + rcp_height),        default,            default),
-            new(default,           default,            r,       default),
-            new((-(left + right) * rcp_width), (-(top + bottom) * rcp_height), (r * near), 1.0)
-       );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho_GL(double_mt16 width, double_mt16 height, double_mt16 near, double_mt16 far)
-    {
-        var rcpdx = 1.0 / width;
-        var rcpdy = 1.0 / height;
-        var rcpdz = 1.0 / (far - near);
-
-        return new(
-            (2.0 * rcpdx),       default,            default,            default,
-            default,           (2.0 * rcpdy),        default,            default,
-            default,           default,            (-2.0 * rcpdz),       (-(far + near) * rcpdz),
-            default,           default,            default,            1.0
-       );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 centered orthographic projection matrix.
-    /// </summary>
-    /// <param name="width">The width of the view volume</param>
-    /// <param name="height">The height of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 centered orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho_GL(double width, double height, double near, double far)
-    {
-        var rcpdx = 1.0 / width;
-        var rcpdy = 1.0 / height;
-        var rcpdz = 1.0 / (far - near);
-
-        return new(
-            (2.0 * rcpdx),       default,            default,            default,
-            default,           (2.0 * rcpdy),        default,            default,
-            default,           default,            (-2.0 * rcpdz),       (-(far + near) * rcpdz),
-            default,           default,            default,            1.0
-       );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho_GL(double_mt16 left, double_mt16 right, double_mt16 bottom, double_mt16 top, double_mt16 near, double_mt16 far)
-    {
-        var rcpdx = 1.0 / (right - left);
-        var rcpdy = 1.0 / (top - bottom);
-        var rcpdz = 1.0 / (far - near);
-
-        return new(
-            (2.0 * rcpdx),      default,           default,                (-(right + left) * rcpdx),
-            default,           (2.0 * rcpdy),      default,                (-(top + bottom) * rcpdy),
-            default,           default,           (-2.0 * rcpdz),          (-(far + near) * rcpdz),
-            default,           default,           default,                1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 off-center orthographic projection matrix.
-    /// </summary>
-    /// <param name="left">The minimum x-coordinate of the view volume</param>
-    /// <param name="right">The maximum x-coordinate of the view volume</param>
-    /// <param name="bottom">The minimum y-coordinate of the view volume</param>
-    /// <param name="top">The minimum y-coordinate of the view volume</param>
-    /// <param name="near">The distance to the near plane</param>
-    /// <param name="far">The distance to the far plane</param>
-    /// <returns>The double4x4_mt16 off-center orthographic projection matrix.</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Ortho_GL(double left, double right, double bottom, double top, double near, double far)
-    {
-        var rcpdx = 1.0 / (right - left);
-        var rcpdy = 1.0 / (top - bottom);
-        var rcpdz = 1.0 / (far - near);
-
-        return new(
-            (2.0 * rcpdx),      default,           default,                (-(right + left) * rcpdx),
-            default,           (2.0 * rcpdy),      default,                (-(top + bottom) * rcpdy),
-            default,           default,           (-2.0 * rcpdz),          (-(far + near) * rcpdz),
-            default,           default,           default,                1.0
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near, double_mt16 far)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            1.0),
-            new(default,               default,       (-r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov(double verticalFov, double aspect, double near, double far)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            1.0),
-            new(default,               default,       (-r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_RH(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near, double_mt16 far)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            -1.0),
-            new(default,               default,       (r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_RH(double verticalFov, double aspect, double near, double far)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       r,                            -1.0),
-            new(default,               default,       (r * near),                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_Row(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near, double_mt16 far)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            1.0,
-            default,               default,       (-r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a left-handed row-major double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_Row(double verticalFov, double aspect, double near, double far)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            1.0,
-            default,               default,       (-r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed row-major double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_RH_Row(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near, double_mt16 far)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            -1.0,
-            default,               default,       (r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a right-handed row-major double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_RH_Row(double verticalFov, double aspect, double near, double far)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-        var r = far / (far - near);
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       r,                            -1.0,
-            default,               default,       (r * near),                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 perspective projection matrix based on field of view.
-    /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_GL(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near, double_mt16 far)
-    {
-        var cotangent = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var rcpdz = 1.0 / (near - far);
-
-        return new(
-            (cotangent / aspect),    default,       default,                   default,
-            default,               cotangent,     default,                   default,
-            default,               default,       ((far + near) * rcpdz),      (2.0 * near * far * rcpdz),
-            default,               default,       -1.0,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 perspective projection matrix based on field of view.
-    /// <para><see href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluPerspective.xml"/></para>
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <param name="far">Distance to far plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_GL(double verticalFov, double aspect, double near, double far)
-    {
-        var cotangent = 1.0 / math.tan(verticalFov * 0.5);
-        var rcpdz = 1.0 / (near - far);
-
-        return new(
-            (cotangent / aspect),    default,       default,                   default,
-            default,               cotangent,     default,                   default,
-            default,               default,       ((far + near) * rcpdz),      (2.0 * near * far * rcpdz),
-            default,               default,       -1.0,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       1.0,                            1.0),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov(double verticalFov, double aspect, double near)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       1.0,                            1.0),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_RH(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       -1.0,                            -1.0),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_RH(double verticalFov, double aspect, double near)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            new(w,                     default,       default,                   default),
-            new(default,               h,             default,                   default),
-            new(default,               default,       -1.0,                            -1.0),
-            new(default,               default,       -near,                     default)
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed row-major double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_Row(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       1.0,                            1.0,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite left-handed row-major double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_Row(double verticalFov, double aspect, double near)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       1.0,                            1.0,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed row-major double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_RH_Row(double_mt16 verticalFov, double_mt16 aspect, double_mt16 near)
-    {
-        var h = 1.0 / math_mt.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       -1.0,                            -1.0,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns an infinite right-handed row-major double4x4_mt16 perspective projection matrix based on field of view.
-    /// </summary>
-    /// <param name="verticalFov">Vertical Field of view in radians</param>
-    /// <param name="aspect">X:Y aspect ratio</param>
-    /// <param name="near">Distance to near plane. Must be greater than zero</param>
-    /// <returns>The double4x4_mt16 perspective projection matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 PerspectiveFov_RH_Row(double verticalFov, double aspect, double near)
-    {
-        var h = 1.0 / math.tan(verticalFov * 0.5);
-        var w = h / aspect;
-
-        return new(
-            w,                     default,       default,                   default,
-            default,               h,             default,                   default,
-            default,               default,       -1.0,                            -1.0,
-            default,               default,       -near,                     default
-        );
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 matrix representing a combined scale-, rotation- and translation transform.
-    /// Equivalent to mul(translationTransform, mul(rotationTransform, scaleTransform))
-    /// </summary>
-    /// <param name="translation">The translation vector</param>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <param name="scale">The scaling factors of each axis</param>
-    /// <returns>The double4x4_mt16 matrix representing the translation, rotation, and scale by the inputs</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 TRS(double3_mt16 translation, quaternion_d_mt16 rotation, double3_mt16 scale)
-    {
-        var r = new double3x3_mt16(rotation);
-        r.c0 *= scale.xxx;
-        r.c1 *= scale.yyy;
-        r.c2 *= scale.zzz;
-        return new(r, translation);
-    }
-
-    /// <summary>
-    /// Returns a double4x4_mt16 matrix representing a combined rotation- and translation transform.
-    /// Equivalent to mul(translationTransform, rotationTransform)
-    /// </summary>
-    /// <param name="translation">The translation vector</param>
-    /// <param name="rotation">The quaternion rotation</param>
-    /// <returns>The double4x4_mt16 matrix representing the translation and rotation by the inputs</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 TR(double3_mt16 translation, quaternion_d_mt16 rotation)
-    {
-        var r = new double3x3_mt16(rotation);
-        return new(r, translation);
-    }
-
-    /// <summary>Returns a double4x4_mt16 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The double4x4_mt16 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Scale(double_mt16 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1.0
-    );
-
-    /// <summary>Returns a double4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The double4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Scale(double_mt16 x, double_mt16 y, double_mt16 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1.0
-    );
-
-    /// <summary>Returns a double4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The double4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Scale(double3_mt16 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a double4x4_mt16 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The double4x4_mt16 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 Translate(double3_mt16 vector) => new(
-        new(1.0, default, default, default),
-        new(default, 1.0, default, default),
-        new(default, default, 1.0, default),
-        new(vector, 1.0)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 rotate([This] double4x4_mt16 a, double3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 transform([This] double4x4_mt16 a, double3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 inverse([This] double4x4_mt16 m)
-    {
-        var (c0, c1, c2, c3) = m;
-
-        //var r0y_r1y_r0x_r1x = movelh(c1, c0); // (x1, y1, x0, y0)
-        //var r0z_r1z_r0w_r1w = movelh(c2, c3); // (x2, y2, x3, y3)
-        //var r2y_r3y_r2x_r3x = movehl(c0, c1); // (z1, w1, z0, w0)
-        //var r2z_r3z_r2w_r3w = movehl(c3, c2); // (z2, w2, z3, w3)
-        double4_mt16 r0y_r1y_r0x_r1x = new(m.c1.x, m.c1.y, m.c0.x, m.c0.y);
-        double4_mt16 r0z_r1z_r0w_r1w = new(m.c2.x, m.c2.y, m.c3.x, m.c3.y);
-        double4_mt16 r2y_r3y_r2x_r3x = new(m.c1.z, m.c1.w, m.c0.z, m.c0.w);
-        double4_mt16 r2z_r3z_r2w_r3w = new(m.c2.z, m.c2.w, m.c3.z, m.c3.w);
-
-        //var r0_wzyx = shuffle_zx_xz(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // x3 x2 x1 x0
-        //var r1_wzyx = shuffle_wy_yw(r0z_r1z_r0w_r1w, r0y_r1y_r0x_r1x); // y3 y2 y1 y0
-        //var r2_wzyx = shuffle_zx_xz(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // z3 z2 z1 z0
-        //var r3_wzyx = shuffle_wy_yw(r2z_r3z_r2w_r3w, r2y_r3y_r2x_r3x); // w3 w2 w1 w0
-        //var r0_xyzw = r0_wzyx.wzyx; // x0 x1 x2 x3
-        double4_mt16 r0_wzyx = new(m.c3.x, m.c2.x, m.c1.x, m.c0.x);
-        double4_mt16 r1_wzyx = new(m.c3.y, m.c2.y, m.c1.y, m.c0.y);
-        double4_mt16 r2_wzyx = new(m.c3.z, m.c2.z, m.c1.z, m.c0.z);
-        double4_mt16 r3_wzyx = new(m.c3.w, m.c2.w, m.c1.w, m.c0.w);
-        double4_mt16 r0_xyzw = new(m.c0.x, m.c1.x, m.c2.x, m.c3.x);
-
-        //var r1y_r2y_r1x_r2x = shuffle_yz_yz(c1, c0); // (y1, z1, y0, z0)
-        //var r1z_r2z_r1w_r2w = shuffle_yz_yz(c2, c3); // (y2, z2, y3, z3)
-        //var r3y_r0y_r3x_r0x = shuffle_wx_wx(c1, c0); // (w1, x1, w0, x0)
-        //var r3z_r0z_r3w_r0w = shuffle_wx_wx(c2, c3); // (w2, x2, w3, x3)
-        double4_mt16 r1y_r2y_r1x_r2x = new(m.c1.y, m.c1.z, m.c0.y, m.c0.z);
-        double4_mt16 r1z_r2z_r1w_r2w = new(m.c2.y, m.c2.z, m.c3.y, m.c3.z);
-        double4_mt16 r3y_r0y_r3x_r0x = new(m.c1.w, m.c1.x, m.c0.w, m.c0.x);
-        double4_mt16 r3z_r0z_r3w_r0w = new(m.c2.w, m.c2.x, m.c3.w, m.c3.x);
-
-        // Calculate remaining inner term pairs. inner terms have zw=-xy, so we only have to calculate xy and can pack two pairs per vector
-        // var inner12_23 = r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w - r1z_r2z_r1w_r2w * r2y_r3y_r2x_r3x;
-        // var inner02_13 = r0y_r1y_r0x_r1x * r2z_r3z_r2w_r3w - r0z_r1z_r0w_r1w * r2y_r3y_r2x_r3x;
-        // var inner30_01 = r3z_r0z_r3w_r0w * r0y_r1y_r0x_r1x - r3y_r0y_r3x_r0x * r0z_r1z_r0w_r1w;
-        var inner12_23 = fsm(r1y_r2y_r1x_r2x * r2z_r3z_r2w_r3w, r1z_r2z_r1w_r2w, r2y_r3y_r2x_r3x);
-        var inner02_13 = fsm(r0y_r1y_r0x_r1x * r2z_r3z_r2w_r3w, r0z_r1z_r0w_r1w, r2y_r3y_r2x_r3x);
-        var inner30_01 = fsm(r3z_r0z_r3w_r0w * r0y_r1y_r0x_r1x, r3y_r0y_r3x_r0x, r0z_r1z_r0w_r1w);
-
-        // Expand inner terms back to 4 components. zw signs still need to be flipped
-        var inner12 = inner12_23.xzzx;
-        var inner23 = inner12_23.ywwy;
-
-        var inner02 = inner02_13.xzzx;
-        var inner13 = inner02_13.ywwy;
-
-        // Calculate minors
-        // var minors0 = r3_wzyx * inner12 - r2_wzyx * inner13 + r1_wzyx * inner23;
-        var minors0 = fam(fsm(r3_wzyx * inner12, r2_wzyx, inner13), r1_wzyx, inner23);
-
-        var denom = r0_xyzw * minors0;
-
-        // Horizontal sum of denominator. Free sign flip of z and w compensates for missing flip in inner terms
-        denom += denom.yxwz; // x+y        x+y            z+w            z+w
-        denom -= denom.zzxx; // x+y-z-w  x+y-z-w        z+w-x-y        z+w-x-y
-
-        var rcp_denom_ppnn = double4_mt16.One / denom;
-        var rc0 = minors0 * rcp_denom_ppnn;
-
-        var inner30 = inner30_01.xzzx;
-        var inner01 = inner30_01.ywwy;
-
-        // var minors1 = r2_wzyx * inner30 - r0_wzyx * inner23 - r3_wzyx * inner02;
-        var minors1 = fsm(fsm(r2_wzyx * inner30, r0_wzyx, inner23), r3_wzyx, inner02);
-        var rc1 = minors1 * rcp_denom_ppnn;
-
-        // var minors2 = r0_wzyx * inner13 - r1_wzyx * inner30 - r3_wzyx * inner01;
-        var minors2 = fsm(fsm(r0_wzyx * inner13, r1_wzyx, inner30), r3_wzyx, inner01);
-        var rc2 = minors2 * rcp_denom_ppnn;
-
-        // var minors3 = r1_wzyx * inner02 - r0_wzyx * inner12 + r2_wzyx * inner01;
-        var minors3 = fsm(fsm(r1_wzyx * inner02, r0_wzyx, inner12), r2_wzyx, inner01);
-        var rc3 = minors3 * rcp_denom_ppnn;
-
-        return new(rc0, rc1, rc2, rc3);
-    }
-
-    /// <summary>Fast matrix inverse for rigid transforms (orthonormal basis and translation)</summary>
-    /// <param name="m">Matrix to invert</param>
-    /// <returns>The inverted matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt16 fastinverse([This] double4x4_mt16 m)
-    {
-        var (c0, c1, c2, pos) = m;
-
-        // unpacklo a b => a.x, b.x, a.y, b.y
-        // unpackhi a b => a.z, b.z, a.w, b.w
-
-        double4_mt16 t0 = new(c0.x, c2.x, c0.y, c2.y);           // unpacklo(c0, c2);
-        double4_mt16 t1 = new(c1.x, default, c1.y, default);     // unpacklo(c1, default);
-        double4_mt16 t2 = new(c0.z, c2.z, c0.w, c2.w);           // unpackhi(c0, c2);
-        double4_mt16 t3 = new(c1.z, default, c1.w, default);     // unpackhi(c1, default);
-
-        double4_mt16 r0 = new(t0.x, t1.x, t0.y, t1.y);           // unpacklo(t0, t1);
-        double4_mt16 r1 = new(t0.z, t1.z, t0.w, t1.w);           // unpackhi(t0, t1);
-        double4_mt16 r2 = new(t2.x, t3.x, t2.y, t3.y);           // unpacklo(t2, t3);
-
-        //pos = -(r0 * pos.x + r1 * pos.y + r2 * pos.z);
-        pos = -fam(fam(r0 * pos.x, r1, pos.y), r2, pos.z);
-        pos.w = 1.0;
-
-        return new(r0, r1, r2, pos);
-    }
-
-    /// <summary>Returns the determinant of a double4x4_mt16 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double_mt16 determinant([This] double4x4_mt16 m)
-    {
-        var (c0, c1, c2, c3) = m;
-    
-        // var m00 = c1.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c1.z * c3.w - c1.w * c3.z) + c3.y * (c1.z * c2.w - c1.w * c2.z);
-        // var m01 = c0.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c2.w - c0.w * c2.z);
-        // var m02 = c0.y * (c1.z * c3.w - c1.w * c3.z) - c1.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c1.w - c0.w * c1.z);
-        // var m03 = c0.y * (c1.z * c2.w - c1.w * c2.z) - c1.y * (c0.z * c2.w - c0.w * c2.z) + c2.y * (c0.z * c1.w - c0.w * c1.z);
-        var m00 = fam(fsm(c1.y * fsm(c2.z * c3.w, c2.w, c3.z), c2.y, fsm(c1.z * c3.w, c1.w, c3.z)), c3.y, fsm(c1.z * c2.w, c1.w, c2.z));
-        var m01 = fam(fsm(c0.y * fsm(c2.z * c3.w, c2.w, c3.z), c2.y, fsm(c0.z * c3.w, c0.w, c3.z)), c3.y, fsm(c0.z * c2.w, c0.w, c2.z));
-        var m02 = fam(fsm(c0.y * fsm(c1.z * c3.w, c1.w, c3.z), c1.y, fsm(c0.z * c3.w, c0.w, c3.z)), c3.y, fsm(c0.z * c1.w, c0.w, c1.z));
-        var m03 = fam(fsm(c0.y * fsm(c1.z * c2.w, c1.w, c2.z), c1.y, fsm(c0.z * c2.w, c0.w, c2.z)), c2.y, fsm(c0.z * c1.w, c0.w, c1.z));
-
-        // return c0.x * m00 - c1.x * m01 + c2.x * m02 - c3.x * m03;
-        return fsm(fam(fsm(c0.x * m00, c1.x, m01), c2.x, m02), c3.x, m03);
-    }
-}
-
-#endregion // double4x4_mt16
-
-#region int4x4_mt4
-
-public partial struct int4x4_mt4
-{
-    /// <summary>Constructs a int4x4_mt4 from a int3x3_mt4 rotation matrix and a int3_mt4 translation vector</summary>
-    /// <param name="rotation">The int3x3_mt4 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public int4x4_mt4(int3x3_mt4 rotation, int3_mt4 translation)
+    public int4x4_mt(int3x3_mt rotation, int3_mt translation)
     {
         c0 = new(rotation.c0, default);
         c1 = new(rotation.c1, default);
@@ -8046,41 +2694,41 @@ public partial struct int4x4_mt4
         c3 = new(translation, 1);
     }
 
-    /// <summary>Returns a int4x4_mt4 scale matrix given 3 axis scales</summary>
+    /// <summary>Returns a int4x4_mt scale matrix given 3 axis scales</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The int4x4_mt4 matrix that represents a uniform scale</returns>
+    /// <returns>The int4x4_mt matrix that represents a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int4x4_mt4 Scale(int_mt4 s) => new(
+    public static int4x4_mt Scale(int_mt s) => new(
         s,    default, default, default,
         default, s,    default, default,
         default, default, s,    default,
         default, default, default, 1
     );
 
-    /// <summary>Returns a int4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a int4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The int4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The int4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int4x4_mt4 Scale(int_mt4 x, int_mt4 y, int_mt4 z) => new(
+    public static int4x4_mt Scale(int_mt x, int_mt y, int_mt z) => new(
         x,    default, default, default,
         default, y,    default, default,
         default, default, z,    default,
         default, default, default, 1
     );
 
-    /// <summary>Returns a int4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a int4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The int4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The int4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static int4x4_mt4 Scale(int3_mt4 scales) => Scale(scales.x, scales.y, scales.z);
+    public static int4x4_mt Scale(int3_mt scales) => Scale(scales.x, scales.y, scales.z);
 
-    /// <summary>Returns a int4x4_mt4 translation matrix given a float3 translation vector</summary>
+    /// <summary>Returns a int4x4_mt translation matrix given a float3 translation vector</summary>
     /// <param name="vector">The translation vector</param>
-    /// <returns>The int4x4_mt4 translation matrix</returns>
+    /// <returns>The int4x4_mt translation matrix</returns>
     [MethodImpl(256 | 512)]
-    public static int4x4_mt4 Translate(int3_mt4 vector) => new(
+    public static int4x4_mt Translate(int3_mt vector) => new(
         new(1, default, default, default),
         new(default, 1, default, default),
         new(default, default, 1, default),
@@ -8092,175 +2740,27 @@ public partial struct int4x4_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3_mt4 rotate([This] int4x4_mt4 a, int3_mt4 b) 
+    public static int3_mt rotate([This] int4x4_mt a, int3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 transform([This] int4x4_mt4 a, int3_mt4 b) 
+    public static int3_mt transform([This] int4x4_mt a, int3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
 
-#endregion // int4x4_mt4
+#endregion // int4x4_mt
 
-#region int4x4_mt8
+#region uint4x4_mt
 
-public partial struct int4x4_mt8
+public partial struct uint4x4_mt
 {
-    /// <summary>Constructs a int4x4_mt8 from a int3x3_mt8 rotation matrix and a int3_mt8 translation vector</summary>
-    /// <param name="rotation">The int3x3_mt8 rotation matrix</param>
+    /// <summary>Constructs a uint4x4_mt from a uint3x3_mt rotation matrix and a uint3_mt translation vector</summary>
+    /// <param name="rotation">The uint3x3_mt rotation matrix</param>
     /// <param name="translation">The translation vector</param>
     [MethodImpl(256 | 512)]
-    public int4x4_mt8(int3x3_mt8 rotation, int3_mt8 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1);
-    }
-
-    /// <summary>Returns a int4x4_mt8 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The int4x4_mt8 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt8 Scale(int_mt8 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1
-    );
-
-    /// <summary>Returns a int4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The int4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt8 Scale(int_mt8 x, int_mt8 y, int_mt8 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1
-    );
-
-    /// <summary>Returns a int4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The int4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt8 Scale(int3_mt8 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a int4x4_mt8 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The int4x4_mt8 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt8 Translate(int3_mt8 vector) => new(
-        new(1, default, default, default),
-        new(default, 1, default, default),
-        new(default, default, 1, default),
-        new(vector, 1)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 rotate([This] int4x4_mt8 a, int3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 transform([This] int4x4_mt8 a, int3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-}
-
-#endregion // int4x4_mt8
-
-#region int4x4_mt16
-
-public partial struct int4x4_mt16
-{
-    /// <summary>Constructs a int4x4_mt16 from a int3x3_mt16 rotation matrix and a int3_mt16 translation vector</summary>
-    /// <param name="rotation">The int3x3_mt16 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public int4x4_mt16(int3x3_mt16 rotation, int3_mt16 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1);
-    }
-
-    /// <summary>Returns a int4x4_mt16 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The int4x4_mt16 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt16 Scale(int_mt16 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1
-    );
-
-    /// <summary>Returns a int4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The int4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt16 Scale(int_mt16 x, int_mt16 y, int_mt16 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1
-    );
-
-    /// <summary>Returns a int4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The int4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt16 Scale(int3_mt16 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a int4x4_mt16 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The int4x4_mt16 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt16 Translate(int3_mt16 vector) => new(
-        new(1, default, default, default),
-        new(default, 1, default, default),
-        new(default, default, 1, default),
-        new(vector, 1)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 rotate([This] int4x4_mt16 a, int3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 transform([This] int4x4_mt16 a, int3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-}
-
-#endregion // int4x4_mt16
-
-#region uint4x4_mt4
-
-public partial struct uint4x4_mt4
-{
-    /// <summary>Constructs a uint4x4_mt4 from a uint3x3_mt4 rotation matrix and a uint3_mt4 translation vector</summary>
-    /// <param name="rotation">The uint3x3_mt4 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public uint4x4_mt4(uint3x3_mt4 rotation, uint3_mt4 translation)
+    public uint4x4_mt(uint3x3_mt rotation, uint3_mt translation)
     {
         c0 = new(rotation.c0, default);
         c1 = new(rotation.c1, default);
@@ -8268,41 +2768,41 @@ public partial struct uint4x4_mt4
         c3 = new(translation, 1u);
     }
 
-    /// <summary>Returns a uint4x4_mt4 scale matrix given 3 axis scales</summary>
+    /// <summary>Returns a uint4x4_mt scale matrix given 3 axis scales</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The uint4x4_mt4 matrix that represents a uniform scale</returns>
+    /// <returns>The uint4x4_mt matrix that represents a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static uint4x4_mt4 Scale(uint_mt4 s) => new(
+    public static uint4x4_mt Scale(uint_mt s) => new(
         s,    default, default, default,
         default, s,    default, default,
         default, default, s,    default,
         default, default, default, 1u
     );
 
-    /// <summary>Returns a uint4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a uint4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The uint4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The uint4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static uint4x4_mt4 Scale(uint_mt4 x, uint_mt4 y, uint_mt4 z) => new(
+    public static uint4x4_mt Scale(uint_mt x, uint_mt y, uint_mt z) => new(
         x,    default, default, default,
         default, y,    default, default,
         default, default, z,    default,
         default, default, default, 1u
     );
 
-    /// <summary>Returns a uint4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a uint4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The uint4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The uint4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static uint4x4_mt4 Scale(uint3_mt4 scales) => Scale(scales.x, scales.y, scales.z);
+    public static uint4x4_mt Scale(uint3_mt scales) => Scale(scales.x, scales.y, scales.z);
 
-    /// <summary>Returns a uint4x4_mt4 translation matrix given a float3 translation vector</summary>
+    /// <summary>Returns a uint4x4_mt translation matrix given a float3 translation vector</summary>
     /// <param name="vector">The translation vector</param>
-    /// <returns>The uint4x4_mt4 translation matrix</returns>
+    /// <returns>The uint4x4_mt translation matrix</returns>
     [MethodImpl(256 | 512)]
-    public static uint4x4_mt4 Translate(uint3_mt4 vector) => new(
+    public static uint4x4_mt Translate(uint3_mt vector) => new(
         new(1u, default, default, default),
         new(default, 1u, default, default),
         new(default, default, 1u, default),
@@ -8314,175 +2814,27 @@ public partial struct uint4x4_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 rotate([This] uint4x4_mt4 a, uint3_mt4 b) 
+    public static uint3_mt rotate([This] uint4x4_mt a, uint3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 transform([This] uint4x4_mt4 a, uint3_mt4 b) 
+    public static uint3_mt transform([This] uint4x4_mt a, uint3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
 
-#endregion // uint4x4_mt4
+#endregion // uint4x4_mt
 
-#region uint4x4_mt8
+#region long4x4_mt
 
-public partial struct uint4x4_mt8
+public partial struct long4x4_mt
 {
-    /// <summary>Constructs a uint4x4_mt8 from a uint3x3_mt8 rotation matrix and a uint3_mt8 translation vector</summary>
-    /// <param name="rotation">The uint3x3_mt8 rotation matrix</param>
+    /// <summary>Constructs a long4x4_mt from a long3x3_mt rotation matrix and a long3_mt translation vector</summary>
+    /// <param name="rotation">The long3x3_mt rotation matrix</param>
     /// <param name="translation">The translation vector</param>
     [MethodImpl(256 | 512)]
-    public uint4x4_mt8(uint3x3_mt8 rotation, uint3_mt8 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1u);
-    }
-
-    /// <summary>Returns a uint4x4_mt8 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The uint4x4_mt8 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt8 Scale(uint_mt8 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1u
-    );
-
-    /// <summary>Returns a uint4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The uint4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt8 Scale(uint_mt8 x, uint_mt8 y, uint_mt8 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1u
-    );
-
-    /// <summary>Returns a uint4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The uint4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt8 Scale(uint3_mt8 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a uint4x4_mt8 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The uint4x4_mt8 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt8 Translate(uint3_mt8 vector) => new(
-        new(1u, default, default, default),
-        new(default, 1u, default, default),
-        new(default, default, 1u, default),
-        new(vector, 1u)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 rotate([This] uint4x4_mt8 a, uint3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 transform([This] uint4x4_mt8 a, uint3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-}
-
-#endregion // uint4x4_mt8
-
-#region uint4x4_mt16
-
-public partial struct uint4x4_mt16
-{
-    /// <summary>Constructs a uint4x4_mt16 from a uint3x3_mt16 rotation matrix and a uint3_mt16 translation vector</summary>
-    /// <param name="rotation">The uint3x3_mt16 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public uint4x4_mt16(uint3x3_mt16 rotation, uint3_mt16 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1u);
-    }
-
-    /// <summary>Returns a uint4x4_mt16 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The uint4x4_mt16 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt16 Scale(uint_mt16 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1u
-    );
-
-    /// <summary>Returns a uint4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The uint4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt16 Scale(uint_mt16 x, uint_mt16 y, uint_mt16 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1u
-    );
-
-    /// <summary>Returns a uint4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The uint4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt16 Scale(uint3_mt16 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a uint4x4_mt16 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The uint4x4_mt16 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt16 Translate(uint3_mt16 vector) => new(
-        new(1u, default, default, default),
-        new(default, 1u, default, default),
-        new(default, default, 1u, default),
-        new(vector, 1u)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 rotate([This] uint4x4_mt16 a, uint3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 transform([This] uint4x4_mt16 a, uint3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-}
-
-#endregion // uint4x4_mt16
-
-#region long4x4_mt4
-
-public partial struct long4x4_mt4
-{
-    /// <summary>Constructs a long4x4_mt4 from a long3x3_mt4 rotation matrix and a long3_mt4 translation vector</summary>
-    /// <param name="rotation">The long3x3_mt4 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public long4x4_mt4(long3x3_mt4 rotation, long3_mt4 translation)
+    public long4x4_mt(long3x3_mt rotation, long3_mt translation)
     {
         c0 = new(rotation.c0, default);
         c1 = new(rotation.c1, default);
@@ -8490,41 +2842,41 @@ public partial struct long4x4_mt4
         c3 = new(translation, 1L);
     }
 
-    /// <summary>Returns a long4x4_mt4 scale matrix given 3 axis scales</summary>
+    /// <summary>Returns a long4x4_mt scale matrix given 3 axis scales</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The long4x4_mt4 matrix that represents a uniform scale</returns>
+    /// <returns>The long4x4_mt matrix that represents a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static long4x4_mt4 Scale(long_mt4 s) => new(
+    public static long4x4_mt Scale(long_mt s) => new(
         s,    default, default, default,
         default, s,    default, default,
         default, default, s,    default,
         default, default, default, 1L
     );
 
-    /// <summary>Returns a long4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a long4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The long4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The long4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static long4x4_mt4 Scale(long_mt4 x, long_mt4 y, long_mt4 z) => new(
+    public static long4x4_mt Scale(long_mt x, long_mt y, long_mt z) => new(
         x,    default, default, default,
         default, y,    default, default,
         default, default, z,    default,
         default, default, default, 1L
     );
 
-    /// <summary>Returns a long4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a long4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The long4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The long4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static long4x4_mt4 Scale(long3_mt4 scales) => Scale(scales.x, scales.y, scales.z);
+    public static long4x4_mt Scale(long3_mt scales) => Scale(scales.x, scales.y, scales.z);
 
-    /// <summary>Returns a long4x4_mt4 translation matrix given a float3 translation vector</summary>
+    /// <summary>Returns a long4x4_mt translation matrix given a float3 translation vector</summary>
     /// <param name="vector">The translation vector</param>
-    /// <returns>The long4x4_mt4 translation matrix</returns>
+    /// <returns>The long4x4_mt translation matrix</returns>
     [MethodImpl(256 | 512)]
-    public static long4x4_mt4 Translate(long3_mt4 vector) => new(
+    public static long4x4_mt Translate(long3_mt vector) => new(
         new(1L, default, default, default),
         new(default, 1L, default, default),
         new(default, default, 1L, default),
@@ -8536,175 +2888,27 @@ public partial struct long4x4_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static long3_mt4 rotate([This] long4x4_mt4 a, long3_mt4 b) 
+    public static long3_mt rotate([This] long4x4_mt a, long3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 transform([This] long4x4_mt4 a, long3_mt4 b) 
+    public static long3_mt transform([This] long4x4_mt a, long3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
 
-#endregion // long4x4_mt4
+#endregion // long4x4_mt
 
-#region long4x4_mt8
+#region ulong4x4_mt
 
-public partial struct long4x4_mt8
+public partial struct ulong4x4_mt
 {
-    /// <summary>Constructs a long4x4_mt8 from a long3x3_mt8 rotation matrix and a long3_mt8 translation vector</summary>
-    /// <param name="rotation">The long3x3_mt8 rotation matrix</param>
+    /// <summary>Constructs a ulong4x4_mt from a ulong3x3_mt rotation matrix and a ulong3_mt translation vector</summary>
+    /// <param name="rotation">The ulong3x3_mt rotation matrix</param>
     /// <param name="translation">The translation vector</param>
     [MethodImpl(256 | 512)]
-    public long4x4_mt8(long3x3_mt8 rotation, long3_mt8 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1L);
-    }
-
-    /// <summary>Returns a long4x4_mt8 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The long4x4_mt8 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt8 Scale(long_mt8 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1L
-    );
-
-    /// <summary>Returns a long4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The long4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt8 Scale(long_mt8 x, long_mt8 y, long_mt8 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1L
-    );
-
-    /// <summary>Returns a long4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The long4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt8 Scale(long3_mt8 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a long4x4_mt8 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The long4x4_mt8 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt8 Translate(long3_mt8 vector) => new(
-        new(1L, default, default, default),
-        new(default, 1L, default, default),
-        new(default, default, 1L, default),
-        new(vector, 1L)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 rotate([This] long4x4_mt8 a, long3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 transform([This] long4x4_mt8 a, long3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-}
-
-#endregion // long4x4_mt8
-
-#region long4x4_mt16
-
-public partial struct long4x4_mt16
-{
-    /// <summary>Constructs a long4x4_mt16 from a long3x3_mt16 rotation matrix and a long3_mt16 translation vector</summary>
-    /// <param name="rotation">The long3x3_mt16 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public long4x4_mt16(long3x3_mt16 rotation, long3_mt16 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1L);
-    }
-
-    /// <summary>Returns a long4x4_mt16 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The long4x4_mt16 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt16 Scale(long_mt16 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1L
-    );
-
-    /// <summary>Returns a long4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The long4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt16 Scale(long_mt16 x, long_mt16 y, long_mt16 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1L
-    );
-
-    /// <summary>Returns a long4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The long4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt16 Scale(long3_mt16 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a long4x4_mt16 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The long4x4_mt16 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt16 Translate(long3_mt16 vector) => new(
-        new(1L, default, default, default),
-        new(default, 1L, default, default),
-        new(default, default, 1L, default),
-        new(vector, 1L)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 rotate([This] long4x4_mt16 a, long3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 transform([This] long4x4_mt16 a, long3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-}
-
-#endregion // long4x4_mt16
-
-#region ulong4x4_mt4
-
-public partial struct ulong4x4_mt4
-{
-    /// <summary>Constructs a ulong4x4_mt4 from a ulong3x3_mt4 rotation matrix and a ulong3_mt4 translation vector</summary>
-    /// <param name="rotation">The ulong3x3_mt4 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public ulong4x4_mt4(ulong3x3_mt4 rotation, ulong3_mt4 translation)
+    public ulong4x4_mt(ulong3x3_mt rotation, ulong3_mt translation)
     {
         c0 = new(rotation.c0, default);
         c1 = new(rotation.c1, default);
@@ -8712,41 +2916,41 @@ public partial struct ulong4x4_mt4
         c3 = new(translation, 1UL);
     }
 
-    /// <summary>Returns a ulong4x4_mt4 scale matrix given 3 axis scales</summary>
+    /// <summary>Returns a ulong4x4_mt scale matrix given 3 axis scales</summary>
     /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The ulong4x4_mt4 matrix that represents a uniform scale</returns>
+    /// <returns>The ulong4x4_mt matrix that represents a uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static ulong4x4_mt4 Scale(ulong_mt4 s) => new(
+    public static ulong4x4_mt Scale(ulong_mt s) => new(
         s,    default, default, default,
         default, s,    default, default,
         default, default, s,    default,
         default, default, default, 1UL
     );
 
-    /// <summary>Returns a ulong4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a ulong4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="x">The x-axis scaling factor</param>
     /// <param name="y">The y-axis scaling factor</param>
     /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The ulong4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The ulong4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static ulong4x4_mt4 Scale(ulong_mt4 x, ulong_mt4 y, ulong_mt4 z) => new(
+    public static ulong4x4_mt Scale(ulong_mt x, ulong_mt y, ulong_mt z) => new(
         x,    default, default, default,
         default, y,    default, default,
         default, default, z,    default,
         default, default, default, 1UL
     );
 
-    /// <summary>Returns a ulong4x4_mt4 scale matrix given a float3 vector containing the 3 axis scales</summary>
+    /// <summary>Returns a ulong4x4_mt scale matrix given a float3 vector containing the 3 axis scales</summary>
     /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The ulong4x4_mt4 matrix that represents a non-uniform scale</returns>
+    /// <returns>The ulong4x4_mt matrix that represents a non-uniform scale</returns>
     [MethodImpl(256 | 512)]
-    public static ulong4x4_mt4 Scale(ulong3_mt4 scales) => Scale(scales.x, scales.y, scales.z);
+    public static ulong4x4_mt Scale(ulong3_mt scales) => Scale(scales.x, scales.y, scales.z);
 
-    /// <summary>Returns a ulong4x4_mt4 translation matrix given a float3 translation vector</summary>
+    /// <summary>Returns a ulong4x4_mt translation matrix given a float3 translation vector</summary>
     /// <param name="vector">The translation vector</param>
-    /// <returns>The ulong4x4_mt4 translation matrix</returns>
+    /// <returns>The ulong4x4_mt translation matrix</returns>
     [MethodImpl(256 | 512)]
-    public static ulong4x4_mt4 Translate(ulong3_mt4 vector) => new(
+    public static ulong4x4_mt Translate(ulong3_mt vector) => new(
         new(1UL, default, default, default),
         new(default, 1UL, default, default),
         new(default, default, 1UL, default),
@@ -8758,162 +2962,14 @@ public partial struct ulong4x4_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 rotate([This] ulong4x4_mt4 a, ulong3_mt4 b) 
+    public static ulong3_mt rotate([This] ulong4x4_mt a, ulong3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 transform([This] ulong4x4_mt4 a, ulong3_mt4 b) 
+    public static ulong3_mt transform([This] ulong4x4_mt a, ulong3_mt b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
 
-#endregion // ulong4x4_mt4
-
-#region ulong4x4_mt8
-
-public partial struct ulong4x4_mt8
-{
-    /// <summary>Constructs a ulong4x4_mt8 from a ulong3x3_mt8 rotation matrix and a ulong3_mt8 translation vector</summary>
-    /// <param name="rotation">The ulong3x3_mt8 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public ulong4x4_mt8(ulong3x3_mt8 rotation, ulong3_mt8 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1UL);
-    }
-
-    /// <summary>Returns a ulong4x4_mt8 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The ulong4x4_mt8 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt8 Scale(ulong_mt8 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1UL
-    );
-
-    /// <summary>Returns a ulong4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The ulong4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt8 Scale(ulong_mt8 x, ulong_mt8 y, ulong_mt8 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1UL
-    );
-
-    /// <summary>Returns a ulong4x4_mt8 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The ulong4x4_mt8 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt8 Scale(ulong3_mt8 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a ulong4x4_mt8 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The ulong4x4_mt8 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt8 Translate(ulong3_mt8 vector) => new(
-        new(1UL, default, default, default),
-        new(default, 1UL, default, default),
-        new(default, default, 1UL, default),
-        new(vector, 1UL)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 rotate([This] ulong4x4_mt8 a, ulong3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 transform([This] ulong4x4_mt8 a, ulong3_mt8 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-}
-
-#endregion // ulong4x4_mt8
-
-#region ulong4x4_mt16
-
-public partial struct ulong4x4_mt16
-{
-    /// <summary>Constructs a ulong4x4_mt16 from a ulong3x3_mt16 rotation matrix and a ulong3_mt16 translation vector</summary>
-    /// <param name="rotation">The ulong3x3_mt16 rotation matrix</param>
-    /// <param name="translation">The translation vector</param>
-    [MethodImpl(256 | 512)]
-    public ulong4x4_mt16(ulong3x3_mt16 rotation, ulong3_mt16 translation)
-    {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        c3 = new(translation, 1UL);
-    }
-
-    /// <summary>Returns a ulong4x4_mt16 scale matrix given 3 axis scales</summary>
-    /// <param name="s">The uniform scaling factor</param>
-    /// <returns>The ulong4x4_mt16 matrix that represents a uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt16 Scale(ulong_mt16 s) => new(
-        s,    default, default, default,
-        default, s,    default, default,
-        default, default, s,    default,
-        default, default, default, 1UL
-    );
-
-    /// <summary>Returns a ulong4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="x">The x-axis scaling factor</param>
-    /// <param name="y">The y-axis scaling factor</param>
-    /// <param name="z">The z-axis scaling factor</param>
-    /// <returns>The ulong4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt16 Scale(ulong_mt16 x, ulong_mt16 y, ulong_mt16 z) => new(
-        x,    default, default, default,
-        default, y,    default, default,
-        default, default, z,    default,
-        default, default, default, 1UL
-    );
-
-    /// <summary>Returns a ulong4x4_mt16 scale matrix given a float3 vector containing the 3 axis scales</summary>
-    /// <param name="scales">The vector containing scale factors for each axis</param>
-    /// <returns>The ulong4x4_mt16 matrix that represents a non-uniform scale</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt16 Scale(ulong3_mt16 scales) => Scale(scales.x, scales.y, scales.z);
-
-    /// <summary>Returns a ulong4x4_mt16 translation matrix given a float3 translation vector</summary>
-    /// <param name="vector">The translation vector</param>
-    /// <returns>The ulong4x4_mt16 translation matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt16 Translate(ulong3_mt16 vector) => new(
-        new(1UL, default, default, default),
-        new(default, 1UL, default, default),
-        new(default, default, 1UL, default),
-        new(vector, 1UL)
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 rotate([This] ulong4x4_mt16 a, ulong3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 transform([This] ulong4x4_mt16 a, ulong3_mt16 b) 
-        => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
-        // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
-}
-
-#endregion // ulong4x4_mt16
+#endregion // ulong4x4_mt

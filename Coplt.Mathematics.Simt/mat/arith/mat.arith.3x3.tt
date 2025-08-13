@@ -6,7 +6,7 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -14,14 +14,14 @@ namespace Coplt.Mathematics.Simt;
         if (!typ.arith) continue;
         foreach (var size in sizes)
         {
-            var scalarName = $"{typ.compType}_mt{size}";
-            var vecTypeName = $"{typ.name}{3}_mt{size}";
-            var typeName = $"{typ.name.Replace('v', 'm')}{3}x{3}_mt{size}";
+            var scalarName = $"{typ.compType}_mt";
+            var vecTypeName = $"{typ.name}{3}_mt";
+            var typeName = $"{typ.name.Replace('v', 'm')}{3}x{3}_mt";
 
-            var vecTypeName4 = $"{typ.name}{4}_mt{size}";
-            var typeName4x4 = $"{typ.name.Replace('v', 'm')}{4}x{4}_mt{size}";
+            var vecTypeName4 = $"{typ.name}{4}_mt";
+            var typeName4x4 = $"{typ.name.Replace('v', 'm')}{4}x{4}_mt";
 
-            var quaternionName = $"quaternion{typ.structSuffix}_mt{size}";
+            var quaternionName = $"quaternion{typ.structSuffix}_mt";
 #>
 
 #region <#= typeName #>
@@ -52,9 +52,9 @@ public partial struct <#= typeName #>
         var v = q.value;
         var v2 = v + v;
 
-        var npn = new <#= typ.maskType #>3_mt<#= size #>(<#= typ.maskNeg #>, default, <#= typ.maskNeg #>).asf();
-        var nnp = new <#= typ.maskType #>3_mt<#= size #>(<#= typ.maskNeg #>, <#= typ.maskNeg #>, default).asf();
-        var pnn = new <#= typ.maskType #>3_mt<#= size #>(default, <#= typ.maskNeg #>, <#= typ.maskNeg #>).asf();
+        var npn = new <#= typ.maskType #>3_mt(<#= typ.maskNeg #>, default, <#= typ.maskNeg #>).asf();
+        var nnp = new <#= typ.maskType #>3_mt(<#= typ.maskNeg #>, <#= typ.maskNeg #>, default).asf();
+        var pnn = new <#= typ.maskType #>3_mt(default, <#= typ.maskNeg #>, <#= typ.maskNeg #>).asf();
 
         c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new <#= vecTypeName #>(<#= typ.one #>, default, default);
         c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new <#= vecTypeName #>(default, <#= typ.one #>, default);
@@ -121,9 +121,9 @@ public partial struct <#= typeName #>
         var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
         var t = new <#= vecTypeName4 #>(u * sina, cosa);
 
-        var ppn = new <#= typ.maskType #>3_mt<#= size #>(default, default, <#= typ.maskNeg #>).as<#= typ.compType #>();
-        var npp = new <#= typ.maskType #>3_mt<#= size #>(<#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
-        var pnp = new <#= typ.maskType #>3_mt<#= size #>(default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
+        var ppn = new <#= typ.maskType #>3_mt(default, default, <#= typ.maskNeg #>).as<#= typ.compType #>();
+        var npp = new <#= typ.maskType #>3_mt(<#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
+        var pnp = new <#= typ.maskType #>3_mt(default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
 
         return new(
             u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
@@ -147,9 +147,9 @@ public partial struct <#= typeName #>
         var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
         var t = new <#= vecTypeName4 #>(u * sina, cosa);
 
-        var ppn = new <#= typ.maskType #>3_mt<#= size #>(default, default, <#= typ.maskNeg #>).as<#= typ.compType #>();
-        var npp = new <#= typ.maskType #>3_mt<#= size #>(<#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
-        var pnp = new <#= typ.maskType #>3_mt<#= size #>(default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
+        var ppn = new <#= typ.maskType #>3_mt(default, default, <#= typ.maskNeg #>).as<#= typ.compType #>();
+        var npp = new <#= typ.maskType #>3_mt(<#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
+        var pnp = new <#= typ.maskType #>3_mt(default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
 
         return new(
             u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),

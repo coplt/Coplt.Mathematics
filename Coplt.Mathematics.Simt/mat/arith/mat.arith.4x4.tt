@@ -6,7 +6,7 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -14,13 +14,13 @@ namespace Coplt.Mathematics.Simt;
         if (!typ.arith) continue;
         foreach (var size in sizes)
         {
-            var scalarName = $"{typ.name}_mt{size}";
-            var vecTypeName = $"{typ.name}{4}_mt{size}";
-            var typeName = $"{typ.name.Replace('v', 'm')}{4}x{4}_mt{size}";
-            var vecTypeName3 = $"{typ.name}{3}_mt{size}";
-            var typeName3x3 = $"{typ.name.Replace('v', 'm')}{3}x{3}_mt{size}";
+            var scalarName = $"{typ.name}_mt";
+            var vecTypeName = $"{typ.name}{4}_mt";
+            var typeName = $"{typ.name.Replace('v', 'm')}{4}x{4}_mt";
+            var vecTypeName3 = $"{typ.name}{3}_mt";
+            var typeName3x3 = $"{typ.name.Replace('v', 'm')}{3}x{3}_mt";
 
-            var quaternionName = $"quaternion{typ.structSuffix}_mt{size}";
+            var quaternionName = $"quaternion{typ.structSuffix}_mt";
 #>
 
 #region <#= typeName #>
@@ -65,10 +65,10 @@ public partial struct <#= typeName #>
         var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
         var t = new <#= vecTypeName #>(u.xyz * sina, cosa);
 
-        var ppnp = new <#= typ.maskType #>4_mt<#= size #>(default, default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
-        var nppp = new <#= typ.maskType #>4_mt<#= size #>(<#= typ.maskNeg #>, default, default, default).as<#= typ.compType #>();
-        var pnpp = new <#= typ.maskType #>4_mt<#= size #>(default, <#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
-        var mask = new <#= typ.sigMaskType #>4_mt<#= size #>(-1, -1, -1, default).as<#= typ.compType #>();
+        var ppnp = new <#= typ.maskType #>4_mt(default, default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
+        var nppp = new <#= typ.maskType #>4_mt(<#= typ.maskNeg #>, default, default, default).as<#= typ.compType #>();
+        var pnpp = new <#= typ.maskType #>4_mt(default, <#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
+        var mask = new <#= typ.sigMaskType #>4_mt(-1, -1, -1, default).as<#= typ.compType #>();
 
         return new(
             u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),
@@ -93,10 +93,10 @@ public partial struct <#= typeName #>
         var u_inv_cosa = u - u * cosa; // u * (1 - cosa);
         var t = new <#= vecTypeName #>(u.xyz * sina, cosa);
 
-        var ppnp = new <#= typ.maskType #>4_mt<#= size #>(default, default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
-        var nppp = new <#= typ.maskType #>4_mt<#= size #>(<#= typ.maskNeg #>, default, default, default).as<#= typ.compType #>();
-        var pnpp = new <#= typ.maskType #>4_mt<#= size #>(default, <#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
-        var mask = new <#= typ.sigMaskType #>4_mt<#= size #>(-1, -1, -1, default).as<#= typ.compType #>();
+        var ppnp = new <#= typ.maskType #>4_mt(default, default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
+        var nppp = new <#= typ.maskType #>4_mt(<#= typ.maskNeg #>, default, default, default).as<#= typ.compType #>();
+        var pnpp = new <#= typ.maskType #>4_mt(default, <#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
+        var mask = new <#= typ.sigMaskType #>4_mt(-1, -1, -1, default).as<#= typ.compType #>();
 
         return new(
             u.xxxx.fma(u_inv_cosa, (t.wzyx ^ ppnp) & mask),

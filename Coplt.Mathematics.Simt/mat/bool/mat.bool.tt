@@ -6,7 +6,7 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     for (int s = 2; s <= 8; s *= 2)
     {
         for (var n = 2; n <= 4; n++)
@@ -20,8 +20,8 @@ namespace Coplt.Mathematics.Simt;
                 foreach (var size in sizes)
                 {
                     var typ_size = s * 8;
-                    var scalarName = $"b{typ_size}_mt{size}";
-                    var typeName = $"b{typ_size}m{n}x{m}_mt{size}";
+                    var scalarName = $"b{typ_size}_mt";
+                    var typeName = $"b{typ_size}m{n}x{m}_mt";
 #>
 
 #region <#= typeName #>

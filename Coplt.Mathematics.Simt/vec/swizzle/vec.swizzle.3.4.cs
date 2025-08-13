@@ -2,19634 +2,6546 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float3_mt4
+#region float3_mt
 
-public partial struct float3_mt4 
+public partial struct float3_mt 
 {
-    public readonly float4_mt4 xxxx
+    public readonly float4_mt xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly float4_mt4 rrrr
+    public readonly float4_mt rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly float4_mt4 xxxy
+    public readonly float4_mt xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly float4_mt4 rrrg
+    public readonly float4_mt rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly float4_mt4 xxxz
+    public readonly float4_mt xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly float4_mt4 rrrb
+    public readonly float4_mt rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly float4_mt4 xxyx
+    public readonly float4_mt xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly float4_mt4 rrgr
+    public readonly float4_mt rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly float4_mt4 xxyy
+    public readonly float4_mt xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly float4_mt4 rrgg
+    public readonly float4_mt rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly float4_mt4 xxyz
+    public readonly float4_mt xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly float4_mt4 rrgb
+    public readonly float4_mt rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly float4_mt4 xxzx
+    public readonly float4_mt xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly float4_mt4 rrbr
+    public readonly float4_mt rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly float4_mt4 xxzy
+    public readonly float4_mt xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly float4_mt4 rrbg
+    public readonly float4_mt rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly float4_mt4 xxzz
+    public readonly float4_mt xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly float4_mt4 rrbb
+    public readonly float4_mt rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly float4_mt4 xyxx
+    public readonly float4_mt xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly float4_mt4 rgrr
+    public readonly float4_mt rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly float4_mt4 xyxy
+    public readonly float4_mt xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly float4_mt4 rgrg
+    public readonly float4_mt rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly float4_mt4 xyxz
+    public readonly float4_mt xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly float4_mt4 rgrb
+    public readonly float4_mt rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly float4_mt4 xyyx
+    public readonly float4_mt xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly float4_mt4 rggr
+    public readonly float4_mt rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly float4_mt4 xyyy
+    public readonly float4_mt xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly float4_mt4 rggg
+    public readonly float4_mt rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly float4_mt4 xyyz
+    public readonly float4_mt xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly float4_mt4 rggb
+    public readonly float4_mt rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly float4_mt4 xyzx
+    public readonly float4_mt xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly float4_mt4 rgbr
+    public readonly float4_mt rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly float4_mt4 xyzy
+    public readonly float4_mt xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly float4_mt4 rgbg
+    public readonly float4_mt rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly float4_mt4 xyzz
+    public readonly float4_mt xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly float4_mt4 rgbb
+    public readonly float4_mt rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly float4_mt4 xzxx
+    public readonly float4_mt xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly float4_mt4 rbrr
+    public readonly float4_mt rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly float4_mt4 xzxy
+    public readonly float4_mt xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly float4_mt4 rbrg
+    public readonly float4_mt rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly float4_mt4 xzxz
+    public readonly float4_mt xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly float4_mt4 rbrb
+    public readonly float4_mt rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly float4_mt4 xzyx
+    public readonly float4_mt xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly float4_mt4 rbgr
+    public readonly float4_mt rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly float4_mt4 xzyy
+    public readonly float4_mt xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly float4_mt4 rbgg
+    public readonly float4_mt rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly float4_mt4 xzyz
+    public readonly float4_mt xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly float4_mt4 rbgb
+    public readonly float4_mt rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly float4_mt4 xzzx
+    public readonly float4_mt xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly float4_mt4 rbbr
+    public readonly float4_mt rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly float4_mt4 xzzy
+    public readonly float4_mt xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly float4_mt4 rbbg
+    public readonly float4_mt rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly float4_mt4 xzzz
+    public readonly float4_mt xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly float4_mt4 rbbb
+    public readonly float4_mt rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly float4_mt4 yxxx
+    public readonly float4_mt yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly float4_mt4 grrr
+    public readonly float4_mt grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly float4_mt4 yxxy
+    public readonly float4_mt yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly float4_mt4 grrg
+    public readonly float4_mt grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly float4_mt4 yxxz
+    public readonly float4_mt yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly float4_mt4 grrb
+    public readonly float4_mt grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly float4_mt4 yxyx
+    public readonly float4_mt yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly float4_mt4 grgr
+    public readonly float4_mt grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly float4_mt4 yxyy
+    public readonly float4_mt yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly float4_mt4 grgg
+    public readonly float4_mt grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly float4_mt4 yxyz
+    public readonly float4_mt yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly float4_mt4 grgb
+    public readonly float4_mt grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly float4_mt4 yxzx
+    public readonly float4_mt yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly float4_mt4 grbr
+    public readonly float4_mt grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly float4_mt4 yxzy
+    public readonly float4_mt yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly float4_mt4 grbg
+    public readonly float4_mt grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly float4_mt4 yxzz
+    public readonly float4_mt yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly float4_mt4 grbb
+    public readonly float4_mt grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly float4_mt4 yyxx
+    public readonly float4_mt yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly float4_mt4 ggrr
+    public readonly float4_mt ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly float4_mt4 yyxy
+    public readonly float4_mt yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly float4_mt4 ggrg
+    public readonly float4_mt ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly float4_mt4 yyxz
+    public readonly float4_mt yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly float4_mt4 ggrb
+    public readonly float4_mt ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly float4_mt4 yyyx
+    public readonly float4_mt yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly float4_mt4 gggr
+    public readonly float4_mt gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly float4_mt4 yyyy
+    public readonly float4_mt yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly float4_mt4 gggg
+    public readonly float4_mt gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly float4_mt4 yyyz
+    public readonly float4_mt yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly float4_mt4 gggb
+    public readonly float4_mt gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly float4_mt4 yyzx
+    public readonly float4_mt yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly float4_mt4 ggbr
+    public readonly float4_mt ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly float4_mt4 yyzy
+    public readonly float4_mt yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly float4_mt4 ggbg
+    public readonly float4_mt ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly float4_mt4 yyzz
+    public readonly float4_mt yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly float4_mt4 ggbb
+    public readonly float4_mt ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly float4_mt4 yzxx
+    public readonly float4_mt yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly float4_mt4 gbrr
+    public readonly float4_mt gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly float4_mt4 yzxy
+    public readonly float4_mt yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly float4_mt4 gbrg
+    public readonly float4_mt gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly float4_mt4 yzxz
+    public readonly float4_mt yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly float4_mt4 gbrb
+    public readonly float4_mt gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly float4_mt4 yzyx
+    public readonly float4_mt yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly float4_mt4 gbgr
+    public readonly float4_mt gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly float4_mt4 yzyy
+    public readonly float4_mt yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly float4_mt4 gbgg
+    public readonly float4_mt gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly float4_mt4 yzyz
+    public readonly float4_mt yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly float4_mt4 gbgb
+    public readonly float4_mt gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly float4_mt4 yzzx
+    public readonly float4_mt yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly float4_mt4 gbbr
+    public readonly float4_mt gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly float4_mt4 yzzy
+    public readonly float4_mt yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly float4_mt4 gbbg
+    public readonly float4_mt gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly float4_mt4 yzzz
+    public readonly float4_mt yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly float4_mt4 gbbb
+    public readonly float4_mt gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly float4_mt4 zxxx
+    public readonly float4_mt zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly float4_mt4 brrr
+    public readonly float4_mt brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly float4_mt4 zxxy
+    public readonly float4_mt zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly float4_mt4 brrg
+    public readonly float4_mt brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly float4_mt4 zxxz
+    public readonly float4_mt zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly float4_mt4 brrb
+    public readonly float4_mt brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly float4_mt4 zxyx
+    public readonly float4_mt zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly float4_mt4 brgr
+    public readonly float4_mt brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly float4_mt4 zxyy
+    public readonly float4_mt zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly float4_mt4 brgg
+    public readonly float4_mt brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly float4_mt4 zxyz
+    public readonly float4_mt zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly float4_mt4 brgb
+    public readonly float4_mt brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly float4_mt4 zxzx
+    public readonly float4_mt zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly float4_mt4 brbr
+    public readonly float4_mt brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly float4_mt4 zxzy
+    public readonly float4_mt zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly float4_mt4 brbg
+    public readonly float4_mt brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly float4_mt4 zxzz
+    public readonly float4_mt zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly float4_mt4 brbb
+    public readonly float4_mt brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly float4_mt4 zyxx
+    public readonly float4_mt zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly float4_mt4 bgrr
+    public readonly float4_mt bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly float4_mt4 zyxy
+    public readonly float4_mt zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly float4_mt4 bgrg
+    public readonly float4_mt bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly float4_mt4 zyxz
+    public readonly float4_mt zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly float4_mt4 bgrb
+    public readonly float4_mt bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly float4_mt4 zyyx
+    public readonly float4_mt zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly float4_mt4 bggr
+    public readonly float4_mt bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly float4_mt4 zyyy
+    public readonly float4_mt zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly float4_mt4 bggg
+    public readonly float4_mt bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly float4_mt4 zyyz
+    public readonly float4_mt zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly float4_mt4 bggb
+    public readonly float4_mt bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly float4_mt4 zyzx
+    public readonly float4_mt zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly float4_mt4 bgbr
+    public readonly float4_mt bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly float4_mt4 zyzy
+    public readonly float4_mt zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly float4_mt4 bgbg
+    public readonly float4_mt bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly float4_mt4 zyzz
+    public readonly float4_mt zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly float4_mt4 bgbb
+    public readonly float4_mt bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly float4_mt4 zzxx
+    public readonly float4_mt zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly float4_mt4 bbrr
+    public readonly float4_mt bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly float4_mt4 zzxy
+    public readonly float4_mt zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly float4_mt4 bbrg
+    public readonly float4_mt bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly float4_mt4 zzxz
+    public readonly float4_mt zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly float4_mt4 bbrb
+    public readonly float4_mt bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly float4_mt4 zzyx
+    public readonly float4_mt zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly float4_mt4 bbgr
+    public readonly float4_mt bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly float4_mt4 zzyy
+    public readonly float4_mt zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly float4_mt4 bbgg
+    public readonly float4_mt bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly float4_mt4 zzyz
+    public readonly float4_mt zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly float4_mt4 bbgb
+    public readonly float4_mt bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly float4_mt4 zzzx
+    public readonly float4_mt zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly float4_mt4 bbbr
+    public readonly float4_mt bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly float4_mt4 zzzy
+    public readonly float4_mt zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly float4_mt4 bbbg
+    public readonly float4_mt bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly float4_mt4 zzzz
+    public readonly float4_mt zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public readonly float4_mt4 bbbb
+    public readonly float4_mt bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
 }
 
-#endregion // float3_mt4
+#endregion // float3_mt
 
-#region float3_mt8
+#region double3_mt
 
-public partial struct float3_mt8 
+public partial struct double3_mt 
 {
-    public readonly float4_mt8 xxxx
+    public readonly double4_mt xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly float4_mt8 rrrr
+    public readonly double4_mt rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly float4_mt8 xxxy
+    public readonly double4_mt xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly float4_mt8 rrrg
+    public readonly double4_mt rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly float4_mt8 xxxz
+    public readonly double4_mt xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly float4_mt8 rrrb
+    public readonly double4_mt rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly float4_mt8 xxyx
+    public readonly double4_mt xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly float4_mt8 rrgr
+    public readonly double4_mt rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly float4_mt8 xxyy
+    public readonly double4_mt xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly float4_mt8 rrgg
+    public readonly double4_mt rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly float4_mt8 xxyz
+    public readonly double4_mt xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly float4_mt8 rrgb
+    public readonly double4_mt rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly float4_mt8 xxzx
+    public readonly double4_mt xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly float4_mt8 rrbr
+    public readonly double4_mt rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly float4_mt8 xxzy
+    public readonly double4_mt xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly float4_mt8 rrbg
+    public readonly double4_mt rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly float4_mt8 xxzz
+    public readonly double4_mt xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly float4_mt8 rrbb
+    public readonly double4_mt rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly float4_mt8 xyxx
+    public readonly double4_mt xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly float4_mt8 rgrr
+    public readonly double4_mt rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly float4_mt8 xyxy
+    public readonly double4_mt xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly float4_mt8 rgrg
+    public readonly double4_mt rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly float4_mt8 xyxz
+    public readonly double4_mt xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly float4_mt8 rgrb
+    public readonly double4_mt rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly float4_mt8 xyyx
+    public readonly double4_mt xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly float4_mt8 rggr
+    public readonly double4_mt rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly float4_mt8 xyyy
+    public readonly double4_mt xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly float4_mt8 rggg
+    public readonly double4_mt rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly float4_mt8 xyyz
+    public readonly double4_mt xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly float4_mt8 rggb
+    public readonly double4_mt rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly float4_mt8 xyzx
+    public readonly double4_mt xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly float4_mt8 rgbr
+    public readonly double4_mt rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly float4_mt8 xyzy
+    public readonly double4_mt xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly float4_mt8 rgbg
+    public readonly double4_mt rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly float4_mt8 xyzz
+    public readonly double4_mt xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly float4_mt8 rgbb
+    public readonly double4_mt rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly float4_mt8 xzxx
+    public readonly double4_mt xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly float4_mt8 rbrr
+    public readonly double4_mt rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly float4_mt8 xzxy
+    public readonly double4_mt xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly float4_mt8 rbrg
+    public readonly double4_mt rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly float4_mt8 xzxz
+    public readonly double4_mt xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly float4_mt8 rbrb
+    public readonly double4_mt rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly float4_mt8 xzyx
+    public readonly double4_mt xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly float4_mt8 rbgr
+    public readonly double4_mt rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly float4_mt8 xzyy
+    public readonly double4_mt xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly float4_mt8 rbgg
+    public readonly double4_mt rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly float4_mt8 xzyz
+    public readonly double4_mt xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly float4_mt8 rbgb
+    public readonly double4_mt rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly float4_mt8 xzzx
+    public readonly double4_mt xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly float4_mt8 rbbr
+    public readonly double4_mt rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly float4_mt8 xzzy
+    public readonly double4_mt xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly float4_mt8 rbbg
+    public readonly double4_mt rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly float4_mt8 xzzz
+    public readonly double4_mt xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly float4_mt8 rbbb
+    public readonly double4_mt rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly float4_mt8 yxxx
+    public readonly double4_mt yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly float4_mt8 grrr
+    public readonly double4_mt grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly float4_mt8 yxxy
+    public readonly double4_mt yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly float4_mt8 grrg
+    public readonly double4_mt grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly float4_mt8 yxxz
+    public readonly double4_mt yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly float4_mt8 grrb
+    public readonly double4_mt grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly float4_mt8 yxyx
+    public readonly double4_mt yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly float4_mt8 grgr
+    public readonly double4_mt grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly float4_mt8 yxyy
+    public readonly double4_mt yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly float4_mt8 grgg
+    public readonly double4_mt grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly float4_mt8 yxyz
+    public readonly double4_mt yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly float4_mt8 grgb
+    public readonly double4_mt grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly float4_mt8 yxzx
+    public readonly double4_mt yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly float4_mt8 grbr
+    public readonly double4_mt grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly float4_mt8 yxzy
+    public readonly double4_mt yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly float4_mt8 grbg
+    public readonly double4_mt grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly float4_mt8 yxzz
+    public readonly double4_mt yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly float4_mt8 grbb
+    public readonly double4_mt grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly float4_mt8 yyxx
+    public readonly double4_mt yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly float4_mt8 ggrr
+    public readonly double4_mt ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly float4_mt8 yyxy
+    public readonly double4_mt yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly float4_mt8 ggrg
+    public readonly double4_mt ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly float4_mt8 yyxz
+    public readonly double4_mt yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly float4_mt8 ggrb
+    public readonly double4_mt ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly float4_mt8 yyyx
+    public readonly double4_mt yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly float4_mt8 gggr
+    public readonly double4_mt gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly float4_mt8 yyyy
+    public readonly double4_mt yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly float4_mt8 gggg
+    public readonly double4_mt gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly float4_mt8 yyyz
+    public readonly double4_mt yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly float4_mt8 gggb
+    public readonly double4_mt gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly float4_mt8 yyzx
+    public readonly double4_mt yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly float4_mt8 ggbr
+    public readonly double4_mt ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly float4_mt8 yyzy
+    public readonly double4_mt yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly float4_mt8 ggbg
+    public readonly double4_mt ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly float4_mt8 yyzz
+    public readonly double4_mt yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly float4_mt8 ggbb
+    public readonly double4_mt ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly float4_mt8 yzxx
+    public readonly double4_mt yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly float4_mt8 gbrr
+    public readonly double4_mt gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly float4_mt8 yzxy
+    public readonly double4_mt yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly float4_mt8 gbrg
+    public readonly double4_mt gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly float4_mt8 yzxz
+    public readonly double4_mt yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly float4_mt8 gbrb
+    public readonly double4_mt gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly float4_mt8 yzyx
+    public readonly double4_mt yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly float4_mt8 gbgr
+    public readonly double4_mt gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly float4_mt8 yzyy
+    public readonly double4_mt yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly float4_mt8 gbgg
+    public readonly double4_mt gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly float4_mt8 yzyz
+    public readonly double4_mt yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly float4_mt8 gbgb
+    public readonly double4_mt gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly float4_mt8 yzzx
+    public readonly double4_mt yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly float4_mt8 gbbr
+    public readonly double4_mt gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly float4_mt8 yzzy
+    public readonly double4_mt yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly float4_mt8 gbbg
+    public readonly double4_mt gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly float4_mt8 yzzz
+    public readonly double4_mt yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly float4_mt8 gbbb
+    public readonly double4_mt gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly float4_mt8 zxxx
+    public readonly double4_mt zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly float4_mt8 brrr
+    public readonly double4_mt brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly float4_mt8 zxxy
+    public readonly double4_mt zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly float4_mt8 brrg
+    public readonly double4_mt brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly float4_mt8 zxxz
+    public readonly double4_mt zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly float4_mt8 brrb
+    public readonly double4_mt brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly float4_mt8 zxyx
+    public readonly double4_mt zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly float4_mt8 brgr
+    public readonly double4_mt brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly float4_mt8 zxyy
+    public readonly double4_mt zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly float4_mt8 brgg
+    public readonly double4_mt brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly float4_mt8 zxyz
+    public readonly double4_mt zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly float4_mt8 brgb
+    public readonly double4_mt brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly float4_mt8 zxzx
+    public readonly double4_mt zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly float4_mt8 brbr
+    public readonly double4_mt brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly float4_mt8 zxzy
+    public readonly double4_mt zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly float4_mt8 brbg
+    public readonly double4_mt brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly float4_mt8 zxzz
+    public readonly double4_mt zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly float4_mt8 brbb
+    public readonly double4_mt brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly float4_mt8 zyxx
+    public readonly double4_mt zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly float4_mt8 bgrr
+    public readonly double4_mt bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly float4_mt8 zyxy
+    public readonly double4_mt zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly float4_mt8 bgrg
+    public readonly double4_mt bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly float4_mt8 zyxz
+    public readonly double4_mt zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly float4_mt8 bgrb
+    public readonly double4_mt bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly float4_mt8 zyyx
+    public readonly double4_mt zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly float4_mt8 bggr
+    public readonly double4_mt bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly float4_mt8 zyyy
+    public readonly double4_mt zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly float4_mt8 bggg
+    public readonly double4_mt bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly float4_mt8 zyyz
+    public readonly double4_mt zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly float4_mt8 bggb
+    public readonly double4_mt bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly float4_mt8 zyzx
+    public readonly double4_mt zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly float4_mt8 bgbr
+    public readonly double4_mt bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly float4_mt8 zyzy
+    public readonly double4_mt zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly float4_mt8 bgbg
+    public readonly double4_mt bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly float4_mt8 zyzz
+    public readonly double4_mt zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly float4_mt8 bgbb
+    public readonly double4_mt bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly float4_mt8 zzxx
+    public readonly double4_mt zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly float4_mt8 bbrr
+    public readonly double4_mt bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly float4_mt8 zzxy
+    public readonly double4_mt zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly float4_mt8 bbrg
+    public readonly double4_mt bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly float4_mt8 zzxz
+    public readonly double4_mt zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly float4_mt8 bbrb
+    public readonly double4_mt bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly float4_mt8 zzyx
+    public readonly double4_mt zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly float4_mt8 bbgr
+    public readonly double4_mt bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly float4_mt8 zzyy
+    public readonly double4_mt zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly float4_mt8 bbgg
+    public readonly double4_mt bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly float4_mt8 zzyz
+    public readonly double4_mt zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly float4_mt8 bbgb
+    public readonly double4_mt bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly float4_mt8 zzzx
+    public readonly double4_mt zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly float4_mt8 bbbr
+    public readonly double4_mt bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly float4_mt8 zzzy
+    public readonly double4_mt zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly float4_mt8 bbbg
+    public readonly double4_mt bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly float4_mt8 zzzz
+    public readonly double4_mt zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public readonly float4_mt8 bbbb
+    public readonly double4_mt bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
 }
 
-#endregion // float3_mt8
+#endregion // double3_mt
 
-#region float3_mt16
+#region int3_mt
 
-public partial struct float3_mt16 
+public partial struct int3_mt 
 {
-    public readonly float4_mt16 xxxx
+    public readonly int4_mt xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly float4_mt16 rrrr
+    public readonly int4_mt rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly float4_mt16 xxxy
+    public readonly int4_mt xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly float4_mt16 rrrg
+    public readonly int4_mt rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly float4_mt16 xxxz
+    public readonly int4_mt xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly float4_mt16 rrrb
+    public readonly int4_mt rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly float4_mt16 xxyx
+    public readonly int4_mt xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly float4_mt16 rrgr
+    public readonly int4_mt rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly float4_mt16 xxyy
+    public readonly int4_mt xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly float4_mt16 rrgg
+    public readonly int4_mt rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly float4_mt16 xxyz
+    public readonly int4_mt xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly float4_mt16 rrgb
+    public readonly int4_mt rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly float4_mt16 xxzx
+    public readonly int4_mt xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly float4_mt16 rrbr
+    public readonly int4_mt rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly float4_mt16 xxzy
+    public readonly int4_mt xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly float4_mt16 rrbg
+    public readonly int4_mt rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly float4_mt16 xxzz
+    public readonly int4_mt xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly float4_mt16 rrbb
+    public readonly int4_mt rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly float4_mt16 xyxx
+    public readonly int4_mt xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly float4_mt16 rgrr
+    public readonly int4_mt rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly float4_mt16 xyxy
+    public readonly int4_mt xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly float4_mt16 rgrg
+    public readonly int4_mt rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly float4_mt16 xyxz
+    public readonly int4_mt xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly float4_mt16 rgrb
+    public readonly int4_mt rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly float4_mt16 xyyx
+    public readonly int4_mt xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly float4_mt16 rggr
+    public readonly int4_mt rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly float4_mt16 xyyy
+    public readonly int4_mt xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly float4_mt16 rggg
+    public readonly int4_mt rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly float4_mt16 xyyz
+    public readonly int4_mt xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly float4_mt16 rggb
+    public readonly int4_mt rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly float4_mt16 xyzx
+    public readonly int4_mt xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly float4_mt16 rgbr
+    public readonly int4_mt rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly float4_mt16 xyzy
+    public readonly int4_mt xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly float4_mt16 rgbg
+    public readonly int4_mt rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly float4_mt16 xyzz
+    public readonly int4_mt xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly float4_mt16 rgbb
+    public readonly int4_mt rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly float4_mt16 xzxx
+    public readonly int4_mt xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly float4_mt16 rbrr
+    public readonly int4_mt rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly float4_mt16 xzxy
+    public readonly int4_mt xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly float4_mt16 rbrg
+    public readonly int4_mt rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly float4_mt16 xzxz
+    public readonly int4_mt xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly float4_mt16 rbrb
+    public readonly int4_mt rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly float4_mt16 xzyx
+    public readonly int4_mt xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly float4_mt16 rbgr
+    public readonly int4_mt rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly float4_mt16 xzyy
+    public readonly int4_mt xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly float4_mt16 rbgg
+    public readonly int4_mt rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly float4_mt16 xzyz
+    public readonly int4_mt xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly float4_mt16 rbgb
+    public readonly int4_mt rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly float4_mt16 xzzx
+    public readonly int4_mt xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly float4_mt16 rbbr
+    public readonly int4_mt rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly float4_mt16 xzzy
+    public readonly int4_mt xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly float4_mt16 rbbg
+    public readonly int4_mt rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly float4_mt16 xzzz
+    public readonly int4_mt xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly float4_mt16 rbbb
+    public readonly int4_mt rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly float4_mt16 yxxx
+    public readonly int4_mt yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly float4_mt16 grrr
+    public readonly int4_mt grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly float4_mt16 yxxy
+    public readonly int4_mt yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly float4_mt16 grrg
+    public readonly int4_mt grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly float4_mt16 yxxz
+    public readonly int4_mt yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly float4_mt16 grrb
+    public readonly int4_mt grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly float4_mt16 yxyx
+    public readonly int4_mt yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly float4_mt16 grgr
+    public readonly int4_mt grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly float4_mt16 yxyy
+    public readonly int4_mt yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly float4_mt16 grgg
+    public readonly int4_mt grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly float4_mt16 yxyz
+    public readonly int4_mt yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly float4_mt16 grgb
+    public readonly int4_mt grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly float4_mt16 yxzx
+    public readonly int4_mt yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly float4_mt16 grbr
+    public readonly int4_mt grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly float4_mt16 yxzy
+    public readonly int4_mt yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly float4_mt16 grbg
+    public readonly int4_mt grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly float4_mt16 yxzz
+    public readonly int4_mt yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly float4_mt16 grbb
+    public readonly int4_mt grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly float4_mt16 yyxx
+    public readonly int4_mt yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly float4_mt16 ggrr
+    public readonly int4_mt ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly float4_mt16 yyxy
+    public readonly int4_mt yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly float4_mt16 ggrg
+    public readonly int4_mt ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly float4_mt16 yyxz
+    public readonly int4_mt yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly float4_mt16 ggrb
+    public readonly int4_mt ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly float4_mt16 yyyx
+    public readonly int4_mt yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly float4_mt16 gggr
+    public readonly int4_mt gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly float4_mt16 yyyy
+    public readonly int4_mt yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly float4_mt16 gggg
+    public readonly int4_mt gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly float4_mt16 yyyz
+    public readonly int4_mt yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly float4_mt16 gggb
+    public readonly int4_mt gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly float4_mt16 yyzx
+    public readonly int4_mt yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly float4_mt16 ggbr
+    public readonly int4_mt ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly float4_mt16 yyzy
+    public readonly int4_mt yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly float4_mt16 ggbg
+    public readonly int4_mt ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly float4_mt16 yyzz
+    public readonly int4_mt yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly float4_mt16 ggbb
+    public readonly int4_mt ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly float4_mt16 yzxx
+    public readonly int4_mt yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly float4_mt16 gbrr
+    public readonly int4_mt gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly float4_mt16 yzxy
+    public readonly int4_mt yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly float4_mt16 gbrg
+    public readonly int4_mt gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly float4_mt16 yzxz
+    public readonly int4_mt yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly float4_mt16 gbrb
+    public readonly int4_mt gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly float4_mt16 yzyx
+    public readonly int4_mt yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly float4_mt16 gbgr
+    public readonly int4_mt gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly float4_mt16 yzyy
+    public readonly int4_mt yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly float4_mt16 gbgg
+    public readonly int4_mt gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly float4_mt16 yzyz
+    public readonly int4_mt yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly float4_mt16 gbgb
+    public readonly int4_mt gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly float4_mt16 yzzx
+    public readonly int4_mt yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly float4_mt16 gbbr
+    public readonly int4_mt gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly float4_mt16 yzzy
+    public readonly int4_mt yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly float4_mt16 gbbg
+    public readonly int4_mt gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly float4_mt16 yzzz
+    public readonly int4_mt yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly float4_mt16 gbbb
+    public readonly int4_mt gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly float4_mt16 zxxx
+    public readonly int4_mt zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly float4_mt16 brrr
+    public readonly int4_mt brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly float4_mt16 zxxy
+    public readonly int4_mt zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly float4_mt16 brrg
+    public readonly int4_mt brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly float4_mt16 zxxz
+    public readonly int4_mt zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly float4_mt16 brrb
+    public readonly int4_mt brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly float4_mt16 zxyx
+    public readonly int4_mt zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly float4_mt16 brgr
+    public readonly int4_mt brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly float4_mt16 zxyy
+    public readonly int4_mt zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly float4_mt16 brgg
+    public readonly int4_mt brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly float4_mt16 zxyz
+    public readonly int4_mt zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly float4_mt16 brgb
+    public readonly int4_mt brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly float4_mt16 zxzx
+    public readonly int4_mt zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly float4_mt16 brbr
+    public readonly int4_mt brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly float4_mt16 zxzy
+    public readonly int4_mt zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly float4_mt16 brbg
+    public readonly int4_mt brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly float4_mt16 zxzz
+    public readonly int4_mt zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly float4_mt16 brbb
+    public readonly int4_mt brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly float4_mt16 zyxx
+    public readonly int4_mt zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly float4_mt16 bgrr
+    public readonly int4_mt bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly float4_mt16 zyxy
+    public readonly int4_mt zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly float4_mt16 bgrg
+    public readonly int4_mt bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly float4_mt16 zyxz
+    public readonly int4_mt zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly float4_mt16 bgrb
+    public readonly int4_mt bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly float4_mt16 zyyx
+    public readonly int4_mt zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly float4_mt16 bggr
+    public readonly int4_mt bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly float4_mt16 zyyy
+    public readonly int4_mt zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly float4_mt16 bggg
+    public readonly int4_mt bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly float4_mt16 zyyz
+    public readonly int4_mt zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly float4_mt16 bggb
+    public readonly int4_mt bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly float4_mt16 zyzx
+    public readonly int4_mt zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly float4_mt16 bgbr
+    public readonly int4_mt bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly float4_mt16 zyzy
+    public readonly int4_mt zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly float4_mt16 bgbg
+    public readonly int4_mt bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly float4_mt16 zyzz
+    public readonly int4_mt zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly float4_mt16 bgbb
+    public readonly int4_mt bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly float4_mt16 zzxx
+    public readonly int4_mt zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly float4_mt16 bbrr
+    public readonly int4_mt bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly float4_mt16 zzxy
+    public readonly int4_mt zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly float4_mt16 bbrg
+    public readonly int4_mt bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly float4_mt16 zzxz
+    public readonly int4_mt zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly float4_mt16 bbrb
+    public readonly int4_mt bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly float4_mt16 zzyx
+    public readonly int4_mt zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly float4_mt16 bbgr
+    public readonly int4_mt bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly float4_mt16 zzyy
+    public readonly int4_mt zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly float4_mt16 bbgg
+    public readonly int4_mt bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly float4_mt16 zzyz
+    public readonly int4_mt zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly float4_mt16 bbgb
+    public readonly int4_mt bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly float4_mt16 zzzx
+    public readonly int4_mt zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly float4_mt16 bbbr
+    public readonly int4_mt bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly float4_mt16 zzzy
+    public readonly int4_mt zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly float4_mt16 bbbg
+    public readonly int4_mt bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly float4_mt16 zzzz
+    public readonly int4_mt zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public readonly float4_mt16 bbbb
+    public readonly int4_mt bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
 }
 
-#endregion // float3_mt16
+#endregion // int3_mt
 
-#region double3_mt4
+#region uint3_mt
 
-public partial struct double3_mt4 
+public partial struct uint3_mt 
 {
-    public readonly double4_mt4 xxxx
+    public readonly uint4_mt xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly double4_mt4 rrrr
+    public readonly uint4_mt rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly double4_mt4 xxxy
+    public readonly uint4_mt xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly double4_mt4 rrrg
+    public readonly uint4_mt rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly double4_mt4 xxxz
+    public readonly uint4_mt xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly double4_mt4 rrrb
+    public readonly uint4_mt rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly double4_mt4 xxyx
+    public readonly uint4_mt xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly double4_mt4 rrgr
+    public readonly uint4_mt rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly double4_mt4 xxyy
+    public readonly uint4_mt xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly double4_mt4 rrgg
+    public readonly uint4_mt rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly double4_mt4 xxyz
+    public readonly uint4_mt xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly double4_mt4 rrgb
+    public readonly uint4_mt rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly double4_mt4 xxzx
+    public readonly uint4_mt xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly double4_mt4 rrbr
+    public readonly uint4_mt rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly double4_mt4 xxzy
+    public readonly uint4_mt xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly double4_mt4 rrbg
+    public readonly uint4_mt rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly double4_mt4 xxzz
+    public readonly uint4_mt xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly double4_mt4 rrbb
+    public readonly uint4_mt rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly double4_mt4 xyxx
+    public readonly uint4_mt xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly double4_mt4 rgrr
+    public readonly uint4_mt rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly double4_mt4 xyxy
+    public readonly uint4_mt xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly double4_mt4 rgrg
+    public readonly uint4_mt rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly double4_mt4 xyxz
+    public readonly uint4_mt xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly double4_mt4 rgrb
+    public readonly uint4_mt rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly double4_mt4 xyyx
+    public readonly uint4_mt xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly double4_mt4 rggr
+    public readonly uint4_mt rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly double4_mt4 xyyy
+    public readonly uint4_mt xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly double4_mt4 rggg
+    public readonly uint4_mt rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly double4_mt4 xyyz
+    public readonly uint4_mt xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly double4_mt4 rggb
+    public readonly uint4_mt rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly double4_mt4 xyzx
+    public readonly uint4_mt xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly double4_mt4 rgbr
+    public readonly uint4_mt rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly double4_mt4 xyzy
+    public readonly uint4_mt xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly double4_mt4 rgbg
+    public readonly uint4_mt rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly double4_mt4 xyzz
+    public readonly uint4_mt xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly double4_mt4 rgbb
+    public readonly uint4_mt rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly double4_mt4 xzxx
+    public readonly uint4_mt xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly double4_mt4 rbrr
+    public readonly uint4_mt rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly double4_mt4 xzxy
+    public readonly uint4_mt xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly double4_mt4 rbrg
+    public readonly uint4_mt rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly double4_mt4 xzxz
+    public readonly uint4_mt xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly double4_mt4 rbrb
+    public readonly uint4_mt rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly double4_mt4 xzyx
+    public readonly uint4_mt xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly double4_mt4 rbgr
+    public readonly uint4_mt rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly double4_mt4 xzyy
+    public readonly uint4_mt xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly double4_mt4 rbgg
+    public readonly uint4_mt rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly double4_mt4 xzyz
+    public readonly uint4_mt xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly double4_mt4 rbgb
+    public readonly uint4_mt rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly double4_mt4 xzzx
+    public readonly uint4_mt xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly double4_mt4 rbbr
+    public readonly uint4_mt rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly double4_mt4 xzzy
+    public readonly uint4_mt xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly double4_mt4 rbbg
+    public readonly uint4_mt rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly double4_mt4 xzzz
+    public readonly uint4_mt xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly double4_mt4 rbbb
+    public readonly uint4_mt rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly double4_mt4 yxxx
+    public readonly uint4_mt yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly double4_mt4 grrr
+    public readonly uint4_mt grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly double4_mt4 yxxy
+    public readonly uint4_mt yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly double4_mt4 grrg
+    public readonly uint4_mt grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly double4_mt4 yxxz
+    public readonly uint4_mt yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly double4_mt4 grrb
+    public readonly uint4_mt grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly double4_mt4 yxyx
+    public readonly uint4_mt yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly double4_mt4 grgr
+    public readonly uint4_mt grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly double4_mt4 yxyy
+    public readonly uint4_mt yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly double4_mt4 grgg
+    public readonly uint4_mt grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly double4_mt4 yxyz
+    public readonly uint4_mt yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly double4_mt4 grgb
+    public readonly uint4_mt grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly double4_mt4 yxzx
+    public readonly uint4_mt yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly double4_mt4 grbr
+    public readonly uint4_mt grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly double4_mt4 yxzy
+    public readonly uint4_mt yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly double4_mt4 grbg
+    public readonly uint4_mt grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly double4_mt4 yxzz
+    public readonly uint4_mt yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly double4_mt4 grbb
+    public readonly uint4_mt grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly double4_mt4 yyxx
+    public readonly uint4_mt yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly double4_mt4 ggrr
+    public readonly uint4_mt ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly double4_mt4 yyxy
+    public readonly uint4_mt yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly double4_mt4 ggrg
+    public readonly uint4_mt ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly double4_mt4 yyxz
+    public readonly uint4_mt yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly double4_mt4 ggrb
+    public readonly uint4_mt ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly double4_mt4 yyyx
+    public readonly uint4_mt yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly double4_mt4 gggr
+    public readonly uint4_mt gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly double4_mt4 yyyy
+    public readonly uint4_mt yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly double4_mt4 gggg
+    public readonly uint4_mt gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly double4_mt4 yyyz
+    public readonly uint4_mt yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly double4_mt4 gggb
+    public readonly uint4_mt gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly double4_mt4 yyzx
+    public readonly uint4_mt yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly double4_mt4 ggbr
+    public readonly uint4_mt ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly double4_mt4 yyzy
+    public readonly uint4_mt yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly double4_mt4 ggbg
+    public readonly uint4_mt ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly double4_mt4 yyzz
+    public readonly uint4_mt yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly double4_mt4 ggbb
+    public readonly uint4_mt ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly double4_mt4 yzxx
+    public readonly uint4_mt yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly double4_mt4 gbrr
+    public readonly uint4_mt gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly double4_mt4 yzxy
+    public readonly uint4_mt yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly double4_mt4 gbrg
+    public readonly uint4_mt gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly double4_mt4 yzxz
+    public readonly uint4_mt yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly double4_mt4 gbrb
+    public readonly uint4_mt gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly double4_mt4 yzyx
+    public readonly uint4_mt yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly double4_mt4 gbgr
+    public readonly uint4_mt gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly double4_mt4 yzyy
+    public readonly uint4_mt yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly double4_mt4 gbgg
+    public readonly uint4_mt gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly double4_mt4 yzyz
+    public readonly uint4_mt yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly double4_mt4 gbgb
+    public readonly uint4_mt gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly double4_mt4 yzzx
+    public readonly uint4_mt yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly double4_mt4 gbbr
+    public readonly uint4_mt gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly double4_mt4 yzzy
+    public readonly uint4_mt yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly double4_mt4 gbbg
+    public readonly uint4_mt gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly double4_mt4 yzzz
+    public readonly uint4_mt yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly double4_mt4 gbbb
+    public readonly uint4_mt gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly double4_mt4 zxxx
+    public readonly uint4_mt zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly double4_mt4 brrr
+    public readonly uint4_mt brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly double4_mt4 zxxy
+    public readonly uint4_mt zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly double4_mt4 brrg
+    public readonly uint4_mt brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly double4_mt4 zxxz
+    public readonly uint4_mt zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly double4_mt4 brrb
+    public readonly uint4_mt brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly double4_mt4 zxyx
+    public readonly uint4_mt zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly double4_mt4 brgr
+    public readonly uint4_mt brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly double4_mt4 zxyy
+    public readonly uint4_mt zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly double4_mt4 brgg
+    public readonly uint4_mt brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly double4_mt4 zxyz
+    public readonly uint4_mt zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly double4_mt4 brgb
+    public readonly uint4_mt brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly double4_mt4 zxzx
+    public readonly uint4_mt zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly double4_mt4 brbr
+    public readonly uint4_mt brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly double4_mt4 zxzy
+    public readonly uint4_mt zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly double4_mt4 brbg
+    public readonly uint4_mt brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly double4_mt4 zxzz
+    public readonly uint4_mt zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly double4_mt4 brbb
+    public readonly uint4_mt brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly double4_mt4 zyxx
+    public readonly uint4_mt zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly double4_mt4 bgrr
+    public readonly uint4_mt bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly double4_mt4 zyxy
+    public readonly uint4_mt zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly double4_mt4 bgrg
+    public readonly uint4_mt bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly double4_mt4 zyxz
+    public readonly uint4_mt zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly double4_mt4 bgrb
+    public readonly uint4_mt bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly double4_mt4 zyyx
+    public readonly uint4_mt zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly double4_mt4 bggr
+    public readonly uint4_mt bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly double4_mt4 zyyy
+    public readonly uint4_mt zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly double4_mt4 bggg
+    public readonly uint4_mt bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly double4_mt4 zyyz
+    public readonly uint4_mt zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly double4_mt4 bggb
+    public readonly uint4_mt bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly double4_mt4 zyzx
+    public readonly uint4_mt zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly double4_mt4 bgbr
+    public readonly uint4_mt bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly double4_mt4 zyzy
+    public readonly uint4_mt zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly double4_mt4 bgbg
+    public readonly uint4_mt bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly double4_mt4 zyzz
+    public readonly uint4_mt zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly double4_mt4 bgbb
+    public readonly uint4_mt bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly double4_mt4 zzxx
+    public readonly uint4_mt zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly double4_mt4 bbrr
+    public readonly uint4_mt bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly double4_mt4 zzxy
+    public readonly uint4_mt zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly double4_mt4 bbrg
+    public readonly uint4_mt bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly double4_mt4 zzxz
+    public readonly uint4_mt zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly double4_mt4 bbrb
+    public readonly uint4_mt bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly double4_mt4 zzyx
+    public readonly uint4_mt zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly double4_mt4 bbgr
+    public readonly uint4_mt bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly double4_mt4 zzyy
+    public readonly uint4_mt zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly double4_mt4 bbgg
+    public readonly uint4_mt bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly double4_mt4 zzyz
+    public readonly uint4_mt zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly double4_mt4 bbgb
+    public readonly uint4_mt bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly double4_mt4 zzzx
+    public readonly uint4_mt zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly double4_mt4 bbbr
+    public readonly uint4_mt bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly double4_mt4 zzzy
+    public readonly uint4_mt zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly double4_mt4 bbbg
+    public readonly uint4_mt bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly double4_mt4 zzzz
+    public readonly uint4_mt zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public readonly double4_mt4 bbbb
+    public readonly uint4_mt bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
 }
 
-#endregion // double3_mt4
+#endregion // uint3_mt
 
-#region double3_mt8
+#region long3_mt
 
-public partial struct double3_mt8 
+public partial struct long3_mt 
 {
-    public readonly double4_mt8 xxxx
+    public readonly long4_mt xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly double4_mt8 rrrr
+    public readonly long4_mt rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly double4_mt8 xxxy
+    public readonly long4_mt xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly double4_mt8 rrrg
+    public readonly long4_mt rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly double4_mt8 xxxz
+    public readonly long4_mt xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly double4_mt8 rrrb
+    public readonly long4_mt rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly double4_mt8 xxyx
+    public readonly long4_mt xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly double4_mt8 rrgr
+    public readonly long4_mt rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly double4_mt8 xxyy
+    public readonly long4_mt xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly double4_mt8 rrgg
+    public readonly long4_mt rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly double4_mt8 xxyz
+    public readonly long4_mt xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly double4_mt8 rrgb
+    public readonly long4_mt rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly double4_mt8 xxzx
+    public readonly long4_mt xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly double4_mt8 rrbr
+    public readonly long4_mt rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly double4_mt8 xxzy
+    public readonly long4_mt xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly double4_mt8 rrbg
+    public readonly long4_mt rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly double4_mt8 xxzz
+    public readonly long4_mt xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly double4_mt8 rrbb
+    public readonly long4_mt rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly double4_mt8 xyxx
+    public readonly long4_mt xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly double4_mt8 rgrr
+    public readonly long4_mt rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly double4_mt8 xyxy
+    public readonly long4_mt xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly double4_mt8 rgrg
+    public readonly long4_mt rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly double4_mt8 xyxz
+    public readonly long4_mt xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly double4_mt8 rgrb
+    public readonly long4_mt rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly double4_mt8 xyyx
+    public readonly long4_mt xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly double4_mt8 rggr
+    public readonly long4_mt rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly double4_mt8 xyyy
+    public readonly long4_mt xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly double4_mt8 rggg
+    public readonly long4_mt rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly double4_mt8 xyyz
+    public readonly long4_mt xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly double4_mt8 rggb
+    public readonly long4_mt rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly double4_mt8 xyzx
+    public readonly long4_mt xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly double4_mt8 rgbr
+    public readonly long4_mt rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly double4_mt8 xyzy
+    public readonly long4_mt xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly double4_mt8 rgbg
+    public readonly long4_mt rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly double4_mt8 xyzz
+    public readonly long4_mt xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly double4_mt8 rgbb
+    public readonly long4_mt rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly double4_mt8 xzxx
+    public readonly long4_mt xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly double4_mt8 rbrr
+    public readonly long4_mt rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly double4_mt8 xzxy
+    public readonly long4_mt xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly double4_mt8 rbrg
+    public readonly long4_mt rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly double4_mt8 xzxz
+    public readonly long4_mt xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly double4_mt8 rbrb
+    public readonly long4_mt rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly double4_mt8 xzyx
+    public readonly long4_mt xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly double4_mt8 rbgr
+    public readonly long4_mt rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly double4_mt8 xzyy
+    public readonly long4_mt xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly double4_mt8 rbgg
+    public readonly long4_mt rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly double4_mt8 xzyz
+    public readonly long4_mt xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly double4_mt8 rbgb
+    public readonly long4_mt rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly double4_mt8 xzzx
+    public readonly long4_mt xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly double4_mt8 rbbr
+    public readonly long4_mt rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly double4_mt8 xzzy
+    public readonly long4_mt xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly double4_mt8 rbbg
+    public readonly long4_mt rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly double4_mt8 xzzz
+    public readonly long4_mt xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly double4_mt8 rbbb
+    public readonly long4_mt rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly double4_mt8 yxxx
+    public readonly long4_mt yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly double4_mt8 grrr
+    public readonly long4_mt grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly double4_mt8 yxxy
+    public readonly long4_mt yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly double4_mt8 grrg
+    public readonly long4_mt grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly double4_mt8 yxxz
+    public readonly long4_mt yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly double4_mt8 grrb
+    public readonly long4_mt grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly double4_mt8 yxyx
+    public readonly long4_mt yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly double4_mt8 grgr
+    public readonly long4_mt grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly double4_mt8 yxyy
+    public readonly long4_mt yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly double4_mt8 grgg
+    public readonly long4_mt grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly double4_mt8 yxyz
+    public readonly long4_mt yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly double4_mt8 grgb
+    public readonly long4_mt grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly double4_mt8 yxzx
+    public readonly long4_mt yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly double4_mt8 grbr
+    public readonly long4_mt grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly double4_mt8 yxzy
+    public readonly long4_mt yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly double4_mt8 grbg
+    public readonly long4_mt grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly double4_mt8 yxzz
+    public readonly long4_mt yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly double4_mt8 grbb
+    public readonly long4_mt grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly double4_mt8 yyxx
+    public readonly long4_mt yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly double4_mt8 ggrr
+    public readonly long4_mt ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly double4_mt8 yyxy
+    public readonly long4_mt yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly double4_mt8 ggrg
+    public readonly long4_mt ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly double4_mt8 yyxz
+    public readonly long4_mt yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly double4_mt8 ggrb
+    public readonly long4_mt ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly double4_mt8 yyyx
+    public readonly long4_mt yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly double4_mt8 gggr
+    public readonly long4_mt gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly double4_mt8 yyyy
+    public readonly long4_mt yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly double4_mt8 gggg
+    public readonly long4_mt gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly double4_mt8 yyyz
+    public readonly long4_mt yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly double4_mt8 gggb
+    public readonly long4_mt gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly double4_mt8 yyzx
+    public readonly long4_mt yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly double4_mt8 ggbr
+    public readonly long4_mt ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly double4_mt8 yyzy
+    public readonly long4_mt yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly double4_mt8 ggbg
+    public readonly long4_mt ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly double4_mt8 yyzz
+    public readonly long4_mt yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly double4_mt8 ggbb
+    public readonly long4_mt ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly double4_mt8 yzxx
+    public readonly long4_mt yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly double4_mt8 gbrr
+    public readonly long4_mt gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly double4_mt8 yzxy
+    public readonly long4_mt yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly double4_mt8 gbrg
+    public readonly long4_mt gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly double4_mt8 yzxz
+    public readonly long4_mt yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly double4_mt8 gbrb
+    public readonly long4_mt gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly double4_mt8 yzyx
+    public readonly long4_mt yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly double4_mt8 gbgr
+    public readonly long4_mt gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly double4_mt8 yzyy
+    public readonly long4_mt yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly double4_mt8 gbgg
+    public readonly long4_mt gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly double4_mt8 yzyz
+    public readonly long4_mt yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly double4_mt8 gbgb
+    public readonly long4_mt gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly double4_mt8 yzzx
+    public readonly long4_mt yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly double4_mt8 gbbr
+    public readonly long4_mt gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly double4_mt8 yzzy
+    public readonly long4_mt yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly double4_mt8 gbbg
+    public readonly long4_mt gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly double4_mt8 yzzz
+    public readonly long4_mt yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly double4_mt8 gbbb
+    public readonly long4_mt gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly double4_mt8 zxxx
+    public readonly long4_mt zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly double4_mt8 brrr
+    public readonly long4_mt brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly double4_mt8 zxxy
+    public readonly long4_mt zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly double4_mt8 brrg
+    public readonly long4_mt brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly double4_mt8 zxxz
+    public readonly long4_mt zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly double4_mt8 brrb
+    public readonly long4_mt brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly double4_mt8 zxyx
+    public readonly long4_mt zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly double4_mt8 brgr
+    public readonly long4_mt brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly double4_mt8 zxyy
+    public readonly long4_mt zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly double4_mt8 brgg
+    public readonly long4_mt brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly double4_mt8 zxyz
+    public readonly long4_mt zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly double4_mt8 brgb
+    public readonly long4_mt brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly double4_mt8 zxzx
+    public readonly long4_mt zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly double4_mt8 brbr
+    public readonly long4_mt brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly double4_mt8 zxzy
+    public readonly long4_mt zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly double4_mt8 brbg
+    public readonly long4_mt brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly double4_mt8 zxzz
+    public readonly long4_mt zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly double4_mt8 brbb
+    public readonly long4_mt brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly double4_mt8 zyxx
+    public readonly long4_mt zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly double4_mt8 bgrr
+    public readonly long4_mt bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly double4_mt8 zyxy
+    public readonly long4_mt zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly double4_mt8 bgrg
+    public readonly long4_mt bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly double4_mt8 zyxz
+    public readonly long4_mt zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly double4_mt8 bgrb
+    public readonly long4_mt bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly double4_mt8 zyyx
+    public readonly long4_mt zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly double4_mt8 bggr
+    public readonly long4_mt bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly double4_mt8 zyyy
+    public readonly long4_mt zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly double4_mt8 bggg
+    public readonly long4_mt bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly double4_mt8 zyyz
+    public readonly long4_mt zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly double4_mt8 bggb
+    public readonly long4_mt bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly double4_mt8 zyzx
+    public readonly long4_mt zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly double4_mt8 bgbr
+    public readonly long4_mt bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly double4_mt8 zyzy
+    public readonly long4_mt zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly double4_mt8 bgbg
+    public readonly long4_mt bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly double4_mt8 zyzz
+    public readonly long4_mt zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly double4_mt8 bgbb
+    public readonly long4_mt bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly double4_mt8 zzxx
+    public readonly long4_mt zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly double4_mt8 bbrr
+    public readonly long4_mt bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly double4_mt8 zzxy
+    public readonly long4_mt zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly double4_mt8 bbrg
+    public readonly long4_mt bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly double4_mt8 zzxz
+    public readonly long4_mt zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly double4_mt8 bbrb
+    public readonly long4_mt bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly double4_mt8 zzyx
+    public readonly long4_mt zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly double4_mt8 bbgr
+    public readonly long4_mt bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly double4_mt8 zzyy
+    public readonly long4_mt zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly double4_mt8 bbgg
+    public readonly long4_mt bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly double4_mt8 zzyz
+    public readonly long4_mt zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly double4_mt8 bbgb
+    public readonly long4_mt bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly double4_mt8 zzzx
+    public readonly long4_mt zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly double4_mt8 bbbr
+    public readonly long4_mt bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly double4_mt8 zzzy
+    public readonly long4_mt zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly double4_mt8 bbbg
+    public readonly long4_mt bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly double4_mt8 zzzz
+    public readonly long4_mt zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public readonly double4_mt8 bbbb
+    public readonly long4_mt bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
 }
 
-#endregion // double3_mt8
+#endregion // long3_mt
 
-#region double3_mt16
+#region ulong3_mt
 
-public partial struct double3_mt16 
+public partial struct ulong3_mt 
 {
-    public readonly double4_mt16 xxxx
+    public readonly ulong4_mt xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly double4_mt16 rrrr
+    public readonly ulong4_mt rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly double4_mt16 xxxy
+    public readonly ulong4_mt xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly double4_mt16 rrrg
+    public readonly ulong4_mt rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly double4_mt16 xxxz
+    public readonly ulong4_mt xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly double4_mt16 rrrb
+    public readonly ulong4_mt rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly double4_mt16 xxyx
+    public readonly ulong4_mt xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly double4_mt16 rrgr
+    public readonly ulong4_mt rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly double4_mt16 xxyy
+    public readonly ulong4_mt xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly double4_mt16 rrgg
+    public readonly ulong4_mt rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly double4_mt16 xxyz
+    public readonly ulong4_mt xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly double4_mt16 rrgb
+    public readonly ulong4_mt rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly double4_mt16 xxzx
+    public readonly ulong4_mt xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly double4_mt16 rrbr
+    public readonly ulong4_mt rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly double4_mt16 xxzy
+    public readonly ulong4_mt xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly double4_mt16 rrbg
+    public readonly ulong4_mt rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly double4_mt16 xxzz
+    public readonly ulong4_mt xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly double4_mt16 rrbb
+    public readonly ulong4_mt rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly double4_mt16 xyxx
+    public readonly ulong4_mt xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly double4_mt16 rgrr
+    public readonly ulong4_mt rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly double4_mt16 xyxy
+    public readonly ulong4_mt xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly double4_mt16 rgrg
+    public readonly ulong4_mt rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly double4_mt16 xyxz
+    public readonly ulong4_mt xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly double4_mt16 rgrb
+    public readonly ulong4_mt rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly double4_mt16 xyyx
+    public readonly ulong4_mt xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly double4_mt16 rggr
+    public readonly ulong4_mt rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly double4_mt16 xyyy
+    public readonly ulong4_mt xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly double4_mt16 rggg
+    public readonly ulong4_mt rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly double4_mt16 xyyz
+    public readonly ulong4_mt xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly double4_mt16 rggb
+    public readonly ulong4_mt rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly double4_mt16 xyzx
+    public readonly ulong4_mt xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly double4_mt16 rgbr
+    public readonly ulong4_mt rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly double4_mt16 xyzy
+    public readonly ulong4_mt xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly double4_mt16 rgbg
+    public readonly ulong4_mt rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly double4_mt16 xyzz
+    public readonly ulong4_mt xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly double4_mt16 rgbb
+    public readonly ulong4_mt rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly double4_mt16 xzxx
+    public readonly ulong4_mt xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly double4_mt16 rbrr
+    public readonly ulong4_mt rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly double4_mt16 xzxy
+    public readonly ulong4_mt xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly double4_mt16 rbrg
+    public readonly ulong4_mt rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly double4_mt16 xzxz
+    public readonly ulong4_mt xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly double4_mt16 rbrb
+    public readonly ulong4_mt rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly double4_mt16 xzyx
+    public readonly ulong4_mt xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly double4_mt16 rbgr
+    public readonly ulong4_mt rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly double4_mt16 xzyy
+    public readonly ulong4_mt xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly double4_mt16 rbgg
+    public readonly ulong4_mt rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly double4_mt16 xzyz
+    public readonly ulong4_mt xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly double4_mt16 rbgb
+    public readonly ulong4_mt rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly double4_mt16 xzzx
+    public readonly ulong4_mt xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly double4_mt16 rbbr
+    public readonly ulong4_mt rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly double4_mt16 xzzy
+    public readonly ulong4_mt xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly double4_mt16 rbbg
+    public readonly ulong4_mt rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly double4_mt16 xzzz
+    public readonly ulong4_mt xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly double4_mt16 rbbb
+    public readonly ulong4_mt rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly double4_mt16 yxxx
+    public readonly ulong4_mt yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly double4_mt16 grrr
+    public readonly ulong4_mt grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly double4_mt16 yxxy
+    public readonly ulong4_mt yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly double4_mt16 grrg
+    public readonly ulong4_mt grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly double4_mt16 yxxz
+    public readonly ulong4_mt yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly double4_mt16 grrb
+    public readonly ulong4_mt grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly double4_mt16 yxyx
+    public readonly ulong4_mt yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly double4_mt16 grgr
+    public readonly ulong4_mt grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly double4_mt16 yxyy
+    public readonly ulong4_mt yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly double4_mt16 grgg
+    public readonly ulong4_mt grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly double4_mt16 yxyz
+    public readonly ulong4_mt yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly double4_mt16 grgb
+    public readonly ulong4_mt grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly double4_mt16 yxzx
+    public readonly ulong4_mt yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly double4_mt16 grbr
+    public readonly ulong4_mt grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly double4_mt16 yxzy
+    public readonly ulong4_mt yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly double4_mt16 grbg
+    public readonly ulong4_mt grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly double4_mt16 yxzz
+    public readonly ulong4_mt yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly double4_mt16 grbb
+    public readonly ulong4_mt grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly double4_mt16 yyxx
+    public readonly ulong4_mt yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly double4_mt16 ggrr
+    public readonly ulong4_mt ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly double4_mt16 yyxy
+    public readonly ulong4_mt yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly double4_mt16 ggrg
+    public readonly ulong4_mt ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly double4_mt16 yyxz
+    public readonly ulong4_mt yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly double4_mt16 ggrb
+    public readonly ulong4_mt ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly double4_mt16 yyyx
+    public readonly ulong4_mt yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly double4_mt16 gggr
+    public readonly ulong4_mt gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly double4_mt16 yyyy
+    public readonly ulong4_mt yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly double4_mt16 gggg
+    public readonly ulong4_mt gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly double4_mt16 yyyz
+    public readonly ulong4_mt yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly double4_mt16 gggb
+    public readonly ulong4_mt gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly double4_mt16 yyzx
+    public readonly ulong4_mt yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly double4_mt16 ggbr
+    public readonly ulong4_mt ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly double4_mt16 yyzy
+    public readonly ulong4_mt yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly double4_mt16 ggbg
+    public readonly ulong4_mt ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly double4_mt16 yyzz
+    public readonly ulong4_mt yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly double4_mt16 ggbb
+    public readonly ulong4_mt ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly double4_mt16 yzxx
+    public readonly ulong4_mt yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly double4_mt16 gbrr
+    public readonly ulong4_mt gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly double4_mt16 yzxy
+    public readonly ulong4_mt yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly double4_mt16 gbrg
+    public readonly ulong4_mt gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly double4_mt16 yzxz
+    public readonly ulong4_mt yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly double4_mt16 gbrb
+    public readonly ulong4_mt gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly double4_mt16 yzyx
+    public readonly ulong4_mt yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly double4_mt16 gbgr
+    public readonly ulong4_mt gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly double4_mt16 yzyy
+    public readonly ulong4_mt yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly double4_mt16 gbgg
+    public readonly ulong4_mt gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly double4_mt16 yzyz
+    public readonly ulong4_mt yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly double4_mt16 gbgb
+    public readonly ulong4_mt gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly double4_mt16 yzzx
+    public readonly ulong4_mt yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly double4_mt16 gbbr
+    public readonly ulong4_mt gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly double4_mt16 yzzy
+    public readonly ulong4_mt yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly double4_mt16 gbbg
+    public readonly ulong4_mt gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly double4_mt16 yzzz
+    public readonly ulong4_mt yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly double4_mt16 gbbb
+    public readonly ulong4_mt gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly double4_mt16 zxxx
+    public readonly ulong4_mt zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly double4_mt16 brrr
+    public readonly ulong4_mt brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly double4_mt16 zxxy
+    public readonly ulong4_mt zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly double4_mt16 brrg
+    public readonly ulong4_mt brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly double4_mt16 zxxz
+    public readonly ulong4_mt zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly double4_mt16 brrb
+    public readonly ulong4_mt brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly double4_mt16 zxyx
+    public readonly ulong4_mt zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly double4_mt16 brgr
+    public readonly ulong4_mt brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly double4_mt16 zxyy
+    public readonly ulong4_mt zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly double4_mt16 brgg
+    public readonly ulong4_mt brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly double4_mt16 zxyz
+    public readonly ulong4_mt zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly double4_mt16 brgb
+    public readonly ulong4_mt brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly double4_mt16 zxzx
+    public readonly ulong4_mt zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly double4_mt16 brbr
+    public readonly ulong4_mt brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly double4_mt16 zxzy
+    public readonly ulong4_mt zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly double4_mt16 brbg
+    public readonly ulong4_mt brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly double4_mt16 zxzz
+    public readonly ulong4_mt zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly double4_mt16 brbb
+    public readonly ulong4_mt brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly double4_mt16 zyxx
+    public readonly ulong4_mt zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly double4_mt16 bgrr
+    public readonly ulong4_mt bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly double4_mt16 zyxy
+    public readonly ulong4_mt zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly double4_mt16 bgrg
+    public readonly ulong4_mt bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly double4_mt16 zyxz
+    public readonly ulong4_mt zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly double4_mt16 bgrb
+    public readonly ulong4_mt bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly double4_mt16 zyyx
+    public readonly ulong4_mt zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly double4_mt16 bggr
+    public readonly ulong4_mt bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly double4_mt16 zyyy
+    public readonly ulong4_mt zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly double4_mt16 bggg
+    public readonly ulong4_mt bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly double4_mt16 zyyz
+    public readonly ulong4_mt zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly double4_mt16 bggb
+    public readonly ulong4_mt bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly double4_mt16 zyzx
+    public readonly ulong4_mt zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly double4_mt16 bgbr
+    public readonly ulong4_mt bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly double4_mt16 zyzy
+    public readonly ulong4_mt zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly double4_mt16 bgbg
+    public readonly ulong4_mt bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly double4_mt16 zyzz
+    public readonly ulong4_mt zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly double4_mt16 bgbb
+    public readonly ulong4_mt bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly double4_mt16 zzxx
+    public readonly ulong4_mt zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly double4_mt16 bbrr
+    public readonly ulong4_mt bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly double4_mt16 zzxy
+    public readonly ulong4_mt zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly double4_mt16 bbrg
+    public readonly ulong4_mt bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly double4_mt16 zzxz
+    public readonly ulong4_mt zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly double4_mt16 bbrb
+    public readonly ulong4_mt bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly double4_mt16 zzyx
+    public readonly ulong4_mt zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly double4_mt16 bbgr
+    public readonly ulong4_mt bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly double4_mt16 zzyy
+    public readonly ulong4_mt zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly double4_mt16 bbgg
+    public readonly ulong4_mt bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly double4_mt16 zzyz
+    public readonly ulong4_mt zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly double4_mt16 bbgb
+    public readonly ulong4_mt bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly double4_mt16 zzzx
+    public readonly ulong4_mt zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly double4_mt16 bbbr
+    public readonly ulong4_mt bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly double4_mt16 zzzy
+    public readonly ulong4_mt zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly double4_mt16 bbbg
+    public readonly ulong4_mt bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly double4_mt16 zzzz
+    public readonly ulong4_mt zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public readonly double4_mt16 bbbb
+    public readonly ulong4_mt bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
 }
 
-#endregion // double3_mt16
+#endregion // ulong3_mt
 
-#region int3_mt4
+#region b32v3_mt
 
-public partial struct int3_mt4 
+public partial struct b32v3_mt 
 {
-    public readonly int4_mt4 xxxx
+    public readonly b32v4_mt xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly int4_mt4 rrrr
+    public readonly b32v4_mt rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly int4_mt4 xxxy
+    public readonly b32v4_mt xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly int4_mt4 rrrg
+    public readonly b32v4_mt rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly int4_mt4 xxxz
+    public readonly b32v4_mt xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly int4_mt4 rrrb
+    public readonly b32v4_mt rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly int4_mt4 xxyx
+    public readonly b32v4_mt xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly int4_mt4 rrgr
+    public readonly b32v4_mt rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly int4_mt4 xxyy
+    public readonly b32v4_mt xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly int4_mt4 rrgg
+    public readonly b32v4_mt rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly int4_mt4 xxyz
+    public readonly b32v4_mt xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly int4_mt4 rrgb
+    public readonly b32v4_mt rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly int4_mt4 xxzx
+    public readonly b32v4_mt xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly int4_mt4 rrbr
+    public readonly b32v4_mt rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly int4_mt4 xxzy
+    public readonly b32v4_mt xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly int4_mt4 rrbg
+    public readonly b32v4_mt rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly int4_mt4 xxzz
+    public readonly b32v4_mt xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly int4_mt4 rrbb
+    public readonly b32v4_mt rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly int4_mt4 xyxx
+    public readonly b32v4_mt xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly int4_mt4 rgrr
+    public readonly b32v4_mt rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly int4_mt4 xyxy
+    public readonly b32v4_mt xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly int4_mt4 rgrg
+    public readonly b32v4_mt rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly int4_mt4 xyxz
+    public readonly b32v4_mt xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly int4_mt4 rgrb
+    public readonly b32v4_mt rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly int4_mt4 xyyx
+    public readonly b32v4_mt xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly int4_mt4 rggr
+    public readonly b32v4_mt rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly int4_mt4 xyyy
+    public readonly b32v4_mt xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly int4_mt4 rggg
+    public readonly b32v4_mt rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly int4_mt4 xyyz
+    public readonly b32v4_mt xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly int4_mt4 rggb
+    public readonly b32v4_mt rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly int4_mt4 xyzx
+    public readonly b32v4_mt xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly int4_mt4 rgbr
+    public readonly b32v4_mt rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly int4_mt4 xyzy
+    public readonly b32v4_mt xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly int4_mt4 rgbg
+    public readonly b32v4_mt rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly int4_mt4 xyzz
+    public readonly b32v4_mt xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly int4_mt4 rgbb
+    public readonly b32v4_mt rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly int4_mt4 xzxx
+    public readonly b32v4_mt xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly int4_mt4 rbrr
+    public readonly b32v4_mt rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly int4_mt4 xzxy
+    public readonly b32v4_mt xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly int4_mt4 rbrg
+    public readonly b32v4_mt rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly int4_mt4 xzxz
+    public readonly b32v4_mt xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly int4_mt4 rbrb
+    public readonly b32v4_mt rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly int4_mt4 xzyx
+    public readonly b32v4_mt xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly int4_mt4 rbgr
+    public readonly b32v4_mt rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly int4_mt4 xzyy
+    public readonly b32v4_mt xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly int4_mt4 rbgg
+    public readonly b32v4_mt rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly int4_mt4 xzyz
+    public readonly b32v4_mt xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly int4_mt4 rbgb
+    public readonly b32v4_mt rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly int4_mt4 xzzx
+    public readonly b32v4_mt xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly int4_mt4 rbbr
+    public readonly b32v4_mt rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly int4_mt4 xzzy
+    public readonly b32v4_mt xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly int4_mt4 rbbg
+    public readonly b32v4_mt rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly int4_mt4 xzzz
+    public readonly b32v4_mt xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly int4_mt4 rbbb
+    public readonly b32v4_mt rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly int4_mt4 yxxx
+    public readonly b32v4_mt yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly int4_mt4 grrr
+    public readonly b32v4_mt grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly int4_mt4 yxxy
+    public readonly b32v4_mt yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly int4_mt4 grrg
+    public readonly b32v4_mt grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly int4_mt4 yxxz
+    public readonly b32v4_mt yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly int4_mt4 grrb
+    public readonly b32v4_mt grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly int4_mt4 yxyx
+    public readonly b32v4_mt yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly int4_mt4 grgr
+    public readonly b32v4_mt grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly int4_mt4 yxyy
+    public readonly b32v4_mt yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly int4_mt4 grgg
+    public readonly b32v4_mt grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly int4_mt4 yxyz
+    public readonly b32v4_mt yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly int4_mt4 grgb
+    public readonly b32v4_mt grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly int4_mt4 yxzx
+    public readonly b32v4_mt yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly int4_mt4 grbr
+    public readonly b32v4_mt grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly int4_mt4 yxzy
+    public readonly b32v4_mt yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly int4_mt4 grbg
+    public readonly b32v4_mt grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly int4_mt4 yxzz
+    public readonly b32v4_mt yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly int4_mt4 grbb
+    public readonly b32v4_mt grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly int4_mt4 yyxx
+    public readonly b32v4_mt yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly int4_mt4 ggrr
+    public readonly b32v4_mt ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly int4_mt4 yyxy
+    public readonly b32v4_mt yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly int4_mt4 ggrg
+    public readonly b32v4_mt ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly int4_mt4 yyxz
+    public readonly b32v4_mt yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly int4_mt4 ggrb
+    public readonly b32v4_mt ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly int4_mt4 yyyx
+    public readonly b32v4_mt yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly int4_mt4 gggr
+    public readonly b32v4_mt gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly int4_mt4 yyyy
+    public readonly b32v4_mt yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly int4_mt4 gggg
+    public readonly b32v4_mt gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly int4_mt4 yyyz
+    public readonly b32v4_mt yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly int4_mt4 gggb
+    public readonly b32v4_mt gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly int4_mt4 yyzx
+    public readonly b32v4_mt yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly int4_mt4 ggbr
+    public readonly b32v4_mt ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly int4_mt4 yyzy
+    public readonly b32v4_mt yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly int4_mt4 ggbg
+    public readonly b32v4_mt ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly int4_mt4 yyzz
+    public readonly b32v4_mt yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly int4_mt4 ggbb
+    public readonly b32v4_mt ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly int4_mt4 yzxx
+    public readonly b32v4_mt yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly int4_mt4 gbrr
+    public readonly b32v4_mt gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly int4_mt4 yzxy
+    public readonly b32v4_mt yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly int4_mt4 gbrg
+    public readonly b32v4_mt gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly int4_mt4 yzxz
+    public readonly b32v4_mt yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly int4_mt4 gbrb
+    public readonly b32v4_mt gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly int4_mt4 yzyx
+    public readonly b32v4_mt yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly int4_mt4 gbgr
+    public readonly b32v4_mt gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly int4_mt4 yzyy
+    public readonly b32v4_mt yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly int4_mt4 gbgg
+    public readonly b32v4_mt gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly int4_mt4 yzyz
+    public readonly b32v4_mt yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly int4_mt4 gbgb
+    public readonly b32v4_mt gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly int4_mt4 yzzx
+    public readonly b32v4_mt yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly int4_mt4 gbbr
+    public readonly b32v4_mt gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly int4_mt4 yzzy
+    public readonly b32v4_mt yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly int4_mt4 gbbg
+    public readonly b32v4_mt gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly int4_mt4 yzzz
+    public readonly b32v4_mt yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly int4_mt4 gbbb
+    public readonly b32v4_mt gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly int4_mt4 zxxx
+    public readonly b32v4_mt zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly int4_mt4 brrr
+    public readonly b32v4_mt brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly int4_mt4 zxxy
+    public readonly b32v4_mt zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly int4_mt4 brrg
+    public readonly b32v4_mt brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly int4_mt4 zxxz
+    public readonly b32v4_mt zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly int4_mt4 brrb
+    public readonly b32v4_mt brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly int4_mt4 zxyx
+    public readonly b32v4_mt zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly int4_mt4 brgr
+    public readonly b32v4_mt brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly int4_mt4 zxyy
+    public readonly b32v4_mt zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly int4_mt4 brgg
+    public readonly b32v4_mt brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly int4_mt4 zxyz
+    public readonly b32v4_mt zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly int4_mt4 brgb
+    public readonly b32v4_mt brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly int4_mt4 zxzx
+    public readonly b32v4_mt zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly int4_mt4 brbr
+    public readonly b32v4_mt brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly int4_mt4 zxzy
+    public readonly b32v4_mt zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly int4_mt4 brbg
+    public readonly b32v4_mt brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly int4_mt4 zxzz
+    public readonly b32v4_mt zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly int4_mt4 brbb
+    public readonly b32v4_mt brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly int4_mt4 zyxx
+    public readonly b32v4_mt zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly int4_mt4 bgrr
+    public readonly b32v4_mt bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly int4_mt4 zyxy
+    public readonly b32v4_mt zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly int4_mt4 bgrg
+    public readonly b32v4_mt bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly int4_mt4 zyxz
+    public readonly b32v4_mt zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly int4_mt4 bgrb
+    public readonly b32v4_mt bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly int4_mt4 zyyx
+    public readonly b32v4_mt zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly int4_mt4 bggr
+    public readonly b32v4_mt bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly int4_mt4 zyyy
+    public readonly b32v4_mt zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly int4_mt4 bggg
+    public readonly b32v4_mt bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly int4_mt4 zyyz
+    public readonly b32v4_mt zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly int4_mt4 bggb
+    public readonly b32v4_mt bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly int4_mt4 zyzx
+    public readonly b32v4_mt zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly int4_mt4 bgbr
+    public readonly b32v4_mt bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly int4_mt4 zyzy
+    public readonly b32v4_mt zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly int4_mt4 bgbg
+    public readonly b32v4_mt bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly int4_mt4 zyzz
+    public readonly b32v4_mt zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly int4_mt4 bgbb
+    public readonly b32v4_mt bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly int4_mt4 zzxx
+    public readonly b32v4_mt zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly int4_mt4 bbrr
+    public readonly b32v4_mt bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly int4_mt4 zzxy
+    public readonly b32v4_mt zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly int4_mt4 bbrg
+    public readonly b32v4_mt bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly int4_mt4 zzxz
+    public readonly b32v4_mt zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly int4_mt4 bbrb
+    public readonly b32v4_mt bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly int4_mt4 zzyx
+    public readonly b32v4_mt zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly int4_mt4 bbgr
+    public readonly b32v4_mt bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly int4_mt4 zzyy
+    public readonly b32v4_mt zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly int4_mt4 bbgg
+    public readonly b32v4_mt bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly int4_mt4 zzyz
+    public readonly b32v4_mt zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly int4_mt4 bbgb
+    public readonly b32v4_mt bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly int4_mt4 zzzx
+    public readonly b32v4_mt zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly int4_mt4 bbbr
+    public readonly b32v4_mt bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly int4_mt4 zzzy
+    public readonly b32v4_mt zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly int4_mt4 bbbg
+    public readonly b32v4_mt bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly int4_mt4 zzzz
+    public readonly b32v4_mt zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public readonly int4_mt4 bbbb
+    public readonly b32v4_mt bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
 }
 
-#endregion // int3_mt4
+#endregion // b32v3_mt
 
-#region int3_mt8
+#region b64v3_mt
 
-public partial struct int3_mt8 
+public partial struct b64v3_mt 
 {
-    public readonly int4_mt8 xxxx
+    public readonly b64v4_mt xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly int4_mt8 rrrr
+    public readonly b64v4_mt rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public readonly int4_mt8 xxxy
+    public readonly b64v4_mt xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly int4_mt8 rrrg
+    public readonly b64v4_mt rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public readonly int4_mt8 xxxz
+    public readonly b64v4_mt xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly int4_mt8 rrrb
+    public readonly b64v4_mt rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public readonly int4_mt8 xxyx
+    public readonly b64v4_mt xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly int4_mt8 rrgr
+    public readonly b64v4_mt rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public readonly int4_mt8 xxyy
+    public readonly b64v4_mt xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly int4_mt8 rrgg
+    public readonly b64v4_mt rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public readonly int4_mt8 xxyz
+    public readonly b64v4_mt xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly int4_mt8 rrgb
+    public readonly b64v4_mt rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public readonly int4_mt8 xxzx
+    public readonly b64v4_mt xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly int4_mt8 rrbr
+    public readonly b64v4_mt rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public readonly int4_mt8 xxzy
+    public readonly b64v4_mt xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly int4_mt8 rrbg
+    public readonly b64v4_mt rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public readonly int4_mt8 xxzz
+    public readonly b64v4_mt xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly int4_mt8 rrbb
+    public readonly b64v4_mt rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public readonly int4_mt8 xyxx
+    public readonly b64v4_mt xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly int4_mt8 rgrr
+    public readonly b64v4_mt rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public readonly int4_mt8 xyxy
+    public readonly b64v4_mt xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly int4_mt8 rgrg
+    public readonly b64v4_mt rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public readonly int4_mt8 xyxz
+    public readonly b64v4_mt xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly int4_mt8 rgrb
+    public readonly b64v4_mt rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public readonly int4_mt8 xyyx
+    public readonly b64v4_mt xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly int4_mt8 rggr
+    public readonly b64v4_mt rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public readonly int4_mt8 xyyy
+    public readonly b64v4_mt xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly int4_mt8 rggg
+    public readonly b64v4_mt rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public readonly int4_mt8 xyyz
+    public readonly b64v4_mt xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly int4_mt8 rggb
+    public readonly b64v4_mt rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public readonly int4_mt8 xyzx
+    public readonly b64v4_mt xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly int4_mt8 rgbr
+    public readonly b64v4_mt rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public readonly int4_mt8 xyzy
+    public readonly b64v4_mt xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly int4_mt8 rgbg
+    public readonly b64v4_mt rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public readonly int4_mt8 xyzz
+    public readonly b64v4_mt xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly int4_mt8 rgbb
+    public readonly b64v4_mt rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public readonly int4_mt8 xzxx
+    public readonly b64v4_mt xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly int4_mt8 rbrr
+    public readonly b64v4_mt rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public readonly int4_mt8 xzxy
+    public readonly b64v4_mt xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly int4_mt8 rbrg
+    public readonly b64v4_mt rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public readonly int4_mt8 xzxz
+    public readonly b64v4_mt xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly int4_mt8 rbrb
+    public readonly b64v4_mt rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public readonly int4_mt8 xzyx
+    public readonly b64v4_mt xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly int4_mt8 rbgr
+    public readonly b64v4_mt rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public readonly int4_mt8 xzyy
+    public readonly b64v4_mt xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly int4_mt8 rbgg
+    public readonly b64v4_mt rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public readonly int4_mt8 xzyz
+    public readonly b64v4_mt xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly int4_mt8 rbgb
+    public readonly b64v4_mt rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public readonly int4_mt8 xzzx
+    public readonly b64v4_mt xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly int4_mt8 rbbr
+    public readonly b64v4_mt rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public readonly int4_mt8 xzzy
+    public readonly b64v4_mt xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly int4_mt8 rbbg
+    public readonly b64v4_mt rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public readonly int4_mt8 xzzz
+    public readonly b64v4_mt xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly int4_mt8 rbbb
+    public readonly b64v4_mt rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public readonly int4_mt8 yxxx
+    public readonly b64v4_mt yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly int4_mt8 grrr
+    public readonly b64v4_mt grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public readonly int4_mt8 yxxy
+    public readonly b64v4_mt yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly int4_mt8 grrg
+    public readonly b64v4_mt grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public readonly int4_mt8 yxxz
+    public readonly b64v4_mt yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly int4_mt8 grrb
+    public readonly b64v4_mt grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public readonly int4_mt8 yxyx
+    public readonly b64v4_mt yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly int4_mt8 grgr
+    public readonly b64v4_mt grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public readonly int4_mt8 yxyy
+    public readonly b64v4_mt yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly int4_mt8 grgg
+    public readonly b64v4_mt grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public readonly int4_mt8 yxyz
+    public readonly b64v4_mt yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly int4_mt8 grgb
+    public readonly b64v4_mt grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public readonly int4_mt8 yxzx
+    public readonly b64v4_mt yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly int4_mt8 grbr
+    public readonly b64v4_mt grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public readonly int4_mt8 yxzy
+    public readonly b64v4_mt yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly int4_mt8 grbg
+    public readonly b64v4_mt grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public readonly int4_mt8 yxzz
+    public readonly b64v4_mt yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly int4_mt8 grbb
+    public readonly b64v4_mt grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public readonly int4_mt8 yyxx
+    public readonly b64v4_mt yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly int4_mt8 ggrr
+    public readonly b64v4_mt ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public readonly int4_mt8 yyxy
+    public readonly b64v4_mt yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly int4_mt8 ggrg
+    public readonly b64v4_mt ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public readonly int4_mt8 yyxz
+    public readonly b64v4_mt yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly int4_mt8 ggrb
+    public readonly b64v4_mt ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public readonly int4_mt8 yyyx
+    public readonly b64v4_mt yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly int4_mt8 gggr
+    public readonly b64v4_mt gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public readonly int4_mt8 yyyy
+    public readonly b64v4_mt yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly int4_mt8 gggg
+    public readonly b64v4_mt gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public readonly int4_mt8 yyyz
+    public readonly b64v4_mt yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly int4_mt8 gggb
+    public readonly b64v4_mt gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public readonly int4_mt8 yyzx
+    public readonly b64v4_mt yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly int4_mt8 ggbr
+    public readonly b64v4_mt ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public readonly int4_mt8 yyzy
+    public readonly b64v4_mt yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly int4_mt8 ggbg
+    public readonly b64v4_mt ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public readonly int4_mt8 yyzz
+    public readonly b64v4_mt yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly int4_mt8 ggbb
+    public readonly b64v4_mt ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public readonly int4_mt8 yzxx
+    public readonly b64v4_mt yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly int4_mt8 gbrr
+    public readonly b64v4_mt gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public readonly int4_mt8 yzxy
+    public readonly b64v4_mt yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly int4_mt8 gbrg
+    public readonly b64v4_mt gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public readonly int4_mt8 yzxz
+    public readonly b64v4_mt yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly int4_mt8 gbrb
+    public readonly b64v4_mt gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public readonly int4_mt8 yzyx
+    public readonly b64v4_mt yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly int4_mt8 gbgr
+    public readonly b64v4_mt gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public readonly int4_mt8 yzyy
+    public readonly b64v4_mt yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly int4_mt8 gbgg
+    public readonly b64v4_mt gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public readonly int4_mt8 yzyz
+    public readonly b64v4_mt yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly int4_mt8 gbgb
+    public readonly b64v4_mt gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public readonly int4_mt8 yzzx
+    public readonly b64v4_mt yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly int4_mt8 gbbr
+    public readonly b64v4_mt gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public readonly int4_mt8 yzzy
+    public readonly b64v4_mt yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly int4_mt8 gbbg
+    public readonly b64v4_mt gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public readonly int4_mt8 yzzz
+    public readonly b64v4_mt yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly int4_mt8 gbbb
+    public readonly b64v4_mt gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public readonly int4_mt8 zxxx
+    public readonly b64v4_mt zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly int4_mt8 brrr
+    public readonly b64v4_mt brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public readonly int4_mt8 zxxy
+    public readonly b64v4_mt zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly int4_mt8 brrg
+    public readonly b64v4_mt brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public readonly int4_mt8 zxxz
+    public readonly b64v4_mt zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly int4_mt8 brrb
+    public readonly b64v4_mt brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public readonly int4_mt8 zxyx
+    public readonly b64v4_mt zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly int4_mt8 brgr
+    public readonly b64v4_mt brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public readonly int4_mt8 zxyy
+    public readonly b64v4_mt zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly int4_mt8 brgg
+    public readonly b64v4_mt brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public readonly int4_mt8 zxyz
+    public readonly b64v4_mt zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly int4_mt8 brgb
+    public readonly b64v4_mt brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public readonly int4_mt8 zxzx
+    public readonly b64v4_mt zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly int4_mt8 brbr
+    public readonly b64v4_mt brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public readonly int4_mt8 zxzy
+    public readonly b64v4_mt zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly int4_mt8 brbg
+    public readonly b64v4_mt brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public readonly int4_mt8 zxzz
+    public readonly b64v4_mt zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly int4_mt8 brbb
+    public readonly b64v4_mt brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public readonly int4_mt8 zyxx
+    public readonly b64v4_mt zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly int4_mt8 bgrr
+    public readonly b64v4_mt bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public readonly int4_mt8 zyxy
+    public readonly b64v4_mt zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly int4_mt8 bgrg
+    public readonly b64v4_mt bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public readonly int4_mt8 zyxz
+    public readonly b64v4_mt zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly int4_mt8 bgrb
+    public readonly b64v4_mt bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public readonly int4_mt8 zyyx
+    public readonly b64v4_mt zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly int4_mt8 bggr
+    public readonly b64v4_mt bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public readonly int4_mt8 zyyy
+    public readonly b64v4_mt zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly int4_mt8 bggg
+    public readonly b64v4_mt bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public readonly int4_mt8 zyyz
+    public readonly b64v4_mt zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly int4_mt8 bggb
+    public readonly b64v4_mt bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public readonly int4_mt8 zyzx
+    public readonly b64v4_mt zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly int4_mt8 bgbr
+    public readonly b64v4_mt bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public readonly int4_mt8 zyzy
+    public readonly b64v4_mt zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly int4_mt8 bgbg
+    public readonly b64v4_mt bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public readonly int4_mt8 zyzz
+    public readonly b64v4_mt zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly int4_mt8 bgbb
+    public readonly b64v4_mt bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public readonly int4_mt8 zzxx
+    public readonly b64v4_mt zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly int4_mt8 bbrr
+    public readonly b64v4_mt bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public readonly int4_mt8 zzxy
+    public readonly b64v4_mt zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly int4_mt8 bbrg
+    public readonly b64v4_mt bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public readonly int4_mt8 zzxz
+    public readonly b64v4_mt zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly int4_mt8 bbrb
+    public readonly b64v4_mt bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public readonly int4_mt8 zzyx
+    public readonly b64v4_mt zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly int4_mt8 bbgr
+    public readonly b64v4_mt bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public readonly int4_mt8 zzyy
+    public readonly b64v4_mt zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly int4_mt8 bbgg
+    public readonly b64v4_mt bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public readonly int4_mt8 zzyz
+    public readonly b64v4_mt zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly int4_mt8 bbgb
+    public readonly b64v4_mt bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public readonly int4_mt8 zzzx
+    public readonly b64v4_mt zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly int4_mt8 bbbr
+    public readonly b64v4_mt bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public readonly int4_mt8 zzzy
+    public readonly b64v4_mt zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly int4_mt8 bbbg
+    public readonly b64v4_mt bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public readonly int4_mt8 zzzz
+    public readonly b64v4_mt zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public readonly int4_mt8 bbbb
+    public readonly b64v4_mt bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
 }
 
-#endregion // int3_mt8
-
-#region int3_mt16
-
-public partial struct int3_mt16 
-{
-    public readonly int4_mt16 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly int4_mt16 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly int4_mt16 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly int4_mt16 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly int4_mt16 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly int4_mt16 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly int4_mt16 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly int4_mt16 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly int4_mt16 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly int4_mt16 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly int4_mt16 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly int4_mt16 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly int4_mt16 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly int4_mt16 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly int4_mt16 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly int4_mt16 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly int4_mt16 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly int4_mt16 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly int4_mt16 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly int4_mt16 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly int4_mt16 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly int4_mt16 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly int4_mt16 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly int4_mt16 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly int4_mt16 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly int4_mt16 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly int4_mt16 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly int4_mt16 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly int4_mt16 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly int4_mt16 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly int4_mt16 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly int4_mt16 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly int4_mt16 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly int4_mt16 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly int4_mt16 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly int4_mt16 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly int4_mt16 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly int4_mt16 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly int4_mt16 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly int4_mt16 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly int4_mt16 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly int4_mt16 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly int4_mt16 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly int4_mt16 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly int4_mt16 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly int4_mt16 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly int4_mt16 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly int4_mt16 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly int4_mt16 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly int4_mt16 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly int4_mt16 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly int4_mt16 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly int4_mt16 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly int4_mt16 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly int4_mt16 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly int4_mt16 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly int4_mt16 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly int4_mt16 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly int4_mt16 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly int4_mt16 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly int4_mt16 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly int4_mt16 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly int4_mt16 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly int4_mt16 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly int4_mt16 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly int4_mt16 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly int4_mt16 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly int4_mt16 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly int4_mt16 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly int4_mt16 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly int4_mt16 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly int4_mt16 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly int4_mt16 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly int4_mt16 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly int4_mt16 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly int4_mt16 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly int4_mt16 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly int4_mt16 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly int4_mt16 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly int4_mt16 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly int4_mt16 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly int4_mt16 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly int4_mt16 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly int4_mt16 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly int4_mt16 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly int4_mt16 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly int4_mt16 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly int4_mt16 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly int4_mt16 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly int4_mt16 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly int4_mt16 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly int4_mt16 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly int4_mt16 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly int4_mt16 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly int4_mt16 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly int4_mt16 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly int4_mt16 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly int4_mt16 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly int4_mt16 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly int4_mt16 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly int4_mt16 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly int4_mt16 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly int4_mt16 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly int4_mt16 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly int4_mt16 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly int4_mt16 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly int4_mt16 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly int4_mt16 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly int4_mt16 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly int4_mt16 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly int4_mt16 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly int4_mt16 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly int4_mt16 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly int4_mt16 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly int4_mt16 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly int4_mt16 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly int4_mt16 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly int4_mt16 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly int4_mt16 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly int4_mt16 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly int4_mt16 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly int4_mt16 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly int4_mt16 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly int4_mt16 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly int4_mt16 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly int4_mt16 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly int4_mt16 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly int4_mt16 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly int4_mt16 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly int4_mt16 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly int4_mt16 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly int4_mt16 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly int4_mt16 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly int4_mt16 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly int4_mt16 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly int4_mt16 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly int4_mt16 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly int4_mt16 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly int4_mt16 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly int4_mt16 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly int4_mt16 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly int4_mt16 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly int4_mt16 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly int4_mt16 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly int4_mt16 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly int4_mt16 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly int4_mt16 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly int4_mt16 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly int4_mt16 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly int4_mt16 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly int4_mt16 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly int4_mt16 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly int4_mt16 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly int4_mt16 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly int4_mt16 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly int4_mt16 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly int4_mt16 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly int4_mt16 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly int4_mt16 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly int4_mt16 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly int4_mt16 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly int4_mt16 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // int3_mt16
-
-#region uint3_mt4
-
-public partial struct uint3_mt4 
-{
-    public readonly uint4_mt4 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly uint4_mt4 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly uint4_mt4 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly uint4_mt4 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly uint4_mt4 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly uint4_mt4 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly uint4_mt4 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly uint4_mt4 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly uint4_mt4 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly uint4_mt4 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly uint4_mt4 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly uint4_mt4 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly uint4_mt4 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly uint4_mt4 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly uint4_mt4 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly uint4_mt4 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly uint4_mt4 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly uint4_mt4 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly uint4_mt4 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly uint4_mt4 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly uint4_mt4 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly uint4_mt4 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly uint4_mt4 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly uint4_mt4 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly uint4_mt4 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly uint4_mt4 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly uint4_mt4 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly uint4_mt4 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly uint4_mt4 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly uint4_mt4 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly uint4_mt4 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly uint4_mt4 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly uint4_mt4 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly uint4_mt4 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly uint4_mt4 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly uint4_mt4 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly uint4_mt4 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly uint4_mt4 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly uint4_mt4 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly uint4_mt4 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly uint4_mt4 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly uint4_mt4 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly uint4_mt4 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly uint4_mt4 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly uint4_mt4 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly uint4_mt4 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly uint4_mt4 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly uint4_mt4 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly uint4_mt4 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly uint4_mt4 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly uint4_mt4 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly uint4_mt4 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly uint4_mt4 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly uint4_mt4 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly uint4_mt4 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly uint4_mt4 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly uint4_mt4 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly uint4_mt4 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly uint4_mt4 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly uint4_mt4 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly uint4_mt4 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly uint4_mt4 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly uint4_mt4 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly uint4_mt4 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly uint4_mt4 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly uint4_mt4 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly uint4_mt4 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly uint4_mt4 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly uint4_mt4 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly uint4_mt4 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly uint4_mt4 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly uint4_mt4 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly uint4_mt4 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly uint4_mt4 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly uint4_mt4 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly uint4_mt4 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly uint4_mt4 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly uint4_mt4 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly uint4_mt4 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly uint4_mt4 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly uint4_mt4 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly uint4_mt4 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly uint4_mt4 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly uint4_mt4 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly uint4_mt4 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly uint4_mt4 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly uint4_mt4 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly uint4_mt4 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly uint4_mt4 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly uint4_mt4 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly uint4_mt4 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly uint4_mt4 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly uint4_mt4 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly uint4_mt4 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly uint4_mt4 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly uint4_mt4 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly uint4_mt4 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly uint4_mt4 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly uint4_mt4 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly uint4_mt4 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly uint4_mt4 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly uint4_mt4 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly uint4_mt4 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly uint4_mt4 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly uint4_mt4 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly uint4_mt4 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly uint4_mt4 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly uint4_mt4 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly uint4_mt4 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly uint4_mt4 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly uint4_mt4 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly uint4_mt4 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly uint4_mt4 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly uint4_mt4 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly uint4_mt4 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly uint4_mt4 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly uint4_mt4 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly uint4_mt4 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly uint4_mt4 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly uint4_mt4 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly uint4_mt4 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly uint4_mt4 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly uint4_mt4 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly uint4_mt4 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly uint4_mt4 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly uint4_mt4 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly uint4_mt4 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly uint4_mt4 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly uint4_mt4 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly uint4_mt4 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly uint4_mt4 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly uint4_mt4 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly uint4_mt4 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly uint4_mt4 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly uint4_mt4 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly uint4_mt4 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly uint4_mt4 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly uint4_mt4 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly uint4_mt4 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly uint4_mt4 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly uint4_mt4 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly uint4_mt4 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly uint4_mt4 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly uint4_mt4 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly uint4_mt4 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly uint4_mt4 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly uint4_mt4 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly uint4_mt4 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly uint4_mt4 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly uint4_mt4 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly uint4_mt4 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly uint4_mt4 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly uint4_mt4 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly uint4_mt4 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly uint4_mt4 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly uint4_mt4 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly uint4_mt4 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly uint4_mt4 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly uint4_mt4 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly uint4_mt4 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly uint4_mt4 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly uint4_mt4 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // uint3_mt4
-
-#region uint3_mt8
-
-public partial struct uint3_mt8 
-{
-    public readonly uint4_mt8 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly uint4_mt8 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly uint4_mt8 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly uint4_mt8 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly uint4_mt8 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly uint4_mt8 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly uint4_mt8 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly uint4_mt8 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly uint4_mt8 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly uint4_mt8 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly uint4_mt8 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly uint4_mt8 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly uint4_mt8 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly uint4_mt8 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly uint4_mt8 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly uint4_mt8 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly uint4_mt8 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly uint4_mt8 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly uint4_mt8 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly uint4_mt8 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly uint4_mt8 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly uint4_mt8 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly uint4_mt8 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly uint4_mt8 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly uint4_mt8 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly uint4_mt8 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly uint4_mt8 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly uint4_mt8 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly uint4_mt8 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly uint4_mt8 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly uint4_mt8 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly uint4_mt8 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly uint4_mt8 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly uint4_mt8 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly uint4_mt8 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly uint4_mt8 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly uint4_mt8 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly uint4_mt8 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly uint4_mt8 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly uint4_mt8 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly uint4_mt8 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly uint4_mt8 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly uint4_mt8 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly uint4_mt8 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly uint4_mt8 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly uint4_mt8 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly uint4_mt8 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly uint4_mt8 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly uint4_mt8 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly uint4_mt8 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly uint4_mt8 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly uint4_mt8 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly uint4_mt8 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly uint4_mt8 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly uint4_mt8 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly uint4_mt8 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly uint4_mt8 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly uint4_mt8 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly uint4_mt8 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly uint4_mt8 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly uint4_mt8 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly uint4_mt8 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly uint4_mt8 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly uint4_mt8 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly uint4_mt8 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly uint4_mt8 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly uint4_mt8 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly uint4_mt8 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly uint4_mt8 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly uint4_mt8 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly uint4_mt8 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly uint4_mt8 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly uint4_mt8 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly uint4_mt8 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly uint4_mt8 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly uint4_mt8 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly uint4_mt8 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly uint4_mt8 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly uint4_mt8 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly uint4_mt8 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly uint4_mt8 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly uint4_mt8 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly uint4_mt8 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly uint4_mt8 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly uint4_mt8 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly uint4_mt8 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly uint4_mt8 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly uint4_mt8 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly uint4_mt8 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly uint4_mt8 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly uint4_mt8 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly uint4_mt8 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly uint4_mt8 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly uint4_mt8 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly uint4_mt8 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly uint4_mt8 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly uint4_mt8 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly uint4_mt8 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly uint4_mt8 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly uint4_mt8 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly uint4_mt8 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly uint4_mt8 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly uint4_mt8 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly uint4_mt8 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly uint4_mt8 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly uint4_mt8 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly uint4_mt8 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly uint4_mt8 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly uint4_mt8 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly uint4_mt8 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly uint4_mt8 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly uint4_mt8 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly uint4_mt8 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly uint4_mt8 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly uint4_mt8 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly uint4_mt8 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly uint4_mt8 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly uint4_mt8 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly uint4_mt8 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly uint4_mt8 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly uint4_mt8 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly uint4_mt8 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly uint4_mt8 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly uint4_mt8 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly uint4_mt8 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly uint4_mt8 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly uint4_mt8 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly uint4_mt8 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly uint4_mt8 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly uint4_mt8 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly uint4_mt8 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly uint4_mt8 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly uint4_mt8 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly uint4_mt8 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly uint4_mt8 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly uint4_mt8 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly uint4_mt8 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly uint4_mt8 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly uint4_mt8 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly uint4_mt8 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly uint4_mt8 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly uint4_mt8 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly uint4_mt8 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly uint4_mt8 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly uint4_mt8 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly uint4_mt8 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly uint4_mt8 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly uint4_mt8 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly uint4_mt8 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly uint4_mt8 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly uint4_mt8 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly uint4_mt8 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly uint4_mt8 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly uint4_mt8 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly uint4_mt8 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly uint4_mt8 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly uint4_mt8 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly uint4_mt8 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly uint4_mt8 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly uint4_mt8 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly uint4_mt8 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly uint4_mt8 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // uint3_mt8
-
-#region uint3_mt16
-
-public partial struct uint3_mt16 
-{
-    public readonly uint4_mt16 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly uint4_mt16 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly uint4_mt16 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly uint4_mt16 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly uint4_mt16 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly uint4_mt16 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly uint4_mt16 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly uint4_mt16 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly uint4_mt16 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly uint4_mt16 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly uint4_mt16 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly uint4_mt16 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly uint4_mt16 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly uint4_mt16 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly uint4_mt16 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly uint4_mt16 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly uint4_mt16 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly uint4_mt16 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly uint4_mt16 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly uint4_mt16 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly uint4_mt16 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly uint4_mt16 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly uint4_mt16 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly uint4_mt16 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly uint4_mt16 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly uint4_mt16 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly uint4_mt16 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly uint4_mt16 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly uint4_mt16 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly uint4_mt16 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly uint4_mt16 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly uint4_mt16 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly uint4_mt16 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly uint4_mt16 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly uint4_mt16 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly uint4_mt16 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly uint4_mt16 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly uint4_mt16 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly uint4_mt16 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly uint4_mt16 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly uint4_mt16 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly uint4_mt16 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly uint4_mt16 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly uint4_mt16 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly uint4_mt16 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly uint4_mt16 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly uint4_mt16 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly uint4_mt16 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly uint4_mt16 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly uint4_mt16 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly uint4_mt16 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly uint4_mt16 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly uint4_mt16 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly uint4_mt16 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly uint4_mt16 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly uint4_mt16 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly uint4_mt16 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly uint4_mt16 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly uint4_mt16 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly uint4_mt16 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly uint4_mt16 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly uint4_mt16 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly uint4_mt16 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly uint4_mt16 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly uint4_mt16 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly uint4_mt16 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly uint4_mt16 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly uint4_mt16 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly uint4_mt16 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly uint4_mt16 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly uint4_mt16 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly uint4_mt16 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly uint4_mt16 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly uint4_mt16 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly uint4_mt16 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly uint4_mt16 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly uint4_mt16 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly uint4_mt16 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly uint4_mt16 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly uint4_mt16 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly uint4_mt16 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly uint4_mt16 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly uint4_mt16 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly uint4_mt16 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly uint4_mt16 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly uint4_mt16 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly uint4_mt16 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly uint4_mt16 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly uint4_mt16 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly uint4_mt16 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly uint4_mt16 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly uint4_mt16 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly uint4_mt16 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly uint4_mt16 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly uint4_mt16 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly uint4_mt16 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly uint4_mt16 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly uint4_mt16 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly uint4_mt16 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly uint4_mt16 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly uint4_mt16 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly uint4_mt16 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly uint4_mt16 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly uint4_mt16 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly uint4_mt16 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly uint4_mt16 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly uint4_mt16 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly uint4_mt16 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly uint4_mt16 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly uint4_mt16 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly uint4_mt16 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly uint4_mt16 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly uint4_mt16 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly uint4_mt16 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly uint4_mt16 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly uint4_mt16 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly uint4_mt16 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly uint4_mt16 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly uint4_mt16 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly uint4_mt16 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly uint4_mt16 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly uint4_mt16 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly uint4_mt16 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly uint4_mt16 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly uint4_mt16 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly uint4_mt16 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly uint4_mt16 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly uint4_mt16 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly uint4_mt16 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly uint4_mt16 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly uint4_mt16 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly uint4_mt16 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly uint4_mt16 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly uint4_mt16 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly uint4_mt16 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly uint4_mt16 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly uint4_mt16 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly uint4_mt16 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly uint4_mt16 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly uint4_mt16 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly uint4_mt16 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly uint4_mt16 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly uint4_mt16 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly uint4_mt16 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly uint4_mt16 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly uint4_mt16 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly uint4_mt16 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly uint4_mt16 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly uint4_mt16 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly uint4_mt16 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly uint4_mt16 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly uint4_mt16 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly uint4_mt16 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly uint4_mt16 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly uint4_mt16 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly uint4_mt16 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly uint4_mt16 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly uint4_mt16 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly uint4_mt16 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly uint4_mt16 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly uint4_mt16 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly uint4_mt16 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // uint3_mt16
-
-#region long3_mt4
-
-public partial struct long3_mt4 
-{
-    public readonly long4_mt4 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly long4_mt4 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly long4_mt4 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly long4_mt4 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly long4_mt4 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly long4_mt4 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly long4_mt4 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly long4_mt4 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly long4_mt4 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly long4_mt4 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly long4_mt4 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly long4_mt4 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly long4_mt4 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly long4_mt4 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly long4_mt4 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly long4_mt4 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly long4_mt4 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly long4_mt4 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly long4_mt4 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly long4_mt4 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly long4_mt4 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly long4_mt4 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly long4_mt4 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly long4_mt4 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly long4_mt4 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly long4_mt4 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly long4_mt4 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly long4_mt4 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly long4_mt4 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly long4_mt4 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly long4_mt4 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly long4_mt4 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly long4_mt4 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly long4_mt4 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly long4_mt4 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly long4_mt4 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly long4_mt4 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly long4_mt4 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly long4_mt4 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly long4_mt4 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly long4_mt4 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly long4_mt4 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly long4_mt4 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly long4_mt4 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly long4_mt4 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly long4_mt4 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly long4_mt4 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly long4_mt4 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly long4_mt4 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly long4_mt4 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly long4_mt4 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly long4_mt4 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly long4_mt4 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly long4_mt4 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly long4_mt4 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly long4_mt4 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly long4_mt4 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly long4_mt4 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly long4_mt4 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly long4_mt4 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly long4_mt4 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly long4_mt4 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly long4_mt4 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly long4_mt4 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly long4_mt4 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly long4_mt4 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly long4_mt4 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly long4_mt4 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly long4_mt4 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly long4_mt4 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly long4_mt4 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly long4_mt4 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly long4_mt4 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly long4_mt4 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly long4_mt4 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly long4_mt4 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly long4_mt4 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly long4_mt4 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly long4_mt4 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly long4_mt4 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly long4_mt4 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly long4_mt4 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly long4_mt4 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly long4_mt4 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly long4_mt4 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly long4_mt4 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly long4_mt4 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly long4_mt4 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly long4_mt4 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly long4_mt4 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly long4_mt4 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly long4_mt4 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly long4_mt4 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly long4_mt4 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly long4_mt4 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly long4_mt4 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly long4_mt4 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly long4_mt4 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly long4_mt4 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly long4_mt4 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly long4_mt4 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly long4_mt4 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly long4_mt4 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly long4_mt4 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly long4_mt4 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly long4_mt4 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly long4_mt4 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly long4_mt4 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly long4_mt4 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly long4_mt4 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly long4_mt4 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly long4_mt4 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly long4_mt4 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly long4_mt4 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly long4_mt4 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly long4_mt4 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly long4_mt4 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly long4_mt4 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly long4_mt4 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly long4_mt4 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly long4_mt4 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly long4_mt4 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly long4_mt4 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly long4_mt4 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly long4_mt4 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly long4_mt4 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly long4_mt4 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly long4_mt4 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly long4_mt4 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly long4_mt4 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly long4_mt4 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly long4_mt4 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly long4_mt4 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly long4_mt4 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly long4_mt4 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly long4_mt4 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly long4_mt4 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly long4_mt4 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly long4_mt4 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly long4_mt4 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly long4_mt4 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly long4_mt4 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly long4_mt4 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly long4_mt4 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly long4_mt4 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly long4_mt4 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly long4_mt4 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly long4_mt4 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly long4_mt4 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly long4_mt4 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly long4_mt4 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly long4_mt4 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly long4_mt4 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly long4_mt4 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly long4_mt4 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly long4_mt4 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly long4_mt4 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly long4_mt4 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly long4_mt4 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly long4_mt4 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly long4_mt4 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly long4_mt4 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // long3_mt4
-
-#region long3_mt8
-
-public partial struct long3_mt8 
-{
-    public readonly long4_mt8 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly long4_mt8 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly long4_mt8 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly long4_mt8 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly long4_mt8 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly long4_mt8 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly long4_mt8 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly long4_mt8 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly long4_mt8 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly long4_mt8 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly long4_mt8 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly long4_mt8 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly long4_mt8 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly long4_mt8 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly long4_mt8 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly long4_mt8 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly long4_mt8 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly long4_mt8 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly long4_mt8 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly long4_mt8 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly long4_mt8 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly long4_mt8 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly long4_mt8 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly long4_mt8 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly long4_mt8 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly long4_mt8 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly long4_mt8 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly long4_mt8 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly long4_mt8 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly long4_mt8 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly long4_mt8 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly long4_mt8 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly long4_mt8 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly long4_mt8 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly long4_mt8 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly long4_mt8 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly long4_mt8 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly long4_mt8 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly long4_mt8 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly long4_mt8 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly long4_mt8 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly long4_mt8 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly long4_mt8 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly long4_mt8 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly long4_mt8 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly long4_mt8 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly long4_mt8 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly long4_mt8 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly long4_mt8 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly long4_mt8 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly long4_mt8 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly long4_mt8 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly long4_mt8 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly long4_mt8 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly long4_mt8 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly long4_mt8 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly long4_mt8 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly long4_mt8 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly long4_mt8 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly long4_mt8 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly long4_mt8 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly long4_mt8 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly long4_mt8 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly long4_mt8 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly long4_mt8 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly long4_mt8 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly long4_mt8 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly long4_mt8 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly long4_mt8 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly long4_mt8 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly long4_mt8 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly long4_mt8 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly long4_mt8 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly long4_mt8 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly long4_mt8 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly long4_mt8 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly long4_mt8 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly long4_mt8 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly long4_mt8 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly long4_mt8 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly long4_mt8 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly long4_mt8 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly long4_mt8 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly long4_mt8 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly long4_mt8 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly long4_mt8 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly long4_mt8 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly long4_mt8 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly long4_mt8 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly long4_mt8 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly long4_mt8 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly long4_mt8 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly long4_mt8 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly long4_mt8 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly long4_mt8 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly long4_mt8 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly long4_mt8 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly long4_mt8 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly long4_mt8 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly long4_mt8 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly long4_mt8 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly long4_mt8 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly long4_mt8 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly long4_mt8 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly long4_mt8 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly long4_mt8 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly long4_mt8 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly long4_mt8 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly long4_mt8 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly long4_mt8 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly long4_mt8 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly long4_mt8 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly long4_mt8 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly long4_mt8 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly long4_mt8 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly long4_mt8 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly long4_mt8 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly long4_mt8 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly long4_mt8 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly long4_mt8 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly long4_mt8 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly long4_mt8 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly long4_mt8 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly long4_mt8 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly long4_mt8 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly long4_mt8 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly long4_mt8 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly long4_mt8 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly long4_mt8 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly long4_mt8 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly long4_mt8 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly long4_mt8 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly long4_mt8 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly long4_mt8 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly long4_mt8 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly long4_mt8 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly long4_mt8 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly long4_mt8 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly long4_mt8 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly long4_mt8 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly long4_mt8 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly long4_mt8 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly long4_mt8 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly long4_mt8 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly long4_mt8 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly long4_mt8 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly long4_mt8 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly long4_mt8 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly long4_mt8 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly long4_mt8 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly long4_mt8 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly long4_mt8 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly long4_mt8 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly long4_mt8 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly long4_mt8 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly long4_mt8 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly long4_mt8 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly long4_mt8 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly long4_mt8 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly long4_mt8 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly long4_mt8 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly long4_mt8 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // long3_mt8
-
-#region long3_mt16
-
-public partial struct long3_mt16 
-{
-    public readonly long4_mt16 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly long4_mt16 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly long4_mt16 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly long4_mt16 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly long4_mt16 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly long4_mt16 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly long4_mt16 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly long4_mt16 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly long4_mt16 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly long4_mt16 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly long4_mt16 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly long4_mt16 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly long4_mt16 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly long4_mt16 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly long4_mt16 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly long4_mt16 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly long4_mt16 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly long4_mt16 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly long4_mt16 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly long4_mt16 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly long4_mt16 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly long4_mt16 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly long4_mt16 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly long4_mt16 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly long4_mt16 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly long4_mt16 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly long4_mt16 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly long4_mt16 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly long4_mt16 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly long4_mt16 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly long4_mt16 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly long4_mt16 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly long4_mt16 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly long4_mt16 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly long4_mt16 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly long4_mt16 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly long4_mt16 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly long4_mt16 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly long4_mt16 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly long4_mt16 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly long4_mt16 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly long4_mt16 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly long4_mt16 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly long4_mt16 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly long4_mt16 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly long4_mt16 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly long4_mt16 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly long4_mt16 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly long4_mt16 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly long4_mt16 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly long4_mt16 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly long4_mt16 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly long4_mt16 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly long4_mt16 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly long4_mt16 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly long4_mt16 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly long4_mt16 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly long4_mt16 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly long4_mt16 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly long4_mt16 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly long4_mt16 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly long4_mt16 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly long4_mt16 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly long4_mt16 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly long4_mt16 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly long4_mt16 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly long4_mt16 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly long4_mt16 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly long4_mt16 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly long4_mt16 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly long4_mt16 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly long4_mt16 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly long4_mt16 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly long4_mt16 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly long4_mt16 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly long4_mt16 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly long4_mt16 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly long4_mt16 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly long4_mt16 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly long4_mt16 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly long4_mt16 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly long4_mt16 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly long4_mt16 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly long4_mt16 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly long4_mt16 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly long4_mt16 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly long4_mt16 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly long4_mt16 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly long4_mt16 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly long4_mt16 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly long4_mt16 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly long4_mt16 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly long4_mt16 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly long4_mt16 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly long4_mt16 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly long4_mt16 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly long4_mt16 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly long4_mt16 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly long4_mt16 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly long4_mt16 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly long4_mt16 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly long4_mt16 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly long4_mt16 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly long4_mt16 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly long4_mt16 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly long4_mt16 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly long4_mt16 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly long4_mt16 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly long4_mt16 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly long4_mt16 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly long4_mt16 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly long4_mt16 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly long4_mt16 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly long4_mt16 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly long4_mt16 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly long4_mt16 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly long4_mt16 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly long4_mt16 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly long4_mt16 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly long4_mt16 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly long4_mt16 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly long4_mt16 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly long4_mt16 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly long4_mt16 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly long4_mt16 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly long4_mt16 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly long4_mt16 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly long4_mt16 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly long4_mt16 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly long4_mt16 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly long4_mt16 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly long4_mt16 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly long4_mt16 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly long4_mt16 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly long4_mt16 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly long4_mt16 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly long4_mt16 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly long4_mt16 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly long4_mt16 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly long4_mt16 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly long4_mt16 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly long4_mt16 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly long4_mt16 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly long4_mt16 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly long4_mt16 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly long4_mt16 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly long4_mt16 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly long4_mt16 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly long4_mt16 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly long4_mt16 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly long4_mt16 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly long4_mt16 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly long4_mt16 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly long4_mt16 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly long4_mt16 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly long4_mt16 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly long4_mt16 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly long4_mt16 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly long4_mt16 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly long4_mt16 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly long4_mt16 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly long4_mt16 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // long3_mt16
-
-#region ulong3_mt4
-
-public partial struct ulong3_mt4 
-{
-    public readonly ulong4_mt4 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly ulong4_mt4 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly ulong4_mt4 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly ulong4_mt4 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly ulong4_mt4 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly ulong4_mt4 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly ulong4_mt4 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly ulong4_mt4 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly ulong4_mt4 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly ulong4_mt4 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly ulong4_mt4 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly ulong4_mt4 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly ulong4_mt4 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly ulong4_mt4 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly ulong4_mt4 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly ulong4_mt4 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly ulong4_mt4 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly ulong4_mt4 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly ulong4_mt4 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly ulong4_mt4 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly ulong4_mt4 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly ulong4_mt4 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly ulong4_mt4 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly ulong4_mt4 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly ulong4_mt4 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly ulong4_mt4 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly ulong4_mt4 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly ulong4_mt4 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly ulong4_mt4 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly ulong4_mt4 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly ulong4_mt4 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly ulong4_mt4 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly ulong4_mt4 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly ulong4_mt4 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly ulong4_mt4 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly ulong4_mt4 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly ulong4_mt4 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly ulong4_mt4 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly ulong4_mt4 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly ulong4_mt4 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly ulong4_mt4 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly ulong4_mt4 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly ulong4_mt4 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly ulong4_mt4 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly ulong4_mt4 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly ulong4_mt4 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly ulong4_mt4 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly ulong4_mt4 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly ulong4_mt4 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly ulong4_mt4 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly ulong4_mt4 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly ulong4_mt4 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly ulong4_mt4 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly ulong4_mt4 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly ulong4_mt4 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly ulong4_mt4 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly ulong4_mt4 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly ulong4_mt4 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly ulong4_mt4 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly ulong4_mt4 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly ulong4_mt4 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly ulong4_mt4 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly ulong4_mt4 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly ulong4_mt4 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly ulong4_mt4 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly ulong4_mt4 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly ulong4_mt4 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly ulong4_mt4 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly ulong4_mt4 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly ulong4_mt4 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly ulong4_mt4 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly ulong4_mt4 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly ulong4_mt4 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly ulong4_mt4 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly ulong4_mt4 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly ulong4_mt4 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly ulong4_mt4 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly ulong4_mt4 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly ulong4_mt4 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly ulong4_mt4 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly ulong4_mt4 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly ulong4_mt4 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly ulong4_mt4 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly ulong4_mt4 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly ulong4_mt4 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly ulong4_mt4 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly ulong4_mt4 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly ulong4_mt4 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly ulong4_mt4 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly ulong4_mt4 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly ulong4_mt4 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly ulong4_mt4 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly ulong4_mt4 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly ulong4_mt4 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly ulong4_mt4 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly ulong4_mt4 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly ulong4_mt4 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly ulong4_mt4 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly ulong4_mt4 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly ulong4_mt4 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly ulong4_mt4 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly ulong4_mt4 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly ulong4_mt4 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly ulong4_mt4 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly ulong4_mt4 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly ulong4_mt4 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly ulong4_mt4 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly ulong4_mt4 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly ulong4_mt4 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly ulong4_mt4 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly ulong4_mt4 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly ulong4_mt4 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly ulong4_mt4 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly ulong4_mt4 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly ulong4_mt4 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly ulong4_mt4 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly ulong4_mt4 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly ulong4_mt4 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly ulong4_mt4 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly ulong4_mt4 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly ulong4_mt4 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly ulong4_mt4 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly ulong4_mt4 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly ulong4_mt4 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly ulong4_mt4 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly ulong4_mt4 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly ulong4_mt4 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly ulong4_mt4 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly ulong4_mt4 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly ulong4_mt4 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly ulong4_mt4 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly ulong4_mt4 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly ulong4_mt4 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly ulong4_mt4 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly ulong4_mt4 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly ulong4_mt4 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly ulong4_mt4 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly ulong4_mt4 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly ulong4_mt4 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly ulong4_mt4 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly ulong4_mt4 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly ulong4_mt4 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly ulong4_mt4 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly ulong4_mt4 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly ulong4_mt4 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly ulong4_mt4 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly ulong4_mt4 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly ulong4_mt4 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly ulong4_mt4 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly ulong4_mt4 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly ulong4_mt4 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly ulong4_mt4 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly ulong4_mt4 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly ulong4_mt4 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly ulong4_mt4 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly ulong4_mt4 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly ulong4_mt4 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly ulong4_mt4 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly ulong4_mt4 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly ulong4_mt4 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly ulong4_mt4 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly ulong4_mt4 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // ulong3_mt4
-
-#region ulong3_mt8
-
-public partial struct ulong3_mt8 
-{
-    public readonly ulong4_mt8 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly ulong4_mt8 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly ulong4_mt8 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly ulong4_mt8 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly ulong4_mt8 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly ulong4_mt8 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly ulong4_mt8 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly ulong4_mt8 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly ulong4_mt8 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly ulong4_mt8 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly ulong4_mt8 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly ulong4_mt8 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly ulong4_mt8 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly ulong4_mt8 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly ulong4_mt8 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly ulong4_mt8 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly ulong4_mt8 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly ulong4_mt8 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly ulong4_mt8 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly ulong4_mt8 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly ulong4_mt8 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly ulong4_mt8 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly ulong4_mt8 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly ulong4_mt8 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly ulong4_mt8 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly ulong4_mt8 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly ulong4_mt8 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly ulong4_mt8 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly ulong4_mt8 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly ulong4_mt8 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly ulong4_mt8 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly ulong4_mt8 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly ulong4_mt8 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly ulong4_mt8 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly ulong4_mt8 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly ulong4_mt8 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly ulong4_mt8 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly ulong4_mt8 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly ulong4_mt8 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly ulong4_mt8 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly ulong4_mt8 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly ulong4_mt8 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly ulong4_mt8 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly ulong4_mt8 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly ulong4_mt8 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly ulong4_mt8 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly ulong4_mt8 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly ulong4_mt8 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly ulong4_mt8 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly ulong4_mt8 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly ulong4_mt8 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly ulong4_mt8 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly ulong4_mt8 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly ulong4_mt8 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly ulong4_mt8 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly ulong4_mt8 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly ulong4_mt8 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly ulong4_mt8 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly ulong4_mt8 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly ulong4_mt8 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly ulong4_mt8 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly ulong4_mt8 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly ulong4_mt8 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly ulong4_mt8 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly ulong4_mt8 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly ulong4_mt8 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly ulong4_mt8 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly ulong4_mt8 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly ulong4_mt8 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly ulong4_mt8 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly ulong4_mt8 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly ulong4_mt8 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly ulong4_mt8 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly ulong4_mt8 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly ulong4_mt8 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly ulong4_mt8 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly ulong4_mt8 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly ulong4_mt8 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly ulong4_mt8 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly ulong4_mt8 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly ulong4_mt8 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly ulong4_mt8 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly ulong4_mt8 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly ulong4_mt8 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly ulong4_mt8 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly ulong4_mt8 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly ulong4_mt8 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly ulong4_mt8 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly ulong4_mt8 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly ulong4_mt8 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly ulong4_mt8 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly ulong4_mt8 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly ulong4_mt8 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly ulong4_mt8 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly ulong4_mt8 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly ulong4_mt8 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly ulong4_mt8 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly ulong4_mt8 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly ulong4_mt8 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly ulong4_mt8 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly ulong4_mt8 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly ulong4_mt8 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly ulong4_mt8 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly ulong4_mt8 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly ulong4_mt8 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly ulong4_mt8 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly ulong4_mt8 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly ulong4_mt8 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly ulong4_mt8 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly ulong4_mt8 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly ulong4_mt8 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly ulong4_mt8 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly ulong4_mt8 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly ulong4_mt8 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly ulong4_mt8 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly ulong4_mt8 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly ulong4_mt8 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly ulong4_mt8 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly ulong4_mt8 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly ulong4_mt8 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly ulong4_mt8 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly ulong4_mt8 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly ulong4_mt8 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly ulong4_mt8 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly ulong4_mt8 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly ulong4_mt8 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly ulong4_mt8 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly ulong4_mt8 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly ulong4_mt8 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly ulong4_mt8 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly ulong4_mt8 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly ulong4_mt8 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly ulong4_mt8 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly ulong4_mt8 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly ulong4_mt8 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly ulong4_mt8 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly ulong4_mt8 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly ulong4_mt8 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly ulong4_mt8 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly ulong4_mt8 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly ulong4_mt8 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly ulong4_mt8 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly ulong4_mt8 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly ulong4_mt8 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly ulong4_mt8 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly ulong4_mt8 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly ulong4_mt8 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly ulong4_mt8 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly ulong4_mt8 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly ulong4_mt8 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly ulong4_mt8 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly ulong4_mt8 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly ulong4_mt8 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly ulong4_mt8 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly ulong4_mt8 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly ulong4_mt8 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly ulong4_mt8 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly ulong4_mt8 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly ulong4_mt8 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly ulong4_mt8 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly ulong4_mt8 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly ulong4_mt8 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // ulong3_mt8
-
-#region ulong3_mt16
-
-public partial struct ulong3_mt16 
-{
-    public readonly ulong4_mt16 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly ulong4_mt16 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly ulong4_mt16 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly ulong4_mt16 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly ulong4_mt16 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly ulong4_mt16 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly ulong4_mt16 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly ulong4_mt16 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly ulong4_mt16 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly ulong4_mt16 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly ulong4_mt16 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly ulong4_mt16 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly ulong4_mt16 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly ulong4_mt16 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly ulong4_mt16 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly ulong4_mt16 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly ulong4_mt16 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly ulong4_mt16 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly ulong4_mt16 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly ulong4_mt16 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly ulong4_mt16 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly ulong4_mt16 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly ulong4_mt16 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly ulong4_mt16 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly ulong4_mt16 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly ulong4_mt16 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly ulong4_mt16 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly ulong4_mt16 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly ulong4_mt16 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly ulong4_mt16 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly ulong4_mt16 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly ulong4_mt16 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly ulong4_mt16 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly ulong4_mt16 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly ulong4_mt16 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly ulong4_mt16 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly ulong4_mt16 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly ulong4_mt16 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly ulong4_mt16 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly ulong4_mt16 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly ulong4_mt16 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly ulong4_mt16 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly ulong4_mt16 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly ulong4_mt16 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly ulong4_mt16 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly ulong4_mt16 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly ulong4_mt16 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly ulong4_mt16 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly ulong4_mt16 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly ulong4_mt16 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly ulong4_mt16 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly ulong4_mt16 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly ulong4_mt16 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly ulong4_mt16 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly ulong4_mt16 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly ulong4_mt16 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly ulong4_mt16 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly ulong4_mt16 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly ulong4_mt16 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly ulong4_mt16 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly ulong4_mt16 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly ulong4_mt16 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly ulong4_mt16 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly ulong4_mt16 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly ulong4_mt16 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly ulong4_mt16 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly ulong4_mt16 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly ulong4_mt16 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly ulong4_mt16 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly ulong4_mt16 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly ulong4_mt16 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly ulong4_mt16 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly ulong4_mt16 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly ulong4_mt16 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly ulong4_mt16 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly ulong4_mt16 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly ulong4_mt16 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly ulong4_mt16 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly ulong4_mt16 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly ulong4_mt16 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly ulong4_mt16 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly ulong4_mt16 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly ulong4_mt16 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly ulong4_mt16 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly ulong4_mt16 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly ulong4_mt16 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly ulong4_mt16 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly ulong4_mt16 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly ulong4_mt16 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly ulong4_mt16 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly ulong4_mt16 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly ulong4_mt16 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly ulong4_mt16 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly ulong4_mt16 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly ulong4_mt16 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly ulong4_mt16 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly ulong4_mt16 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly ulong4_mt16 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly ulong4_mt16 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly ulong4_mt16 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly ulong4_mt16 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly ulong4_mt16 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly ulong4_mt16 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly ulong4_mt16 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly ulong4_mt16 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly ulong4_mt16 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly ulong4_mt16 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly ulong4_mt16 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly ulong4_mt16 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly ulong4_mt16 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly ulong4_mt16 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly ulong4_mt16 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly ulong4_mt16 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly ulong4_mt16 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly ulong4_mt16 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly ulong4_mt16 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly ulong4_mt16 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly ulong4_mt16 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly ulong4_mt16 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly ulong4_mt16 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly ulong4_mt16 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly ulong4_mt16 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly ulong4_mt16 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly ulong4_mt16 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly ulong4_mt16 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly ulong4_mt16 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly ulong4_mt16 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly ulong4_mt16 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly ulong4_mt16 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly ulong4_mt16 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly ulong4_mt16 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly ulong4_mt16 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly ulong4_mt16 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly ulong4_mt16 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly ulong4_mt16 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly ulong4_mt16 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly ulong4_mt16 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly ulong4_mt16 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly ulong4_mt16 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly ulong4_mt16 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly ulong4_mt16 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly ulong4_mt16 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly ulong4_mt16 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly ulong4_mt16 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly ulong4_mt16 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly ulong4_mt16 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly ulong4_mt16 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly ulong4_mt16 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly ulong4_mt16 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly ulong4_mt16 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly ulong4_mt16 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly ulong4_mt16 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly ulong4_mt16 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly ulong4_mt16 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly ulong4_mt16 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly ulong4_mt16 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly ulong4_mt16 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly ulong4_mt16 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly ulong4_mt16 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly ulong4_mt16 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly ulong4_mt16 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly ulong4_mt16 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // ulong3_mt16
-
-#region b32v3_mt4
-
-public partial struct b32v3_mt4 
-{
-    public readonly b32v4_mt4 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b32v4_mt4 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b32v4_mt4 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b32v4_mt4 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b32v4_mt4 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b32v4_mt4 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b32v4_mt4 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b32v4_mt4 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b32v4_mt4 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b32v4_mt4 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b32v4_mt4 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b32v4_mt4 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b32v4_mt4 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b32v4_mt4 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b32v4_mt4 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b32v4_mt4 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b32v4_mt4 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b32v4_mt4 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b32v4_mt4 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b32v4_mt4 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b32v4_mt4 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b32v4_mt4 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b32v4_mt4 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b32v4_mt4 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b32v4_mt4 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b32v4_mt4 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b32v4_mt4 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b32v4_mt4 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b32v4_mt4 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b32v4_mt4 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b32v4_mt4 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b32v4_mt4 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b32v4_mt4 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b32v4_mt4 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b32v4_mt4 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b32v4_mt4 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b32v4_mt4 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b32v4_mt4 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b32v4_mt4 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b32v4_mt4 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b32v4_mt4 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b32v4_mt4 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b32v4_mt4 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b32v4_mt4 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b32v4_mt4 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b32v4_mt4 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b32v4_mt4 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b32v4_mt4 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b32v4_mt4 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b32v4_mt4 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b32v4_mt4 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b32v4_mt4 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b32v4_mt4 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b32v4_mt4 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b32v4_mt4 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b32v4_mt4 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b32v4_mt4 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b32v4_mt4 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b32v4_mt4 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b32v4_mt4 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b32v4_mt4 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b32v4_mt4 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b32v4_mt4 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b32v4_mt4 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b32v4_mt4 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b32v4_mt4 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b32v4_mt4 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b32v4_mt4 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b32v4_mt4 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b32v4_mt4 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b32v4_mt4 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b32v4_mt4 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b32v4_mt4 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b32v4_mt4 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b32v4_mt4 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b32v4_mt4 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b32v4_mt4 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b32v4_mt4 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b32v4_mt4 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b32v4_mt4 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b32v4_mt4 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b32v4_mt4 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b32v4_mt4 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b32v4_mt4 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b32v4_mt4 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b32v4_mt4 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b32v4_mt4 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b32v4_mt4 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b32v4_mt4 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b32v4_mt4 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b32v4_mt4 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b32v4_mt4 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b32v4_mt4 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b32v4_mt4 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b32v4_mt4 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b32v4_mt4 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b32v4_mt4 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b32v4_mt4 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b32v4_mt4 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b32v4_mt4 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b32v4_mt4 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b32v4_mt4 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b32v4_mt4 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b32v4_mt4 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b32v4_mt4 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b32v4_mt4 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b32v4_mt4 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b32v4_mt4 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b32v4_mt4 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b32v4_mt4 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b32v4_mt4 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b32v4_mt4 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b32v4_mt4 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b32v4_mt4 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b32v4_mt4 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b32v4_mt4 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b32v4_mt4 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b32v4_mt4 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b32v4_mt4 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b32v4_mt4 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b32v4_mt4 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b32v4_mt4 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b32v4_mt4 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b32v4_mt4 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b32v4_mt4 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b32v4_mt4 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b32v4_mt4 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b32v4_mt4 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b32v4_mt4 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b32v4_mt4 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b32v4_mt4 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b32v4_mt4 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b32v4_mt4 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b32v4_mt4 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b32v4_mt4 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b32v4_mt4 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b32v4_mt4 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b32v4_mt4 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b32v4_mt4 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b32v4_mt4 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b32v4_mt4 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b32v4_mt4 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b32v4_mt4 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b32v4_mt4 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b32v4_mt4 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b32v4_mt4 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b32v4_mt4 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b32v4_mt4 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b32v4_mt4 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b32v4_mt4 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b32v4_mt4 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b32v4_mt4 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b32v4_mt4 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b32v4_mt4 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b32v4_mt4 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b32v4_mt4 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b32v4_mt4 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b32v4_mt4 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b32v4_mt4 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b32v4_mt4 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b32v4_mt4 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly b32v4_mt4 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // b32v3_mt4
-
-#region b32v3_mt8
-
-public partial struct b32v3_mt8 
-{
-    public readonly b32v4_mt8 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b32v4_mt8 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b32v4_mt8 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b32v4_mt8 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b32v4_mt8 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b32v4_mt8 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b32v4_mt8 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b32v4_mt8 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b32v4_mt8 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b32v4_mt8 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b32v4_mt8 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b32v4_mt8 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b32v4_mt8 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b32v4_mt8 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b32v4_mt8 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b32v4_mt8 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b32v4_mt8 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b32v4_mt8 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b32v4_mt8 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b32v4_mt8 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b32v4_mt8 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b32v4_mt8 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b32v4_mt8 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b32v4_mt8 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b32v4_mt8 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b32v4_mt8 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b32v4_mt8 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b32v4_mt8 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b32v4_mt8 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b32v4_mt8 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b32v4_mt8 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b32v4_mt8 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b32v4_mt8 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b32v4_mt8 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b32v4_mt8 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b32v4_mt8 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b32v4_mt8 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b32v4_mt8 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b32v4_mt8 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b32v4_mt8 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b32v4_mt8 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b32v4_mt8 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b32v4_mt8 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b32v4_mt8 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b32v4_mt8 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b32v4_mt8 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b32v4_mt8 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b32v4_mt8 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b32v4_mt8 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b32v4_mt8 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b32v4_mt8 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b32v4_mt8 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b32v4_mt8 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b32v4_mt8 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b32v4_mt8 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b32v4_mt8 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b32v4_mt8 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b32v4_mt8 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b32v4_mt8 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b32v4_mt8 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b32v4_mt8 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b32v4_mt8 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b32v4_mt8 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b32v4_mt8 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b32v4_mt8 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b32v4_mt8 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b32v4_mt8 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b32v4_mt8 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b32v4_mt8 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b32v4_mt8 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b32v4_mt8 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b32v4_mt8 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b32v4_mt8 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b32v4_mt8 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b32v4_mt8 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b32v4_mt8 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b32v4_mt8 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b32v4_mt8 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b32v4_mt8 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b32v4_mt8 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b32v4_mt8 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b32v4_mt8 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b32v4_mt8 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b32v4_mt8 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b32v4_mt8 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b32v4_mt8 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b32v4_mt8 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b32v4_mt8 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b32v4_mt8 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b32v4_mt8 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b32v4_mt8 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b32v4_mt8 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b32v4_mt8 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b32v4_mt8 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b32v4_mt8 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b32v4_mt8 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b32v4_mt8 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b32v4_mt8 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b32v4_mt8 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b32v4_mt8 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b32v4_mt8 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b32v4_mt8 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b32v4_mt8 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b32v4_mt8 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b32v4_mt8 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b32v4_mt8 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b32v4_mt8 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b32v4_mt8 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b32v4_mt8 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b32v4_mt8 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b32v4_mt8 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b32v4_mt8 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b32v4_mt8 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b32v4_mt8 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b32v4_mt8 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b32v4_mt8 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b32v4_mt8 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b32v4_mt8 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b32v4_mt8 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b32v4_mt8 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b32v4_mt8 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b32v4_mt8 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b32v4_mt8 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b32v4_mt8 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b32v4_mt8 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b32v4_mt8 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b32v4_mt8 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b32v4_mt8 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b32v4_mt8 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b32v4_mt8 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b32v4_mt8 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b32v4_mt8 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b32v4_mt8 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b32v4_mt8 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b32v4_mt8 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b32v4_mt8 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b32v4_mt8 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b32v4_mt8 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b32v4_mt8 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b32v4_mt8 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b32v4_mt8 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b32v4_mt8 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b32v4_mt8 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b32v4_mt8 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b32v4_mt8 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b32v4_mt8 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b32v4_mt8 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b32v4_mt8 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b32v4_mt8 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b32v4_mt8 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b32v4_mt8 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b32v4_mt8 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b32v4_mt8 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b32v4_mt8 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b32v4_mt8 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b32v4_mt8 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b32v4_mt8 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b32v4_mt8 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b32v4_mt8 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b32v4_mt8 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b32v4_mt8 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly b32v4_mt8 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // b32v3_mt8
-
-#region b32v3_mt16
-
-public partial struct b32v3_mt16 
-{
-    public readonly b32v4_mt16 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b32v4_mt16 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b32v4_mt16 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b32v4_mt16 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b32v4_mt16 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b32v4_mt16 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b32v4_mt16 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b32v4_mt16 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b32v4_mt16 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b32v4_mt16 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b32v4_mt16 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b32v4_mt16 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b32v4_mt16 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b32v4_mt16 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b32v4_mt16 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b32v4_mt16 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b32v4_mt16 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b32v4_mt16 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b32v4_mt16 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b32v4_mt16 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b32v4_mt16 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b32v4_mt16 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b32v4_mt16 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b32v4_mt16 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b32v4_mt16 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b32v4_mt16 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b32v4_mt16 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b32v4_mt16 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b32v4_mt16 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b32v4_mt16 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b32v4_mt16 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b32v4_mt16 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b32v4_mt16 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b32v4_mt16 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b32v4_mt16 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b32v4_mt16 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b32v4_mt16 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b32v4_mt16 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b32v4_mt16 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b32v4_mt16 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b32v4_mt16 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b32v4_mt16 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b32v4_mt16 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b32v4_mt16 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b32v4_mt16 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b32v4_mt16 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b32v4_mt16 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b32v4_mt16 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b32v4_mt16 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b32v4_mt16 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b32v4_mt16 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b32v4_mt16 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b32v4_mt16 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b32v4_mt16 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b32v4_mt16 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b32v4_mt16 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b32v4_mt16 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b32v4_mt16 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b32v4_mt16 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b32v4_mt16 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b32v4_mt16 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b32v4_mt16 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b32v4_mt16 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b32v4_mt16 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b32v4_mt16 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b32v4_mt16 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b32v4_mt16 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b32v4_mt16 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b32v4_mt16 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b32v4_mt16 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b32v4_mt16 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b32v4_mt16 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b32v4_mt16 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b32v4_mt16 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b32v4_mt16 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b32v4_mt16 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b32v4_mt16 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b32v4_mt16 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b32v4_mt16 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b32v4_mt16 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b32v4_mt16 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b32v4_mt16 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b32v4_mt16 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b32v4_mt16 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b32v4_mt16 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b32v4_mt16 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b32v4_mt16 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b32v4_mt16 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b32v4_mt16 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b32v4_mt16 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b32v4_mt16 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b32v4_mt16 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b32v4_mt16 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b32v4_mt16 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b32v4_mt16 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b32v4_mt16 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b32v4_mt16 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b32v4_mt16 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b32v4_mt16 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b32v4_mt16 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b32v4_mt16 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b32v4_mt16 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b32v4_mt16 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b32v4_mt16 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b32v4_mt16 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b32v4_mt16 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b32v4_mt16 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b32v4_mt16 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b32v4_mt16 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b32v4_mt16 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b32v4_mt16 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b32v4_mt16 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b32v4_mt16 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b32v4_mt16 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b32v4_mt16 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b32v4_mt16 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b32v4_mt16 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b32v4_mt16 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b32v4_mt16 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b32v4_mt16 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b32v4_mt16 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b32v4_mt16 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b32v4_mt16 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b32v4_mt16 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b32v4_mt16 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b32v4_mt16 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b32v4_mt16 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b32v4_mt16 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b32v4_mt16 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b32v4_mt16 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b32v4_mt16 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b32v4_mt16 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b32v4_mt16 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b32v4_mt16 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b32v4_mt16 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b32v4_mt16 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b32v4_mt16 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b32v4_mt16 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b32v4_mt16 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b32v4_mt16 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b32v4_mt16 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b32v4_mt16 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b32v4_mt16 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b32v4_mt16 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b32v4_mt16 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b32v4_mt16 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b32v4_mt16 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b32v4_mt16 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b32v4_mt16 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b32v4_mt16 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b32v4_mt16 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b32v4_mt16 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b32v4_mt16 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b32v4_mt16 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b32v4_mt16 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b32v4_mt16 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b32v4_mt16 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b32v4_mt16 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b32v4_mt16 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b32v4_mt16 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b32v4_mt16 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly b32v4_mt16 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // b32v3_mt16
-
-#region b64v3_mt4
-
-public partial struct b64v3_mt4 
-{
-    public readonly b64v4_mt4 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b64v4_mt4 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b64v4_mt4 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b64v4_mt4 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b64v4_mt4 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b64v4_mt4 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b64v4_mt4 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b64v4_mt4 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b64v4_mt4 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b64v4_mt4 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b64v4_mt4 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b64v4_mt4 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b64v4_mt4 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b64v4_mt4 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b64v4_mt4 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b64v4_mt4 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b64v4_mt4 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b64v4_mt4 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b64v4_mt4 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b64v4_mt4 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b64v4_mt4 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b64v4_mt4 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b64v4_mt4 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b64v4_mt4 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b64v4_mt4 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b64v4_mt4 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b64v4_mt4 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b64v4_mt4 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b64v4_mt4 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b64v4_mt4 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b64v4_mt4 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b64v4_mt4 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b64v4_mt4 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b64v4_mt4 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b64v4_mt4 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b64v4_mt4 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b64v4_mt4 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b64v4_mt4 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b64v4_mt4 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b64v4_mt4 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b64v4_mt4 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b64v4_mt4 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b64v4_mt4 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b64v4_mt4 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b64v4_mt4 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b64v4_mt4 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b64v4_mt4 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b64v4_mt4 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b64v4_mt4 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b64v4_mt4 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b64v4_mt4 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b64v4_mt4 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b64v4_mt4 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b64v4_mt4 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b64v4_mt4 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b64v4_mt4 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b64v4_mt4 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b64v4_mt4 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b64v4_mt4 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b64v4_mt4 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b64v4_mt4 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b64v4_mt4 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b64v4_mt4 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b64v4_mt4 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b64v4_mt4 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b64v4_mt4 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b64v4_mt4 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b64v4_mt4 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b64v4_mt4 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b64v4_mt4 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b64v4_mt4 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b64v4_mt4 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b64v4_mt4 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b64v4_mt4 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b64v4_mt4 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b64v4_mt4 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b64v4_mt4 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b64v4_mt4 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b64v4_mt4 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b64v4_mt4 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b64v4_mt4 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b64v4_mt4 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b64v4_mt4 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b64v4_mt4 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b64v4_mt4 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b64v4_mt4 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b64v4_mt4 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b64v4_mt4 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b64v4_mt4 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b64v4_mt4 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b64v4_mt4 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b64v4_mt4 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b64v4_mt4 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b64v4_mt4 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b64v4_mt4 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b64v4_mt4 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b64v4_mt4 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b64v4_mt4 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b64v4_mt4 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b64v4_mt4 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b64v4_mt4 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b64v4_mt4 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b64v4_mt4 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b64v4_mt4 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b64v4_mt4 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b64v4_mt4 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b64v4_mt4 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b64v4_mt4 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b64v4_mt4 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b64v4_mt4 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b64v4_mt4 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b64v4_mt4 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b64v4_mt4 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b64v4_mt4 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b64v4_mt4 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b64v4_mt4 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b64v4_mt4 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b64v4_mt4 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b64v4_mt4 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b64v4_mt4 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b64v4_mt4 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b64v4_mt4 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b64v4_mt4 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b64v4_mt4 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b64v4_mt4 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b64v4_mt4 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b64v4_mt4 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b64v4_mt4 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b64v4_mt4 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b64v4_mt4 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b64v4_mt4 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b64v4_mt4 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b64v4_mt4 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b64v4_mt4 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b64v4_mt4 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b64v4_mt4 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b64v4_mt4 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b64v4_mt4 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b64v4_mt4 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b64v4_mt4 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b64v4_mt4 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b64v4_mt4 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b64v4_mt4 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b64v4_mt4 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b64v4_mt4 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b64v4_mt4 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b64v4_mt4 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b64v4_mt4 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b64v4_mt4 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b64v4_mt4 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b64v4_mt4 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b64v4_mt4 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b64v4_mt4 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b64v4_mt4 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b64v4_mt4 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b64v4_mt4 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b64v4_mt4 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b64v4_mt4 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b64v4_mt4 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b64v4_mt4 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b64v4_mt4 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly b64v4_mt4 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // b64v3_mt4
-
-#region b64v3_mt8
-
-public partial struct b64v3_mt8 
-{
-    public readonly b64v4_mt8 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b64v4_mt8 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b64v4_mt8 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b64v4_mt8 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b64v4_mt8 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b64v4_mt8 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b64v4_mt8 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b64v4_mt8 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b64v4_mt8 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b64v4_mt8 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b64v4_mt8 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b64v4_mt8 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b64v4_mt8 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b64v4_mt8 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b64v4_mt8 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b64v4_mt8 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b64v4_mt8 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b64v4_mt8 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b64v4_mt8 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b64v4_mt8 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b64v4_mt8 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b64v4_mt8 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b64v4_mt8 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b64v4_mt8 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b64v4_mt8 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b64v4_mt8 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b64v4_mt8 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b64v4_mt8 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b64v4_mt8 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b64v4_mt8 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b64v4_mt8 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b64v4_mt8 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b64v4_mt8 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b64v4_mt8 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b64v4_mt8 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b64v4_mt8 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b64v4_mt8 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b64v4_mt8 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b64v4_mt8 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b64v4_mt8 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b64v4_mt8 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b64v4_mt8 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b64v4_mt8 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b64v4_mt8 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b64v4_mt8 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b64v4_mt8 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b64v4_mt8 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b64v4_mt8 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b64v4_mt8 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b64v4_mt8 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b64v4_mt8 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b64v4_mt8 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b64v4_mt8 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b64v4_mt8 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b64v4_mt8 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b64v4_mt8 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b64v4_mt8 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b64v4_mt8 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b64v4_mt8 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b64v4_mt8 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b64v4_mt8 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b64v4_mt8 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b64v4_mt8 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b64v4_mt8 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b64v4_mt8 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b64v4_mt8 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b64v4_mt8 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b64v4_mt8 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b64v4_mt8 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b64v4_mt8 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b64v4_mt8 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b64v4_mt8 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b64v4_mt8 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b64v4_mt8 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b64v4_mt8 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b64v4_mt8 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b64v4_mt8 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b64v4_mt8 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b64v4_mt8 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b64v4_mt8 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b64v4_mt8 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b64v4_mt8 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b64v4_mt8 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b64v4_mt8 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b64v4_mt8 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b64v4_mt8 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b64v4_mt8 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b64v4_mt8 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b64v4_mt8 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b64v4_mt8 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b64v4_mt8 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b64v4_mt8 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b64v4_mt8 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b64v4_mt8 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b64v4_mt8 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b64v4_mt8 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b64v4_mt8 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b64v4_mt8 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b64v4_mt8 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b64v4_mt8 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b64v4_mt8 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b64v4_mt8 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b64v4_mt8 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b64v4_mt8 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b64v4_mt8 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b64v4_mt8 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b64v4_mt8 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b64v4_mt8 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b64v4_mt8 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b64v4_mt8 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b64v4_mt8 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b64v4_mt8 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b64v4_mt8 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b64v4_mt8 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b64v4_mt8 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b64v4_mt8 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b64v4_mt8 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b64v4_mt8 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b64v4_mt8 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b64v4_mt8 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b64v4_mt8 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b64v4_mt8 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b64v4_mt8 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b64v4_mt8 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b64v4_mt8 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b64v4_mt8 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b64v4_mt8 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b64v4_mt8 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b64v4_mt8 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b64v4_mt8 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b64v4_mt8 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b64v4_mt8 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b64v4_mt8 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b64v4_mt8 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b64v4_mt8 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b64v4_mt8 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b64v4_mt8 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b64v4_mt8 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b64v4_mt8 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b64v4_mt8 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b64v4_mt8 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b64v4_mt8 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b64v4_mt8 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b64v4_mt8 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b64v4_mt8 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b64v4_mt8 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b64v4_mt8 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b64v4_mt8 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b64v4_mt8 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b64v4_mt8 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b64v4_mt8 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b64v4_mt8 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b64v4_mt8 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b64v4_mt8 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b64v4_mt8 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b64v4_mt8 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b64v4_mt8 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b64v4_mt8 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b64v4_mt8 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b64v4_mt8 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b64v4_mt8 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly b64v4_mt8 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // b64v3_mt8
-
-#region b64v3_mt16
-
-public partial struct b64v3_mt16 
-{
-    public readonly b64v4_mt16 xxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b64v4_mt16 rrrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-    }
-    public readonly b64v4_mt16 xxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b64v4_mt16 rrrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-    }
-    public readonly b64v4_mt16 xxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b64v4_mt16 rrrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-    }
-    public readonly b64v4_mt16 xxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b64v4_mt16 rrgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-    }
-    public readonly b64v4_mt16 xxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b64v4_mt16 rrgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-    }
-    public readonly b64v4_mt16 xxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b64v4_mt16 rrgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-    }
-    public readonly b64v4_mt16 xxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b64v4_mt16 rrbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-    }
-    public readonly b64v4_mt16 xxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b64v4_mt16 rrbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-    }
-    public readonly b64v4_mt16 xxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b64v4_mt16 rrbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-    }
-    public readonly b64v4_mt16 xyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b64v4_mt16 rgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-    }
-    public readonly b64v4_mt16 xyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b64v4_mt16 rgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-    }
-    public readonly b64v4_mt16 xyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b64v4_mt16 rgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-    }
-    public readonly b64v4_mt16 xyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b64v4_mt16 rggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-    }
-    public readonly b64v4_mt16 xyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b64v4_mt16 rggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-    }
-    public readonly b64v4_mt16 xyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b64v4_mt16 rggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-    }
-    public readonly b64v4_mt16 xyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b64v4_mt16 rgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-    }
-    public readonly b64v4_mt16 xyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b64v4_mt16 rgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-    }
-    public readonly b64v4_mt16 xyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b64v4_mt16 rgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-    }
-    public readonly b64v4_mt16 xzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b64v4_mt16 rbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-    }
-    public readonly b64v4_mt16 xzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b64v4_mt16 rbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-    }
-    public readonly b64v4_mt16 xzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b64v4_mt16 rbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-    }
-    public readonly b64v4_mt16 xzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b64v4_mt16 rbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-    }
-    public readonly b64v4_mt16 xzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b64v4_mt16 rbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-    }
-    public readonly b64v4_mt16 xzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b64v4_mt16 rbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-    }
-    public readonly b64v4_mt16 xzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b64v4_mt16 rbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-    }
-    public readonly b64v4_mt16 xzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b64v4_mt16 rbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-    }
-    public readonly b64v4_mt16 xzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b64v4_mt16 rbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-    }
-    public readonly b64v4_mt16 yxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b64v4_mt16 grrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-    }
-    public readonly b64v4_mt16 yxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b64v4_mt16 grrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-    }
-    public readonly b64v4_mt16 yxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b64v4_mt16 grrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-    }
-    public readonly b64v4_mt16 yxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b64v4_mt16 grgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-    }
-    public readonly b64v4_mt16 yxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b64v4_mt16 grgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-    }
-    public readonly b64v4_mt16 yxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b64v4_mt16 grgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-    }
-    public readonly b64v4_mt16 yxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b64v4_mt16 grbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-    }
-    public readonly b64v4_mt16 yxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b64v4_mt16 grbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-    }
-    public readonly b64v4_mt16 yxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b64v4_mt16 grbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-    }
-    public readonly b64v4_mt16 yyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b64v4_mt16 ggrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-    }
-    public readonly b64v4_mt16 yyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b64v4_mt16 ggrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-    }
-    public readonly b64v4_mt16 yyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b64v4_mt16 ggrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-    }
-    public readonly b64v4_mt16 yyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b64v4_mt16 gggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-    }
-    public readonly b64v4_mt16 yyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b64v4_mt16 gggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-    }
-    public readonly b64v4_mt16 yyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b64v4_mt16 gggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-    }
-    public readonly b64v4_mt16 yyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b64v4_mt16 ggbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-    }
-    public readonly b64v4_mt16 yyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b64v4_mt16 ggbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-    }
-    public readonly b64v4_mt16 yyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b64v4_mt16 ggbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-    }
-    public readonly b64v4_mt16 yzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b64v4_mt16 gbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-    }
-    public readonly b64v4_mt16 yzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b64v4_mt16 gbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-    }
-    public readonly b64v4_mt16 yzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b64v4_mt16 gbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-    }
-    public readonly b64v4_mt16 yzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b64v4_mt16 gbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-    }
-    public readonly b64v4_mt16 yzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b64v4_mt16 gbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-    }
-    public readonly b64v4_mt16 yzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b64v4_mt16 gbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-    }
-    public readonly b64v4_mt16 yzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b64v4_mt16 gbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-    }
-    public readonly b64v4_mt16 yzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b64v4_mt16 gbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-    }
-    public readonly b64v4_mt16 yzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b64v4_mt16 gbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-    }
-    public readonly b64v4_mt16 zxxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b64v4_mt16 brrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-    }
-    public readonly b64v4_mt16 zxxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b64v4_mt16 brrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-    }
-    public readonly b64v4_mt16 zxxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b64v4_mt16 brrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-    }
-    public readonly b64v4_mt16 zxyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b64v4_mt16 brgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-    }
-    public readonly b64v4_mt16 zxyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b64v4_mt16 brgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-    }
-    public readonly b64v4_mt16 zxyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b64v4_mt16 brgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-    }
-    public readonly b64v4_mt16 zxzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b64v4_mt16 brbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-    }
-    public readonly b64v4_mt16 zxzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b64v4_mt16 brbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-    }
-    public readonly b64v4_mt16 zxzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b64v4_mt16 brbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-    }
-    public readonly b64v4_mt16 zyxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b64v4_mt16 bgrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-    }
-    public readonly b64v4_mt16 zyxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b64v4_mt16 bgrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-    }
-    public readonly b64v4_mt16 zyxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b64v4_mt16 bgrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-    }
-    public readonly b64v4_mt16 zyyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b64v4_mt16 bggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-    }
-    public readonly b64v4_mt16 zyyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b64v4_mt16 bggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-    }
-    public readonly b64v4_mt16 zyyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b64v4_mt16 bggb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-    }
-    public readonly b64v4_mt16 zyzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b64v4_mt16 bgbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-    }
-    public readonly b64v4_mt16 zyzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b64v4_mt16 bgbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-    }
-    public readonly b64v4_mt16 zyzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b64v4_mt16 bgbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-    }
-    public readonly b64v4_mt16 zzxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b64v4_mt16 bbrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-    }
-    public readonly b64v4_mt16 zzxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b64v4_mt16 bbrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-    }
-    public readonly b64v4_mt16 zzxz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b64v4_mt16 bbrb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-    }
-    public readonly b64v4_mt16 zzyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b64v4_mt16 bbgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-    }
-    public readonly b64v4_mt16 zzyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b64v4_mt16 bbgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-    }
-    public readonly b64v4_mt16 zzyz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b64v4_mt16 bbgb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-    }
-    public readonly b64v4_mt16 zzzx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b64v4_mt16 bbbr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-    }
-    public readonly b64v4_mt16 zzzy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b64v4_mt16 bbbg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-    }
-    public readonly b64v4_mt16 zzzz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-    public readonly b64v4_mt16 bbbb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-    }
-}
-
-#endregion // b64v3_mt16
+#endregion // b64v3_mt

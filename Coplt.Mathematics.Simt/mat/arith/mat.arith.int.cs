@@ -2,1730 +2,578 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region int2x2_mt4
+#region int2x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2_mt4 isPow2([This] int2x2_mt4 a) => 
+    public static b32m2x2_mt isPow2([This] int2x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int2x2_mt4 up2pow2([This] int2x2_mt4 a) => 
+    public static int2x2_mt up2pow2([This] int2x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int2x2_mt4
+#endregion // int2x2_mt
 
-#region int2x2_mt8
+#region int2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2_mt8 isPow2([This] int2x2_mt8 a) => 
+    public static b32m2x3_mt isPow2([This] int2x3_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static int2x3_mt up2pow2([This] int2x3_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
+}
+
+#endregion // int2x3_mt
+
+#region int2x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m2x4_mt isPow2([This] int2x4_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static int2x4_mt up2pow2([This] int2x4_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
+}
+
+#endregion // int2x4_mt
+
+#region int3x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m3x2_mt isPow2([This] int3x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int2x2_mt8 up2pow2([This] int2x2_mt8 a) => 
+    public static int3x2_mt up2pow2([This] int3x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int2x2_mt8
+#endregion // int3x2_mt
 
-#region int2x2_mt16
+#region int3x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2_mt16 isPow2([This] int2x2_mt16 a) => 
+    public static b32m3x3_mt isPow2([This] int3x3_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static int3x3_mt up2pow2([This] int3x3_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
+}
+
+#endregion // int3x3_mt
+
+#region int3x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m3x4_mt isPow2([This] int3x4_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static int3x4_mt up2pow2([This] int3x4_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
+}
+
+#endregion // int3x4_mt
+
+#region int4x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m4x2_mt isPow2([This] int4x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int2x2_mt16 up2pow2([This] int2x2_mt16 a) => 
+    public static int4x2_mt up2pow2([This] int4x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int2x2_mt16
+#endregion // int4x2_mt
 
-#region int2x3_mt4
+#region int4x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3_mt4 isPow2([This] int2x3_mt4 a) => 
+    public static b32m4x3_mt isPow2([This] int4x3_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int2x3_mt4 up2pow2([This] int2x3_mt4 a) => 
+    public static int4x3_mt up2pow2([This] int4x3_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
-#endregion // int2x3_mt4
+#endregion // int4x3_mt
 
-#region int2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x3_mt8 isPow2([This] int2x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int2x3_mt8 up2pow2([This] int2x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // int2x3_mt8
-
-#region int2x3_mt16
+#region int4x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3_mt16 isPow2([This] int2x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int2x3_mt16 up2pow2([This] int2x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // int2x3_mt16
-
-#region int2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x4_mt4 isPow2([This] int2x4_mt4 a) => 
+    public static b32m4x4_mt isPow2([This] int4x4_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int2x4_mt4 up2pow2([This] int2x4_mt4 a) => 
+    public static int4x4_mt up2pow2([This] int4x4_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
-#endregion // int2x4_mt4
+#endregion // int4x4_mt
 
-#region int2x4_mt8
+#region uint2x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x4_mt8 isPow2([This] int2x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int2x4_mt8 up2pow2([This] int2x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // int2x4_mt8
-
-#region int2x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x4_mt16 isPow2([This] int2x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int2x4_mt16 up2pow2([This] int2x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // int2x4_mt16
-
-#region int3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x2_mt4 isPow2([This] int3x2_mt4 a) => 
+    public static b32m2x2_mt isPow2([This] uint2x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int3x2_mt4 up2pow2([This] int3x2_mt4 a) => 
+    public static uint2x2_mt up2pow2([This] uint2x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int3x2_mt4
+#endregion // uint2x2_mt
 
-#region int3x2_mt8
+#region uint2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x2_mt8 isPow2([This] int3x2_mt8 a) => 
+    public static b32m2x3_mt isPow2([This] uint2x3_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static uint2x3_mt up2pow2([This] uint2x3_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
+}
+
+#endregion // uint2x3_mt
+
+#region uint2x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m2x4_mt isPow2([This] uint2x4_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static uint2x4_mt up2pow2([This] uint2x4_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
+}
+
+#endregion // uint2x4_mt
+
+#region uint3x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m3x2_mt isPow2([This] uint3x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int3x2_mt8 up2pow2([This] int3x2_mt8 a) => 
+    public static uint3x2_mt up2pow2([This] uint3x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int3x2_mt8
+#endregion // uint3x2_mt
 
-#region int3x2_mt16
+#region uint3x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x2_mt16 isPow2([This] int3x2_mt16 a) => 
+    public static b32m3x3_mt isPow2([This] uint3x3_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static uint3x3_mt up2pow2([This] uint3x3_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
+}
+
+#endregion // uint3x3_mt
+
+#region uint3x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m3x4_mt isPow2([This] uint3x4_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static uint3x4_mt up2pow2([This] uint3x4_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
+}
+
+#endregion // uint3x4_mt
+
+#region uint4x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m4x2_mt isPow2([This] uint4x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int3x2_mt16 up2pow2([This] int3x2_mt16 a) => 
+    public static uint4x2_mt up2pow2([This] uint4x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int3x2_mt16
+#endregion // uint4x2_mt
 
-#region int3x3_mt4
+#region uint4x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x3_mt4 isPow2([This] int3x3_mt4 a) => 
+    public static b32m4x3_mt isPow2([This] uint4x3_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int3x3_mt4 up2pow2([This] int3x3_mt4 a) => 
+    public static uint4x3_mt up2pow2([This] uint4x3_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
-#endregion // int3x3_mt4
+#endregion // uint4x3_mt
 
-#region int3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x3_mt8 isPow2([This] int3x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int3x3_mt8 up2pow2([This] int3x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // int3x3_mt8
-
-#region int3x3_mt16
+#region uint4x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x3_mt16 isPow2([This] int3x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int3x3_mt16 up2pow2([This] int3x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // int3x3_mt16
-
-#region int3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x4_mt4 isPow2([This] int3x4_mt4 a) => 
+    public static b32m4x4_mt isPow2([This] uint4x4_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int3x4_mt4 up2pow2([This] int3x4_mt4 a) => 
+    public static uint4x4_mt up2pow2([This] uint4x4_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
-#endregion // int3x4_mt4
+#endregion // uint4x4_mt
 
-#region int3x4_mt8
+#region long2x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x4_mt8 isPow2([This] int3x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int3x4_mt8 up2pow2([This] int3x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // int3x4_mt8
-
-#region int3x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x4_mt16 isPow2([This] int3x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int3x4_mt16 up2pow2([This] int3x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // int3x4_mt16
-
-#region int4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x2_mt4 isPow2([This] int4x2_mt4 a) => 
+    public static b64m2x2_mt isPow2([This] long2x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int4x2_mt4 up2pow2([This] int4x2_mt4 a) => 
+    public static long2x2_mt up2pow2([This] long2x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int4x2_mt4
+#endregion // long2x2_mt
 
-#region int4x2_mt8
+#region long2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x2_mt8 isPow2([This] int4x2_mt8 a) => 
+    public static b64m2x3_mt isPow2([This] long2x3_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static long2x3_mt up2pow2([This] long2x3_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
+}
+
+#endregion // long2x3_mt
+
+#region long2x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m2x4_mt isPow2([This] long2x4_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static long2x4_mt up2pow2([This] long2x4_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
+}
+
+#endregion // long2x4_mt
+
+#region long3x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m3x2_mt isPow2([This] long3x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int4x2_mt8 up2pow2([This] int4x2_mt8 a) => 
+    public static long3x2_mt up2pow2([This] long3x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int4x2_mt8
+#endregion // long3x2_mt
 
-#region int4x2_mt16
+#region long3x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x2_mt16 isPow2([This] int4x2_mt16 a) => 
+    public static b64m3x3_mt isPow2([This] long3x3_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static long3x3_mt up2pow2([This] long3x3_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
+}
+
+#endregion // long3x3_mt
+
+#region long3x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m3x4_mt isPow2([This] long3x4_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static long3x4_mt up2pow2([This] long3x4_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
+}
+
+#endregion // long3x4_mt
+
+#region long4x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m4x2_mt isPow2([This] long4x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int4x2_mt16 up2pow2([This] int4x2_mt16 a) => 
+    public static long4x2_mt up2pow2([This] long4x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // int4x2_mt16
+#endregion // long4x2_mt
 
-#region int4x3_mt4
+#region long4x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x3_mt4 isPow2([This] int4x3_mt4 a) => 
+    public static b64m4x3_mt isPow2([This] long4x3_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int4x3_mt4 up2pow2([This] int4x3_mt4 a) => 
+    public static long4x3_mt up2pow2([This] long4x3_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
-#endregion // int4x3_mt4
+#endregion // long4x3_mt
 
-#region int4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x3_mt8 isPow2([This] int4x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int4x3_mt8 up2pow2([This] int4x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // int4x3_mt8
-
-#region int4x3_mt16
+#region long4x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x3_mt16 isPow2([This] int4x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int4x3_mt16 up2pow2([This] int4x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // int4x3_mt16
-
-#region int4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x4_mt4 isPow2([This] int4x4_mt4 a) => 
+    public static b64m4x4_mt isPow2([This] long4x4_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static int4x4_mt4 up2pow2([This] int4x4_mt4 a) => 
+    public static long4x4_mt up2pow2([This] long4x4_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
-#endregion // int4x4_mt4
+#endregion // long4x4_mt
 
-#region int4x4_mt8
+#region ulong2x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x4_mt8 isPow2([This] int4x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt8 up2pow2([This] int4x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // int4x4_mt8
-
-#region int4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x4_mt16 isPow2([This] int4x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt16 up2pow2([This] int4x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // int4x4_mt16
-
-#region uint2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x2_mt4 isPow2([This] uint2x2_mt4 a) => 
+    public static b64m2x2_mt isPow2([This] ulong2x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint2x2_mt4 up2pow2([This] uint2x2_mt4 a) => 
+    public static ulong2x2_mt up2pow2([This] ulong2x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // uint2x2_mt4
+#endregion // ulong2x2_mt
 
-#region uint2x2_mt8
+#region ulong2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2_mt8 isPow2([This] uint2x2_mt8 a) => 
+    public static b64m2x3_mt isPow2([This] ulong2x3_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static ulong2x3_mt up2pow2([This] ulong2x3_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
+}
+
+#endregion // ulong2x3_mt
+
+#region ulong2x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m2x4_mt isPow2([This] ulong2x4_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static ulong2x4_mt up2pow2([This] ulong2x4_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
+}
+
+#endregion // ulong2x4_mt
+
+#region ulong3x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m3x2_mt isPow2([This] ulong3x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint2x2_mt8 up2pow2([This] uint2x2_mt8 a) => 
+    public static ulong3x2_mt up2pow2([This] ulong3x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // uint2x2_mt8
+#endregion // ulong3x2_mt
 
-#region uint2x2_mt16
+#region ulong3x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2_mt16 isPow2([This] uint2x2_mt16 a) => 
+    public static b64m3x3_mt isPow2([This] ulong3x3_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static ulong3x3_mt up2pow2([This] ulong3x3_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
+}
+
+#endregion // ulong3x3_mt
+
+#region ulong3x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m3x4_mt isPow2([This] ulong3x4_mt a) => 
+        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
+
+    [MethodImpl(256 | 512)]
+    public static ulong3x4_mt up2pow2([This] ulong3x4_mt a) => 
+        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
+}
+
+#endregion // ulong3x4_mt
+
+#region ulong4x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m4x2_mt isPow2([This] ulong4x2_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint2x2_mt16 up2pow2([This] uint2x2_mt16 a) => 
+    public static ulong4x2_mt up2pow2([This] ulong4x2_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
-#endregion // uint2x2_mt16
+#endregion // ulong4x2_mt
 
-#region uint2x3_mt4
+#region ulong4x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3_mt4 isPow2([This] uint2x3_mt4 a) => 
+    public static b64m4x3_mt isPow2([This] ulong4x3_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint2x3_mt4 up2pow2([This] uint2x3_mt4 a) => 
+    public static ulong4x3_mt up2pow2([This] ulong4x3_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
-#endregion // uint2x3_mt4
+#endregion // ulong4x3_mt
 
-#region uint2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x3_mt8 isPow2([This] uint2x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint2x3_mt8 up2pow2([This] uint2x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // uint2x3_mt8
-
-#region uint2x3_mt16
+#region ulong4x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3_mt16 isPow2([This] uint2x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint2x3_mt16 up2pow2([This] uint2x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // uint2x3_mt16
-
-#region uint2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x4_mt4 isPow2([This] uint2x4_mt4 a) => 
+    public static b64m4x4_mt isPow2([This] ulong4x4_mt a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint2x4_mt4 up2pow2([This] uint2x4_mt4 a) => 
+    public static ulong4x4_mt up2pow2([This] ulong4x4_mt a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
-#endregion // uint2x4_mt4
-
-#region uint2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x4_mt8 isPow2([This] uint2x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint2x4_mt8 up2pow2([This] uint2x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // uint2x4_mt8
-
-#region uint2x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x4_mt16 isPow2([This] uint2x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint2x4_mt16 up2pow2([This] uint2x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // uint2x4_mt16
-
-#region uint3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x2_mt4 isPow2([This] uint3x2_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x2_mt4 up2pow2([This] uint3x2_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // uint3x2_mt4
-
-#region uint3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x2_mt8 isPow2([This] uint3x2_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x2_mt8 up2pow2([This] uint3x2_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // uint3x2_mt8
-
-#region uint3x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x2_mt16 isPow2([This] uint3x2_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x2_mt16 up2pow2([This] uint3x2_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // uint3x2_mt16
-
-#region uint3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x3_mt4 isPow2([This] uint3x3_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt4 up2pow2([This] uint3x3_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // uint3x3_mt4
-
-#region uint3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x3_mt8 isPow2([This] uint3x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt8 up2pow2([This] uint3x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // uint3x3_mt8
-
-#region uint3x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x3_mt16 isPow2([This] uint3x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt16 up2pow2([This] uint3x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // uint3x3_mt16
-
-#region uint3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x4_mt4 isPow2([This] uint3x4_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x4_mt4 up2pow2([This] uint3x4_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // uint3x4_mt4
-
-#region uint3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x4_mt8 isPow2([This] uint3x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x4_mt8 up2pow2([This] uint3x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // uint3x4_mt8
-
-#region uint3x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x4_mt16 isPow2([This] uint3x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint3x4_mt16 up2pow2([This] uint3x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // uint3x4_mt16
-
-#region uint4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x2_mt4 isPow2([This] uint4x2_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x2_mt4 up2pow2([This] uint4x2_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // uint4x2_mt4
-
-#region uint4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x2_mt8 isPow2([This] uint4x2_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x2_mt8 up2pow2([This] uint4x2_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // uint4x2_mt8
-
-#region uint4x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x2_mt16 isPow2([This] uint4x2_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x2_mt16 up2pow2([This] uint4x2_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // uint4x2_mt16
-
-#region uint4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x3_mt4 isPow2([This] uint4x3_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x3_mt4 up2pow2([This] uint4x3_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // uint4x3_mt4
-
-#region uint4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x3_mt8 isPow2([This] uint4x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x3_mt8 up2pow2([This] uint4x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // uint4x3_mt8
-
-#region uint4x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x3_mt16 isPow2([This] uint4x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x3_mt16 up2pow2([This] uint4x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // uint4x3_mt16
-
-#region uint4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x4_mt4 isPow2([This] uint4x4_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt4 up2pow2([This] uint4x4_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // uint4x4_mt4
-
-#region uint4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x4_mt8 isPow2([This] uint4x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt8 up2pow2([This] uint4x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // uint4x4_mt8
-
-#region uint4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x4_mt16 isPow2([This] uint4x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt16 up2pow2([This] uint4x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // uint4x4_mt16
-
-#region long2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt4 isPow2([This] long2x2_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt4 up2pow2([This] long2x2_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long2x2_mt4
-
-#region long2x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt8 isPow2([This] long2x2_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt8 up2pow2([This] long2x2_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long2x2_mt8
-
-#region long2x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt16 isPow2([This] long2x2_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt16 up2pow2([This] long2x2_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long2x2_mt16
-
-#region long2x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt4 isPow2([This] long2x3_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x3_mt4 up2pow2([This] long2x3_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long2x3_mt4
-
-#region long2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt8 isPow2([This] long2x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x3_mt8 up2pow2([This] long2x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long2x3_mt8
-
-#region long2x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt16 isPow2([This] long2x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x3_mt16 up2pow2([This] long2x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long2x3_mt16
-
-#region long2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt4 isPow2([This] long2x4_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x4_mt4 up2pow2([This] long2x4_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long2x4_mt4
-
-#region long2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt8 isPow2([This] long2x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x4_mt8 up2pow2([This] long2x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long2x4_mt8
-
-#region long2x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt16 isPow2([This] long2x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long2x4_mt16 up2pow2([This] long2x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long2x4_mt16
-
-#region long3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt4 isPow2([This] long3x2_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x2_mt4 up2pow2([This] long3x2_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long3x2_mt4
-
-#region long3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt8 isPow2([This] long3x2_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x2_mt8 up2pow2([This] long3x2_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long3x2_mt8
-
-#region long3x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt16 isPow2([This] long3x2_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x2_mt16 up2pow2([This] long3x2_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long3x2_mt16
-
-#region long3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt4 isPow2([This] long3x3_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt4 up2pow2([This] long3x3_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long3x3_mt4
-
-#region long3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt8 isPow2([This] long3x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt8 up2pow2([This] long3x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long3x3_mt8
-
-#region long3x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt16 isPow2([This] long3x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt16 up2pow2([This] long3x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long3x3_mt16
-
-#region long3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt4 isPow2([This] long3x4_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x4_mt4 up2pow2([This] long3x4_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long3x4_mt4
-
-#region long3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt8 isPow2([This] long3x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x4_mt8 up2pow2([This] long3x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long3x4_mt8
-
-#region long3x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt16 isPow2([This] long3x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long3x4_mt16 up2pow2([This] long3x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long3x4_mt16
-
-#region long4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt4 isPow2([This] long4x2_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x2_mt4 up2pow2([This] long4x2_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long4x2_mt4
-
-#region long4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt8 isPow2([This] long4x2_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x2_mt8 up2pow2([This] long4x2_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long4x2_mt8
-
-#region long4x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt16 isPow2([This] long4x2_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x2_mt16 up2pow2([This] long4x2_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // long4x2_mt16
-
-#region long4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt4 isPow2([This] long4x3_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x3_mt4 up2pow2([This] long4x3_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long4x3_mt4
-
-#region long4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt8 isPow2([This] long4x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x3_mt8 up2pow2([This] long4x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long4x3_mt8
-
-#region long4x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt16 isPow2([This] long4x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x3_mt16 up2pow2([This] long4x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // long4x3_mt16
-
-#region long4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt4 isPow2([This] long4x4_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt4 up2pow2([This] long4x4_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long4x4_mt4
-
-#region long4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt8 isPow2([This] long4x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt8 up2pow2([This] long4x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long4x4_mt8
-
-#region long4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt16 isPow2([This] long4x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt16 up2pow2([This] long4x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // long4x4_mt16
-
-#region ulong2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt4 isPow2([This] ulong2x2_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt4 up2pow2([This] ulong2x2_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong2x2_mt4
-
-#region ulong2x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt8 isPow2([This] ulong2x2_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt8 up2pow2([This] ulong2x2_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong2x2_mt8
-
-#region ulong2x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt16 isPow2([This] ulong2x2_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt16 up2pow2([This] ulong2x2_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong2x2_mt16
-
-#region ulong2x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt4 isPow2([This] ulong2x3_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x3_mt4 up2pow2([This] ulong2x3_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong2x3_mt4
-
-#region ulong2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt8 isPow2([This] ulong2x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x3_mt8 up2pow2([This] ulong2x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong2x3_mt8
-
-#region ulong2x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt16 isPow2([This] ulong2x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x3_mt16 up2pow2([This] ulong2x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong2x3_mt16
-
-#region ulong2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt4 isPow2([This] ulong2x4_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x4_mt4 up2pow2([This] ulong2x4_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong2x4_mt4
-
-#region ulong2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt8 isPow2([This] ulong2x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x4_mt8 up2pow2([This] ulong2x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong2x4_mt8
-
-#region ulong2x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt16 isPow2([This] ulong2x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x4_mt16 up2pow2([This] ulong2x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong2x4_mt16
-
-#region ulong3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt4 isPow2([This] ulong3x2_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x2_mt4 up2pow2([This] ulong3x2_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong3x2_mt4
-
-#region ulong3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt8 isPow2([This] ulong3x2_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x2_mt8 up2pow2([This] ulong3x2_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong3x2_mt8
-
-#region ulong3x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt16 isPow2([This] ulong3x2_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x2_mt16 up2pow2([This] ulong3x2_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong3x2_mt16
-
-#region ulong3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt4 isPow2([This] ulong3x3_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt4 up2pow2([This] ulong3x3_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong3x3_mt4
-
-#region ulong3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt8 isPow2([This] ulong3x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt8 up2pow2([This] ulong3x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong3x3_mt8
-
-#region ulong3x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt16 isPow2([This] ulong3x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt16 up2pow2([This] ulong3x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong3x3_mt16
-
-#region ulong3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt4 isPow2([This] ulong3x4_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x4_mt4 up2pow2([This] ulong3x4_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong3x4_mt4
-
-#region ulong3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt8 isPow2([This] ulong3x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x4_mt8 up2pow2([This] ulong3x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong3x4_mt8
-
-#region ulong3x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt16 isPow2([This] ulong3x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong3x4_mt16 up2pow2([This] ulong3x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong3x4_mt16
-
-#region ulong4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt4 isPow2([This] ulong4x2_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x2_mt4 up2pow2([This] ulong4x2_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong4x2_mt4
-
-#region ulong4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt8 isPow2([This] ulong4x2_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x2_mt8 up2pow2([This] ulong4x2_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong4x2_mt8
-
-#region ulong4x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt16 isPow2([This] ulong4x2_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x2_mt16 up2pow2([This] ulong4x2_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2());
-}
-
-#endregion // ulong4x2_mt16
-
-#region ulong4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt4 isPow2([This] ulong4x3_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x3_mt4 up2pow2([This] ulong4x3_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong4x3_mt4
-
-#region ulong4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt8 isPow2([This] ulong4x3_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x3_mt8 up2pow2([This] ulong4x3_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong4x3_mt8
-
-#region ulong4x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt16 isPow2([This] ulong4x3_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x3_mt16 up2pow2([This] ulong4x3_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
-}
-
-#endregion // ulong4x3_mt16
-
-#region ulong4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt4 isPow2([This] ulong4x4_mt4 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt4 up2pow2([This] ulong4x4_mt4 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong4x4_mt4
-
-#region ulong4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt8 isPow2([This] ulong4x4_mt8 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt8 up2pow2([This] ulong4x4_mt8 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong4x4_mt8
-
-#region ulong4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt16 isPow2([This] ulong4x4_mt16 a) => 
-        new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
-
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt16 up2pow2([This] ulong4x4_mt16 a) => 
-        new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
-}
-
-#endregion // ulong4x4_mt16
+#endregion // ulong4x4_mt

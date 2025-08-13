@@ -2,231 +2,79 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region int_mt4
+#region int_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32_mt4 isPow2([This] int_mt4 a)
+    public static b32_mt isPow2([This] int_mt a)
     {
-        return ((a & (a - int_mt4.One)) == default) & (a > default(int_mt4));
+        return ((a & (a - int_mt.One)) == default) & (a > default(int_mt));
     }
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 up2pow2([This] int_mt4 a)
+    public static int_mt up2pow2([This] int_mt a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector));
     }
 }
 
-#endregion // int_mt4
-#region int_mt8
+#endregion // int_mt
+#region uint_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32_mt8 isPow2([This] int_mt8 a)
+    public static b32_mt isPow2([This] uint_mt a)
     {
-        return ((a & (a - int_mt8.One)) == default) & (a > default(int_mt8));
+        return ((a & (a - uint_mt.One)) == default) & (a != default);
     }
 
     [MethodImpl(256 | 512)]
-    public static int_mt8 up2pow2([This] int_mt8 a)
+    public static uint_mt up2pow2([This] uint_mt a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector));
     }
 }
 
-#endregion // int_mt8
-#region int_mt16
+#endregion // uint_mt
+#region long_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32_mt16 isPow2([This] int_mt16 a)
+    public static b64_mt isPow2([This] long_mt a)
     {
-        return ((a & (a - int_mt16.One)) == default) & (a > default(int_mt16));
+        return ((a & (a - long_mt.One)) == default) & (a > default(long_mt));
     }
 
     [MethodImpl(256 | 512)]
-    public static int_mt16 up2pow2([This] int_mt16 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector));
-    }
-}
-
-#endregion // int_mt16
-#region uint_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt4 isPow2([This] uint_mt4 a)
-    {
-        return ((a & (a - uint_mt4.One)) == default) & (a != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 up2pow2([This] uint_mt4 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector));
-    }
-}
-
-#endregion // uint_mt4
-#region uint_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt8 isPow2([This] uint_mt8 a)
-    {
-        return ((a & (a - uint_mt8.One)) == default) & (a != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 up2pow2([This] uint_mt8 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector));
-    }
-}
-
-#endregion // uint_mt8
-#region uint_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt16 isPow2([This] uint_mt16 a)
-    {
-        return ((a & (a - uint_mt16.One)) == default) & (a != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 up2pow2([This] uint_mt16 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector));
-    }
-}
-
-#endregion // uint_mt16
-#region long_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt4 isPow2([This] long_mt4 a)
-    {
-        return ((a & (a - long_mt4.One)) == default) & (a > default(long_mt4));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 up2pow2([This] long_mt4 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector));
-    }
-}
-
-#endregion // long_mt4
-#region long_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 isPow2([This] long_mt8 a)
-    {
-        return ((a & (a - long_mt8.One)) == default) & (a > default(long_mt8));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 up2pow2([This] long_mt8 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector));
-    }
-}
-
-#endregion // long_mt8
-#region long_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 isPow2([This] long_mt16 a)
-    {
-        return ((a & (a - long_mt16.One)) == default) & (a > default(long_mt16));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 up2pow2([This] long_mt16 a)
+    public static long_mt up2pow2([This] long_mt a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector0), simd.RoundUpToPowerOf2(a.vector1));
     }
 }
 
-#endregion // long_mt16
-#region ulong_mt4
+#endregion // long_mt
+#region ulong_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static b64_mt4 isPow2([This] ulong_mt4 a)
+    public static b64_mt isPow2([This] ulong_mt a)
     {
-        return ((a & (a - ulong_mt4.One)) == default) & (a != default);
+        return ((a & (a - ulong_mt.One)) == default) & (a != default);
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt4 up2pow2([This] ulong_mt4 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector));
-    }
-}
-
-#endregion // ulong_mt4
-#region ulong_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt8 isPow2([This] ulong_mt8 a)
-    {
-        return ((a & (a - ulong_mt8.One)) == default) & (a != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 up2pow2([This] ulong_mt8 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector));
-    }
-}
-
-#endregion // ulong_mt8
-#region ulong_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt16 isPow2([This] ulong_mt16 a)
-    {
-        return ((a & (a - ulong_mt16.One)) == default) & (a != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 up2pow2([This] ulong_mt16 a)
+    public static ulong_mt up2pow2([This] ulong_mt a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector0), simd.RoundUpToPowerOf2(a.vector1));
     }
 }
 
-#endregion // ulong_mt16
+#endregion // ulong_mt

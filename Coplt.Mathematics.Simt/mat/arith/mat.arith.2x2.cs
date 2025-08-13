@@ -2,12 +2,12 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float2x2_mt4
+#region float2x2_mt
 
-public partial struct float2x2_mt4
+public partial struct float2x2_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2x2_mt4 Rotate(float_mt4 angle)
+    public static float2x2_mt Rotate(float_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -17,19 +17,19 @@ public partial struct float2x2_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public static float2x2_mt4 Scale(float_mt4 s) => new(
+    public static float2x2_mt Scale(float_mt s) => new(
         s,   default,
         default, s
     );
 
     [MethodImpl(256 | 512)]
-    public static float2x2_mt4 Scale(float_mt4 x, float_mt4 y) => new(
+    public static float2x2_mt Scale(float_mt x, float_mt y) => new(
         x,   default,
         default, y
     );
 
     [MethodImpl(256 | 512)]
-    public static float2x2_mt4 Scale(float2_mt4 v) => new(
+    public static float2x2_mt Scale(float2_mt v) => new(
         v.x,   default,
         default, v.y
     );
@@ -38,11 +38,11 @@ public partial struct float2x2_mt4
 [Ex]
 public static partial class math_mt
 {
-    /// <summary>Returns the determinant of a float2x2_mt4 matrix</summary>
+    /// <summary>Returns the determinant of a float2x2_mt matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float2x2_mt4 inverse([This] float2x2_mt4 m)
+    public static float2x2_mt inverse([This] float2x2_mt m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -52,11 +52,11 @@ public static partial class math_mt
         // var det = a * d - b * c;
         var det = fsm(a * d, b, c);
 
-        return new float2x2_mt4(d, -b, -c, a) * (1.0f / det);
+        return new float2x2_mt(d, -b, -c, a) * (1.0f / det);
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 determinant([This] float2x2_mt4 m)
+    public static float_mt determinant([This] float2x2_mt m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -68,14 +68,14 @@ public static partial class math_mt
     }
 }
 
-#endregion // float2x2_mt4
+#endregion // float2x2_mt
 
-#region float2x2_mt8
+#region double2x2_mt
 
-public partial struct float2x2_mt8
+public partial struct double2x2_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2x2_mt8 Rotate(float_mt8 angle)
+    public static double2x2_mt Rotate(double_mt angle)
     {
         angle.sincos(out var s, out var c);
         return new(
@@ -85,19 +85,19 @@ public partial struct float2x2_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public static float2x2_mt8 Scale(float_mt8 s) => new(
+    public static double2x2_mt Scale(double_mt s) => new(
         s,   default,
         default, s
     );
 
     [MethodImpl(256 | 512)]
-    public static float2x2_mt8 Scale(float_mt8 x, float_mt8 y) => new(
+    public static double2x2_mt Scale(double_mt x, double_mt y) => new(
         x,   default,
         default, y
     );
 
     [MethodImpl(256 | 512)]
-    public static float2x2_mt8 Scale(float2_mt8 v) => new(
+    public static double2x2_mt Scale(double2_mt v) => new(
         v.x,   default,
         default, v.y
     );
@@ -106,11 +106,11 @@ public partial struct float2x2_mt8
 [Ex]
 public static partial class math_mt
 {
-    /// <summary>Returns the determinant of a float2x2_mt8 matrix</summary>
+    /// <summary>Returns the determinant of a double2x2_mt matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float2x2_mt8 inverse([This] float2x2_mt8 m)
+    public static double2x2_mt inverse([This] double2x2_mt m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -120,11 +120,11 @@ public static partial class math_mt
         // var det = a * d - b * c;
         var det = fsm(a * d, b, c);
 
-        return new float2x2_mt8(d, -b, -c, a) * (1.0f / det);
+        return new double2x2_mt(d, -b, -c, a) * (1.0 / det);
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 determinant([This] float2x2_mt8 m)
+    public static double_mt determinant([This] double2x2_mt m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -136,298 +136,26 @@ public static partial class math_mt
     }
 }
 
-#endregion // float2x2_mt8
+#endregion // double2x2_mt
 
-#region float2x2_mt16
+#region int2x2_mt
 
-public partial struct float2x2_mt16
+public partial struct int2x2_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2x2_mt16 Rotate(float_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c, -s,
-            s,  c
-        );
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float2x2_mt16 Scale(float_mt16 s) => new(
+    public static int2x2_mt Scale(int_mt s) => new(
         s,   default,
         default, s
     );
 
     [MethodImpl(256 | 512)]
-    public static float2x2_mt16 Scale(float_mt16 x, float_mt16 y) => new(
+    public static int2x2_mt Scale(int_mt x, int_mt y) => new(
         x,   default,
         default, y
     );
 
     [MethodImpl(256 | 512)]
-    public static float2x2_mt16 Scale(float2_mt16 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    /// <summary>Returns the determinant of a float2x2_mt16 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static float2x2_mt16 inverse([This] float2x2_mt16 m)
-    {
-        var a = m.c0.x;
-        var b = m.c1.x;
-        var c = m.c0.y;
-        var d = m.c1.y;
-
-        // var det = a * d - b * c;
-        var det = fsm(a * d, b, c);
-
-        return new float2x2_mt16(d, -b, -c, a) * (1.0f / det);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 determinant([This] float2x2_mt16 m)
-    {
-        var a = m.c0.x;
-        var b = m.c1.x;
-        var c = m.c0.y;
-        var d = m.c1.y;
-
-        // return a * d - b * c;
-        return fsm(a * d, b, c);
-    }
-}
-
-#endregion // float2x2_mt16
-
-#region double2x2_mt4
-
-public partial struct double2x2_mt4
-{
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt4 Rotate(double_mt4 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c, -s,
-            s,  c
-        );
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt4 Scale(double_mt4 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt4 Scale(double_mt4 x, double_mt4 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt4 Scale(double2_mt4 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    /// <summary>Returns the determinant of a double2x2_mt4 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt4 inverse([This] double2x2_mt4 m)
-    {
-        var a = m.c0.x;
-        var b = m.c1.x;
-        var c = m.c0.y;
-        var d = m.c1.y;
-
-        // var det = a * d - b * c;
-        var det = fsm(a * d, b, c);
-
-        return new double2x2_mt4(d, -b, -c, a) * (1.0 / det);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 determinant([This] double2x2_mt4 m)
-    {
-        var a = m.c0.x;
-        var b = m.c1.x;
-        var c = m.c0.y;
-        var d = m.c1.y;
-
-        // return a * d - b * c;
-        return fsm(a * d, b, c);
-    }
-}
-
-#endregion // double2x2_mt4
-
-#region double2x2_mt8
-
-public partial struct double2x2_mt8
-{
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt8 Rotate(double_mt8 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c, -s,
-            s,  c
-        );
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt8 Scale(double_mt8 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt8 Scale(double_mt8 x, double_mt8 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt8 Scale(double2_mt8 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    /// <summary>Returns the determinant of a double2x2_mt8 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt8 inverse([This] double2x2_mt8 m)
-    {
-        var a = m.c0.x;
-        var b = m.c1.x;
-        var c = m.c0.y;
-        var d = m.c1.y;
-
-        // var det = a * d - b * c;
-        var det = fsm(a * d, b, c);
-
-        return new double2x2_mt8(d, -b, -c, a) * (1.0 / det);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 determinant([This] double2x2_mt8 m)
-    {
-        var a = m.c0.x;
-        var b = m.c1.x;
-        var c = m.c0.y;
-        var d = m.c1.y;
-
-        // return a * d - b * c;
-        return fsm(a * d, b, c);
-    }
-}
-
-#endregion // double2x2_mt8
-
-#region double2x2_mt16
-
-public partial struct double2x2_mt16
-{
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt16 Rotate(double_mt16 angle)
-    {
-        angle.sincos(out var s, out var c);
-        return new(
-            c, -s,
-            s,  c
-        );
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt16 Scale(double_mt16 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt16 Scale(double_mt16 x, double_mt16 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt16 Scale(double2_mt16 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-    /// <summary>Returns the determinant of a double2x2_mt16 matrix</summary>
-    /// <param name="m">Matrix to use when computing determinant</param>
-    /// <returns>The determinant of the matrix</returns>
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt16 inverse([This] double2x2_mt16 m)
-    {
-        var a = m.c0.x;
-        var b = m.c1.x;
-        var c = m.c0.y;
-        var d = m.c1.y;
-
-        // var det = a * d - b * c;
-        var det = fsm(a * d, b, c);
-
-        return new double2x2_mt16(d, -b, -c, a) * (1.0 / det);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 determinant([This] double2x2_mt16 m)
-    {
-        var a = m.c0.x;
-        var b = m.c1.x;
-        var c = m.c0.y;
-        var d = m.c1.y;
-
-        // return a * d - b * c;
-        return fsm(a * d, b, c);
-    }
-}
-
-#endregion // double2x2_mt16
-
-#region int2x2_mt4
-
-public partial struct int2x2_mt4
-{
-    [MethodImpl(256 | 512)]
-    public static int2x2_mt4 Scale(int_mt4 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static int2x2_mt4 Scale(int_mt4 x, int_mt4 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static int2x2_mt4 Scale(int2_mt4 v) => new(
+    public static int2x2_mt Scale(int2_mt v) => new(
         v.x,   default,
         default, v.y
     );
@@ -438,26 +166,26 @@ public static partial class math_mt
 {
 }
 
-#endregion // int2x2_mt4
+#endregion // int2x2_mt
 
-#region int2x2_mt8
+#region uint2x2_mt
 
-public partial struct int2x2_mt8
+public partial struct uint2x2_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2x2_mt8 Scale(int_mt8 s) => new(
+    public static uint2x2_mt Scale(uint_mt s) => new(
         s,   default,
         default, s
     );
 
     [MethodImpl(256 | 512)]
-    public static int2x2_mt8 Scale(int_mt8 x, int_mt8 y) => new(
+    public static uint2x2_mt Scale(uint_mt x, uint_mt y) => new(
         x,   default,
         default, y
     );
 
     [MethodImpl(256 | 512)]
-    public static int2x2_mt8 Scale(int2_mt8 v) => new(
+    public static uint2x2_mt Scale(uint2_mt v) => new(
         v.x,   default,
         default, v.y
     );
@@ -468,26 +196,26 @@ public static partial class math_mt
 {
 }
 
-#endregion // int2x2_mt8
+#endregion // uint2x2_mt
 
-#region int2x2_mt16
+#region long2x2_mt
 
-public partial struct int2x2_mt16
+public partial struct long2x2_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2x2_mt16 Scale(int_mt16 s) => new(
+    public static long2x2_mt Scale(long_mt s) => new(
         s,   default,
         default, s
     );
 
     [MethodImpl(256 | 512)]
-    public static int2x2_mt16 Scale(int_mt16 x, int_mt16 y) => new(
+    public static long2x2_mt Scale(long_mt x, long_mt y) => new(
         x,   default,
         default, y
     );
 
     [MethodImpl(256 | 512)]
-    public static int2x2_mt16 Scale(int2_mt16 v) => new(
+    public static long2x2_mt Scale(long2_mt v) => new(
         v.x,   default,
         default, v.y
     );
@@ -498,26 +226,26 @@ public static partial class math_mt
 {
 }
 
-#endregion // int2x2_mt16
+#endregion // long2x2_mt
 
-#region uint2x2_mt4
+#region ulong2x2_mt
 
-public partial struct uint2x2_mt4
+public partial struct ulong2x2_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint2x2_mt4 Scale(uint_mt4 s) => new(
+    public static ulong2x2_mt Scale(ulong_mt s) => new(
         s,   default,
         default, s
     );
 
     [MethodImpl(256 | 512)]
-    public static uint2x2_mt4 Scale(uint_mt4 x, uint_mt4 y) => new(
+    public static ulong2x2_mt Scale(ulong_mt x, ulong_mt y) => new(
         x,   default,
         default, y
     );
 
     [MethodImpl(256 | 512)]
-    public static uint2x2_mt4 Scale(uint2_mt4 v) => new(
+    public static ulong2x2_mt Scale(ulong2_mt v) => new(
         v.x,   default,
         default, v.y
     );
@@ -528,244 +256,4 @@ public static partial class math_mt
 {
 }
 
-#endregion // uint2x2_mt4
-
-#region uint2x2_mt8
-
-public partial struct uint2x2_mt8
-{
-    [MethodImpl(256 | 512)]
-    public static uint2x2_mt8 Scale(uint_mt8 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static uint2x2_mt8 Scale(uint_mt8 x, uint_mt8 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static uint2x2_mt8 Scale(uint2_mt8 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // uint2x2_mt8
-
-#region uint2x2_mt16
-
-public partial struct uint2x2_mt16
-{
-    [MethodImpl(256 | 512)]
-    public static uint2x2_mt16 Scale(uint_mt16 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static uint2x2_mt16 Scale(uint_mt16 x, uint_mt16 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static uint2x2_mt16 Scale(uint2_mt16 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // uint2x2_mt16
-
-#region long2x2_mt4
-
-public partial struct long2x2_mt4
-{
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt4 Scale(long_mt4 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt4 Scale(long_mt4 x, long_mt4 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt4 Scale(long2_mt4 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // long2x2_mt4
-
-#region long2x2_mt8
-
-public partial struct long2x2_mt8
-{
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt8 Scale(long_mt8 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt8 Scale(long_mt8 x, long_mt8 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt8 Scale(long2_mt8 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // long2x2_mt8
-
-#region long2x2_mt16
-
-public partial struct long2x2_mt16
-{
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt16 Scale(long_mt16 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt16 Scale(long_mt16 x, long_mt16 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt16 Scale(long2_mt16 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // long2x2_mt16
-
-#region ulong2x2_mt4
-
-public partial struct ulong2x2_mt4
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt4 Scale(ulong_mt4 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt4 Scale(ulong_mt4 x, ulong_mt4 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt4 Scale(ulong2_mt4 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // ulong2x2_mt4
-
-#region ulong2x2_mt8
-
-public partial struct ulong2x2_mt8
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt8 Scale(ulong_mt8 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt8 Scale(ulong_mt8 x, ulong_mt8 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt8 Scale(ulong2_mt8 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // ulong2x2_mt8
-
-#region ulong2x2_mt16
-
-public partial struct ulong2x2_mt16
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt16 Scale(ulong_mt16 s) => new(
-        s,   default,
-        default, s
-    );
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt16 Scale(ulong_mt16 x, ulong_mt16 y) => new(
-        x,   default,
-        default, y
-    );
-
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt16 Scale(ulong2_mt16 v) => new(
-        v.x,   default,
-        default, v.y
-    );
-}
-
-[Ex]
-public static partial class math_mt
-{
-}
-
-#endregion // ulong2x2_mt16
+#endregion // ulong2x2_mt

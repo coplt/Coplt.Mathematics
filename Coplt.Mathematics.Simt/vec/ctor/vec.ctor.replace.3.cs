@@ -2,7 +2,7 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float3_mt4
+#region float3_mt
 
 public static partial class math_mt_ex
 {
@@ -11,7 +11,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Rx(this float3_mt4 self, float_mt4 x)
+    public static float3_mt Rx(this float3_mt self, float_mt x)
     {
         self.x = x;
         return self;
@@ -22,7 +22,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Ry(this float3_mt4 self, float_mt4 y)
+    public static float3_mt Ry(this float3_mt self, float_mt y)
     {
         self.y = y;
         return self;
@@ -33,7 +33,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Rz(this float3_mt4 self, float_mt4 z)
+    public static float3_mt Rz(this float3_mt self, float_mt z)
     {
         self.z = z;
         return self;
@@ -44,7 +44,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Rxy(this float3_mt4 self, float2_mt4 xy)
+    public static float3_mt Rxy(this float3_mt self, float2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -55,7 +55,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Ryz(this float3_mt4 self, float2_mt4 yz)
+    public static float3_mt Ryz(this float3_mt self, float2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -66,16 +66,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Rxz(this float3_mt4 self, float2_mt4 xz)
+    public static float3_mt Rxz(this float3_mt self, float2_mt xz)
     {
         self.xz = xz;
         return self;
     }
 }
 
-#endregion // float3_mt4
+#endregion // float3_mt
 
-#region float3_mt8
+#region double3_mt
 
 public static partial class math_mt_ex
 {
@@ -84,7 +84,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Rx(this float3_mt8 self, float_mt8 x)
+    public static double3_mt Rx(this double3_mt self, double_mt x)
     {
         self.x = x;
         return self;
@@ -95,7 +95,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Ry(this float3_mt8 self, float_mt8 y)
+    public static double3_mt Ry(this double3_mt self, double_mt y)
     {
         self.y = y;
         return self;
@@ -106,7 +106,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Rz(this float3_mt8 self, float_mt8 z)
+    public static double3_mt Rz(this double3_mt self, double_mt z)
     {
         self.z = z;
         return self;
@@ -117,7 +117,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Rxy(this float3_mt8 self, float2_mt8 xy)
+    public static double3_mt Rxy(this double3_mt self, double2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -128,7 +128,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Ryz(this float3_mt8 self, float2_mt8 yz)
+    public static double3_mt Ryz(this double3_mt self, double2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -139,16 +139,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Rxz(this float3_mt8 self, float2_mt8 xz)
+    public static double3_mt Rxz(this double3_mt self, double2_mt xz)
     {
         self.xz = xz;
         return self;
     }
 }
 
-#endregion // float3_mt8
+#endregion // double3_mt
 
-#region float3_mt16
+#region int3_mt
 
 public static partial class math_mt_ex
 {
@@ -157,7 +157,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Rx(this float3_mt16 self, float_mt16 x)
+    public static int3_mt Rx(this int3_mt self, int_mt x)
     {
         self.x = x;
         return self;
@@ -168,7 +168,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Ry(this float3_mt16 self, float_mt16 y)
+    public static int3_mt Ry(this int3_mt self, int_mt y)
     {
         self.y = y;
         return self;
@@ -179,7 +179,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Rz(this float3_mt16 self, float_mt16 z)
+    public static int3_mt Rz(this int3_mt self, int_mt z)
     {
         self.z = z;
         return self;
@@ -190,7 +190,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Rxy(this float3_mt16 self, float2_mt16 xy)
+    public static int3_mt Rxy(this int3_mt self, int2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -201,7 +201,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Ryz(this float3_mt16 self, float2_mt16 yz)
+    public static int3_mt Ryz(this int3_mt self, int2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -212,16 +212,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Rxz(this float3_mt16 self, float2_mt16 xz)
+    public static int3_mt Rxz(this int3_mt self, int2_mt xz)
     {
         self.xz = xz;
         return self;
     }
 }
 
-#endregion // float3_mt16
+#endregion // int3_mt
 
-#region double3_mt4
+#region uint3_mt
 
 public static partial class math_mt_ex
 {
@@ -230,7 +230,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Rx(this double3_mt4 self, double_mt4 x)
+    public static uint3_mt Rx(this uint3_mt self, uint_mt x)
     {
         self.x = x;
         return self;
@@ -241,7 +241,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Ry(this double3_mt4 self, double_mt4 y)
+    public static uint3_mt Ry(this uint3_mt self, uint_mt y)
     {
         self.y = y;
         return self;
@@ -252,7 +252,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Rz(this double3_mt4 self, double_mt4 z)
+    public static uint3_mt Rz(this uint3_mt self, uint_mt z)
     {
         self.z = z;
         return self;
@@ -263,7 +263,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Rxy(this double3_mt4 self, double2_mt4 xy)
+    public static uint3_mt Rxy(this uint3_mt self, uint2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -274,7 +274,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Ryz(this double3_mt4 self, double2_mt4 yz)
+    public static uint3_mt Ryz(this uint3_mt self, uint2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -285,16 +285,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Rxz(this double3_mt4 self, double2_mt4 xz)
+    public static uint3_mt Rxz(this uint3_mt self, uint2_mt xz)
     {
         self.xz = xz;
         return self;
     }
 }
 
-#endregion // double3_mt4
+#endregion // uint3_mt
 
-#region double3_mt8
+#region long3_mt
 
 public static partial class math_mt_ex
 {
@@ -303,7 +303,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Rx(this double3_mt8 self, double_mt8 x)
+    public static long3_mt Rx(this long3_mt self, long_mt x)
     {
         self.x = x;
         return self;
@@ -314,7 +314,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Ry(this double3_mt8 self, double_mt8 y)
+    public static long3_mt Ry(this long3_mt self, long_mt y)
     {
         self.y = y;
         return self;
@@ -325,7 +325,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Rz(this double3_mt8 self, double_mt8 z)
+    public static long3_mt Rz(this long3_mt self, long_mt z)
     {
         self.z = z;
         return self;
@@ -336,7 +336,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Rxy(this double3_mt8 self, double2_mt8 xy)
+    public static long3_mt Rxy(this long3_mt self, long2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -347,7 +347,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Ryz(this double3_mt8 self, double2_mt8 yz)
+    public static long3_mt Ryz(this long3_mt self, long2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -358,16 +358,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Rxz(this double3_mt8 self, double2_mt8 xz)
+    public static long3_mt Rxz(this long3_mt self, long2_mt xz)
     {
         self.xz = xz;
         return self;
     }
 }
 
-#endregion // double3_mt8
+#endregion // long3_mt
 
-#region double3_mt16
+#region ulong3_mt
 
 public static partial class math_mt_ex
 {
@@ -376,7 +376,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Rx(this double3_mt16 self, double_mt16 x)
+    public static ulong3_mt Rx(this ulong3_mt self, ulong_mt x)
     {
         self.x = x;
         return self;
@@ -387,7 +387,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Ry(this double3_mt16 self, double_mt16 y)
+    public static ulong3_mt Ry(this ulong3_mt self, ulong_mt y)
     {
         self.y = y;
         return self;
@@ -398,7 +398,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Rz(this double3_mt16 self, double_mt16 z)
+    public static ulong3_mt Rz(this ulong3_mt self, ulong_mt z)
     {
         self.z = z;
         return self;
@@ -409,7 +409,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Rxy(this double3_mt16 self, double2_mt16 xy)
+    public static ulong3_mt Rxy(this ulong3_mt self, ulong2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -420,7 +420,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Ryz(this double3_mt16 self, double2_mt16 yz)
+    public static ulong3_mt Ryz(this ulong3_mt self, ulong2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -431,16 +431,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Rxz(this double3_mt16 self, double2_mt16 xz)
+    public static ulong3_mt Rxz(this ulong3_mt self, ulong2_mt xz)
     {
         self.xz = xz;
         return self;
     }
 }
 
-#endregion // double3_mt16
+#endregion // ulong3_mt
 
-#region int3_mt4
+#region b32v3_mt
 
 public static partial class math_mt_ex
 {
@@ -449,7 +449,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Rx(this int3_mt4 self, int_mt4 x)
+    public static b32v3_mt Rx(this b32v3_mt self, b32_mt x)
     {
         self.x = x;
         return self;
@@ -460,7 +460,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Ry(this int3_mt4 self, int_mt4 y)
+    public static b32v3_mt Ry(this b32v3_mt self, b32_mt y)
     {
         self.y = y;
         return self;
@@ -471,7 +471,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Rz(this int3_mt4 self, int_mt4 z)
+    public static b32v3_mt Rz(this b32v3_mt self, b32_mt z)
     {
         self.z = z;
         return self;
@@ -482,7 +482,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Rxy(this int3_mt4 self, int2_mt4 xy)
+    public static b32v3_mt Rxy(this b32v3_mt self, b32v2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -493,7 +493,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Ryz(this int3_mt4 self, int2_mt4 yz)
+    public static b32v3_mt Ryz(this b32v3_mt self, b32v2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -504,16 +504,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Rxz(this int3_mt4 self, int2_mt4 xz)
+    public static b32v3_mt Rxz(this b32v3_mt self, b32v2_mt xz)
     {
         self.xz = xz;
         return self;
     }
 }
 
-#endregion // int3_mt4
+#endregion // b32v3_mt
 
-#region int3_mt8
+#region b64v3_mt
 
 public static partial class math_mt_ex
 {
@@ -522,7 +522,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Rx(this int3_mt8 self, int_mt8 x)
+    public static b64v3_mt Rx(this b64v3_mt self, b64_mt x)
     {
         self.x = x;
         return self;
@@ -533,7 +533,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Ry(this int3_mt8 self, int_mt8 y)
+    public static b64v3_mt Ry(this b64v3_mt self, b64_mt y)
     {
         self.y = y;
         return self;
@@ -544,7 +544,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Rz(this int3_mt8 self, int_mt8 z)
+    public static b64v3_mt Rz(this b64v3_mt self, b64_mt z)
     {
         self.z = z;
         return self;
@@ -555,7 +555,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Rxy(this int3_mt8 self, int2_mt8 xy)
+    public static b64v3_mt Rxy(this b64v3_mt self, b64v2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -566,7 +566,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Ryz(this int3_mt8 self, int2_mt8 yz)
+    public static b64v3_mt Ryz(this b64v3_mt self, b64v2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -577,1179 +577,11 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Rxz(this int3_mt8 self, int2_mt8 xz)
+    public static b64v3_mt Rxz(this b64v3_mt self, b64v2_mt xz)
     {
         self.xz = xz;
         return self;
     }
 }
 
-#endregion // int3_mt8
-
-#region int3_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 Rx(this int3_mt16 self, int_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 Ry(this int3_mt16 self, int_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 Rz(this int3_mt16 self, int_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 Rxy(this int3_mt16 self, int2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 Ryz(this int3_mt16 self, int2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 Rxz(this int3_mt16 self, int2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // int3_mt16
-
-#region uint3_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 Rx(this uint3_mt4 self, uint_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 Ry(this uint3_mt4 self, uint_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 Rz(this uint3_mt4 self, uint_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 Rxy(this uint3_mt4 self, uint2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 Ryz(this uint3_mt4 self, uint2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 Rxz(this uint3_mt4 self, uint2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // uint3_mt4
-
-#region uint3_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 Rx(this uint3_mt8 self, uint_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 Ry(this uint3_mt8 self, uint_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 Rz(this uint3_mt8 self, uint_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 Rxy(this uint3_mt8 self, uint2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 Ryz(this uint3_mt8 self, uint2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 Rxz(this uint3_mt8 self, uint2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // uint3_mt8
-
-#region uint3_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 Rx(this uint3_mt16 self, uint_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 Ry(this uint3_mt16 self, uint_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 Rz(this uint3_mt16 self, uint_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 Rxy(this uint3_mt16 self, uint2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 Ryz(this uint3_mt16 self, uint2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 Rxz(this uint3_mt16 self, uint2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // uint3_mt16
-
-#region long3_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 Rx(this long3_mt4 self, long_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 Ry(this long3_mt4 self, long_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 Rz(this long3_mt4 self, long_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 Rxy(this long3_mt4 self, long2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 Ryz(this long3_mt4 self, long2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 Rxz(this long3_mt4 self, long2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // long3_mt4
-
-#region long3_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 Rx(this long3_mt8 self, long_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 Ry(this long3_mt8 self, long_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 Rz(this long3_mt8 self, long_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 Rxy(this long3_mt8 self, long2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 Ryz(this long3_mt8 self, long2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 Rxz(this long3_mt8 self, long2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // long3_mt8
-
-#region long3_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 Rx(this long3_mt16 self, long_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 Ry(this long3_mt16 self, long_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 Rz(this long3_mt16 self, long_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 Rxy(this long3_mt16 self, long2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 Ryz(this long3_mt16 self, long2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 Rxz(this long3_mt16 self, long2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // long3_mt16
-
-#region ulong3_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Rx(this ulong3_mt4 self, ulong_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Ry(this ulong3_mt4 self, ulong_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Rz(this ulong3_mt4 self, ulong_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Rxy(this ulong3_mt4 self, ulong2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Ryz(this ulong3_mt4 self, ulong2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Rxz(this ulong3_mt4 self, ulong2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // ulong3_mt4
-
-#region ulong3_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Rx(this ulong3_mt8 self, ulong_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Ry(this ulong3_mt8 self, ulong_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Rz(this ulong3_mt8 self, ulong_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Rxy(this ulong3_mt8 self, ulong2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Ryz(this ulong3_mt8 self, ulong2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Rxz(this ulong3_mt8 self, ulong2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // ulong3_mt8
-
-#region ulong3_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Rx(this ulong3_mt16 self, ulong_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Ry(this ulong3_mt16 self, ulong_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Rz(this ulong3_mt16 self, ulong_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Rxy(this ulong3_mt16 self, ulong2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Ryz(this ulong3_mt16 self, ulong2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Rxz(this ulong3_mt16 self, ulong2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // ulong3_mt16
-
-#region b32v3_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Rx(this b32v3_mt4 self, b32_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Ry(this b32v3_mt4 self, b32_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Rz(this b32v3_mt4 self, b32_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Rxy(this b32v3_mt4 self, b32v2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Ryz(this b32v3_mt4 self, b32v2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Rxz(this b32v3_mt4 self, b32v2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // b32v3_mt4
-
-#region b32v3_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Rx(this b32v3_mt8 self, b32_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Ry(this b32v3_mt8 self, b32_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Rz(this b32v3_mt8 self, b32_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Rxy(this b32v3_mt8 self, b32v2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Ryz(this b32v3_mt8 self, b32v2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Rxz(this b32v3_mt8 self, b32v2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // b32v3_mt8
-
-#region b32v3_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Rx(this b32v3_mt16 self, b32_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Ry(this b32v3_mt16 self, b32_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Rz(this b32v3_mt16 self, b32_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Rxy(this b32v3_mt16 self, b32v2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Ryz(this b32v3_mt16 self, b32v2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Rxz(this b32v3_mt16 self, b32v2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // b32v3_mt16
-
-#region b64v3_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Rx(this b64v3_mt4 self, b64_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Ry(this b64v3_mt4 self, b64_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Rz(this b64v3_mt4 self, b64_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Rxy(this b64v3_mt4 self, b64v2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Ryz(this b64v3_mt4 self, b64v2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Rxz(this b64v3_mt4 self, b64v2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // b64v3_mt4
-
-#region b64v3_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Rx(this b64v3_mt8 self, b64_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Ry(this b64v3_mt8 self, b64_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Rz(this b64v3_mt8 self, b64_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Rxy(this b64v3_mt8 self, b64v2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Ryz(this b64v3_mt8 self, b64v2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Rxz(this b64v3_mt8 self, b64v2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // b64v3_mt8
-
-#region b64v3_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z) => (X, y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Rx(this b64v3_mt16 self, b64_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z) => (x, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Ry(this b64v3_mt16 self, b64_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z) => (x, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Rz(this b64v3_mt16 self, b64_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z) => (X, Y, z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Rxy(this b64v3_mt16 self, b64v2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z) => (x, Y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Ryz(this b64v3_mt16 self, b64v2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z) => (X, y, Z)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Rxz(this b64v3_mt16 self, b64v2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-}
-
-#endregion // b64v3_mt16
+#endregion // b64v3_mt

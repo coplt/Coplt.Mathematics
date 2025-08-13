@@ -2,7 +2,7 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float2_mt4
+#region float2_mt
 
 public static partial class math_mt_ex
 {
@@ -11,7 +11,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y) => (X, y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float2_mt4 Rx(this float2_mt4 self, float_mt4 x)
+    public static float2_mt Rx(this float2_mt self, float_mt x)
     {
         self.x = x;
         return self;
@@ -22,16 +22,16 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y) => (x, Y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float2_mt4 Ry(this float2_mt4 self, float_mt4 y)
+    public static float2_mt Ry(this float2_mt self, float_mt y)
     {
         self.y = y;
         return self;
     }
 }
 
-#endregion // float2_mt4
+#endregion // float2_mt
 
-#region float2_mt8
+#region double2_mt
 
 public static partial class math_mt_ex
 {
@@ -40,7 +40,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y) => (X, y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float2_mt8 Rx(this float2_mt8 self, float_mt8 x)
+    public static double2_mt Rx(this double2_mt self, double_mt x)
     {
         self.x = x;
         return self;
@@ -51,16 +51,16 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y) => (x, Y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float2_mt8 Ry(this float2_mt8 self, float_mt8 y)
+    public static double2_mt Ry(this double2_mt self, double_mt y)
     {
         self.y = y;
         return self;
     }
 }
 
-#endregion // float2_mt8
+#endregion // double2_mt
 
-#region float2_mt16
+#region int2_mt
 
 public static partial class math_mt_ex
 {
@@ -69,7 +69,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y) => (X, y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float2_mt16 Rx(this float2_mt16 self, float_mt16 x)
+    public static int2_mt Rx(this int2_mt self, int_mt x)
     {
         self.x = x;
         return self;
@@ -80,16 +80,16 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y) => (x, Y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float2_mt16 Ry(this float2_mt16 self, float_mt16 y)
+    public static int2_mt Ry(this int2_mt self, int_mt y)
     {
         self.y = y;
         return self;
     }
 }
 
-#endregion // float2_mt16
+#endregion // int2_mt
 
-#region double2_mt4
+#region uint2_mt
 
 public static partial class math_mt_ex
 {
@@ -98,7 +98,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y) => (X, y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double2_mt4 Rx(this double2_mt4 self, double_mt4 x)
+    public static uint2_mt Rx(this uint2_mt self, uint_mt x)
     {
         self.x = x;
         return self;
@@ -109,16 +109,16 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y) => (x, Y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double2_mt4 Ry(this double2_mt4 self, double_mt4 y)
+    public static uint2_mt Ry(this uint2_mt self, uint_mt y)
     {
         self.y = y;
         return self;
     }
 }
 
-#endregion // double2_mt4
+#endregion // uint2_mt
 
-#region double2_mt8
+#region long2_mt
 
 public static partial class math_mt_ex
 {
@@ -127,7 +127,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y) => (X, y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double2_mt8 Rx(this double2_mt8 self, double_mt8 x)
+    public static long2_mt Rx(this long2_mt self, long_mt x)
     {
         self.x = x;
         return self;
@@ -138,16 +138,16 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y) => (x, Y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double2_mt8 Ry(this double2_mt8 self, double_mt8 y)
+    public static long2_mt Ry(this long2_mt self, long_mt y)
     {
         self.y = y;
         return self;
     }
 }
 
-#endregion // double2_mt8
+#endregion // long2_mt
 
-#region double2_mt16
+#region ulong2_mt
 
 public static partial class math_mt_ex
 {
@@ -156,7 +156,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y) => (X, y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double2_mt16 Rx(this double2_mt16 self, double_mt16 x)
+    public static ulong2_mt Rx(this ulong2_mt self, ulong_mt x)
     {
         self.x = x;
         return self;
@@ -167,16 +167,16 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y) => (x, Y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double2_mt16 Ry(this double2_mt16 self, double_mt16 y)
+    public static ulong2_mt Ry(this ulong2_mt self, ulong_mt y)
     {
         self.y = y;
         return self;
     }
 }
 
-#endregion // double2_mt16
+#endregion // ulong2_mt
 
-#region int2_mt4
+#region b32v2_mt
 
 public static partial class math_mt_ex
 {
@@ -185,7 +185,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y) => (X, y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int2_mt4 Rx(this int2_mt4 self, int_mt4 x)
+    public static b32v2_mt Rx(this b32v2_mt self, b32_mt x)
     {
         self.x = x;
         return self;
@@ -196,16 +196,16 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y) => (x, Y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int2_mt4 Ry(this int2_mt4 self, int_mt4 y)
+    public static b32v2_mt Ry(this b32v2_mt self, b32_mt y)
     {
         self.y = y;
         return self;
     }
 }
 
-#endregion // int2_mt4
+#endregion // b32v2_mt
 
-#region int2_mt8
+#region b64v2_mt
 
 public static partial class math_mt_ex
 {
@@ -214,7 +214,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y) => (X, y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int2_mt8 Rx(this int2_mt8 self, int_mt8 x)
+    public static b64v2_mt Rx(this b64v2_mt self, b64_mt x)
     {
         self.x = x;
         return self;
@@ -225,475 +225,11 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y) => (x, Y)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int2_mt8 Ry(this int2_mt8 self, int_mt8 y)
+    public static b64v2_mt Ry(this b64v2_mt self, b64_mt y)
     {
         self.y = y;
         return self;
     }
 }
 
-#endregion // int2_mt8
-
-#region int2_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 Rx(this int2_mt16 self, int_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 Ry(this int2_mt16 self, int_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // int2_mt16
-
-#region uint2_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 Rx(this uint2_mt4 self, uint_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 Ry(this uint2_mt4 self, uint_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // uint2_mt4
-
-#region uint2_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 Rx(this uint2_mt8 self, uint_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 Ry(this uint2_mt8 self, uint_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // uint2_mt8
-
-#region uint2_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 Rx(this uint2_mt16 self, uint_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 Ry(this uint2_mt16 self, uint_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // uint2_mt16
-
-#region long2_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 Rx(this long2_mt4 self, long_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 Ry(this long2_mt4 self, long_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // long2_mt4
-
-#region long2_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 Rx(this long2_mt8 self, long_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 Ry(this long2_mt8 self, long_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // long2_mt8
-
-#region long2_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 Rx(this long2_mt16 self, long_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 Ry(this long2_mt16 self, long_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // long2_mt16
-
-#region ulong2_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 Rx(this ulong2_mt4 self, ulong_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 Ry(this ulong2_mt4 self, ulong_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // ulong2_mt4
-
-#region ulong2_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 Rx(this ulong2_mt8 self, ulong_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 Ry(this ulong2_mt8 self, ulong_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // ulong2_mt8
-
-#region ulong2_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 Rx(this ulong2_mt16 self, ulong_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 Ry(this ulong2_mt16 self, ulong_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // ulong2_mt16
-
-#region b32v2_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 Rx(this b32v2_mt4 self, b32_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 Ry(this b32v2_mt4 self, b32_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // b32v2_mt4
-
-#region b32v2_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 Rx(this b32v2_mt8 self, b32_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 Ry(this b32v2_mt8 self, b32_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // b32v2_mt8
-
-#region b32v2_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 Rx(this b32v2_mt16 self, b32_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 Ry(this b32v2_mt16 self, b32_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // b32v2_mt16
-
-#region b64v2_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 Rx(this b64v2_mt4 self, b64_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 Ry(this b64v2_mt4 self, b64_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // b64v2_mt4
-
-#region b64v2_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 Rx(this b64v2_mt8 self, b64_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 Ry(this b64v2_mt8 self, b64_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // b64v2_mt8
-
-#region b64v2_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y) => (X, y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 Rx(this b64v2_mt16 self, b64_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y) => (x, Y)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 Ry(this b64v2_mt16 self, b64_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-}
-
-#endregion // b64v2_mt16
+#endregion // b64v2_mt

@@ -2,7 +2,7 @@
 using Coplt.Mathematics.Simt.Geometries;
 
 
-#region plane_mt4
+#region plane_mt
 
 namespace Coplt.Mathematics.Simt.Geometries
 {
@@ -14,7 +14,7 @@ namespace Coplt.Mathematics.Simt.Geometries
     /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
     /// </remarks>
     [CpuOnly]
-    public partial struct plane_mt4
+    public partial struct plane_mt
     {
         /// <summary>
         /// A plane in the form Ax + By + Cz + Dw = 0.
@@ -23,16 +23,16 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// Stores the plane coefficients A, B, C, D where (A, B, C) is a unit normal vector and D is the distance from the origin.
         /// A plane stored with a unit normal vector is called a normalized plane.
         /// </remarks>
-        public float4_mt4 normal_and_distance;
+        public float4_mt normal_and_distance;
 
         /// <summary>
         /// Get/set the normal vector of the plane.
         /// </summary>
         /// <remarks>
         /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_mt4)"/>.
+        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_mt)"/>.
         /// </remarks>
-        public float3_mt4 normal
+        public float3_mt normal
         {
             [MethodImpl(256 | 512)]
             readonly get => normal_and_distance.xyz;
@@ -45,9 +45,9 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// </summary>
         /// <remarks>
         /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_mt4)"/>.
+        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_mt)"/>.
         /// </remarks>
-        public float_mt4 distance
+        public float_mt distance
         {
             [MethodImpl(256 | 512)]
             readonly get => normal_and_distance.w;
@@ -58,7 +58,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <summary>
         /// Flips the plane so the normal points in the opposite direction.
         /// </summary>
-        public readonly plane_mt4 flipped
+        public readonly plane_mt flipped
         {
             [MethodImpl(256 | 512)]
             get => new() { normal_and_distance = -normal_and_distance };
@@ -71,7 +71,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
         /// </remarks>
         [MethodImpl(256 | 512)]
-        public plane_mt4(float4_mt4 normal_and_distance) =>
+        public plane_mt(float4_mt normal_and_distance) =>
             this.normal_and_distance = normal_and_distance;
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="coefficientC">Coefficient C from plane equation.</param>
         /// <param name="coefficientD">Coefficient D from plane equation.</param>
         [MethodImpl(256 | 512)]
-        public plane_mt4(float_mt4 coefficientA, float_mt4 coefficientB, float_mt4 coefficientC, float_mt4 coefficientD) =>
-            normal_and_distance = normalize(new float4_mt4(coefficientA, coefficientB, coefficientC, coefficientD));
+        public plane_mt(float_mt coefficientA, float_mt coefficientB, float_mt coefficientC, float_mt coefficientD) =>
+            normal_and_distance = normalize(new float4_mt(coefficientA, coefficientB, coefficientC, coefficientD));
 
         /// <summary>
         /// Constructs a plane with a normal vector and distance from the origin.
@@ -100,8 +100,8 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// A negative value moves the plane in the same direction as the normal while a positive value moves it in the opposite direction.
         /// </param>
         [MethodImpl(256 | 512)]
-        public plane_mt4(float3_mt4 normal, float_mt4 distance) =>
-            normal_and_distance = normalize(new float4_mt4(normal, distance));
+        public plane_mt(float3_mt normal, float_mt distance) =>
+            normal_and_distance = normalize(new float4_mt(normal, distance));
 
         /// <summary>
         /// Constructs a plane with a normal vector and a point that lies in the plane.
@@ -112,7 +112,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
         /// <param name="pointInPlane">A point that lies in the plane.</param>
         [MethodImpl(256 | 512)]
-        public plane_mt4(float3_mt4 normal, float3_mt4 pointInPlane) : this(normal, -normal.dot(pointInPlane)) { }
+        public plane_mt(float3_mt normal, float3_mt pointInPlane) : this(normal, -normal.dot(pointInPlane)) { }
 
         /// <summary>
         /// Constructs a plane with two vectors and a point that all lie in the plane.
@@ -124,7 +124,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="vector2InPlane">A non-zero vector that lies in the plane.  It may be any length and must not be a scalar multiple of <paramref name="vector1InPlane"/>.</param>
         /// <param name="pointInPlane">A point that lies in the plane.</param>
         [MethodImpl(256 | 512)]
-        public plane_mt4(float3_mt4 vector1InPlane, float3_mt4 vector2InPlane, float3_mt4 pointInPlane)
+        public plane_mt(float3_mt vector1InPlane, float3_mt vector2InPlane, float3_mt pointInPlane)
             : this(vector1InPlane.cross(vector2InPlane), pointInPlane) { }
 
         /// <summary>
@@ -139,8 +139,8 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// same direction as the normal while a positive value moves it in the opposite direction.</param>
         /// <returns>Normalized Plane constructed from given inputs.</returns>
         [MethodImpl(256 | 512)]
-        public static plane_mt4 CreateFromUnitNormalAndDistance(float3_mt4 unitNormal, float_mt4 distance) =>
-            new() { normal_and_distance = new float4_mt4(unitNormal, distance) };
+        public static plane_mt CreateFromUnitNormalAndDistance(float3_mt unitNormal, float_mt distance) =>
+            new() { normal_and_distance = new float4_mt(unitNormal, distance) };
 
         /// <summary>
         /// Creates a normalized Plane without normalization cost.
@@ -153,8 +153,8 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="pointInPlane">A point that lies in the plane.</param>
         /// <returns>Normalized Plane constructed from given inputs.</returns>
         [MethodImpl(256 | 512)]
-        public static plane_mt4 CreateFromUnitNormalAndPointInPlane(float3_mt4 unitNormal, float3_mt4 pointInPlane) =>
-            new() { normal_and_distance = new float4_mt4(unitNormal, -unitNormal.dot(pointInPlane)) };
+        public static plane_mt CreateFromUnitNormalAndPointInPlane(float3_mt unitNormal, float3_mt pointInPlane) =>
+            new() { normal_and_distance = new float4_mt(unitNormal, -unitNormal.dot(pointInPlane)) };
 
         /// <summary>
         /// Normalizes the plane represented by the given plane coefficients.
@@ -165,7 +165,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="planeCoefficients">Plane coefficients A, B, C, D stored in x, y, z, w (respectively).</param>
         /// <returns>Normalized plane coefficients.</returns>
         [MethodImpl(256 | 512)]
-        public static float4_mt4 normalize(float4_mt4 planeCoefficients)
+        public static float4_mt normalize(float4_mt planeCoefficients)
         {
             var recipLength = planeCoefficients.xyz.lengthsq().rsqrt();
             return planeCoefficients * recipLength;
@@ -177,7 +177,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="plane">Plane to convert.</param>
         /// <returns>A <see cref="float4"/> representing the plane.</returns>
         [MethodImpl(256 | 512)]
-        public static implicit operator float4_mt4(plane_mt4 plane) => plane.normal_and_distance;
+        public static implicit operator float4_mt(plane_mt plane) => plane.normal_and_distance;
 
         /// <summary>
         /// Get the signed distance from the point to the plane.
@@ -190,7 +190,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="point">Point to find the signed distance with.</param>
         /// <returns>Signed distance of the point from the plane.</returns>
         [MethodImpl(256 | 512)]
-        public readonly float_mt4 distance_to_point(float3_mt4 point) => normal_and_distance.dot(new float4_mt4(point, 1.0f));
+        public readonly float_mt distance_to_point(float3_mt point) => normal_and_distance.dot(new float4_mt(point, 1.0f));
 
         /// <summary>
         /// Projects the given point onto the plane.
@@ -202,7 +202,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="point">Point to project onto the plane.</param>
         /// <returns>Projected point that's inside the plane.</returns>
         [MethodImpl(256 | 512)]
-        public readonly float3_mt4 projection(float3_mt4 point) => point - normal * distance_to_point(point);
+        public readonly float3_mt projection(float3_mt point) => point - normal * distance_to_point(point);
 
         /// <summary>
         /// Ray cast to the plane
@@ -211,7 +211,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="distance">Intersection distance</param>
         /// <returns>Is intersect</returns>
         [MethodImpl(256 | 512)]
-        public readonly b32_mt4 ray_cast(ray_mt4 ray, out float_mt4 distance)
+        public readonly b32_mt ray_cast(ray_mt ray, out float_mt distance)
         {
             var normal = this.normal;
             var de_nom = normal.dot(ray.direction);
@@ -227,13 +227,13 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="point">Intersection</param>
         /// <returns>Is intersect</returns>
         [MethodImpl(256 | 512)]
-        public readonly b32_mt4 ray_cast(ray_mt4 ray, out float_mt4 distance, out float3_mt4 point)
+        public readonly b32_mt ray_cast(ray_mt ray, out float_mt distance, out float3_mt point)
         {
             var normal = this.normal;
             var de_nom = normal.dot(ray.direction);
             distance = (this.distance - normal.dot(ray.origin)) / de_nom;
             var intersects = de_nom.abs() > 0.0001f & distance >= 0.0f;
-            point = ray.point_at(distance) * math_mt.select(intersects, float3_mt4.One, default);
+            point = ray.point_at(distance) * math_mt.select(intersects, float3_mt.One, default);
             return intersects;
         }
 
@@ -243,7 +243,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="point">The point to project onto the plane.</param>
         /// <returns>A point on the plane that is closest to point.</returns>
         [MethodImpl(256 | 512)]
-        public readonly float3_mt4 closest_point(float3_mt4 point)
+        public readonly float3_mt closest_point(float3_mt point)
         {
             var normal = this.normal;
             return point - normal * (normal.dot(point) + distance);
@@ -254,21 +254,21 @@ namespace Coplt.Mathematics.Simt.Geometries
         #region Eq
 
         [MethodImpl(256 | 512)]
-        public readonly override bool Equals(object? obj) => obj is plane_mt4 other && Equals(other);
+        public readonly override bool Equals(object? obj) => obj is plane_mt other && Equals(other);
 
-        public readonly bool Equals(plane_mt4 other) => normal_and_distance.Equals(other.normal_and_distance);
+        public readonly bool Equals(plane_mt other) => normal_and_distance.Equals(other.normal_and_distance);
 
-        public readonly bool NotEquals(plane_mt4 other) => normal_and_distance.NotEquals(other.normal_and_distance);
+        public readonly bool NotEquals(plane_mt other) => normal_and_distance.NotEquals(other.normal_and_distance);
 
         public readonly override int GetHashCode() => normal_and_distance.GetHashCode();
 
-        public static b32_mt4 operator ==(plane_mt4 left, plane_mt4 right) => math_mt.all(left.normal_and_distance == right.normal_and_distance);
+        public static b32_mt operator ==(plane_mt left, plane_mt right) => math_mt.all(left.normal_and_distance == right.normal_and_distance);
 
-        public static b32_mt4 operator !=(plane_mt4 left, plane_mt4 right) => math_mt.any(left.normal_and_distance != right.normal_and_distance);
+        public static b32_mt operator !=(plane_mt left, plane_mt right) => math_mt.any(left.normal_and_distance != right.normal_and_distance);
 
         #endregion
 
-        public readonly override string ToString() => $"plane_mt4 {{ normal = {normal}, distance = {distance} }}";
+        public readonly override string ToString() => $"plane_mt {{ normal = {normal}, distance = {distance} }}";
 
         #endregion
     }
@@ -283,13 +283,13 @@ namespace Coplt.Mathematics.Simt
         /// <summary>
         /// Normalizes the plane represented by the given plane coefficients.
         /// </summary>
-        public static plane_mt4 normalize([This] plane_mt4 plane) => new(plane_mt4.normalize(plane.normal_and_distance));
+        public static plane_mt normalize([This] plane_mt plane) => new(plane_mt.normalize(plane.normal_and_distance));
     }
 }
 
-#endregion // plane_mt4
+#endregion // plane_mt
 
-#region plane_mt8
+#region plane_d_mt
 
 namespace Coplt.Mathematics.Simt.Geometries
 {
@@ -301,7 +301,7 @@ namespace Coplt.Mathematics.Simt.Geometries
     /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
     /// </remarks>
     [CpuOnly]
-    public partial struct plane_mt8
+    public partial struct plane_d_mt
     {
         /// <summary>
         /// A plane in the form Ax + By + Cz + Dw = 0.
@@ -310,16 +310,16 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// Stores the plane coefficients A, B, C, D where (A, B, C) is a unit normal vector and D is the distance from the origin.
         /// A plane stored with a unit normal vector is called a normalized plane.
         /// </remarks>
-        public float4_mt8 normal_and_distance;
+        public double4_mt normal_and_distance;
 
         /// <summary>
         /// Get/set the normal vector of the plane.
         /// </summary>
         /// <remarks>
         /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_mt8)"/>.
+        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_d_mt)"/>.
         /// </remarks>
-        public float3_mt8 normal
+        public double3_mt normal
         {
             [MethodImpl(256 | 512)]
             readonly get => normal_and_distance.xyz;
@@ -332,9 +332,9 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// </summary>
         /// <remarks>
         /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_mt8)"/>.
+        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_d_mt)"/>.
         /// </remarks>
-        public float_mt8 distance
+        public double_mt distance
         {
             [MethodImpl(256 | 512)]
             readonly get => normal_and_distance.w;
@@ -345,7 +345,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <summary>
         /// Flips the plane so the normal points in the opposite direction.
         /// </summary>
-        public readonly plane_mt8 flipped
+        public readonly plane_d_mt flipped
         {
             [MethodImpl(256 | 512)]
             get => new() { normal_and_distance = -normal_and_distance };
@@ -358,7 +358,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
         /// </remarks>
         [MethodImpl(256 | 512)]
-        public plane_mt8(float4_mt8 normal_and_distance) =>
+        public plane_d_mt(double4_mt normal_and_distance) =>
             this.normal_and_distance = normal_and_distance;
 
         /// <summary>
@@ -372,8 +372,8 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="coefficientC">Coefficient C from plane equation.</param>
         /// <param name="coefficientD">Coefficient D from plane equation.</param>
         [MethodImpl(256 | 512)]
-        public plane_mt8(float_mt8 coefficientA, float_mt8 coefficientB, float_mt8 coefficientC, float_mt8 coefficientD) =>
-            normal_and_distance = normalize(new float4_mt8(coefficientA, coefficientB, coefficientC, coefficientD));
+        public plane_d_mt(double_mt coefficientA, double_mt coefficientB, double_mt coefficientC, double_mt coefficientD) =>
+            normal_and_distance = normalize(new double4_mt(coefficientA, coefficientB, coefficientC, coefficientD));
 
         /// <summary>
         /// Constructs a plane with a normal vector and distance from the origin.
@@ -387,8 +387,8 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// A negative value moves the plane in the same direction as the normal while a positive value moves it in the opposite direction.
         /// </param>
         [MethodImpl(256 | 512)]
-        public plane_mt8(float3_mt8 normal, float_mt8 distance) =>
-            normal_and_distance = normalize(new float4_mt8(normal, distance));
+        public plane_d_mt(double3_mt normal, double_mt distance) =>
+            normal_and_distance = normalize(new double4_mt(normal, distance));
 
         /// <summary>
         /// Constructs a plane with a normal vector and a point that lies in the plane.
@@ -399,7 +399,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
         /// <param name="pointInPlane">A point that lies in the plane.</param>
         [MethodImpl(256 | 512)]
-        public plane_mt8(float3_mt8 normal, float3_mt8 pointInPlane) : this(normal, -normal.dot(pointInPlane)) { }
+        public plane_d_mt(double3_mt normal, double3_mt pointInPlane) : this(normal, -normal.dot(pointInPlane)) { }
 
         /// <summary>
         /// Constructs a plane with two vectors and a point that all lie in the plane.
@@ -411,7 +411,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="vector2InPlane">A non-zero vector that lies in the plane.  It may be any length and must not be a scalar multiple of <paramref name="vector1InPlane"/>.</param>
         /// <param name="pointInPlane">A point that lies in the plane.</param>
         [MethodImpl(256 | 512)]
-        public plane_mt8(float3_mt8 vector1InPlane, float3_mt8 vector2InPlane, float3_mt8 pointInPlane)
+        public plane_d_mt(double3_mt vector1InPlane, double3_mt vector2InPlane, double3_mt pointInPlane)
             : this(vector1InPlane.cross(vector2InPlane), pointInPlane) { }
 
         /// <summary>
@@ -426,8 +426,8 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// same direction as the normal while a positive value moves it in the opposite direction.</param>
         /// <returns>Normalized Plane constructed from given inputs.</returns>
         [MethodImpl(256 | 512)]
-        public static plane_mt8 CreateFromUnitNormalAndDistance(float3_mt8 unitNormal, float_mt8 distance) =>
-            new() { normal_and_distance = new float4_mt8(unitNormal, distance) };
+        public static plane_d_mt CreateFromUnitNormalAndDistance(double3_mt unitNormal, double_mt distance) =>
+            new() { normal_and_distance = new double4_mt(unitNormal, distance) };
 
         /// <summary>
         /// Creates a normalized Plane without normalization cost.
@@ -440,8 +440,8 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="pointInPlane">A point that lies in the plane.</param>
         /// <returns>Normalized Plane constructed from given inputs.</returns>
         [MethodImpl(256 | 512)]
-        public static plane_mt8 CreateFromUnitNormalAndPointInPlane(float3_mt8 unitNormal, float3_mt8 pointInPlane) =>
-            new() { normal_and_distance = new float4_mt8(unitNormal, -unitNormal.dot(pointInPlane)) };
+        public static plane_d_mt CreateFromUnitNormalAndPointInPlane(double3_mt unitNormal, double3_mt pointInPlane) =>
+            new() { normal_and_distance = new double4_mt(unitNormal, -unitNormal.dot(pointInPlane)) };
 
         /// <summary>
         /// Normalizes the plane represented by the given plane coefficients.
@@ -452,7 +452,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="planeCoefficients">Plane coefficients A, B, C, D stored in x, y, z, w (respectively).</param>
         /// <returns>Normalized plane coefficients.</returns>
         [MethodImpl(256 | 512)]
-        public static float4_mt8 normalize(float4_mt8 planeCoefficients)
+        public static double4_mt normalize(double4_mt planeCoefficients)
         {
             var recipLength = planeCoefficients.xyz.lengthsq().rsqrt();
             return planeCoefficients * recipLength;
@@ -464,7 +464,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="plane">Plane to convert.</param>
         /// <returns>A <see cref="float4"/> representing the plane.</returns>
         [MethodImpl(256 | 512)]
-        public static implicit operator float4_mt8(plane_mt8 plane) => plane.normal_and_distance;
+        public static implicit operator double4_mt(plane_d_mt plane) => plane.normal_and_distance;
 
         /// <summary>
         /// Get the signed distance from the point to the plane.
@@ -477,7 +477,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="point">Point to find the signed distance with.</param>
         /// <returns>Signed distance of the point from the plane.</returns>
         [MethodImpl(256 | 512)]
-        public readonly float_mt8 distance_to_point(float3_mt8 point) => normal_and_distance.dot(new float4_mt8(point, 1.0f));
+        public readonly double_mt distance_to_point(double3_mt point) => normal_and_distance.dot(new double4_mt(point, 1.0f));
 
         /// <summary>
         /// Projects the given point onto the plane.
@@ -489,7 +489,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="point">Point to project onto the plane.</param>
         /// <returns>Projected point that's inside the plane.</returns>
         [MethodImpl(256 | 512)]
-        public readonly float3_mt8 projection(float3_mt8 point) => point - normal * distance_to_point(point);
+        public readonly double3_mt projection(double3_mt point) => point - normal * distance_to_point(point);
 
         /// <summary>
         /// Ray cast to the plane
@@ -498,7 +498,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="distance">Intersection distance</param>
         /// <returns>Is intersect</returns>
         [MethodImpl(256 | 512)]
-        public readonly b32_mt8 ray_cast(ray_mt8 ray, out float_mt8 distance)
+        public readonly b64_mt ray_cast(ray_d_mt ray, out double_mt distance)
         {
             var normal = this.normal;
             var de_nom = normal.dot(ray.direction);
@@ -514,13 +514,13 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="point">Intersection</param>
         /// <returns>Is intersect</returns>
         [MethodImpl(256 | 512)]
-        public readonly b32_mt8 ray_cast(ray_mt8 ray, out float_mt8 distance, out float3_mt8 point)
+        public readonly b64_mt ray_cast(ray_d_mt ray, out double_mt distance, out double3_mt point)
         {
             var normal = this.normal;
             var de_nom = normal.dot(ray.direction);
             distance = (this.distance - normal.dot(ray.origin)) / de_nom;
             var intersects = de_nom.abs() > 0.0001f & distance >= 0.0f;
-            point = ray.point_at(distance) * math_mt.select(intersects, float3_mt8.One, default);
+            point = ray.point_at(distance) * math_mt.select(intersects, double3_mt.One, default);
             return intersects;
         }
 
@@ -530,7 +530,7 @@ namespace Coplt.Mathematics.Simt.Geometries
         /// <param name="point">The point to project onto the plane.</param>
         /// <returns>A point on the plane that is closest to point.</returns>
         [MethodImpl(256 | 512)]
-        public readonly float3_mt8 closest_point(float3_mt8 point)
+        public readonly double3_mt closest_point(double3_mt point)
         {
             var normal = this.normal;
             return point - normal * (normal.dot(point) + distance);
@@ -541,21 +541,21 @@ namespace Coplt.Mathematics.Simt.Geometries
         #region Eq
 
         [MethodImpl(256 | 512)]
-        public readonly override bool Equals(object? obj) => obj is plane_mt8 other && Equals(other);
+        public readonly override bool Equals(object? obj) => obj is plane_d_mt other && Equals(other);
 
-        public readonly bool Equals(plane_mt8 other) => normal_and_distance.Equals(other.normal_and_distance);
+        public readonly bool Equals(plane_d_mt other) => normal_and_distance.Equals(other.normal_and_distance);
 
-        public readonly bool NotEquals(plane_mt8 other) => normal_and_distance.NotEquals(other.normal_and_distance);
+        public readonly bool NotEquals(plane_d_mt other) => normal_and_distance.NotEquals(other.normal_and_distance);
 
         public readonly override int GetHashCode() => normal_and_distance.GetHashCode();
 
-        public static b32_mt8 operator ==(plane_mt8 left, plane_mt8 right) => math_mt.all(left.normal_and_distance == right.normal_and_distance);
+        public static b64_mt operator ==(plane_d_mt left, plane_d_mt right) => math_mt.all(left.normal_and_distance == right.normal_and_distance);
 
-        public static b32_mt8 operator !=(plane_mt8 left, plane_mt8 right) => math_mt.any(left.normal_and_distance != right.normal_and_distance);
+        public static b64_mt operator !=(plane_d_mt left, plane_d_mt right) => math_mt.any(left.normal_and_distance != right.normal_and_distance);
 
         #endregion
 
-        public readonly override string ToString() => $"plane_mt8 {{ normal = {normal}, distance = {distance} }}";
+        public readonly override string ToString() => $"plane_d_mt {{ normal = {normal}, distance = {distance} }}";
 
         #endregion
     }
@@ -570,1156 +570,8 @@ namespace Coplt.Mathematics.Simt
         /// <summary>
         /// Normalizes the plane represented by the given plane coefficients.
         /// </summary>
-        public static plane_mt8 normalize([This] plane_mt8 plane) => new(plane_mt8.normalize(plane.normal_and_distance));
+        public static plane_d_mt normalize([This] plane_d_mt plane) => new(plane_d_mt.normalize(plane.normal_and_distance));
     }
 }
 
-#endregion // plane_mt8
-
-#region plane_mt16
-
-namespace Coplt.Mathematics.Simt.Geometries
-{
-
-    /// <summary>
-    /// A plane represented by a normal vector and a distance along the normal from the origin.
-    /// </summary>
-    /// <remarks>
-    /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
-    /// </remarks>
-    [CpuOnly]
-    public partial struct plane_mt16
-    {
-        /// <summary>
-        /// A plane in the form Ax + By + Cz + Dw = 0.
-        /// </summary>
-        /// <remarks>
-        /// Stores the plane coefficients A, B, C, D where (A, B, C) is a unit normal vector and D is the distance from the origin.
-        /// A plane stored with a unit normal vector is called a normalized plane.
-        /// </remarks>
-        public float4_mt16 normal_and_distance;
-
-        /// <summary>
-        /// Get/set the normal vector of the plane.
-        /// </summary>
-        /// <remarks>
-        /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_mt16)"/>.
-        /// </remarks>
-        public float3_mt16 normal
-        {
-            [MethodImpl(256 | 512)]
-            readonly get => normal_and_distance.xyz;
-            [MethodImpl(256 | 512)]
-            set => normal_and_distance.xyz = value;
-        }
-
-        /// <summary>
-        /// Get/set the distance of the plane from the origin.  May be a negative value.
-        /// </summary>
-        /// <remarks>
-        /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_mt16)"/>.
-        /// </remarks>
-        public float_mt16 distance
-        {
-            [MethodImpl(256 | 512)]
-            readonly get => normal_and_distance.w;
-            [MethodImpl(256 | 512)]
-            set => normal_and_distance.w = value;
-        }
-
-        /// <summary>
-        /// Flips the plane so the normal points in the opposite direction.
-        /// </summary>
-        public readonly plane_mt16 flipped
-        {
-            [MethodImpl(256 | 512)]
-            get => new() { normal_and_distance = -normal_and_distance };
-        }
-
-        /// <summary>
-        /// A plane represented by a normal vector and a distance along the normal from the origin.
-        /// </summary>
-        /// <remarks>
-        /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
-        /// </remarks>
-        [MethodImpl(256 | 512)]
-        public plane_mt16(float4_mt16 normal_and_distance) =>
-            this.normal_and_distance = normal_and_distance;
-
-        /// <summary>
-        /// Constructs a Plane from arbitrary coefficients A, B, C, D of the plane equation Ax + By + Cz + Dw = 0.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the given coefficients.
-        /// </remarks>
-        /// <param name="coefficientA">Coefficient A from plane equation.</param>
-        /// <param name="coefficientB">Coefficient B from plane equation.</param>
-        /// <param name="coefficientC">Coefficient C from plane equation.</param>
-        /// <param name="coefficientD">Coefficient D from plane equation.</param>
-        [MethodImpl(256 | 512)]
-        public plane_mt16(float_mt16 coefficientA, float_mt16 coefficientB, float_mt16 coefficientC, float_mt16 coefficientD) =>
-            normal_and_distance = normalize(new float4_mt16(coefficientA, coefficientB, coefficientC, coefficientD));
-
-        /// <summary>
-        /// Constructs a plane with a normal vector and distance from the origin.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
-        /// <param name="distance">
-        /// Distance from the origin along the normal.
-        /// A negative value moves the plane in the same direction as the normal while a positive value moves it in the opposite direction.
-        /// </param>
-        [MethodImpl(256 | 512)]
-        public plane_mt16(float3_mt16 normal, float_mt16 distance) =>
-            normal_and_distance = normalize(new float4_mt16(normal, distance));
-
-        /// <summary>
-        /// Constructs a plane with a normal vector and a point that lies in the plane.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        [MethodImpl(256 | 512)]
-        public plane_mt16(float3_mt16 normal, float3_mt16 pointInPlane) : this(normal, -normal.dot(pointInPlane)) { }
-
-        /// <summary>
-        /// Constructs a plane with two vectors and a point that all lie in the plane.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="vector1InPlane">A non-zero vector that lies in the plane.  It may be any length.</param>
-        /// <param name="vector2InPlane">A non-zero vector that lies in the plane.  It may be any length and must not be a scalar multiple of <paramref name="vector1InPlane"/>.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        [MethodImpl(256 | 512)]
-        public plane_mt16(float3_mt16 vector1InPlane, float3_mt16 vector2InPlane, float3_mt16 pointInPlane)
-            : this(vector1InPlane.cross(vector2InPlane), pointInPlane) { }
-
-        /// <summary>
-        /// Creates a normalized Plane directly without normalization cost.
-        /// </summary>
-        /// <remarks>
-        /// If you have a unit length normal vector, you can create a Plane faster than using one of its constructors
-        /// by calling this function.
-        /// </remarks>
-        /// <param name="unitNormal">A non-zero vector that is perpendicular to the plane.  It must be unit length.</param>
-        /// <param name="distance">Distance from the origin along the normal.  A negative value moves the plane in the
-        /// same direction as the normal while a positive value moves it in the opposite direction.</param>
-        /// <returns>Normalized Plane constructed from given inputs.</returns>
-        [MethodImpl(256 | 512)]
-        public static plane_mt16 CreateFromUnitNormalAndDistance(float3_mt16 unitNormal, float_mt16 distance) =>
-            new() { normal_and_distance = new float4_mt16(unitNormal, distance) };
-
-        /// <summary>
-        /// Creates a normalized Plane without normalization cost.
-        /// </summary>
-        /// <remarks>
-        /// If you have a unit length normal vector, you can create a Plane faster than using one of its constructors
-        /// by calling this function.
-        /// </remarks>
-        /// <param name="unitNormal">A non-zero vector that is perpendicular to the plane.  It must be unit length.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        /// <returns>Normalized Plane constructed from given inputs.</returns>
-        [MethodImpl(256 | 512)]
-        public static plane_mt16 CreateFromUnitNormalAndPointInPlane(float3_mt16 unitNormal, float3_mt16 pointInPlane) =>
-            new() { normal_and_distance = new float4_mt16(unitNormal, -unitNormal.dot(pointInPlane)) };
-
-        /// <summary>
-        /// Normalizes the plane represented by the given plane coefficients.
-        /// </summary>
-        /// <remarks>
-        /// The plane coefficients are A, B, C, D and stored in that order in the <see cref="float4"/>.
-        /// </remarks>
-        /// <param name="planeCoefficients">Plane coefficients A, B, C, D stored in x, y, z, w (respectively).</param>
-        /// <returns>Normalized plane coefficients.</returns>
-        [MethodImpl(256 | 512)]
-        public static float4_mt16 normalize(float4_mt16 planeCoefficients)
-        {
-            var recipLength = planeCoefficients.xyz.lengthsq().rsqrt();
-            return planeCoefficients * recipLength;
-        }
-
-        /// <summary>
-        /// Implicitly converts a <see cref="plane"/> to <see cref="float4"/>.
-        /// </summary>
-        /// <param name="plane">Plane to convert.</param>
-        /// <returns>A <see cref="float4"/> representing the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public static implicit operator float4_mt16(plane_mt16 plane) => plane.normal_and_distance;
-
-        /// <summary>
-        /// Get the signed distance from the point to the plane.
-        /// </summary>
-        /// <remarks>
-        /// Plane must be normalized prior to calling this function.  Distance is positive if point is on side of the plane the normal points to,
-        /// negative if on the opposite side and zero if the point lies in the plane.
-        /// Avoid comparing equality with 0.0f when testing if a point lies exactly in the plane and use an approximate comparison instead.
-        /// </remarks>
-        /// <param name="point">Point to find the signed distance with.</param>
-        /// <returns>Signed distance of the point from the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly float_mt16 distance_to_point(float3_mt16 point) => normal_and_distance.dot(new float4_mt16(point, 1.0f));
-
-        /// <summary>
-        /// Projects the given point onto the plane.
-        /// </summary>
-        /// <remarks>
-        /// Plane must be normalized prior to calling this function.  The result is the position closest to the point
-        /// that still lies in the plane.
-        /// </remarks>
-        /// <param name="point">Point to project onto the plane.</param>
-        /// <returns>Projected point that's inside the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly float3_mt16 projection(float3_mt16 point) => point - normal * distance_to_point(point);
-
-        /// <summary>
-        /// Ray cast to the plane
-        /// </summary>
-        /// <param name="ray">The ray</param>
-        /// <param name="distance">Intersection distance</param>
-        /// <returns>Is intersect</returns>
-        [MethodImpl(256 | 512)]
-        public readonly b32_mt16 ray_cast(ray_mt16 ray, out float_mt16 distance)
-        {
-            var normal = this.normal;
-            var de_nom = normal.dot(ray.direction);
-            distance = (this.distance - normal.dot(ray.origin)) / de_nom;
-            return de_nom.abs() > 0.0001f & distance >= 0.0f;
-        }
-
-        /// <summary>
-        /// Ray cast to the plane
-        /// </summary>
-        /// <param name="ray">The ray</param>
-        /// <param name="distance">Intersection distance</param>
-        /// <param name="point">Intersection</param>
-        /// <returns>Is intersect</returns>
-        [MethodImpl(256 | 512)]
-        public readonly b32_mt16 ray_cast(ray_mt16 ray, out float_mt16 distance, out float3_mt16 point)
-        {
-            var normal = this.normal;
-            var de_nom = normal.dot(ray.direction);
-            distance = (this.distance - normal.dot(ray.origin)) / de_nom;
-            var intersects = de_nom.abs() > 0.0001f & distance >= 0.0f;
-            point = ray.point_at(distance) * math_mt.select(intersects, float3_mt16.One, default);
-            return intersects;
-        }
-
-        /// <summary>
-        /// For a given point returns the closest point on the plane.
-        /// </summary>
-        /// <param name="point">The point to project onto the plane.</param>
-        /// <returns>A point on the plane that is closest to point.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly float3_mt16 closest_point(float3_mt16 point)
-        {
-            var normal = this.normal;
-            return point - normal * (normal.dot(point) + distance);
-        }
-
-        #region Misc
-
-        #region Eq
-
-        [MethodImpl(256 | 512)]
-        public readonly override bool Equals(object? obj) => obj is plane_mt16 other && Equals(other);
-
-        public readonly bool Equals(plane_mt16 other) => normal_and_distance.Equals(other.normal_and_distance);
-
-        public readonly bool NotEquals(plane_mt16 other) => normal_and_distance.NotEquals(other.normal_and_distance);
-
-        public readonly override int GetHashCode() => normal_and_distance.GetHashCode();
-
-        public static b32_mt16 operator ==(plane_mt16 left, plane_mt16 right) => math_mt.all(left.normal_and_distance == right.normal_and_distance);
-
-        public static b32_mt16 operator !=(plane_mt16 left, plane_mt16 right) => math_mt.any(left.normal_and_distance != right.normal_and_distance);
-
-        #endregion
-
-        public readonly override string ToString() => $"plane_mt16 {{ normal = {normal}, distance = {distance} }}";
-
-        #endregion
-    }
-
-} // namespace Coplt.Mathematics.Simt.Geometries
-
-namespace Coplt.Mathematics.Simt
-{
-    [Ex]
-    public static partial class math_mt
-    {
-        /// <summary>
-        /// Normalizes the plane represented by the given plane coefficients.
-        /// </summary>
-        public static plane_mt16 normalize([This] plane_mt16 plane) => new(plane_mt16.normalize(plane.normal_and_distance));
-    }
-}
-
-#endregion // plane_mt16
-
-#region plane_d_mt4
-
-namespace Coplt.Mathematics.Simt.Geometries
-{
-
-    /// <summary>
-    /// A plane represented by a normal vector and a distance along the normal from the origin.
-    /// </summary>
-    /// <remarks>
-    /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
-    /// </remarks>
-    [CpuOnly]
-    public partial struct plane_d_mt4
-    {
-        /// <summary>
-        /// A plane in the form Ax + By + Cz + Dw = 0.
-        /// </summary>
-        /// <remarks>
-        /// Stores the plane coefficients A, B, C, D where (A, B, C) is a unit normal vector and D is the distance from the origin.
-        /// A plane stored with a unit normal vector is called a normalized plane.
-        /// </remarks>
-        public double4_mt4 normal_and_distance;
-
-        /// <summary>
-        /// Get/set the normal vector of the plane.
-        /// </summary>
-        /// <remarks>
-        /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_d_mt4)"/>.
-        /// </remarks>
-        public double3_mt4 normal
-        {
-            [MethodImpl(256 | 512)]
-            readonly get => normal_and_distance.xyz;
-            [MethodImpl(256 | 512)]
-            set => normal_and_distance.xyz = value;
-        }
-
-        /// <summary>
-        /// Get/set the distance of the plane from the origin.  May be a negative value.
-        /// </summary>
-        /// <remarks>
-        /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_d_mt4)"/>.
-        /// </remarks>
-        public double_mt4 distance
-        {
-            [MethodImpl(256 | 512)]
-            readonly get => normal_and_distance.w;
-            [MethodImpl(256 | 512)]
-            set => normal_and_distance.w = value;
-        }
-
-        /// <summary>
-        /// Flips the plane so the normal points in the opposite direction.
-        /// </summary>
-        public readonly plane_d_mt4 flipped
-        {
-            [MethodImpl(256 | 512)]
-            get => new() { normal_and_distance = -normal_and_distance };
-        }
-
-        /// <summary>
-        /// A plane represented by a normal vector and a distance along the normal from the origin.
-        /// </summary>
-        /// <remarks>
-        /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
-        /// </remarks>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt4(double4_mt4 normal_and_distance) =>
-            this.normal_and_distance = normal_and_distance;
-
-        /// <summary>
-        /// Constructs a Plane from arbitrary coefficients A, B, C, D of the plane equation Ax + By + Cz + Dw = 0.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the given coefficients.
-        /// </remarks>
-        /// <param name="coefficientA">Coefficient A from plane equation.</param>
-        /// <param name="coefficientB">Coefficient B from plane equation.</param>
-        /// <param name="coefficientC">Coefficient C from plane equation.</param>
-        /// <param name="coefficientD">Coefficient D from plane equation.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt4(double_mt4 coefficientA, double_mt4 coefficientB, double_mt4 coefficientC, double_mt4 coefficientD) =>
-            normal_and_distance = normalize(new double4_mt4(coefficientA, coefficientB, coefficientC, coefficientD));
-
-        /// <summary>
-        /// Constructs a plane with a normal vector and distance from the origin.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
-        /// <param name="distance">
-        /// Distance from the origin along the normal.
-        /// A negative value moves the plane in the same direction as the normal while a positive value moves it in the opposite direction.
-        /// </param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt4(double3_mt4 normal, double_mt4 distance) =>
-            normal_and_distance = normalize(new double4_mt4(normal, distance));
-
-        /// <summary>
-        /// Constructs a plane with a normal vector and a point that lies in the plane.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt4(double3_mt4 normal, double3_mt4 pointInPlane) : this(normal, -normal.dot(pointInPlane)) { }
-
-        /// <summary>
-        /// Constructs a plane with two vectors and a point that all lie in the plane.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="vector1InPlane">A non-zero vector that lies in the plane.  It may be any length.</param>
-        /// <param name="vector2InPlane">A non-zero vector that lies in the plane.  It may be any length and must not be a scalar multiple of <paramref name="vector1InPlane"/>.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt4(double3_mt4 vector1InPlane, double3_mt4 vector2InPlane, double3_mt4 pointInPlane)
-            : this(vector1InPlane.cross(vector2InPlane), pointInPlane) { }
-
-        /// <summary>
-        /// Creates a normalized Plane directly without normalization cost.
-        /// </summary>
-        /// <remarks>
-        /// If you have a unit length normal vector, you can create a Plane faster than using one of its constructors
-        /// by calling this function.
-        /// </remarks>
-        /// <param name="unitNormal">A non-zero vector that is perpendicular to the plane.  It must be unit length.</param>
-        /// <param name="distance">Distance from the origin along the normal.  A negative value moves the plane in the
-        /// same direction as the normal while a positive value moves it in the opposite direction.</param>
-        /// <returns>Normalized Plane constructed from given inputs.</returns>
-        [MethodImpl(256 | 512)]
-        public static plane_d_mt4 CreateFromUnitNormalAndDistance(double3_mt4 unitNormal, double_mt4 distance) =>
-            new() { normal_and_distance = new double4_mt4(unitNormal, distance) };
-
-        /// <summary>
-        /// Creates a normalized Plane without normalization cost.
-        /// </summary>
-        /// <remarks>
-        /// If you have a unit length normal vector, you can create a Plane faster than using one of its constructors
-        /// by calling this function.
-        /// </remarks>
-        /// <param name="unitNormal">A non-zero vector that is perpendicular to the plane.  It must be unit length.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        /// <returns>Normalized Plane constructed from given inputs.</returns>
-        [MethodImpl(256 | 512)]
-        public static plane_d_mt4 CreateFromUnitNormalAndPointInPlane(double3_mt4 unitNormal, double3_mt4 pointInPlane) =>
-            new() { normal_and_distance = new double4_mt4(unitNormal, -unitNormal.dot(pointInPlane)) };
-
-        /// <summary>
-        /// Normalizes the plane represented by the given plane coefficients.
-        /// </summary>
-        /// <remarks>
-        /// The plane coefficients are A, B, C, D and stored in that order in the <see cref="float4"/>.
-        /// </remarks>
-        /// <param name="planeCoefficients">Plane coefficients A, B, C, D stored in x, y, z, w (respectively).</param>
-        /// <returns>Normalized plane coefficients.</returns>
-        [MethodImpl(256 | 512)]
-        public static double4_mt4 normalize(double4_mt4 planeCoefficients)
-        {
-            var recipLength = planeCoefficients.xyz.lengthsq().rsqrt();
-            return planeCoefficients * recipLength;
-        }
-
-        /// <summary>
-        /// Implicitly converts a <see cref="plane"/> to <see cref="float4"/>.
-        /// </summary>
-        /// <param name="plane">Plane to convert.</param>
-        /// <returns>A <see cref="float4"/> representing the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public static implicit operator double4_mt4(plane_d_mt4 plane) => plane.normal_and_distance;
-
-        /// <summary>
-        /// Get the signed distance from the point to the plane.
-        /// </summary>
-        /// <remarks>
-        /// Plane must be normalized prior to calling this function.  Distance is positive if point is on side of the plane the normal points to,
-        /// negative if on the opposite side and zero if the point lies in the plane.
-        /// Avoid comparing equality with 0.0f when testing if a point lies exactly in the plane and use an approximate comparison instead.
-        /// </remarks>
-        /// <param name="point">Point to find the signed distance with.</param>
-        /// <returns>Signed distance of the point from the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double_mt4 distance_to_point(double3_mt4 point) => normal_and_distance.dot(new double4_mt4(point, 1.0f));
-
-        /// <summary>
-        /// Projects the given point onto the plane.
-        /// </summary>
-        /// <remarks>
-        /// Plane must be normalized prior to calling this function.  The result is the position closest to the point
-        /// that still lies in the plane.
-        /// </remarks>
-        /// <param name="point">Point to project onto the plane.</param>
-        /// <returns>Projected point that's inside the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double3_mt4 projection(double3_mt4 point) => point - normal * distance_to_point(point);
-
-        /// <summary>
-        /// Ray cast to the plane
-        /// </summary>
-        /// <param name="ray">The ray</param>
-        /// <param name="distance">Intersection distance</param>
-        /// <returns>Is intersect</returns>
-        [MethodImpl(256 | 512)]
-        public readonly b64_mt4 ray_cast(ray_d_mt4 ray, out double_mt4 distance)
-        {
-            var normal = this.normal;
-            var de_nom = normal.dot(ray.direction);
-            distance = (this.distance - normal.dot(ray.origin)) / de_nom;
-            return de_nom.abs() > 0.0001f & distance >= 0.0f;
-        }
-
-        /// <summary>
-        /// Ray cast to the plane
-        /// </summary>
-        /// <param name="ray">The ray</param>
-        /// <param name="distance">Intersection distance</param>
-        /// <param name="point">Intersection</param>
-        /// <returns>Is intersect</returns>
-        [MethodImpl(256 | 512)]
-        public readonly b64_mt4 ray_cast(ray_d_mt4 ray, out double_mt4 distance, out double3_mt4 point)
-        {
-            var normal = this.normal;
-            var de_nom = normal.dot(ray.direction);
-            distance = (this.distance - normal.dot(ray.origin)) / de_nom;
-            var intersects = de_nom.abs() > 0.0001f & distance >= 0.0f;
-            point = ray.point_at(distance) * math_mt.select(intersects, double3_mt4.One, default);
-            return intersects;
-        }
-
-        /// <summary>
-        /// For a given point returns the closest point on the plane.
-        /// </summary>
-        /// <param name="point">The point to project onto the plane.</param>
-        /// <returns>A point on the plane that is closest to point.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double3_mt4 closest_point(double3_mt4 point)
-        {
-            var normal = this.normal;
-            return point - normal * (normal.dot(point) + distance);
-        }
-
-        #region Misc
-
-        #region Eq
-
-        [MethodImpl(256 | 512)]
-        public readonly override bool Equals(object? obj) => obj is plane_d_mt4 other && Equals(other);
-
-        public readonly bool Equals(plane_d_mt4 other) => normal_and_distance.Equals(other.normal_and_distance);
-
-        public readonly bool NotEquals(plane_d_mt4 other) => normal_and_distance.NotEquals(other.normal_and_distance);
-
-        public readonly override int GetHashCode() => normal_and_distance.GetHashCode();
-
-        public static b64_mt4 operator ==(plane_d_mt4 left, plane_d_mt4 right) => math_mt.all(left.normal_and_distance == right.normal_and_distance);
-
-        public static b64_mt4 operator !=(plane_d_mt4 left, plane_d_mt4 right) => math_mt.any(left.normal_and_distance != right.normal_and_distance);
-
-        #endregion
-
-        public readonly override string ToString() => $"plane_d_mt4 {{ normal = {normal}, distance = {distance} }}";
-
-        #endregion
-    }
-
-} // namespace Coplt.Mathematics.Simt.Geometries
-
-namespace Coplt.Mathematics.Simt
-{
-    [Ex]
-    public static partial class math_mt
-    {
-        /// <summary>
-        /// Normalizes the plane represented by the given plane coefficients.
-        /// </summary>
-        public static plane_d_mt4 normalize([This] plane_d_mt4 plane) => new(plane_d_mt4.normalize(plane.normal_and_distance));
-    }
-}
-
-#endregion // plane_d_mt4
-
-#region plane_d_mt8
-
-namespace Coplt.Mathematics.Simt.Geometries
-{
-
-    /// <summary>
-    /// A plane represented by a normal vector and a distance along the normal from the origin.
-    /// </summary>
-    /// <remarks>
-    /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
-    /// </remarks>
-    [CpuOnly]
-    public partial struct plane_d_mt8
-    {
-        /// <summary>
-        /// A plane in the form Ax + By + Cz + Dw = 0.
-        /// </summary>
-        /// <remarks>
-        /// Stores the plane coefficients A, B, C, D where (A, B, C) is a unit normal vector and D is the distance from the origin.
-        /// A plane stored with a unit normal vector is called a normalized plane.
-        /// </remarks>
-        public double4_mt8 normal_and_distance;
-
-        /// <summary>
-        /// Get/set the normal vector of the plane.
-        /// </summary>
-        /// <remarks>
-        /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_d_mt8)"/>.
-        /// </remarks>
-        public double3_mt8 normal
-        {
-            [MethodImpl(256 | 512)]
-            readonly get => normal_and_distance.xyz;
-            [MethodImpl(256 | 512)]
-            set => normal_and_distance.xyz = value;
-        }
-
-        /// <summary>
-        /// Get/set the distance of the plane from the origin.  May be a negative value.
-        /// </summary>
-        /// <remarks>
-        /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_d_mt8)"/>.
-        /// </remarks>
-        public double_mt8 distance
-        {
-            [MethodImpl(256 | 512)]
-            readonly get => normal_and_distance.w;
-            [MethodImpl(256 | 512)]
-            set => normal_and_distance.w = value;
-        }
-
-        /// <summary>
-        /// Flips the plane so the normal points in the opposite direction.
-        /// </summary>
-        public readonly plane_d_mt8 flipped
-        {
-            [MethodImpl(256 | 512)]
-            get => new() { normal_and_distance = -normal_and_distance };
-        }
-
-        /// <summary>
-        /// A plane represented by a normal vector and a distance along the normal from the origin.
-        /// </summary>
-        /// <remarks>
-        /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
-        /// </remarks>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt8(double4_mt8 normal_and_distance) =>
-            this.normal_and_distance = normal_and_distance;
-
-        /// <summary>
-        /// Constructs a Plane from arbitrary coefficients A, B, C, D of the plane equation Ax + By + Cz + Dw = 0.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the given coefficients.
-        /// </remarks>
-        /// <param name="coefficientA">Coefficient A from plane equation.</param>
-        /// <param name="coefficientB">Coefficient B from plane equation.</param>
-        /// <param name="coefficientC">Coefficient C from plane equation.</param>
-        /// <param name="coefficientD">Coefficient D from plane equation.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt8(double_mt8 coefficientA, double_mt8 coefficientB, double_mt8 coefficientC, double_mt8 coefficientD) =>
-            normal_and_distance = normalize(new double4_mt8(coefficientA, coefficientB, coefficientC, coefficientD));
-
-        /// <summary>
-        /// Constructs a plane with a normal vector and distance from the origin.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
-        /// <param name="distance">
-        /// Distance from the origin along the normal.
-        /// A negative value moves the plane in the same direction as the normal while a positive value moves it in the opposite direction.
-        /// </param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt8(double3_mt8 normal, double_mt8 distance) =>
-            normal_and_distance = normalize(new double4_mt8(normal, distance));
-
-        /// <summary>
-        /// Constructs a plane with a normal vector and a point that lies in the plane.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt8(double3_mt8 normal, double3_mt8 pointInPlane) : this(normal, -normal.dot(pointInPlane)) { }
-
-        /// <summary>
-        /// Constructs a plane with two vectors and a point that all lie in the plane.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="vector1InPlane">A non-zero vector that lies in the plane.  It may be any length.</param>
-        /// <param name="vector2InPlane">A non-zero vector that lies in the plane.  It may be any length and must not be a scalar multiple of <paramref name="vector1InPlane"/>.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt8(double3_mt8 vector1InPlane, double3_mt8 vector2InPlane, double3_mt8 pointInPlane)
-            : this(vector1InPlane.cross(vector2InPlane), pointInPlane) { }
-
-        /// <summary>
-        /// Creates a normalized Plane directly without normalization cost.
-        /// </summary>
-        /// <remarks>
-        /// If you have a unit length normal vector, you can create a Plane faster than using one of its constructors
-        /// by calling this function.
-        /// </remarks>
-        /// <param name="unitNormal">A non-zero vector that is perpendicular to the plane.  It must be unit length.</param>
-        /// <param name="distance">Distance from the origin along the normal.  A negative value moves the plane in the
-        /// same direction as the normal while a positive value moves it in the opposite direction.</param>
-        /// <returns>Normalized Plane constructed from given inputs.</returns>
-        [MethodImpl(256 | 512)]
-        public static plane_d_mt8 CreateFromUnitNormalAndDistance(double3_mt8 unitNormal, double_mt8 distance) =>
-            new() { normal_and_distance = new double4_mt8(unitNormal, distance) };
-
-        /// <summary>
-        /// Creates a normalized Plane without normalization cost.
-        /// </summary>
-        /// <remarks>
-        /// If you have a unit length normal vector, you can create a Plane faster than using one of its constructors
-        /// by calling this function.
-        /// </remarks>
-        /// <param name="unitNormal">A non-zero vector that is perpendicular to the plane.  It must be unit length.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        /// <returns>Normalized Plane constructed from given inputs.</returns>
-        [MethodImpl(256 | 512)]
-        public static plane_d_mt8 CreateFromUnitNormalAndPointInPlane(double3_mt8 unitNormal, double3_mt8 pointInPlane) =>
-            new() { normal_and_distance = new double4_mt8(unitNormal, -unitNormal.dot(pointInPlane)) };
-
-        /// <summary>
-        /// Normalizes the plane represented by the given plane coefficients.
-        /// </summary>
-        /// <remarks>
-        /// The plane coefficients are A, B, C, D and stored in that order in the <see cref="float4"/>.
-        /// </remarks>
-        /// <param name="planeCoefficients">Plane coefficients A, B, C, D stored in x, y, z, w (respectively).</param>
-        /// <returns>Normalized plane coefficients.</returns>
-        [MethodImpl(256 | 512)]
-        public static double4_mt8 normalize(double4_mt8 planeCoefficients)
-        {
-            var recipLength = planeCoefficients.xyz.lengthsq().rsqrt();
-            return planeCoefficients * recipLength;
-        }
-
-        /// <summary>
-        /// Implicitly converts a <see cref="plane"/> to <see cref="float4"/>.
-        /// </summary>
-        /// <param name="plane">Plane to convert.</param>
-        /// <returns>A <see cref="float4"/> representing the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public static implicit operator double4_mt8(plane_d_mt8 plane) => plane.normal_and_distance;
-
-        /// <summary>
-        /// Get the signed distance from the point to the plane.
-        /// </summary>
-        /// <remarks>
-        /// Plane must be normalized prior to calling this function.  Distance is positive if point is on side of the plane the normal points to,
-        /// negative if on the opposite side and zero if the point lies in the plane.
-        /// Avoid comparing equality with 0.0f when testing if a point lies exactly in the plane and use an approximate comparison instead.
-        /// </remarks>
-        /// <param name="point">Point to find the signed distance with.</param>
-        /// <returns>Signed distance of the point from the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double_mt8 distance_to_point(double3_mt8 point) => normal_and_distance.dot(new double4_mt8(point, 1.0f));
-
-        /// <summary>
-        /// Projects the given point onto the plane.
-        /// </summary>
-        /// <remarks>
-        /// Plane must be normalized prior to calling this function.  The result is the position closest to the point
-        /// that still lies in the plane.
-        /// </remarks>
-        /// <param name="point">Point to project onto the plane.</param>
-        /// <returns>Projected point that's inside the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double3_mt8 projection(double3_mt8 point) => point - normal * distance_to_point(point);
-
-        /// <summary>
-        /// Ray cast to the plane
-        /// </summary>
-        /// <param name="ray">The ray</param>
-        /// <param name="distance">Intersection distance</param>
-        /// <returns>Is intersect</returns>
-        [MethodImpl(256 | 512)]
-        public readonly b64_mt8 ray_cast(ray_d_mt8 ray, out double_mt8 distance)
-        {
-            var normal = this.normal;
-            var de_nom = normal.dot(ray.direction);
-            distance = (this.distance - normal.dot(ray.origin)) / de_nom;
-            return de_nom.abs() > 0.0001f & distance >= 0.0f;
-        }
-
-        /// <summary>
-        /// Ray cast to the plane
-        /// </summary>
-        /// <param name="ray">The ray</param>
-        /// <param name="distance">Intersection distance</param>
-        /// <param name="point">Intersection</param>
-        /// <returns>Is intersect</returns>
-        [MethodImpl(256 | 512)]
-        public readonly b64_mt8 ray_cast(ray_d_mt8 ray, out double_mt8 distance, out double3_mt8 point)
-        {
-            var normal = this.normal;
-            var de_nom = normal.dot(ray.direction);
-            distance = (this.distance - normal.dot(ray.origin)) / de_nom;
-            var intersects = de_nom.abs() > 0.0001f & distance >= 0.0f;
-            point = ray.point_at(distance) * math_mt.select(intersects, double3_mt8.One, default);
-            return intersects;
-        }
-
-        /// <summary>
-        /// For a given point returns the closest point on the plane.
-        /// </summary>
-        /// <param name="point">The point to project onto the plane.</param>
-        /// <returns>A point on the plane that is closest to point.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double3_mt8 closest_point(double3_mt8 point)
-        {
-            var normal = this.normal;
-            return point - normal * (normal.dot(point) + distance);
-        }
-
-        #region Misc
-
-        #region Eq
-
-        [MethodImpl(256 | 512)]
-        public readonly override bool Equals(object? obj) => obj is plane_d_mt8 other && Equals(other);
-
-        public readonly bool Equals(plane_d_mt8 other) => normal_and_distance.Equals(other.normal_and_distance);
-
-        public readonly bool NotEquals(plane_d_mt8 other) => normal_and_distance.NotEquals(other.normal_and_distance);
-
-        public readonly override int GetHashCode() => normal_and_distance.GetHashCode();
-
-        public static b64_mt8 operator ==(plane_d_mt8 left, plane_d_mt8 right) => math_mt.all(left.normal_and_distance == right.normal_and_distance);
-
-        public static b64_mt8 operator !=(plane_d_mt8 left, plane_d_mt8 right) => math_mt.any(left.normal_and_distance != right.normal_and_distance);
-
-        #endregion
-
-        public readonly override string ToString() => $"plane_d_mt8 {{ normal = {normal}, distance = {distance} }}";
-
-        #endregion
-    }
-
-} // namespace Coplt.Mathematics.Simt.Geometries
-
-namespace Coplt.Mathematics.Simt
-{
-    [Ex]
-    public static partial class math_mt
-    {
-        /// <summary>
-        /// Normalizes the plane represented by the given plane coefficients.
-        /// </summary>
-        public static plane_d_mt8 normalize([This] plane_d_mt8 plane) => new(plane_d_mt8.normalize(plane.normal_and_distance));
-    }
-}
-
-#endregion // plane_d_mt8
-
-#region plane_d_mt16
-
-namespace Coplt.Mathematics.Simt.Geometries
-{
-
-    /// <summary>
-    /// A plane represented by a normal vector and a distance along the normal from the origin.
-    /// </summary>
-    /// <remarks>
-    /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
-    /// </remarks>
-    [CpuOnly]
-    public partial struct plane_d_mt16
-    {
-        /// <summary>
-        /// A plane in the form Ax + By + Cz + Dw = 0.
-        /// </summary>
-        /// <remarks>
-        /// Stores the plane coefficients A, B, C, D where (A, B, C) is a unit normal vector and D is the distance from the origin.
-        /// A plane stored with a unit normal vector is called a normalized plane.
-        /// </remarks>
-        public double4_mt16 normal_and_distance;
-
-        /// <summary>
-        /// Get/set the normal vector of the plane.
-        /// </summary>
-        /// <remarks>
-        /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_d_mt16)"/>.
-        /// </remarks>
-        public double3_mt16 normal
-        {
-            [MethodImpl(256 | 512)]
-            readonly get => normal_and_distance.xyz;
-            [MethodImpl(256 | 512)]
-            set => normal_and_distance.xyz = value;
-        }
-
-        /// <summary>
-        /// Get/set the distance of the plane from the origin.  May be a negative value.
-        /// </summary>
-        /// <remarks>
-        /// It is assumed that the normal is unit length.  If you set a new plane such that Ax + By + Cz + Dw = 0 but
-        /// (A, B, C) is not unit length, then you must normalize the plane by calling <see cref="math_mt.normalize(plane_d_mt16)"/>.
-        /// </remarks>
-        public double_mt16 distance
-        {
-            [MethodImpl(256 | 512)]
-            readonly get => normal_and_distance.w;
-            [MethodImpl(256 | 512)]
-            set => normal_and_distance.w = value;
-        }
-
-        /// <summary>
-        /// Flips the plane so the normal points in the opposite direction.
-        /// </summary>
-        public readonly plane_d_mt16 flipped
-        {
-            [MethodImpl(256 | 512)]
-            get => new() { normal_and_distance = -normal_and_distance };
-        }
-
-        /// <summary>
-        /// A plane represented by a normal vector and a distance along the normal from the origin.
-        /// </summary>
-        /// <remarks>
-        /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
-        /// </remarks>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt16(double4_mt16 normal_and_distance) =>
-            this.normal_and_distance = normal_and_distance;
-
-        /// <summary>
-        /// Constructs a Plane from arbitrary coefficients A, B, C, D of the plane equation Ax + By + Cz + Dw = 0.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the given coefficients.
-        /// </remarks>
-        /// <param name="coefficientA">Coefficient A from plane equation.</param>
-        /// <param name="coefficientB">Coefficient B from plane equation.</param>
-        /// <param name="coefficientC">Coefficient C from plane equation.</param>
-        /// <param name="coefficientD">Coefficient D from plane equation.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt16(double_mt16 coefficientA, double_mt16 coefficientB, double_mt16 coefficientC, double_mt16 coefficientD) =>
-            normal_and_distance = normalize(new double4_mt16(coefficientA, coefficientB, coefficientC, coefficientD));
-
-        /// <summary>
-        /// Constructs a plane with a normal vector and distance from the origin.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
-        /// <param name="distance">
-        /// Distance from the origin along the normal.
-        /// A negative value moves the plane in the same direction as the normal while a positive value moves it in the opposite direction.
-        /// </param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt16(double3_mt16 normal, double_mt16 distance) =>
-            normal_and_distance = normalize(new double4_mt16(normal, distance));
-
-        /// <summary>
-        /// Constructs a plane with a normal vector and a point that lies in the plane.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="normal">A non-zero vector that is perpendicular to the plane.  It may be any length.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt16(double3_mt16 normal, double3_mt16 pointInPlane) : this(normal, -normal.dot(pointInPlane)) { }
-
-        /// <summary>
-        /// Constructs a plane with two vectors and a point that all lie in the plane.
-        /// </summary>
-        /// <remarks>
-        /// The constructed plane will be the normalized form of the plane specified by the inputs.
-        /// </remarks>
-        /// <param name="vector1InPlane">A non-zero vector that lies in the plane.  It may be any length.</param>
-        /// <param name="vector2InPlane">A non-zero vector that lies in the plane.  It may be any length and must not be a scalar multiple of <paramref name="vector1InPlane"/>.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        [MethodImpl(256 | 512)]
-        public plane_d_mt16(double3_mt16 vector1InPlane, double3_mt16 vector2InPlane, double3_mt16 pointInPlane)
-            : this(vector1InPlane.cross(vector2InPlane), pointInPlane) { }
-
-        /// <summary>
-        /// Creates a normalized Plane directly without normalization cost.
-        /// </summary>
-        /// <remarks>
-        /// If you have a unit length normal vector, you can create a Plane faster than using one of its constructors
-        /// by calling this function.
-        /// </remarks>
-        /// <param name="unitNormal">A non-zero vector that is perpendicular to the plane.  It must be unit length.</param>
-        /// <param name="distance">Distance from the origin along the normal.  A negative value moves the plane in the
-        /// same direction as the normal while a positive value moves it in the opposite direction.</param>
-        /// <returns>Normalized Plane constructed from given inputs.</returns>
-        [MethodImpl(256 | 512)]
-        public static plane_d_mt16 CreateFromUnitNormalAndDistance(double3_mt16 unitNormal, double_mt16 distance) =>
-            new() { normal_and_distance = new double4_mt16(unitNormal, distance) };
-
-        /// <summary>
-        /// Creates a normalized Plane without normalization cost.
-        /// </summary>
-        /// <remarks>
-        /// If you have a unit length normal vector, you can create a Plane faster than using one of its constructors
-        /// by calling this function.
-        /// </remarks>
-        /// <param name="unitNormal">A non-zero vector that is perpendicular to the plane.  It must be unit length.</param>
-        /// <param name="pointInPlane">A point that lies in the plane.</param>
-        /// <returns>Normalized Plane constructed from given inputs.</returns>
-        [MethodImpl(256 | 512)]
-        public static plane_d_mt16 CreateFromUnitNormalAndPointInPlane(double3_mt16 unitNormal, double3_mt16 pointInPlane) =>
-            new() { normal_and_distance = new double4_mt16(unitNormal, -unitNormal.dot(pointInPlane)) };
-
-        /// <summary>
-        /// Normalizes the plane represented by the given plane coefficients.
-        /// </summary>
-        /// <remarks>
-        /// The plane coefficients are A, B, C, D and stored in that order in the <see cref="float4"/>.
-        /// </remarks>
-        /// <param name="planeCoefficients">Plane coefficients A, B, C, D stored in x, y, z, w (respectively).</param>
-        /// <returns>Normalized plane coefficients.</returns>
-        [MethodImpl(256 | 512)]
-        public static double4_mt16 normalize(double4_mt16 planeCoefficients)
-        {
-            var recipLength = planeCoefficients.xyz.lengthsq().rsqrt();
-            return planeCoefficients * recipLength;
-        }
-
-        /// <summary>
-        /// Implicitly converts a <see cref="plane"/> to <see cref="float4"/>.
-        /// </summary>
-        /// <param name="plane">Plane to convert.</param>
-        /// <returns>A <see cref="float4"/> representing the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public static implicit operator double4_mt16(plane_d_mt16 plane) => plane.normal_and_distance;
-
-        /// <summary>
-        /// Get the signed distance from the point to the plane.
-        /// </summary>
-        /// <remarks>
-        /// Plane must be normalized prior to calling this function.  Distance is positive if point is on side of the plane the normal points to,
-        /// negative if on the opposite side and zero if the point lies in the plane.
-        /// Avoid comparing equality with 0.0f when testing if a point lies exactly in the plane and use an approximate comparison instead.
-        /// </remarks>
-        /// <param name="point">Point to find the signed distance with.</param>
-        /// <returns>Signed distance of the point from the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double_mt16 distance_to_point(double3_mt16 point) => normal_and_distance.dot(new double4_mt16(point, 1.0f));
-
-        /// <summary>
-        /// Projects the given point onto the plane.
-        /// </summary>
-        /// <remarks>
-        /// Plane must be normalized prior to calling this function.  The result is the position closest to the point
-        /// that still lies in the plane.
-        /// </remarks>
-        /// <param name="point">Point to project onto the plane.</param>
-        /// <returns>Projected point that's inside the plane.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double3_mt16 projection(double3_mt16 point) => point - normal * distance_to_point(point);
-
-        /// <summary>
-        /// Ray cast to the plane
-        /// </summary>
-        /// <param name="ray">The ray</param>
-        /// <param name="distance">Intersection distance</param>
-        /// <returns>Is intersect</returns>
-        [MethodImpl(256 | 512)]
-        public readonly b64_mt16 ray_cast(ray_d_mt16 ray, out double_mt16 distance)
-        {
-            var normal = this.normal;
-            var de_nom = normal.dot(ray.direction);
-            distance = (this.distance - normal.dot(ray.origin)) / de_nom;
-            return de_nom.abs() > 0.0001f & distance >= 0.0f;
-        }
-
-        /// <summary>
-        /// Ray cast to the plane
-        /// </summary>
-        /// <param name="ray">The ray</param>
-        /// <param name="distance">Intersection distance</param>
-        /// <param name="point">Intersection</param>
-        /// <returns>Is intersect</returns>
-        [MethodImpl(256 | 512)]
-        public readonly b64_mt16 ray_cast(ray_d_mt16 ray, out double_mt16 distance, out double3_mt16 point)
-        {
-            var normal = this.normal;
-            var de_nom = normal.dot(ray.direction);
-            distance = (this.distance - normal.dot(ray.origin)) / de_nom;
-            var intersects = de_nom.abs() > 0.0001f & distance >= 0.0f;
-            point = ray.point_at(distance) * math_mt.select(intersects, double3_mt16.One, default);
-            return intersects;
-        }
-
-        /// <summary>
-        /// For a given point returns the closest point on the plane.
-        /// </summary>
-        /// <param name="point">The point to project onto the plane.</param>
-        /// <returns>A point on the plane that is closest to point.</returns>
-        [MethodImpl(256 | 512)]
-        public readonly double3_mt16 closest_point(double3_mt16 point)
-        {
-            var normal = this.normal;
-            return point - normal * (normal.dot(point) + distance);
-        }
-
-        #region Misc
-
-        #region Eq
-
-        [MethodImpl(256 | 512)]
-        public readonly override bool Equals(object? obj) => obj is plane_d_mt16 other && Equals(other);
-
-        public readonly bool Equals(plane_d_mt16 other) => normal_and_distance.Equals(other.normal_and_distance);
-
-        public readonly bool NotEquals(plane_d_mt16 other) => normal_and_distance.NotEquals(other.normal_and_distance);
-
-        public readonly override int GetHashCode() => normal_and_distance.GetHashCode();
-
-        public static b64_mt16 operator ==(plane_d_mt16 left, plane_d_mt16 right) => math_mt.all(left.normal_and_distance == right.normal_and_distance);
-
-        public static b64_mt16 operator !=(plane_d_mt16 left, plane_d_mt16 right) => math_mt.any(left.normal_and_distance != right.normal_and_distance);
-
-        #endregion
-
-        public readonly override string ToString() => $"plane_d_mt16 {{ normal = {normal}, distance = {distance} }}";
-
-        #endregion
-    }
-
-} // namespace Coplt.Mathematics.Simt.Geometries
-
-namespace Coplt.Mathematics.Simt
-{
-    [Ex]
-    public static partial class math_mt
-    {
-        /// <summary>
-        /// Normalizes the plane represented by the given plane coefficients.
-        /// </summary>
-        public static plane_d_mt16 normalize([This] plane_d_mt16 plane) => new(plane_d_mt16.normalize(plane.normal_and_distance));
-    }
-}
-
-#endregion // plane_d_mt16
+#endregion // plane_d_mt

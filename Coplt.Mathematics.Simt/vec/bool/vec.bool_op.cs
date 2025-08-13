@@ -2,2019 +2,675 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float2_mt4
+#region float2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2_mt4 select([This] b32v2_mt4 c, float2_mt4 t, float2_mt4 f)
+    public static float2_mt select([This] b32v2_mt c, float2_mt t, float2_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 select([This] b32_mt4 c, float2_mt4 t, float2_mt4 f)
+    public static float2_mt select([This] b32_mt c, float2_mt t, float2_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 select([This] b32v2_mt4 c, float_mt4 t, float_mt4 f)
+    public static float2_mt select([This] b32v2_mt c, float_mt t, float_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 select([This] bool c, float2_mt4 t, float2_mt4 f) => c ? t : f;
+    public static float2_mt select([This] bool c, float2_mt t, float2_mt f) => c ? t : f;
 }
 
-#endregion // float2_mt4
-#region float2_mt8
+#endregion // float2_mt
+#region float3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2_mt8 select([This] b32v2_mt8 c, float2_mt8 t, float2_mt8 f)
+    public static float3_mt select([This] b32v3_mt c, float3_mt t, float3_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt select([This] b32_mt c, float3_mt t, float3_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt select([This] b32v3_mt c, float_mt t, float_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt select([This] bool c, float3_mt t, float3_mt f) => c ? t : f;
+}
+
+#endregion // float3_mt
+#region float4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static float4_mt select([This] b32v4_mt c, float4_mt t, float4_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt select([This] b32_mt c, float4_mt t, float4_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt select([This] b32v4_mt c, float_mt t, float_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt select([This] bool c, float4_mt t, float4_mt f) => c ? t : f;
+}
+
+#endregion // float4_mt
+#region double2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static double2_mt select([This] b64v2_mt c, double2_mt t, double2_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 select([This] b32_mt8 c, float2_mt8 t, float2_mt8 f)
+    public static double2_mt select([This] b64_mt c, double2_mt t, double2_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 select([This] b32v2_mt8 c, float_mt8 t, float_mt8 f)
+    public static double2_mt select([This] b64v2_mt c, double_mt t, double_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 select([This] bool c, float2_mt8 t, float2_mt8 f) => c ? t : f;
+    public static double2_mt select([This] bool c, double2_mt t, double2_mt f) => c ? t : f;
 }
 
-#endregion // float2_mt8
-#region float2_mt16
+#endregion // double2_mt
+#region double3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2_mt16 select([This] b32v2_mt16 c, float2_mt16 t, float2_mt16 f)
+    public static double3_mt select([This] b64v3_mt c, double3_mt t, double3_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt select([This] b64_mt c, double3_mt t, double3_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt select([This] b64v3_mt c, double_mt t, double_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt select([This] bool c, double3_mt t, double3_mt f) => c ? t : f;
+}
+
+#endregion // double3_mt
+#region double4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static double4_mt select([This] b64v4_mt c, double4_mt t, double4_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt select([This] b64_mt c, double4_mt t, double4_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt select([This] b64v4_mt c, double_mt t, double_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt select([This] bool c, double4_mt t, double4_mt f) => c ? t : f;
+}
+
+#endregion // double4_mt
+#region int2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static int2_mt select([This] b32v2_mt c, int2_mt t, int2_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 select([This] b32_mt16 c, float2_mt16 t, float2_mt16 f)
+    public static int2_mt select([This] b32_mt c, int2_mt t, int2_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 select([This] b32v2_mt16 c, float_mt16 t, float_mt16 f)
+    public static int2_mt select([This] b32v2_mt c, int_mt t, int_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 select([This] bool c, float2_mt16 t, float2_mt16 f) => c ? t : f;
+    public static int2_mt select([This] bool c, int2_mt t, int2_mt f) => c ? t : f;
 }
 
-#endregion // float2_mt16
-#region float3_mt4
+#endregion // int2_mt
+#region int3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3_mt4 select([This] b32v3_mt4 c, float3_mt4 t, float3_mt4 f)
+    public static int3_mt select([This] b32v3_mt c, int3_mt t, int3_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 select([This] b32_mt4 c, float3_mt4 t, float3_mt4 f)
+    public static int3_mt select([This] b32_mt c, int3_mt t, int3_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 select([This] b32v3_mt4 c, float_mt4 t, float_mt4 f)
+    public static int3_mt select([This] b32v3_mt c, int_mt t, int_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 select([This] bool c, float3_mt4 t, float3_mt4 f) => c ? t : f;
+    public static int3_mt select([This] bool c, int3_mt t, int3_mt f) => c ? t : f;
 }
 
-#endregion // float3_mt4
-#region float3_mt8
+#endregion // int3_mt
+#region int4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3_mt8 select([This] b32v3_mt8 c, float3_mt8 t, float3_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 select([This] b32_mt8 c, float3_mt8 t, float3_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 select([This] b32v3_mt8 c, float_mt8 t, float_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 select([This] bool c, float3_mt8 t, float3_mt8 f) => c ? t : f;
-}
-
-#endregion // float3_mt8
-#region float3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 select([This] b32v3_mt16 c, float3_mt16 t, float3_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 select([This] b32_mt16 c, float3_mt16 t, float3_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 select([This] b32v3_mt16 c, float_mt16 t, float_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 select([This] bool c, float3_mt16 t, float3_mt16 f) => c ? t : f;
-}
-
-#endregion // float3_mt16
-#region float4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 select([This] b32v4_mt4 c, float4_mt4 t, float4_mt4 f)
+    public static int4_mt select([This] b32v4_mt c, int4_mt t, int4_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 select([This] b32_mt4 c, float4_mt4 t, float4_mt4 f)
+    public static int4_mt select([This] b32_mt c, int4_mt t, int4_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 select([This] b32v4_mt4 c, float_mt4 t, float_mt4 f)
+    public static int4_mt select([This] b32v4_mt c, int_mt t, int_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 select([This] bool c, float4_mt4 t, float4_mt4 f) => c ? t : f;
+    public static int4_mt select([This] bool c, int4_mt t, int4_mt f) => c ? t : f;
 }
 
-#endregion // float4_mt4
-#region float4_mt8
+#endregion // int4_mt
+#region uint2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float4_mt8 select([This] b32v4_mt8 c, float4_mt8 t, float4_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 select([This] b32_mt8 c, float4_mt8 t, float4_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 select([This] b32v4_mt8 c, float_mt8 t, float_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 select([This] bool c, float4_mt8 t, float4_mt8 f) => c ? t : f;
-}
-
-#endregion // float4_mt8
-#region float4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 select([This] b32v4_mt16 c, float4_mt16 t, float4_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 select([This] b32_mt16 c, float4_mt16 t, float4_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 select([This] b32v4_mt16 c, float_mt16 t, float_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 select([This] bool c, float4_mt16 t, float4_mt16 f) => c ? t : f;
-}
-
-#endregion // float4_mt16
-#region double2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double2_mt4 select([This] b64v2_mt4 c, double2_mt4 t, double2_mt4 f)
+    public static uint2_mt select([This] b32v2_mt c, uint2_mt t, uint2_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 select([This] b64_mt4 c, double2_mt4 t, double2_mt4 f)
+    public static uint2_mt select([This] b32_mt c, uint2_mt t, uint2_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 select([This] b64v2_mt4 c, double_mt4 t, double_mt4 f)
+    public static uint2_mt select([This] b32v2_mt c, uint_mt t, uint_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 select([This] bool c, double2_mt4 t, double2_mt4 f) => c ? t : f;
+    public static uint2_mt select([This] bool c, uint2_mt t, uint2_mt f) => c ? t : f;
 }
 
-#endregion // double2_mt4
-#region double2_mt8
+#endregion // uint2_mt
+#region uint3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double2_mt8 select([This] b64v2_mt8 c, double2_mt8 t, double2_mt8 f)
+    public static uint3_mt select([This] b32v3_mt c, uint3_mt t, uint3_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt select([This] b32_mt c, uint3_mt t, uint3_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt select([This] b32v3_mt c, uint_mt t, uint_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt select([This] bool c, uint3_mt t, uint3_mt f) => c ? t : f;
+}
+
+#endregion // uint3_mt
+#region uint4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint4_mt select([This] b32v4_mt c, uint4_mt t, uint4_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt select([This] b32_mt c, uint4_mt t, uint4_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt select([This] b32v4_mt c, uint_mt t, uint_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt select([This] bool c, uint4_mt t, uint4_mt f) => c ? t : f;
+}
+
+#endregion // uint4_mt
+#region long2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static long2_mt select([This] b64v2_mt c, long2_mt t, long2_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 select([This] b64_mt8 c, double2_mt8 t, double2_mt8 f)
+    public static long2_mt select([This] b64_mt c, long2_mt t, long2_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 select([This] b64v2_mt8 c, double_mt8 t, double_mt8 f)
+    public static long2_mt select([This] b64v2_mt c, long_mt t, long_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 select([This] bool c, double2_mt8 t, double2_mt8 f) => c ? t : f;
+    public static long2_mt select([This] bool c, long2_mt t, long2_mt f) => c ? t : f;
 }
 
-#endregion // double2_mt8
-#region double2_mt16
+#endregion // long2_mt
+#region long3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double2_mt16 select([This] b64v2_mt16 c, double2_mt16 t, double2_mt16 f)
+    public static long3_mt select([This] b64v3_mt c, long3_mt t, long3_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt select([This] b64_mt c, long3_mt t, long3_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt select([This] b64v3_mt c, long_mt t, long_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt select([This] bool c, long3_mt t, long3_mt f) => c ? t : f;
+}
+
+#endregion // long3_mt
+#region long4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static long4_mt select([This] b64v4_mt c, long4_mt t, long4_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt select([This] b64_mt c, long4_mt t, long4_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt select([This] b64v4_mt c, long_mt t, long_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt select([This] bool c, long4_mt t, long4_mt f) => c ? t : f;
+}
+
+#endregion // long4_mt
+#region ulong2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt select([This] b64v2_mt c, ulong2_mt t, ulong2_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 select([This] b64_mt16 c, double2_mt16 t, double2_mt16 f)
+    public static ulong2_mt select([This] b64_mt c, ulong2_mt t, ulong2_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 select([This] b64v2_mt16 c, double_mt16 t, double_mt16 f)
+    public static ulong2_mt select([This] b64v2_mt c, ulong_mt t, ulong_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 select([This] bool c, double2_mt16 t, double2_mt16 f) => c ? t : f;
+    public static ulong2_mt select([This] bool c, ulong2_mt t, ulong2_mt f) => c ? t : f;
 }
 
-#endregion // double2_mt16
-#region double3_mt4
+#endregion // ulong2_mt
+#region ulong3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3_mt4 select([This] b64v3_mt4 c, double3_mt4 t, double3_mt4 f)
+    public static ulong3_mt select([This] b64v3_mt c, ulong3_mt t, ulong3_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 select([This] b64_mt4 c, double3_mt4 t, double3_mt4 f)
+    public static ulong3_mt select([This] b64_mt c, ulong3_mt t, ulong3_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 select([This] b64v3_mt4 c, double_mt4 t, double_mt4 f)
+    public static ulong3_mt select([This] b64v3_mt c, ulong_mt t, ulong_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 select([This] bool c, double3_mt4 t, double3_mt4 f) => c ? t : f;
+    public static ulong3_mt select([This] bool c, ulong3_mt t, ulong3_mt f) => c ? t : f;
 }
 
-#endregion // double3_mt4
-#region double3_mt8
+#endregion // ulong3_mt
+#region ulong4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3_mt8 select([This] b64v3_mt8 c, double3_mt8 t, double3_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 select([This] b64_mt8 c, double3_mt8 t, double3_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 select([This] b64v3_mt8 c, double_mt8 t, double_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 select([This] bool c, double3_mt8 t, double3_mt8 f) => c ? t : f;
-}
-
-#endregion // double3_mt8
-#region double3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 select([This] b64v3_mt16 c, double3_mt16 t, double3_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 select([This] b64_mt16 c, double3_mt16 t, double3_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 select([This] b64v3_mt16 c, double_mt16 t, double_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 select([This] bool c, double3_mt16 t, double3_mt16 f) => c ? t : f;
-}
-
-#endregion // double3_mt16
-#region double4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 select([This] b64v4_mt4 c, double4_mt4 t, double4_mt4 f)
+    public static ulong4_mt select([This] b64v4_mt c, ulong4_mt t, ulong4_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 select([This] b64_mt4 c, double4_mt4 t, double4_mt4 f)
+    public static ulong4_mt select([This] b64_mt c, ulong4_mt t, ulong4_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 select([This] b64v4_mt4 c, double_mt4 t, double_mt4 f)
+    public static ulong4_mt select([This] b64v4_mt c, ulong_mt t, ulong_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 select([This] bool c, double4_mt4 t, double4_mt4 f) => c ? t : f;
+    public static ulong4_mt select([This] bool c, ulong4_mt t, ulong4_mt f) => c ? t : f;
 }
 
-#endregion // double4_mt4
-#region double4_mt8
+#endregion // ulong4_mt
+#region b32v2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double4_mt8 select([This] b64v4_mt8 c, double4_mt8 t, double4_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 select([This] b64_mt8 c, double4_mt8 t, double4_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 select([This] b64v4_mt8 c, double_mt8 t, double_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 select([This] bool c, double4_mt8 t, double4_mt8 f) => c ? t : f;
-}
-
-#endregion // double4_mt8
-#region double4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 select([This] b64v4_mt16 c, double4_mt16 t, double4_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 select([This] b64_mt16 c, double4_mt16 t, double4_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 select([This] b64v4_mt16 c, double_mt16 t, double_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 select([This] bool c, double4_mt16 t, double4_mt16 f) => c ? t : f;
-}
-
-#endregion // double4_mt16
-#region int2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int2_mt4 select([This] b32v2_mt4 c, int2_mt4 t, int2_mt4 f)
+    public static b32v2_mt select([This] b32v2_mt c, b32v2_mt t, b32v2_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 select([This] b32_mt4 c, int2_mt4 t, int2_mt4 f)
+    public static b32v2_mt select([This] b32_mt c, b32v2_mt t, b32v2_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 select([This] b32v2_mt4 c, int_mt4 t, int_mt4 f)
+    public static b32v2_mt select([This] b32v2_mt c, b32_mt t, b32_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 select([This] bool c, int2_mt4 t, int2_mt4 f) => c ? t : f;
+    public static b32v2_mt select([This] bool c, b32v2_mt t, b32v2_mt f) => c ? t : f;
 }
 
-#endregion // int2_mt4
-#region int2_mt8
+#endregion // b32v2_mt
+#region b32v3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2_mt8 select([This] b32v2_mt8 c, int2_mt8 t, int2_mt8 f)
+    public static b32v3_mt select([This] b32v3_mt c, b32v3_mt t, b32v3_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt select([This] b32_mt c, b32v3_mt t, b32v3_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt select([This] b32v3_mt c, b32_mt t, b32_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt select([This] bool c, b32v3_mt t, b32v3_mt f) => c ? t : f;
+}
+
+#endregion // b32v3_mt
+#region b32v4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt select([This] b32v4_mt c, b32v4_mt t, b32v4_mt f)
+    {
+        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt select([This] b32_mt c, b32v4_mt t, b32v4_mt f)
+    {
+        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt select([This] b32v4_mt c, b32_mt t, b32_mt f)
+    {
+        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt select([This] bool c, b32v4_mt t, b32v4_mt f) => c ? t : f;
+}
+
+#endregion // b32v4_mt
+#region b64v2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt select([This] b64v2_mt c, b64v2_mt t, b64v2_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 select([This] b32_mt8 c, int2_mt8 t, int2_mt8 f)
+    public static b64v2_mt select([This] b64_mt c, b64v2_mt t, b64v2_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 select([This] b32v2_mt8 c, int_mt8 t, int_mt8 f)
+    public static b64v2_mt select([This] b64v2_mt c, b64_mt t, b64_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 select([This] bool c, int2_mt8 t, int2_mt8 f) => c ? t : f;
+    public static b64v2_mt select([This] bool c, b64v2_mt t, b64v2_mt f) => c ? t : f;
 }
 
-#endregion // int2_mt8
-#region int2_mt16
+#endregion // b64v2_mt
+#region b64v3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2_mt16 select([This] b32v2_mt16 c, int2_mt16 t, int2_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 select([This] b32_mt16 c, int2_mt16 t, int2_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 select([This] b32v2_mt16 c, int_mt16 t, int_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 select([This] bool c, int2_mt16 t, int2_mt16 f) => c ? t : f;
-}
-
-#endregion // int2_mt16
-#region int3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 select([This] b32v3_mt4 c, int3_mt4 t, int3_mt4 f)
+    public static b64v3_mt select([This] b64v3_mt c, b64v3_mt t, b64v3_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 select([This] b32_mt4 c, int3_mt4 t, int3_mt4 f)
+    public static b64v3_mt select([This] b64_mt c, b64v3_mt t, b64v3_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 select([This] b32v3_mt4 c, int_mt4 t, int_mt4 f)
+    public static b64v3_mt select([This] b64v3_mt c, b64_mt t, b64_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 select([This] bool c, int3_mt4 t, int3_mt4 f) => c ? t : f;
+    public static b64v3_mt select([This] bool c, b64v3_mt t, b64v3_mt f) => c ? t : f;
 }
 
-#endregion // int3_mt4
-#region int3_mt8
+#endregion // b64v3_mt
+#region b64v4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3_mt8 select([This] b32v3_mt8 c, int3_mt8 t, int3_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 select([This] b32_mt8 c, int3_mt8 t, int3_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 select([This] b32v3_mt8 c, int_mt8 t, int_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 select([This] bool c, int3_mt8 t, int3_mt8 f) => c ? t : f;
-}
-
-#endregion // int3_mt8
-#region int3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 select([This] b32v3_mt16 c, int3_mt16 t, int3_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 select([This] b32_mt16 c, int3_mt16 t, int3_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 select([This] b32v3_mt16 c, int_mt16 t, int_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 select([This] bool c, int3_mt16 t, int3_mt16 f) => c ? t : f;
-}
-
-#endregion // int3_mt16
-#region int4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 select([This] b32v4_mt4 c, int4_mt4 t, int4_mt4 f)
+    public static b64v4_mt select([This] b64v4_mt c, b64v4_mt t, b64v4_mt f)
     {
         return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 select([This] b32_mt4 c, int4_mt4 t, int4_mt4 f)
+    public static b64v4_mt select([This] b64_mt c, b64v4_mt t, b64v4_mt f)
     {
         return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 select([This] b32v4_mt4 c, int_mt4 t, int_mt4 f)
+    public static b64v4_mt select([This] b64v4_mt c, b64_mt t, b64_mt f)
     {
         return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
     }
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 select([This] bool c, int4_mt4 t, int4_mt4 f) => c ? t : f;
+    public static b64v4_mt select([This] bool c, b64v4_mt t, b64v4_mt f) => c ? t : f;
 }
 
-#endregion // int4_mt4
-#region int4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 select([This] b32v4_mt8 c, int4_mt8 t, int4_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 select([This] b32_mt8 c, int4_mt8 t, int4_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 select([This] b32v4_mt8 c, int_mt8 t, int_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 select([This] bool c, int4_mt8 t, int4_mt8 f) => c ? t : f;
-}
-
-#endregion // int4_mt8
-#region int4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 select([This] b32v4_mt16 c, int4_mt16 t, int4_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 select([This] b32_mt16 c, int4_mt16 t, int4_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 select([This] b32v4_mt16 c, int_mt16 t, int_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 select([This] bool c, int4_mt16 t, int4_mt16 f) => c ? t : f;
-}
-
-#endregion // int4_mt16
-#region uint2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 select([This] b32v2_mt4 c, uint2_mt4 t, uint2_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 select([This] b32_mt4 c, uint2_mt4 t, uint2_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 select([This] b32v2_mt4 c, uint_mt4 t, uint_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 select([This] bool c, uint2_mt4 t, uint2_mt4 f) => c ? t : f;
-}
-
-#endregion // uint2_mt4
-#region uint2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 select([This] b32v2_mt8 c, uint2_mt8 t, uint2_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 select([This] b32_mt8 c, uint2_mt8 t, uint2_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 select([This] b32v2_mt8 c, uint_mt8 t, uint_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 select([This] bool c, uint2_mt8 t, uint2_mt8 f) => c ? t : f;
-}
-
-#endregion // uint2_mt8
-#region uint2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 select([This] b32v2_mt16 c, uint2_mt16 t, uint2_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 select([This] b32_mt16 c, uint2_mt16 t, uint2_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 select([This] b32v2_mt16 c, uint_mt16 t, uint_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 select([This] bool c, uint2_mt16 t, uint2_mt16 f) => c ? t : f;
-}
-
-#endregion // uint2_mt16
-#region uint3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 select([This] b32v3_mt4 c, uint3_mt4 t, uint3_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 select([This] b32_mt4 c, uint3_mt4 t, uint3_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 select([This] b32v3_mt4 c, uint_mt4 t, uint_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 select([This] bool c, uint3_mt4 t, uint3_mt4 f) => c ? t : f;
-}
-
-#endregion // uint3_mt4
-#region uint3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 select([This] b32v3_mt8 c, uint3_mt8 t, uint3_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 select([This] b32_mt8 c, uint3_mt8 t, uint3_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 select([This] b32v3_mt8 c, uint_mt8 t, uint_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 select([This] bool c, uint3_mt8 t, uint3_mt8 f) => c ? t : f;
-}
-
-#endregion // uint3_mt8
-#region uint3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 select([This] b32v3_mt16 c, uint3_mt16 t, uint3_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 select([This] b32_mt16 c, uint3_mt16 t, uint3_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 select([This] b32v3_mt16 c, uint_mt16 t, uint_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 select([This] bool c, uint3_mt16 t, uint3_mt16 f) => c ? t : f;
-}
-
-#endregion // uint3_mt16
-#region uint4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 select([This] b32v4_mt4 c, uint4_mt4 t, uint4_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 select([This] b32_mt4 c, uint4_mt4 t, uint4_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 select([This] b32v4_mt4 c, uint_mt4 t, uint_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 select([This] bool c, uint4_mt4 t, uint4_mt4 f) => c ? t : f;
-}
-
-#endregion // uint4_mt4
-#region uint4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 select([This] b32v4_mt8 c, uint4_mt8 t, uint4_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 select([This] b32_mt8 c, uint4_mt8 t, uint4_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 select([This] b32v4_mt8 c, uint_mt8 t, uint_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 select([This] bool c, uint4_mt8 t, uint4_mt8 f) => c ? t : f;
-}
-
-#endregion // uint4_mt8
-#region uint4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 select([This] b32v4_mt16 c, uint4_mt16 t, uint4_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 select([This] b32_mt16 c, uint4_mt16 t, uint4_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 select([This] b32v4_mt16 c, uint_mt16 t, uint_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 select([This] bool c, uint4_mt16 t, uint4_mt16 f) => c ? t : f;
-}
-
-#endregion // uint4_mt16
-#region long2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 select([This] b64v2_mt4 c, long2_mt4 t, long2_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 select([This] b64_mt4 c, long2_mt4 t, long2_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 select([This] b64v2_mt4 c, long_mt4 t, long_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 select([This] bool c, long2_mt4 t, long2_mt4 f) => c ? t : f;
-}
-
-#endregion // long2_mt4
-#region long2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 select([This] b64v2_mt8 c, long2_mt8 t, long2_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 select([This] b64_mt8 c, long2_mt8 t, long2_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 select([This] b64v2_mt8 c, long_mt8 t, long_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 select([This] bool c, long2_mt8 t, long2_mt8 f) => c ? t : f;
-}
-
-#endregion // long2_mt8
-#region long2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 select([This] b64v2_mt16 c, long2_mt16 t, long2_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 select([This] b64_mt16 c, long2_mt16 t, long2_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 select([This] b64v2_mt16 c, long_mt16 t, long_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 select([This] bool c, long2_mt16 t, long2_mt16 f) => c ? t : f;
-}
-
-#endregion // long2_mt16
-#region long3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 select([This] b64v3_mt4 c, long3_mt4 t, long3_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 select([This] b64_mt4 c, long3_mt4 t, long3_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 select([This] b64v3_mt4 c, long_mt4 t, long_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 select([This] bool c, long3_mt4 t, long3_mt4 f) => c ? t : f;
-}
-
-#endregion // long3_mt4
-#region long3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 select([This] b64v3_mt8 c, long3_mt8 t, long3_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 select([This] b64_mt8 c, long3_mt8 t, long3_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 select([This] b64v3_mt8 c, long_mt8 t, long_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 select([This] bool c, long3_mt8 t, long3_mt8 f) => c ? t : f;
-}
-
-#endregion // long3_mt8
-#region long3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 select([This] b64v3_mt16 c, long3_mt16 t, long3_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 select([This] b64_mt16 c, long3_mt16 t, long3_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 select([This] b64v3_mt16 c, long_mt16 t, long_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 select([This] bool c, long3_mt16 t, long3_mt16 f) => c ? t : f;
-}
-
-#endregion // long3_mt16
-#region long4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 select([This] b64v4_mt4 c, long4_mt4 t, long4_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 select([This] b64_mt4 c, long4_mt4 t, long4_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 select([This] b64v4_mt4 c, long_mt4 t, long_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 select([This] bool c, long4_mt4 t, long4_mt4 f) => c ? t : f;
-}
-
-#endregion // long4_mt4
-#region long4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 select([This] b64v4_mt8 c, long4_mt8 t, long4_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 select([This] b64_mt8 c, long4_mt8 t, long4_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 select([This] b64v4_mt8 c, long_mt8 t, long_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 select([This] bool c, long4_mt8 t, long4_mt8 f) => c ? t : f;
-}
-
-#endregion // long4_mt8
-#region long4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 select([This] b64v4_mt16 c, long4_mt16 t, long4_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 select([This] b64_mt16 c, long4_mt16 t, long4_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 select([This] b64v4_mt16 c, long_mt16 t, long_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 select([This] bool c, long4_mt16 t, long4_mt16 f) => c ? t : f;
-}
-
-#endregion // long4_mt16
-#region ulong2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 select([This] b64v2_mt4 c, ulong2_mt4 t, ulong2_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 select([This] b64_mt4 c, ulong2_mt4 t, ulong2_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 select([This] b64v2_mt4 c, ulong_mt4 t, ulong_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 select([This] bool c, ulong2_mt4 t, ulong2_mt4 f) => c ? t : f;
-}
-
-#endregion // ulong2_mt4
-#region ulong2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 select([This] b64v2_mt8 c, ulong2_mt8 t, ulong2_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 select([This] b64_mt8 c, ulong2_mt8 t, ulong2_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 select([This] b64v2_mt8 c, ulong_mt8 t, ulong_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 select([This] bool c, ulong2_mt8 t, ulong2_mt8 f) => c ? t : f;
-}
-
-#endregion // ulong2_mt8
-#region ulong2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 select([This] b64v2_mt16 c, ulong2_mt16 t, ulong2_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 select([This] b64_mt16 c, ulong2_mt16 t, ulong2_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 select([This] b64v2_mt16 c, ulong_mt16 t, ulong_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 select([This] bool c, ulong2_mt16 t, ulong2_mt16 f) => c ? t : f;
-}
-
-#endregion // ulong2_mt16
-#region ulong3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 select([This] b64v3_mt4 c, ulong3_mt4 t, ulong3_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 select([This] b64_mt4 c, ulong3_mt4 t, ulong3_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 select([This] b64v3_mt4 c, ulong_mt4 t, ulong_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 select([This] bool c, ulong3_mt4 t, ulong3_mt4 f) => c ? t : f;
-}
-
-#endregion // ulong3_mt4
-#region ulong3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 select([This] b64v3_mt8 c, ulong3_mt8 t, ulong3_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 select([This] b64_mt8 c, ulong3_mt8 t, ulong3_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 select([This] b64v3_mt8 c, ulong_mt8 t, ulong_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 select([This] bool c, ulong3_mt8 t, ulong3_mt8 f) => c ? t : f;
-}
-
-#endregion // ulong3_mt8
-#region ulong3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 select([This] b64v3_mt16 c, ulong3_mt16 t, ulong3_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 select([This] b64_mt16 c, ulong3_mt16 t, ulong3_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 select([This] b64v3_mt16 c, ulong_mt16 t, ulong_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 select([This] bool c, ulong3_mt16 t, ulong3_mt16 f) => c ? t : f;
-}
-
-#endregion // ulong3_mt16
-#region ulong4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 select([This] b64v4_mt4 c, ulong4_mt4 t, ulong4_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 select([This] b64_mt4 c, ulong4_mt4 t, ulong4_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 select([This] b64v4_mt4 c, ulong_mt4 t, ulong_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 select([This] bool c, ulong4_mt4 t, ulong4_mt4 f) => c ? t : f;
-}
-
-#endregion // ulong4_mt4
-#region ulong4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 select([This] b64v4_mt8 c, ulong4_mt8 t, ulong4_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 select([This] b64_mt8 c, ulong4_mt8 t, ulong4_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 select([This] b64v4_mt8 c, ulong_mt8 t, ulong_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 select([This] bool c, ulong4_mt8 t, ulong4_mt8 f) => c ? t : f;
-}
-
-#endregion // ulong4_mt8
-#region ulong4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 select([This] b64v4_mt16 c, ulong4_mt16 t, ulong4_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 select([This] b64_mt16 c, ulong4_mt16 t, ulong4_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 select([This] b64v4_mt16 c, ulong_mt16 t, ulong_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 select([This] bool c, ulong4_mt16 t, ulong4_mt16 f) => c ? t : f;
-}
-
-#endregion // ulong4_mt16
-#region b32v2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 select([This] b32v2_mt4 c, b32v2_mt4 t, b32v2_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 select([This] b32_mt4 c, b32v2_mt4 t, b32v2_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 select([This] b32v2_mt4 c, b32_mt4 t, b32_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 select([This] bool c, b32v2_mt4 t, b32v2_mt4 f) => c ? t : f;
-}
-
-#endregion // b32v2_mt4
-#region b32v2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 select([This] b32v2_mt8 c, b32v2_mt8 t, b32v2_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 select([This] b32_mt8 c, b32v2_mt8 t, b32v2_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 select([This] b32v2_mt8 c, b32_mt8 t, b32_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 select([This] bool c, b32v2_mt8 t, b32v2_mt8 f) => c ? t : f;
-}
-
-#endregion // b32v2_mt8
-#region b32v2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 select([This] b32v2_mt16 c, b32v2_mt16 t, b32v2_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 select([This] b32_mt16 c, b32v2_mt16 t, b32v2_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 select([This] b32v2_mt16 c, b32_mt16 t, b32_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 select([This] bool c, b32v2_mt16 t, b32v2_mt16 f) => c ? t : f;
-}
-
-#endregion // b32v2_mt16
-#region b32v3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 select([This] b32v3_mt4 c, b32v3_mt4 t, b32v3_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 select([This] b32_mt4 c, b32v3_mt4 t, b32v3_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 select([This] b32v3_mt4 c, b32_mt4 t, b32_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 select([This] bool c, b32v3_mt4 t, b32v3_mt4 f) => c ? t : f;
-}
-
-#endregion // b32v3_mt4
-#region b32v3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 select([This] b32v3_mt8 c, b32v3_mt8 t, b32v3_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 select([This] b32_mt8 c, b32v3_mt8 t, b32v3_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 select([This] b32v3_mt8 c, b32_mt8 t, b32_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 select([This] bool c, b32v3_mt8 t, b32v3_mt8 f) => c ? t : f;
-}
-
-#endregion // b32v3_mt8
-#region b32v3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 select([This] b32v3_mt16 c, b32v3_mt16 t, b32v3_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 select([This] b32_mt16 c, b32v3_mt16 t, b32v3_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 select([This] b32v3_mt16 c, b32_mt16 t, b32_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 select([This] bool c, b32v3_mt16 t, b32v3_mt16 f) => c ? t : f;
-}
-
-#endregion // b32v3_mt16
-#region b32v4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 select([This] b32v4_mt4 c, b32v4_mt4 t, b32v4_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 select([This] b32_mt4 c, b32v4_mt4 t, b32v4_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 select([This] b32v4_mt4 c, b32_mt4 t, b32_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 select([This] bool c, b32v4_mt4 t, b32v4_mt4 f) => c ? t : f;
-}
-
-#endregion // b32v4_mt4
-#region b32v4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 select([This] b32v4_mt8 c, b32v4_mt8 t, b32v4_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 select([This] b32_mt8 c, b32v4_mt8 t, b32v4_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 select([This] b32v4_mt8 c, b32_mt8 t, b32_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 select([This] bool c, b32v4_mt8 t, b32v4_mt8 f) => c ? t : f;
-}
-
-#endregion // b32v4_mt8
-#region b32v4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 select([This] b32v4_mt16 c, b32v4_mt16 t, b32v4_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 select([This] b32_mt16 c, b32v4_mt16 t, b32v4_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 select([This] b32v4_mt16 c, b32_mt16 t, b32_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 select([This] bool c, b32v4_mt16 t, b32v4_mt16 f) => c ? t : f;
-}
-
-#endregion // b32v4_mt16
-#region b64v2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 select([This] b64v2_mt4 c, b64v2_mt4 t, b64v2_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 select([This] b64_mt4 c, b64v2_mt4 t, b64v2_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 select([This] b64v2_mt4 c, b64_mt4 t, b64_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 select([This] bool c, b64v2_mt4 t, b64v2_mt4 f) => c ? t : f;
-}
-
-#endregion // b64v2_mt4
-#region b64v2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 select([This] b64v2_mt8 c, b64v2_mt8 t, b64v2_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 select([This] b64_mt8 c, b64v2_mt8 t, b64v2_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 select([This] b64v2_mt8 c, b64_mt8 t, b64_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 select([This] bool c, b64v2_mt8 t, b64v2_mt8 f) => c ? t : f;
-}
-
-#endregion // b64v2_mt8
-#region b64v2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 select([This] b64v2_mt16 c, b64v2_mt16 t, b64v2_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 select([This] b64_mt16 c, b64v2_mt16 t, b64v2_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 select([This] b64v2_mt16 c, b64_mt16 t, b64_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 select([This] bool c, b64v2_mt16 t, b64v2_mt16 f) => c ? t : f;
-}
-
-#endregion // b64v2_mt16
-#region b64v3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 select([This] b64v3_mt4 c, b64v3_mt4 t, b64v3_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 select([This] b64_mt4 c, b64v3_mt4 t, b64v3_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 select([This] b64v3_mt4 c, b64_mt4 t, b64_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 select([This] bool c, b64v3_mt4 t, b64v3_mt4 f) => c ? t : f;
-}
-
-#endregion // b64v3_mt4
-#region b64v3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 select([This] b64v3_mt8 c, b64v3_mt8 t, b64v3_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 select([This] b64_mt8 c, b64v3_mt8 t, b64v3_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 select([This] b64v3_mt8 c, b64_mt8 t, b64_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 select([This] bool c, b64v3_mt8 t, b64v3_mt8 f) => c ? t : f;
-}
-
-#endregion // b64v3_mt8
-#region b64v3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 select([This] b64v3_mt16 c, b64v3_mt16 t, b64v3_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 select([This] b64_mt16 c, b64v3_mt16 t, b64v3_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 select([This] b64v3_mt16 c, b64_mt16 t, b64_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 select([This] bool c, b64v3_mt16 t, b64v3_mt16 f) => c ? t : f;
-}
-
-#endregion // b64v3_mt16
-#region b64v4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 select([This] b64v4_mt4 c, b64v4_mt4 t, b64v4_mt4 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 select([This] b64_mt4 c, b64v4_mt4 t, b64v4_mt4 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 select([This] b64v4_mt4 c, b64_mt4 t, b64_mt4 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 select([This] bool c, b64v4_mt4 t, b64v4_mt4 f) => c ? t : f;
-}
-
-#endregion // b64v4_mt4
-#region b64v4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 select([This] b64v4_mt8 c, b64v4_mt8 t, b64v4_mt8 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 select([This] b64_mt8 c, b64v4_mt8 t, b64v4_mt8 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 select([This] b64v4_mt8 c, b64_mt8 t, b64_mt8 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 select([This] bool c, b64v4_mt8 t, b64v4_mt8 f) => c ? t : f;
-}
-
-#endregion // b64v4_mt8
-#region b64v4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 select([This] b64v4_mt16 c, b64v4_mt16 t, b64v4_mt16 f)
-    {
-        return new(select(c.x, t.x, f.x), select(c.y, t.y, f.y), select(c.z, t.z, f.z), select(c.w, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 select([This] b64_mt16 c, b64v4_mt16 t, b64v4_mt16 f)
-    {
-        return new(select(c, t.x, f.x), select(c, t.y, f.y), select(c, t.z, f.z), select(c, t.w, f.w));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 select([This] b64v4_mt16 c, b64_mt16 t, b64_mt16 f)
-    {
-        return new(select(c.x, t, f), select(c.y, t, f), select(c.z, t, f), select(c.w, t, f));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 select([This] bool c, b64v4_mt16 t, b64v4_mt16 f) => c ? t : f;
-}
-
-#endregion // b64v4_mt16
+#endregion // b64v4_mt

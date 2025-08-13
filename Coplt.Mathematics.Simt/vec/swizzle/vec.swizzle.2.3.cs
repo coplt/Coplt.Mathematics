@@ -2,2114 +2,706 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float2_mt4
+#region float2_mt
 
-public partial struct float2_mt4 
+public partial struct float2_mt 
 {
-    public readonly float3_mt4 xxx
+    public readonly float3_mt xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly float3_mt4 rrr
+    public readonly float3_mt rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly float3_mt4 xxy
+    public readonly float3_mt xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly float3_mt4 rrg
+    public readonly float3_mt rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly float3_mt4 xyx
+    public readonly float3_mt xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly float3_mt4 rgr
+    public readonly float3_mt rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly float3_mt4 xyy
+    public readonly float3_mt xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly float3_mt4 rgg
+    public readonly float3_mt rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly float3_mt4 yxx
+    public readonly float3_mt yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly float3_mt4 grr
+    public readonly float3_mt grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly float3_mt4 yxy
+    public readonly float3_mt yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly float3_mt4 grg
+    public readonly float3_mt grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly float3_mt4 yyx
+    public readonly float3_mt yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly float3_mt4 ggr
+    public readonly float3_mt ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly float3_mt4 yyy
+    public readonly float3_mt yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public readonly float3_mt4 ggg
+    public readonly float3_mt ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
 }
 
-#endregion // float2_mt4
+#endregion // float2_mt
 
-#region float2_mt8
+#region double2_mt
 
-public partial struct float2_mt8 
+public partial struct double2_mt 
 {
-    public readonly float3_mt8 xxx
+    public readonly double3_mt xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly float3_mt8 rrr
+    public readonly double3_mt rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly float3_mt8 xxy
+    public readonly double3_mt xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly float3_mt8 rrg
+    public readonly double3_mt rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly float3_mt8 xyx
+    public readonly double3_mt xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly float3_mt8 rgr
+    public readonly double3_mt rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly float3_mt8 xyy
+    public readonly double3_mt xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly float3_mt8 rgg
+    public readonly double3_mt rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly float3_mt8 yxx
+    public readonly double3_mt yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly float3_mt8 grr
+    public readonly double3_mt grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly float3_mt8 yxy
+    public readonly double3_mt yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly float3_mt8 grg
+    public readonly double3_mt grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly float3_mt8 yyx
+    public readonly double3_mt yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly float3_mt8 ggr
+    public readonly double3_mt ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly float3_mt8 yyy
+    public readonly double3_mt yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public readonly float3_mt8 ggg
+    public readonly double3_mt ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
 }
 
-#endregion // float2_mt8
+#endregion // double2_mt
 
-#region float2_mt16
+#region int2_mt
 
-public partial struct float2_mt16 
+public partial struct int2_mt 
 {
-    public readonly float3_mt16 xxx
+    public readonly int3_mt xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly float3_mt16 rrr
+    public readonly int3_mt rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly float3_mt16 xxy
+    public readonly int3_mt xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly float3_mt16 rrg
+    public readonly int3_mt rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly float3_mt16 xyx
+    public readonly int3_mt xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly float3_mt16 rgr
+    public readonly int3_mt rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly float3_mt16 xyy
+    public readonly int3_mt xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly float3_mt16 rgg
+    public readonly int3_mt rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly float3_mt16 yxx
+    public readonly int3_mt yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly float3_mt16 grr
+    public readonly int3_mt grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly float3_mt16 yxy
+    public readonly int3_mt yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly float3_mt16 grg
+    public readonly int3_mt grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly float3_mt16 yyx
+    public readonly int3_mt yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly float3_mt16 ggr
+    public readonly int3_mt ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly float3_mt16 yyy
+    public readonly int3_mt yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public readonly float3_mt16 ggg
+    public readonly int3_mt ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
 }
 
-#endregion // float2_mt16
+#endregion // int2_mt
 
-#region double2_mt4
+#region uint2_mt
 
-public partial struct double2_mt4 
+public partial struct uint2_mt 
 {
-    public readonly double3_mt4 xxx
+    public readonly uint3_mt xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly double3_mt4 rrr
+    public readonly uint3_mt rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly double3_mt4 xxy
+    public readonly uint3_mt xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly double3_mt4 rrg
+    public readonly uint3_mt rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly double3_mt4 xyx
+    public readonly uint3_mt xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly double3_mt4 rgr
+    public readonly uint3_mt rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly double3_mt4 xyy
+    public readonly uint3_mt xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly double3_mt4 rgg
+    public readonly uint3_mt rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly double3_mt4 yxx
+    public readonly uint3_mt yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly double3_mt4 grr
+    public readonly uint3_mt grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly double3_mt4 yxy
+    public readonly uint3_mt yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly double3_mt4 grg
+    public readonly uint3_mt grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly double3_mt4 yyx
+    public readonly uint3_mt yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly double3_mt4 ggr
+    public readonly uint3_mt ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly double3_mt4 yyy
+    public readonly uint3_mt yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public readonly double3_mt4 ggg
+    public readonly uint3_mt ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
 }
 
-#endregion // double2_mt4
+#endregion // uint2_mt
 
-#region double2_mt8
+#region long2_mt
 
-public partial struct double2_mt8 
+public partial struct long2_mt 
 {
-    public readonly double3_mt8 xxx
+    public readonly long3_mt xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly double3_mt8 rrr
+    public readonly long3_mt rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly double3_mt8 xxy
+    public readonly long3_mt xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly double3_mt8 rrg
+    public readonly long3_mt rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly double3_mt8 xyx
+    public readonly long3_mt xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly double3_mt8 rgr
+    public readonly long3_mt rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly double3_mt8 xyy
+    public readonly long3_mt xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly double3_mt8 rgg
+    public readonly long3_mt rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly double3_mt8 yxx
+    public readonly long3_mt yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly double3_mt8 grr
+    public readonly long3_mt grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly double3_mt8 yxy
+    public readonly long3_mt yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly double3_mt8 grg
+    public readonly long3_mt grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly double3_mt8 yyx
+    public readonly long3_mt yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly double3_mt8 ggr
+    public readonly long3_mt ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly double3_mt8 yyy
+    public readonly long3_mt yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public readonly double3_mt8 ggg
+    public readonly long3_mt ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
 }
 
-#endregion // double2_mt8
+#endregion // long2_mt
 
-#region double2_mt16
+#region ulong2_mt
 
-public partial struct double2_mt16 
+public partial struct ulong2_mt 
 {
-    public readonly double3_mt16 xxx
+    public readonly ulong3_mt xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly double3_mt16 rrr
+    public readonly ulong3_mt rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly double3_mt16 xxy
+    public readonly ulong3_mt xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly double3_mt16 rrg
+    public readonly ulong3_mt rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly double3_mt16 xyx
+    public readonly ulong3_mt xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly double3_mt16 rgr
+    public readonly ulong3_mt rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly double3_mt16 xyy
+    public readonly ulong3_mt xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly double3_mt16 rgg
+    public readonly ulong3_mt rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly double3_mt16 yxx
+    public readonly ulong3_mt yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly double3_mt16 grr
+    public readonly ulong3_mt grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly double3_mt16 yxy
+    public readonly ulong3_mt yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly double3_mt16 grg
+    public readonly ulong3_mt grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly double3_mt16 yyx
+    public readonly ulong3_mt yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly double3_mt16 ggr
+    public readonly ulong3_mt ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly double3_mt16 yyy
+    public readonly ulong3_mt yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public readonly double3_mt16 ggg
+    public readonly ulong3_mt ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
 }
 
-#endregion // double2_mt16
+#endregion // ulong2_mt
 
-#region int2_mt4
+#region b32v2_mt
 
-public partial struct int2_mt4 
+public partial struct b32v2_mt 
 {
-    public readonly int3_mt4 xxx
+    public readonly b32v3_mt xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly int3_mt4 rrr
+    public readonly b32v3_mt rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly int3_mt4 xxy
+    public readonly b32v3_mt xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly int3_mt4 rrg
+    public readonly b32v3_mt rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly int3_mt4 xyx
+    public readonly b32v3_mt xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly int3_mt4 rgr
+    public readonly b32v3_mt rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly int3_mt4 xyy
+    public readonly b32v3_mt xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly int3_mt4 rgg
+    public readonly b32v3_mt rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly int3_mt4 yxx
+    public readonly b32v3_mt yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly int3_mt4 grr
+    public readonly b32v3_mt grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly int3_mt4 yxy
+    public readonly b32v3_mt yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly int3_mt4 grg
+    public readonly b32v3_mt grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly int3_mt4 yyx
+    public readonly b32v3_mt yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly int3_mt4 ggr
+    public readonly b32v3_mt ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly int3_mt4 yyy
+    public readonly b32v3_mt yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public readonly int3_mt4 ggg
+    public readonly b32v3_mt ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
 }
 
-#endregion // int2_mt4
+#endregion // b32v2_mt
 
-#region int2_mt8
+#region b64v2_mt
 
-public partial struct int2_mt8 
+public partial struct b64v2_mt 
 {
-    public readonly int3_mt8 xxx
+    public readonly b64v3_mt xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly int3_mt8 rrr
+    public readonly b64v3_mt rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public readonly int3_mt8 xxy
+    public readonly b64v3_mt xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly int3_mt8 rrg
+    public readonly b64v3_mt rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public readonly int3_mt8 xyx
+    public readonly b64v3_mt xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly int3_mt8 rgr
+    public readonly b64v3_mt rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public readonly int3_mt8 xyy
+    public readonly b64v3_mt xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly int3_mt8 rgg
+    public readonly b64v3_mt rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public readonly int3_mt8 yxx
+    public readonly b64v3_mt yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly int3_mt8 grr
+    public readonly b64v3_mt grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public readonly int3_mt8 yxy
+    public readonly b64v3_mt yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly int3_mt8 grg
+    public readonly b64v3_mt grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public readonly int3_mt8 yyx
+    public readonly b64v3_mt yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly int3_mt8 ggr
+    public readonly b64v3_mt ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public readonly int3_mt8 yyy
+    public readonly b64v3_mt yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public readonly int3_mt8 ggg
+    public readonly b64v3_mt ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
 }
 
-#endregion // int2_mt8
-
-#region int2_mt16
-
-public partial struct int2_mt16 
-{
-    public readonly int3_mt16 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly int3_mt16 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly int3_mt16 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly int3_mt16 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly int3_mt16 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly int3_mt16 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly int3_mt16 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly int3_mt16 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly int3_mt16 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly int3_mt16 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly int3_mt16 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly int3_mt16 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly int3_mt16 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly int3_mt16 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly int3_mt16 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly int3_mt16 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // int2_mt16
-
-#region uint2_mt4
-
-public partial struct uint2_mt4 
-{
-    public readonly uint3_mt4 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly uint3_mt4 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly uint3_mt4 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly uint3_mt4 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly uint3_mt4 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly uint3_mt4 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly uint3_mt4 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly uint3_mt4 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly uint3_mt4 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly uint3_mt4 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly uint3_mt4 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly uint3_mt4 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly uint3_mt4 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly uint3_mt4 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly uint3_mt4 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly uint3_mt4 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // uint2_mt4
-
-#region uint2_mt8
-
-public partial struct uint2_mt8 
-{
-    public readonly uint3_mt8 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly uint3_mt8 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly uint3_mt8 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly uint3_mt8 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly uint3_mt8 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly uint3_mt8 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly uint3_mt8 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly uint3_mt8 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly uint3_mt8 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly uint3_mt8 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly uint3_mt8 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly uint3_mt8 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly uint3_mt8 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly uint3_mt8 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly uint3_mt8 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly uint3_mt8 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // uint2_mt8
-
-#region uint2_mt16
-
-public partial struct uint2_mt16 
-{
-    public readonly uint3_mt16 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly uint3_mt16 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly uint3_mt16 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly uint3_mt16 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly uint3_mt16 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly uint3_mt16 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly uint3_mt16 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly uint3_mt16 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly uint3_mt16 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly uint3_mt16 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly uint3_mt16 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly uint3_mt16 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly uint3_mt16 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly uint3_mt16 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly uint3_mt16 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly uint3_mt16 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // uint2_mt16
-
-#region long2_mt4
-
-public partial struct long2_mt4 
-{
-    public readonly long3_mt4 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly long3_mt4 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly long3_mt4 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly long3_mt4 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly long3_mt4 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly long3_mt4 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly long3_mt4 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly long3_mt4 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly long3_mt4 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly long3_mt4 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly long3_mt4 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly long3_mt4 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly long3_mt4 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly long3_mt4 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly long3_mt4 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly long3_mt4 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // long2_mt4
-
-#region long2_mt8
-
-public partial struct long2_mt8 
-{
-    public readonly long3_mt8 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly long3_mt8 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly long3_mt8 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly long3_mt8 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly long3_mt8 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly long3_mt8 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly long3_mt8 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly long3_mt8 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly long3_mt8 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly long3_mt8 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly long3_mt8 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly long3_mt8 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly long3_mt8 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly long3_mt8 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly long3_mt8 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly long3_mt8 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // long2_mt8
-
-#region long2_mt16
-
-public partial struct long2_mt16 
-{
-    public readonly long3_mt16 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly long3_mt16 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly long3_mt16 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly long3_mt16 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly long3_mt16 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly long3_mt16 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly long3_mt16 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly long3_mt16 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly long3_mt16 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly long3_mt16 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly long3_mt16 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly long3_mt16 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly long3_mt16 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly long3_mt16 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly long3_mt16 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly long3_mt16 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // long2_mt16
-
-#region ulong2_mt4
-
-public partial struct ulong2_mt4 
-{
-    public readonly ulong3_mt4 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly ulong3_mt4 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly ulong3_mt4 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly ulong3_mt4 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly ulong3_mt4 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly ulong3_mt4 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly ulong3_mt4 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly ulong3_mt4 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly ulong3_mt4 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly ulong3_mt4 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly ulong3_mt4 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly ulong3_mt4 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly ulong3_mt4 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly ulong3_mt4 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly ulong3_mt4 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly ulong3_mt4 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // ulong2_mt4
-
-#region ulong2_mt8
-
-public partial struct ulong2_mt8 
-{
-    public readonly ulong3_mt8 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly ulong3_mt8 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly ulong3_mt8 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly ulong3_mt8 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly ulong3_mt8 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly ulong3_mt8 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly ulong3_mt8 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly ulong3_mt8 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly ulong3_mt8 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly ulong3_mt8 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly ulong3_mt8 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly ulong3_mt8 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly ulong3_mt8 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly ulong3_mt8 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly ulong3_mt8 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly ulong3_mt8 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // ulong2_mt8
-
-#region ulong2_mt16
-
-public partial struct ulong2_mt16 
-{
-    public readonly ulong3_mt16 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly ulong3_mt16 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly ulong3_mt16 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly ulong3_mt16 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly ulong3_mt16 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly ulong3_mt16 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly ulong3_mt16 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly ulong3_mt16 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly ulong3_mt16 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly ulong3_mt16 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly ulong3_mt16 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly ulong3_mt16 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly ulong3_mt16 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly ulong3_mt16 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly ulong3_mt16 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly ulong3_mt16 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // ulong2_mt16
-
-#region b32v2_mt4
-
-public partial struct b32v2_mt4 
-{
-    public readonly b32v3_mt4 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b32v3_mt4 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b32v3_mt4 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b32v3_mt4 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b32v3_mt4 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b32v3_mt4 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b32v3_mt4 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b32v3_mt4 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b32v3_mt4 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b32v3_mt4 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b32v3_mt4 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b32v3_mt4 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b32v3_mt4 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b32v3_mt4 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b32v3_mt4 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly b32v3_mt4 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // b32v2_mt4
-
-#region b32v2_mt8
-
-public partial struct b32v2_mt8 
-{
-    public readonly b32v3_mt8 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b32v3_mt8 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b32v3_mt8 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b32v3_mt8 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b32v3_mt8 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b32v3_mt8 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b32v3_mt8 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b32v3_mt8 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b32v3_mt8 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b32v3_mt8 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b32v3_mt8 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b32v3_mt8 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b32v3_mt8 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b32v3_mt8 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b32v3_mt8 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly b32v3_mt8 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // b32v2_mt8
-
-#region b32v2_mt16
-
-public partial struct b32v2_mt16 
-{
-    public readonly b32v3_mt16 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b32v3_mt16 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b32v3_mt16 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b32v3_mt16 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b32v3_mt16 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b32v3_mt16 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b32v3_mt16 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b32v3_mt16 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b32v3_mt16 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b32v3_mt16 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b32v3_mt16 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b32v3_mt16 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b32v3_mt16 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b32v3_mt16 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b32v3_mt16 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly b32v3_mt16 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // b32v2_mt16
-
-#region b64v2_mt4
-
-public partial struct b64v2_mt4 
-{
-    public readonly b64v3_mt4 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b64v3_mt4 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b64v3_mt4 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b64v3_mt4 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b64v3_mt4 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b64v3_mt4 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b64v3_mt4 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b64v3_mt4 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b64v3_mt4 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b64v3_mt4 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b64v3_mt4 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b64v3_mt4 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b64v3_mt4 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b64v3_mt4 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b64v3_mt4 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly b64v3_mt4 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // b64v2_mt4
-
-#region b64v2_mt8
-
-public partial struct b64v2_mt8 
-{
-    public readonly b64v3_mt8 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b64v3_mt8 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b64v3_mt8 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b64v3_mt8 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b64v3_mt8 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b64v3_mt8 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b64v3_mt8 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b64v3_mt8 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b64v3_mt8 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b64v3_mt8 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b64v3_mt8 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b64v3_mt8 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b64v3_mt8 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b64v3_mt8 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b64v3_mt8 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly b64v3_mt8 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // b64v2_mt8
-
-#region b64v2_mt16
-
-public partial struct b64v2_mt16 
-{
-    public readonly b64v3_mt16 xxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b64v3_mt16 rrr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-    }
-    public readonly b64v3_mt16 xxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b64v3_mt16 rrg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-    }
-    public readonly b64v3_mt16 xyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b64v3_mt16 rgr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-    }
-    public readonly b64v3_mt16 xyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b64v3_mt16 rgg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-    }
-    public readonly b64v3_mt16 yxx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b64v3_mt16 grr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-    }
-    public readonly b64v3_mt16 yxy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b64v3_mt16 grg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-    }
-    public readonly b64v3_mt16 yyx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b64v3_mt16 ggr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-    }
-    public readonly b64v3_mt16 yyy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-    public readonly b64v3_mt16 ggg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-    }
-}
-
-#endregion // b64v2_mt16
+#endregion // b64v2_mt

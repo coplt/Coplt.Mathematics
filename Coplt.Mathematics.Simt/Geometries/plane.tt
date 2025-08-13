@@ -6,7 +6,7 @@
 using Coplt.Mathematics.Simt.Geometries;
 
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -17,22 +17,22 @@ using Coplt.Mathematics.Simt.Geometries;
         {
             var typeBitSize = typ.size * 8;
 
-            var scalarName = $"{typ.compType}_mt{size}";
-            var maskName = $"{typ.maskType}_mt{size}";
-            var mask4Name = $"{typ.maskType}4_mt{size}";
-            var sigMaskName = $"{typ.sigMaskType}_mt{size}";
-            var sigMask4Name = $"{typ.sigMaskType}4_mt{size}";
-            var vecTypeName = $"{typ.name}{4}_mt{size}";
-            var vecTypeName3 = $"{typ.name}{3}_mt{size}";
-            var vecTypeName2 = $"{typ.name}{2}_mt{size}";
-            var matTypeName3x3 = $"{typ.name}{3}x{3}_mt{size}";
-            var matTypeName4x4 = $"{typ.name}{4}x{4}_mt{size}";
-            var typeName = $"plane{typ.structSuffix}_mt{size}";
-            var rayName = $"ray{typ.structSuffix}_mt{size}";
+            var scalarName = $"{typ.compType}_mt";
+            var maskName = $"{typ.maskType}_mt";
+            var mask4Name = $"{typ.maskType}4_mt";
+            var sigMaskName = $"{typ.sigMaskType}_mt";
+            var sigMask4Name = $"{typ.sigMaskType}4_mt";
+            var vecTypeName = $"{typ.name}{4}_mt";
+            var vecTypeName3 = $"{typ.name}{3}_mt";
+            var vecTypeName2 = $"{typ.name}{2}_mt";
+            var matTypeName3x3 = $"{typ.name}{3}x{3}_mt";
+            var matTypeName4x4 = $"{typ.name}{4}x{4}_mt";
+            var typeName = $"plane{typ.structSuffix}_mt";
+            var rayName = $"ray{typ.structSuffix}_mt";
             var bType = $"b{typ.size * 8}v";
             var bTyp = Typ.Typs.FirstOrDefault(a => a.name == bType);
-            var bTypeName = $"{bType}{4}_mt{size}";
-            var bScalarName = $"b{typ.size * 8}_mt{size}";
+            var bTypeName = $"{bType}{4}_mt";
+            var bScalarName = $"b{typ.size * 8}_mt";
             var scalar_bType = $"b{typ.size * 8}";
 #>
 

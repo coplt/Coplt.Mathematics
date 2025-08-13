@@ -6,7 +6,7 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -20,7 +20,7 @@ namespace Coplt.Mathematics.Simt;
                 var num_vectors = Math.Max(1, bitSize / 512);
                 bitSize = Math.Min(512, bitSize);
 
-                var typeName = $"{typ.name}{i}_mt{size}";
+                var typeName = $"{typ.name}{i}_mt";
 
                 var ss = typ.size switch {
                     2 => new[] { "half", "b16v" },
@@ -38,7 +38,7 @@ public static partial class math_mt
 <#
                 foreach (var target in ss)
                 {
-                    var tarName = $"{target}{i}_mt{size}";
+                    var tarName = $"{target}{i}_mt";
                     var tarType = target.Replace("v", "");
 #>
     [MethodImpl(256 | 512)]

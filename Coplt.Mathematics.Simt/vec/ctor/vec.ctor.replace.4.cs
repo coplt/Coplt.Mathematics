@@ -2,7 +2,7 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float4_mt4
+#region float4_mt
 
 public static partial class math_mt_ex
 {
@@ -11,7 +11,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rx(this float4_mt4 self, float_mt4 x)
+    public static float4_mt Rx(this float4_mt self, float_mt x)
     {
         self.x = x;
         return self;
@@ -22,7 +22,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Ry(this float4_mt4 self, float_mt4 y)
+    public static float4_mt Ry(this float4_mt self, float_mt y)
     {
         self.y = y;
         return self;
@@ -33,7 +33,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rz(this float4_mt4 self, float_mt4 z)
+    public static float4_mt Rz(this float4_mt self, float_mt z)
     {
         self.z = z;
         return self;
@@ -44,7 +44,7 @@ public static partial class math_mt_ex
     /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rw(this float4_mt4 self, float_mt4 w)
+    public static float4_mt Rw(this float4_mt self, float_mt w)
     {
         self.w = w;
         return self;
@@ -55,7 +55,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rxy(this float4_mt4 self, float2_mt4 xy)
+    public static float4_mt Rxy(this float4_mt self, float2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -66,7 +66,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Ryz(this float4_mt4 self, float2_mt4 yz)
+    public static float4_mt Ryz(this float4_mt self, float2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -77,7 +77,7 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rzw(this float4_mt4 self, float2_mt4 zw)
+    public static float4_mt Rzw(this float4_mt self, float2_mt zw)
     {
         self.zw = zw;
         return self;
@@ -88,7 +88,7 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rxz(this float4_mt4 self, float2_mt4 xz)
+    public static float4_mt Rxz(this float4_mt self, float2_mt xz)
     {
         self.xz = xz;
         return self;
@@ -99,7 +99,7 @@ public static partial class math_mt_ex
     /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Ryw(this float4_mt4 self, float2_mt4 yw)
+    public static float4_mt Ryw(this float4_mt self, float2_mt yw)
     {
         self.yw = yw;
         return self;
@@ -110,7 +110,7 @@ public static partial class math_mt_ex
     /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rxw(this float4_mt4 self, float2_mt4 xw)
+    public static float4_mt Rxw(this float4_mt self, float2_mt xw)
     {
         self.xw = xw;
         return self;
@@ -121,7 +121,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rxyz(this float4_mt4 self, float3_mt4 xyz)
+    public static float4_mt Rxyz(this float4_mt self, float3_mt xyz)
     {
         self.xyz = xyz;
         return self;
@@ -132,7 +132,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Ryzw(this float4_mt4 self, float3_mt4 yzw)
+    public static float4_mt Ryzw(this float4_mt self, float3_mt yzw)
     {
         self.yzw = yzw;
         return self;
@@ -143,7 +143,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rxyw(this float4_mt4 self, float3_mt4 xyw)
+    public static float4_mt Rxyw(this float4_mt self, float3_mt xyw)
     {
         self.xyw = xyw;
         return self;
@@ -154,16 +154,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt4 Rxzw(this float4_mt4 self, float3_mt4 xzw)
+    public static float4_mt Rxzw(this float4_mt self, float3_mt xzw)
     {
         self.xzw = xzw;
         return self;
     }
 }
 
-#endregion // float4_mt4
+#endregion // float4_mt
 
-#region float4_mt8
+#region double4_mt
 
 public static partial class math_mt_ex
 {
@@ -172,7 +172,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rx(this float4_mt8 self, float_mt8 x)
+    public static double4_mt Rx(this double4_mt self, double_mt x)
     {
         self.x = x;
         return self;
@@ -183,7 +183,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ry(this float4_mt8 self, float_mt8 y)
+    public static double4_mt Ry(this double4_mt self, double_mt y)
     {
         self.y = y;
         return self;
@@ -194,7 +194,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rz(this float4_mt8 self, float_mt8 z)
+    public static double4_mt Rz(this double4_mt self, double_mt z)
     {
         self.z = z;
         return self;
@@ -205,7 +205,7 @@ public static partial class math_mt_ex
     /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rw(this float4_mt8 self, float_mt8 w)
+    public static double4_mt Rw(this double4_mt self, double_mt w)
     {
         self.w = w;
         return self;
@@ -216,7 +216,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rxy(this float4_mt8 self, float2_mt8 xy)
+    public static double4_mt Rxy(this double4_mt self, double2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -227,7 +227,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ryz(this float4_mt8 self, float2_mt8 yz)
+    public static double4_mt Ryz(this double4_mt self, double2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -238,7 +238,7 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rzw(this float4_mt8 self, float2_mt8 zw)
+    public static double4_mt Rzw(this double4_mt self, double2_mt zw)
     {
         self.zw = zw;
         return self;
@@ -249,7 +249,7 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rxz(this float4_mt8 self, float2_mt8 xz)
+    public static double4_mt Rxz(this double4_mt self, double2_mt xz)
     {
         self.xz = xz;
         return self;
@@ -260,7 +260,7 @@ public static partial class math_mt_ex
     /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ryw(this float4_mt8 self, float2_mt8 yw)
+    public static double4_mt Ryw(this double4_mt self, double2_mt yw)
     {
         self.yw = yw;
         return self;
@@ -271,7 +271,7 @@ public static partial class math_mt_ex
     /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rxw(this float4_mt8 self, float2_mt8 xw)
+    public static double4_mt Rxw(this double4_mt self, double2_mt xw)
     {
         self.xw = xw;
         return self;
@@ -282,7 +282,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rxyz(this float4_mt8 self, float3_mt8 xyz)
+    public static double4_mt Rxyz(this double4_mt self, double3_mt xyz)
     {
         self.xyz = xyz;
         return self;
@@ -293,7 +293,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ryzw(this float4_mt8 self, float3_mt8 yzw)
+    public static double4_mt Ryzw(this double4_mt self, double3_mt yzw)
     {
         self.yzw = yzw;
         return self;
@@ -304,7 +304,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rxyw(this float4_mt8 self, float3_mt8 xyw)
+    public static double4_mt Rxyw(this double4_mt self, double3_mt xyw)
     {
         self.xyw = xyw;
         return self;
@@ -315,16 +315,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Rxzw(this float4_mt8 self, float3_mt8 xzw)
+    public static double4_mt Rxzw(this double4_mt self, double3_mt xzw)
     {
         self.xzw = xzw;
         return self;
     }
 }
 
-#endregion // float4_mt8
+#endregion // double4_mt
 
-#region float4_mt16
+#region int4_mt
 
 public static partial class math_mt_ex
 {
@@ -333,7 +333,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rx(this float4_mt16 self, float_mt16 x)
+    public static int4_mt Rx(this int4_mt self, int_mt x)
     {
         self.x = x;
         return self;
@@ -344,7 +344,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ry(this float4_mt16 self, float_mt16 y)
+    public static int4_mt Ry(this int4_mt self, int_mt y)
     {
         self.y = y;
         return self;
@@ -355,7 +355,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rz(this float4_mt16 self, float_mt16 z)
+    public static int4_mt Rz(this int4_mt self, int_mt z)
     {
         self.z = z;
         return self;
@@ -366,7 +366,7 @@ public static partial class math_mt_ex
     /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rw(this float4_mt16 self, float_mt16 w)
+    public static int4_mt Rw(this int4_mt self, int_mt w)
     {
         self.w = w;
         return self;
@@ -377,7 +377,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rxy(this float4_mt16 self, float2_mt16 xy)
+    public static int4_mt Rxy(this int4_mt self, int2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -388,7 +388,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ryz(this float4_mt16 self, float2_mt16 yz)
+    public static int4_mt Ryz(this int4_mt self, int2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -399,7 +399,7 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rzw(this float4_mt16 self, float2_mt16 zw)
+    public static int4_mt Rzw(this int4_mt self, int2_mt zw)
     {
         self.zw = zw;
         return self;
@@ -410,7 +410,7 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rxz(this float4_mt16 self, float2_mt16 xz)
+    public static int4_mt Rxz(this int4_mt self, int2_mt xz)
     {
         self.xz = xz;
         return self;
@@ -421,7 +421,7 @@ public static partial class math_mt_ex
     /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ryw(this float4_mt16 self, float2_mt16 yw)
+    public static int4_mt Ryw(this int4_mt self, int2_mt yw)
     {
         self.yw = yw;
         return self;
@@ -432,7 +432,7 @@ public static partial class math_mt_ex
     /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rxw(this float4_mt16 self, float2_mt16 xw)
+    public static int4_mt Rxw(this int4_mt self, int2_mt xw)
     {
         self.xw = xw;
         return self;
@@ -443,7 +443,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rxyz(this float4_mt16 self, float3_mt16 xyz)
+    public static int4_mt Rxyz(this int4_mt self, int3_mt xyz)
     {
         self.xyz = xyz;
         return self;
@@ -454,7 +454,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ryzw(this float4_mt16 self, float3_mt16 yzw)
+    public static int4_mt Ryzw(this int4_mt self, int3_mt yzw)
     {
         self.yzw = yzw;
         return self;
@@ -465,7 +465,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rxyw(this float4_mt16 self, float3_mt16 xyw)
+    public static int4_mt Rxyw(this int4_mt self, int3_mt xyw)
     {
         self.xyw = xyw;
         return self;
@@ -476,16 +476,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Rxzw(this float4_mt16 self, float3_mt16 xzw)
+    public static int4_mt Rxzw(this int4_mt self, int3_mt xzw)
     {
         self.xzw = xzw;
         return self;
     }
 }
 
-#endregion // float4_mt16
+#endregion // int4_mt
 
-#region double4_mt4
+#region uint4_mt
 
 public static partial class math_mt_ex
 {
@@ -494,7 +494,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rx(this double4_mt4 self, double_mt4 x)
+    public static uint4_mt Rx(this uint4_mt self, uint_mt x)
     {
         self.x = x;
         return self;
@@ -505,7 +505,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ry(this double4_mt4 self, double_mt4 y)
+    public static uint4_mt Ry(this uint4_mt self, uint_mt y)
     {
         self.y = y;
         return self;
@@ -516,7 +516,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rz(this double4_mt4 self, double_mt4 z)
+    public static uint4_mt Rz(this uint4_mt self, uint_mt z)
     {
         self.z = z;
         return self;
@@ -527,7 +527,7 @@ public static partial class math_mt_ex
     /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rw(this double4_mt4 self, double_mt4 w)
+    public static uint4_mt Rw(this uint4_mt self, uint_mt w)
     {
         self.w = w;
         return self;
@@ -538,7 +538,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rxy(this double4_mt4 self, double2_mt4 xy)
+    public static uint4_mt Rxy(this uint4_mt self, uint2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -549,7 +549,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ryz(this double4_mt4 self, double2_mt4 yz)
+    public static uint4_mt Ryz(this uint4_mt self, uint2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -560,7 +560,7 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rzw(this double4_mt4 self, double2_mt4 zw)
+    public static uint4_mt Rzw(this uint4_mt self, uint2_mt zw)
     {
         self.zw = zw;
         return self;
@@ -571,7 +571,7 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rxz(this double4_mt4 self, double2_mt4 xz)
+    public static uint4_mt Rxz(this uint4_mt self, uint2_mt xz)
     {
         self.xz = xz;
         return self;
@@ -582,7 +582,7 @@ public static partial class math_mt_ex
     /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ryw(this double4_mt4 self, double2_mt4 yw)
+    public static uint4_mt Ryw(this uint4_mt self, uint2_mt yw)
     {
         self.yw = yw;
         return self;
@@ -593,7 +593,7 @@ public static partial class math_mt_ex
     /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rxw(this double4_mt4 self, double2_mt4 xw)
+    public static uint4_mt Rxw(this uint4_mt self, uint2_mt xw)
     {
         self.xw = xw;
         return self;
@@ -604,7 +604,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rxyz(this double4_mt4 self, double3_mt4 xyz)
+    public static uint4_mt Rxyz(this uint4_mt self, uint3_mt xyz)
     {
         self.xyz = xyz;
         return self;
@@ -615,7 +615,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ryzw(this double4_mt4 self, double3_mt4 yzw)
+    public static uint4_mt Ryzw(this uint4_mt self, uint3_mt yzw)
     {
         self.yzw = yzw;
         return self;
@@ -626,7 +626,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rxyw(this double4_mt4 self, double3_mt4 xyw)
+    public static uint4_mt Rxyw(this uint4_mt self, uint3_mt xyw)
     {
         self.xyw = xyw;
         return self;
@@ -637,16 +637,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Rxzw(this double4_mt4 self, double3_mt4 xzw)
+    public static uint4_mt Rxzw(this uint4_mt self, uint3_mt xzw)
     {
         self.xzw = xzw;
         return self;
     }
 }
 
-#endregion // double4_mt4
+#endregion // uint4_mt
 
-#region double4_mt8
+#region long4_mt
 
 public static partial class math_mt_ex
 {
@@ -655,7 +655,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rx(this double4_mt8 self, double_mt8 x)
+    public static long4_mt Rx(this long4_mt self, long_mt x)
     {
         self.x = x;
         return self;
@@ -666,7 +666,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ry(this double4_mt8 self, double_mt8 y)
+    public static long4_mt Ry(this long4_mt self, long_mt y)
     {
         self.y = y;
         return self;
@@ -677,7 +677,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rz(this double4_mt8 self, double_mt8 z)
+    public static long4_mt Rz(this long4_mt self, long_mt z)
     {
         self.z = z;
         return self;
@@ -688,7 +688,7 @@ public static partial class math_mt_ex
     /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rw(this double4_mt8 self, double_mt8 w)
+    public static long4_mt Rw(this long4_mt self, long_mt w)
     {
         self.w = w;
         return self;
@@ -699,7 +699,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rxy(this double4_mt8 self, double2_mt8 xy)
+    public static long4_mt Rxy(this long4_mt self, long2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -710,7 +710,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ryz(this double4_mt8 self, double2_mt8 yz)
+    public static long4_mt Ryz(this long4_mt self, long2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -721,7 +721,7 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rzw(this double4_mt8 self, double2_mt8 zw)
+    public static long4_mt Rzw(this long4_mt self, long2_mt zw)
     {
         self.zw = zw;
         return self;
@@ -732,7 +732,7 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rxz(this double4_mt8 self, double2_mt8 xz)
+    public static long4_mt Rxz(this long4_mt self, long2_mt xz)
     {
         self.xz = xz;
         return self;
@@ -743,7 +743,7 @@ public static partial class math_mt_ex
     /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ryw(this double4_mt8 self, double2_mt8 yw)
+    public static long4_mt Ryw(this long4_mt self, long2_mt yw)
     {
         self.yw = yw;
         return self;
@@ -754,7 +754,7 @@ public static partial class math_mt_ex
     /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rxw(this double4_mt8 self, double2_mt8 xw)
+    public static long4_mt Rxw(this long4_mt self, long2_mt xw)
     {
         self.xw = xw;
         return self;
@@ -765,7 +765,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rxyz(this double4_mt8 self, double3_mt8 xyz)
+    public static long4_mt Rxyz(this long4_mt self, long3_mt xyz)
     {
         self.xyz = xyz;
         return self;
@@ -776,7 +776,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ryzw(this double4_mt8 self, double3_mt8 yzw)
+    public static long4_mt Ryzw(this long4_mt self, long3_mt yzw)
     {
         self.yzw = yzw;
         return self;
@@ -787,7 +787,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rxyw(this double4_mt8 self, double3_mt8 xyw)
+    public static long4_mt Rxyw(this long4_mt self, long3_mt xyw)
     {
         self.xyw = xyw;
         return self;
@@ -798,16 +798,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Rxzw(this double4_mt8 self, double3_mt8 xzw)
+    public static long4_mt Rxzw(this long4_mt self, long3_mt xzw)
     {
         self.xzw = xzw;
         return self;
     }
 }
 
-#endregion // double4_mt8
+#endregion // long4_mt
 
-#region double4_mt16
+#region ulong4_mt
 
 public static partial class math_mt_ex
 {
@@ -816,7 +816,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rx(this double4_mt16 self, double_mt16 x)
+    public static ulong4_mt Rx(this ulong4_mt self, ulong_mt x)
     {
         self.x = x;
         return self;
@@ -827,7 +827,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ry(this double4_mt16 self, double_mt16 y)
+    public static ulong4_mt Ry(this ulong4_mt self, ulong_mt y)
     {
         self.y = y;
         return self;
@@ -838,7 +838,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rz(this double4_mt16 self, double_mt16 z)
+    public static ulong4_mt Rz(this ulong4_mt self, ulong_mt z)
     {
         self.z = z;
         return self;
@@ -849,7 +849,7 @@ public static partial class math_mt_ex
     /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rw(this double4_mt16 self, double_mt16 w)
+    public static ulong4_mt Rw(this ulong4_mt self, ulong_mt w)
     {
         self.w = w;
         return self;
@@ -860,7 +860,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rxy(this double4_mt16 self, double2_mt16 xy)
+    public static ulong4_mt Rxy(this ulong4_mt self, ulong2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -871,7 +871,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ryz(this double4_mt16 self, double2_mt16 yz)
+    public static ulong4_mt Ryz(this ulong4_mt self, ulong2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -882,7 +882,7 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rzw(this double4_mt16 self, double2_mt16 zw)
+    public static ulong4_mt Rzw(this ulong4_mt self, ulong2_mt zw)
     {
         self.zw = zw;
         return self;
@@ -893,7 +893,7 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rxz(this double4_mt16 self, double2_mt16 xz)
+    public static ulong4_mt Rxz(this ulong4_mt self, ulong2_mt xz)
     {
         self.xz = xz;
         return self;
@@ -904,7 +904,7 @@ public static partial class math_mt_ex
     /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ryw(this double4_mt16 self, double2_mt16 yw)
+    public static ulong4_mt Ryw(this ulong4_mt self, ulong2_mt yw)
     {
         self.yw = yw;
         return self;
@@ -915,7 +915,7 @@ public static partial class math_mt_ex
     /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rxw(this double4_mt16 self, double2_mt16 xw)
+    public static ulong4_mt Rxw(this ulong4_mt self, ulong2_mt xw)
     {
         self.xw = xw;
         return self;
@@ -926,7 +926,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rxyz(this double4_mt16 self, double3_mt16 xyz)
+    public static ulong4_mt Rxyz(this ulong4_mt self, ulong3_mt xyz)
     {
         self.xyz = xyz;
         return self;
@@ -937,7 +937,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ryzw(this double4_mt16 self, double3_mt16 yzw)
+    public static ulong4_mt Ryzw(this ulong4_mt self, ulong3_mt yzw)
     {
         self.yzw = yzw;
         return self;
@@ -948,7 +948,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rxyw(this double4_mt16 self, double3_mt16 xyw)
+    public static ulong4_mt Rxyw(this ulong4_mt self, ulong3_mt xyw)
     {
         self.xyw = xyw;
         return self;
@@ -959,16 +959,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Rxzw(this double4_mt16 self, double3_mt16 xzw)
+    public static ulong4_mt Rxzw(this ulong4_mt self, ulong3_mt xzw)
     {
         self.xzw = xzw;
         return self;
     }
 }
 
-#endregion // double4_mt16
+#endregion // ulong4_mt
 
-#region int4_mt4
+#region b32v4_mt
 
 public static partial class math_mt_ex
 {
@@ -977,7 +977,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rx(this int4_mt4 self, int_mt4 x)
+    public static b32v4_mt Rx(this b32v4_mt self, b32_mt x)
     {
         self.x = x;
         return self;
@@ -988,7 +988,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ry(this int4_mt4 self, int_mt4 y)
+    public static b32v4_mt Ry(this b32v4_mt self, b32_mt y)
     {
         self.y = y;
         return self;
@@ -999,7 +999,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rz(this int4_mt4 self, int_mt4 z)
+    public static b32v4_mt Rz(this b32v4_mt self, b32_mt z)
     {
         self.z = z;
         return self;
@@ -1010,7 +1010,7 @@ public static partial class math_mt_ex
     /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rw(this int4_mt4 self, int_mt4 w)
+    public static b32v4_mt Rw(this b32v4_mt self, b32_mt w)
     {
         self.w = w;
         return self;
@@ -1021,7 +1021,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rxy(this int4_mt4 self, int2_mt4 xy)
+    public static b32v4_mt Rxy(this b32v4_mt self, b32v2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -1032,7 +1032,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ryz(this int4_mt4 self, int2_mt4 yz)
+    public static b32v4_mt Ryz(this b32v4_mt self, b32v2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -1043,7 +1043,7 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rzw(this int4_mt4 self, int2_mt4 zw)
+    public static b32v4_mt Rzw(this b32v4_mt self, b32v2_mt zw)
     {
         self.zw = zw;
         return self;
@@ -1054,7 +1054,7 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rxz(this int4_mt4 self, int2_mt4 xz)
+    public static b32v4_mt Rxz(this b32v4_mt self, b32v2_mt xz)
     {
         self.xz = xz;
         return self;
@@ -1065,7 +1065,7 @@ public static partial class math_mt_ex
     /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ryw(this int4_mt4 self, int2_mt4 yw)
+    public static b32v4_mt Ryw(this b32v4_mt self, b32v2_mt yw)
     {
         self.yw = yw;
         return self;
@@ -1076,7 +1076,7 @@ public static partial class math_mt_ex
     /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rxw(this int4_mt4 self, int2_mt4 xw)
+    public static b32v4_mt Rxw(this b32v4_mt self, b32v2_mt xw)
     {
         self.xw = xw;
         return self;
@@ -1087,7 +1087,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rxyz(this int4_mt4 self, int3_mt4 xyz)
+    public static b32v4_mt Rxyz(this b32v4_mt self, b32v3_mt xyz)
     {
         self.xyz = xyz;
         return self;
@@ -1098,7 +1098,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ryzw(this int4_mt4 self, int3_mt4 yzw)
+    public static b32v4_mt Ryzw(this b32v4_mt self, b32v3_mt yzw)
     {
         self.yzw = yzw;
         return self;
@@ -1109,7 +1109,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rxyw(this int4_mt4 self, int3_mt4 xyw)
+    public static b32v4_mt Rxyw(this b32v4_mt self, b32v3_mt xyw)
     {
         self.xyw = xyw;
         return self;
@@ -1120,16 +1120,16 @@ public static partial class math_mt_ex
     /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Rxzw(this int4_mt4 self, int3_mt4 xzw)
+    public static b32v4_mt Rxzw(this b32v4_mt self, b32v3_mt xzw)
     {
         self.xzw = xzw;
         return self;
     }
 }
 
-#endregion // int4_mt4
+#endregion // b32v4_mt
 
-#region int4_mt8
+#region b64v4_mt
 
 public static partial class math_mt_ex
 {
@@ -1138,7 +1138,7 @@ public static partial class math_mt_ex
     /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rx(this int4_mt8 self, int_mt8 x)
+    public static b64v4_mt Rx(this b64v4_mt self, b64_mt x)
     {
         self.x = x;
         return self;
@@ -1149,7 +1149,7 @@ public static partial class math_mt_ex
     /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ry(this int4_mt8 self, int_mt8 y)
+    public static b64v4_mt Ry(this b64v4_mt self, b64_mt y)
     {
         self.y = y;
         return self;
@@ -1160,7 +1160,7 @@ public static partial class math_mt_ex
     /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rz(this int4_mt8 self, int_mt8 z)
+    public static b64v4_mt Rz(this b64v4_mt self, b64_mt z)
     {
         self.z = z;
         return self;
@@ -1171,7 +1171,7 @@ public static partial class math_mt_ex
     /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rw(this int4_mt8 self, int_mt8 w)
+    public static b64v4_mt Rw(this b64v4_mt self, b64_mt w)
     {
         self.w = w;
         return self;
@@ -1182,7 +1182,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rxy(this int4_mt8 self, int2_mt8 xy)
+    public static b64v4_mt Rxy(this b64v4_mt self, b64v2_mt xy)
     {
         self.xy = xy;
         return self;
@@ -1193,7 +1193,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ryz(this int4_mt8 self, int2_mt8 yz)
+    public static b64v4_mt Ryz(this b64v4_mt self, b64v2_mt yz)
     {
         self.yz = yz;
         return self;
@@ -1204,7 +1204,7 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rzw(this int4_mt8 self, int2_mt8 zw)
+    public static b64v4_mt Rzw(this b64v4_mt self, b64v2_mt zw)
     {
         self.zw = zw;
         return self;
@@ -1215,7 +1215,7 @@ public static partial class math_mt_ex
     /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rxz(this int4_mt8 self, int2_mt8 xz)
+    public static b64v4_mt Rxz(this b64v4_mt self, b64v2_mt xz)
     {
         self.xz = xz;
         return self;
@@ -1226,7 +1226,7 @@ public static partial class math_mt_ex
     /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ryw(this int4_mt8 self, int2_mt8 yw)
+    public static b64v4_mt Ryw(this b64v4_mt self, b64v2_mt yw)
     {
         self.yw = yw;
         return self;
@@ -1237,7 +1237,7 @@ public static partial class math_mt_ex
     /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rxw(this int4_mt8 self, int2_mt8 xw)
+    public static b64v4_mt Rxw(this b64v4_mt self, b64v2_mt xw)
     {
         self.xw = xw;
         return self;
@@ -1248,7 +1248,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rxyz(this int4_mt8 self, int3_mt8 xyz)
+    public static b64v4_mt Rxyz(this b64v4_mt self, b64v3_mt xyz)
     {
         self.xyz = xyz;
         return self;
@@ -1259,7 +1259,7 @@ public static partial class math_mt_ex
     /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ryzw(this int4_mt8 self, int3_mt8 yzw)
+    public static b64v4_mt Ryzw(this b64v4_mt self, b64v3_mt yzw)
     {
         self.yzw = yzw;
         return self;
@@ -1270,7 +1270,7 @@ public static partial class math_mt_ex
     /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rxyw(this int4_mt8 self, int3_mt8 xyw)
+    public static b64v4_mt Rxyw(this b64v4_mt self, b64v3_mt xyw)
     {
         self.xyw = xyw;
         return self;
@@ -1281,2587 +1281,11 @@ public static partial class math_mt_ex
     /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Rxzw(this int4_mt8 self, int3_mt8 xzw)
+    public static b64v4_mt Rxzw(this b64v4_mt self, b64v3_mt xzw)
     {
         self.xzw = xzw;
         return self;
     }
 }
 
-#endregion // int4_mt8
-
-#region int4_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rx(this int4_mt16 self, int_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Ry(this int4_mt16 self, int_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rz(this int4_mt16 self, int_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rw(this int4_mt16 self, int_mt16 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rxy(this int4_mt16 self, int2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Ryz(this int4_mt16 self, int2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rzw(this int4_mt16 self, int2_mt16 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rxz(this int4_mt16 self, int2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Ryw(this int4_mt16 self, int2_mt16 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rxw(this int4_mt16 self, int2_mt16 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rxyz(this int4_mt16 self, int3_mt16 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Ryzw(this int4_mt16 self, int3_mt16 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rxyw(this int4_mt16 self, int3_mt16 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 Rxzw(this int4_mt16 self, int3_mt16 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // int4_mt16
-
-#region uint4_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rx(this uint4_mt4 self, uint_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ry(this uint4_mt4 self, uint_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rz(this uint4_mt4 self, uint_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rw(this uint4_mt4 self, uint_mt4 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rxy(this uint4_mt4 self, uint2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ryz(this uint4_mt4 self, uint2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rzw(this uint4_mt4 self, uint2_mt4 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rxz(this uint4_mt4 self, uint2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ryw(this uint4_mt4 self, uint2_mt4 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rxw(this uint4_mt4 self, uint2_mt4 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rxyz(this uint4_mt4 self, uint3_mt4 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ryzw(this uint4_mt4 self, uint3_mt4 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rxyw(this uint4_mt4 self, uint3_mt4 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Rxzw(this uint4_mt4 self, uint3_mt4 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // uint4_mt4
-
-#region uint4_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rx(this uint4_mt8 self, uint_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ry(this uint4_mt8 self, uint_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rz(this uint4_mt8 self, uint_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rw(this uint4_mt8 self, uint_mt8 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rxy(this uint4_mt8 self, uint2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ryz(this uint4_mt8 self, uint2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rzw(this uint4_mt8 self, uint2_mt8 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rxz(this uint4_mt8 self, uint2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ryw(this uint4_mt8 self, uint2_mt8 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rxw(this uint4_mt8 self, uint2_mt8 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rxyz(this uint4_mt8 self, uint3_mt8 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ryzw(this uint4_mt8 self, uint3_mt8 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rxyw(this uint4_mt8 self, uint3_mt8 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Rxzw(this uint4_mt8 self, uint3_mt8 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // uint4_mt8
-
-#region uint4_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rx(this uint4_mt16 self, uint_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ry(this uint4_mt16 self, uint_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rz(this uint4_mt16 self, uint_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rw(this uint4_mt16 self, uint_mt16 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rxy(this uint4_mt16 self, uint2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ryz(this uint4_mt16 self, uint2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rzw(this uint4_mt16 self, uint2_mt16 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rxz(this uint4_mt16 self, uint2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ryw(this uint4_mt16 self, uint2_mt16 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rxw(this uint4_mt16 self, uint2_mt16 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rxyz(this uint4_mt16 self, uint3_mt16 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ryzw(this uint4_mt16 self, uint3_mt16 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rxyw(this uint4_mt16 self, uint3_mt16 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Rxzw(this uint4_mt16 self, uint3_mt16 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // uint4_mt16
-
-#region long4_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rx(this long4_mt4 self, long_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ry(this long4_mt4 self, long_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rz(this long4_mt4 self, long_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rw(this long4_mt4 self, long_mt4 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rxy(this long4_mt4 self, long2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ryz(this long4_mt4 self, long2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rzw(this long4_mt4 self, long2_mt4 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rxz(this long4_mt4 self, long2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ryw(this long4_mt4 self, long2_mt4 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rxw(this long4_mt4 self, long2_mt4 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rxyz(this long4_mt4 self, long3_mt4 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ryzw(this long4_mt4 self, long3_mt4 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rxyw(this long4_mt4 self, long3_mt4 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Rxzw(this long4_mt4 self, long3_mt4 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // long4_mt4
-
-#region long4_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rx(this long4_mt8 self, long_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ry(this long4_mt8 self, long_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rz(this long4_mt8 self, long_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rw(this long4_mt8 self, long_mt8 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rxy(this long4_mt8 self, long2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ryz(this long4_mt8 self, long2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rzw(this long4_mt8 self, long2_mt8 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rxz(this long4_mt8 self, long2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ryw(this long4_mt8 self, long2_mt8 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rxw(this long4_mt8 self, long2_mt8 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rxyz(this long4_mt8 self, long3_mt8 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ryzw(this long4_mt8 self, long3_mt8 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rxyw(this long4_mt8 self, long3_mt8 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Rxzw(this long4_mt8 self, long3_mt8 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // long4_mt8
-
-#region long4_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rx(this long4_mt16 self, long_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ry(this long4_mt16 self, long_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rz(this long4_mt16 self, long_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rw(this long4_mt16 self, long_mt16 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rxy(this long4_mt16 self, long2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ryz(this long4_mt16 self, long2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rzw(this long4_mt16 self, long2_mt16 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rxz(this long4_mt16 self, long2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ryw(this long4_mt16 self, long2_mt16 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rxw(this long4_mt16 self, long2_mt16 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rxyz(this long4_mt16 self, long3_mt16 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ryzw(this long4_mt16 self, long3_mt16 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rxyw(this long4_mt16 self, long3_mt16 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Rxzw(this long4_mt16 self, long3_mt16 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // long4_mt16
-
-#region ulong4_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rx(this ulong4_mt4 self, ulong_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ry(this ulong4_mt4 self, ulong_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rz(this ulong4_mt4 self, ulong_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rw(this ulong4_mt4 self, ulong_mt4 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rxy(this ulong4_mt4 self, ulong2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ryz(this ulong4_mt4 self, ulong2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rzw(this ulong4_mt4 self, ulong2_mt4 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rxz(this ulong4_mt4 self, ulong2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ryw(this ulong4_mt4 self, ulong2_mt4 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rxw(this ulong4_mt4 self, ulong2_mt4 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rxyz(this ulong4_mt4 self, ulong3_mt4 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ryzw(this ulong4_mt4 self, ulong3_mt4 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rxyw(this ulong4_mt4 self, ulong3_mt4 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Rxzw(this ulong4_mt4 self, ulong3_mt4 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // ulong4_mt4
-
-#region ulong4_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rx(this ulong4_mt8 self, ulong_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ry(this ulong4_mt8 self, ulong_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rz(this ulong4_mt8 self, ulong_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rw(this ulong4_mt8 self, ulong_mt8 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rxy(this ulong4_mt8 self, ulong2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ryz(this ulong4_mt8 self, ulong2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rzw(this ulong4_mt8 self, ulong2_mt8 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rxz(this ulong4_mt8 self, ulong2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ryw(this ulong4_mt8 self, ulong2_mt8 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rxw(this ulong4_mt8 self, ulong2_mt8 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rxyz(this ulong4_mt8 self, ulong3_mt8 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ryzw(this ulong4_mt8 self, ulong3_mt8 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rxyw(this ulong4_mt8 self, ulong3_mt8 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Rxzw(this ulong4_mt8 self, ulong3_mt8 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // ulong4_mt8
-
-#region ulong4_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rx(this ulong4_mt16 self, ulong_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ry(this ulong4_mt16 self, ulong_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rz(this ulong4_mt16 self, ulong_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rw(this ulong4_mt16 self, ulong_mt16 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rxy(this ulong4_mt16 self, ulong2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ryz(this ulong4_mt16 self, ulong2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rzw(this ulong4_mt16 self, ulong2_mt16 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rxz(this ulong4_mt16 self, ulong2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ryw(this ulong4_mt16 self, ulong2_mt16 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rxw(this ulong4_mt16 self, ulong2_mt16 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rxyz(this ulong4_mt16 self, ulong3_mt16 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ryzw(this ulong4_mt16 self, ulong3_mt16 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rxyw(this ulong4_mt16 self, ulong3_mt16 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Rxzw(this ulong4_mt16 self, ulong3_mt16 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // ulong4_mt16
-
-#region b32v4_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rx(this b32v4_mt4 self, b32_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ry(this b32v4_mt4 self, b32_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rz(this b32v4_mt4 self, b32_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rw(this b32v4_mt4 self, b32_mt4 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rxy(this b32v4_mt4 self, b32v2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ryz(this b32v4_mt4 self, b32v2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rzw(this b32v4_mt4 self, b32v2_mt4 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rxz(this b32v4_mt4 self, b32v2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ryw(this b32v4_mt4 self, b32v2_mt4 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rxw(this b32v4_mt4 self, b32v2_mt4 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rxyz(this b32v4_mt4 self, b32v3_mt4 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ryzw(this b32v4_mt4 self, b32v3_mt4 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rxyw(this b32v4_mt4 self, b32v3_mt4 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Rxzw(this b32v4_mt4 self, b32v3_mt4 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // b32v4_mt4
-
-#region b32v4_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rx(this b32v4_mt8 self, b32_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ry(this b32v4_mt8 self, b32_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rz(this b32v4_mt8 self, b32_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rw(this b32v4_mt8 self, b32_mt8 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rxy(this b32v4_mt8 self, b32v2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ryz(this b32v4_mt8 self, b32v2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rzw(this b32v4_mt8 self, b32v2_mt8 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rxz(this b32v4_mt8 self, b32v2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ryw(this b32v4_mt8 self, b32v2_mt8 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rxw(this b32v4_mt8 self, b32v2_mt8 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rxyz(this b32v4_mt8 self, b32v3_mt8 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ryzw(this b32v4_mt8 self, b32v3_mt8 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rxyw(this b32v4_mt8 self, b32v3_mt8 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Rxzw(this b32v4_mt8 self, b32v3_mt8 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // b32v4_mt8
-
-#region b32v4_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rx(this b32v4_mt16 self, b32_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ry(this b32v4_mt16 self, b32_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rz(this b32v4_mt16 self, b32_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rw(this b32v4_mt16 self, b32_mt16 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rxy(this b32v4_mt16 self, b32v2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ryz(this b32v4_mt16 self, b32v2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rzw(this b32v4_mt16 self, b32v2_mt16 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rxz(this b32v4_mt16 self, b32v2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ryw(this b32v4_mt16 self, b32v2_mt16 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rxw(this b32v4_mt16 self, b32v2_mt16 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rxyz(this b32v4_mt16 self, b32v3_mt16 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ryzw(this b32v4_mt16 self, b32v3_mt16 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rxyw(this b32v4_mt16 self, b32v3_mt16 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Rxzw(this b32v4_mt16 self, b32v3_mt16 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // b32v4_mt16
-
-#region b64v4_mt4
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rx(this b64v4_mt4 self, b64_mt4 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ry(this b64v4_mt4 self, b64_mt4 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rz(this b64v4_mt4 self, b64_mt4 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rw(this b64v4_mt4 self, b64_mt4 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rxy(this b64v4_mt4 self, b64v2_mt4 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ryz(this b64v4_mt4 self, b64v2_mt4 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rzw(this b64v4_mt4 self, b64v2_mt4 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rxz(this b64v4_mt4 self, b64v2_mt4 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ryw(this b64v4_mt4 self, b64v2_mt4 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rxw(this b64v4_mt4 self, b64v2_mt4 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rxyz(this b64v4_mt4 self, b64v3_mt4 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ryzw(this b64v4_mt4 self, b64v3_mt4 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rxyw(this b64v4_mt4 self, b64v3_mt4 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Rxzw(this b64v4_mt4 self, b64v3_mt4 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // b64v4_mt4
-
-#region b64v4_mt8
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rx(this b64v4_mt8 self, b64_mt8 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ry(this b64v4_mt8 self, b64_mt8 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rz(this b64v4_mt8 self, b64_mt8 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rw(this b64v4_mt8 self, b64_mt8 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rxy(this b64v4_mt8 self, b64v2_mt8 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ryz(this b64v4_mt8 self, b64v2_mt8 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rzw(this b64v4_mt8 self, b64v2_mt8 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rxz(this b64v4_mt8 self, b64v2_mt8 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ryw(this b64v4_mt8 self, b64v2_mt8 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rxw(this b64v4_mt8 self, b64v2_mt8 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rxyz(this b64v4_mt8 self, b64v3_mt8 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ryzw(this b64v4_mt8 self, b64v3_mt8 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rxyw(this b64v4_mt8 self, b64v3_mt8 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Rxzw(this b64v4_mt8 self, b64v3_mt8 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // b64v4_mt8
-
-#region b64v4_mt16
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Replace X component
-    /// <code>X -> (x, y, z, w) => (X, y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rx(this b64v4_mt16 self, b64_mt16 x)
-    {
-        self.x = x;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y component
-    /// <code>Y -> (x, y, z, w) => (x, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ry(this b64v4_mt16 self, b64_mt16 y)
-    {
-        self.y = y;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z component
-    /// <code>Z -> (x, y, z, w) => (x, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rz(this b64v4_mt16 self, b64_mt16 z)
-    {
-        self.z = z;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace W component
-    /// <code>W -> (x, y, z, w) => (x, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rw(this b64v4_mt16 self, b64_mt16 w)
-    {
-        self.w = w;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y component
-    /// <code>(X, Y) -> (x, y, z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rxy(this b64v4_mt16 self, b64v2_mt16 xy)
-    {
-        self.xy = xy;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z component
-    /// <code>(Y, Z) -> (x, y, z, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ryz(this b64v4_mt16 self, b64v2_mt16 yz)
-    {
-        self.yz = yz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Z W component
-    /// <code>(Z, W) -> (x, y, z, w) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rzw(this b64v4_mt16 self, b64v2_mt16 zw)
-    {
-        self.zw = zw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z component
-    /// <code>(X, Z) -> (x, y, z, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rxz(this b64v4_mt16 self, b64v2_mt16 xz)
-    {
-        self.xz = xz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y W component
-    /// <code>(Y, W) -> (x, y, z, w) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ryw(this b64v4_mt16 self, b64v2_mt16 yw)
-    {
-        self.yw = yw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X W component
-    /// <code>(X, W) -> (x, y, z, w) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rxw(this b64v4_mt16 self, b64v2_mt16 xw)
-    {
-        self.xw = xw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y Z component
-    /// <code>(X, Y, Z) -> (x, y, z, w) => (X, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rxyz(this b64v4_mt16 self, b64v3_mt16 xyz)
-    {
-        self.xyz = xyz;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace Y Z W component
-    /// <code>(Y, Z, W) -> (x, y, z, w) => (x, Y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ryzw(this b64v4_mt16 self, b64v3_mt16 yzw)
-    {
-        self.yzw = yzw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Y W component
-    /// <code>(X, Y, W) -> (x, y, z, w) => (X, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rxyw(this b64v4_mt16 self, b64v3_mt16 xyw)
-    {
-        self.xyw = xyw;
-        return self;
-    }
-
-    /// <summary>
-    /// Replace X Z W component
-    /// <code>(X, Z, W) -> (x, y, z, w) => (X, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Rxzw(this b64v4_mt16 self, b64v3_mt16 xzw)
-    {
-        self.xzw = xzw;
-        return self;
-    }
-}
-
-#endregion // b64v4_mt16
+#endregion // b64v4_mt

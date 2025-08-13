@@ -3,896 +3,300 @@
 namespace Coplt.Mathematics.Simt;
 
 
-#region float_mt4
+#region float_mt
 
-public partial struct float_mt4 
+public partial struct float_mt 
 {
     [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt4(float_mt4 self)
-    {
-        return new(Vector128.ConvertToUInt32(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt4(float_mt4 self)
-    {
-        return new(Vector128.ConvertToInt32(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt4(float_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToUInt64(Vector256.Create(a_vector, b_vector)));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt4(float_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToInt64(Vector256.Create(a_vector, b_vector)));
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt4(float_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a_vector, b_vector));
-    }
-}
-
-#endregion // float_mt4
-
-#region float_mt8
-
-public partial struct float_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt8(float_mt8 self)
-    {
-        return new(Vector256.ConvertToUInt32(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt8(float_mt8 self)
-    {
-        return new(Vector256.ConvertToInt32(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt8(float_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.ConvertToUInt64(Vector512.Create(a_vector, b_vector)));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt8(float_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.ConvertToInt64(Vector512.Create(a_vector, b_vector)));
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt8(float_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.Create(a_vector, b_vector));
-    }
-}
-
-#endregion // float_mt8
-
-#region float_mt16
-
-public partial struct float_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt16(float_mt16 self)
+    public static explicit operator uint_mt(float_mt self)
     {
         return new(Vector512.ConvertToUInt32(self.vector));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator int_mt16(float_mt16 self)
+    public static explicit operator int_mt(float_mt self)
     {
         return new(Vector512.ConvertToInt32(self.vector));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt16(float_mt16 self)
+    public static explicit operator ulong_mt(float_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(Vector512.ConvertToUInt64(a_vector), Vector512.ConvertToUInt64(b_vector));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator long_mt16(float_mt16 self)
+    public static explicit operator long_mt(float_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(Vector512.ConvertToInt64(a_vector), Vector512.ConvertToInt64(b_vector));
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator double_mt16(float_mt16 self)
+    public static implicit operator double_mt(float_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(a_vector, b_vector);
     }
 }
 
-#endregion // float_mt16
+#endregion // float_mt
 
-#region double_mt4
+#region double_mt
 
-public partial struct double_mt4 
+public partial struct double_mt 
 {
     [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt4(double_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToUInt32(vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt4(double_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToInt32(vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt4(double_mt4 self)
-    {
-        return new(Vector256.ConvertToUInt64(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt4(double_mt4 self)
-    {
-        return new(Vector256.ConvertToInt64(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator float_mt4(double_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector);
-    }
-}
-
-#endregion // double_mt4
-
-#region double_mt8
-
-public partial struct double_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt8(double_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector256.ConvertToUInt32(vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt8(double_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector256.ConvertToInt32(vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt8(double_mt8 self)
-    {
-        return new(Vector512.ConvertToUInt64(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt8(double_mt8 self)
-    {
-        return new(Vector512.ConvertToInt64(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator float_mt8(double_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector);
-    }
-}
-
-#endregion // double_mt8
-
-#region double_mt16
-
-public partial struct double_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt16(double_mt16 self)
+    public static explicit operator uint_mt(double_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(Vector512.ConvertToUInt32(vector));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator int_mt16(double_mt16 self)
+    public static explicit operator int_mt(double_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(Vector512.ConvertToInt32(vector));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt16(double_mt16 self)
+    public static explicit operator ulong_mt(double_mt self)
     {
         return new(Vector512.ConvertToUInt64(self.vector0), Vector512.ConvertToUInt64(self.vector1));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator long_mt16(double_mt16 self)
+    public static explicit operator long_mt(double_mt self)
     {
         return new(Vector512.ConvertToInt64(self.vector0), Vector512.ConvertToInt64(self.vector1));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator float_mt16(double_mt16 self)
+    public static explicit operator float_mt(double_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(vector);
     }
 }
 
-#endregion // double_mt16
+#endregion // double_mt
 
-#region int_mt4
+#region int_mt
 
-public partial struct int_mt4 
+public partial struct int_mt 
 {
     [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt4(int_mt4 self)
+    public static explicit operator uint_mt(int_mt self)
     {
-        return self.BitCast<int_mt4, uint_mt4>();
+        return self.BitCast<int_mt, uint_mt>();
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt4(int_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a_vector, b_vector).AsUInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator long_mt4(int_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a_vector, b_vector).AsInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator float_mt4(int_mt4 self)
-    {
-        return new(Vector128.ConvertToSingle(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt4(int_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a_vector, b_vector)));
-    }
-}
-
-#endregion // int_mt4
-
-#region int_mt8
-
-public partial struct int_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt8(int_mt8 self)
-    {
-        return self.BitCast<int_mt8, uint_mt8>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt8(int_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.Create(a_vector, b_vector).AsUInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator long_mt8(int_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.Create(a_vector, b_vector).AsInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator float_mt8(int_mt8 self)
-    {
-        return new(Vector256.ConvertToSingle(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt8(int_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.ConvertToDouble(Vector512.Create(a_vector, b_vector)));
-    }
-}
-
-#endregion // int_mt8
-
-#region int_mt16
-
-public partial struct int_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt16(int_mt16 self)
-    {
-        return self.BitCast<int_mt16, uint_mt16>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt16(int_mt16 self)
+    public static explicit operator ulong_mt(int_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(a_vector.AsUInt64(), b_vector.AsUInt64());
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator long_mt16(int_mt16 self)
+    public static implicit operator long_mt(int_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(a_vector.AsInt64(), b_vector.AsInt64());
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator float_mt16(int_mt16 self)
+    public static implicit operator float_mt(int_mt self)
     {
         return new(Vector512.ConvertToSingle(self.vector));
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator double_mt16(int_mt16 self)
+    public static implicit operator double_mt(int_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(Vector512.ConvertToDouble(a_vector), Vector512.ConvertToDouble(b_vector));
     }
 }
 
-#endregion // int_mt16
+#endregion // int_mt
 
-#region uint_mt4
+#region uint_mt
 
-public partial struct uint_mt4 
+public partial struct uint_mt 
 {
     [MethodImpl(256 | 512)]
-    public static explicit operator int_mt4(uint_mt4 self)
+    public static explicit operator int_mt(uint_mt self)
     {
-        return self.BitCast<uint_mt4, int_mt4>();
+        return self.BitCast<uint_mt, int_mt>();
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator long_mt4(uint_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a_vector, b_vector).AsInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong_mt4(uint_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a_vector, b_vector).AsUInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator float_mt4(uint_mt4 self)
-    {
-        return new(Vector128.ConvertToSingle(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt4(uint_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a_vector, b_vector)));
-    }
-}
-
-#endregion // uint_mt4
-
-#region uint_mt8
-
-public partial struct uint_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt8(uint_mt8 self)
-    {
-        return self.BitCast<uint_mt8, int_mt8>();
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator long_mt8(uint_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.Create(a_vector, b_vector).AsInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong_mt8(uint_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.Create(a_vector, b_vector).AsUInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator float_mt8(uint_mt8 self)
-    {
-        return new(Vector256.ConvertToSingle(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt8(uint_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.ConvertToDouble(Vector512.Create(a_vector, b_vector)));
-    }
-}
-
-#endregion // uint_mt8
-
-#region uint_mt16
-
-public partial struct uint_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt16(uint_mt16 self)
-    {
-        return self.BitCast<uint_mt16, int_mt16>();
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator long_mt16(uint_mt16 self)
+    public static implicit operator long_mt(uint_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(a_vector.AsInt64(), b_vector.AsInt64());
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong_mt16(uint_mt16 self)
+    public static implicit operator ulong_mt(uint_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(a_vector.AsUInt64(), b_vector.AsUInt64());
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator float_mt16(uint_mt16 self)
+    public static implicit operator float_mt(uint_mt self)
     {
         return new(Vector512.ConvertToSingle(self.vector));
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator double_mt16(uint_mt16 self)
+    public static implicit operator double_mt(uint_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(Vector512.ConvertToDouble(a_vector), Vector512.ConvertToDouble(b_vector));
     }
 }
 
-#endregion // uint_mt16
+#endregion // uint_mt
 
-#region long_mt4
+#region long_mt
 
-public partial struct long_mt4 
+public partial struct long_mt 
 {
     [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt4(long_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsUInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt4(long_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt4(long_mt4 self)
-    {
-        return self.BitCast<long_mt4, ulong_mt4>();
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt4(long_mt4 self)
-    {
-        return new(Vector256.ConvertToDouble(self.vector));
-    }
-}
-
-#endregion // long_mt4
-
-#region long_mt8
-
-public partial struct long_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt8(long_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsUInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt8(long_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt8(long_mt8 self)
-    {
-        return self.BitCast<long_mt8, ulong_mt8>();
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt8(long_mt8 self)
-    {
-        return new(Vector512.ConvertToDouble(self.vector));
-    }
-}
-
-#endregion // long_mt8
-
-#region long_mt16
-
-public partial struct long_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt16(long_mt16 self)
+    public static explicit operator uint_mt(long_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(vector.AsUInt32());
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator int_mt16(long_mt16 self)
+    public static explicit operator int_mt(long_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(vector.AsInt32());
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt16(long_mt16 self)
+    public static explicit operator ulong_mt(long_mt self)
     {
-        return self.BitCast<long_mt16, ulong_mt16>();
+        return self.BitCast<long_mt, ulong_mt>();
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator double_mt16(long_mt16 self)
+    public static implicit operator double_mt(long_mt self)
     {
         return new(Vector512.ConvertToDouble(self.vector0), Vector512.ConvertToDouble(self.vector1));
     }
 }
 
-#endregion // long_mt16
+#endregion // long_mt
 
-#region ulong_mt4
+#region ulong_mt
 
-public partial struct ulong_mt4 
+public partial struct ulong_mt 
 {
     [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt4(ulong_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsUInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt4(ulong_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt4(ulong_mt4 self)
-    {
-        return self.BitCast<ulong_mt4, long_mt4>();
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt4(ulong_mt4 self)
-    {
-        return new(Vector256.ConvertToDouble(self.vector));
-    }
-}
-
-#endregion // ulong_mt4
-
-#region ulong_mt8
-
-public partial struct ulong_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt8(ulong_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsUInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt8(ulong_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt8(ulong_mt8 self)
-    {
-        return self.BitCast<ulong_mt8, long_mt8>();
-    }
-    [MethodImpl(256 | 512)]
-    public static implicit operator double_mt8(ulong_mt8 self)
-    {
-        return new(Vector512.ConvertToDouble(self.vector));
-    }
-}
-
-#endregion // ulong_mt8
-
-#region ulong_mt16
-
-public partial struct ulong_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt16(ulong_mt16 self)
+    public static explicit operator uint_mt(ulong_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(vector.AsUInt32());
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator int_mt16(ulong_mt16 self)
+    public static explicit operator int_mt(ulong_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(vector.AsInt32());
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator long_mt16(ulong_mt16 self)
+    public static explicit operator long_mt(ulong_mt self)
     {
-        return self.BitCast<ulong_mt16, long_mt16>();
+        return self.BitCast<ulong_mt, long_mt>();
     }
     [MethodImpl(256 | 512)]
-    public static implicit operator double_mt16(ulong_mt16 self)
+    public static implicit operator double_mt(ulong_mt self)
     {
         return new(Vector512.ConvertToDouble(self.vector0), Vector512.ConvertToDouble(self.vector1));
     }
 }
 
-#endregion // ulong_mt16
+#endregion // ulong_mt
 
-#region b32_mt4
+#region b32_mt
 
-public partial struct b32_mt4 
+public partial struct b32_mt 
 {
     [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt4(b32_mt4 self)
+    public static explicit operator uint_mt(b32_mt self)
     {
-        return self.BitCast<b32_mt4, uint_mt4>();
+        return self.BitCast<b32_mt, uint_mt>();
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator int_mt4(b32_mt4 self)
+    public static explicit operator int_mt(b32_mt self)
     {
-        return self.BitCast<b32_mt4, int_mt4>();
+        return self.BitCast<b32_mt, int_mt>();
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt4(b32_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a_vector, b_vector).AsUInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt4(b32_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a_vector, b_vector).AsInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator float_mt4(b32_mt4 self)
-    {
-        return new(Vector128.ConvertToSingle(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator double_mt4(b32_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a_vector, b_vector)));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator b64_mt4(b32_mt4 self)
-    {
-        var (a_vector, b_vector) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a_vector, b_vector).AsUInt64());
-    }
-}
-
-#endregion // b32_mt4
-
-#region b32_mt8
-
-public partial struct b32_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt8(b32_mt8 self)
-    {
-        return self.BitCast<b32_mt8, uint_mt8>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt8(b32_mt8 self)
-    {
-        return self.BitCast<b32_mt8, int_mt8>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt8(b32_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.Create(a_vector, b_vector).AsUInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt8(b32_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.Create(a_vector, b_vector).AsInt64());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator float_mt8(b32_mt8 self)
-    {
-        return new(Vector256.ConvertToSingle(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator double_mt8(b32_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.ConvertToDouble(Vector512.Create(a_vector, b_vector)));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator b64_mt8(b32_mt8 self)
-    {
-        var (a_vector, b_vector) = Vector256.Widen(self.vector);
-        return new(Vector512.Create(a_vector, b_vector).AsUInt64());
-    }
-}
-
-#endregion // b32_mt8
-
-#region b32_mt16
-
-public partial struct b32_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt16(b32_mt16 self)
-    {
-        return self.BitCast<b32_mt16, uint_mt16>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt16(b32_mt16 self)
-    {
-        return self.BitCast<b32_mt16, int_mt16>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt16(b32_mt16 self)
+    public static explicit operator ulong_mt(b32_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(a_vector.AsUInt64(), b_vector.AsUInt64());
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator long_mt16(b32_mt16 self)
+    public static explicit operator long_mt(b32_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(a_vector.AsInt64(), b_vector.AsInt64());
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator float_mt16(b32_mt16 self)
+    public static explicit operator float_mt(b32_mt self)
     {
         return new(Vector512.ConvertToSingle(self.vector));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator double_mt16(b32_mt16 self)
+    public static explicit operator double_mt(b32_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(Vector512.ConvertToDouble(a_vector), Vector512.ConvertToDouble(b_vector));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator b64_mt16(b32_mt16 self)
+    public static explicit operator b64_mt(b32_mt self)
     {
         var (a_vector, b_vector) = Vector512.Widen(self.vector);
         return new(a_vector.AsUInt64(), b_vector.AsUInt64());
     }
 }
 
-#endregion // b32_mt16
+#endregion // b32_mt
 
-#region b64_mt4
+#region b64_mt
 
-public partial struct b64_mt4 
+public partial struct b64_mt 
 {
     [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt4(b64_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsUInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt4(b64_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt4(b64_mt4 self)
-    {
-        return self.BitCast<b64_mt4, ulong_mt4>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt4(b64_mt4 self)
-    {
-        return self.BitCast<b64_mt4, long_mt4>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator float_mt4(b64_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToSingle(vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator double_mt4(b64_mt4 self)
-    {
-        return new(Vector256.ConvertToDouble(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator b32_mt4(b64_mt4 self)
-    {
-        var vector = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsUInt32());
-    }
-}
-
-#endregion // b64_mt4
-
-#region b64_mt8
-
-public partial struct b64_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt8(b64_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsUInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator int_mt8(b64_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsInt32());
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt8(b64_mt8 self)
-    {
-        return self.BitCast<b64_mt8, ulong_mt8>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator long_mt8(b64_mt8 self)
-    {
-        return self.BitCast<b64_mt8, long_mt8>();
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator float_mt8(b64_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector256.ConvertToSingle(vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator double_mt8(b64_mt8 self)
-    {
-        return new(Vector512.ConvertToDouble(self.vector));
-    }
-    [MethodImpl(256 | 512)]
-    public static explicit operator b32_mt8(b64_mt8 self)
-    {
-        var vector = Vector256.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(vector.AsUInt32());
-    }
-}
-
-#endregion // b64_mt8
-
-#region b64_mt16
-
-public partial struct b64_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint_mt16(b64_mt16 self)
+    public static explicit operator uint_mt(b64_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(vector.AsUInt32());
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator int_mt16(b64_mt16 self)
+    public static explicit operator int_mt(b64_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(vector.AsInt32());
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator ulong_mt16(b64_mt16 self)
+    public static explicit operator ulong_mt(b64_mt self)
     {
-        return self.BitCast<b64_mt16, ulong_mt16>();
+        return self.BitCast<b64_mt, ulong_mt>();
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator long_mt16(b64_mt16 self)
+    public static explicit operator long_mt(b64_mt self)
     {
-        return self.BitCast<b64_mt16, long_mt16>();
+        return self.BitCast<b64_mt, long_mt>();
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator float_mt16(b64_mt16 self)
+    public static explicit operator float_mt(b64_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(Vector512.ConvertToSingle(vector));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator double_mt16(b64_mt16 self)
+    public static explicit operator double_mt(b64_mt self)
     {
         return new(Vector512.ConvertToDouble(self.vector0), Vector512.ConvertToDouble(self.vector1));
     }
     [MethodImpl(256 | 512)]
-    public static explicit operator b32_mt16(b64_mt16 self)
+    public static explicit operator b32_mt(b64_mt self)
     {
         var vector = Vector512.Narrow(self.vector0, self.vector1);
         return new(vector.AsUInt32());
     }
 }
 
-#endregion // b64_mt16
+#endregion // b64_mt

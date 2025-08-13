@@ -2,74 +2,74 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float2_mt4
+#region float2_mt
 
-public partial struct float2_mt4 : IComparable<float2_mt4>, IComparable
-    , IComparisonOperators<float2_mt4, float2_mt4, bool>
-    , IComparisonOperators<float2_mt4, float2_mt4, b32v2_mt4>
+public partial struct float2_mt : IComparable<float2_mt>, IComparable
+    , IComparisonOperators<float2_mt, float2_mt, bool>
+    , IComparisonOperators<float2_mt, float2_mt, b32v2_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float2_mt4 other)
+    public readonly bool LaneLessThanAll(float2_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float2_mt4 other)
+    public readonly bool LaneGreaterThanAll(float2_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float2_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(float2_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float2_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(float2_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float2_mt4 other)
+    public readonly bool LaneLessThanAny(float2_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float2_mt4 other)
+    public readonly bool LaneGreaterThanAny(float2_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float2_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(float2_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float2_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(float2_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
     }
 
-    static bool IComparisonOperators<float2_mt4, float2_mt4, bool>.operator <(float2_mt4 left, float2_mt4 right) => 
+    static bool IComparisonOperators<float2_mt, float2_mt, bool>.operator <(float2_mt left, float2_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt4, float2_mt4, bool>.operator >(float2_mt4 left, float2_mt4 right) => 
+    static bool IComparisonOperators<float2_mt, float2_mt, bool>.operator >(float2_mt left, float2_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt4, float2_mt4, bool>.operator <=(float2_mt4 left, float2_mt4 right) => 
+    static bool IComparisonOperators<float2_mt, float2_mt, bool>.operator <=(float2_mt left, float2_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt4, float2_mt4, bool>.operator >=(float2_mt4 left, float2_mt4 right) => 
+    static bool IComparisonOperators<float2_mt, float2_mt, bool>.operator >=(float2_mt left, float2_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float2_mt4 other)
+    public readonly int CompareTo(float2_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -80,248 +80,248 @@ public partial struct float2_mt4 : IComparable<float2_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is float2_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float2_mt4)}");
+        return obj is float2_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float2_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(float2_mt4 left, float2_mt4 right)
+    public static b32v2_mt operator <(float2_mt left, float2_mt right)
     {
         return new(left.x < right.x, left.y < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(float2_mt4 left, float2_mt4 right)
+    public static b32v2_mt operator >(float2_mt left, float2_mt right)
     {
         return new(left.x > right.x, left.y > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(float2_mt4 left, float2_mt4 right)
+    public static b32v2_mt operator <=(float2_mt left, float2_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(float2_mt4 left, float2_mt4 right)
+    public static b32v2_mt operator >=(float2_mt left, float2_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(float2_mt4 left, float_mt4 right)
+    public static b32v2_mt operator <(float2_mt left, float_mt right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(float2_mt4 left, float_mt4 right)
+    public static b32v2_mt operator >(float2_mt left, float_mt right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(float2_mt4 left, float_mt4 right)
+    public static b32v2_mt operator <=(float2_mt left, float_mt right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(float2_mt4 left, float_mt4 right)
+    public static b32v2_mt operator >=(float2_mt left, float_mt right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(float_mt4 left, float2_mt4 right)
+    public static b32v2_mt operator <(float_mt left, float2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(float_mt4 left, float2_mt4 right)
+    public static b32v2_mt operator >(float_mt left, float2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(float_mt4 left, float2_mt4 right)
+    public static b32v2_mt operator <=(float_mt left, float2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(float_mt4 left, float2_mt4 right)
+    public static b32v2_mt operator >=(float_mt left, float2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(float2_mt4 left, float right)
+    public static b32v2_mt operator <(float2_mt left, float right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(float2_mt4 left, float right)
+    public static b32v2_mt operator >(float2_mt left, float right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(float2_mt4 left, float right)
+    public static b32v2_mt operator <=(float2_mt left, float right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(float2_mt4 left, float right)
+    public static b32v2_mt operator >=(float2_mt left, float right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(float left, float2_mt4 right)
+    public static b32v2_mt operator <(float left, float2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(float left, float2_mt4 right)
+    public static b32v2_mt operator >(float left, float2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(float left, float2_mt4 right)
+    public static b32v2_mt operator <=(float left, float2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(float left, float2_mt4 right)
+    public static b32v2_mt operator >=(float left, float2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(float2_mt4 other)
+    public readonly b32_mt LessThanAll(float2_mt other)
     {
         return (x < other.x) & (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(float2_mt4 other)
+    public readonly b32_mt GreaterThanAll(float2_mt other)
     {
         return (x > other.x) & (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(float2_mt4 other)
+    public readonly b32_mt LessThanOrEqualAll(float2_mt other)
     {
         return (x <= other.x) & (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(float2_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAll(float2_mt other)
     {
         return (x >= other.x) & (y >= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(float2_mt4 other)
+    public readonly b32_mt LessThanAny(float2_mt other)
     {
         return (x < other.x) | (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(float2_mt4 other)
+    public readonly b32_mt GreaterThanAny(float2_mt other)
     {
         return (x > other.x) | (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(float2_mt4 other)
+    public readonly b32_mt LessThanOrEqualAny(float2_mt other)
     {
         return (x <= other.x) | (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(float2_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAny(float2_mt other)
     {
         return (x >= other.x) | (y >= other.y);
     }
 
 }
 
-#endregion // float2_mt4
-#region float2_mt8
+#endregion // float2_mt
+#region float3_mt
 
-public partial struct float2_mt8 : IComparable<float2_mt8>, IComparable
-    , IComparisonOperators<float2_mt8, float2_mt8, bool>
-    , IComparisonOperators<float2_mt8, float2_mt8, b32v2_mt8>
+public partial struct float3_mt : IComparable<float3_mt>, IComparable
+    , IComparisonOperators<float3_mt, float3_mt, bool>
+    , IComparisonOperators<float3_mt, float3_mt, b32v3_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float2_mt8 other)
+    public readonly bool LaneLessThanAll(float3_mt other)
     {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float2_mt8 other)
+    public readonly bool LaneGreaterThanAll(float3_mt other)
     {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float2_mt8 other)
+    public readonly bool LaneLessThanOrEqualAll(float3_mt other)
     {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float2_mt8 other)
+    public readonly bool LaneGreaterThanOrEqualAll(float3_mt other)
     {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float2_mt8 other)
+    public readonly bool LaneLessThanAny(float3_mt other)
     {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float2_mt8 other)
+    public readonly bool LaneGreaterThanAny(float3_mt other)
     {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float2_mt8 other)
+    public readonly bool LaneLessThanOrEqualAny(float3_mt other)
     {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float2_mt8 other)
+    public readonly bool LaneGreaterThanOrEqualAny(float3_mt other)
     {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
     }
 
-    static bool IComparisonOperators<float2_mt8, float2_mt8, bool>.operator <(float2_mt8 left, float2_mt8 right) => 
+    static bool IComparisonOperators<float3_mt, float3_mt, bool>.operator <(float3_mt left, float3_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt8, float2_mt8, bool>.operator >(float2_mt8 left, float2_mt8 right) => 
+    static bool IComparisonOperators<float3_mt, float3_mt, bool>.operator >(float3_mt left, float3_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt8, float2_mt8, bool>.operator <=(float2_mt8 left, float2_mt8 right) => 
+    static bool IComparisonOperators<float3_mt, float3_mt, bool>.operator <=(float3_mt left, float3_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt8, float2_mt8, bool>.operator >=(float2_mt8 left, float2_mt8 right) => 
+    static bool IComparisonOperators<float3_mt, float3_mt, bool>.operator >=(float3_mt left, float3_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float2_mt8 other)
+    public readonly int CompareTo(float3_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -332,248 +332,752 @@ public partial struct float2_mt8 : IComparable<float2_mt8>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is float2_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float2_mt8)}");
+        return obj is float3_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float3_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(float2_mt8 left, float2_mt8 right)
+    public static b32v3_mt operator <(float3_mt left, float3_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(float3_mt left, float3_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(float3_mt left, float3_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(float3_mt left, float3_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(float3_mt left, float_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(float3_mt left, float_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(float3_mt left, float_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(float3_mt left, float_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(float_mt left, float3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(float_mt left, float3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(float_mt left, float3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(float_mt left, float3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(float3_mt left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(float3_mt left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(float3_mt left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(float3_mt left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(float left, float3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(float left, float3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(float left, float3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(float left, float3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAll(float3_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAll(float3_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAll(float3_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAll(float3_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAny(float3_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAny(float3_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAny(float3_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAny(float3_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z);
+    }
+
+}
+
+#endregion // float3_mt
+#region float4_mt
+
+public partial struct float4_mt : IComparable<float4_mt>, IComparable
+    , IComparisonOperators<float4_mt, float4_mt, bool>
+    , IComparisonOperators<float4_mt, float4_mt, b32v4_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(float4_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(float4_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(float4_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(float4_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(float4_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(float4_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(float4_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(float4_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
+    }
+
+    static bool IComparisonOperators<float4_mt, float4_mt, bool>.operator <(float4_mt left, float4_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<float4_mt, float4_mt, bool>.operator >(float4_mt left, float4_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<float4_mt, float4_mt, bool>.operator <=(float4_mt left, float4_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<float4_mt, float4_mt, bool>.operator >=(float4_mt left, float4_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(float4_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is float4_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float4_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(float4_mt left, float4_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(float4_mt left, float4_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(float4_mt left, float4_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(float4_mt left, float4_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(float4_mt left, float_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(float4_mt left, float_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(float4_mt left, float_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(float4_mt left, float_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(float_mt left, float4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(float_mt left, float4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(float_mt left, float4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(float_mt left, float4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(float4_mt left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(float4_mt left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(float4_mt left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(float4_mt left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(float left, float4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(float left, float4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(float left, float4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(float left, float4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAll(float4_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAll(float4_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAll(float4_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAll(float4_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAny(float4_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAny(float4_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAny(float4_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAny(float4_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
+    }
+
+}
+
+#endregion // float4_mt
+#region double2_mt
+
+public partial struct double2_mt : IComparable<double2_mt>, IComparable
+    , IComparisonOperators<double2_mt, double2_mt, bool>
+    , IComparisonOperators<double2_mt, double2_mt, b64v2_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(double2_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(double2_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(double2_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(double2_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(double2_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(double2_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(double2_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(double2_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+    }
+
+    static bool IComparisonOperators<double2_mt, double2_mt, bool>.operator <(double2_mt left, double2_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<double2_mt, double2_mt, bool>.operator >(double2_mt left, double2_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<double2_mt, double2_mt, bool>.operator <=(double2_mt left, double2_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<double2_mt, double2_mt, bool>.operator >=(double2_mt left, double2_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(double2_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is double2_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double2_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt operator <(double2_mt left, double2_mt right)
     {
         return new(left.x < right.x, left.y < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(float2_mt8 left, float2_mt8 right)
+    public static b64v2_mt operator >(double2_mt left, double2_mt right)
     {
         return new(left.x > right.x, left.y > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(float2_mt8 left, float2_mt8 right)
+    public static b64v2_mt operator <=(double2_mt left, double2_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(float2_mt8 left, float2_mt8 right)
+    public static b64v2_mt operator >=(double2_mt left, double2_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(float2_mt8 left, float_mt8 right)
+    public static b64v2_mt operator <(double2_mt left, double_mt right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(float2_mt8 left, float_mt8 right)
+    public static b64v2_mt operator >(double2_mt left, double_mt right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(float2_mt8 left, float_mt8 right)
+    public static b64v2_mt operator <=(double2_mt left, double_mt right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(float2_mt8 left, float_mt8 right)
+    public static b64v2_mt operator >=(double2_mt left, double_mt right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(float_mt8 left, float2_mt8 right)
+    public static b64v2_mt operator <(double_mt left, double2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(float_mt8 left, float2_mt8 right)
+    public static b64v2_mt operator >(double_mt left, double2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(float_mt8 left, float2_mt8 right)
+    public static b64v2_mt operator <=(double_mt left, double2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(float_mt8 left, float2_mt8 right)
+    public static b64v2_mt operator >=(double_mt left, double2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(float2_mt8 left, float right)
+    public static b64v2_mt operator <(double2_mt left, double right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(float2_mt8 left, float right)
+    public static b64v2_mt operator >(double2_mt left, double right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(float2_mt8 left, float right)
+    public static b64v2_mt operator <=(double2_mt left, double right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(float2_mt8 left, float right)
+    public static b64v2_mt operator >=(double2_mt left, double right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(float left, float2_mt8 right)
+    public static b64v2_mt operator <(double left, double2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(float left, float2_mt8 right)
+    public static b64v2_mt operator >(double left, double2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(float left, float2_mt8 right)
+    public static b64v2_mt operator <=(double left, double2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(float left, float2_mt8 right)
+    public static b64v2_mt operator >=(double left, double2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(float2_mt8 other)
+    public readonly b64_mt LessThanAll(double2_mt other)
     {
         return (x < other.x) & (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(float2_mt8 other)
+    public readonly b64_mt GreaterThanAll(double2_mt other)
     {
         return (x > other.x) & (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(float2_mt8 other)
+    public readonly b64_mt LessThanOrEqualAll(double2_mt other)
     {
         return (x <= other.x) & (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(float2_mt8 other)
+    public readonly b64_mt GreaterThanOrEqualAll(double2_mt other)
     {
         return (x >= other.x) & (y >= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(float2_mt8 other)
+    public readonly b64_mt LessThanAny(double2_mt other)
     {
         return (x < other.x) | (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(float2_mt8 other)
+    public readonly b64_mt GreaterThanAny(double2_mt other)
     {
         return (x > other.x) | (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(float2_mt8 other)
+    public readonly b64_mt LessThanOrEqualAny(double2_mt other)
     {
         return (x <= other.x) | (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(float2_mt8 other)
+    public readonly b64_mt GreaterThanOrEqualAny(double2_mt other)
     {
         return (x >= other.x) | (y >= other.y);
     }
 
 }
 
-#endregion // float2_mt8
-#region float2_mt16
+#endregion // double2_mt
+#region double3_mt
 
-public partial struct float2_mt16 : IComparable<float2_mt16>, IComparable
-    , IComparisonOperators<float2_mt16, float2_mt16, bool>
-    , IComparisonOperators<float2_mt16, float2_mt16, b32v2_mt16>
+public partial struct double3_mt : IComparable<double3_mt>, IComparable
+    , IComparisonOperators<double3_mt, double3_mt, bool>
+    , IComparisonOperators<double3_mt, double3_mt, b64v3_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float2_mt16 other)
+    public readonly bool LaneLessThanAll(double3_mt other)
     {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float2_mt16 other)
+    public readonly bool LaneGreaterThanAll(double3_mt other)
     {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float2_mt16 other)
+    public readonly bool LaneLessThanOrEqualAll(double3_mt other)
     {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float2_mt16 other)
+    public readonly bool LaneGreaterThanOrEqualAll(double3_mt other)
     {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float2_mt16 other)
+    public readonly bool LaneLessThanAny(double3_mt other)
     {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float2_mt16 other)
+    public readonly bool LaneGreaterThanAny(double3_mt other)
     {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float2_mt16 other)
+    public readonly bool LaneLessThanOrEqualAny(double3_mt other)
     {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float2_mt16 other)
+    public readonly bool LaneGreaterThanOrEqualAny(double3_mt other)
     {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
     }
 
-    static bool IComparisonOperators<float2_mt16, float2_mt16, bool>.operator <(float2_mt16 left, float2_mt16 right) => 
+    static bool IComparisonOperators<double3_mt, double3_mt, bool>.operator <(double3_mt left, double3_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt16, float2_mt16, bool>.operator >(float2_mt16 left, float2_mt16 right) => 
+    static bool IComparisonOperators<double3_mt, double3_mt, bool>.operator >(double3_mt left, double3_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt16, float2_mt16, bool>.operator <=(float2_mt16 left, float2_mt16 right) => 
+    static bool IComparisonOperators<double3_mt, double3_mt, bool>.operator <=(double3_mt left, double3_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float2_mt16, float2_mt16, bool>.operator >=(float2_mt16 left, float2_mt16 right) => 
+    static bool IComparisonOperators<double3_mt, double3_mt, bool>.operator >=(double3_mt left, double3_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float2_mt16 other)
+    public readonly int CompareTo(double3_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -584,248 +1088,752 @@ public partial struct float2_mt16 : IComparable<float2_mt16>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is float2_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float2_mt16)}");
+        return obj is double3_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double3_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(float2_mt16 left, float2_mt16 right)
+    public static b64v3_mt operator <(double3_mt left, double3_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(double3_mt left, double3_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(double3_mt left, double3_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(double3_mt left, double3_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <(double3_mt left, double_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(double3_mt left, double_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(double3_mt left, double_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(double3_mt left, double_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <(double_mt left, double3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(double_mt left, double3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(double_mt left, double3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(double_mt left, double3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <(double3_mt left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(double3_mt left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(double3_mt left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(double3_mt left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <(double left, double3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(double left, double3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(double left, double3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(double left, double3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanAll(double3_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanAll(double3_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanOrEqualAll(double3_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanOrEqualAll(double3_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanAny(double3_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanAny(double3_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanOrEqualAny(double3_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanOrEqualAny(double3_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z);
+    }
+
+}
+
+#endregion // double3_mt
+#region double4_mt
+
+public partial struct double4_mt : IComparable<double4_mt>, IComparable
+    , IComparisonOperators<double4_mt, double4_mt, bool>
+    , IComparisonOperators<double4_mt, double4_mt, b64v4_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(double4_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(double4_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(double4_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(double4_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(double4_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(double4_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(double4_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(double4_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
+    }
+
+    static bool IComparisonOperators<double4_mt, double4_mt, bool>.operator <(double4_mt left, double4_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<double4_mt, double4_mt, bool>.operator >(double4_mt left, double4_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<double4_mt, double4_mt, bool>.operator <=(double4_mt left, double4_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<double4_mt, double4_mt, bool>.operator >=(double4_mt left, double4_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(double4_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is double4_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double4_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(double4_mt left, double4_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(double4_mt left, double4_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(double4_mt left, double4_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(double4_mt left, double4_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(double4_mt left, double_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(double4_mt left, double_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(double4_mt left, double_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(double4_mt left, double_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(double_mt left, double4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(double_mt left, double4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(double_mt left, double4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(double_mt left, double4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(double4_mt left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(double4_mt left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(double4_mt left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(double4_mt left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(double left, double4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(double left, double4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(double left, double4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(double left, double4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanAll(double4_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanAll(double4_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanOrEqualAll(double4_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanOrEqualAll(double4_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanAny(double4_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanAny(double4_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanOrEqualAny(double4_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanOrEqualAny(double4_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
+    }
+
+}
+
+#endregion // double4_mt
+#region int2_mt
+
+public partial struct int2_mt : IComparable<int2_mt>, IComparable
+    , IComparisonOperators<int2_mt, int2_mt, bool>
+    , IComparisonOperators<int2_mt, int2_mt, b32v2_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(int2_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(int2_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(int2_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(int2_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(int2_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(int2_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(int2_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(int2_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+    }
+
+    static bool IComparisonOperators<int2_mt, int2_mt, bool>.operator <(int2_mt left, int2_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<int2_mt, int2_mt, bool>.operator >(int2_mt left, int2_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<int2_mt, int2_mt, bool>.operator <=(int2_mt left, int2_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<int2_mt, int2_mt, bool>.operator >=(int2_mt left, int2_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(int2_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is int2_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int2_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt operator <(int2_mt left, int2_mt right)
     {
         return new(left.x < right.x, left.y < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(float2_mt16 left, float2_mt16 right)
+    public static b32v2_mt operator >(int2_mt left, int2_mt right)
     {
         return new(left.x > right.x, left.y > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(float2_mt16 left, float2_mt16 right)
+    public static b32v2_mt operator <=(int2_mt left, int2_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(float2_mt16 left, float2_mt16 right)
+    public static b32v2_mt operator >=(int2_mt left, int2_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(float2_mt16 left, float_mt16 right)
+    public static b32v2_mt operator <(int2_mt left, int_mt right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(float2_mt16 left, float_mt16 right)
+    public static b32v2_mt operator >(int2_mt left, int_mt right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(float2_mt16 left, float_mt16 right)
+    public static b32v2_mt operator <=(int2_mt left, int_mt right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(float2_mt16 left, float_mt16 right)
+    public static b32v2_mt operator >=(int2_mt left, int_mt right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(float_mt16 left, float2_mt16 right)
+    public static b32v2_mt operator <(int_mt left, int2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(float_mt16 left, float2_mt16 right)
+    public static b32v2_mt operator >(int_mt left, int2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(float_mt16 left, float2_mt16 right)
+    public static b32v2_mt operator <=(int_mt left, int2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(float_mt16 left, float2_mt16 right)
+    public static b32v2_mt operator >=(int_mt left, int2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(float2_mt16 left, float right)
+    public static b32v2_mt operator <(int2_mt left, int right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(float2_mt16 left, float right)
+    public static b32v2_mt operator >(int2_mt left, int right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(float2_mt16 left, float right)
+    public static b32v2_mt operator <=(int2_mt left, int right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(float2_mt16 left, float right)
+    public static b32v2_mt operator >=(int2_mt left, int right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(float left, float2_mt16 right)
+    public static b32v2_mt operator <(int left, int2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(float left, float2_mt16 right)
+    public static b32v2_mt operator >(int left, int2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(float left, float2_mt16 right)
+    public static b32v2_mt operator <=(int left, int2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(float left, float2_mt16 right)
+    public static b32v2_mt operator >=(int left, int2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(float2_mt16 other)
+    public readonly b32_mt LessThanAll(int2_mt other)
     {
         return (x < other.x) & (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(float2_mt16 other)
+    public readonly b32_mt GreaterThanAll(int2_mt other)
     {
         return (x > other.x) & (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(float2_mt16 other)
+    public readonly b32_mt LessThanOrEqualAll(int2_mt other)
     {
         return (x <= other.x) & (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(float2_mt16 other)
+    public readonly b32_mt GreaterThanOrEqualAll(int2_mt other)
     {
         return (x >= other.x) & (y >= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(float2_mt16 other)
+    public readonly b32_mt LessThanAny(int2_mt other)
     {
         return (x < other.x) | (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(float2_mt16 other)
+    public readonly b32_mt GreaterThanAny(int2_mt other)
     {
         return (x > other.x) | (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(float2_mt16 other)
+    public readonly b32_mt LessThanOrEqualAny(int2_mt other)
     {
         return (x <= other.x) | (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(float2_mt16 other)
+    public readonly b32_mt GreaterThanOrEqualAny(int2_mt other)
     {
         return (x >= other.x) | (y >= other.y);
     }
 
 }
 
-#endregion // float2_mt16
-#region float3_mt4
+#endregion // int2_mt
+#region int3_mt
 
-public partial struct float3_mt4 : IComparable<float3_mt4>, IComparable
-    , IComparisonOperators<float3_mt4, float3_mt4, bool>
-    , IComparisonOperators<float3_mt4, float3_mt4, b32v3_mt4>
+public partial struct int3_mt : IComparable<int3_mt>, IComparable
+    , IComparisonOperators<int3_mt, int3_mt, bool>
+    , IComparisonOperators<int3_mt, int3_mt, b32v3_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float3_mt4 other)
+    public readonly bool LaneLessThanAll(int3_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float3_mt4 other)
+    public readonly bool LaneGreaterThanAll(int3_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float3_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(int3_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float3_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(int3_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float3_mt4 other)
+    public readonly bool LaneLessThanAny(int3_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float3_mt4 other)
+    public readonly bool LaneGreaterThanAny(int3_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float3_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(int3_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float3_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(int3_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
     }
 
-    static bool IComparisonOperators<float3_mt4, float3_mt4, bool>.operator <(float3_mt4 left, float3_mt4 right) => 
+    static bool IComparisonOperators<int3_mt, int3_mt, bool>.operator <(int3_mt left, int3_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt4, float3_mt4, bool>.operator >(float3_mt4 left, float3_mt4 right) => 
+    static bool IComparisonOperators<int3_mt, int3_mt, bool>.operator >(int3_mt left, int3_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt4, float3_mt4, bool>.operator <=(float3_mt4 left, float3_mt4 right) => 
+    static bool IComparisonOperators<int3_mt, int3_mt, bool>.operator <=(int3_mt left, int3_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt4, float3_mt4, bool>.operator >=(float3_mt4 left, float3_mt4 right) => 
+    static bool IComparisonOperators<int3_mt, int3_mt, bool>.operator >=(int3_mt left, int3_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float3_mt4 other)
+    public readonly int CompareTo(int3_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -836,752 +1844,248 @@ public partial struct float3_mt4 : IComparable<float3_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is float3_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float3_mt4)}");
+        return obj is int3_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int3_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(float3_mt4 left, float3_mt4 right)
+    public static b32v3_mt operator <(int3_mt left, int3_mt right)
     {
         return new(left.x < right.x, left.y < right.y, left.z < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(float3_mt4 left, float3_mt4 right)
+    public static b32v3_mt operator >(int3_mt left, int3_mt right)
     {
         return new(left.x > right.x, left.y > right.y, left.z > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(float3_mt4 left, float3_mt4 right)
+    public static b32v3_mt operator <=(int3_mt left, int3_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(float3_mt4 left, float3_mt4 right)
+    public static b32v3_mt operator >=(int3_mt left, int3_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(float3_mt4 left, float_mt4 right)
+    public static b32v3_mt operator <(int3_mt left, int_mt right)
     {
         return new(left.x < right, left.y < right, left.z < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(float3_mt4 left, float_mt4 right)
+    public static b32v3_mt operator >(int3_mt left, int_mt right)
     {
         return new(left.x > right, left.y > right, left.z > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(float3_mt4 left, float_mt4 right)
+    public static b32v3_mt operator <=(int3_mt left, int_mt right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(float3_mt4 left, float_mt4 right)
+    public static b32v3_mt operator >=(int3_mt left, int_mt right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(float_mt4 left, float3_mt4 right)
+    public static b32v3_mt operator <(int_mt left, int3_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(float_mt4 left, float3_mt4 right)
+    public static b32v3_mt operator >(int_mt left, int3_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(float_mt4 left, float3_mt4 right)
+    public static b32v3_mt operator <=(int_mt left, int3_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(float_mt4 left, float3_mt4 right)
+    public static b32v3_mt operator >=(int_mt left, int3_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(float3_mt4 left, float right)
+    public static b32v3_mt operator <(int3_mt left, int right)
     {
         return new(left.x < right, left.y < right, left.z < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(float3_mt4 left, float right)
+    public static b32v3_mt operator >(int3_mt left, int right)
     {
         return new(left.x > right, left.y > right, left.z > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(float3_mt4 left, float right)
+    public static b32v3_mt operator <=(int3_mt left, int right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(float3_mt4 left, float right)
+    public static b32v3_mt operator >=(int3_mt left, int right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(float left, float3_mt4 right)
+    public static b32v3_mt operator <(int left, int3_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(float left, float3_mt4 right)
+    public static b32v3_mt operator >(int left, int3_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(float left, float3_mt4 right)
+    public static b32v3_mt operator <=(int left, int3_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(float left, float3_mt4 right)
+    public static b32v3_mt operator >=(int left, int3_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(float3_mt4 other)
+    public readonly b32_mt LessThanAll(int3_mt other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(float3_mt4 other)
+    public readonly b32_mt GreaterThanAll(int3_mt other)
     {
         return (x > other.x) & (y > other.y) & (z > other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(float3_mt4 other)
+    public readonly b32_mt LessThanOrEqualAll(int3_mt other)
     {
         return (x <= other.x) & (y <= other.y) & (z <= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(float3_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAll(int3_mt other)
     {
         return (x >= other.x) & (y >= other.y) & (z >= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(float3_mt4 other)
+    public readonly b32_mt LessThanAny(int3_mt other)
     {
         return (x < other.x) | (y < other.y) | (z < other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(float3_mt4 other)
+    public readonly b32_mt GreaterThanAny(int3_mt other)
     {
         return (x > other.x) | (y > other.y) | (z > other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(float3_mt4 other)
+    public readonly b32_mt LessThanOrEqualAny(int3_mt other)
     {
         return (x <= other.x) | (y <= other.y) | (z <= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(float3_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAny(int3_mt other)
     {
         return (x >= other.x) | (y >= other.y) | (z >= other.z);
     }
 
 }
 
-#endregion // float3_mt4
-#region float3_mt8
+#endregion // int3_mt
+#region int4_mt
 
-public partial struct float3_mt8 : IComparable<float3_mt8>, IComparable
-    , IComparisonOperators<float3_mt8, float3_mt8, bool>
-    , IComparisonOperators<float3_mt8, float3_mt8, b32v3_mt8>
+public partial struct int4_mt : IComparable<int4_mt>, IComparable
+    , IComparisonOperators<int4_mt, int4_mt, bool>
+    , IComparisonOperators<int4_mt, int4_mt, b32v4_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float3_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float3_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float3_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float3_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float3_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float3_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<float3_mt8, float3_mt8, bool>.operator <(float3_mt8 left, float3_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt8, float3_mt8, bool>.operator >(float3_mt8 left, float3_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt8, float3_mt8, bool>.operator <=(float3_mt8 left, float3_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt8, float3_mt8, bool>.operator >=(float3_mt8 left, float3_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float3_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is float3_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float3_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(float3_mt8 left, float3_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(float3_mt8 left, float3_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(float3_mt8 left, float3_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(float3_mt8 left, float3_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(float3_mt8 left, float_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(float3_mt8 left, float_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(float3_mt8 left, float_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(float3_mt8 left, float_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(float_mt8 left, float3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(float_mt8 left, float3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(float_mt8 left, float3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(float_mt8 left, float3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(float3_mt8 left, float right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(float3_mt8 left, float right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(float3_mt8 left, float right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(float3_mt8 left, float right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(float left, float3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(float left, float3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(float left, float3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(float left, float3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(float3_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(float3_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(float3_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(float3_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(float3_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(float3_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(float3_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(float3_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // float3_mt8
-#region float3_mt16
-
-public partial struct float3_mt16 : IComparable<float3_mt16>, IComparable
-    , IComparisonOperators<float3_mt16, float3_mt16, bool>
-    , IComparisonOperators<float3_mt16, float3_mt16, b32v3_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float3_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float3_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float3_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float3_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float3_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float3_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<float3_mt16, float3_mt16, bool>.operator <(float3_mt16 left, float3_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt16, float3_mt16, bool>.operator >(float3_mt16 left, float3_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt16, float3_mt16, bool>.operator <=(float3_mt16 left, float3_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float3_mt16, float3_mt16, bool>.operator >=(float3_mt16 left, float3_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float3_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is float3_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float3_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(float3_mt16 left, float3_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(float3_mt16 left, float3_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(float3_mt16 left, float3_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(float3_mt16 left, float3_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(float3_mt16 left, float_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(float3_mt16 left, float_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(float3_mt16 left, float_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(float3_mt16 left, float_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(float_mt16 left, float3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(float_mt16 left, float3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(float_mt16 left, float3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(float_mt16 left, float3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(float3_mt16 left, float right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(float3_mt16 left, float right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(float3_mt16 left, float right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(float3_mt16 left, float right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(float left, float3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(float left, float3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(float left, float3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(float left, float3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(float3_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(float3_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(float3_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(float3_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(float3_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(float3_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(float3_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(float3_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // float3_mt16
-#region float4_mt4
-
-public partial struct float4_mt4 : IComparable<float4_mt4>, IComparable
-    , IComparisonOperators<float4_mt4, float4_mt4, bool>
-    , IComparisonOperators<float4_mt4, float4_mt4, b32v4_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float4_mt4 other)
+    public readonly bool LaneLessThanAll(int4_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float4_mt4 other)
+    public readonly bool LaneGreaterThanAll(int4_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float4_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(int4_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float4_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(int4_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float4_mt4 other)
+    public readonly bool LaneLessThanAny(int4_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float4_mt4 other)
+    public readonly bool LaneGreaterThanAny(int4_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float4_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(int4_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float4_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(int4_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
     }
 
-    static bool IComparisonOperators<float4_mt4, float4_mt4, bool>.operator <(float4_mt4 left, float4_mt4 right) => 
+    static bool IComparisonOperators<int4_mt, int4_mt, bool>.operator <(int4_mt left, int4_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt4, float4_mt4, bool>.operator >(float4_mt4 left, float4_mt4 right) => 
+    static bool IComparisonOperators<int4_mt, int4_mt, bool>.operator >(int4_mt left, int4_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt4, float4_mt4, bool>.operator <=(float4_mt4 left, float4_mt4 right) => 
+    static bool IComparisonOperators<int4_mt, int4_mt, bool>.operator <=(int4_mt left, int4_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt4, float4_mt4, bool>.operator >=(float4_mt4 left, float4_mt4 right) => 
+    static bool IComparisonOperators<int4_mt, int4_mt, bool>.operator >=(int4_mt left, int4_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float4_mt4 other)
+    public readonly int CompareTo(int4_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -1592,752 +2096,248 @@ public partial struct float4_mt4 : IComparable<float4_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is float4_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float4_mt4)}");
+        return obj is int4_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int4_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(float4_mt4 left, float4_mt4 right)
+    public static b32v4_mt operator <(int4_mt left, int4_mt right)
     {
         return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(float4_mt4 left, float4_mt4 right)
+    public static b32v4_mt operator >(int4_mt left, int4_mt right)
     {
         return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(float4_mt4 left, float4_mt4 right)
+    public static b32v4_mt operator <=(int4_mt left, int4_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(float4_mt4 left, float4_mt4 right)
+    public static b32v4_mt operator >=(int4_mt left, int4_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(float4_mt4 left, float_mt4 right)
+    public static b32v4_mt operator <(int4_mt left, int_mt right)
     {
         return new(left.x < right, left.y < right, left.z < right, left.w < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(float4_mt4 left, float_mt4 right)
+    public static b32v4_mt operator >(int4_mt left, int_mt right)
     {
         return new(left.x > right, left.y > right, left.z > right, left.w > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(float4_mt4 left, float_mt4 right)
+    public static b32v4_mt operator <=(int4_mt left, int_mt right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(float4_mt4 left, float_mt4 right)
+    public static b32v4_mt operator >=(int4_mt left, int_mt right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(float_mt4 left, float4_mt4 right)
+    public static b32v4_mt operator <(int_mt left, int4_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z, left < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(float_mt4 left, float4_mt4 right)
+    public static b32v4_mt operator >(int_mt left, int4_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z, left > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(float_mt4 left, float4_mt4 right)
+    public static b32v4_mt operator <=(int_mt left, int4_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(float_mt4 left, float4_mt4 right)
+    public static b32v4_mt operator >=(int_mt left, int4_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(float4_mt4 left, float right)
+    public static b32v4_mt operator <(int4_mt left, int right)
     {
         return new(left.x < right, left.y < right, left.z < right, left.w < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(float4_mt4 left, float right)
+    public static b32v4_mt operator >(int4_mt left, int right)
     {
         return new(left.x > right, left.y > right, left.z > right, left.w > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(float4_mt4 left, float right)
+    public static b32v4_mt operator <=(int4_mt left, int right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(float4_mt4 left, float right)
+    public static b32v4_mt operator >=(int4_mt left, int right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(float left, float4_mt4 right)
+    public static b32v4_mt operator <(int left, int4_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z, left < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(float left, float4_mt4 right)
+    public static b32v4_mt operator >(int left, int4_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z, left > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(float left, float4_mt4 right)
+    public static b32v4_mt operator <=(int left, int4_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(float left, float4_mt4 right)
+    public static b32v4_mt operator >=(int left, int4_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(float4_mt4 other)
+    public readonly b32_mt LessThanAll(int4_mt other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(float4_mt4 other)
+    public readonly b32_mt GreaterThanAll(int4_mt other)
     {
         return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(float4_mt4 other)
+    public readonly b32_mt LessThanOrEqualAll(int4_mt other)
     {
         return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(float4_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAll(int4_mt other)
     {
         return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(float4_mt4 other)
+    public readonly b32_mt LessThanAny(int4_mt other)
     {
         return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(float4_mt4 other)
+    public readonly b32_mt GreaterThanAny(int4_mt other)
     {
         return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(float4_mt4 other)
+    public readonly b32_mt LessThanOrEqualAny(int4_mt other)
     {
         return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(float4_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAny(int4_mt other)
     {
         return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
     }
 
 }
 
-#endregion // float4_mt4
-#region float4_mt8
+#endregion // int4_mt
+#region uint2_mt
 
-public partial struct float4_mt8 : IComparable<float4_mt8>, IComparable
-    , IComparisonOperators<float4_mt8, float4_mt8, bool>
-    , IComparisonOperators<float4_mt8, float4_mt8, b32v4_mt8>
+public partial struct uint2_mt : IComparable<uint2_mt>, IComparable
+    , IComparisonOperators<uint2_mt, uint2_mt, bool>
+    , IComparisonOperators<uint2_mt, uint2_mt, b32v2_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float4_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float4_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float4_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float4_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float4_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float4_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<float4_mt8, float4_mt8, bool>.operator <(float4_mt8 left, float4_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt8, float4_mt8, bool>.operator >(float4_mt8 left, float4_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt8, float4_mt8, bool>.operator <=(float4_mt8 left, float4_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt8, float4_mt8, bool>.operator >=(float4_mt8 left, float4_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float4_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is float4_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float4_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(float4_mt8 left, float4_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(float4_mt8 left, float4_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(float4_mt8 left, float4_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(float4_mt8 left, float4_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(float4_mt8 left, float_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(float4_mt8 left, float_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(float4_mt8 left, float_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(float4_mt8 left, float_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(float_mt8 left, float4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(float_mt8 left, float4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(float_mt8 left, float4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(float_mt8 left, float4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(float4_mt8 left, float right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(float4_mt8 left, float right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(float4_mt8 left, float right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(float4_mt8 left, float right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(float left, float4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(float left, float4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(float left, float4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(float left, float4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(float4_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(float4_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(float4_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(float4_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(float4_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(float4_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(float4_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(float4_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // float4_mt8
-#region float4_mt16
-
-public partial struct float4_mt16 : IComparable<float4_mt16>, IComparable
-    , IComparisonOperators<float4_mt16, float4_mt16, bool>
-    , IComparisonOperators<float4_mt16, float4_mt16, b32v4_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(float4_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(float4_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(float4_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(float4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(float4_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(float4_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(float4_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(float4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<float4_mt16, float4_mt16, bool>.operator <(float4_mt16 left, float4_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt16, float4_mt16, bool>.operator >(float4_mt16 left, float4_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt16, float4_mt16, bool>.operator <=(float4_mt16 left, float4_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<float4_mt16, float4_mt16, bool>.operator >=(float4_mt16 left, float4_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(float4_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is float4_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float4_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(float4_mt16 left, float4_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(float4_mt16 left, float4_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(float4_mt16 left, float4_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(float4_mt16 left, float4_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(float4_mt16 left, float_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(float4_mt16 left, float_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(float4_mt16 left, float_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(float4_mt16 left, float_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(float_mt16 left, float4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(float_mt16 left, float4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(float_mt16 left, float4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(float_mt16 left, float4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(float4_mt16 left, float right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(float4_mt16 left, float right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(float4_mt16 left, float right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(float4_mt16 left, float right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(float left, float4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(float left, float4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(float left, float4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(float left, float4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(float4_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(float4_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(float4_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(float4_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(float4_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(float4_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(float4_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(float4_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // float4_mt16
-#region double2_mt4
-
-public partial struct double2_mt4 : IComparable<double2_mt4>, IComparable
-    , IComparisonOperators<double2_mt4, double2_mt4, bool>
-    , IComparisonOperators<double2_mt4, double2_mt4, b64v2_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double2_mt4 other)
+    public readonly bool LaneLessThanAll(uint2_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double2_mt4 other)
+    public readonly bool LaneGreaterThanAll(uint2_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double2_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(uint2_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double2_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(uint2_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double2_mt4 other)
+    public readonly bool LaneLessThanAny(uint2_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double2_mt4 other)
+    public readonly bool LaneGreaterThanAny(uint2_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double2_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(uint2_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double2_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(uint2_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
     }
 
-    static bool IComparisonOperators<double2_mt4, double2_mt4, bool>.operator <(double2_mt4 left, double2_mt4 right) => 
+    static bool IComparisonOperators<uint2_mt, uint2_mt, bool>.operator <(uint2_mt left, uint2_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt4, double2_mt4, bool>.operator >(double2_mt4 left, double2_mt4 right) => 
+    static bool IComparisonOperators<uint2_mt, uint2_mt, bool>.operator >(uint2_mt left, uint2_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt4, double2_mt4, bool>.operator <=(double2_mt4 left, double2_mt4 right) => 
+    static bool IComparisonOperators<uint2_mt, uint2_mt, bool>.operator <=(uint2_mt left, uint2_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt4, double2_mt4, bool>.operator >=(double2_mt4 left, double2_mt4 right) => 
+    static bool IComparisonOperators<uint2_mt, uint2_mt, bool>.operator >=(uint2_mt left, uint2_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double2_mt4 other)
+    public readonly int CompareTo(uint2_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -2348,248 +2348,248 @@ public partial struct double2_mt4 : IComparable<double2_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is double2_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double2_mt4)}");
+        return obj is uint2_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint2_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(double2_mt4 left, double2_mt4 right)
+    public static b32v2_mt operator <(uint2_mt left, uint2_mt right)
     {
         return new(left.x < right.x, left.y < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(double2_mt4 left, double2_mt4 right)
+    public static b32v2_mt operator >(uint2_mt left, uint2_mt right)
     {
         return new(left.x > right.x, left.y > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(double2_mt4 left, double2_mt4 right)
+    public static b32v2_mt operator <=(uint2_mt left, uint2_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(double2_mt4 left, double2_mt4 right)
+    public static b32v2_mt operator >=(uint2_mt left, uint2_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(double2_mt4 left, double_mt4 right)
+    public static b32v2_mt operator <(uint2_mt left, uint_mt right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(double2_mt4 left, double_mt4 right)
+    public static b32v2_mt operator >(uint2_mt left, uint_mt right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(double2_mt4 left, double_mt4 right)
+    public static b32v2_mt operator <=(uint2_mt left, uint_mt right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(double2_mt4 left, double_mt4 right)
+    public static b32v2_mt operator >=(uint2_mt left, uint_mt right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(double_mt4 left, double2_mt4 right)
+    public static b32v2_mt operator <(uint_mt left, uint2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(double_mt4 left, double2_mt4 right)
+    public static b32v2_mt operator >(uint_mt left, uint2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(double_mt4 left, double2_mt4 right)
+    public static b32v2_mt operator <=(uint_mt left, uint2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(double_mt4 left, double2_mt4 right)
+    public static b32v2_mt operator >=(uint_mt left, uint2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(double2_mt4 left, double right)
+    public static b32v2_mt operator <(uint2_mt left, uint right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(double2_mt4 left, double right)
+    public static b32v2_mt operator >(uint2_mt left, uint right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(double2_mt4 left, double right)
+    public static b32v2_mt operator <=(uint2_mt left, uint right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(double2_mt4 left, double right)
+    public static b32v2_mt operator >=(uint2_mt left, uint right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(double left, double2_mt4 right)
+    public static b32v2_mt operator <(uint left, uint2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(double left, double2_mt4 right)
+    public static b32v2_mt operator >(uint left, uint2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(double left, double2_mt4 right)
+    public static b32v2_mt operator <=(uint left, uint2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(double left, double2_mt4 right)
+    public static b32v2_mt operator >=(uint left, uint2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(double2_mt4 other)
+    public readonly b32_mt LessThanAll(uint2_mt other)
     {
         return (x < other.x) & (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(double2_mt4 other)
+    public readonly b32_mt GreaterThanAll(uint2_mt other)
     {
         return (x > other.x) & (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(double2_mt4 other)
+    public readonly b32_mt LessThanOrEqualAll(uint2_mt other)
     {
         return (x <= other.x) & (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(double2_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAll(uint2_mt other)
     {
         return (x >= other.x) & (y >= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(double2_mt4 other)
+    public readonly b32_mt LessThanAny(uint2_mt other)
     {
         return (x < other.x) | (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(double2_mt4 other)
+    public readonly b32_mt GreaterThanAny(uint2_mt other)
     {
         return (x > other.x) | (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(double2_mt4 other)
+    public readonly b32_mt LessThanOrEqualAny(uint2_mt other)
     {
         return (x <= other.x) | (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(double2_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAny(uint2_mt other)
     {
         return (x >= other.x) | (y >= other.y);
     }
 
 }
 
-#endregion // double2_mt4
-#region double2_mt8
+#endregion // uint2_mt
+#region uint3_mt
 
-public partial struct double2_mt8 : IComparable<double2_mt8>, IComparable
-    , IComparisonOperators<double2_mt8, double2_mt8, bool>
-    , IComparisonOperators<double2_mt8, double2_mt8, b64v2_mt8>
+public partial struct uint3_mt : IComparable<uint3_mt>, IComparable
+    , IComparisonOperators<uint3_mt, uint3_mt, bool>
+    , IComparisonOperators<uint3_mt, uint3_mt, b32v3_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double2_mt8 other)
+    public readonly bool LaneLessThanAll(uint3_mt other)
     {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double2_mt8 other)
+    public readonly bool LaneGreaterThanAll(uint3_mt other)
     {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double2_mt8 other)
+    public readonly bool LaneLessThanOrEqualAll(uint3_mt other)
     {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double2_mt8 other)
+    public readonly bool LaneGreaterThanOrEqualAll(uint3_mt other)
     {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double2_mt8 other)
+    public readonly bool LaneLessThanAny(uint3_mt other)
     {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double2_mt8 other)
+    public readonly bool LaneGreaterThanAny(uint3_mt other)
     {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double2_mt8 other)
+    public readonly bool LaneLessThanOrEqualAny(uint3_mt other)
     {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double2_mt8 other)
+    public readonly bool LaneGreaterThanOrEqualAny(uint3_mt other)
     {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
     }
 
-    static bool IComparisonOperators<double2_mt8, double2_mt8, bool>.operator <(double2_mt8 left, double2_mt8 right) => 
+    static bool IComparisonOperators<uint3_mt, uint3_mt, bool>.operator <(uint3_mt left, uint3_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt8, double2_mt8, bool>.operator >(double2_mt8 left, double2_mt8 right) => 
+    static bool IComparisonOperators<uint3_mt, uint3_mt, bool>.operator >(uint3_mt left, uint3_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt8, double2_mt8, bool>.operator <=(double2_mt8 left, double2_mt8 right) => 
+    static bool IComparisonOperators<uint3_mt, uint3_mt, bool>.operator <=(uint3_mt left, uint3_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt8, double2_mt8, bool>.operator >=(double2_mt8 left, double2_mt8 right) => 
+    static bool IComparisonOperators<uint3_mt, uint3_mt, bool>.operator >=(uint3_mt left, uint3_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double2_mt8 other)
+    public readonly int CompareTo(uint3_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -2600,248 +2600,752 @@ public partial struct double2_mt8 : IComparable<double2_mt8>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is double2_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double2_mt8)}");
+        return obj is uint3_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint3_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(double2_mt8 left, double2_mt8 right)
+    public static b32v3_mt operator <(uint3_mt left, uint3_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(uint3_mt left, uint3_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(uint3_mt left, uint3_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(uint3_mt left, uint3_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(uint3_mt left, uint_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(uint3_mt left, uint_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(uint3_mt left, uint_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(uint3_mt left, uint_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(uint_mt left, uint3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(uint_mt left, uint3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(uint_mt left, uint3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(uint_mt left, uint3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(uint3_mt left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(uint3_mt left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(uint3_mt left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(uint3_mt left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(uint left, uint3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(uint left, uint3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(uint left, uint3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(uint left, uint3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAll(uint3_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAll(uint3_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAll(uint3_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAll(uint3_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAny(uint3_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAny(uint3_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAny(uint3_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAny(uint3_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z);
+    }
+
+}
+
+#endregion // uint3_mt
+#region uint4_mt
+
+public partial struct uint4_mt : IComparable<uint4_mt>, IComparable
+    , IComparisonOperators<uint4_mt, uint4_mt, bool>
+    , IComparisonOperators<uint4_mt, uint4_mt, b32v4_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(uint4_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(uint4_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(uint4_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(uint4_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(uint4_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(uint4_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(uint4_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(uint4_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
+    }
+
+    static bool IComparisonOperators<uint4_mt, uint4_mt, bool>.operator <(uint4_mt left, uint4_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<uint4_mt, uint4_mt, bool>.operator >(uint4_mt left, uint4_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<uint4_mt, uint4_mt, bool>.operator <=(uint4_mt left, uint4_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<uint4_mt, uint4_mt, bool>.operator >=(uint4_mt left, uint4_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(uint4_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is uint4_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint4_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(uint4_mt left, uint4_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(uint4_mt left, uint4_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(uint4_mt left, uint4_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(uint4_mt left, uint4_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(uint4_mt left, uint_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(uint4_mt left, uint_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(uint4_mt left, uint_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(uint4_mt left, uint_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(uint_mt left, uint4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(uint_mt left, uint4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(uint_mt left, uint4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(uint_mt left, uint4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(uint4_mt left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(uint4_mt left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(uint4_mt left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(uint4_mt left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(uint left, uint4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(uint left, uint4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(uint left, uint4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(uint left, uint4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAll(uint4_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAll(uint4_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAll(uint4_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAll(uint4_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAny(uint4_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAny(uint4_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAny(uint4_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAny(uint4_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
+    }
+
+}
+
+#endregion // uint4_mt
+#region long2_mt
+
+public partial struct long2_mt : IComparable<long2_mt>, IComparable
+    , IComparisonOperators<long2_mt, long2_mt, bool>
+    , IComparisonOperators<long2_mt, long2_mt, b64v2_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(long2_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(long2_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(long2_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(long2_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(long2_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(long2_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(long2_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(long2_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+    }
+
+    static bool IComparisonOperators<long2_mt, long2_mt, bool>.operator <(long2_mt left, long2_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<long2_mt, long2_mt, bool>.operator >(long2_mt left, long2_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<long2_mt, long2_mt, bool>.operator <=(long2_mt left, long2_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<long2_mt, long2_mt, bool>.operator >=(long2_mt left, long2_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(long2_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is long2_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long2_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt operator <(long2_mt left, long2_mt right)
     {
         return new(left.x < right.x, left.y < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(double2_mt8 left, double2_mt8 right)
+    public static b64v2_mt operator >(long2_mt left, long2_mt right)
     {
         return new(left.x > right.x, left.y > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(double2_mt8 left, double2_mt8 right)
+    public static b64v2_mt operator <=(long2_mt left, long2_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(double2_mt8 left, double2_mt8 right)
+    public static b64v2_mt operator >=(long2_mt left, long2_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(double2_mt8 left, double_mt8 right)
+    public static b64v2_mt operator <(long2_mt left, long_mt right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(double2_mt8 left, double_mt8 right)
+    public static b64v2_mt operator >(long2_mt left, long_mt right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(double2_mt8 left, double_mt8 right)
+    public static b64v2_mt operator <=(long2_mt left, long_mt right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(double2_mt8 left, double_mt8 right)
+    public static b64v2_mt operator >=(long2_mt left, long_mt right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(double_mt8 left, double2_mt8 right)
+    public static b64v2_mt operator <(long_mt left, long2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(double_mt8 left, double2_mt8 right)
+    public static b64v2_mt operator >(long_mt left, long2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(double_mt8 left, double2_mt8 right)
+    public static b64v2_mt operator <=(long_mt left, long2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(double_mt8 left, double2_mt8 right)
+    public static b64v2_mt operator >=(long_mt left, long2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(double2_mt8 left, double right)
+    public static b64v2_mt operator <(long2_mt left, long right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(double2_mt8 left, double right)
+    public static b64v2_mt operator >(long2_mt left, long right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(double2_mt8 left, double right)
+    public static b64v2_mt operator <=(long2_mt left, long right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(double2_mt8 left, double right)
+    public static b64v2_mt operator >=(long2_mt left, long right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(double left, double2_mt8 right)
+    public static b64v2_mt operator <(long left, long2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(double left, double2_mt8 right)
+    public static b64v2_mt operator >(long left, long2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(double left, double2_mt8 right)
+    public static b64v2_mt operator <=(long left, long2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(double left, double2_mt8 right)
+    public static b64v2_mt operator >=(long left, long2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(double2_mt8 other)
+    public readonly b64_mt LessThanAll(long2_mt other)
     {
         return (x < other.x) & (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(double2_mt8 other)
+    public readonly b64_mt GreaterThanAll(long2_mt other)
     {
         return (x > other.x) & (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(double2_mt8 other)
+    public readonly b64_mt LessThanOrEqualAll(long2_mt other)
     {
         return (x <= other.x) & (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(double2_mt8 other)
+    public readonly b64_mt GreaterThanOrEqualAll(long2_mt other)
     {
         return (x >= other.x) & (y >= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(double2_mt8 other)
+    public readonly b64_mt LessThanAny(long2_mt other)
     {
         return (x < other.x) | (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(double2_mt8 other)
+    public readonly b64_mt GreaterThanAny(long2_mt other)
     {
         return (x > other.x) | (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(double2_mt8 other)
+    public readonly b64_mt LessThanOrEqualAny(long2_mt other)
     {
         return (x <= other.x) | (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(double2_mt8 other)
+    public readonly b64_mt GreaterThanOrEqualAny(long2_mt other)
     {
         return (x >= other.x) | (y >= other.y);
     }
 
 }
 
-#endregion // double2_mt8
-#region double2_mt16
+#endregion // long2_mt
+#region long3_mt
 
-public partial struct double2_mt16 : IComparable<double2_mt16>, IComparable
-    , IComparisonOperators<double2_mt16, double2_mt16, bool>
-    , IComparisonOperators<double2_mt16, double2_mt16, b64v2_mt16>
+public partial struct long3_mt : IComparable<long3_mt>, IComparable
+    , IComparisonOperators<long3_mt, long3_mt, bool>
+    , IComparisonOperators<long3_mt, long3_mt, b64v3_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double2_mt16 other)
+    public readonly bool LaneLessThanAll(long3_mt other)
     {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double2_mt16 other)
+    public readonly bool LaneGreaterThanAll(long3_mt other)
     {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double2_mt16 other)
+    public readonly bool LaneLessThanOrEqualAll(long3_mt other)
     {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double2_mt16 other)
+    public readonly bool LaneGreaterThanOrEqualAll(long3_mt other)
     {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double2_mt16 other)
+    public readonly bool LaneLessThanAny(long3_mt other)
     {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double2_mt16 other)
+    public readonly bool LaneGreaterThanAny(long3_mt other)
     {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double2_mt16 other)
+    public readonly bool LaneLessThanOrEqualAny(long3_mt other)
     {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double2_mt16 other)
+    public readonly bool LaneGreaterThanOrEqualAny(long3_mt other)
     {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
     }
 
-    static bool IComparisonOperators<double2_mt16, double2_mt16, bool>.operator <(double2_mt16 left, double2_mt16 right) => 
+    static bool IComparisonOperators<long3_mt, long3_mt, bool>.operator <(long3_mt left, long3_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt16, double2_mt16, bool>.operator >(double2_mt16 left, double2_mt16 right) => 
+    static bool IComparisonOperators<long3_mt, long3_mt, bool>.operator >(long3_mt left, long3_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt16, double2_mt16, bool>.operator <=(double2_mt16 left, double2_mt16 right) => 
+    static bool IComparisonOperators<long3_mt, long3_mt, bool>.operator <=(long3_mt left, long3_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double2_mt16, double2_mt16, bool>.operator >=(double2_mt16 left, double2_mt16 right) => 
+    static bool IComparisonOperators<long3_mt, long3_mt, bool>.operator >=(long3_mt left, long3_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double2_mt16 other)
+    public readonly int CompareTo(long3_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -2852,248 +3356,752 @@ public partial struct double2_mt16 : IComparable<double2_mt16>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is double2_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double2_mt16)}");
+        return obj is long3_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long3_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(double2_mt16 left, double2_mt16 right)
+    public static b64v3_mt operator <(long3_mt left, long3_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(long3_mt left, long3_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(long3_mt left, long3_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(long3_mt left, long3_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <(long3_mt left, long_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(long3_mt left, long_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(long3_mt left, long_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(long3_mt left, long_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <(long_mt left, long3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(long_mt left, long3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(long_mt left, long3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(long_mt left, long3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <(long3_mt left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(long3_mt left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(long3_mt left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(long3_mt left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <(long left, long3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >(long left, long3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator <=(long left, long3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator >=(long left, long3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanAll(long3_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanAll(long3_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanOrEqualAll(long3_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanOrEqualAll(long3_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanAny(long3_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanAny(long3_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanOrEqualAny(long3_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanOrEqualAny(long3_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z);
+    }
+
+}
+
+#endregion // long3_mt
+#region long4_mt
+
+public partial struct long4_mt : IComparable<long4_mt>, IComparable
+    , IComparisonOperators<long4_mt, long4_mt, bool>
+    , IComparisonOperators<long4_mt, long4_mt, b64v4_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(long4_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(long4_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(long4_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(long4_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(long4_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(long4_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(long4_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(long4_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
+    }
+
+    static bool IComparisonOperators<long4_mt, long4_mt, bool>.operator <(long4_mt left, long4_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<long4_mt, long4_mt, bool>.operator >(long4_mt left, long4_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<long4_mt, long4_mt, bool>.operator <=(long4_mt left, long4_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<long4_mt, long4_mt, bool>.operator >=(long4_mt left, long4_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(long4_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is long4_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long4_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(long4_mt left, long4_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(long4_mt left, long4_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(long4_mt left, long4_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(long4_mt left, long4_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(long4_mt left, long_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(long4_mt left, long_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(long4_mt left, long_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(long4_mt left, long_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(long_mt left, long4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(long_mt left, long4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(long_mt left, long4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(long_mt left, long4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(long4_mt left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(long4_mt left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(long4_mt left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(long4_mt left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <(long left, long4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >(long left, long4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator <=(long left, long4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator >=(long left, long4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanAll(long4_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanAll(long4_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanOrEqualAll(long4_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanOrEqualAll(long4_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanAny(long4_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanAny(long4_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt LessThanOrEqualAny(long4_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64_mt GreaterThanOrEqualAny(long4_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
+    }
+
+}
+
+#endregion // long4_mt
+#region ulong2_mt
+
+public partial struct ulong2_mt : IComparable<ulong2_mt>, IComparable
+    , IComparisonOperators<ulong2_mt, ulong2_mt, bool>
+    , IComparisonOperators<ulong2_mt, ulong2_mt, b64v2_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(ulong2_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(ulong2_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(ulong2_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(ulong2_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(ulong2_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(ulong2_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(ulong2_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(ulong2_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+    }
+
+    static bool IComparisonOperators<ulong2_mt, ulong2_mt, bool>.operator <(ulong2_mt left, ulong2_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<ulong2_mt, ulong2_mt, bool>.operator >(ulong2_mt left, ulong2_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<ulong2_mt, ulong2_mt, bool>.operator <=(ulong2_mt left, ulong2_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<ulong2_mt, ulong2_mt, bool>.operator >=(ulong2_mt left, ulong2_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(ulong2_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is ulong2_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong2_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt operator <(ulong2_mt left, ulong2_mt right)
     {
         return new(left.x < right.x, left.y < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(double2_mt16 left, double2_mt16 right)
+    public static b64v2_mt operator >(ulong2_mt left, ulong2_mt right)
     {
         return new(left.x > right.x, left.y > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(double2_mt16 left, double2_mt16 right)
+    public static b64v2_mt operator <=(ulong2_mt left, ulong2_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(double2_mt16 left, double2_mt16 right)
+    public static b64v2_mt operator >=(ulong2_mt left, ulong2_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(double2_mt16 left, double_mt16 right)
+    public static b64v2_mt operator <(ulong2_mt left, ulong_mt right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(double2_mt16 left, double_mt16 right)
+    public static b64v2_mt operator >(ulong2_mt left, ulong_mt right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(double2_mt16 left, double_mt16 right)
+    public static b64v2_mt operator <=(ulong2_mt left, ulong_mt right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(double2_mt16 left, double_mt16 right)
+    public static b64v2_mt operator >=(ulong2_mt left, ulong_mt right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(double_mt16 left, double2_mt16 right)
+    public static b64v2_mt operator <(ulong_mt left, ulong2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(double_mt16 left, double2_mt16 right)
+    public static b64v2_mt operator >(ulong_mt left, ulong2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(double_mt16 left, double2_mt16 right)
+    public static b64v2_mt operator <=(ulong_mt left, ulong2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(double_mt16 left, double2_mt16 right)
+    public static b64v2_mt operator >=(ulong_mt left, ulong2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(double2_mt16 left, double right)
+    public static b64v2_mt operator <(ulong2_mt left, ulong right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(double2_mt16 left, double right)
+    public static b64v2_mt operator >(ulong2_mt left, ulong right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(double2_mt16 left, double right)
+    public static b64v2_mt operator <=(ulong2_mt left, ulong right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(double2_mt16 left, double right)
+    public static b64v2_mt operator >=(ulong2_mt left, ulong right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(double left, double2_mt16 right)
+    public static b64v2_mt operator <(ulong left, ulong2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(double left, double2_mt16 right)
+    public static b64v2_mt operator >(ulong left, ulong2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(double left, double2_mt16 right)
+    public static b64v2_mt operator <=(ulong left, ulong2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(double left, double2_mt16 right)
+    public static b64v2_mt operator >=(ulong left, ulong2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(double2_mt16 other)
+    public readonly b64_mt LessThanAll(ulong2_mt other)
     {
         return (x < other.x) & (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(double2_mt16 other)
+    public readonly b64_mt GreaterThanAll(ulong2_mt other)
     {
         return (x > other.x) & (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(double2_mt16 other)
+    public readonly b64_mt LessThanOrEqualAll(ulong2_mt other)
     {
         return (x <= other.x) & (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(double2_mt16 other)
+    public readonly b64_mt GreaterThanOrEqualAll(ulong2_mt other)
     {
         return (x >= other.x) & (y >= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(double2_mt16 other)
+    public readonly b64_mt LessThanAny(ulong2_mt other)
     {
         return (x < other.x) | (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(double2_mt16 other)
+    public readonly b64_mt GreaterThanAny(ulong2_mt other)
     {
         return (x > other.x) | (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(double2_mt16 other)
+    public readonly b64_mt LessThanOrEqualAny(ulong2_mt other)
     {
         return (x <= other.x) | (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(double2_mt16 other)
+    public readonly b64_mt GreaterThanOrEqualAny(ulong2_mt other)
     {
         return (x >= other.x) | (y >= other.y);
     }
 
 }
 
-#endregion // double2_mt16
-#region double3_mt4
+#endregion // ulong2_mt
+#region ulong3_mt
 
-public partial struct double3_mt4 : IComparable<double3_mt4>, IComparable
-    , IComparisonOperators<double3_mt4, double3_mt4, bool>
-    , IComparisonOperators<double3_mt4, double3_mt4, b64v3_mt4>
+public partial struct ulong3_mt : IComparable<ulong3_mt>, IComparable
+    , IComparisonOperators<ulong3_mt, ulong3_mt, bool>
+    , IComparisonOperators<ulong3_mt, ulong3_mt, b64v3_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double3_mt4 other)
+    public readonly bool LaneLessThanAll(ulong3_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double3_mt4 other)
+    public readonly bool LaneGreaterThanAll(ulong3_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double3_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(ulong3_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double3_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(ulong3_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double3_mt4 other)
+    public readonly bool LaneLessThanAny(ulong3_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double3_mt4 other)
+    public readonly bool LaneGreaterThanAny(ulong3_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double3_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(ulong3_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double3_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(ulong3_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
     }
 
-    static bool IComparisonOperators<double3_mt4, double3_mt4, bool>.operator <(double3_mt4 left, double3_mt4 right) => 
+    static bool IComparisonOperators<ulong3_mt, ulong3_mt, bool>.operator <(ulong3_mt left, ulong3_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt4, double3_mt4, bool>.operator >(double3_mt4 left, double3_mt4 right) => 
+    static bool IComparisonOperators<ulong3_mt, ulong3_mt, bool>.operator >(ulong3_mt left, ulong3_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt4, double3_mt4, bool>.operator <=(double3_mt4 left, double3_mt4 right) => 
+    static bool IComparisonOperators<ulong3_mt, ulong3_mt, bool>.operator <=(ulong3_mt left, ulong3_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt4, double3_mt4, bool>.operator >=(double3_mt4 left, double3_mt4 right) => 
+    static bool IComparisonOperators<ulong3_mt, ulong3_mt, bool>.operator >=(ulong3_mt left, ulong3_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double3_mt4 other)
+    public readonly int CompareTo(ulong3_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -3104,752 +4112,248 @@ public partial struct double3_mt4 : IComparable<double3_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is double3_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double3_mt4)}");
+        return obj is ulong3_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong3_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(double3_mt4 left, double3_mt4 right)
+    public static b64v3_mt operator <(ulong3_mt left, ulong3_mt right)
     {
         return new(left.x < right.x, left.y < right.y, left.z < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(double3_mt4 left, double3_mt4 right)
+    public static b64v3_mt operator >(ulong3_mt left, ulong3_mt right)
     {
         return new(left.x > right.x, left.y > right.y, left.z > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(double3_mt4 left, double3_mt4 right)
+    public static b64v3_mt operator <=(ulong3_mt left, ulong3_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(double3_mt4 left, double3_mt4 right)
+    public static b64v3_mt operator >=(ulong3_mt left, ulong3_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(double3_mt4 left, double_mt4 right)
+    public static b64v3_mt operator <(ulong3_mt left, ulong_mt right)
     {
         return new(left.x < right, left.y < right, left.z < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(double3_mt4 left, double_mt4 right)
+    public static b64v3_mt operator >(ulong3_mt left, ulong_mt right)
     {
         return new(left.x > right, left.y > right, left.z > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(double3_mt4 left, double_mt4 right)
+    public static b64v3_mt operator <=(ulong3_mt left, ulong_mt right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(double3_mt4 left, double_mt4 right)
+    public static b64v3_mt operator >=(ulong3_mt left, ulong_mt right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(double_mt4 left, double3_mt4 right)
+    public static b64v3_mt operator <(ulong_mt left, ulong3_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(double_mt4 left, double3_mt4 right)
+    public static b64v3_mt operator >(ulong_mt left, ulong3_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(double_mt4 left, double3_mt4 right)
+    public static b64v3_mt operator <=(ulong_mt left, ulong3_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(double_mt4 left, double3_mt4 right)
+    public static b64v3_mt operator >=(ulong_mt left, ulong3_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(double3_mt4 left, double right)
+    public static b64v3_mt operator <(ulong3_mt left, ulong right)
     {
         return new(left.x < right, left.y < right, left.z < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(double3_mt4 left, double right)
+    public static b64v3_mt operator >(ulong3_mt left, ulong right)
     {
         return new(left.x > right, left.y > right, left.z > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(double3_mt4 left, double right)
+    public static b64v3_mt operator <=(ulong3_mt left, ulong right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(double3_mt4 left, double right)
+    public static b64v3_mt operator >=(ulong3_mt left, ulong right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(double left, double3_mt4 right)
+    public static b64v3_mt operator <(ulong left, ulong3_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(double left, double3_mt4 right)
+    public static b64v3_mt operator >(ulong left, ulong3_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(double left, double3_mt4 right)
+    public static b64v3_mt operator <=(ulong left, ulong3_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(double left, double3_mt4 right)
+    public static b64v3_mt operator >=(ulong left, ulong3_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(double3_mt4 other)
+    public readonly b64_mt LessThanAll(ulong3_mt other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(double3_mt4 other)
+    public readonly b64_mt GreaterThanAll(ulong3_mt other)
     {
         return (x > other.x) & (y > other.y) & (z > other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(double3_mt4 other)
+    public readonly b64_mt LessThanOrEqualAll(ulong3_mt other)
     {
         return (x <= other.x) & (y <= other.y) & (z <= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(double3_mt4 other)
+    public readonly b64_mt GreaterThanOrEqualAll(ulong3_mt other)
     {
         return (x >= other.x) & (y >= other.y) & (z >= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(double3_mt4 other)
+    public readonly b64_mt LessThanAny(ulong3_mt other)
     {
         return (x < other.x) | (y < other.y) | (z < other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(double3_mt4 other)
+    public readonly b64_mt GreaterThanAny(ulong3_mt other)
     {
         return (x > other.x) | (y > other.y) | (z > other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(double3_mt4 other)
+    public readonly b64_mt LessThanOrEqualAny(ulong3_mt other)
     {
         return (x <= other.x) | (y <= other.y) | (z <= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(double3_mt4 other)
+    public readonly b64_mt GreaterThanOrEqualAny(ulong3_mt other)
     {
         return (x >= other.x) | (y >= other.y) | (z >= other.z);
     }
 
 }
 
-#endregion // double3_mt4
-#region double3_mt8
+#endregion // ulong3_mt
+#region ulong4_mt
 
-public partial struct double3_mt8 : IComparable<double3_mt8>, IComparable
-    , IComparisonOperators<double3_mt8, double3_mt8, bool>
-    , IComparisonOperators<double3_mt8, double3_mt8, b64v3_mt8>
+public partial struct ulong4_mt : IComparable<ulong4_mt>, IComparable
+    , IComparisonOperators<ulong4_mt, ulong4_mt, bool>
+    , IComparisonOperators<ulong4_mt, ulong4_mt, b64v4_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double3_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double3_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double3_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double3_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double3_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double3_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<double3_mt8, double3_mt8, bool>.operator <(double3_mt8 left, double3_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt8, double3_mt8, bool>.operator >(double3_mt8 left, double3_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt8, double3_mt8, bool>.operator <=(double3_mt8 left, double3_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt8, double3_mt8, bool>.operator >=(double3_mt8 left, double3_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double3_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is double3_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double3_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(double3_mt8 left, double3_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(double3_mt8 left, double3_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(double3_mt8 left, double3_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(double3_mt8 left, double3_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(double3_mt8 left, double_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(double3_mt8 left, double_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(double3_mt8 left, double_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(double3_mt8 left, double_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(double_mt8 left, double3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(double_mt8 left, double3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(double_mt8 left, double3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(double_mt8 left, double3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(double3_mt8 left, double right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(double3_mt8 left, double right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(double3_mt8 left, double right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(double3_mt8 left, double right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(double left, double3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(double left, double3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(double left, double3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(double left, double3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(double3_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(double3_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(double3_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(double3_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(double3_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(double3_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(double3_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(double3_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // double3_mt8
-#region double3_mt16
-
-public partial struct double3_mt16 : IComparable<double3_mt16>, IComparable
-    , IComparisonOperators<double3_mt16, double3_mt16, bool>
-    , IComparisonOperators<double3_mt16, double3_mt16, b64v3_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double3_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double3_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double3_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double3_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double3_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double3_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<double3_mt16, double3_mt16, bool>.operator <(double3_mt16 left, double3_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt16, double3_mt16, bool>.operator >(double3_mt16 left, double3_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt16, double3_mt16, bool>.operator <=(double3_mt16 left, double3_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double3_mt16, double3_mt16, bool>.operator >=(double3_mt16 left, double3_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double3_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is double3_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double3_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(double3_mt16 left, double3_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(double3_mt16 left, double3_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(double3_mt16 left, double3_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(double3_mt16 left, double3_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(double3_mt16 left, double_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(double3_mt16 left, double_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(double3_mt16 left, double_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(double3_mt16 left, double_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(double_mt16 left, double3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(double_mt16 left, double3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(double_mt16 left, double3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(double_mt16 left, double3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(double3_mt16 left, double right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(double3_mt16 left, double right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(double3_mt16 left, double right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(double3_mt16 left, double right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(double left, double3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(double left, double3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(double left, double3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(double left, double3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(double3_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(double3_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(double3_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(double3_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(double3_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(double3_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(double3_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(double3_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // double3_mt16
-#region double4_mt4
-
-public partial struct double4_mt4 : IComparable<double4_mt4>, IComparable
-    , IComparisonOperators<double4_mt4, double4_mt4, bool>
-    , IComparisonOperators<double4_mt4, double4_mt4, b64v4_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double4_mt4 other)
+    public readonly bool LaneLessThanAll(ulong4_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double4_mt4 other)
+    public readonly bool LaneGreaterThanAll(ulong4_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double4_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(ulong4_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double4_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(ulong4_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double4_mt4 other)
+    public readonly bool LaneLessThanAny(ulong4_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double4_mt4 other)
+    public readonly bool LaneGreaterThanAny(ulong4_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double4_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(ulong4_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double4_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(ulong4_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
     }
 
-    static bool IComparisonOperators<double4_mt4, double4_mt4, bool>.operator <(double4_mt4 left, double4_mt4 right) => 
+    static bool IComparisonOperators<ulong4_mt, ulong4_mt, bool>.operator <(ulong4_mt left, ulong4_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt4, double4_mt4, bool>.operator >(double4_mt4 left, double4_mt4 right) => 
+    static bool IComparisonOperators<ulong4_mt, ulong4_mt, bool>.operator >(ulong4_mt left, ulong4_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt4, double4_mt4, bool>.operator <=(double4_mt4 left, double4_mt4 right) => 
+    static bool IComparisonOperators<ulong4_mt, ulong4_mt, bool>.operator <=(ulong4_mt left, ulong4_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt4, double4_mt4, bool>.operator >=(double4_mt4 left, double4_mt4 right) => 
+    static bool IComparisonOperators<ulong4_mt, ulong4_mt, bool>.operator >=(ulong4_mt left, ulong4_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double4_mt4 other)
+    public readonly int CompareTo(ulong4_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -3860,752 +4364,248 @@ public partial struct double4_mt4 : IComparable<double4_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is double4_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double4_mt4)}");
+        return obj is ulong4_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong4_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(double4_mt4 left, double4_mt4 right)
+    public static b64v4_mt operator <(ulong4_mt left, ulong4_mt right)
     {
         return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(double4_mt4 left, double4_mt4 right)
+    public static b64v4_mt operator >(ulong4_mt left, ulong4_mt right)
     {
         return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(double4_mt4 left, double4_mt4 right)
+    public static b64v4_mt operator <=(ulong4_mt left, ulong4_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(double4_mt4 left, double4_mt4 right)
+    public static b64v4_mt operator >=(ulong4_mt left, ulong4_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(double4_mt4 left, double_mt4 right)
+    public static b64v4_mt operator <(ulong4_mt left, ulong_mt right)
     {
         return new(left.x < right, left.y < right, left.z < right, left.w < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(double4_mt4 left, double_mt4 right)
+    public static b64v4_mt operator >(ulong4_mt left, ulong_mt right)
     {
         return new(left.x > right, left.y > right, left.z > right, left.w > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(double4_mt4 left, double_mt4 right)
+    public static b64v4_mt operator <=(ulong4_mt left, ulong_mt right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(double4_mt4 left, double_mt4 right)
+    public static b64v4_mt operator >=(ulong4_mt left, ulong_mt right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(double_mt4 left, double4_mt4 right)
+    public static b64v4_mt operator <(ulong_mt left, ulong4_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z, left < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(double_mt4 left, double4_mt4 right)
+    public static b64v4_mt operator >(ulong_mt left, ulong4_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z, left > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(double_mt4 left, double4_mt4 right)
+    public static b64v4_mt operator <=(ulong_mt left, ulong4_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(double_mt4 left, double4_mt4 right)
+    public static b64v4_mt operator >=(ulong_mt left, ulong4_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(double4_mt4 left, double right)
+    public static b64v4_mt operator <(ulong4_mt left, ulong right)
     {
         return new(left.x < right, left.y < right, left.z < right, left.w < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(double4_mt4 left, double right)
+    public static b64v4_mt operator >(ulong4_mt left, ulong right)
     {
         return new(left.x > right, left.y > right, left.z > right, left.w > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(double4_mt4 left, double right)
+    public static b64v4_mt operator <=(ulong4_mt left, ulong right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(double4_mt4 left, double right)
+    public static b64v4_mt operator >=(ulong4_mt left, ulong right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(double left, double4_mt4 right)
+    public static b64v4_mt operator <(ulong left, ulong4_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z, left < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(double left, double4_mt4 right)
+    public static b64v4_mt operator >(ulong left, ulong4_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z, left > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(double left, double4_mt4 right)
+    public static b64v4_mt operator <=(ulong left, ulong4_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(double left, double4_mt4 right)
+    public static b64v4_mt operator >=(ulong left, ulong4_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(double4_mt4 other)
+    public readonly b64_mt LessThanAll(ulong4_mt other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(double4_mt4 other)
+    public readonly b64_mt GreaterThanAll(ulong4_mt other)
     {
         return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(double4_mt4 other)
+    public readonly b64_mt LessThanOrEqualAll(ulong4_mt other)
     {
         return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(double4_mt4 other)
+    public readonly b64_mt GreaterThanOrEqualAll(ulong4_mt other)
     {
         return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(double4_mt4 other)
+    public readonly b64_mt LessThanAny(ulong4_mt other)
     {
         return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(double4_mt4 other)
+    public readonly b64_mt GreaterThanAny(ulong4_mt other)
     {
         return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(double4_mt4 other)
+    public readonly b64_mt LessThanOrEqualAny(ulong4_mt other)
     {
         return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(double4_mt4 other)
+    public readonly b64_mt GreaterThanOrEqualAny(ulong4_mt other)
     {
         return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
     }
 
 }
 
-#endregion // double4_mt4
-#region double4_mt8
+#endregion // ulong4_mt
+#region b32v2_mt
 
-public partial struct double4_mt8 : IComparable<double4_mt8>, IComparable
-    , IComparisonOperators<double4_mt8, double4_mt8, bool>
-    , IComparisonOperators<double4_mt8, double4_mt8, b64v4_mt8>
+public partial struct b32v2_mt : IComparable<b32v2_mt>, IComparable
+    , IComparisonOperators<b32v2_mt, b32v2_mt, bool>
+    , IComparisonOperators<b32v2_mt, b32v2_mt, b32v2_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double4_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double4_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double4_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double4_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double4_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double4_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<double4_mt8, double4_mt8, bool>.operator <(double4_mt8 left, double4_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt8, double4_mt8, bool>.operator >(double4_mt8 left, double4_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt8, double4_mt8, bool>.operator <=(double4_mt8 left, double4_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt8, double4_mt8, bool>.operator >=(double4_mt8 left, double4_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double4_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is double4_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double4_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(double4_mt8 left, double4_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(double4_mt8 left, double4_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(double4_mt8 left, double4_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(double4_mt8 left, double4_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(double4_mt8 left, double_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(double4_mt8 left, double_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(double4_mt8 left, double_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(double4_mt8 left, double_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(double_mt8 left, double4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(double_mt8 left, double4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(double_mt8 left, double4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(double_mt8 left, double4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(double4_mt8 left, double right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(double4_mt8 left, double right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(double4_mt8 left, double right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(double4_mt8 left, double right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(double left, double4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(double left, double4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(double left, double4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(double left, double4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(double4_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(double4_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(double4_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(double4_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(double4_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(double4_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(double4_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(double4_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // double4_mt8
-#region double4_mt16
-
-public partial struct double4_mt16 : IComparable<double4_mt16>, IComparable
-    , IComparisonOperators<double4_mt16, double4_mt16, bool>
-    , IComparisonOperators<double4_mt16, double4_mt16, b64v4_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(double4_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(double4_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(double4_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(double4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(double4_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(double4_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(double4_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(double4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<double4_mt16, double4_mt16, bool>.operator <(double4_mt16 left, double4_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt16, double4_mt16, bool>.operator >(double4_mt16 left, double4_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt16, double4_mt16, bool>.operator <=(double4_mt16 left, double4_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<double4_mt16, double4_mt16, bool>.operator >=(double4_mt16 left, double4_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(double4_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is double4_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double4_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(double4_mt16 left, double4_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(double4_mt16 left, double4_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(double4_mt16 left, double4_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(double4_mt16 left, double4_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(double4_mt16 left, double_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(double4_mt16 left, double_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(double4_mt16 left, double_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(double4_mt16 left, double_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(double_mt16 left, double4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(double_mt16 left, double4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(double_mt16 left, double4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(double_mt16 left, double4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(double4_mt16 left, double right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(double4_mt16 left, double right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(double4_mt16 left, double right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(double4_mt16 left, double right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(double left, double4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(double left, double4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(double left, double4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(double left, double4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(double4_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(double4_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(double4_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(double4_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(double4_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(double4_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(double4_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(double4_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // double4_mt16
-#region int2_mt4
-
-public partial struct int2_mt4 : IComparable<int2_mt4>, IComparable
-    , IComparisonOperators<int2_mt4, int2_mt4, bool>
-    , IComparisonOperators<int2_mt4, int2_mt4, b32v2_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int2_mt4 other)
+    public readonly bool LaneLessThanAll(b32v2_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int2_mt4 other)
+    public readonly bool LaneGreaterThanAll(b32v2_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int2_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(b32v2_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int2_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(b32v2_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int2_mt4 other)
+    public readonly bool LaneLessThanAny(b32v2_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int2_mt4 other)
+    public readonly bool LaneGreaterThanAny(b32v2_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int2_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(b32v2_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int2_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(b32v2_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
     }
 
-    static bool IComparisonOperators<int2_mt4, int2_mt4, bool>.operator <(int2_mt4 left, int2_mt4 right) => 
+    static bool IComparisonOperators<b32v2_mt, b32v2_mt, bool>.operator <(b32v2_mt left, b32v2_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt4, int2_mt4, bool>.operator >(int2_mt4 left, int2_mt4 right) => 
+    static bool IComparisonOperators<b32v2_mt, b32v2_mt, bool>.operator >(b32v2_mt left, b32v2_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt4, int2_mt4, bool>.operator <=(int2_mt4 left, int2_mt4 right) => 
+    static bool IComparisonOperators<b32v2_mt, b32v2_mt, bool>.operator <=(b32v2_mt left, b32v2_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt4, int2_mt4, bool>.operator >=(int2_mt4 left, int2_mt4 right) => 
+    static bool IComparisonOperators<b32v2_mt, b32v2_mt, bool>.operator >=(b32v2_mt left, b32v2_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int2_mt4 other)
+    public readonly int CompareTo(b32v2_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -4616,248 +4616,248 @@ public partial struct int2_mt4 : IComparable<int2_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is int2_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int2_mt4)}");
+        return obj is b32v2_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v2_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(int2_mt4 left, int2_mt4 right)
+    public static b32v2_mt operator <(b32v2_mt left, b32v2_mt right)
     {
         return new(left.x < right.x, left.y < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(int2_mt4 left, int2_mt4 right)
+    public static b32v2_mt operator >(b32v2_mt left, b32v2_mt right)
     {
         return new(left.x > right.x, left.y > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(int2_mt4 left, int2_mt4 right)
+    public static b32v2_mt operator <=(b32v2_mt left, b32v2_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(int2_mt4 left, int2_mt4 right)
+    public static b32v2_mt operator >=(b32v2_mt left, b32v2_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(int2_mt4 left, int_mt4 right)
+    public static b32v2_mt operator <(b32v2_mt left, b32_mt right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(int2_mt4 left, int_mt4 right)
+    public static b32v2_mt operator >(b32v2_mt left, b32_mt right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(int2_mt4 left, int_mt4 right)
+    public static b32v2_mt operator <=(b32v2_mt left, b32_mt right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(int2_mt4 left, int_mt4 right)
+    public static b32v2_mt operator >=(b32v2_mt left, b32_mt right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(int_mt4 left, int2_mt4 right)
+    public static b32v2_mt operator <(b32_mt left, b32v2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(int_mt4 left, int2_mt4 right)
+    public static b32v2_mt operator >(b32_mt left, b32v2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(int_mt4 left, int2_mt4 right)
+    public static b32v2_mt operator <=(b32_mt left, b32v2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(int_mt4 left, int2_mt4 right)
+    public static b32v2_mt operator >=(b32_mt left, b32v2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(int2_mt4 left, int right)
+    public static b32v2_mt operator <(b32v2_mt left, b32 right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(int2_mt4 left, int right)
+    public static b32v2_mt operator >(b32v2_mt left, b32 right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(int2_mt4 left, int right)
+    public static b32v2_mt operator <=(b32v2_mt left, b32 right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(int2_mt4 left, int right)
+    public static b32v2_mt operator >=(b32v2_mt left, b32 right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(int left, int2_mt4 right)
+    public static b32v2_mt operator <(b32 left, b32v2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(int left, int2_mt4 right)
+    public static b32v2_mt operator >(b32 left, b32v2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(int left, int2_mt4 right)
+    public static b32v2_mt operator <=(b32 left, b32v2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(int left, int2_mt4 right)
+    public static b32v2_mt operator >=(b32 left, b32v2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(int2_mt4 other)
+    public readonly b32_mt LessThanAll(b32v2_mt other)
     {
         return (x < other.x) & (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(int2_mt4 other)
+    public readonly b32_mt GreaterThanAll(b32v2_mt other)
     {
         return (x > other.x) & (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(int2_mt4 other)
+    public readonly b32_mt LessThanOrEqualAll(b32v2_mt other)
     {
         return (x <= other.x) & (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(int2_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAll(b32v2_mt other)
     {
         return (x >= other.x) & (y >= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(int2_mt4 other)
+    public readonly b32_mt LessThanAny(b32v2_mt other)
     {
         return (x < other.x) | (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(int2_mt4 other)
+    public readonly b32_mt GreaterThanAny(b32v2_mt other)
     {
         return (x > other.x) | (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(int2_mt4 other)
+    public readonly b32_mt LessThanOrEqualAny(b32v2_mt other)
     {
         return (x <= other.x) | (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(int2_mt4 other)
+    public readonly b32_mt GreaterThanOrEqualAny(b32v2_mt other)
     {
         return (x >= other.x) | (y >= other.y);
     }
 
 }
 
-#endregion // int2_mt4
-#region int2_mt8
+#endregion // b32v2_mt
+#region b32v3_mt
 
-public partial struct int2_mt8 : IComparable<int2_mt8>, IComparable
-    , IComparisonOperators<int2_mt8, int2_mt8, bool>
-    , IComparisonOperators<int2_mt8, int2_mt8, b32v2_mt8>
+public partial struct b32v3_mt : IComparable<b32v3_mt>, IComparable
+    , IComparisonOperators<b32v3_mt, b32v3_mt, bool>
+    , IComparisonOperators<b32v3_mt, b32v3_mt, b32v3_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int2_mt8 other)
+    public readonly bool LaneLessThanAll(b32v3_mt other)
     {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int2_mt8 other)
+    public readonly bool LaneGreaterThanAll(b32v3_mt other)
     {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int2_mt8 other)
+    public readonly bool LaneLessThanOrEqualAll(b32v3_mt other)
     {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int2_mt8 other)
+    public readonly bool LaneGreaterThanOrEqualAll(b32v3_mt other)
     {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int2_mt8 other)
+    public readonly bool LaneLessThanAny(b32v3_mt other)
     {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int2_mt8 other)
+    public readonly bool LaneGreaterThanAny(b32v3_mt other)
     {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int2_mt8 other)
+    public readonly bool LaneLessThanOrEqualAny(b32v3_mt other)
     {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int2_mt8 other)
+    public readonly bool LaneGreaterThanOrEqualAny(b32v3_mt other)
     {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
     }
 
-    static bool IComparisonOperators<int2_mt8, int2_mt8, bool>.operator <(int2_mt8 left, int2_mt8 right) => 
+    static bool IComparisonOperators<b32v3_mt, b32v3_mt, bool>.operator <(b32v3_mt left, b32v3_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt8, int2_mt8, bool>.operator >(int2_mt8 left, int2_mt8 right) => 
+    static bool IComparisonOperators<b32v3_mt, b32v3_mt, bool>.operator >(b32v3_mt left, b32v3_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt8, int2_mt8, bool>.operator <=(int2_mt8 left, int2_mt8 right) => 
+    static bool IComparisonOperators<b32v3_mt, b32v3_mt, bool>.operator <=(b32v3_mt left, b32v3_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt8, int2_mt8, bool>.operator >=(int2_mt8 left, int2_mt8 right) => 
+    static bool IComparisonOperators<b32v3_mt, b32v3_mt, bool>.operator >=(b32v3_mt left, b32v3_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int2_mt8 other)
+    public readonly int CompareTo(b32v3_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -4868,500 +4868,752 @@ public partial struct int2_mt8 : IComparable<int2_mt8>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is int2_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int2_mt8)}");
+        return obj is b32v3_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v3_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(int2_mt8 left, int2_mt8 right)
+    public static b32v3_mt operator <(b32v3_mt left, b32v3_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(b32v3_mt left, b32v3_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(b32v3_mt left, b32v3_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(b32v3_mt left, b32v3_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(b32v3_mt left, b32_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(b32v3_mt left, b32_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(b32v3_mt left, b32_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(b32v3_mt left, b32_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(b32_mt left, b32v3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(b32_mt left, b32v3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(b32_mt left, b32v3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(b32_mt left, b32v3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(b32v3_mt left, b32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(b32v3_mt left, b32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(b32v3_mt left, b32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(b32v3_mt left, b32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <(b32 left, b32v3_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >(b32 left, b32v3_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator <=(b32 left, b32v3_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt operator >=(b32 left, b32v3_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAll(b32v3_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAll(b32v3_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAll(b32v3_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAll(b32v3_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAny(b32v3_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAny(b32v3_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAny(b32v3_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAny(b32v3_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z);
+    }
+
+}
+
+#endregion // b32v3_mt
+#region b32v4_mt
+
+public partial struct b32v4_mt : IComparable<b32v4_mt>, IComparable
+    , IComparisonOperators<b32v4_mt, b32v4_mt, bool>
+    , IComparisonOperators<b32v4_mt, b32v4_mt, b32v4_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(b32v4_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(b32v4_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(b32v4_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(b32v4_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(b32v4_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(b32v4_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(b32v4_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(b32v4_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
+    }
+
+    static bool IComparisonOperators<b32v4_mt, b32v4_mt, bool>.operator <(b32v4_mt left, b32v4_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<b32v4_mt, b32v4_mt, bool>.operator >(b32v4_mt left, b32v4_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<b32v4_mt, b32v4_mt, bool>.operator <=(b32v4_mt left, b32v4_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<b32v4_mt, b32v4_mt, bool>.operator >=(b32v4_mt left, b32v4_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(b32v4_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is b32v4_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v4_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(b32v4_mt left, b32v4_mt right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(b32v4_mt left, b32v4_mt right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(b32v4_mt left, b32v4_mt right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(b32v4_mt left, b32v4_mt right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(b32v4_mt left, b32_mt right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(b32v4_mt left, b32_mt right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(b32v4_mt left, b32_mt right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(b32v4_mt left, b32_mt right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(b32_mt left, b32v4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(b32_mt left, b32v4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(b32_mt left, b32v4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(b32_mt left, b32v4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(b32v4_mt left, b32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(b32v4_mt left, b32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(b32v4_mt left, b32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(b32v4_mt left, b32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <(b32 left, b32v4_mt right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >(b32 left, b32v4_mt right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator <=(b32 left, b32v4_mt right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt operator >=(b32 left, b32v4_mt right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAll(b32v4_mt other)
+    {
+        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAll(b32v4_mt other)
+    {
+        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAll(b32v4_mt other)
+    {
+        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAll(b32v4_mt other)
+    {
+        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanAny(b32v4_mt other)
+    {
+        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanAny(b32v4_mt other)
+    {
+        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt LessThanOrEqualAny(b32v4_mt other)
+    {
+        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32_mt GreaterThanOrEqualAny(b32v4_mt other)
+    {
+        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
+    }
+
+}
+
+#endregion // b32v4_mt
+#region b64v2_mt
+
+public partial struct b64v2_mt : IComparable<b64v2_mt>, IComparable
+    , IComparisonOperators<b64v2_mt, b64v2_mt, bool>
+    , IComparisonOperators<b64v2_mt, b64v2_mt, b64v2_mt>
+{
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAll(b64v2_mt other)
+    {
+        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAll(b64v2_mt other)
+    {
+        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAll(b64v2_mt other)
+    {
+        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAll(b64v2_mt other)
+    {
+        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanAny(b64v2_mt other)
+    {
+        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanAny(b64v2_mt other)
+    {
+        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneLessThanOrEqualAny(b64v2_mt other)
+    {
+        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LaneGreaterThanOrEqualAny(b64v2_mt other)
+    {
+        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
+    }
+
+    static bool IComparisonOperators<b64v2_mt, b64v2_mt, bool>.operator <(b64v2_mt left, b64v2_mt right) => 
+        left.LaneLessThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<b64v2_mt, b64v2_mt, bool>.operator >(b64v2_mt left, b64v2_mt right) => 
+        left.LaneGreaterThanAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<b64v2_mt, b64v2_mt, bool>.operator <=(b64v2_mt left, b64v2_mt right) => 
+        left.LaneLessThanOrEqualAll(right);
+    [MethodImpl(256 | 512)]
+    static bool IComparisonOperators<b64v2_mt, b64v2_mt, bool>.operator >=(b64v2_mt left, b64v2_mt right) => 
+        left.LaneGreaterThanOrEqualAll(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(b64v2_mt other)
+    {
+        if (LaneLessThanAny(other)) return -1;
+        if (LaneGreaterThanAny(other)) return 1;
+        return 0;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return 1;
+        return obj is b64v2_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v2_mt)}");
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt operator <(b64v2_mt left, b64v2_mt right)
     {
         return new(left.x < right.x, left.y < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(int2_mt8 left, int2_mt8 right)
+    public static b64v2_mt operator >(b64v2_mt left, b64v2_mt right)
     {
         return new(left.x > right.x, left.y > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(int2_mt8 left, int2_mt8 right)
+    public static b64v2_mt operator <=(b64v2_mt left, b64v2_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(int2_mt8 left, int2_mt8 right)
+    public static b64v2_mt operator >=(b64v2_mt left, b64v2_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(int2_mt8 left, int_mt8 right)
+    public static b64v2_mt operator <(b64v2_mt left, b64_mt right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(int2_mt8 left, int_mt8 right)
+    public static b64v2_mt operator >(b64v2_mt left, b64_mt right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(int2_mt8 left, int_mt8 right)
+    public static b64v2_mt operator <=(b64v2_mt left, b64_mt right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(int2_mt8 left, int_mt8 right)
+    public static b64v2_mt operator >=(b64v2_mt left, b64_mt right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(int_mt8 left, int2_mt8 right)
+    public static b64v2_mt operator <(b64_mt left, b64v2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(int_mt8 left, int2_mt8 right)
+    public static b64v2_mt operator >(b64_mt left, b64v2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(int_mt8 left, int2_mt8 right)
+    public static b64v2_mt operator <=(b64_mt left, b64v2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(int_mt8 left, int2_mt8 right)
+    public static b64v2_mt operator >=(b64_mt left, b64v2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(int2_mt8 left, int right)
+    public static b64v2_mt operator <(b64v2_mt left, b64 right)
     {
         return new(left.x < right, left.y < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(int2_mt8 left, int right)
+    public static b64v2_mt operator >(b64v2_mt left, b64 right)
     {
         return new(left.x > right, left.y > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(int2_mt8 left, int right)
+    public static b64v2_mt operator <=(b64v2_mt left, b64 right)
     {
         return new(left.x <= right, left.y <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(int2_mt8 left, int right)
+    public static b64v2_mt operator >=(b64v2_mt left, b64 right)
     {
         return new(left.x >= right, left.y >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(int left, int2_mt8 right)
+    public static b64v2_mt operator <(b64 left, b64v2_mt right)
     {
         return new(left < right.x, left < right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(int left, int2_mt8 right)
+    public static b64v2_mt operator >(b64 left, b64v2_mt right)
     {
         return new(left > right.x, left > right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(int left, int2_mt8 right)
+    public static b64v2_mt operator <=(b64 left, b64v2_mt right)
     {
         return new(left <= right.x, left <= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(int left, int2_mt8 right)
+    public static b64v2_mt operator >=(b64 left, b64v2_mt right)
     {
         return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(int2_mt8 other)
+    public readonly b64_mt LessThanAll(b64v2_mt other)
     {
         return (x < other.x) & (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(int2_mt8 other)
+    public readonly b64_mt GreaterThanAll(b64v2_mt other)
     {
         return (x > other.x) & (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(int2_mt8 other)
+    public readonly b64_mt LessThanOrEqualAll(b64v2_mt other)
     {
         return (x <= other.x) & (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(int2_mt8 other)
+    public readonly b64_mt GreaterThanOrEqualAll(b64v2_mt other)
     {
         return (x >= other.x) & (y >= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(int2_mt8 other)
+    public readonly b64_mt LessThanAny(b64v2_mt other)
     {
         return (x < other.x) | (y < other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(int2_mt8 other)
+    public readonly b64_mt GreaterThanAny(b64v2_mt other)
     {
         return (x > other.x) | (y > other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(int2_mt8 other)
+    public readonly b64_mt LessThanOrEqualAny(b64v2_mt other)
     {
         return (x <= other.x) | (y <= other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(int2_mt8 other)
+    public readonly b64_mt GreaterThanOrEqualAny(b64v2_mt other)
     {
         return (x >= other.x) | (y >= other.y);
     }
 
 }
 
-#endregion // int2_mt8
-#region int2_mt16
+#endregion // b64v2_mt
+#region b64v3_mt
 
-public partial struct int2_mt16 : IComparable<int2_mt16>, IComparable
-    , IComparisonOperators<int2_mt16, int2_mt16, bool>
-    , IComparisonOperators<int2_mt16, int2_mt16, b32v2_mt16>
+public partial struct b64v3_mt : IComparable<b64v3_mt>, IComparable
+    , IComparisonOperators<b64v3_mt, b64v3_mt, bool>
+    , IComparisonOperators<b64v3_mt, b64v3_mt, b64v3_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int2_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int2_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int2_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int2_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int2_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int2_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<int2_mt16, int2_mt16, bool>.operator <(int2_mt16 left, int2_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt16, int2_mt16, bool>.operator >(int2_mt16 left, int2_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt16, int2_mt16, bool>.operator <=(int2_mt16 left, int2_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int2_mt16, int2_mt16, bool>.operator >=(int2_mt16 left, int2_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int2_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is int2_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int2_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(int2_mt16 left, int2_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(int2_mt16 left, int2_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(int2_mt16 left, int2_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(int2_mt16 left, int2_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(int2_mt16 left, int_mt16 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(int2_mt16 left, int_mt16 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(int2_mt16 left, int_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(int2_mt16 left, int_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(int_mt16 left, int2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(int_mt16 left, int2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(int_mt16 left, int2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(int_mt16 left, int2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(int2_mt16 left, int right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(int2_mt16 left, int right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(int2_mt16 left, int right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(int2_mt16 left, int right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(int left, int2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(int left, int2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(int left, int2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(int left, int2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(int2_mt16 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(int2_mt16 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(int2_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(int2_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(int2_mt16 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(int2_mt16 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(int2_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(int2_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // int2_mt16
-#region int3_mt4
-
-public partial struct int3_mt4 : IComparable<int3_mt4>, IComparable
-    , IComparisonOperators<int3_mt4, int3_mt4, bool>
-    , IComparisonOperators<int3_mt4, int3_mt4, b32v3_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int3_mt4 other)
+    public readonly bool LaneLessThanAll(b64v3_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int3_mt4 other)
+    public readonly bool LaneGreaterThanAll(b64v3_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int3_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(b64v3_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int3_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(b64v3_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int3_mt4 other)
+    public readonly bool LaneLessThanAny(b64v3_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int3_mt4 other)
+    public readonly bool LaneGreaterThanAny(b64v3_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int3_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(b64v3_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int3_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(b64v3_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
     }
 
-    static bool IComparisonOperators<int3_mt4, int3_mt4, bool>.operator <(int3_mt4 left, int3_mt4 right) => 
+    static bool IComparisonOperators<b64v3_mt, b64v3_mt, bool>.operator <(b64v3_mt left, b64v3_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt4, int3_mt4, bool>.operator >(int3_mt4 left, int3_mt4 right) => 
+    static bool IComparisonOperators<b64v3_mt, b64v3_mt, bool>.operator >(b64v3_mt left, b64v3_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt4, int3_mt4, bool>.operator <=(int3_mt4 left, int3_mt4 right) => 
+    static bool IComparisonOperators<b64v3_mt, b64v3_mt, bool>.operator <=(b64v3_mt left, b64v3_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt4, int3_mt4, bool>.operator >=(int3_mt4 left, int3_mt4 right) => 
+    static bool IComparisonOperators<b64v3_mt, b64v3_mt, bool>.operator >=(b64v3_mt left, b64v3_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int3_mt4 other)
+    public readonly int CompareTo(b64v3_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -5372,752 +5624,248 @@ public partial struct int3_mt4 : IComparable<int3_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is int3_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int3_mt4)}");
+        return obj is b64v3_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v3_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(int3_mt4 left, int3_mt4 right)
+    public static b64v3_mt operator <(b64v3_mt left, b64v3_mt right)
     {
         return new(left.x < right.x, left.y < right.y, left.z < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(int3_mt4 left, int3_mt4 right)
+    public static b64v3_mt operator >(b64v3_mt left, b64v3_mt right)
     {
         return new(left.x > right.x, left.y > right.y, left.z > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(int3_mt4 left, int3_mt4 right)
+    public static b64v3_mt operator <=(b64v3_mt left, b64v3_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(int3_mt4 left, int3_mt4 right)
+    public static b64v3_mt operator >=(b64v3_mt left, b64v3_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(int3_mt4 left, int_mt4 right)
+    public static b64v3_mt operator <(b64v3_mt left, b64_mt right)
     {
         return new(left.x < right, left.y < right, left.z < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(int3_mt4 left, int_mt4 right)
+    public static b64v3_mt operator >(b64v3_mt left, b64_mt right)
     {
         return new(left.x > right, left.y > right, left.z > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(int3_mt4 left, int_mt4 right)
+    public static b64v3_mt operator <=(b64v3_mt left, b64_mt right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(int3_mt4 left, int_mt4 right)
+    public static b64v3_mt operator >=(b64v3_mt left, b64_mt right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(int_mt4 left, int3_mt4 right)
+    public static b64v3_mt operator <(b64_mt left, b64v3_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(int_mt4 left, int3_mt4 right)
+    public static b64v3_mt operator >(b64_mt left, b64v3_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(int_mt4 left, int3_mt4 right)
+    public static b64v3_mt operator <=(b64_mt left, b64v3_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(int_mt4 left, int3_mt4 right)
+    public static b64v3_mt operator >=(b64_mt left, b64v3_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(int3_mt4 left, int right)
+    public static b64v3_mt operator <(b64v3_mt left, b64 right)
     {
         return new(left.x < right, left.y < right, left.z < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(int3_mt4 left, int right)
+    public static b64v3_mt operator >(b64v3_mt left, b64 right)
     {
         return new(left.x > right, left.y > right, left.z > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(int3_mt4 left, int right)
+    public static b64v3_mt operator <=(b64v3_mt left, b64 right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(int3_mt4 left, int right)
+    public static b64v3_mt operator >=(b64v3_mt left, b64 right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(int left, int3_mt4 right)
+    public static b64v3_mt operator <(b64 left, b64v3_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(int left, int3_mt4 right)
+    public static b64v3_mt operator >(b64 left, b64v3_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(int left, int3_mt4 right)
+    public static b64v3_mt operator <=(b64 left, b64v3_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(int left, int3_mt4 right)
+    public static b64v3_mt operator >=(b64 left, b64v3_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(int3_mt4 other)
+    public readonly b64_mt LessThanAll(b64v3_mt other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(int3_mt4 other)
+    public readonly b64_mt GreaterThanAll(b64v3_mt other)
     {
         return (x > other.x) & (y > other.y) & (z > other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(int3_mt4 other)
+    public readonly b64_mt LessThanOrEqualAll(b64v3_mt other)
     {
         return (x <= other.x) & (y <= other.y) & (z <= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(int3_mt4 other)
+    public readonly b64_mt GreaterThanOrEqualAll(b64v3_mt other)
     {
         return (x >= other.x) & (y >= other.y) & (z >= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(int3_mt4 other)
+    public readonly b64_mt LessThanAny(b64v3_mt other)
     {
         return (x < other.x) | (y < other.y) | (z < other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(int3_mt4 other)
+    public readonly b64_mt GreaterThanAny(b64v3_mt other)
     {
         return (x > other.x) | (y > other.y) | (z > other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(int3_mt4 other)
+    public readonly b64_mt LessThanOrEqualAny(b64v3_mt other)
     {
         return (x <= other.x) | (y <= other.y) | (z <= other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(int3_mt4 other)
+    public readonly b64_mt GreaterThanOrEqualAny(b64v3_mt other)
     {
         return (x >= other.x) | (y >= other.y) | (z >= other.z);
     }
 
 }
 
-#endregion // int3_mt4
-#region int3_mt8
+#endregion // b64v3_mt
+#region b64v4_mt
 
-public partial struct int3_mt8 : IComparable<int3_mt8>, IComparable
-    , IComparisonOperators<int3_mt8, int3_mt8, bool>
-    , IComparisonOperators<int3_mt8, int3_mt8, b32v3_mt8>
+public partial struct b64v4_mt : IComparable<b64v4_mt>, IComparable
+    , IComparisonOperators<b64v4_mt, b64v4_mt, bool>
+    , IComparisonOperators<b64v4_mt, b64v4_mt, b64v4_mt>
 {
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int3_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int3_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int3_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int3_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int3_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int3_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<int3_mt8, int3_mt8, bool>.operator <(int3_mt8 left, int3_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt8, int3_mt8, bool>.operator >(int3_mt8 left, int3_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt8, int3_mt8, bool>.operator <=(int3_mt8 left, int3_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt8, int3_mt8, bool>.operator >=(int3_mt8 left, int3_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int3_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is int3_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int3_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(int3_mt8 left, int3_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(int3_mt8 left, int3_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(int3_mt8 left, int3_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(int3_mt8 left, int3_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(int3_mt8 left, int_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(int3_mt8 left, int_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(int3_mt8 left, int_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(int3_mt8 left, int_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(int_mt8 left, int3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(int_mt8 left, int3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(int_mt8 left, int3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(int_mt8 left, int3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(int3_mt8 left, int right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(int3_mt8 left, int right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(int3_mt8 left, int right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(int3_mt8 left, int right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(int left, int3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(int left, int3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(int left, int3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(int left, int3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(int3_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(int3_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(int3_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(int3_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(int3_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(int3_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(int3_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(int3_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // int3_mt8
-#region int3_mt16
-
-public partial struct int3_mt16 : IComparable<int3_mt16>, IComparable
-    , IComparisonOperators<int3_mt16, int3_mt16, bool>
-    , IComparisonOperators<int3_mt16, int3_mt16, b32v3_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int3_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int3_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int3_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int3_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int3_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int3_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<int3_mt16, int3_mt16, bool>.operator <(int3_mt16 left, int3_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt16, int3_mt16, bool>.operator >(int3_mt16 left, int3_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt16, int3_mt16, bool>.operator <=(int3_mt16 left, int3_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int3_mt16, int3_mt16, bool>.operator >=(int3_mt16 left, int3_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int3_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is int3_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int3_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(int3_mt16 left, int3_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(int3_mt16 left, int3_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(int3_mt16 left, int3_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(int3_mt16 left, int3_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(int3_mt16 left, int_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(int3_mt16 left, int_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(int3_mt16 left, int_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(int3_mt16 left, int_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(int_mt16 left, int3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(int_mt16 left, int3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(int_mt16 left, int3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(int_mt16 left, int3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(int3_mt16 left, int right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(int3_mt16 left, int right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(int3_mt16 left, int right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(int3_mt16 left, int right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(int left, int3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(int left, int3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(int left, int3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(int left, int3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(int3_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(int3_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(int3_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(int3_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(int3_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(int3_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(int3_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(int3_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // int3_mt16
-#region int4_mt4
-
-public partial struct int4_mt4 : IComparable<int4_mt4>, IComparable
-    , IComparisonOperators<int4_mt4, int4_mt4, bool>
-    , IComparisonOperators<int4_mt4, int4_mt4, b32v4_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int4_mt4 other)
+    public readonly bool LaneLessThanAll(b64v4_mt other)
     {
         return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int4_mt4 other)
+    public readonly bool LaneGreaterThanAll(b64v4_mt other)
     {
         return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int4_mt4 other)
+    public readonly bool LaneLessThanOrEqualAll(b64v4_mt other)
     {
         return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int4_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAll(b64v4_mt other)
     {
         return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int4_mt4 other)
+    public readonly bool LaneLessThanAny(b64v4_mt other)
     {
         return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int4_mt4 other)
+    public readonly bool LaneGreaterThanAny(b64v4_mt other)
     {
         return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int4_mt4 other)
+    public readonly bool LaneLessThanOrEqualAny(b64v4_mt other)
     {
         return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int4_mt4 other)
+    public readonly bool LaneGreaterThanOrEqualAny(b64v4_mt other)
     {
         return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
     }
 
-    static bool IComparisonOperators<int4_mt4, int4_mt4, bool>.operator <(int4_mt4 left, int4_mt4 right) => 
+    static bool IComparisonOperators<b64v4_mt, b64v4_mt, bool>.operator <(b64v4_mt left, b64v4_mt right) => 
         left.LaneLessThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt4, int4_mt4, bool>.operator >(int4_mt4 left, int4_mt4 right) => 
+    static bool IComparisonOperators<b64v4_mt, b64v4_mt, bool>.operator >(b64v4_mt left, b64v4_mt right) => 
         left.LaneGreaterThanAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt4, int4_mt4, bool>.operator <=(int4_mt4 left, int4_mt4 right) => 
+    static bool IComparisonOperators<b64v4_mt, b64v4_mt, bool>.operator <=(b64v4_mt left, b64v4_mt right) => 
         left.LaneLessThanOrEqualAll(right);
     [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt4, int4_mt4, bool>.operator >=(int4_mt4 left, int4_mt4 right) => 
+    static bool IComparisonOperators<b64v4_mt, b64v4_mt, bool>.operator >=(b64v4_mt left, b64v4_mt right) => 
         left.LaneGreaterThanOrEqualAll(right);
 
     [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int4_mt4 other)
+    public readonly int CompareTo(b64v4_mt other)
     {
         if (LaneLessThanAny(other)) return -1;
         if (LaneGreaterThanAny(other)) return 1;
@@ -6128,12021 +5876,177 @@ public partial struct int4_mt4 : IComparable<int4_mt4>, IComparable
     public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
-        return obj is int4_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int4_mt4)}");
+        return obj is b64v4_mt other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v4_mt)}");
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(int4_mt4 left, int4_mt4 right)
+    public static b64v4_mt operator <(b64v4_mt left, b64v4_mt right)
     {
         return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(int4_mt4 left, int4_mt4 right)
+    public static b64v4_mt operator >(b64v4_mt left, b64v4_mt right)
     {
         return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(int4_mt4 left, int4_mt4 right)
+    public static b64v4_mt operator <=(b64v4_mt left, b64v4_mt right)
     {
         return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(int4_mt4 left, int4_mt4 right)
+    public static b64v4_mt operator >=(b64v4_mt left, b64v4_mt right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(int4_mt4 left, int_mt4 right)
+    public static b64v4_mt operator <(b64v4_mt left, b64_mt right)
     {
         return new(left.x < right, left.y < right, left.z < right, left.w < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(int4_mt4 left, int_mt4 right)
+    public static b64v4_mt operator >(b64v4_mt left, b64_mt right)
     {
         return new(left.x > right, left.y > right, left.z > right, left.w > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(int4_mt4 left, int_mt4 right)
+    public static b64v4_mt operator <=(b64v4_mt left, b64_mt right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(int4_mt4 left, int_mt4 right)
+    public static b64v4_mt operator >=(b64v4_mt left, b64_mt right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(int_mt4 left, int4_mt4 right)
+    public static b64v4_mt operator <(b64_mt left, b64v4_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z, left < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(int_mt4 left, int4_mt4 right)
+    public static b64v4_mt operator >(b64_mt left, b64v4_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z, left > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(int_mt4 left, int4_mt4 right)
+    public static b64v4_mt operator <=(b64_mt left, b64v4_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(int_mt4 left, int4_mt4 right)
+    public static b64v4_mt operator >=(b64_mt left, b64v4_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(int4_mt4 left, int right)
+    public static b64v4_mt operator <(b64v4_mt left, b64 right)
     {
         return new(left.x < right, left.y < right, left.z < right, left.w < right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(int4_mt4 left, int right)
+    public static b64v4_mt operator >(b64v4_mt left, b64 right)
     {
         return new(left.x > right, left.y > right, left.z > right, left.w > right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(int4_mt4 left, int right)
+    public static b64v4_mt operator <=(b64v4_mt left, b64 right)
     {
         return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(int4_mt4 left, int right)
+    public static b64v4_mt operator >=(b64v4_mt left, b64 right)
     {
         return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(int left, int4_mt4 right)
+    public static b64v4_mt operator <(b64 left, b64v4_mt right)
     {
         return new(left < right.x, left < right.y, left < right.z, left < right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(int left, int4_mt4 right)
+    public static b64v4_mt operator >(b64 left, b64v4_mt right)
     {
         return new(left > right.x, left > right.y, left > right.z, left > right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(int left, int4_mt4 right)
+    public static b64v4_mt operator <=(b64 left, b64v4_mt right)
     {
         return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(int left, int4_mt4 right)
+    public static b64v4_mt operator >=(b64 left, b64v4_mt right)
     {
         return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(int4_mt4 other)
+    public readonly b64_mt LessThanAll(b64v4_mt other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(int4_mt4 other)
+    public readonly b64_mt GreaterThanAll(b64v4_mt other)
     {
         return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(int4_mt4 other)
+    public readonly b64_mt LessThanOrEqualAll(b64v4_mt other)
     {
         return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(int4_mt4 other)
+    public readonly b64_mt GreaterThanOrEqualAll(b64v4_mt other)
     {
         return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(int4_mt4 other)
+    public readonly b64_mt LessThanAny(b64v4_mt other)
     {
         return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(int4_mt4 other)
+    public readonly b64_mt GreaterThanAny(b64v4_mt other)
     {
         return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(int4_mt4 other)
+    public readonly b64_mt LessThanOrEqualAny(b64v4_mt other)
     {
         return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(int4_mt4 other)
+    public readonly b64_mt GreaterThanOrEqualAny(b64v4_mt other)
     {
         return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
     }
 
 }
 
-#endregion // int4_mt4
-#region int4_mt8
-
-public partial struct int4_mt8 : IComparable<int4_mt8>, IComparable
-    , IComparisonOperators<int4_mt8, int4_mt8, bool>
-    , IComparisonOperators<int4_mt8, int4_mt8, b32v4_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int4_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int4_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int4_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int4_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int4_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int4_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<int4_mt8, int4_mt8, bool>.operator <(int4_mt8 left, int4_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt8, int4_mt8, bool>.operator >(int4_mt8 left, int4_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt8, int4_mt8, bool>.operator <=(int4_mt8 left, int4_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt8, int4_mt8, bool>.operator >=(int4_mt8 left, int4_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int4_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is int4_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int4_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(int4_mt8 left, int4_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(int4_mt8 left, int4_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(int4_mt8 left, int4_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(int4_mt8 left, int4_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(int4_mt8 left, int_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(int4_mt8 left, int_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(int4_mt8 left, int_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(int4_mt8 left, int_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(int_mt8 left, int4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(int_mt8 left, int4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(int_mt8 left, int4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(int_mt8 left, int4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(int4_mt8 left, int right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(int4_mt8 left, int right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(int4_mt8 left, int right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(int4_mt8 left, int right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(int left, int4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(int left, int4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(int left, int4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(int left, int4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(int4_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(int4_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(int4_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(int4_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(int4_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(int4_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(int4_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(int4_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // int4_mt8
-#region int4_mt16
-
-public partial struct int4_mt16 : IComparable<int4_mt16>, IComparable
-    , IComparisonOperators<int4_mt16, int4_mt16, bool>
-    , IComparisonOperators<int4_mt16, int4_mt16, b32v4_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(int4_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(int4_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(int4_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(int4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(int4_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(int4_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(int4_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(int4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<int4_mt16, int4_mt16, bool>.operator <(int4_mt16 left, int4_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt16, int4_mt16, bool>.operator >(int4_mt16 left, int4_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt16, int4_mt16, bool>.operator <=(int4_mt16 left, int4_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<int4_mt16, int4_mt16, bool>.operator >=(int4_mt16 left, int4_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(int4_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is int4_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int4_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(int4_mt16 left, int4_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(int4_mt16 left, int4_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(int4_mt16 left, int4_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(int4_mt16 left, int4_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(int4_mt16 left, int_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(int4_mt16 left, int_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(int4_mt16 left, int_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(int4_mt16 left, int_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(int_mt16 left, int4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(int_mt16 left, int4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(int_mt16 left, int4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(int_mt16 left, int4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(int4_mt16 left, int right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(int4_mt16 left, int right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(int4_mt16 left, int right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(int4_mt16 left, int right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(int left, int4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(int left, int4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(int left, int4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(int left, int4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(int4_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(int4_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(int4_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(int4_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(int4_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(int4_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(int4_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(int4_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // int4_mt16
-#region uint2_mt4
-
-public partial struct uint2_mt4 : IComparable<uint2_mt4>, IComparable
-    , IComparisonOperators<uint2_mt4, uint2_mt4, bool>
-    , IComparisonOperators<uint2_mt4, uint2_mt4, b32v2_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint2_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint2_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint2_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint2_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint2_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint2_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<uint2_mt4, uint2_mt4, bool>.operator <(uint2_mt4 left, uint2_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt4, uint2_mt4, bool>.operator >(uint2_mt4 left, uint2_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt4, uint2_mt4, bool>.operator <=(uint2_mt4 left, uint2_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt4, uint2_mt4, bool>.operator >=(uint2_mt4 left, uint2_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint2_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint2_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint2_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(uint2_mt4 left, uint2_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(uint2_mt4 left, uint2_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(uint2_mt4 left, uint2_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(uint2_mt4 left, uint2_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(uint2_mt4 left, uint_mt4 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(uint2_mt4 left, uint_mt4 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(uint2_mt4 left, uint_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(uint2_mt4 left, uint_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(uint_mt4 left, uint2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(uint_mt4 left, uint2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(uint_mt4 left, uint2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(uint_mt4 left, uint2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(uint2_mt4 left, uint right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(uint2_mt4 left, uint right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(uint2_mt4 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(uint2_mt4 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(uint left, uint2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(uint left, uint2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(uint left, uint2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(uint left, uint2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(uint2_mt4 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(uint2_mt4 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(uint2_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(uint2_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(uint2_mt4 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(uint2_mt4 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(uint2_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(uint2_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // uint2_mt4
-#region uint2_mt8
-
-public partial struct uint2_mt8 : IComparable<uint2_mt8>, IComparable
-    , IComparisonOperators<uint2_mt8, uint2_mt8, bool>
-    , IComparisonOperators<uint2_mt8, uint2_mt8, b32v2_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint2_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint2_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint2_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint2_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint2_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint2_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<uint2_mt8, uint2_mt8, bool>.operator <(uint2_mt8 left, uint2_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt8, uint2_mt8, bool>.operator >(uint2_mt8 left, uint2_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt8, uint2_mt8, bool>.operator <=(uint2_mt8 left, uint2_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt8, uint2_mt8, bool>.operator >=(uint2_mt8 left, uint2_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint2_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint2_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint2_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(uint2_mt8 left, uint2_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(uint2_mt8 left, uint2_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(uint2_mt8 left, uint2_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(uint2_mt8 left, uint2_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(uint2_mt8 left, uint_mt8 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(uint2_mt8 left, uint_mt8 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(uint2_mt8 left, uint_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(uint2_mt8 left, uint_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(uint_mt8 left, uint2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(uint_mt8 left, uint2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(uint_mt8 left, uint2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(uint_mt8 left, uint2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(uint2_mt8 left, uint right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(uint2_mt8 left, uint right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(uint2_mt8 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(uint2_mt8 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(uint left, uint2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(uint left, uint2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(uint left, uint2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(uint left, uint2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(uint2_mt8 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(uint2_mt8 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(uint2_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(uint2_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(uint2_mt8 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(uint2_mt8 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(uint2_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(uint2_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // uint2_mt8
-#region uint2_mt16
-
-public partial struct uint2_mt16 : IComparable<uint2_mt16>, IComparable
-    , IComparisonOperators<uint2_mt16, uint2_mt16, bool>
-    , IComparisonOperators<uint2_mt16, uint2_mt16, b32v2_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint2_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint2_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint2_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint2_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint2_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint2_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<uint2_mt16, uint2_mt16, bool>.operator <(uint2_mt16 left, uint2_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt16, uint2_mt16, bool>.operator >(uint2_mt16 left, uint2_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt16, uint2_mt16, bool>.operator <=(uint2_mt16 left, uint2_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint2_mt16, uint2_mt16, bool>.operator >=(uint2_mt16 left, uint2_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint2_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint2_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint2_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(uint2_mt16 left, uint2_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(uint2_mt16 left, uint2_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(uint2_mt16 left, uint2_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(uint2_mt16 left, uint2_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(uint2_mt16 left, uint_mt16 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(uint2_mt16 left, uint_mt16 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(uint2_mt16 left, uint_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(uint2_mt16 left, uint_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(uint_mt16 left, uint2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(uint_mt16 left, uint2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(uint_mt16 left, uint2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(uint_mt16 left, uint2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(uint2_mt16 left, uint right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(uint2_mt16 left, uint right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(uint2_mt16 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(uint2_mt16 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(uint left, uint2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(uint left, uint2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(uint left, uint2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(uint left, uint2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(uint2_mt16 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(uint2_mt16 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(uint2_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(uint2_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(uint2_mt16 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(uint2_mt16 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(uint2_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(uint2_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // uint2_mt16
-#region uint3_mt4
-
-public partial struct uint3_mt4 : IComparable<uint3_mt4>, IComparable
-    , IComparisonOperators<uint3_mt4, uint3_mt4, bool>
-    , IComparisonOperators<uint3_mt4, uint3_mt4, b32v3_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint3_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint3_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint3_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint3_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint3_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint3_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<uint3_mt4, uint3_mt4, bool>.operator <(uint3_mt4 left, uint3_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt4, uint3_mt4, bool>.operator >(uint3_mt4 left, uint3_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt4, uint3_mt4, bool>.operator <=(uint3_mt4 left, uint3_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt4, uint3_mt4, bool>.operator >=(uint3_mt4 left, uint3_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint3_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint3_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint3_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(uint3_mt4 left, uint3_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(uint3_mt4 left, uint3_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(uint3_mt4 left, uint3_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(uint3_mt4 left, uint3_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(uint3_mt4 left, uint_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(uint3_mt4 left, uint_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(uint3_mt4 left, uint_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(uint3_mt4 left, uint_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(uint_mt4 left, uint3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(uint_mt4 left, uint3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(uint_mt4 left, uint3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(uint_mt4 left, uint3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(uint3_mt4 left, uint right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(uint3_mt4 left, uint right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(uint3_mt4 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(uint3_mt4 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(uint left, uint3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(uint left, uint3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(uint left, uint3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(uint left, uint3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(uint3_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(uint3_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(uint3_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(uint3_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(uint3_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(uint3_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(uint3_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(uint3_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // uint3_mt4
-#region uint3_mt8
-
-public partial struct uint3_mt8 : IComparable<uint3_mt8>, IComparable
-    , IComparisonOperators<uint3_mt8, uint3_mt8, bool>
-    , IComparisonOperators<uint3_mt8, uint3_mt8, b32v3_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint3_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint3_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint3_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint3_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint3_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint3_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<uint3_mt8, uint3_mt8, bool>.operator <(uint3_mt8 left, uint3_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt8, uint3_mt8, bool>.operator >(uint3_mt8 left, uint3_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt8, uint3_mt8, bool>.operator <=(uint3_mt8 left, uint3_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt8, uint3_mt8, bool>.operator >=(uint3_mt8 left, uint3_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint3_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint3_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint3_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(uint3_mt8 left, uint3_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(uint3_mt8 left, uint3_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(uint3_mt8 left, uint3_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(uint3_mt8 left, uint3_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(uint3_mt8 left, uint_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(uint3_mt8 left, uint_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(uint3_mt8 left, uint_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(uint3_mt8 left, uint_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(uint_mt8 left, uint3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(uint_mt8 left, uint3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(uint_mt8 left, uint3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(uint_mt8 left, uint3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(uint3_mt8 left, uint right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(uint3_mt8 left, uint right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(uint3_mt8 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(uint3_mt8 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(uint left, uint3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(uint left, uint3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(uint left, uint3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(uint left, uint3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(uint3_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(uint3_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(uint3_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(uint3_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(uint3_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(uint3_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(uint3_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(uint3_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // uint3_mt8
-#region uint3_mt16
-
-public partial struct uint3_mt16 : IComparable<uint3_mt16>, IComparable
-    , IComparisonOperators<uint3_mt16, uint3_mt16, bool>
-    , IComparisonOperators<uint3_mt16, uint3_mt16, b32v3_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint3_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint3_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint3_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint3_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint3_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint3_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<uint3_mt16, uint3_mt16, bool>.operator <(uint3_mt16 left, uint3_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt16, uint3_mt16, bool>.operator >(uint3_mt16 left, uint3_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt16, uint3_mt16, bool>.operator <=(uint3_mt16 left, uint3_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint3_mt16, uint3_mt16, bool>.operator >=(uint3_mt16 left, uint3_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint3_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint3_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint3_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(uint3_mt16 left, uint3_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(uint3_mt16 left, uint3_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(uint3_mt16 left, uint3_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(uint3_mt16 left, uint3_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(uint3_mt16 left, uint_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(uint3_mt16 left, uint_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(uint3_mt16 left, uint_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(uint3_mt16 left, uint_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(uint_mt16 left, uint3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(uint_mt16 left, uint3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(uint_mt16 left, uint3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(uint_mt16 left, uint3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(uint3_mt16 left, uint right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(uint3_mt16 left, uint right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(uint3_mt16 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(uint3_mt16 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(uint left, uint3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(uint left, uint3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(uint left, uint3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(uint left, uint3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(uint3_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(uint3_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(uint3_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(uint3_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(uint3_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(uint3_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(uint3_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(uint3_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // uint3_mt16
-#region uint4_mt4
-
-public partial struct uint4_mt4 : IComparable<uint4_mt4>, IComparable
-    , IComparisonOperators<uint4_mt4, uint4_mt4, bool>
-    , IComparisonOperators<uint4_mt4, uint4_mt4, b32v4_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint4_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint4_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint4_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint4_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint4_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint4_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<uint4_mt4, uint4_mt4, bool>.operator <(uint4_mt4 left, uint4_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt4, uint4_mt4, bool>.operator >(uint4_mt4 left, uint4_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt4, uint4_mt4, bool>.operator <=(uint4_mt4 left, uint4_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt4, uint4_mt4, bool>.operator >=(uint4_mt4 left, uint4_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint4_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint4_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint4_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(uint4_mt4 left, uint4_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(uint4_mt4 left, uint4_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(uint4_mt4 left, uint4_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(uint4_mt4 left, uint4_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(uint4_mt4 left, uint_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(uint4_mt4 left, uint_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(uint4_mt4 left, uint_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(uint4_mt4 left, uint_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(uint_mt4 left, uint4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(uint_mt4 left, uint4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(uint_mt4 left, uint4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(uint_mt4 left, uint4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(uint4_mt4 left, uint right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(uint4_mt4 left, uint right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(uint4_mt4 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(uint4_mt4 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(uint left, uint4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(uint left, uint4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(uint left, uint4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(uint left, uint4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(uint4_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(uint4_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(uint4_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(uint4_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(uint4_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(uint4_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(uint4_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(uint4_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // uint4_mt4
-#region uint4_mt8
-
-public partial struct uint4_mt8 : IComparable<uint4_mt8>, IComparable
-    , IComparisonOperators<uint4_mt8, uint4_mt8, bool>
-    , IComparisonOperators<uint4_mt8, uint4_mt8, b32v4_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint4_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint4_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint4_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint4_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint4_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint4_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<uint4_mt8, uint4_mt8, bool>.operator <(uint4_mt8 left, uint4_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt8, uint4_mt8, bool>.operator >(uint4_mt8 left, uint4_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt8, uint4_mt8, bool>.operator <=(uint4_mt8 left, uint4_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt8, uint4_mt8, bool>.operator >=(uint4_mt8 left, uint4_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint4_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint4_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint4_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(uint4_mt8 left, uint4_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(uint4_mt8 left, uint4_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(uint4_mt8 left, uint4_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(uint4_mt8 left, uint4_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(uint4_mt8 left, uint_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(uint4_mt8 left, uint_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(uint4_mt8 left, uint_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(uint4_mt8 left, uint_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(uint_mt8 left, uint4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(uint_mt8 left, uint4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(uint_mt8 left, uint4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(uint_mt8 left, uint4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(uint4_mt8 left, uint right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(uint4_mt8 left, uint right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(uint4_mt8 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(uint4_mt8 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(uint left, uint4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(uint left, uint4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(uint left, uint4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(uint left, uint4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(uint4_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(uint4_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(uint4_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(uint4_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(uint4_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(uint4_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(uint4_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(uint4_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // uint4_mt8
-#region uint4_mt16
-
-public partial struct uint4_mt16 : IComparable<uint4_mt16>, IComparable
-    , IComparisonOperators<uint4_mt16, uint4_mt16, bool>
-    , IComparisonOperators<uint4_mt16, uint4_mt16, b32v4_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(uint4_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(uint4_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(uint4_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(uint4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(uint4_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(uint4_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(uint4_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(uint4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<uint4_mt16, uint4_mt16, bool>.operator <(uint4_mt16 left, uint4_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt16, uint4_mt16, bool>.operator >(uint4_mt16 left, uint4_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt16, uint4_mt16, bool>.operator <=(uint4_mt16 left, uint4_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<uint4_mt16, uint4_mt16, bool>.operator >=(uint4_mt16 left, uint4_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(uint4_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is uint4_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint4_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(uint4_mt16 left, uint4_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(uint4_mt16 left, uint4_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(uint4_mt16 left, uint4_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(uint4_mt16 left, uint4_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(uint4_mt16 left, uint_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(uint4_mt16 left, uint_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(uint4_mt16 left, uint_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(uint4_mt16 left, uint_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(uint_mt16 left, uint4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(uint_mt16 left, uint4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(uint_mt16 left, uint4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(uint_mt16 left, uint4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(uint4_mt16 left, uint right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(uint4_mt16 left, uint right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(uint4_mt16 left, uint right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(uint4_mt16 left, uint right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(uint left, uint4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(uint left, uint4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(uint left, uint4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(uint left, uint4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(uint4_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(uint4_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(uint4_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(uint4_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(uint4_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(uint4_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(uint4_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(uint4_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // uint4_mt16
-#region long2_mt4
-
-public partial struct long2_mt4 : IComparable<long2_mt4>, IComparable
-    , IComparisonOperators<long2_mt4, long2_mt4, bool>
-    , IComparisonOperators<long2_mt4, long2_mt4, b64v2_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long2_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long2_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long2_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long2_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long2_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long2_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<long2_mt4, long2_mt4, bool>.operator <(long2_mt4 left, long2_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt4, long2_mt4, bool>.operator >(long2_mt4 left, long2_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt4, long2_mt4, bool>.operator <=(long2_mt4 left, long2_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt4, long2_mt4, bool>.operator >=(long2_mt4 left, long2_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long2_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long2_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long2_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(long2_mt4 left, long2_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(long2_mt4 left, long2_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(long2_mt4 left, long2_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(long2_mt4 left, long2_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(long2_mt4 left, long_mt4 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(long2_mt4 left, long_mt4 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(long2_mt4 left, long_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(long2_mt4 left, long_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(long_mt4 left, long2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(long_mt4 left, long2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(long_mt4 left, long2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(long_mt4 left, long2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(long2_mt4 left, long right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(long2_mt4 left, long right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(long2_mt4 left, long right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(long2_mt4 left, long right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(long left, long2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(long left, long2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(long left, long2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(long left, long2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(long2_mt4 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(long2_mt4 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(long2_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(long2_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(long2_mt4 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(long2_mt4 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(long2_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(long2_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // long2_mt4
-#region long2_mt8
-
-public partial struct long2_mt8 : IComparable<long2_mt8>, IComparable
-    , IComparisonOperators<long2_mt8, long2_mt8, bool>
-    , IComparisonOperators<long2_mt8, long2_mt8, b64v2_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long2_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long2_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long2_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long2_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long2_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long2_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<long2_mt8, long2_mt8, bool>.operator <(long2_mt8 left, long2_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt8, long2_mt8, bool>.operator >(long2_mt8 left, long2_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt8, long2_mt8, bool>.operator <=(long2_mt8 left, long2_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt8, long2_mt8, bool>.operator >=(long2_mt8 left, long2_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long2_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long2_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long2_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(long2_mt8 left, long2_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(long2_mt8 left, long2_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(long2_mt8 left, long2_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(long2_mt8 left, long2_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(long2_mt8 left, long_mt8 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(long2_mt8 left, long_mt8 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(long2_mt8 left, long_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(long2_mt8 left, long_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(long_mt8 left, long2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(long_mt8 left, long2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(long_mt8 left, long2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(long_mt8 left, long2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(long2_mt8 left, long right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(long2_mt8 left, long right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(long2_mt8 left, long right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(long2_mt8 left, long right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(long left, long2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(long left, long2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(long left, long2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(long left, long2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(long2_mt8 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(long2_mt8 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(long2_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(long2_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(long2_mt8 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(long2_mt8 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(long2_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(long2_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // long2_mt8
-#region long2_mt16
-
-public partial struct long2_mt16 : IComparable<long2_mt16>, IComparable
-    , IComparisonOperators<long2_mt16, long2_mt16, bool>
-    , IComparisonOperators<long2_mt16, long2_mt16, b64v2_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long2_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long2_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long2_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long2_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long2_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long2_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<long2_mt16, long2_mt16, bool>.operator <(long2_mt16 left, long2_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt16, long2_mt16, bool>.operator >(long2_mt16 left, long2_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt16, long2_mt16, bool>.operator <=(long2_mt16 left, long2_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long2_mt16, long2_mt16, bool>.operator >=(long2_mt16 left, long2_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long2_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long2_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long2_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(long2_mt16 left, long2_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(long2_mt16 left, long2_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(long2_mt16 left, long2_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(long2_mt16 left, long2_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(long2_mt16 left, long_mt16 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(long2_mt16 left, long_mt16 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(long2_mt16 left, long_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(long2_mt16 left, long_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(long_mt16 left, long2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(long_mt16 left, long2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(long_mt16 left, long2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(long_mt16 left, long2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(long2_mt16 left, long right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(long2_mt16 left, long right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(long2_mt16 left, long right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(long2_mt16 left, long right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(long left, long2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(long left, long2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(long left, long2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(long left, long2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(long2_mt16 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(long2_mt16 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(long2_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(long2_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(long2_mt16 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(long2_mt16 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(long2_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(long2_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // long2_mt16
-#region long3_mt4
-
-public partial struct long3_mt4 : IComparable<long3_mt4>, IComparable
-    , IComparisonOperators<long3_mt4, long3_mt4, bool>
-    , IComparisonOperators<long3_mt4, long3_mt4, b64v3_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long3_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long3_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long3_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long3_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long3_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long3_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<long3_mt4, long3_mt4, bool>.operator <(long3_mt4 left, long3_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt4, long3_mt4, bool>.operator >(long3_mt4 left, long3_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt4, long3_mt4, bool>.operator <=(long3_mt4 left, long3_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt4, long3_mt4, bool>.operator >=(long3_mt4 left, long3_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long3_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long3_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long3_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(long3_mt4 left, long3_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(long3_mt4 left, long3_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(long3_mt4 left, long3_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(long3_mt4 left, long3_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(long3_mt4 left, long_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(long3_mt4 left, long_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(long3_mt4 left, long_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(long3_mt4 left, long_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(long_mt4 left, long3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(long_mt4 left, long3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(long_mt4 left, long3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(long_mt4 left, long3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(long3_mt4 left, long right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(long3_mt4 left, long right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(long3_mt4 left, long right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(long3_mt4 left, long right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(long left, long3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(long left, long3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(long left, long3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(long left, long3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(long3_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(long3_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(long3_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(long3_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(long3_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(long3_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(long3_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(long3_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // long3_mt4
-#region long3_mt8
-
-public partial struct long3_mt8 : IComparable<long3_mt8>, IComparable
-    , IComparisonOperators<long3_mt8, long3_mt8, bool>
-    , IComparisonOperators<long3_mt8, long3_mt8, b64v3_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long3_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long3_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long3_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long3_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long3_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long3_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<long3_mt8, long3_mt8, bool>.operator <(long3_mt8 left, long3_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt8, long3_mt8, bool>.operator >(long3_mt8 left, long3_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt8, long3_mt8, bool>.operator <=(long3_mt8 left, long3_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt8, long3_mt8, bool>.operator >=(long3_mt8 left, long3_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long3_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long3_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long3_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(long3_mt8 left, long3_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(long3_mt8 left, long3_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(long3_mt8 left, long3_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(long3_mt8 left, long3_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(long3_mt8 left, long_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(long3_mt8 left, long_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(long3_mt8 left, long_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(long3_mt8 left, long_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(long_mt8 left, long3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(long_mt8 left, long3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(long_mt8 left, long3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(long_mt8 left, long3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(long3_mt8 left, long right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(long3_mt8 left, long right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(long3_mt8 left, long right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(long3_mt8 left, long right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(long left, long3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(long left, long3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(long left, long3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(long left, long3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(long3_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(long3_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(long3_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(long3_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(long3_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(long3_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(long3_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(long3_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // long3_mt8
-#region long3_mt16
-
-public partial struct long3_mt16 : IComparable<long3_mt16>, IComparable
-    , IComparisonOperators<long3_mt16, long3_mt16, bool>
-    , IComparisonOperators<long3_mt16, long3_mt16, b64v3_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long3_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long3_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long3_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long3_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long3_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long3_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<long3_mt16, long3_mt16, bool>.operator <(long3_mt16 left, long3_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt16, long3_mt16, bool>.operator >(long3_mt16 left, long3_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt16, long3_mt16, bool>.operator <=(long3_mt16 left, long3_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long3_mt16, long3_mt16, bool>.operator >=(long3_mt16 left, long3_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long3_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long3_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long3_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(long3_mt16 left, long3_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(long3_mt16 left, long3_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(long3_mt16 left, long3_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(long3_mt16 left, long3_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(long3_mt16 left, long_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(long3_mt16 left, long_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(long3_mt16 left, long_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(long3_mt16 left, long_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(long_mt16 left, long3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(long_mt16 left, long3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(long_mt16 left, long3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(long_mt16 left, long3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(long3_mt16 left, long right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(long3_mt16 left, long right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(long3_mt16 left, long right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(long3_mt16 left, long right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(long left, long3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(long left, long3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(long left, long3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(long left, long3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(long3_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(long3_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(long3_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(long3_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(long3_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(long3_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(long3_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(long3_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // long3_mt16
-#region long4_mt4
-
-public partial struct long4_mt4 : IComparable<long4_mt4>, IComparable
-    , IComparisonOperators<long4_mt4, long4_mt4, bool>
-    , IComparisonOperators<long4_mt4, long4_mt4, b64v4_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long4_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long4_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long4_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long4_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long4_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long4_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<long4_mt4, long4_mt4, bool>.operator <(long4_mt4 left, long4_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt4, long4_mt4, bool>.operator >(long4_mt4 left, long4_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt4, long4_mt4, bool>.operator <=(long4_mt4 left, long4_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt4, long4_mt4, bool>.operator >=(long4_mt4 left, long4_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long4_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long4_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long4_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(long4_mt4 left, long4_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(long4_mt4 left, long4_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(long4_mt4 left, long4_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(long4_mt4 left, long4_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(long4_mt4 left, long_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(long4_mt4 left, long_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(long4_mt4 left, long_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(long4_mt4 left, long_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(long_mt4 left, long4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(long_mt4 left, long4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(long_mt4 left, long4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(long_mt4 left, long4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(long4_mt4 left, long right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(long4_mt4 left, long right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(long4_mt4 left, long right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(long4_mt4 left, long right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(long left, long4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(long left, long4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(long left, long4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(long left, long4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(long4_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(long4_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(long4_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(long4_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(long4_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(long4_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(long4_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(long4_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // long4_mt4
-#region long4_mt8
-
-public partial struct long4_mt8 : IComparable<long4_mt8>, IComparable
-    , IComparisonOperators<long4_mt8, long4_mt8, bool>
-    , IComparisonOperators<long4_mt8, long4_mt8, b64v4_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long4_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long4_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long4_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long4_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long4_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long4_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<long4_mt8, long4_mt8, bool>.operator <(long4_mt8 left, long4_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt8, long4_mt8, bool>.operator >(long4_mt8 left, long4_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt8, long4_mt8, bool>.operator <=(long4_mt8 left, long4_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt8, long4_mt8, bool>.operator >=(long4_mt8 left, long4_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long4_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long4_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long4_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(long4_mt8 left, long4_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(long4_mt8 left, long4_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(long4_mt8 left, long4_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(long4_mt8 left, long4_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(long4_mt8 left, long_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(long4_mt8 left, long_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(long4_mt8 left, long_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(long4_mt8 left, long_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(long_mt8 left, long4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(long_mt8 left, long4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(long_mt8 left, long4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(long_mt8 left, long4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(long4_mt8 left, long right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(long4_mt8 left, long right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(long4_mt8 left, long right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(long4_mt8 left, long right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(long left, long4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(long left, long4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(long left, long4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(long left, long4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(long4_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(long4_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(long4_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(long4_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(long4_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(long4_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(long4_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(long4_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // long4_mt8
-#region long4_mt16
-
-public partial struct long4_mt16 : IComparable<long4_mt16>, IComparable
-    , IComparisonOperators<long4_mt16, long4_mt16, bool>
-    , IComparisonOperators<long4_mt16, long4_mt16, b64v4_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(long4_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(long4_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(long4_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(long4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(long4_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(long4_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(long4_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(long4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<long4_mt16, long4_mt16, bool>.operator <(long4_mt16 left, long4_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt16, long4_mt16, bool>.operator >(long4_mt16 left, long4_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt16, long4_mt16, bool>.operator <=(long4_mt16 left, long4_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<long4_mt16, long4_mt16, bool>.operator >=(long4_mt16 left, long4_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(long4_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is long4_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long4_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(long4_mt16 left, long4_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(long4_mt16 left, long4_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(long4_mt16 left, long4_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(long4_mt16 left, long4_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(long4_mt16 left, long_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(long4_mt16 left, long_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(long4_mt16 left, long_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(long4_mt16 left, long_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(long_mt16 left, long4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(long_mt16 left, long4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(long_mt16 left, long4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(long_mt16 left, long4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(long4_mt16 left, long right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(long4_mt16 left, long right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(long4_mt16 left, long right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(long4_mt16 left, long right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(long left, long4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(long left, long4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(long left, long4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(long left, long4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(long4_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(long4_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(long4_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(long4_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(long4_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(long4_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(long4_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(long4_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // long4_mt16
-#region ulong2_mt4
-
-public partial struct ulong2_mt4 : IComparable<ulong2_mt4>, IComparable
-    , IComparisonOperators<ulong2_mt4, ulong2_mt4, bool>
-    , IComparisonOperators<ulong2_mt4, ulong2_mt4, b64v2_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong2_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong2_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong2_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong2_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong2_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong2_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<ulong2_mt4, ulong2_mt4, bool>.operator <(ulong2_mt4 left, ulong2_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt4, ulong2_mt4, bool>.operator >(ulong2_mt4 left, ulong2_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt4, ulong2_mt4, bool>.operator <=(ulong2_mt4 left, ulong2_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt4, ulong2_mt4, bool>.operator >=(ulong2_mt4 left, ulong2_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong2_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong2_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong2_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(ulong2_mt4 left, ulong2_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(ulong2_mt4 left, ulong2_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(ulong2_mt4 left, ulong2_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(ulong2_mt4 left, ulong2_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(ulong2_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(ulong2_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(ulong2_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(ulong2_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(ulong_mt4 left, ulong2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(ulong_mt4 left, ulong2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(ulong_mt4 left, ulong2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(ulong_mt4 left, ulong2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(ulong2_mt4 left, ulong right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(ulong2_mt4 left, ulong right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(ulong2_mt4 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(ulong2_mt4 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(ulong left, ulong2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(ulong left, ulong2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(ulong left, ulong2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(ulong left, ulong2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(ulong2_mt4 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(ulong2_mt4 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(ulong2_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(ulong2_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(ulong2_mt4 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(ulong2_mt4 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(ulong2_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(ulong2_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // ulong2_mt4
-#region ulong2_mt8
-
-public partial struct ulong2_mt8 : IComparable<ulong2_mt8>, IComparable
-    , IComparisonOperators<ulong2_mt8, ulong2_mt8, bool>
-    , IComparisonOperators<ulong2_mt8, ulong2_mt8, b64v2_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong2_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong2_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong2_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong2_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong2_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong2_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<ulong2_mt8, ulong2_mt8, bool>.operator <(ulong2_mt8 left, ulong2_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt8, ulong2_mt8, bool>.operator >(ulong2_mt8 left, ulong2_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt8, ulong2_mt8, bool>.operator <=(ulong2_mt8 left, ulong2_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt8, ulong2_mt8, bool>.operator >=(ulong2_mt8 left, ulong2_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong2_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong2_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong2_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(ulong2_mt8 left, ulong2_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(ulong2_mt8 left, ulong2_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(ulong2_mt8 left, ulong2_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(ulong2_mt8 left, ulong2_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(ulong2_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(ulong2_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(ulong2_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(ulong2_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(ulong_mt8 left, ulong2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(ulong_mt8 left, ulong2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(ulong_mt8 left, ulong2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(ulong_mt8 left, ulong2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(ulong2_mt8 left, ulong right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(ulong2_mt8 left, ulong right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(ulong2_mt8 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(ulong2_mt8 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(ulong left, ulong2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(ulong left, ulong2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(ulong left, ulong2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(ulong left, ulong2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(ulong2_mt8 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(ulong2_mt8 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(ulong2_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(ulong2_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(ulong2_mt8 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(ulong2_mt8 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(ulong2_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(ulong2_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // ulong2_mt8
-#region ulong2_mt16
-
-public partial struct ulong2_mt16 : IComparable<ulong2_mt16>, IComparable
-    , IComparisonOperators<ulong2_mt16, ulong2_mt16, bool>
-    , IComparisonOperators<ulong2_mt16, ulong2_mt16, b64v2_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong2_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong2_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong2_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong2_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong2_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong2_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<ulong2_mt16, ulong2_mt16, bool>.operator <(ulong2_mt16 left, ulong2_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt16, ulong2_mt16, bool>.operator >(ulong2_mt16 left, ulong2_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt16, ulong2_mt16, bool>.operator <=(ulong2_mt16 left, ulong2_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong2_mt16, ulong2_mt16, bool>.operator >=(ulong2_mt16 left, ulong2_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong2_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong2_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong2_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(ulong2_mt16 left, ulong2_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(ulong2_mt16 left, ulong2_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(ulong2_mt16 left, ulong2_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(ulong2_mt16 left, ulong2_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(ulong2_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(ulong2_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(ulong2_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(ulong2_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(ulong_mt16 left, ulong2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(ulong_mt16 left, ulong2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(ulong_mt16 left, ulong2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(ulong_mt16 left, ulong2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(ulong2_mt16 left, ulong right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(ulong2_mt16 left, ulong right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(ulong2_mt16 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(ulong2_mt16 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(ulong left, ulong2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(ulong left, ulong2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(ulong left, ulong2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(ulong left, ulong2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(ulong2_mt16 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(ulong2_mt16 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(ulong2_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(ulong2_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(ulong2_mt16 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(ulong2_mt16 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(ulong2_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(ulong2_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // ulong2_mt16
-#region ulong3_mt4
-
-public partial struct ulong3_mt4 : IComparable<ulong3_mt4>, IComparable
-    , IComparisonOperators<ulong3_mt4, ulong3_mt4, bool>
-    , IComparisonOperators<ulong3_mt4, ulong3_mt4, b64v3_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong3_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong3_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong3_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong3_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong3_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong3_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<ulong3_mt4, ulong3_mt4, bool>.operator <(ulong3_mt4 left, ulong3_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt4, ulong3_mt4, bool>.operator >(ulong3_mt4 left, ulong3_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt4, ulong3_mt4, bool>.operator <=(ulong3_mt4 left, ulong3_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt4, ulong3_mt4, bool>.operator >=(ulong3_mt4 left, ulong3_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong3_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong3_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong3_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(ulong3_mt4 left, ulong3_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(ulong3_mt4 left, ulong3_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(ulong3_mt4 left, ulong3_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(ulong3_mt4 left, ulong3_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(ulong3_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(ulong3_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(ulong3_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(ulong3_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(ulong_mt4 left, ulong3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(ulong_mt4 left, ulong3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(ulong_mt4 left, ulong3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(ulong_mt4 left, ulong3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(ulong3_mt4 left, ulong right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(ulong3_mt4 left, ulong right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(ulong3_mt4 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(ulong3_mt4 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(ulong left, ulong3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(ulong left, ulong3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(ulong left, ulong3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(ulong left, ulong3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(ulong3_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(ulong3_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(ulong3_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(ulong3_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(ulong3_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(ulong3_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(ulong3_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(ulong3_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // ulong3_mt4
-#region ulong3_mt8
-
-public partial struct ulong3_mt8 : IComparable<ulong3_mt8>, IComparable
-    , IComparisonOperators<ulong3_mt8, ulong3_mt8, bool>
-    , IComparisonOperators<ulong3_mt8, ulong3_mt8, b64v3_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong3_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong3_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong3_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong3_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong3_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong3_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<ulong3_mt8, ulong3_mt8, bool>.operator <(ulong3_mt8 left, ulong3_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt8, ulong3_mt8, bool>.operator >(ulong3_mt8 left, ulong3_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt8, ulong3_mt8, bool>.operator <=(ulong3_mt8 left, ulong3_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt8, ulong3_mt8, bool>.operator >=(ulong3_mt8 left, ulong3_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong3_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong3_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong3_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(ulong3_mt8 left, ulong3_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(ulong3_mt8 left, ulong3_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(ulong3_mt8 left, ulong3_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(ulong3_mt8 left, ulong3_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(ulong3_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(ulong3_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(ulong3_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(ulong3_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(ulong_mt8 left, ulong3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(ulong_mt8 left, ulong3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(ulong_mt8 left, ulong3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(ulong_mt8 left, ulong3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(ulong3_mt8 left, ulong right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(ulong3_mt8 left, ulong right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(ulong3_mt8 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(ulong3_mt8 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(ulong left, ulong3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(ulong left, ulong3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(ulong left, ulong3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(ulong left, ulong3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(ulong3_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(ulong3_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(ulong3_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(ulong3_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(ulong3_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(ulong3_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(ulong3_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(ulong3_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // ulong3_mt8
-#region ulong3_mt16
-
-public partial struct ulong3_mt16 : IComparable<ulong3_mt16>, IComparable
-    , IComparisonOperators<ulong3_mt16, ulong3_mt16, bool>
-    , IComparisonOperators<ulong3_mt16, ulong3_mt16, b64v3_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong3_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong3_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong3_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong3_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong3_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong3_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<ulong3_mt16, ulong3_mt16, bool>.operator <(ulong3_mt16 left, ulong3_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt16, ulong3_mt16, bool>.operator >(ulong3_mt16 left, ulong3_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt16, ulong3_mt16, bool>.operator <=(ulong3_mt16 left, ulong3_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong3_mt16, ulong3_mt16, bool>.operator >=(ulong3_mt16 left, ulong3_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong3_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong3_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong3_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(ulong3_mt16 left, ulong3_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(ulong3_mt16 left, ulong3_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(ulong3_mt16 left, ulong3_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(ulong3_mt16 left, ulong3_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(ulong3_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(ulong3_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(ulong3_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(ulong3_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(ulong_mt16 left, ulong3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(ulong_mt16 left, ulong3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(ulong_mt16 left, ulong3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(ulong_mt16 left, ulong3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(ulong3_mt16 left, ulong right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(ulong3_mt16 left, ulong right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(ulong3_mt16 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(ulong3_mt16 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(ulong left, ulong3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(ulong left, ulong3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(ulong left, ulong3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(ulong left, ulong3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(ulong3_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(ulong3_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(ulong3_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(ulong3_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(ulong3_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(ulong3_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(ulong3_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(ulong3_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // ulong3_mt16
-#region ulong4_mt4
-
-public partial struct ulong4_mt4 : IComparable<ulong4_mt4>, IComparable
-    , IComparisonOperators<ulong4_mt4, ulong4_mt4, bool>
-    , IComparisonOperators<ulong4_mt4, ulong4_mt4, b64v4_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong4_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong4_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong4_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong4_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong4_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong4_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<ulong4_mt4, ulong4_mt4, bool>.operator <(ulong4_mt4 left, ulong4_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt4, ulong4_mt4, bool>.operator >(ulong4_mt4 left, ulong4_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt4, ulong4_mt4, bool>.operator <=(ulong4_mt4 left, ulong4_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt4, ulong4_mt4, bool>.operator >=(ulong4_mt4 left, ulong4_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong4_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong4_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong4_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(ulong4_mt4 left, ulong4_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(ulong4_mt4 left, ulong4_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(ulong4_mt4 left, ulong4_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(ulong4_mt4 left, ulong4_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(ulong4_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(ulong4_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(ulong4_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(ulong4_mt4 left, ulong_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(ulong_mt4 left, ulong4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(ulong_mt4 left, ulong4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(ulong_mt4 left, ulong4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(ulong_mt4 left, ulong4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(ulong4_mt4 left, ulong right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(ulong4_mt4 left, ulong right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(ulong4_mt4 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(ulong4_mt4 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(ulong left, ulong4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(ulong left, ulong4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(ulong left, ulong4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(ulong left, ulong4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(ulong4_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(ulong4_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(ulong4_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(ulong4_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(ulong4_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(ulong4_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(ulong4_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(ulong4_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // ulong4_mt4
-#region ulong4_mt8
-
-public partial struct ulong4_mt8 : IComparable<ulong4_mt8>, IComparable
-    , IComparisonOperators<ulong4_mt8, ulong4_mt8, bool>
-    , IComparisonOperators<ulong4_mt8, ulong4_mt8, b64v4_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong4_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong4_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong4_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong4_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong4_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong4_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<ulong4_mt8, ulong4_mt8, bool>.operator <(ulong4_mt8 left, ulong4_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt8, ulong4_mt8, bool>.operator >(ulong4_mt8 left, ulong4_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt8, ulong4_mt8, bool>.operator <=(ulong4_mt8 left, ulong4_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt8, ulong4_mt8, bool>.operator >=(ulong4_mt8 left, ulong4_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong4_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong4_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong4_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(ulong4_mt8 left, ulong4_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(ulong4_mt8 left, ulong4_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(ulong4_mt8 left, ulong4_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(ulong4_mt8 left, ulong4_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(ulong4_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(ulong4_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(ulong4_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(ulong4_mt8 left, ulong_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(ulong_mt8 left, ulong4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(ulong_mt8 left, ulong4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(ulong_mt8 left, ulong4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(ulong_mt8 left, ulong4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(ulong4_mt8 left, ulong right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(ulong4_mt8 left, ulong right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(ulong4_mt8 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(ulong4_mt8 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(ulong left, ulong4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(ulong left, ulong4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(ulong left, ulong4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(ulong left, ulong4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(ulong4_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(ulong4_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(ulong4_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(ulong4_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(ulong4_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(ulong4_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(ulong4_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(ulong4_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // ulong4_mt8
-#region ulong4_mt16
-
-public partial struct ulong4_mt16 : IComparable<ulong4_mt16>, IComparable
-    , IComparisonOperators<ulong4_mt16, ulong4_mt16, bool>
-    , IComparisonOperators<ulong4_mt16, ulong4_mt16, b64v4_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(ulong4_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(ulong4_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(ulong4_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(ulong4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(ulong4_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(ulong4_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(ulong4_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(ulong4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<ulong4_mt16, ulong4_mt16, bool>.operator <(ulong4_mt16 left, ulong4_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt16, ulong4_mt16, bool>.operator >(ulong4_mt16 left, ulong4_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt16, ulong4_mt16, bool>.operator <=(ulong4_mt16 left, ulong4_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<ulong4_mt16, ulong4_mt16, bool>.operator >=(ulong4_mt16 left, ulong4_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(ulong4_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is ulong4_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong4_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(ulong4_mt16 left, ulong4_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(ulong4_mt16 left, ulong4_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(ulong4_mt16 left, ulong4_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(ulong4_mt16 left, ulong4_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(ulong4_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(ulong4_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(ulong4_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(ulong4_mt16 left, ulong_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(ulong_mt16 left, ulong4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(ulong_mt16 left, ulong4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(ulong_mt16 left, ulong4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(ulong_mt16 left, ulong4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(ulong4_mt16 left, ulong right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(ulong4_mt16 left, ulong right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(ulong4_mt16 left, ulong right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(ulong4_mt16 left, ulong right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(ulong left, ulong4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(ulong left, ulong4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(ulong left, ulong4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(ulong left, ulong4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(ulong4_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(ulong4_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(ulong4_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(ulong4_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(ulong4_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(ulong4_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(ulong4_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(ulong4_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // ulong4_mt16
-#region b32v2_mt4
-
-public partial struct b32v2_mt4 : IComparable<b32v2_mt4>, IComparable
-    , IComparisonOperators<b32v2_mt4, b32v2_mt4, bool>
-    , IComparisonOperators<b32v2_mt4, b32v2_mt4, b32v2_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v2_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v2_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v2_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v2_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v2_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v2_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<b32v2_mt4, b32v2_mt4, bool>.operator <(b32v2_mt4 left, b32v2_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt4, b32v2_mt4, bool>.operator >(b32v2_mt4 left, b32v2_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt4, b32v2_mt4, bool>.operator <=(b32v2_mt4 left, b32v2_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt4, b32v2_mt4, bool>.operator >=(b32v2_mt4 left, b32v2_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v2_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v2_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v2_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(b32v2_mt4 left, b32v2_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(b32v2_mt4 left, b32v2_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(b32v2_mt4 left, b32v2_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(b32v2_mt4 left, b32v2_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(b32v2_mt4 left, b32_mt4 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(b32v2_mt4 left, b32_mt4 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(b32v2_mt4 left, b32_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(b32v2_mt4 left, b32_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(b32_mt4 left, b32v2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(b32_mt4 left, b32v2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(b32_mt4 left, b32v2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(b32_mt4 left, b32v2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(b32v2_mt4 left, b32 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(b32v2_mt4 left, b32 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(b32v2_mt4 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(b32v2_mt4 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <(b32 left, b32v2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >(b32 left, b32v2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator <=(b32 left, b32v2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator >=(b32 left, b32v2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(b32v2_mt4 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(b32v2_mt4 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(b32v2_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(b32v2_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(b32v2_mt4 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(b32v2_mt4 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(b32v2_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(b32v2_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // b32v2_mt4
-#region b32v2_mt8
-
-public partial struct b32v2_mt8 : IComparable<b32v2_mt8>, IComparable
-    , IComparisonOperators<b32v2_mt8, b32v2_mt8, bool>
-    , IComparisonOperators<b32v2_mt8, b32v2_mt8, b32v2_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v2_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v2_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v2_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v2_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v2_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v2_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<b32v2_mt8, b32v2_mt8, bool>.operator <(b32v2_mt8 left, b32v2_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt8, b32v2_mt8, bool>.operator >(b32v2_mt8 left, b32v2_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt8, b32v2_mt8, bool>.operator <=(b32v2_mt8 left, b32v2_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt8, b32v2_mt8, bool>.operator >=(b32v2_mt8 left, b32v2_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v2_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v2_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v2_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(b32v2_mt8 left, b32v2_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(b32v2_mt8 left, b32v2_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(b32v2_mt8 left, b32v2_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(b32v2_mt8 left, b32v2_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(b32v2_mt8 left, b32_mt8 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(b32v2_mt8 left, b32_mt8 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(b32v2_mt8 left, b32_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(b32v2_mt8 left, b32_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(b32_mt8 left, b32v2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(b32_mt8 left, b32v2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(b32_mt8 left, b32v2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(b32_mt8 left, b32v2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(b32v2_mt8 left, b32 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(b32v2_mt8 left, b32 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(b32v2_mt8 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(b32v2_mt8 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <(b32 left, b32v2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >(b32 left, b32v2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator <=(b32 left, b32v2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator >=(b32 left, b32v2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(b32v2_mt8 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(b32v2_mt8 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(b32v2_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(b32v2_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(b32v2_mt8 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(b32v2_mt8 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(b32v2_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(b32v2_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // b32v2_mt8
-#region b32v2_mt16
-
-public partial struct b32v2_mt16 : IComparable<b32v2_mt16>, IComparable
-    , IComparisonOperators<b32v2_mt16, b32v2_mt16, bool>
-    , IComparisonOperators<b32v2_mt16, b32v2_mt16, b32v2_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v2_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v2_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v2_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v2_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v2_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v2_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<b32v2_mt16, b32v2_mt16, bool>.operator <(b32v2_mt16 left, b32v2_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt16, b32v2_mt16, bool>.operator >(b32v2_mt16 left, b32v2_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt16, b32v2_mt16, bool>.operator <=(b32v2_mt16 left, b32v2_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v2_mt16, b32v2_mt16, bool>.operator >=(b32v2_mt16 left, b32v2_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v2_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v2_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v2_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(b32v2_mt16 left, b32v2_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(b32v2_mt16 left, b32v2_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(b32v2_mt16 left, b32v2_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(b32v2_mt16 left, b32v2_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(b32v2_mt16 left, b32_mt16 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(b32v2_mt16 left, b32_mt16 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(b32v2_mt16 left, b32_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(b32v2_mt16 left, b32_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(b32_mt16 left, b32v2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(b32_mt16 left, b32v2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(b32_mt16 left, b32v2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(b32_mt16 left, b32v2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(b32v2_mt16 left, b32 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(b32v2_mt16 left, b32 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(b32v2_mt16 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(b32v2_mt16 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <(b32 left, b32v2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >(b32 left, b32v2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator <=(b32 left, b32v2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator >=(b32 left, b32v2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(b32v2_mt16 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(b32v2_mt16 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(b32v2_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(b32v2_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(b32v2_mt16 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(b32v2_mt16 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(b32v2_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(b32v2_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // b32v2_mt16
-#region b32v3_mt4
-
-public partial struct b32v3_mt4 : IComparable<b32v3_mt4>, IComparable
-    , IComparisonOperators<b32v3_mt4, b32v3_mt4, bool>
-    , IComparisonOperators<b32v3_mt4, b32v3_mt4, b32v3_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v3_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v3_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v3_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v3_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v3_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v3_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<b32v3_mt4, b32v3_mt4, bool>.operator <(b32v3_mt4 left, b32v3_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt4, b32v3_mt4, bool>.operator >(b32v3_mt4 left, b32v3_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt4, b32v3_mt4, bool>.operator <=(b32v3_mt4 left, b32v3_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt4, b32v3_mt4, bool>.operator >=(b32v3_mt4 left, b32v3_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v3_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v3_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v3_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(b32v3_mt4 left, b32v3_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(b32v3_mt4 left, b32v3_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(b32v3_mt4 left, b32v3_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(b32v3_mt4 left, b32v3_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(b32v3_mt4 left, b32_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(b32v3_mt4 left, b32_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(b32v3_mt4 left, b32_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(b32v3_mt4 left, b32_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(b32_mt4 left, b32v3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(b32_mt4 left, b32v3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(b32_mt4 left, b32v3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(b32_mt4 left, b32v3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(b32v3_mt4 left, b32 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(b32v3_mt4 left, b32 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(b32v3_mt4 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(b32v3_mt4 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <(b32 left, b32v3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >(b32 left, b32v3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator <=(b32 left, b32v3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator >=(b32 left, b32v3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(b32v3_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(b32v3_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(b32v3_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(b32v3_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(b32v3_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(b32v3_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(b32v3_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(b32v3_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // b32v3_mt4
-#region b32v3_mt8
-
-public partial struct b32v3_mt8 : IComparable<b32v3_mt8>, IComparable
-    , IComparisonOperators<b32v3_mt8, b32v3_mt8, bool>
-    , IComparisonOperators<b32v3_mt8, b32v3_mt8, b32v3_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v3_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v3_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v3_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v3_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v3_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v3_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<b32v3_mt8, b32v3_mt8, bool>.operator <(b32v3_mt8 left, b32v3_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt8, b32v3_mt8, bool>.operator >(b32v3_mt8 left, b32v3_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt8, b32v3_mt8, bool>.operator <=(b32v3_mt8 left, b32v3_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt8, b32v3_mt8, bool>.operator >=(b32v3_mt8 left, b32v3_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v3_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v3_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v3_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(b32v3_mt8 left, b32v3_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(b32v3_mt8 left, b32v3_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(b32v3_mt8 left, b32v3_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(b32v3_mt8 left, b32v3_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(b32v3_mt8 left, b32_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(b32v3_mt8 left, b32_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(b32v3_mt8 left, b32_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(b32v3_mt8 left, b32_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(b32_mt8 left, b32v3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(b32_mt8 left, b32v3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(b32_mt8 left, b32v3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(b32_mt8 left, b32v3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(b32v3_mt8 left, b32 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(b32v3_mt8 left, b32 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(b32v3_mt8 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(b32v3_mt8 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <(b32 left, b32v3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >(b32 left, b32v3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator <=(b32 left, b32v3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator >=(b32 left, b32v3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(b32v3_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(b32v3_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(b32v3_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(b32v3_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(b32v3_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(b32v3_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(b32v3_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(b32v3_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // b32v3_mt8
-#region b32v3_mt16
-
-public partial struct b32v3_mt16 : IComparable<b32v3_mt16>, IComparable
-    , IComparisonOperators<b32v3_mt16, b32v3_mt16, bool>
-    , IComparisonOperators<b32v3_mt16, b32v3_mt16, b32v3_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v3_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v3_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v3_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v3_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v3_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v3_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<b32v3_mt16, b32v3_mt16, bool>.operator <(b32v3_mt16 left, b32v3_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt16, b32v3_mt16, bool>.operator >(b32v3_mt16 left, b32v3_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt16, b32v3_mt16, bool>.operator <=(b32v3_mt16 left, b32v3_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v3_mt16, b32v3_mt16, bool>.operator >=(b32v3_mt16 left, b32v3_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v3_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v3_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v3_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(b32v3_mt16 left, b32v3_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(b32v3_mt16 left, b32v3_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(b32v3_mt16 left, b32v3_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(b32v3_mt16 left, b32v3_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(b32v3_mt16 left, b32_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(b32v3_mt16 left, b32_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(b32v3_mt16 left, b32_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(b32v3_mt16 left, b32_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(b32_mt16 left, b32v3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(b32_mt16 left, b32v3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(b32_mt16 left, b32v3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(b32_mt16 left, b32v3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(b32v3_mt16 left, b32 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(b32v3_mt16 left, b32 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(b32v3_mt16 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(b32v3_mt16 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <(b32 left, b32v3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >(b32 left, b32v3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator <=(b32 left, b32v3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator >=(b32 left, b32v3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(b32v3_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(b32v3_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(b32v3_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(b32v3_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(b32v3_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(b32v3_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(b32v3_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(b32v3_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // b32v3_mt16
-#region b32v4_mt4
-
-public partial struct b32v4_mt4 : IComparable<b32v4_mt4>, IComparable
-    , IComparisonOperators<b32v4_mt4, b32v4_mt4, bool>
-    , IComparisonOperators<b32v4_mt4, b32v4_mt4, b32v4_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v4_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v4_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v4_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v4_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v4_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v4_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<b32v4_mt4, b32v4_mt4, bool>.operator <(b32v4_mt4 left, b32v4_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt4, b32v4_mt4, bool>.operator >(b32v4_mt4 left, b32v4_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt4, b32v4_mt4, bool>.operator <=(b32v4_mt4 left, b32v4_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt4, b32v4_mt4, bool>.operator >=(b32v4_mt4 left, b32v4_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v4_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v4_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v4_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(b32v4_mt4 left, b32v4_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(b32v4_mt4 left, b32v4_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(b32v4_mt4 left, b32v4_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(b32v4_mt4 left, b32v4_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(b32v4_mt4 left, b32_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(b32v4_mt4 left, b32_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(b32v4_mt4 left, b32_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(b32v4_mt4 left, b32_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(b32_mt4 left, b32v4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(b32_mt4 left, b32v4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(b32_mt4 left, b32v4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(b32_mt4 left, b32v4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(b32v4_mt4 left, b32 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(b32v4_mt4 left, b32 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(b32v4_mt4 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(b32v4_mt4 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <(b32 left, b32v4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >(b32 left, b32v4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator <=(b32 left, b32v4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator >=(b32 left, b32v4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAll(b32v4_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAll(b32v4_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAll(b32v4_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAll(b32v4_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanAny(b32v4_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanAny(b32v4_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 LessThanOrEqualAny(b32v4_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt4 GreaterThanOrEqualAny(b32v4_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // b32v4_mt4
-#region b32v4_mt8
-
-public partial struct b32v4_mt8 : IComparable<b32v4_mt8>, IComparable
-    , IComparisonOperators<b32v4_mt8, b32v4_mt8, bool>
-    , IComparisonOperators<b32v4_mt8, b32v4_mt8, b32v4_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v4_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v4_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v4_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v4_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v4_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v4_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<b32v4_mt8, b32v4_mt8, bool>.operator <(b32v4_mt8 left, b32v4_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt8, b32v4_mt8, bool>.operator >(b32v4_mt8 left, b32v4_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt8, b32v4_mt8, bool>.operator <=(b32v4_mt8 left, b32v4_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt8, b32v4_mt8, bool>.operator >=(b32v4_mt8 left, b32v4_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v4_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v4_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v4_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(b32v4_mt8 left, b32v4_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(b32v4_mt8 left, b32v4_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(b32v4_mt8 left, b32v4_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(b32v4_mt8 left, b32v4_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(b32v4_mt8 left, b32_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(b32v4_mt8 left, b32_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(b32v4_mt8 left, b32_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(b32v4_mt8 left, b32_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(b32_mt8 left, b32v4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(b32_mt8 left, b32v4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(b32_mt8 left, b32v4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(b32_mt8 left, b32v4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(b32v4_mt8 left, b32 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(b32v4_mt8 left, b32 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(b32v4_mt8 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(b32v4_mt8 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <(b32 left, b32v4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >(b32 left, b32v4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator <=(b32 left, b32v4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator >=(b32 left, b32v4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAll(b32v4_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAll(b32v4_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAll(b32v4_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAll(b32v4_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanAny(b32v4_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanAny(b32v4_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 LessThanOrEqualAny(b32v4_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt8 GreaterThanOrEqualAny(b32v4_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // b32v4_mt8
-#region b32v4_mt16
-
-public partial struct b32v4_mt16 : IComparable<b32v4_mt16>, IComparable
-    , IComparisonOperators<b32v4_mt16, b32v4_mt16, bool>
-    , IComparisonOperators<b32v4_mt16, b32v4_mt16, b32v4_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b32v4_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b32v4_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b32v4_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b32v4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b32v4_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b32v4_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b32v4_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b32v4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<b32v4_mt16, b32v4_mt16, bool>.operator <(b32v4_mt16 left, b32v4_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt16, b32v4_mt16, bool>.operator >(b32v4_mt16 left, b32v4_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt16, b32v4_mt16, bool>.operator <=(b32v4_mt16 left, b32v4_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b32v4_mt16, b32v4_mt16, bool>.operator >=(b32v4_mt16 left, b32v4_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b32v4_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b32v4_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v4_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(b32v4_mt16 left, b32v4_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(b32v4_mt16 left, b32v4_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(b32v4_mt16 left, b32v4_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(b32v4_mt16 left, b32v4_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(b32v4_mt16 left, b32_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(b32v4_mt16 left, b32_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(b32v4_mt16 left, b32_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(b32v4_mt16 left, b32_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(b32_mt16 left, b32v4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(b32_mt16 left, b32v4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(b32_mt16 left, b32v4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(b32_mt16 left, b32v4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(b32v4_mt16 left, b32 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(b32v4_mt16 left, b32 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(b32v4_mt16 left, b32 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(b32v4_mt16 left, b32 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <(b32 left, b32v4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >(b32 left, b32v4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator <=(b32 left, b32v4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator >=(b32 left, b32v4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAll(b32v4_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAll(b32v4_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAll(b32v4_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAll(b32v4_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanAny(b32v4_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanAny(b32v4_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 LessThanOrEqualAny(b32v4_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32_mt16 GreaterThanOrEqualAny(b32v4_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // b32v4_mt16
-#region b64v2_mt4
-
-public partial struct b64v2_mt4 : IComparable<b64v2_mt4>, IComparable
-    , IComparisonOperators<b64v2_mt4, b64v2_mt4, bool>
-    , IComparisonOperators<b64v2_mt4, b64v2_mt4, b64v2_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v2_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v2_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v2_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v2_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v2_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v2_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v2_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<b64v2_mt4, b64v2_mt4, bool>.operator <(b64v2_mt4 left, b64v2_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt4, b64v2_mt4, bool>.operator >(b64v2_mt4 left, b64v2_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt4, b64v2_mt4, bool>.operator <=(b64v2_mt4 left, b64v2_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt4, b64v2_mt4, bool>.operator >=(b64v2_mt4 left, b64v2_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v2_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v2_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v2_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(b64v2_mt4 left, b64v2_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(b64v2_mt4 left, b64v2_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(b64v2_mt4 left, b64v2_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(b64v2_mt4 left, b64v2_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(b64v2_mt4 left, b64_mt4 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(b64v2_mt4 left, b64_mt4 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(b64v2_mt4 left, b64_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(b64v2_mt4 left, b64_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(b64_mt4 left, b64v2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(b64_mt4 left, b64v2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(b64_mt4 left, b64v2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(b64_mt4 left, b64v2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(b64v2_mt4 left, b64 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(b64v2_mt4 left, b64 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(b64v2_mt4 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(b64v2_mt4 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <(b64 left, b64v2_mt4 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >(b64 left, b64v2_mt4 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator <=(b64 left, b64v2_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator >=(b64 left, b64v2_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(b64v2_mt4 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(b64v2_mt4 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(b64v2_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(b64v2_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(b64v2_mt4 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(b64v2_mt4 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(b64v2_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(b64v2_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // b64v2_mt4
-#region b64v2_mt8
-
-public partial struct b64v2_mt8 : IComparable<b64v2_mt8>, IComparable
-    , IComparisonOperators<b64v2_mt8, b64v2_mt8, bool>
-    , IComparisonOperators<b64v2_mt8, b64v2_mt8, b64v2_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v2_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v2_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v2_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v2_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v2_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v2_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v2_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<b64v2_mt8, b64v2_mt8, bool>.operator <(b64v2_mt8 left, b64v2_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt8, b64v2_mt8, bool>.operator >(b64v2_mt8 left, b64v2_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt8, b64v2_mt8, bool>.operator <=(b64v2_mt8 left, b64v2_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt8, b64v2_mt8, bool>.operator >=(b64v2_mt8 left, b64v2_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v2_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v2_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v2_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(b64v2_mt8 left, b64v2_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(b64v2_mt8 left, b64v2_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(b64v2_mt8 left, b64v2_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(b64v2_mt8 left, b64v2_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(b64v2_mt8 left, b64_mt8 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(b64v2_mt8 left, b64_mt8 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(b64v2_mt8 left, b64_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(b64v2_mt8 left, b64_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(b64_mt8 left, b64v2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(b64_mt8 left, b64v2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(b64_mt8 left, b64v2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(b64_mt8 left, b64v2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(b64v2_mt8 left, b64 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(b64v2_mt8 left, b64 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(b64v2_mt8 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(b64v2_mt8 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <(b64 left, b64v2_mt8 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >(b64 left, b64v2_mt8 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator <=(b64 left, b64v2_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator >=(b64 left, b64v2_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(b64v2_mt8 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(b64v2_mt8 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(b64v2_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(b64v2_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(b64v2_mt8 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(b64v2_mt8 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(b64v2_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(b64v2_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // b64v2_mt8
-#region b64v2_mt16
-
-public partial struct b64v2_mt16 : IComparable<b64v2_mt16>, IComparable
-    , IComparisonOperators<b64v2_mt16, b64v2_mt16, bool>
-    , IComparisonOperators<b64v2_mt16, b64v2_mt16, b64v2_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v2_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v2_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v2_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v2_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v2_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v2_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v2_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y);
-    }
-
-    static bool IComparisonOperators<b64v2_mt16, b64v2_mt16, bool>.operator <(b64v2_mt16 left, b64v2_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt16, b64v2_mt16, bool>.operator >(b64v2_mt16 left, b64v2_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt16, b64v2_mt16, bool>.operator <=(b64v2_mt16 left, b64v2_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v2_mt16, b64v2_mt16, bool>.operator >=(b64v2_mt16 left, b64v2_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v2_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v2_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v2_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(b64v2_mt16 left, b64v2_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(b64v2_mt16 left, b64v2_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(b64v2_mt16 left, b64v2_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(b64v2_mt16 left, b64v2_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(b64v2_mt16 left, b64_mt16 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(b64v2_mt16 left, b64_mt16 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(b64v2_mt16 left, b64_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(b64v2_mt16 left, b64_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(b64_mt16 left, b64v2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(b64_mt16 left, b64v2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(b64_mt16 left, b64v2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(b64_mt16 left, b64v2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(b64v2_mt16 left, b64 right)
-    {
-        return new(left.x < right, left.y < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(b64v2_mt16 left, b64 right)
-    {
-        return new(left.x > right, left.y > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(b64v2_mt16 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(b64v2_mt16 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <(b64 left, b64v2_mt16 right)
-    {
-        return new(left < right.x, left < right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >(b64 left, b64v2_mt16 right)
-    {
-        return new(left > right.x, left > right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator <=(b64 left, b64v2_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator >=(b64 left, b64v2_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(b64v2_mt16 other)
-    {
-        return (x < other.x) & (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(b64v2_mt16 other)
-    {
-        return (x > other.x) & (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(b64v2_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(b64v2_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(b64v2_mt16 other)
-    {
-        return (x < other.x) | (y < other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(b64v2_mt16 other)
-    {
-        return (x > other.x) | (y > other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(b64v2_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(b64v2_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y);
-    }
-
-}
-
-#endregion // b64v2_mt16
-#region b64v3_mt4
-
-public partial struct b64v3_mt4 : IComparable<b64v3_mt4>, IComparable
-    , IComparisonOperators<b64v3_mt4, b64v3_mt4, bool>
-    , IComparisonOperators<b64v3_mt4, b64v3_mt4, b64v3_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v3_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v3_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v3_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v3_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v3_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v3_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v3_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<b64v3_mt4, b64v3_mt4, bool>.operator <(b64v3_mt4 left, b64v3_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt4, b64v3_mt4, bool>.operator >(b64v3_mt4 left, b64v3_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt4, b64v3_mt4, bool>.operator <=(b64v3_mt4 left, b64v3_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt4, b64v3_mt4, bool>.operator >=(b64v3_mt4 left, b64v3_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v3_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v3_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v3_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(b64v3_mt4 left, b64v3_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(b64v3_mt4 left, b64v3_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(b64v3_mt4 left, b64v3_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(b64v3_mt4 left, b64v3_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(b64v3_mt4 left, b64_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(b64v3_mt4 left, b64_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(b64v3_mt4 left, b64_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(b64v3_mt4 left, b64_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(b64_mt4 left, b64v3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(b64_mt4 left, b64v3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(b64_mt4 left, b64v3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(b64_mt4 left, b64v3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(b64v3_mt4 left, b64 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(b64v3_mt4 left, b64 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(b64v3_mt4 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(b64v3_mt4 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <(b64 left, b64v3_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >(b64 left, b64v3_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator <=(b64 left, b64v3_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator >=(b64 left, b64v3_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(b64v3_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(b64v3_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(b64v3_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(b64v3_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(b64v3_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(b64v3_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(b64v3_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(b64v3_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // b64v3_mt4
-#region b64v3_mt8
-
-public partial struct b64v3_mt8 : IComparable<b64v3_mt8>, IComparable
-    , IComparisonOperators<b64v3_mt8, b64v3_mt8, bool>
-    , IComparisonOperators<b64v3_mt8, b64v3_mt8, b64v3_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v3_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v3_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v3_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v3_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v3_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v3_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v3_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<b64v3_mt8, b64v3_mt8, bool>.operator <(b64v3_mt8 left, b64v3_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt8, b64v3_mt8, bool>.operator >(b64v3_mt8 left, b64v3_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt8, b64v3_mt8, bool>.operator <=(b64v3_mt8 left, b64v3_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt8, b64v3_mt8, bool>.operator >=(b64v3_mt8 left, b64v3_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v3_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v3_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v3_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(b64v3_mt8 left, b64v3_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(b64v3_mt8 left, b64v3_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(b64v3_mt8 left, b64v3_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(b64v3_mt8 left, b64v3_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(b64v3_mt8 left, b64_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(b64v3_mt8 left, b64_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(b64v3_mt8 left, b64_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(b64v3_mt8 left, b64_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(b64_mt8 left, b64v3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(b64_mt8 left, b64v3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(b64_mt8 left, b64v3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(b64_mt8 left, b64v3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(b64v3_mt8 left, b64 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(b64v3_mt8 left, b64 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(b64v3_mt8 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(b64v3_mt8 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <(b64 left, b64v3_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >(b64 left, b64v3_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator <=(b64 left, b64v3_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator >=(b64 left, b64v3_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(b64v3_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(b64v3_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(b64v3_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(b64v3_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(b64v3_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(b64v3_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(b64v3_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(b64v3_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // b64v3_mt8
-#region b64v3_mt16
-
-public partial struct b64v3_mt16 : IComparable<b64v3_mt16>, IComparable
-    , IComparisonOperators<b64v3_mt16, b64v3_mt16, bool>
-    , IComparisonOperators<b64v3_mt16, b64v3_mt16, b64v3_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v3_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v3_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v3_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v3_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v3_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v3_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v3_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z);
-    }
-
-    static bool IComparisonOperators<b64v3_mt16, b64v3_mt16, bool>.operator <(b64v3_mt16 left, b64v3_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt16, b64v3_mt16, bool>.operator >(b64v3_mt16 left, b64v3_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt16, b64v3_mt16, bool>.operator <=(b64v3_mt16 left, b64v3_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v3_mt16, b64v3_mt16, bool>.operator >=(b64v3_mt16 left, b64v3_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v3_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v3_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v3_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(b64v3_mt16 left, b64v3_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(b64v3_mt16 left, b64v3_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(b64v3_mt16 left, b64v3_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(b64v3_mt16 left, b64v3_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(b64v3_mt16 left, b64_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(b64v3_mt16 left, b64_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(b64v3_mt16 left, b64_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(b64v3_mt16 left, b64_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(b64_mt16 left, b64v3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(b64_mt16 left, b64v3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(b64_mt16 left, b64v3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(b64_mt16 left, b64v3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(b64v3_mt16 left, b64 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(b64v3_mt16 left, b64 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(b64v3_mt16 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(b64v3_mt16 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <(b64 left, b64v3_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >(b64 left, b64v3_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator <=(b64 left, b64v3_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator >=(b64 left, b64v3_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(b64v3_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(b64v3_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(b64v3_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(b64v3_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(b64v3_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(b64v3_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(b64v3_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(b64v3_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z);
-    }
-
-}
-
-#endregion // b64v3_mt16
-#region b64v4_mt4
-
-public partial struct b64v4_mt4 : IComparable<b64v4_mt4>, IComparable
-    , IComparisonOperators<b64v4_mt4, b64v4_mt4, bool>
-    , IComparisonOperators<b64v4_mt4, b64v4_mt4, b64v4_mt4>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v4_mt4 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v4_mt4 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v4_mt4 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v4_mt4 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v4_mt4 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v4_mt4 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v4_mt4 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<b64v4_mt4, b64v4_mt4, bool>.operator <(b64v4_mt4 left, b64v4_mt4 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt4, b64v4_mt4, bool>.operator >(b64v4_mt4 left, b64v4_mt4 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt4, b64v4_mt4, bool>.operator <=(b64v4_mt4 left, b64v4_mt4 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt4, b64v4_mt4, bool>.operator >=(b64v4_mt4 left, b64v4_mt4 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v4_mt4 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v4_mt4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v4_mt4)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(b64v4_mt4 left, b64v4_mt4 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(b64v4_mt4 left, b64v4_mt4 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(b64v4_mt4 left, b64v4_mt4 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(b64v4_mt4 left, b64v4_mt4 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(b64v4_mt4 left, b64_mt4 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(b64v4_mt4 left, b64_mt4 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(b64v4_mt4 left, b64_mt4 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(b64v4_mt4 left, b64_mt4 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(b64_mt4 left, b64v4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(b64_mt4 left, b64v4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(b64_mt4 left, b64v4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(b64_mt4 left, b64v4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(b64v4_mt4 left, b64 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(b64v4_mt4 left, b64 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(b64v4_mt4 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(b64v4_mt4 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <(b64 left, b64v4_mt4 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >(b64 left, b64v4_mt4 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator <=(b64 left, b64v4_mt4 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator >=(b64 left, b64v4_mt4 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAll(b64v4_mt4 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAll(b64v4_mt4 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAll(b64v4_mt4 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAll(b64v4_mt4 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanAny(b64v4_mt4 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanAny(b64v4_mt4 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 LessThanOrEqualAny(b64v4_mt4 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt4 GreaterThanOrEqualAny(b64v4_mt4 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // b64v4_mt4
-#region b64v4_mt8
-
-public partial struct b64v4_mt8 : IComparable<b64v4_mt8>, IComparable
-    , IComparisonOperators<b64v4_mt8, b64v4_mt8, bool>
-    , IComparisonOperators<b64v4_mt8, b64v4_mt8, b64v4_mt8>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v4_mt8 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v4_mt8 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v4_mt8 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v4_mt8 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v4_mt8 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v4_mt8 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v4_mt8 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<b64v4_mt8, b64v4_mt8, bool>.operator <(b64v4_mt8 left, b64v4_mt8 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt8, b64v4_mt8, bool>.operator >(b64v4_mt8 left, b64v4_mt8 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt8, b64v4_mt8, bool>.operator <=(b64v4_mt8 left, b64v4_mt8 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt8, b64v4_mt8, bool>.operator >=(b64v4_mt8 left, b64v4_mt8 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v4_mt8 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v4_mt8 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v4_mt8)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(b64v4_mt8 left, b64v4_mt8 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(b64v4_mt8 left, b64v4_mt8 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(b64v4_mt8 left, b64v4_mt8 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(b64v4_mt8 left, b64v4_mt8 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(b64v4_mt8 left, b64_mt8 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(b64v4_mt8 left, b64_mt8 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(b64v4_mt8 left, b64_mt8 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(b64v4_mt8 left, b64_mt8 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(b64_mt8 left, b64v4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(b64_mt8 left, b64v4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(b64_mt8 left, b64v4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(b64_mt8 left, b64v4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(b64v4_mt8 left, b64 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(b64v4_mt8 left, b64 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(b64v4_mt8 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(b64v4_mt8 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <(b64 left, b64v4_mt8 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >(b64 left, b64v4_mt8 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator <=(b64 left, b64v4_mt8 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator >=(b64 left, b64v4_mt8 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAll(b64v4_mt8 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAll(b64v4_mt8 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAll(b64v4_mt8 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAll(b64v4_mt8 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanAny(b64v4_mt8 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanAny(b64v4_mt8 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 LessThanOrEqualAny(b64v4_mt8 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt8 GreaterThanOrEqualAny(b64v4_mt8 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // b64v4_mt8
-#region b64v4_mt16
-
-public partial struct b64v4_mt16 : IComparable<b64v4_mt16>, IComparable
-    , IComparisonOperators<b64v4_mt16, b64v4_mt16, bool>
-    , IComparisonOperators<b64v4_mt16, b64v4_mt16, b64v4_mt16>
-{
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAll(b64v4_mt16 other)
-    {
-        return x.LessThanAll(other.x) && y.LessThanAll(other.y) && z.LessThanAll(other.z) && w.LessThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAll(b64v4_mt16 other)
-    {
-        return x.GreaterThanAll(other.x) && y.GreaterThanAll(other.y) && z.GreaterThanAll(other.z) && w.GreaterThanAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAll(b64v4_mt16 other)
-    {
-        return x.LessThanOrEqualAll(other.x) && y.LessThanOrEqualAll(other.y) && z.LessThanOrEqualAll(other.z) && w.LessThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAll(b64v4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAll(other.x) && y.GreaterThanOrEqualAll(other.y) && z.GreaterThanOrEqualAll(other.z) && w.GreaterThanOrEqualAll(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanAny(b64v4_mt16 other)
-    {
-        return x.LessThanAny(other.x) || y.LessThanAny(other.y) || z.LessThanAny(other.z) || w.LessThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanAny(b64v4_mt16 other)
-    {
-        return x.GreaterThanAny(other.x) || y.GreaterThanAny(other.y) || z.GreaterThanAny(other.z) || w.GreaterThanAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneLessThanOrEqualAny(b64v4_mt16 other)
-    {
-        return x.LessThanOrEqualAny(other.x) || y.LessThanOrEqualAny(other.y) || z.LessThanOrEqualAny(other.z) || w.LessThanOrEqualAny(other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly bool LaneGreaterThanOrEqualAny(b64v4_mt16 other)
-    {
-        return x.GreaterThanOrEqualAny(other.x) || y.GreaterThanOrEqualAny(other.y) || z.GreaterThanOrEqualAny(other.z) || w.GreaterThanOrEqualAny(other.w);
-    }
-
-    static bool IComparisonOperators<b64v4_mt16, b64v4_mt16, bool>.operator <(b64v4_mt16 left, b64v4_mt16 right) => 
-        left.LaneLessThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt16, b64v4_mt16, bool>.operator >(b64v4_mt16 left, b64v4_mt16 right) => 
-        left.LaneGreaterThanAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt16, b64v4_mt16, bool>.operator <=(b64v4_mt16 left, b64v4_mt16 right) => 
-        left.LaneLessThanOrEqualAll(right);
-    [MethodImpl(256 | 512)]
-    static bool IComparisonOperators<b64v4_mt16, b64v4_mt16, bool>.operator >=(b64v4_mt16 left, b64v4_mt16 right) => 
-        left.LaneGreaterThanOrEqualAll(right);
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(b64v4_mt16 other)
-    {
-        if (LaneLessThanAny(other)) return -1;
-        if (LaneGreaterThanAny(other)) return 1;
-        return 0;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int CompareTo(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return 1;
-        return obj is b64v4_mt16 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v4_mt16)}");
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(b64v4_mt16 left, b64v4_mt16 right)
-    {
-        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(b64v4_mt16 left, b64v4_mt16 right)
-    {
-        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(b64v4_mt16 left, b64v4_mt16 right)
-    {
-        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(b64v4_mt16 left, b64v4_mt16 right)
-    {
-        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(b64v4_mt16 left, b64_mt16 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(b64v4_mt16 left, b64_mt16 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(b64v4_mt16 left, b64_mt16 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(b64v4_mt16 left, b64_mt16 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(b64_mt16 left, b64v4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(b64_mt16 left, b64v4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(b64_mt16 left, b64v4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(b64_mt16 left, b64v4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(b64v4_mt16 left, b64 right)
-    {
-        return new(left.x < right, left.y < right, left.z < right, left.w < right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(b64v4_mt16 left, b64 right)
-    {
-        return new(left.x > right, left.y > right, left.z > right, left.w > right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(b64v4_mt16 left, b64 right)
-    {
-        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(b64v4_mt16 left, b64 right)
-    {
-        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <(b64 left, b64v4_mt16 right)
-    {
-        return new(left < right.x, left < right.y, left < right.z, left < right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >(b64 left, b64v4_mt16 right)
-    {
-        return new(left > right.x, left > right.y, left > right.z, left > right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator <=(b64 left, b64v4_mt16 right)
-    {
-        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator >=(b64 left, b64v4_mt16 right)
-    {
-        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAll(b64v4_mt16 other)
-    {
-        return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAll(b64v4_mt16 other)
-    {
-        return (x > other.x) & (y > other.y) & (z > other.z) & (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAll(b64v4_mt16 other)
-    {
-        return (x <= other.x) & (y <= other.y) & (z <= other.z) & (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAll(b64v4_mt16 other)
-    {
-        return (x >= other.x) & (y >= other.y) & (z >= other.z) & (w >= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanAny(b64v4_mt16 other)
-    {
-        return (x < other.x) | (y < other.y) | (z < other.z) | (w < other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanAny(b64v4_mt16 other)
-    {
-        return (x > other.x) | (y > other.y) | (z > other.z) | (w > other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 LessThanOrEqualAny(b64v4_mt16 other)
-    {
-        return (x <= other.x) | (y <= other.y) | (z <= other.z) | (w <= other.w);
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64_mt16 GreaterThanOrEqualAny(b64v4_mt16 other)
-    {
-        return (x >= other.x) | (y >= other.y) | (z >= other.z) | (w >= other.w);
-    }
-
-}
-
-#endregion // b64v4_mt16
+#endregion // b64v4_mt

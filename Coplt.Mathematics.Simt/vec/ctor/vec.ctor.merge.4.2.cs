@@ -2,12 +2,12 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float4_mt4
+#region float4_mt
 
-public partial struct float4_mt4 
+public partial struct float4_mt 
 {
     [MethodImpl(256 | 512)]
-    public float4_mt4(float2_mt4 xy, float2_mt4 zw)
+    public float4_mt(float2_mt xy, float2_mt zw)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -16,7 +16,7 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt4(float2_mt4 xy, float_mt4 z, float_mt4 w)
+    public float4_mt(float2_mt xy, float_mt z, float_mt w)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -25,7 +25,7 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt4(float_mt4 x, float_mt4 y, float2_mt4 zw)
+    public float4_mt(float_mt x, float_mt y, float2_mt zw)
     {
         this.x = x;
         this.y = y;
@@ -34,7 +34,7 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt4(float_mt4 x, float2_mt4 yz, float_mt4 w)
+    public float4_mt(float_mt x, float2_mt yz, float_mt w)
     {
         this.x = x;
         this.y = yz.x;
@@ -43,7 +43,7 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt4(float2_mt4 xw, float2_mt4 yz, merge_xw_yz _)
+    internal float4_mt(float2_mt xw, float2_mt yz, merge_xw_yz _)
     {
         this.x = xw.x;
         this.y = yz.x;
@@ -52,7 +52,7 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt4(float2_mt4 xw, float_mt4 y, float_mt4 z, insert_yz _)
+    internal float4_mt(float2_mt xw, float_mt y, float_mt z, insert_yz _)
     {
         this.x = xw.x;
         this.y = y;
@@ -61,7 +61,7 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt4(float2_mt4 xz, float2_mt4 yw, merge_xz_yw _)
+    internal float4_mt(float2_mt xz, float2_mt yw, merge_xz_yw _)
     {
         this.x = xz.x;
         this.y = yw.x;
@@ -70,7 +70,7 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt4(float2_mt4 xz, float_mt4 y, float_mt4 w, insert_yw _)
+    internal float4_mt(float2_mt xz, float_mt y, float_mt w, insert_yw _)
     {
         this.x = xz.x;
         this.y = y;
@@ -79,197 +79,7 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt4(float2_mt4 yw, float_mt4 x, float_mt4 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 float4_mt4(float2_mt4 xy, float2_mt4 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 float4_mt4(float2_mt4 xy, float_mt4 z, float_mt4 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 float4_mt4(float_mt4 x, float_mt4 y, float2_mt4 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 float4_mt4(float_mt4 x, float2_mt4 yz, float_mt4 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Izw(this float2_mt4 xy, float2_mt4 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Ixy(this float2_mt4 zw, float2_mt4 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Iyz(this float2_mt4 xw, float2_mt4 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Ixw(this float2_mt4 yz, float2_mt4 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Iyw(this float2_mt4 xz, float2_mt4 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Ixz(this float2_mt4 yw, float2_mt4 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Izw(this float2_mt4 xy, float_mt4 z, float_mt4 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Ixy(this float2_mt4 zw, float_mt4 x, float_mt4 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Iyz(this float2_mt4 xw, float_mt4 y, float_mt4 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Ixw(this float2_mt4 yz, float_mt4 x, float_mt4 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Iyw(this float2_mt4 xz, float_mt4 y, float_mt4 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 Ixz(this float2_mt4 yw, float_mt4 x, float_mt4 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // float4_mt4
-
-#region float4_mt8
-
-public partial struct float4_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public float4_mt8(float2_mt8 xy, float2_mt8 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt8(float2_mt8 xy, float_mt8 z, float_mt8 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt8(float_mt8 x, float_mt8 y, float2_mt8 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt8(float_mt8 x, float2_mt8 yz, float_mt8 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal float4_mt8(float2_mt8 xw, float2_mt8 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal float4_mt8(float2_mt8 xw, float_mt8 y, float_mt8 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal float4_mt8(float2_mt8 xz, float2_mt8 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal float4_mt8(float2_mt8 xz, float_mt8 y, float_mt8 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal float4_mt8(float2_mt8 yw, float_mt8 x, float_mt8 z, insert_xz _)
+    internal float4_mt(float2_mt yw, float_mt x, float_mt z, insert_xz _)
     {
         this.x = x;
         this.y = yw.x;
@@ -281,16 +91,16 @@ public partial struct float4_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static float4_mt8 float4_mt8(float2_mt8 xy, float2_mt8 zw) => new(xy, zw);
+    public static float4_mt float4_mt(float2_mt xy, float2_mt zw) => new(xy, zw);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt8 float4_mt8(float2_mt8 xy, float_mt8 z, float_mt8 w) => new(xy, z, w);
+    public static float4_mt float4_mt(float2_mt xy, float_mt z, float_mt w) => new(xy, z, w);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt8 float4_mt8(float_mt8 x, float_mt8 y, float2_mt8 zw) => new(x, y, zw);
+    public static float4_mt float4_mt(float_mt x, float_mt y, float2_mt zw) => new(x, y, zw);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt8 float4_mt8(float_mt8 x, float2_mt8 yz, float_mt8 w) => new(x, yz, w);
+    public static float4_mt float4_mt(float_mt x, float2_mt yz, float_mt w) => new(x, yz, w);
 }
 
 public static partial class math_mt_ex
@@ -300,94 +110,94 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Izw(this float2_mt8 xy, float2_mt8 zw) => new(xy, zw);
+    public static float4_mt Izw(this float2_mt xy, float2_mt zw) => new(xy, zw);
 
     /// <summary>
     /// Insert X Y component
     /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ixy(this float2_mt8 zw, float2_mt8 xy) => new(xy, zw);
+    public static float4_mt Ixy(this float2_mt zw, float2_mt xy) => new(xy, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Iyz(this float2_mt8 xw, float2_mt8 yz) => new(xw, yz, new merge_xw_yz());
+    public static float4_mt Iyz(this float2_mt xw, float2_mt yz) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ixw(this float2_mt8 yz, float2_mt8 xw) => new(xw, yz, new merge_xw_yz());
+    public static float4_mt Ixw(this float2_mt yz, float2_mt xw) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert Y W component
     /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Iyw(this float2_mt8 xz, float2_mt8 yw) => new(xz, yw, new merge_xz_yw());
+    public static float4_mt Iyw(this float2_mt xz, float2_mt yw) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ixz(this float2_mt8 yw, float2_mt8 xz) => new(xz, yw, new merge_xz_yw());
+    public static float4_mt Ixz(this float2_mt yw, float2_mt xz) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert Z W component
     /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Izw(this float2_mt8 xy, float_mt8 z, float_mt8 w) => new(xy, z, w);
+    public static float4_mt Izw(this float2_mt xy, float_mt z, float_mt w) => new(xy, z, w);
 
     /// <summary>
     /// Insert X Y component
     /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ixy(this float2_mt8 zw, float_mt8 x, float_mt8 y) => new(x, y, zw);
+    public static float4_mt Ixy(this float2_mt zw, float_mt x, float_mt y) => new(x, y, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Iyz(this float2_mt8 xw, float_mt8 y, float_mt8 z) => new(xw, y, z, new insert_yz());
+    public static float4_mt Iyz(this float2_mt xw, float_mt y, float_mt z) => new(xw, y, z, new insert_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>X W -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ixw(this float2_mt8 yz, float_mt8 x, float_mt8 w) => new(x, yz, w);
+    public static float4_mt Ixw(this float2_mt yz, float_mt x, float_mt w) => new(x, yz, w);
 
     /// <summary>
     /// Insert Y W component
     /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Iyw(this float2_mt8 xz, float_mt8 y, float_mt8 w) => new(xz, y, w, new insert_yw());
+    public static float4_mt Iyw(this float2_mt xz, float_mt y, float_mt w) => new(xz, y, w, new insert_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt8 Ixz(this float2_mt8 yw, float_mt8 x, float_mt8 z) => new(yw, x, z, new insert_xz());
+    public static float4_mt Ixz(this float2_mt yw, float_mt x, float_mt z) => new(yw, x, z, new insert_xz());
 }
 
-#endregion // float4_mt8
+#endregion // float4_mt
 
-#region float4_mt16
+#region double4_mt
 
-public partial struct float4_mt16 
+public partial struct double4_mt 
 {
     [MethodImpl(256 | 512)]
-    public float4_mt16(float2_mt16 xy, float2_mt16 zw)
+    public double4_mt(double2_mt xy, double2_mt zw)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -396,7 +206,7 @@ public partial struct float4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt16(float2_mt16 xy, float_mt16 z, float_mt16 w)
+    public double4_mt(double2_mt xy, double_mt z, double_mt w)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -405,7 +215,7 @@ public partial struct float4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt16(float_mt16 x, float_mt16 y, float2_mt16 zw)
+    public double4_mt(double_mt x, double_mt y, double2_mt zw)
     {
         this.x = x;
         this.y = y;
@@ -414,7 +224,7 @@ public partial struct float4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt16(float_mt16 x, float2_mt16 yz, float_mt16 w)
+    public double4_mt(double_mt x, double2_mt yz, double_mt w)
     {
         this.x = x;
         this.y = yz.x;
@@ -423,7 +233,7 @@ public partial struct float4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt16(float2_mt16 xw, float2_mt16 yz, merge_xw_yz _)
+    internal double4_mt(double2_mt xw, double2_mt yz, merge_xw_yz _)
     {
         this.x = xw.x;
         this.y = yz.x;
@@ -432,7 +242,7 @@ public partial struct float4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt16(float2_mt16 xw, float_mt16 y, float_mt16 z, insert_yz _)
+    internal double4_mt(double2_mt xw, double_mt y, double_mt z, insert_yz _)
     {
         this.x = xw.x;
         this.y = y;
@@ -441,7 +251,7 @@ public partial struct float4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt16(float2_mt16 xz, float2_mt16 yw, merge_xz_yw _)
+    internal double4_mt(double2_mt xz, double2_mt yw, merge_xz_yw _)
     {
         this.x = xz.x;
         this.y = yw.x;
@@ -450,7 +260,7 @@ public partial struct float4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt16(float2_mt16 xz, float_mt16 y, float_mt16 w, insert_yw _)
+    internal double4_mt(double2_mt xz, double_mt y, double_mt w, insert_yw _)
     {
         this.x = xz.x;
         this.y = y;
@@ -459,7 +269,7 @@ public partial struct float4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal float4_mt16(float2_mt16 yw, float_mt16 x, float_mt16 z, insert_xz _)
+    internal double4_mt(double2_mt yw, double_mt x, double_mt z, insert_xz _)
     {
         this.x = x;
         this.y = yw.x;
@@ -471,16 +281,16 @@ public partial struct float4_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static float4_mt16 float4_mt16(float2_mt16 xy, float2_mt16 zw) => new(xy, zw);
+    public static double4_mt double4_mt(double2_mt xy, double2_mt zw) => new(xy, zw);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt16 float4_mt16(float2_mt16 xy, float_mt16 z, float_mt16 w) => new(xy, z, w);
+    public static double4_mt double4_mt(double2_mt xy, double_mt z, double_mt w) => new(xy, z, w);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt16 float4_mt16(float_mt16 x, float_mt16 y, float2_mt16 zw) => new(x, y, zw);
+    public static double4_mt double4_mt(double_mt x, double_mt y, double2_mt zw) => new(x, y, zw);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt16 float4_mt16(float_mt16 x, float2_mt16 yz, float_mt16 w) => new(x, yz, w);
+    public static double4_mt double4_mt(double_mt x, double2_mt yz, double_mt w) => new(x, yz, w);
 }
 
 public static partial class math_mt_ex
@@ -490,94 +300,94 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Izw(this float2_mt16 xy, float2_mt16 zw) => new(xy, zw);
+    public static double4_mt Izw(this double2_mt xy, double2_mt zw) => new(xy, zw);
 
     /// <summary>
     /// Insert X Y component
     /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ixy(this float2_mt16 zw, float2_mt16 xy) => new(xy, zw);
+    public static double4_mt Ixy(this double2_mt zw, double2_mt xy) => new(xy, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Iyz(this float2_mt16 xw, float2_mt16 yz) => new(xw, yz, new merge_xw_yz());
+    public static double4_mt Iyz(this double2_mt xw, double2_mt yz) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ixw(this float2_mt16 yz, float2_mt16 xw) => new(xw, yz, new merge_xw_yz());
+    public static double4_mt Ixw(this double2_mt yz, double2_mt xw) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert Y W component
     /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Iyw(this float2_mt16 xz, float2_mt16 yw) => new(xz, yw, new merge_xz_yw());
+    public static double4_mt Iyw(this double2_mt xz, double2_mt yw) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ixz(this float2_mt16 yw, float2_mt16 xz) => new(xz, yw, new merge_xz_yw());
+    public static double4_mt Ixz(this double2_mt yw, double2_mt xz) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert Z W component
     /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Izw(this float2_mt16 xy, float_mt16 z, float_mt16 w) => new(xy, z, w);
+    public static double4_mt Izw(this double2_mt xy, double_mt z, double_mt w) => new(xy, z, w);
 
     /// <summary>
     /// Insert X Y component
     /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ixy(this float2_mt16 zw, float_mt16 x, float_mt16 y) => new(x, y, zw);
+    public static double4_mt Ixy(this double2_mt zw, double_mt x, double_mt y) => new(x, y, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Iyz(this float2_mt16 xw, float_mt16 y, float_mt16 z) => new(xw, y, z, new insert_yz());
+    public static double4_mt Iyz(this double2_mt xw, double_mt y, double_mt z) => new(xw, y, z, new insert_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>X W -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ixw(this float2_mt16 yz, float_mt16 x, float_mt16 w) => new(x, yz, w);
+    public static double4_mt Ixw(this double2_mt yz, double_mt x, double_mt w) => new(x, yz, w);
 
     /// <summary>
     /// Insert Y W component
     /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Iyw(this float2_mt16 xz, float_mt16 y, float_mt16 w) => new(xz, y, w, new insert_yw());
+    public static double4_mt Iyw(this double2_mt xz, double_mt y, double_mt w) => new(xz, y, w, new insert_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4_mt16 Ixz(this float2_mt16 yw, float_mt16 x, float_mt16 z) => new(yw, x, z, new insert_xz());
+    public static double4_mt Ixz(this double2_mt yw, double_mt x, double_mt z) => new(yw, x, z, new insert_xz());
 }
 
-#endregion // float4_mt16
+#endregion // double4_mt
 
-#region double4_mt4
+#region int4_mt
 
-public partial struct double4_mt4 
+public partial struct int4_mt 
 {
     [MethodImpl(256 | 512)]
-    public double4_mt4(double2_mt4 xy, double2_mt4 zw)
+    public int4_mt(int2_mt xy, int2_mt zw)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -586,7 +396,7 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt4(double2_mt4 xy, double_mt4 z, double_mt4 w)
+    public int4_mt(int2_mt xy, int_mt z, int_mt w)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -595,7 +405,7 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt4(double_mt4 x, double_mt4 y, double2_mt4 zw)
+    public int4_mt(int_mt x, int_mt y, int2_mt zw)
     {
         this.x = x;
         this.y = y;
@@ -604,7 +414,7 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt4(double_mt4 x, double2_mt4 yz, double_mt4 w)
+    public int4_mt(int_mt x, int2_mt yz, int_mt w)
     {
         this.x = x;
         this.y = yz.x;
@@ -613,7 +423,7 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt4(double2_mt4 xw, double2_mt4 yz, merge_xw_yz _)
+    internal int4_mt(int2_mt xw, int2_mt yz, merge_xw_yz _)
     {
         this.x = xw.x;
         this.y = yz.x;
@@ -622,7 +432,7 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt4(double2_mt4 xw, double_mt4 y, double_mt4 z, insert_yz _)
+    internal int4_mt(int2_mt xw, int_mt y, int_mt z, insert_yz _)
     {
         this.x = xw.x;
         this.y = y;
@@ -631,7 +441,7 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt4(double2_mt4 xz, double2_mt4 yw, merge_xz_yw _)
+    internal int4_mt(int2_mt xz, int2_mt yw, merge_xz_yw _)
     {
         this.x = xz.x;
         this.y = yw.x;
@@ -640,7 +450,7 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt4(double2_mt4 xz, double_mt4 y, double_mt4 w, insert_yw _)
+    internal int4_mt(int2_mt xz, int_mt y, int_mt w, insert_yw _)
     {
         this.x = xz.x;
         this.y = y;
@@ -649,7 +459,7 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt4(double2_mt4 yw, double_mt4 x, double_mt4 z, insert_xz _)
+    internal int4_mt(int2_mt yw, int_mt x, int_mt z, insert_xz _)
     {
         this.x = x;
         this.y = yw.x;
@@ -661,16 +471,16 @@ public partial struct double4_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static double4_mt4 double4_mt4(double2_mt4 xy, double2_mt4 zw) => new(xy, zw);
+    public static int4_mt int4_mt(int2_mt xy, int2_mt zw) => new(xy, zw);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 double4_mt4(double2_mt4 xy, double_mt4 z, double_mt4 w) => new(xy, z, w);
+    public static int4_mt int4_mt(int2_mt xy, int_mt z, int_mt w) => new(xy, z, w);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 double4_mt4(double_mt4 x, double_mt4 y, double2_mt4 zw) => new(x, y, zw);
+    public static int4_mt int4_mt(int_mt x, int_mt y, int2_mt zw) => new(x, y, zw);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 double4_mt4(double_mt4 x, double2_mt4 yz, double_mt4 w) => new(x, yz, w);
+    public static int4_mt int4_mt(int_mt x, int2_mt yz, int_mt w) => new(x, yz, w);
 }
 
 public static partial class math_mt_ex
@@ -680,94 +490,94 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Izw(this double2_mt4 xy, double2_mt4 zw) => new(xy, zw);
+    public static int4_mt Izw(this int2_mt xy, int2_mt zw) => new(xy, zw);
 
     /// <summary>
     /// Insert X Y component
     /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ixy(this double2_mt4 zw, double2_mt4 xy) => new(xy, zw);
+    public static int4_mt Ixy(this int2_mt zw, int2_mt xy) => new(xy, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Iyz(this double2_mt4 xw, double2_mt4 yz) => new(xw, yz, new merge_xw_yz());
+    public static int4_mt Iyz(this int2_mt xw, int2_mt yz) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ixw(this double2_mt4 yz, double2_mt4 xw) => new(xw, yz, new merge_xw_yz());
+    public static int4_mt Ixw(this int2_mt yz, int2_mt xw) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert Y W component
     /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Iyw(this double2_mt4 xz, double2_mt4 yw) => new(xz, yw, new merge_xz_yw());
+    public static int4_mt Iyw(this int2_mt xz, int2_mt yw) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ixz(this double2_mt4 yw, double2_mt4 xz) => new(xz, yw, new merge_xz_yw());
+    public static int4_mt Ixz(this int2_mt yw, int2_mt xz) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert Z W component
     /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Izw(this double2_mt4 xy, double_mt4 z, double_mt4 w) => new(xy, z, w);
+    public static int4_mt Izw(this int2_mt xy, int_mt z, int_mt w) => new(xy, z, w);
 
     /// <summary>
     /// Insert X Y component
     /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ixy(this double2_mt4 zw, double_mt4 x, double_mt4 y) => new(x, y, zw);
+    public static int4_mt Ixy(this int2_mt zw, int_mt x, int_mt y) => new(x, y, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Iyz(this double2_mt4 xw, double_mt4 y, double_mt4 z) => new(xw, y, z, new insert_yz());
+    public static int4_mt Iyz(this int2_mt xw, int_mt y, int_mt z) => new(xw, y, z, new insert_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>X W -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ixw(this double2_mt4 yz, double_mt4 x, double_mt4 w) => new(x, yz, w);
+    public static int4_mt Ixw(this int2_mt yz, int_mt x, int_mt w) => new(x, yz, w);
 
     /// <summary>
     /// Insert Y W component
     /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Iyw(this double2_mt4 xz, double_mt4 y, double_mt4 w) => new(xz, y, w, new insert_yw());
+    public static int4_mt Iyw(this int2_mt xz, int_mt y, int_mt w) => new(xz, y, w, new insert_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt4 Ixz(this double2_mt4 yw, double_mt4 x, double_mt4 z) => new(yw, x, z, new insert_xz());
+    public static int4_mt Ixz(this int2_mt yw, int_mt x, int_mt z) => new(yw, x, z, new insert_xz());
 }
 
-#endregion // double4_mt4
+#endregion // int4_mt
 
-#region double4_mt8
+#region uint4_mt
 
-public partial struct double4_mt8 
+public partial struct uint4_mt 
 {
     [MethodImpl(256 | 512)]
-    public double4_mt8(double2_mt8 xy, double2_mt8 zw)
+    public uint4_mt(uint2_mt xy, uint2_mt zw)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -776,7 +586,7 @@ public partial struct double4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt8(double2_mt8 xy, double_mt8 z, double_mt8 w)
+    public uint4_mt(uint2_mt xy, uint_mt z, uint_mt w)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -785,7 +595,7 @@ public partial struct double4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt8(double_mt8 x, double_mt8 y, double2_mt8 zw)
+    public uint4_mt(uint_mt x, uint_mt y, uint2_mt zw)
     {
         this.x = x;
         this.y = y;
@@ -794,7 +604,7 @@ public partial struct double4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt8(double_mt8 x, double2_mt8 yz, double_mt8 w)
+    public uint4_mt(uint_mt x, uint2_mt yz, uint_mt w)
     {
         this.x = x;
         this.y = yz.x;
@@ -803,7 +613,7 @@ public partial struct double4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt8(double2_mt8 xw, double2_mt8 yz, merge_xw_yz _)
+    internal uint4_mt(uint2_mt xw, uint2_mt yz, merge_xw_yz _)
     {
         this.x = xw.x;
         this.y = yz.x;
@@ -812,7 +622,7 @@ public partial struct double4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt8(double2_mt8 xw, double_mt8 y, double_mt8 z, insert_yz _)
+    internal uint4_mt(uint2_mt xw, uint_mt y, uint_mt z, insert_yz _)
     {
         this.x = xw.x;
         this.y = y;
@@ -821,7 +631,7 @@ public partial struct double4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt8(double2_mt8 xz, double2_mt8 yw, merge_xz_yw _)
+    internal uint4_mt(uint2_mt xz, uint2_mt yw, merge_xz_yw _)
     {
         this.x = xz.x;
         this.y = yw.x;
@@ -830,7 +640,7 @@ public partial struct double4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt8(double2_mt8 xz, double_mt8 y, double_mt8 w, insert_yw _)
+    internal uint4_mt(uint2_mt xz, uint_mt y, uint_mt w, insert_yw _)
     {
         this.x = xz.x;
         this.y = y;
@@ -839,7 +649,7 @@ public partial struct double4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt8(double2_mt8 yw, double_mt8 x, double_mt8 z, insert_xz _)
+    internal uint4_mt(uint2_mt yw, uint_mt x, uint_mt z, insert_xz _)
     {
         this.x = x;
         this.y = yw.x;
@@ -851,16 +661,16 @@ public partial struct double4_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static double4_mt8 double4_mt8(double2_mt8 xy, double2_mt8 zw) => new(xy, zw);
+    public static uint4_mt uint4_mt(uint2_mt xy, uint2_mt zw) => new(xy, zw);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt8 double4_mt8(double2_mt8 xy, double_mt8 z, double_mt8 w) => new(xy, z, w);
+    public static uint4_mt uint4_mt(uint2_mt xy, uint_mt z, uint_mt w) => new(xy, z, w);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt8 double4_mt8(double_mt8 x, double_mt8 y, double2_mt8 zw) => new(x, y, zw);
+    public static uint4_mt uint4_mt(uint_mt x, uint_mt y, uint2_mt zw) => new(x, y, zw);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt8 double4_mt8(double_mt8 x, double2_mt8 yz, double_mt8 w) => new(x, yz, w);
+    public static uint4_mt uint4_mt(uint_mt x, uint2_mt yz, uint_mt w) => new(x, yz, w);
 }
 
 public static partial class math_mt_ex
@@ -870,94 +680,94 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Izw(this double2_mt8 xy, double2_mt8 zw) => new(xy, zw);
+    public static uint4_mt Izw(this uint2_mt xy, uint2_mt zw) => new(xy, zw);
 
     /// <summary>
     /// Insert X Y component
     /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ixy(this double2_mt8 zw, double2_mt8 xy) => new(xy, zw);
+    public static uint4_mt Ixy(this uint2_mt zw, uint2_mt xy) => new(xy, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Iyz(this double2_mt8 xw, double2_mt8 yz) => new(xw, yz, new merge_xw_yz());
+    public static uint4_mt Iyz(this uint2_mt xw, uint2_mt yz) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ixw(this double2_mt8 yz, double2_mt8 xw) => new(xw, yz, new merge_xw_yz());
+    public static uint4_mt Ixw(this uint2_mt yz, uint2_mt xw) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert Y W component
     /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Iyw(this double2_mt8 xz, double2_mt8 yw) => new(xz, yw, new merge_xz_yw());
+    public static uint4_mt Iyw(this uint2_mt xz, uint2_mt yw) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ixz(this double2_mt8 yw, double2_mt8 xz) => new(xz, yw, new merge_xz_yw());
+    public static uint4_mt Ixz(this uint2_mt yw, uint2_mt xz) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert Z W component
     /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Izw(this double2_mt8 xy, double_mt8 z, double_mt8 w) => new(xy, z, w);
+    public static uint4_mt Izw(this uint2_mt xy, uint_mt z, uint_mt w) => new(xy, z, w);
 
     /// <summary>
     /// Insert X Y component
     /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ixy(this double2_mt8 zw, double_mt8 x, double_mt8 y) => new(x, y, zw);
+    public static uint4_mt Ixy(this uint2_mt zw, uint_mt x, uint_mt y) => new(x, y, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Iyz(this double2_mt8 xw, double_mt8 y, double_mt8 z) => new(xw, y, z, new insert_yz());
+    public static uint4_mt Iyz(this uint2_mt xw, uint_mt y, uint_mt z) => new(xw, y, z, new insert_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>X W -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ixw(this double2_mt8 yz, double_mt8 x, double_mt8 w) => new(x, yz, w);
+    public static uint4_mt Ixw(this uint2_mt yz, uint_mt x, uint_mt w) => new(x, yz, w);
 
     /// <summary>
     /// Insert Y W component
     /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Iyw(this double2_mt8 xz, double_mt8 y, double_mt8 w) => new(xz, y, w, new insert_yw());
+    public static uint4_mt Iyw(this uint2_mt xz, uint_mt y, uint_mt w) => new(xz, y, w, new insert_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt8 Ixz(this double2_mt8 yw, double_mt8 x, double_mt8 z) => new(yw, x, z, new insert_xz());
+    public static uint4_mt Ixz(this uint2_mt yw, uint_mt x, uint_mt z) => new(yw, x, z, new insert_xz());
 }
 
-#endregion // double4_mt8
+#endregion // uint4_mt
 
-#region double4_mt16
+#region long4_mt
 
-public partial struct double4_mt16 
+public partial struct long4_mt 
 {
     [MethodImpl(256 | 512)]
-    public double4_mt16(double2_mt16 xy, double2_mt16 zw)
+    public long4_mt(long2_mt xy, long2_mt zw)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -966,7 +776,7 @@ public partial struct double4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt16(double2_mt16 xy, double_mt16 z, double_mt16 w)
+    public long4_mt(long2_mt xy, long_mt z, long_mt w)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -975,7 +785,7 @@ public partial struct double4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt16(double_mt16 x, double_mt16 y, double2_mt16 zw)
+    public long4_mt(long_mt x, long_mt y, long2_mt zw)
     {
         this.x = x;
         this.y = y;
@@ -984,7 +794,7 @@ public partial struct double4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt16(double_mt16 x, double2_mt16 yz, double_mt16 w)
+    public long4_mt(long_mt x, long2_mt yz, long_mt w)
     {
         this.x = x;
         this.y = yz.x;
@@ -993,7 +803,7 @@ public partial struct double4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt16(double2_mt16 xw, double2_mt16 yz, merge_xw_yz _)
+    internal long4_mt(long2_mt xw, long2_mt yz, merge_xw_yz _)
     {
         this.x = xw.x;
         this.y = yz.x;
@@ -1002,7 +812,7 @@ public partial struct double4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt16(double2_mt16 xw, double_mt16 y, double_mt16 z, insert_yz _)
+    internal long4_mt(long2_mt xw, long_mt y, long_mt z, insert_yz _)
     {
         this.x = xw.x;
         this.y = y;
@@ -1011,7 +821,7 @@ public partial struct double4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt16(double2_mt16 xz, double2_mt16 yw, merge_xz_yw _)
+    internal long4_mt(long2_mt xz, long2_mt yw, merge_xz_yw _)
     {
         this.x = xz.x;
         this.y = yw.x;
@@ -1020,7 +830,7 @@ public partial struct double4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt16(double2_mt16 xz, double_mt16 y, double_mt16 w, insert_yw _)
+    internal long4_mt(long2_mt xz, long_mt y, long_mt w, insert_yw _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1029,7 +839,7 @@ public partial struct double4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal double4_mt16(double2_mt16 yw, double_mt16 x, double_mt16 z, insert_xz _)
+    internal long4_mt(long2_mt yw, long_mt x, long_mt z, insert_xz _)
     {
         this.x = x;
         this.y = yw.x;
@@ -1041,16 +851,16 @@ public partial struct double4_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static double4_mt16 double4_mt16(double2_mt16 xy, double2_mt16 zw) => new(xy, zw);
+    public static long4_mt long4_mt(long2_mt xy, long2_mt zw) => new(xy, zw);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt16 double4_mt16(double2_mt16 xy, double_mt16 z, double_mt16 w) => new(xy, z, w);
+    public static long4_mt long4_mt(long2_mt xy, long_mt z, long_mt w) => new(xy, z, w);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt16 double4_mt16(double_mt16 x, double_mt16 y, double2_mt16 zw) => new(x, y, zw);
+    public static long4_mt long4_mt(long_mt x, long_mt y, long2_mt zw) => new(x, y, zw);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt16 double4_mt16(double_mt16 x, double2_mt16 yz, double_mt16 w) => new(x, yz, w);
+    public static long4_mt long4_mt(long_mt x, long2_mt yz, long_mt w) => new(x, yz, w);
 }
 
 public static partial class math_mt_ex
@@ -1060,94 +870,94 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Izw(this double2_mt16 xy, double2_mt16 zw) => new(xy, zw);
+    public static long4_mt Izw(this long2_mt xy, long2_mt zw) => new(xy, zw);
 
     /// <summary>
     /// Insert X Y component
     /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ixy(this double2_mt16 zw, double2_mt16 xy) => new(xy, zw);
+    public static long4_mt Ixy(this long2_mt zw, long2_mt xy) => new(xy, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Iyz(this double2_mt16 xw, double2_mt16 yz) => new(xw, yz, new merge_xw_yz());
+    public static long4_mt Iyz(this long2_mt xw, long2_mt yz) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ixw(this double2_mt16 yz, double2_mt16 xw) => new(xw, yz, new merge_xw_yz());
+    public static long4_mt Ixw(this long2_mt yz, long2_mt xw) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert Y W component
     /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Iyw(this double2_mt16 xz, double2_mt16 yw) => new(xz, yw, new merge_xz_yw());
+    public static long4_mt Iyw(this long2_mt xz, long2_mt yw) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ixz(this double2_mt16 yw, double2_mt16 xz) => new(xz, yw, new merge_xz_yw());
+    public static long4_mt Ixz(this long2_mt yw, long2_mt xz) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert Z W component
     /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Izw(this double2_mt16 xy, double_mt16 z, double_mt16 w) => new(xy, z, w);
+    public static long4_mt Izw(this long2_mt xy, long_mt z, long_mt w) => new(xy, z, w);
 
     /// <summary>
     /// Insert X Y component
     /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ixy(this double2_mt16 zw, double_mt16 x, double_mt16 y) => new(x, y, zw);
+    public static long4_mt Ixy(this long2_mt zw, long_mt x, long_mt y) => new(x, y, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Iyz(this double2_mt16 xw, double_mt16 y, double_mt16 z) => new(xw, y, z, new insert_yz());
+    public static long4_mt Iyz(this long2_mt xw, long_mt y, long_mt z) => new(xw, y, z, new insert_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>X W -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ixw(this double2_mt16 yz, double_mt16 x, double_mt16 w) => new(x, yz, w);
+    public static long4_mt Ixw(this long2_mt yz, long_mt x, long_mt w) => new(x, yz, w);
 
     /// <summary>
     /// Insert Y W component
     /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Iyw(this double2_mt16 xz, double_mt16 y, double_mt16 w) => new(xz, y, w, new insert_yw());
+    public static long4_mt Iyw(this long2_mt xz, long_mt y, long_mt w) => new(xz, y, w, new insert_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4_mt16 Ixz(this double2_mt16 yw, double_mt16 x, double_mt16 z) => new(yw, x, z, new insert_xz());
+    public static long4_mt Ixz(this long2_mt yw, long_mt x, long_mt z) => new(yw, x, z, new insert_xz());
 }
 
-#endregion // double4_mt16
+#endregion // long4_mt
 
-#region int4_mt4
+#region ulong4_mt
 
-public partial struct int4_mt4 
+public partial struct ulong4_mt 
 {
     [MethodImpl(256 | 512)]
-    public int4_mt4(int2_mt4 xy, int2_mt4 zw)
+    public ulong4_mt(ulong2_mt xy, ulong2_mt zw)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1156,7 +966,7 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt4(int2_mt4 xy, int_mt4 z, int_mt4 w)
+    public ulong4_mt(ulong2_mt xy, ulong_mt z, ulong_mt w)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1165,7 +975,7 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt4(int_mt4 x, int_mt4 y, int2_mt4 zw)
+    public ulong4_mt(ulong_mt x, ulong_mt y, ulong2_mt zw)
     {
         this.x = x;
         this.y = y;
@@ -1174,7 +984,7 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt4(int_mt4 x, int2_mt4 yz, int_mt4 w)
+    public ulong4_mt(ulong_mt x, ulong2_mt yz, ulong_mt w)
     {
         this.x = x;
         this.y = yz.x;
@@ -1183,7 +993,7 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt4(int2_mt4 xw, int2_mt4 yz, merge_xw_yz _)
+    internal ulong4_mt(ulong2_mt xw, ulong2_mt yz, merge_xw_yz _)
     {
         this.x = xw.x;
         this.y = yz.x;
@@ -1192,7 +1002,7 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt4(int2_mt4 xw, int_mt4 y, int_mt4 z, insert_yz _)
+    internal ulong4_mt(ulong2_mt xw, ulong_mt y, ulong_mt z, insert_yz _)
     {
         this.x = xw.x;
         this.y = y;
@@ -1201,7 +1011,7 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt4(int2_mt4 xz, int2_mt4 yw, merge_xz_yw _)
+    internal ulong4_mt(ulong2_mt xz, ulong2_mt yw, merge_xz_yw _)
     {
         this.x = xz.x;
         this.y = yw.x;
@@ -1210,7 +1020,7 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt4(int2_mt4 xz, int_mt4 y, int_mt4 w, insert_yw _)
+    internal ulong4_mt(ulong2_mt xz, ulong_mt y, ulong_mt w, insert_yw _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1219,7 +1029,7 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt4(int2_mt4 yw, int_mt4 x, int_mt4 z, insert_xz _)
+    internal ulong4_mt(ulong2_mt yw, ulong_mt x, ulong_mt z, insert_xz _)
     {
         this.x = x;
         this.y = yw.x;
@@ -1231,16 +1041,16 @@ public partial struct int4_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static int4_mt4 int4_mt4(int2_mt4 xy, int2_mt4 zw) => new(xy, zw);
+    public static ulong4_mt ulong4_mt(ulong2_mt xy, ulong2_mt zw) => new(xy, zw);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 int4_mt4(int2_mt4 xy, int_mt4 z, int_mt4 w) => new(xy, z, w);
+    public static ulong4_mt ulong4_mt(ulong2_mt xy, ulong_mt z, ulong_mt w) => new(xy, z, w);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 int4_mt4(int_mt4 x, int_mt4 y, int2_mt4 zw) => new(x, y, zw);
+    public static ulong4_mt ulong4_mt(ulong_mt x, ulong_mt y, ulong2_mt zw) => new(x, y, zw);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 int4_mt4(int_mt4 x, int2_mt4 yz, int_mt4 w) => new(x, yz, w);
+    public static ulong4_mt ulong4_mt(ulong_mt x, ulong2_mt yz, ulong_mt w) => new(x, yz, w);
 }
 
 public static partial class math_mt_ex
@@ -1250,94 +1060,94 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Izw(this int2_mt4 xy, int2_mt4 zw) => new(xy, zw);
+    public static ulong4_mt Izw(this ulong2_mt xy, ulong2_mt zw) => new(xy, zw);
 
     /// <summary>
     /// Insert X Y component
     /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ixy(this int2_mt4 zw, int2_mt4 xy) => new(xy, zw);
+    public static ulong4_mt Ixy(this ulong2_mt zw, ulong2_mt xy) => new(xy, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Iyz(this int2_mt4 xw, int2_mt4 yz) => new(xw, yz, new merge_xw_yz());
+    public static ulong4_mt Iyz(this ulong2_mt xw, ulong2_mt yz) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ixw(this int2_mt4 yz, int2_mt4 xw) => new(xw, yz, new merge_xw_yz());
+    public static ulong4_mt Ixw(this ulong2_mt yz, ulong2_mt xw) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert Y W component
     /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Iyw(this int2_mt4 xz, int2_mt4 yw) => new(xz, yw, new merge_xz_yw());
+    public static ulong4_mt Iyw(this ulong2_mt xz, ulong2_mt yw) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ixz(this int2_mt4 yw, int2_mt4 xz) => new(xz, yw, new merge_xz_yw());
+    public static ulong4_mt Ixz(this ulong2_mt yw, ulong2_mt xz) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert Z W component
     /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Izw(this int2_mt4 xy, int_mt4 z, int_mt4 w) => new(xy, z, w);
+    public static ulong4_mt Izw(this ulong2_mt xy, ulong_mt z, ulong_mt w) => new(xy, z, w);
 
     /// <summary>
     /// Insert X Y component
     /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ixy(this int2_mt4 zw, int_mt4 x, int_mt4 y) => new(x, y, zw);
+    public static ulong4_mt Ixy(this ulong2_mt zw, ulong_mt x, ulong_mt y) => new(x, y, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Iyz(this int2_mt4 xw, int_mt4 y, int_mt4 z) => new(xw, y, z, new insert_yz());
+    public static ulong4_mt Iyz(this ulong2_mt xw, ulong_mt y, ulong_mt z) => new(xw, y, z, new insert_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>X W -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ixw(this int2_mt4 yz, int_mt4 x, int_mt4 w) => new(x, yz, w);
+    public static ulong4_mt Ixw(this ulong2_mt yz, ulong_mt x, ulong_mt w) => new(x, yz, w);
 
     /// <summary>
     /// Insert Y W component
     /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Iyw(this int2_mt4 xz, int_mt4 y, int_mt4 w) => new(xz, y, w, new insert_yw());
+    public static ulong4_mt Iyw(this ulong2_mt xz, ulong_mt y, ulong_mt w) => new(xz, y, w, new insert_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt4 Ixz(this int2_mt4 yw, int_mt4 x, int_mt4 z) => new(yw, x, z, new insert_xz());
+    public static ulong4_mt Ixz(this ulong2_mt yw, ulong_mt x, ulong_mt z) => new(yw, x, z, new insert_xz());
 }
 
-#endregion // int4_mt4
+#endregion // ulong4_mt
 
-#region int4_mt8
+#region b32v4_mt
 
-public partial struct int4_mt8 
+public partial struct b32v4_mt 
 {
     [MethodImpl(256 | 512)]
-    public int4_mt8(int2_mt8 xy, int2_mt8 zw)
+    public b32v4_mt(b32v2_mt xy, b32v2_mt zw)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1346,7 +1156,7 @@ public partial struct int4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt8(int2_mt8 xy, int_mt8 z, int_mt8 w)
+    public b32v4_mt(b32v2_mt xy, b32_mt z, b32_mt w)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1355,7 +1165,7 @@ public partial struct int4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt8(int_mt8 x, int_mt8 y, int2_mt8 zw)
+    public b32v4_mt(b32_mt x, b32_mt y, b32v2_mt zw)
     {
         this.x = x;
         this.y = y;
@@ -1364,7 +1174,7 @@ public partial struct int4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt8(int_mt8 x, int2_mt8 yz, int_mt8 w)
+    public b32v4_mt(b32_mt x, b32v2_mt yz, b32_mt w)
     {
         this.x = x;
         this.y = yz.x;
@@ -1373,7 +1183,7 @@ public partial struct int4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt8(int2_mt8 xw, int2_mt8 yz, merge_xw_yz _)
+    internal b32v4_mt(b32v2_mt xw, b32v2_mt yz, merge_xw_yz _)
     {
         this.x = xw.x;
         this.y = yz.x;
@@ -1382,7 +1192,7 @@ public partial struct int4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt8(int2_mt8 xw, int_mt8 y, int_mt8 z, insert_yz _)
+    internal b32v4_mt(b32v2_mt xw, b32_mt y, b32_mt z, insert_yz _)
     {
         this.x = xw.x;
         this.y = y;
@@ -1391,7 +1201,7 @@ public partial struct int4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt8(int2_mt8 xz, int2_mt8 yw, merge_xz_yw _)
+    internal b32v4_mt(b32v2_mt xz, b32v2_mt yw, merge_xz_yw _)
     {
         this.x = xz.x;
         this.y = yw.x;
@@ -1400,7 +1210,7 @@ public partial struct int4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt8(int2_mt8 xz, int_mt8 y, int_mt8 w, insert_yw _)
+    internal b32v4_mt(b32v2_mt xz, b32_mt y, b32_mt w, insert_yw _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1409,7 +1219,7 @@ public partial struct int4_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt8(int2_mt8 yw, int_mt8 x, int_mt8 z, insert_xz _)
+    internal b32v4_mt(b32v2_mt yw, b32_mt x, b32_mt z, insert_xz _)
     {
         this.x = x;
         this.y = yw.x;
@@ -1421,16 +1231,16 @@ public partial struct int4_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static int4_mt8 int4_mt8(int2_mt8 xy, int2_mt8 zw) => new(xy, zw);
+    public static b32v4_mt b32v4_mt(b32v2_mt xy, b32v2_mt zw) => new(xy, zw);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt8 int4_mt8(int2_mt8 xy, int_mt8 z, int_mt8 w) => new(xy, z, w);
+    public static b32v4_mt b32v4_mt(b32v2_mt xy, b32_mt z, b32_mt w) => new(xy, z, w);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt8 int4_mt8(int_mt8 x, int_mt8 y, int2_mt8 zw) => new(x, y, zw);
+    public static b32v4_mt b32v4_mt(b32_mt x, b32_mt y, b32v2_mt zw) => new(x, y, zw);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt8 int4_mt8(int_mt8 x, int2_mt8 yz, int_mt8 w) => new(x, yz, w);
+    public static b32v4_mt b32v4_mt(b32_mt x, b32v2_mt yz, b32_mt w) => new(x, yz, w);
 }
 
 public static partial class math_mt_ex
@@ -1440,94 +1250,94 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Izw(this int2_mt8 xy, int2_mt8 zw) => new(xy, zw);
+    public static b32v4_mt Izw(this b32v2_mt xy, b32v2_mt zw) => new(xy, zw);
 
     /// <summary>
     /// Insert X Y component
     /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ixy(this int2_mt8 zw, int2_mt8 xy) => new(xy, zw);
+    public static b32v4_mt Ixy(this b32v2_mt zw, b32v2_mt xy) => new(xy, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Iyz(this int2_mt8 xw, int2_mt8 yz) => new(xw, yz, new merge_xw_yz());
+    public static b32v4_mt Iyz(this b32v2_mt xw, b32v2_mt yz) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ixw(this int2_mt8 yz, int2_mt8 xw) => new(xw, yz, new merge_xw_yz());
+    public static b32v4_mt Ixw(this b32v2_mt yz, b32v2_mt xw) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert Y W component
     /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Iyw(this int2_mt8 xz, int2_mt8 yw) => new(xz, yw, new merge_xz_yw());
+    public static b32v4_mt Iyw(this b32v2_mt xz, b32v2_mt yw) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ixz(this int2_mt8 yw, int2_mt8 xz) => new(xz, yw, new merge_xz_yw());
+    public static b32v4_mt Ixz(this b32v2_mt yw, b32v2_mt xz) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert Z W component
     /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Izw(this int2_mt8 xy, int_mt8 z, int_mt8 w) => new(xy, z, w);
+    public static b32v4_mt Izw(this b32v2_mt xy, b32_mt z, b32_mt w) => new(xy, z, w);
 
     /// <summary>
     /// Insert X Y component
     /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ixy(this int2_mt8 zw, int_mt8 x, int_mt8 y) => new(x, y, zw);
+    public static b32v4_mt Ixy(this b32v2_mt zw, b32_mt x, b32_mt y) => new(x, y, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Iyz(this int2_mt8 xw, int_mt8 y, int_mt8 z) => new(xw, y, z, new insert_yz());
+    public static b32v4_mt Iyz(this b32v2_mt xw, b32_mt y, b32_mt z) => new(xw, y, z, new insert_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>X W -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ixw(this int2_mt8 yz, int_mt8 x, int_mt8 w) => new(x, yz, w);
+    public static b32v4_mt Ixw(this b32v2_mt yz, b32_mt x, b32_mt w) => new(x, yz, w);
 
     /// <summary>
     /// Insert Y W component
     /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Iyw(this int2_mt8 xz, int_mt8 y, int_mt8 w) => new(xz, y, w, new insert_yw());
+    public static b32v4_mt Iyw(this b32v2_mt xz, b32_mt y, b32_mt w) => new(xz, y, w, new insert_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt8 Ixz(this int2_mt8 yw, int_mt8 x, int_mt8 z) => new(yw, x, z, new insert_xz());
+    public static b32v4_mt Ixz(this b32v2_mt yw, b32_mt x, b32_mt z) => new(yw, x, z, new insert_xz());
 }
 
-#endregion // int4_mt8
+#endregion // b32v4_mt
 
-#region int4_mt16
+#region b64v4_mt
 
-public partial struct int4_mt16 
+public partial struct b64v4_mt 
 {
     [MethodImpl(256 | 512)]
-    public int4_mt16(int2_mt16 xy, int2_mt16 zw)
+    public b64v4_mt(b64v2_mt xy, b64v2_mt zw)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1536,7 +1346,7 @@ public partial struct int4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt16(int2_mt16 xy, int_mt16 z, int_mt16 w)
+    public b64v4_mt(b64v2_mt xy, b64_mt z, b64_mt w)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1545,7 +1355,7 @@ public partial struct int4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt16(int_mt16 x, int_mt16 y, int2_mt16 zw)
+    public b64v4_mt(b64_mt x, b64_mt y, b64v2_mt zw)
     {
         this.x = x;
         this.y = y;
@@ -1554,7 +1364,7 @@ public partial struct int4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt16(int_mt16 x, int2_mt16 yz, int_mt16 w)
+    public b64v4_mt(b64_mt x, b64v2_mt yz, b64_mt w)
     {
         this.x = x;
         this.y = yz.x;
@@ -1563,7 +1373,7 @@ public partial struct int4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt16(int2_mt16 xw, int2_mt16 yz, merge_xw_yz _)
+    internal b64v4_mt(b64v2_mt xw, b64v2_mt yz, merge_xw_yz _)
     {
         this.x = xw.x;
         this.y = yz.x;
@@ -1572,7 +1382,7 @@ public partial struct int4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt16(int2_mt16 xw, int_mt16 y, int_mt16 z, insert_yz _)
+    internal b64v4_mt(b64v2_mt xw, b64_mt y, b64_mt z, insert_yz _)
     {
         this.x = xw.x;
         this.y = y;
@@ -1581,7 +1391,7 @@ public partial struct int4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt16(int2_mt16 xz, int2_mt16 yw, merge_xz_yw _)
+    internal b64v4_mt(b64v2_mt xz, b64v2_mt yw, merge_xz_yw _)
     {
         this.x = xz.x;
         this.y = yw.x;
@@ -1590,7 +1400,7 @@ public partial struct int4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt16(int2_mt16 xz, int_mt16 y, int_mt16 w, insert_yw _)
+    internal b64v4_mt(b64v2_mt xz, b64_mt y, b64_mt w, insert_yw _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1599,7 +1409,7 @@ public partial struct int4_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal int4_mt16(int2_mt16 yw, int_mt16 x, int_mt16 z, insert_xz _)
+    internal b64v4_mt(b64v2_mt yw, b64_mt x, b64_mt z, insert_xz _)
     {
         this.x = x;
         this.y = yw.x;
@@ -1611,16 +1421,16 @@ public partial struct int4_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static int4_mt16 int4_mt16(int2_mt16 xy, int2_mt16 zw) => new(xy, zw);
+    public static b64v4_mt b64v4_mt(b64v2_mt xy, b64v2_mt zw) => new(xy, zw);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt16 int4_mt16(int2_mt16 xy, int_mt16 z, int_mt16 w) => new(xy, z, w);
+    public static b64v4_mt b64v4_mt(b64v2_mt xy, b64_mt z, b64_mt w) => new(xy, z, w);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt16 int4_mt16(int_mt16 x, int_mt16 y, int2_mt16 zw) => new(x, y, zw);
+    public static b64v4_mt b64v4_mt(b64_mt x, b64_mt y, b64v2_mt zw) => new(x, y, zw);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt16 int4_mt16(int_mt16 x, int2_mt16 yz, int_mt16 w) => new(x, yz, w);
+    public static b64v4_mt b64v4_mt(b64_mt x, b64v2_mt yz, b64_mt w) => new(x, yz, w);
 }
 
 public static partial class math_mt_ex
@@ -1630,2934 +1440,84 @@ public static partial class math_mt_ex
     /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Izw(this int2_mt16 xy, int2_mt16 zw) => new(xy, zw);
+    public static b64v4_mt Izw(this b64v2_mt xy, b64v2_mt zw) => new(xy, zw);
 
     /// <summary>
     /// Insert X Y component
     /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Ixy(this int2_mt16 zw, int2_mt16 xy) => new(xy, zw);
+    public static b64v4_mt Ixy(this b64v2_mt zw, b64v2_mt xy) => new(xy, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Iyz(this int2_mt16 xw, int2_mt16 yz) => new(xw, yz, new merge_xw_yz());
+    public static b64v4_mt Iyz(this b64v2_mt xw, b64v2_mt yz) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Ixw(this int2_mt16 yz, int2_mt16 xw) => new(xw, yz, new merge_xw_yz());
+    public static b64v4_mt Ixw(this b64v2_mt yz, b64v2_mt xw) => new(xw, yz, new merge_xw_yz());
 
     /// <summary>
     /// Insert Y W component
     /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Iyw(this int2_mt16 xz, int2_mt16 yw) => new(xz, yw, new merge_xz_yw());
+    public static b64v4_mt Iyw(this b64v2_mt xz, b64v2_mt yw) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Ixz(this int2_mt16 yw, int2_mt16 xz) => new(xz, yw, new merge_xz_yw());
+    public static b64v4_mt Ixz(this b64v2_mt yw, b64v2_mt xz) => new(xz, yw, new merge_xz_yw());
 
     /// <summary>
     /// Insert Z W component
     /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Izw(this int2_mt16 xy, int_mt16 z, int_mt16 w) => new(xy, z, w);
+    public static b64v4_mt Izw(this b64v2_mt xy, b64_mt z, b64_mt w) => new(xy, z, w);
 
     /// <summary>
     /// Insert X Y component
     /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Ixy(this int2_mt16 zw, int_mt16 x, int_mt16 y) => new(x, y, zw);
+    public static b64v4_mt Ixy(this b64v2_mt zw, b64_mt x, b64_mt y) => new(x, y, zw);
 
     /// <summary>
     /// Insert Y Z component
     /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Iyz(this int2_mt16 xw, int_mt16 y, int_mt16 z) => new(xw, y, z, new insert_yz());
+    public static b64v4_mt Iyz(this b64v2_mt xw, b64_mt y, b64_mt z) => new(xw, y, z, new insert_yz());
 
     /// <summary>
     /// Insert X W component
     /// <code>X W -> (y, z) => (X, y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Ixw(this int2_mt16 yz, int_mt16 x, int_mt16 w) => new(x, yz, w);
+    public static b64v4_mt Ixw(this b64v2_mt yz, b64_mt x, b64_mt w) => new(x, yz, w);
 
     /// <summary>
     /// Insert Y W component
     /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Iyw(this int2_mt16 xz, int_mt16 y, int_mt16 w) => new(xz, y, w, new insert_yw());
+    public static b64v4_mt Iyw(this b64v2_mt xz, b64_mt y, b64_mt w) => new(xz, y, w, new insert_yw());
 
     /// <summary>
     /// Insert X Z component
     /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4_mt16 Ixz(this int2_mt16 yw, int_mt16 x, int_mt16 z) => new(yw, x, z, new insert_xz());
+    public static b64v4_mt Ixz(this b64v2_mt yw, b64_mt x, b64_mt z) => new(yw, x, z, new insert_xz());
 }
 
-#endregion // int4_mt16
-
-#region uint4_mt4
-
-public partial struct uint4_mt4 
-{
-    [MethodImpl(256 | 512)]
-    public uint4_mt4(uint2_mt4 xy, uint2_mt4 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt4(uint2_mt4 xy, uint_mt4 z, uint_mt4 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt4(uint_mt4 x, uint_mt4 y, uint2_mt4 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt4(uint_mt4 x, uint2_mt4 yz, uint_mt4 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt4(uint2_mt4 xw, uint2_mt4 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt4(uint2_mt4 xw, uint_mt4 y, uint_mt4 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt4(uint2_mt4 xz, uint2_mt4 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt4(uint2_mt4 xz, uint_mt4 y, uint_mt4 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt4(uint2_mt4 yw, uint_mt4 x, uint_mt4 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 uint4_mt4(uint2_mt4 xy, uint2_mt4 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 uint4_mt4(uint2_mt4 xy, uint_mt4 z, uint_mt4 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 uint4_mt4(uint_mt4 x, uint_mt4 y, uint2_mt4 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 uint4_mt4(uint_mt4 x, uint2_mt4 yz, uint_mt4 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Izw(this uint2_mt4 xy, uint2_mt4 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ixy(this uint2_mt4 zw, uint2_mt4 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Iyz(this uint2_mt4 xw, uint2_mt4 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ixw(this uint2_mt4 yz, uint2_mt4 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Iyw(this uint2_mt4 xz, uint2_mt4 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ixz(this uint2_mt4 yw, uint2_mt4 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Izw(this uint2_mt4 xy, uint_mt4 z, uint_mt4 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ixy(this uint2_mt4 zw, uint_mt4 x, uint_mt4 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Iyz(this uint2_mt4 xw, uint_mt4 y, uint_mt4 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ixw(this uint2_mt4 yz, uint_mt4 x, uint_mt4 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Iyw(this uint2_mt4 xz, uint_mt4 y, uint_mt4 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 Ixz(this uint2_mt4 yw, uint_mt4 x, uint_mt4 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // uint4_mt4
-
-#region uint4_mt8
-
-public partial struct uint4_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public uint4_mt8(uint2_mt8 xy, uint2_mt8 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt8(uint2_mt8 xy, uint_mt8 z, uint_mt8 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt8(uint_mt8 x, uint_mt8 y, uint2_mt8 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt8(uint_mt8 x, uint2_mt8 yz, uint_mt8 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt8(uint2_mt8 xw, uint2_mt8 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt8(uint2_mt8 xw, uint_mt8 y, uint_mt8 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt8(uint2_mt8 xz, uint2_mt8 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt8(uint2_mt8 xz, uint_mt8 y, uint_mt8 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt8(uint2_mt8 yw, uint_mt8 x, uint_mt8 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 uint4_mt8(uint2_mt8 xy, uint2_mt8 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 uint4_mt8(uint2_mt8 xy, uint_mt8 z, uint_mt8 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 uint4_mt8(uint_mt8 x, uint_mt8 y, uint2_mt8 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 uint4_mt8(uint_mt8 x, uint2_mt8 yz, uint_mt8 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Izw(this uint2_mt8 xy, uint2_mt8 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ixy(this uint2_mt8 zw, uint2_mt8 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Iyz(this uint2_mt8 xw, uint2_mt8 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ixw(this uint2_mt8 yz, uint2_mt8 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Iyw(this uint2_mt8 xz, uint2_mt8 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ixz(this uint2_mt8 yw, uint2_mt8 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Izw(this uint2_mt8 xy, uint_mt8 z, uint_mt8 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ixy(this uint2_mt8 zw, uint_mt8 x, uint_mt8 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Iyz(this uint2_mt8 xw, uint_mt8 y, uint_mt8 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ixw(this uint2_mt8 yz, uint_mt8 x, uint_mt8 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Iyw(this uint2_mt8 xz, uint_mt8 y, uint_mt8 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 Ixz(this uint2_mt8 yw, uint_mt8 x, uint_mt8 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // uint4_mt8
-
-#region uint4_mt16
-
-public partial struct uint4_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public uint4_mt16(uint2_mt16 xy, uint2_mt16 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt16(uint2_mt16 xy, uint_mt16 z, uint_mt16 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt16(uint_mt16 x, uint_mt16 y, uint2_mt16 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt16(uint_mt16 x, uint2_mt16 yz, uint_mt16 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt16(uint2_mt16 xw, uint2_mt16 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt16(uint2_mt16 xw, uint_mt16 y, uint_mt16 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt16(uint2_mt16 xz, uint2_mt16 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt16(uint2_mt16 xz, uint_mt16 y, uint_mt16 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal uint4_mt16(uint2_mt16 yw, uint_mt16 x, uint_mt16 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 uint4_mt16(uint2_mt16 xy, uint2_mt16 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 uint4_mt16(uint2_mt16 xy, uint_mt16 z, uint_mt16 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 uint4_mt16(uint_mt16 x, uint_mt16 y, uint2_mt16 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 uint4_mt16(uint_mt16 x, uint2_mt16 yz, uint_mt16 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Izw(this uint2_mt16 xy, uint2_mt16 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ixy(this uint2_mt16 zw, uint2_mt16 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Iyz(this uint2_mt16 xw, uint2_mt16 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ixw(this uint2_mt16 yz, uint2_mt16 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Iyw(this uint2_mt16 xz, uint2_mt16 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ixz(this uint2_mt16 yw, uint2_mt16 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Izw(this uint2_mt16 xy, uint_mt16 z, uint_mt16 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ixy(this uint2_mt16 zw, uint_mt16 x, uint_mt16 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Iyz(this uint2_mt16 xw, uint_mt16 y, uint_mt16 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ixw(this uint2_mt16 yz, uint_mt16 x, uint_mt16 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Iyw(this uint2_mt16 xz, uint_mt16 y, uint_mt16 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 Ixz(this uint2_mt16 yw, uint_mt16 x, uint_mt16 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // uint4_mt16
-
-#region long4_mt4
-
-public partial struct long4_mt4 
-{
-    [MethodImpl(256 | 512)]
-    public long4_mt4(long2_mt4 xy, long2_mt4 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt4(long2_mt4 xy, long_mt4 z, long_mt4 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt4(long_mt4 x, long_mt4 y, long2_mt4 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt4(long_mt4 x, long2_mt4 yz, long_mt4 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt4(long2_mt4 xw, long2_mt4 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt4(long2_mt4 xw, long_mt4 y, long_mt4 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt4(long2_mt4 xz, long2_mt4 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt4(long2_mt4 xz, long_mt4 y, long_mt4 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt4(long2_mt4 yw, long_mt4 x, long_mt4 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 long4_mt4(long2_mt4 xy, long2_mt4 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 long4_mt4(long2_mt4 xy, long_mt4 z, long_mt4 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 long4_mt4(long_mt4 x, long_mt4 y, long2_mt4 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 long4_mt4(long_mt4 x, long2_mt4 yz, long_mt4 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Izw(this long2_mt4 xy, long2_mt4 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ixy(this long2_mt4 zw, long2_mt4 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Iyz(this long2_mt4 xw, long2_mt4 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ixw(this long2_mt4 yz, long2_mt4 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Iyw(this long2_mt4 xz, long2_mt4 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ixz(this long2_mt4 yw, long2_mt4 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Izw(this long2_mt4 xy, long_mt4 z, long_mt4 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ixy(this long2_mt4 zw, long_mt4 x, long_mt4 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Iyz(this long2_mt4 xw, long_mt4 y, long_mt4 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ixw(this long2_mt4 yz, long_mt4 x, long_mt4 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Iyw(this long2_mt4 xz, long_mt4 y, long_mt4 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 Ixz(this long2_mt4 yw, long_mt4 x, long_mt4 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // long4_mt4
-
-#region long4_mt8
-
-public partial struct long4_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public long4_mt8(long2_mt8 xy, long2_mt8 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt8(long2_mt8 xy, long_mt8 z, long_mt8 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt8(long_mt8 x, long_mt8 y, long2_mt8 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt8(long_mt8 x, long2_mt8 yz, long_mt8 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt8(long2_mt8 xw, long2_mt8 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt8(long2_mt8 xw, long_mt8 y, long_mt8 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt8(long2_mt8 xz, long2_mt8 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt8(long2_mt8 xz, long_mt8 y, long_mt8 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt8(long2_mt8 yw, long_mt8 x, long_mt8 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 long4_mt8(long2_mt8 xy, long2_mt8 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 long4_mt8(long2_mt8 xy, long_mt8 z, long_mt8 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 long4_mt8(long_mt8 x, long_mt8 y, long2_mt8 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 long4_mt8(long_mt8 x, long2_mt8 yz, long_mt8 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Izw(this long2_mt8 xy, long2_mt8 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ixy(this long2_mt8 zw, long2_mt8 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Iyz(this long2_mt8 xw, long2_mt8 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ixw(this long2_mt8 yz, long2_mt8 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Iyw(this long2_mt8 xz, long2_mt8 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ixz(this long2_mt8 yw, long2_mt8 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Izw(this long2_mt8 xy, long_mt8 z, long_mt8 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ixy(this long2_mt8 zw, long_mt8 x, long_mt8 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Iyz(this long2_mt8 xw, long_mt8 y, long_mt8 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ixw(this long2_mt8 yz, long_mt8 x, long_mt8 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Iyw(this long2_mt8 xz, long_mt8 y, long_mt8 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 Ixz(this long2_mt8 yw, long_mt8 x, long_mt8 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // long4_mt8
-
-#region long4_mt16
-
-public partial struct long4_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public long4_mt16(long2_mt16 xy, long2_mt16 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt16(long2_mt16 xy, long_mt16 z, long_mt16 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt16(long_mt16 x, long_mt16 y, long2_mt16 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt16(long_mt16 x, long2_mt16 yz, long_mt16 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt16(long2_mt16 xw, long2_mt16 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt16(long2_mt16 xw, long_mt16 y, long_mt16 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt16(long2_mt16 xz, long2_mt16 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt16(long2_mt16 xz, long_mt16 y, long_mt16 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal long4_mt16(long2_mt16 yw, long_mt16 x, long_mt16 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 long4_mt16(long2_mt16 xy, long2_mt16 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 long4_mt16(long2_mt16 xy, long_mt16 z, long_mt16 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 long4_mt16(long_mt16 x, long_mt16 y, long2_mt16 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 long4_mt16(long_mt16 x, long2_mt16 yz, long_mt16 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Izw(this long2_mt16 xy, long2_mt16 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ixy(this long2_mt16 zw, long2_mt16 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Iyz(this long2_mt16 xw, long2_mt16 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ixw(this long2_mt16 yz, long2_mt16 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Iyw(this long2_mt16 xz, long2_mt16 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ixz(this long2_mt16 yw, long2_mt16 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Izw(this long2_mt16 xy, long_mt16 z, long_mt16 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ixy(this long2_mt16 zw, long_mt16 x, long_mt16 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Iyz(this long2_mt16 xw, long_mt16 y, long_mt16 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ixw(this long2_mt16 yz, long_mt16 x, long_mt16 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Iyw(this long2_mt16 xz, long_mt16 y, long_mt16 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 Ixz(this long2_mt16 yw, long_mt16 x, long_mt16 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // long4_mt16
-
-#region ulong4_mt4
-
-public partial struct ulong4_mt4 
-{
-    [MethodImpl(256 | 512)]
-    public ulong4_mt4(ulong2_mt4 xy, ulong2_mt4 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt4(ulong2_mt4 xy, ulong_mt4 z, ulong_mt4 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt4(ulong_mt4 x, ulong_mt4 y, ulong2_mt4 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt4(ulong_mt4 x, ulong2_mt4 yz, ulong_mt4 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt4(ulong2_mt4 xw, ulong2_mt4 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt4(ulong2_mt4 xw, ulong_mt4 y, ulong_mt4 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt4(ulong2_mt4 xz, ulong2_mt4 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt4(ulong2_mt4 xz, ulong_mt4 y, ulong_mt4 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt4(ulong2_mt4 yw, ulong_mt4 x, ulong_mt4 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 ulong4_mt4(ulong2_mt4 xy, ulong2_mt4 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 ulong4_mt4(ulong2_mt4 xy, ulong_mt4 z, ulong_mt4 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 ulong4_mt4(ulong_mt4 x, ulong_mt4 y, ulong2_mt4 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 ulong4_mt4(ulong_mt4 x, ulong2_mt4 yz, ulong_mt4 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Izw(this ulong2_mt4 xy, ulong2_mt4 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ixy(this ulong2_mt4 zw, ulong2_mt4 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Iyz(this ulong2_mt4 xw, ulong2_mt4 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ixw(this ulong2_mt4 yz, ulong2_mt4 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Iyw(this ulong2_mt4 xz, ulong2_mt4 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ixz(this ulong2_mt4 yw, ulong2_mt4 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Izw(this ulong2_mt4 xy, ulong_mt4 z, ulong_mt4 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ixy(this ulong2_mt4 zw, ulong_mt4 x, ulong_mt4 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Iyz(this ulong2_mt4 xw, ulong_mt4 y, ulong_mt4 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ixw(this ulong2_mt4 yz, ulong_mt4 x, ulong_mt4 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Iyw(this ulong2_mt4 xz, ulong_mt4 y, ulong_mt4 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 Ixz(this ulong2_mt4 yw, ulong_mt4 x, ulong_mt4 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // ulong4_mt4
-
-#region ulong4_mt8
-
-public partial struct ulong4_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public ulong4_mt8(ulong2_mt8 xy, ulong2_mt8 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt8(ulong2_mt8 xy, ulong_mt8 z, ulong_mt8 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt8(ulong_mt8 x, ulong_mt8 y, ulong2_mt8 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt8(ulong_mt8 x, ulong2_mt8 yz, ulong_mt8 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt8(ulong2_mt8 xw, ulong2_mt8 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt8(ulong2_mt8 xw, ulong_mt8 y, ulong_mt8 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt8(ulong2_mt8 xz, ulong2_mt8 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt8(ulong2_mt8 xz, ulong_mt8 y, ulong_mt8 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt8(ulong2_mt8 yw, ulong_mt8 x, ulong_mt8 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 ulong4_mt8(ulong2_mt8 xy, ulong2_mt8 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 ulong4_mt8(ulong2_mt8 xy, ulong_mt8 z, ulong_mt8 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 ulong4_mt8(ulong_mt8 x, ulong_mt8 y, ulong2_mt8 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 ulong4_mt8(ulong_mt8 x, ulong2_mt8 yz, ulong_mt8 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Izw(this ulong2_mt8 xy, ulong2_mt8 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ixy(this ulong2_mt8 zw, ulong2_mt8 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Iyz(this ulong2_mt8 xw, ulong2_mt8 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ixw(this ulong2_mt8 yz, ulong2_mt8 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Iyw(this ulong2_mt8 xz, ulong2_mt8 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ixz(this ulong2_mt8 yw, ulong2_mt8 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Izw(this ulong2_mt8 xy, ulong_mt8 z, ulong_mt8 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ixy(this ulong2_mt8 zw, ulong_mt8 x, ulong_mt8 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Iyz(this ulong2_mt8 xw, ulong_mt8 y, ulong_mt8 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ixw(this ulong2_mt8 yz, ulong_mt8 x, ulong_mt8 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Iyw(this ulong2_mt8 xz, ulong_mt8 y, ulong_mt8 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 Ixz(this ulong2_mt8 yw, ulong_mt8 x, ulong_mt8 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // ulong4_mt8
-
-#region ulong4_mt16
-
-public partial struct ulong4_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public ulong4_mt16(ulong2_mt16 xy, ulong2_mt16 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt16(ulong2_mt16 xy, ulong_mt16 z, ulong_mt16 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt16(ulong_mt16 x, ulong_mt16 y, ulong2_mt16 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt16(ulong_mt16 x, ulong2_mt16 yz, ulong_mt16 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt16(ulong2_mt16 xw, ulong2_mt16 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt16(ulong2_mt16 xw, ulong_mt16 y, ulong_mt16 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt16(ulong2_mt16 xz, ulong2_mt16 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt16(ulong2_mt16 xz, ulong_mt16 y, ulong_mt16 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal ulong4_mt16(ulong2_mt16 yw, ulong_mt16 x, ulong_mt16 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 ulong4_mt16(ulong2_mt16 xy, ulong2_mt16 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 ulong4_mt16(ulong2_mt16 xy, ulong_mt16 z, ulong_mt16 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 ulong4_mt16(ulong_mt16 x, ulong_mt16 y, ulong2_mt16 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 ulong4_mt16(ulong_mt16 x, ulong2_mt16 yz, ulong_mt16 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Izw(this ulong2_mt16 xy, ulong2_mt16 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ixy(this ulong2_mt16 zw, ulong2_mt16 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Iyz(this ulong2_mt16 xw, ulong2_mt16 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ixw(this ulong2_mt16 yz, ulong2_mt16 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Iyw(this ulong2_mt16 xz, ulong2_mt16 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ixz(this ulong2_mt16 yw, ulong2_mt16 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Izw(this ulong2_mt16 xy, ulong_mt16 z, ulong_mt16 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ixy(this ulong2_mt16 zw, ulong_mt16 x, ulong_mt16 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Iyz(this ulong2_mt16 xw, ulong_mt16 y, ulong_mt16 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ixw(this ulong2_mt16 yz, ulong_mt16 x, ulong_mt16 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Iyw(this ulong2_mt16 xz, ulong_mt16 y, ulong_mt16 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 Ixz(this ulong2_mt16 yw, ulong_mt16 x, ulong_mt16 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // ulong4_mt16
-
-#region b32v4_mt4
-
-public partial struct b32v4_mt4 
-{
-    [MethodImpl(256 | 512)]
-    public b32v4_mt4(b32v2_mt4 xy, b32v2_mt4 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt4(b32v2_mt4 xy, b32_mt4 z, b32_mt4 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt4(b32_mt4 x, b32_mt4 y, b32v2_mt4 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt4(b32_mt4 x, b32v2_mt4 yz, b32_mt4 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt4(b32v2_mt4 xw, b32v2_mt4 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt4(b32v2_mt4 xw, b32_mt4 y, b32_mt4 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt4(b32v2_mt4 xz, b32v2_mt4 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt4(b32v2_mt4 xz, b32_mt4 y, b32_mt4 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt4(b32v2_mt4 yw, b32_mt4 x, b32_mt4 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 b32v4_mt4(b32v2_mt4 xy, b32v2_mt4 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 b32v4_mt4(b32v2_mt4 xy, b32_mt4 z, b32_mt4 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 b32v4_mt4(b32_mt4 x, b32_mt4 y, b32v2_mt4 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 b32v4_mt4(b32_mt4 x, b32v2_mt4 yz, b32_mt4 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Izw(this b32v2_mt4 xy, b32v2_mt4 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ixy(this b32v2_mt4 zw, b32v2_mt4 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Iyz(this b32v2_mt4 xw, b32v2_mt4 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ixw(this b32v2_mt4 yz, b32v2_mt4 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Iyw(this b32v2_mt4 xz, b32v2_mt4 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ixz(this b32v2_mt4 yw, b32v2_mt4 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Izw(this b32v2_mt4 xy, b32_mt4 z, b32_mt4 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ixy(this b32v2_mt4 zw, b32_mt4 x, b32_mt4 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Iyz(this b32v2_mt4 xw, b32_mt4 y, b32_mt4 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ixw(this b32v2_mt4 yz, b32_mt4 x, b32_mt4 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Iyw(this b32v2_mt4 xz, b32_mt4 y, b32_mt4 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt4 Ixz(this b32v2_mt4 yw, b32_mt4 x, b32_mt4 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // b32v4_mt4
-
-#region b32v4_mt8
-
-public partial struct b32v4_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public b32v4_mt8(b32v2_mt8 xy, b32v2_mt8 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt8(b32v2_mt8 xy, b32_mt8 z, b32_mt8 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt8(b32_mt8 x, b32_mt8 y, b32v2_mt8 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt8(b32_mt8 x, b32v2_mt8 yz, b32_mt8 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt8(b32v2_mt8 xw, b32v2_mt8 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt8(b32v2_mt8 xw, b32_mt8 y, b32_mt8 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt8(b32v2_mt8 xz, b32v2_mt8 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt8(b32v2_mt8 xz, b32_mt8 y, b32_mt8 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt8(b32v2_mt8 yw, b32_mt8 x, b32_mt8 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 b32v4_mt8(b32v2_mt8 xy, b32v2_mt8 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 b32v4_mt8(b32v2_mt8 xy, b32_mt8 z, b32_mt8 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 b32v4_mt8(b32_mt8 x, b32_mt8 y, b32v2_mt8 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 b32v4_mt8(b32_mt8 x, b32v2_mt8 yz, b32_mt8 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Izw(this b32v2_mt8 xy, b32v2_mt8 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ixy(this b32v2_mt8 zw, b32v2_mt8 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Iyz(this b32v2_mt8 xw, b32v2_mt8 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ixw(this b32v2_mt8 yz, b32v2_mt8 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Iyw(this b32v2_mt8 xz, b32v2_mt8 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ixz(this b32v2_mt8 yw, b32v2_mt8 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Izw(this b32v2_mt8 xy, b32_mt8 z, b32_mt8 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ixy(this b32v2_mt8 zw, b32_mt8 x, b32_mt8 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Iyz(this b32v2_mt8 xw, b32_mt8 y, b32_mt8 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ixw(this b32v2_mt8 yz, b32_mt8 x, b32_mt8 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Iyw(this b32v2_mt8 xz, b32_mt8 y, b32_mt8 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 Ixz(this b32v2_mt8 yw, b32_mt8 x, b32_mt8 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // b32v4_mt8
-
-#region b32v4_mt16
-
-public partial struct b32v4_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public b32v4_mt16(b32v2_mt16 xy, b32v2_mt16 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt16(b32v2_mt16 xy, b32_mt16 z, b32_mt16 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt16(b32_mt16 x, b32_mt16 y, b32v2_mt16 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt16(b32_mt16 x, b32v2_mt16 yz, b32_mt16 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt16(b32v2_mt16 xw, b32v2_mt16 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt16(b32v2_mt16 xw, b32_mt16 y, b32_mt16 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt16(b32v2_mt16 xz, b32v2_mt16 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt16(b32v2_mt16 xz, b32_mt16 y, b32_mt16 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b32v4_mt16(b32v2_mt16 yw, b32_mt16 x, b32_mt16 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 b32v4_mt16(b32v2_mt16 xy, b32v2_mt16 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 b32v4_mt16(b32v2_mt16 xy, b32_mt16 z, b32_mt16 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 b32v4_mt16(b32_mt16 x, b32_mt16 y, b32v2_mt16 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 b32v4_mt16(b32_mt16 x, b32v2_mt16 yz, b32_mt16 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Izw(this b32v2_mt16 xy, b32v2_mt16 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ixy(this b32v2_mt16 zw, b32v2_mt16 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Iyz(this b32v2_mt16 xw, b32v2_mt16 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ixw(this b32v2_mt16 yz, b32v2_mt16 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Iyw(this b32v2_mt16 xz, b32v2_mt16 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ixz(this b32v2_mt16 yw, b32v2_mt16 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Izw(this b32v2_mt16 xy, b32_mt16 z, b32_mt16 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ixy(this b32v2_mt16 zw, b32_mt16 x, b32_mt16 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Iyz(this b32v2_mt16 xw, b32_mt16 y, b32_mt16 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ixw(this b32v2_mt16 yz, b32_mt16 x, b32_mt16 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Iyw(this b32v2_mt16 xz, b32_mt16 y, b32_mt16 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 Ixz(this b32v2_mt16 yw, b32_mt16 x, b32_mt16 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // b32v4_mt16
-
-#region b64v4_mt4
-
-public partial struct b64v4_mt4 
-{
-    [MethodImpl(256 | 512)]
-    public b64v4_mt4(b64v2_mt4 xy, b64v2_mt4 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt4(b64v2_mt4 xy, b64_mt4 z, b64_mt4 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt4(b64_mt4 x, b64_mt4 y, b64v2_mt4 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt4(b64_mt4 x, b64v2_mt4 yz, b64_mt4 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt4(b64v2_mt4 xw, b64v2_mt4 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt4(b64v2_mt4 xw, b64_mt4 y, b64_mt4 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt4(b64v2_mt4 xz, b64v2_mt4 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt4(b64v2_mt4 xz, b64_mt4 y, b64_mt4 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt4(b64v2_mt4 yw, b64_mt4 x, b64_mt4 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 b64v4_mt4(b64v2_mt4 xy, b64v2_mt4 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 b64v4_mt4(b64v2_mt4 xy, b64_mt4 z, b64_mt4 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 b64v4_mt4(b64_mt4 x, b64_mt4 y, b64v2_mt4 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 b64v4_mt4(b64_mt4 x, b64v2_mt4 yz, b64_mt4 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Izw(this b64v2_mt4 xy, b64v2_mt4 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ixy(this b64v2_mt4 zw, b64v2_mt4 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Iyz(this b64v2_mt4 xw, b64v2_mt4 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ixw(this b64v2_mt4 yz, b64v2_mt4 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Iyw(this b64v2_mt4 xz, b64v2_mt4 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ixz(this b64v2_mt4 yw, b64v2_mt4 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Izw(this b64v2_mt4 xy, b64_mt4 z, b64_mt4 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ixy(this b64v2_mt4 zw, b64_mt4 x, b64_mt4 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Iyz(this b64v2_mt4 xw, b64_mt4 y, b64_mt4 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ixw(this b64v2_mt4 yz, b64_mt4 x, b64_mt4 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Iyw(this b64v2_mt4 xz, b64_mt4 y, b64_mt4 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt4 Ixz(this b64v2_mt4 yw, b64_mt4 x, b64_mt4 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // b64v4_mt4
-
-#region b64v4_mt8
-
-public partial struct b64v4_mt8 
-{
-    [MethodImpl(256 | 512)]
-    public b64v4_mt8(b64v2_mt8 xy, b64v2_mt8 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt8(b64v2_mt8 xy, b64_mt8 z, b64_mt8 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt8(b64_mt8 x, b64_mt8 y, b64v2_mt8 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt8(b64_mt8 x, b64v2_mt8 yz, b64_mt8 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt8(b64v2_mt8 xw, b64v2_mt8 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt8(b64v2_mt8 xw, b64_mt8 y, b64_mt8 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt8(b64v2_mt8 xz, b64v2_mt8 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt8(b64v2_mt8 xz, b64_mt8 y, b64_mt8 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt8(b64v2_mt8 yw, b64_mt8 x, b64_mt8 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 b64v4_mt8(b64v2_mt8 xy, b64v2_mt8 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 b64v4_mt8(b64v2_mt8 xy, b64_mt8 z, b64_mt8 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 b64v4_mt8(b64_mt8 x, b64_mt8 y, b64v2_mt8 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 b64v4_mt8(b64_mt8 x, b64v2_mt8 yz, b64_mt8 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Izw(this b64v2_mt8 xy, b64v2_mt8 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ixy(this b64v2_mt8 zw, b64v2_mt8 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Iyz(this b64v2_mt8 xw, b64v2_mt8 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ixw(this b64v2_mt8 yz, b64v2_mt8 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Iyw(this b64v2_mt8 xz, b64v2_mt8 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ixz(this b64v2_mt8 yw, b64v2_mt8 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Izw(this b64v2_mt8 xy, b64_mt8 z, b64_mt8 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ixy(this b64v2_mt8 zw, b64_mt8 x, b64_mt8 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Iyz(this b64v2_mt8 xw, b64_mt8 y, b64_mt8 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ixw(this b64v2_mt8 yz, b64_mt8 x, b64_mt8 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Iyw(this b64v2_mt8 xz, b64_mt8 y, b64_mt8 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 Ixz(this b64v2_mt8 yw, b64_mt8 x, b64_mt8 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // b64v4_mt8
-
-#region b64v4_mt16
-
-public partial struct b64v4_mt16 
-{
-    [MethodImpl(256 | 512)]
-    public b64v4_mt16(b64v2_mt16 xy, b64v2_mt16 zw)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt16(b64v2_mt16 xy, b64_mt16 z, b64_mt16 w)
-    {
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt16(b64_mt16 x, b64_mt16 y, b64v2_mt16 zw)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = zw.x;
-        this.w = zw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt16(b64_mt16 x, b64v2_mt16 yz, b64_mt16 w)
-    {
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt16(b64v2_mt16 xw, b64v2_mt16 yz, merge_xw_yz _)
-    {
-        this.x = xw.x;
-        this.y = yz.x;
-        this.z = yz.y;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt16(b64v2_mt16 xw, b64_mt16 y, b64_mt16 z, insert_yz _)
-    {
-        this.x = xw.x;
-        this.y = y;
-        this.z = z;
-        this.w = xw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt16(b64v2_mt16 xz, b64v2_mt16 yw, merge_xz_yw _)
-    {
-        this.x = xz.x;
-        this.y = yw.x;
-        this.z = xz.y;
-        this.w = yw.y;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt16(b64v2_mt16 xz, b64_mt16 y, b64_mt16 w, insert_yw _)
-    {
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    internal b64v4_mt16(b64v2_mt16 yw, b64_mt16 x, b64_mt16 z, insert_xz _)
-    {
-        this.x = x;
-        this.y = yw.x;
-        this.z = z;
-        this.w = yw.y;
-    }
-}
-
-public static partial class ctor_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 b64v4_mt16(b64v2_mt16 xy, b64v2_mt16 zw) => new(xy, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 b64v4_mt16(b64v2_mt16 xy, b64_mt16 z, b64_mt16 w) => new(xy, z, w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 b64v4_mt16(b64_mt16 x, b64_mt16 y, b64v2_mt16 zw) => new(x, y, zw);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 b64v4_mt16(b64_mt16 x, b64v2_mt16 yz, b64_mt16 w) => new(x, yz, w);
-}
-
-public static partial class math_mt_ex
-{
-    /// <summary>
-    /// Insert Z W component
-    /// <code>(Z, W) -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Izw(this b64v2_mt16 xy, b64v2_mt16 zw) => new(xy, zw);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>(X, Y) -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ixy(this b64v2_mt16 zw, b64v2_mt16 xy) => new(xy, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>(Y, Z) -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Iyz(this b64v2_mt16 xw, b64v2_mt16 yz) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>(X, W) -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ixw(this b64v2_mt16 yz, b64v2_mt16 xw) => new(xw, yz, new merge_xw_yz());
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>(Y, W) -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Iyw(this b64v2_mt16 xz, b64v2_mt16 yw) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>(X, Z) -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ixz(this b64v2_mt16 yw, b64v2_mt16 xz) => new(xz, yw, new merge_xz_yw());
-
-    /// <summary>
-    /// Insert Z W component
-    /// <code>Z W -> (x, y) => (x, y, Z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Izw(this b64v2_mt16 xy, b64_mt16 z, b64_mt16 w) => new(xy, z, w);
-
-    /// <summary>
-    /// Insert X Y component
-    /// <code>X Y -> (z, w) => (X, Y, z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ixy(this b64v2_mt16 zw, b64_mt16 x, b64_mt16 y) => new(x, y, zw);
-
-    /// <summary>
-    /// Insert Y Z component
-    /// <code>Y Z -> (x, w) => (x, Y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Iyz(this b64v2_mt16 xw, b64_mt16 y, b64_mt16 z) => new(xw, y, z, new insert_yz());
-
-    /// <summary>
-    /// Insert X W component
-    /// <code>X W -> (y, z) => (X, y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ixw(this b64v2_mt16 yz, b64_mt16 x, b64_mt16 w) => new(x, yz, w);
-
-    /// <summary>
-    /// Insert Y W component
-    /// <code>Y W -> (x, z) => (x, Y, z, W)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Iyw(this b64v2_mt16 xz, b64_mt16 y, b64_mt16 w) => new(xz, y, w, new insert_yw());
-
-    /// <summary>
-    /// Insert X Z component
-    /// <code>X Z -> (y, w) => (X, y, Z, w)</code>
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 Ixz(this b64v2_mt16 yw, b64_mt16 x, b64_mt16 z) => new(yw, x, z, new insert_xz());
-}
-
-#endregion // b64v4_mt16
+#endregion // b64v4_mt

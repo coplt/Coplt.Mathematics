@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.Simt.Geometries;
 
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var size in sizes)
     {
         var byteSize = 4 * size;
@@ -15,8 +15,8 @@ namespace Coplt.Mathematics.Simt.Geometries;
         var num_vectors = Math.Max(1, bitSize / 512);
         bitSize = Math.Min(512, bitSize);
 
-        var vectorName = $"float3_mt{size}";
-        var typeName = $"box_mt{size}";
+        var vectorName = $"float3_mt";
+        var typeName = $"box_mt";
 
         IEnumerable<string> ForVectors(string name)
         {

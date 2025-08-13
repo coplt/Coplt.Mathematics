@@ -8,7 +8,7 @@ namespace Coplt.Mathematics.Simt;
 <#
     var TypMap = Typ.Typs.ToDictionary(a => a.name);
 
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -28,7 +28,7 @@ namespace Coplt.Mathematics.Simt;
             {
                 foreach (var size in sizes)
                 {
-                    var typeName = $"{typ.name.Replace('v', 'm')}{n}x{m}_mt{size}";
+                    var typeName = $"{typ.name.Replace('v', 'm')}{n}x{m}_mt";
 #>
 
 #region <#= typeName #>
@@ -40,8 +40,8 @@ public partial struct <#= typeName #>
                     {
                         if (!tar.simd) continue;
                         if (tar.size < 4) continue;
-                        var tarName = $"{tar.name.Replace('v', 'm')}{n}x{m}_mt{size}";
-                        var cast = $"({tar.name}{n}_mt{size})";
+                        var tarName = $"{tar.name.Replace('v', 'm')}{n}x{m}_mt";
+                        var cast = $"({tar.name}{n}_mt)";
 #>
     [MethodImpl(256 | 512)]
     public static <#= ck #> operator <#= tarName #>(<#= typeName #> self)

@@ -2,5186 +2,1730 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float4_mt4
+#region float4_mt
 
-public partial struct float4_mt4 
+public partial struct float4_mt 
 {
-    public readonly float2_mt4 xx
+    public readonly float2_mt xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public readonly float2_mt4 rr
+    public readonly float2_mt rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public float2_mt4 xy
+    public float2_mt xy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public float2_mt4 rg
+    public float2_mt rg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public float2_mt4 xz
+    public float2_mt xz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public float2_mt4 rb
+    public float2_mt rb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public float2_mt4 xw
+    public float2_mt xw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public float2_mt4 ra
+    public float2_mt ra
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public float2_mt4 yx
+    public float2_mt yx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public float2_mt4 gr
+    public float2_mt gr
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public readonly float2_mt4 yy
+    public readonly float2_mt yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public readonly float2_mt4 gg
+    public readonly float2_mt gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public float2_mt4 yz
+    public float2_mt yz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public float2_mt4 gb
+    public float2_mt gb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public float2_mt4 yw
+    public float2_mt yw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public float2_mt4 ga
+    public float2_mt ga
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public float2_mt4 zx
+    public float2_mt zx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public float2_mt4 br
+    public float2_mt br
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public float2_mt4 zy
+    public float2_mt zy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public float2_mt4 bg
+    public float2_mt bg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public readonly float2_mt4 zz
+    public readonly float2_mt zz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public readonly float2_mt4 bb
+    public readonly float2_mt bb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public float2_mt4 zw
+    public float2_mt zw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public float2_mt4 ba
+    public float2_mt ba
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public float2_mt4 wx
+    public float2_mt wx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public float2_mt4 ar
+    public float2_mt ar
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public float2_mt4 wy
+    public float2_mt wy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public float2_mt4 ag
+    public float2_mt ag
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public float2_mt4 wz
+    public float2_mt wz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public float2_mt4 ab
+    public float2_mt ab
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public readonly float2_mt4 ww
+    public readonly float2_mt ww
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
-    public readonly float2_mt4 aa
+    public readonly float2_mt aa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
 }
 
-#endregion // float4_mt4
+#endregion // float4_mt
 
-#region float4_mt8
+#region double4_mt
 
-public partial struct float4_mt8 
+public partial struct double4_mt 
 {
-    public readonly float2_mt8 xx
+    public readonly double2_mt xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public readonly float2_mt8 rr
+    public readonly double2_mt rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public float2_mt8 xy
+    public double2_mt xy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public float2_mt8 rg
+    public double2_mt rg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public float2_mt8 xz
+    public double2_mt xz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public float2_mt8 rb
+    public double2_mt rb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public float2_mt8 xw
+    public double2_mt xw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public float2_mt8 ra
+    public double2_mt ra
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public float2_mt8 yx
+    public double2_mt yx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public float2_mt8 gr
+    public double2_mt gr
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public readonly float2_mt8 yy
+    public readonly double2_mt yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public readonly float2_mt8 gg
+    public readonly double2_mt gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public float2_mt8 yz
+    public double2_mt yz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public float2_mt8 gb
+    public double2_mt gb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public float2_mt8 yw
+    public double2_mt yw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public float2_mt8 ga
+    public double2_mt ga
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public float2_mt8 zx
+    public double2_mt zx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public float2_mt8 br
+    public double2_mt br
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public float2_mt8 zy
+    public double2_mt zy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public float2_mt8 bg
+    public double2_mt bg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public readonly float2_mt8 zz
+    public readonly double2_mt zz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public readonly float2_mt8 bb
+    public readonly double2_mt bb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public float2_mt8 zw
+    public double2_mt zw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public float2_mt8 ba
+    public double2_mt ba
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public float2_mt8 wx
+    public double2_mt wx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public float2_mt8 ar
+    public double2_mt ar
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public float2_mt8 wy
+    public double2_mt wy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public float2_mt8 ag
+    public double2_mt ag
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public float2_mt8 wz
+    public double2_mt wz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public float2_mt8 ab
+    public double2_mt ab
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public readonly float2_mt8 ww
+    public readonly double2_mt ww
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
-    public readonly float2_mt8 aa
+    public readonly double2_mt aa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
 }
 
-#endregion // float4_mt8
+#endregion // double4_mt
 
-#region float4_mt16
+#region int4_mt
 
-public partial struct float4_mt16 
+public partial struct int4_mt 
 {
-    public readonly float2_mt16 xx
+    public readonly int2_mt xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public readonly float2_mt16 rr
+    public readonly int2_mt rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public float2_mt16 xy
+    public int2_mt xy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public float2_mt16 rg
+    public int2_mt rg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public float2_mt16 xz
+    public int2_mt xz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public float2_mt16 rb
+    public int2_mt rb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public float2_mt16 xw
+    public int2_mt xw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public float2_mt16 ra
+    public int2_mt ra
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public float2_mt16 yx
+    public int2_mt yx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public float2_mt16 gr
+    public int2_mt gr
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public readonly float2_mt16 yy
+    public readonly int2_mt yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public readonly float2_mt16 gg
+    public readonly int2_mt gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public float2_mt16 yz
+    public int2_mt yz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public float2_mt16 gb
+    public int2_mt gb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public float2_mt16 yw
+    public int2_mt yw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public float2_mt16 ga
+    public int2_mt ga
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public float2_mt16 zx
+    public int2_mt zx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public float2_mt16 br
+    public int2_mt br
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public float2_mt16 zy
+    public int2_mt zy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public float2_mt16 bg
+    public int2_mt bg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public readonly float2_mt16 zz
+    public readonly int2_mt zz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public readonly float2_mt16 bb
+    public readonly int2_mt bb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public float2_mt16 zw
+    public int2_mt zw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public float2_mt16 ba
+    public int2_mt ba
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public float2_mt16 wx
+    public int2_mt wx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public float2_mt16 ar
+    public int2_mt ar
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public float2_mt16 wy
+    public int2_mt wy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public float2_mt16 ag
+    public int2_mt ag
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public float2_mt16 wz
+    public int2_mt wz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public float2_mt16 ab
+    public int2_mt ab
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public readonly float2_mt16 ww
+    public readonly int2_mt ww
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
-    public readonly float2_mt16 aa
+    public readonly int2_mt aa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
 }
 
-#endregion // float4_mt16
+#endregion // int4_mt
 
-#region double4_mt4
+#region uint4_mt
 
-public partial struct double4_mt4 
+public partial struct uint4_mt 
 {
-    public readonly double2_mt4 xx
+    public readonly uint2_mt xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public readonly double2_mt4 rr
+    public readonly uint2_mt rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public double2_mt4 xy
+    public uint2_mt xy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public double2_mt4 rg
+    public uint2_mt rg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public double2_mt4 xz
+    public uint2_mt xz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public double2_mt4 rb
+    public uint2_mt rb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public double2_mt4 xw
+    public uint2_mt xw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public double2_mt4 ra
+    public uint2_mt ra
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public double2_mt4 yx
+    public uint2_mt yx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public double2_mt4 gr
+    public uint2_mt gr
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public readonly double2_mt4 yy
+    public readonly uint2_mt yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public readonly double2_mt4 gg
+    public readonly uint2_mt gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public double2_mt4 yz
+    public uint2_mt yz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public double2_mt4 gb
+    public uint2_mt gb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public double2_mt4 yw
+    public uint2_mt yw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public double2_mt4 ga
+    public uint2_mt ga
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public double2_mt4 zx
+    public uint2_mt zx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public double2_mt4 br
+    public uint2_mt br
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public double2_mt4 zy
+    public uint2_mt zy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public double2_mt4 bg
+    public uint2_mt bg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public readonly double2_mt4 zz
+    public readonly uint2_mt zz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public readonly double2_mt4 bb
+    public readonly uint2_mt bb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public double2_mt4 zw
+    public uint2_mt zw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public double2_mt4 ba
+    public uint2_mt ba
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public double2_mt4 wx
+    public uint2_mt wx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public double2_mt4 ar
+    public uint2_mt ar
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public double2_mt4 wy
+    public uint2_mt wy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public double2_mt4 ag
+    public uint2_mt ag
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public double2_mt4 wz
+    public uint2_mt wz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public double2_mt4 ab
+    public uint2_mt ab
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public readonly double2_mt4 ww
+    public readonly uint2_mt ww
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
-    public readonly double2_mt4 aa
+    public readonly uint2_mt aa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
 }
 
-#endregion // double4_mt4
+#endregion // uint4_mt
 
-#region double4_mt8
+#region long4_mt
 
-public partial struct double4_mt8 
+public partial struct long4_mt 
 {
-    public readonly double2_mt8 xx
+    public readonly long2_mt xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public readonly double2_mt8 rr
+    public readonly long2_mt rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public double2_mt8 xy
+    public long2_mt xy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public double2_mt8 rg
+    public long2_mt rg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public double2_mt8 xz
+    public long2_mt xz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public double2_mt8 rb
+    public long2_mt rb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public double2_mt8 xw
+    public long2_mt xw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public double2_mt8 ra
+    public long2_mt ra
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public double2_mt8 yx
+    public long2_mt yx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public double2_mt8 gr
+    public long2_mt gr
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public readonly double2_mt8 yy
+    public readonly long2_mt yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public readonly double2_mt8 gg
+    public readonly long2_mt gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public double2_mt8 yz
+    public long2_mt yz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public double2_mt8 gb
+    public long2_mt gb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public double2_mt8 yw
+    public long2_mt yw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public double2_mt8 ga
+    public long2_mt ga
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public double2_mt8 zx
+    public long2_mt zx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public double2_mt8 br
+    public long2_mt br
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public double2_mt8 zy
+    public long2_mt zy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public double2_mt8 bg
+    public long2_mt bg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public readonly double2_mt8 zz
+    public readonly long2_mt zz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public readonly double2_mt8 bb
+    public readonly long2_mt bb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public double2_mt8 zw
+    public long2_mt zw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public double2_mt8 ba
+    public long2_mt ba
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public double2_mt8 wx
+    public long2_mt wx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public double2_mt8 ar
+    public long2_mt ar
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public double2_mt8 wy
+    public long2_mt wy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public double2_mt8 ag
+    public long2_mt ag
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public double2_mt8 wz
+    public long2_mt wz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public double2_mt8 ab
+    public long2_mt ab
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public readonly double2_mt8 ww
+    public readonly long2_mt ww
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
-    public readonly double2_mt8 aa
+    public readonly long2_mt aa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
 }
 
-#endregion // double4_mt8
+#endregion // long4_mt
 
-#region double4_mt16
+#region ulong4_mt
 
-public partial struct double4_mt16 
+public partial struct ulong4_mt 
 {
-    public readonly double2_mt16 xx
+    public readonly ulong2_mt xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public readonly double2_mt16 rr
+    public readonly ulong2_mt rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public double2_mt16 xy
+    public ulong2_mt xy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public double2_mt16 rg
+    public ulong2_mt rg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public double2_mt16 xz
+    public ulong2_mt xz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public double2_mt16 rb
+    public ulong2_mt rb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public double2_mt16 xw
+    public ulong2_mt xw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public double2_mt16 ra
+    public ulong2_mt ra
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public double2_mt16 yx
+    public ulong2_mt yx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public double2_mt16 gr
+    public ulong2_mt gr
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public readonly double2_mt16 yy
+    public readonly ulong2_mt yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public readonly double2_mt16 gg
+    public readonly ulong2_mt gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public double2_mt16 yz
+    public ulong2_mt yz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public double2_mt16 gb
+    public ulong2_mt gb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public double2_mt16 yw
+    public ulong2_mt yw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public double2_mt16 ga
+    public ulong2_mt ga
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public double2_mt16 zx
+    public ulong2_mt zx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public double2_mt16 br
+    public ulong2_mt br
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public double2_mt16 zy
+    public ulong2_mt zy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public double2_mt16 bg
+    public ulong2_mt bg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public readonly double2_mt16 zz
+    public readonly ulong2_mt zz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public readonly double2_mt16 bb
+    public readonly ulong2_mt bb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public double2_mt16 zw
+    public ulong2_mt zw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public double2_mt16 ba
+    public ulong2_mt ba
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public double2_mt16 wx
+    public ulong2_mt wx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public double2_mt16 ar
+    public ulong2_mt ar
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public double2_mt16 wy
+    public ulong2_mt wy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public double2_mt16 ag
+    public ulong2_mt ag
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public double2_mt16 wz
+    public ulong2_mt wz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public double2_mt16 ab
+    public ulong2_mt ab
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public readonly double2_mt16 ww
+    public readonly ulong2_mt ww
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
-    public readonly double2_mt16 aa
+    public readonly ulong2_mt aa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
 }
 
-#endregion // double4_mt16
+#endregion // ulong4_mt
 
-#region int4_mt4
+#region b32v4_mt
 
-public partial struct int4_mt4 
+public partial struct b32v4_mt 
 {
-    public readonly int2_mt4 xx
+    public readonly b32v2_mt xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public readonly int2_mt4 rr
+    public readonly b32v2_mt rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public int2_mt4 xy
+    public b32v2_mt xy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public int2_mt4 rg
+    public b32v2_mt rg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public int2_mt4 xz
+    public b32v2_mt xz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public int2_mt4 rb
+    public b32v2_mt rb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public int2_mt4 xw
+    public b32v2_mt xw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public int2_mt4 ra
+    public b32v2_mt ra
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public int2_mt4 yx
+    public b32v2_mt yx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public int2_mt4 gr
+    public b32v2_mt gr
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public readonly int2_mt4 yy
+    public readonly b32v2_mt yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public readonly int2_mt4 gg
+    public readonly b32v2_mt gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public int2_mt4 yz
+    public b32v2_mt yz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public int2_mt4 gb
+    public b32v2_mt gb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public int2_mt4 yw
+    public b32v2_mt yw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public int2_mt4 ga
+    public b32v2_mt ga
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public int2_mt4 zx
+    public b32v2_mt zx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public int2_mt4 br
+    public b32v2_mt br
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public int2_mt4 zy
+    public b32v2_mt zy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public int2_mt4 bg
+    public b32v2_mt bg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public readonly int2_mt4 zz
+    public readonly b32v2_mt zz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public readonly int2_mt4 bb
+    public readonly b32v2_mt bb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public int2_mt4 zw
+    public b32v2_mt zw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public int2_mt4 ba
+    public b32v2_mt ba
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public int2_mt4 wx
+    public b32v2_mt wx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public int2_mt4 ar
+    public b32v2_mt ar
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public int2_mt4 wy
+    public b32v2_mt wy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public int2_mt4 ag
+    public b32v2_mt ag
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public int2_mt4 wz
+    public b32v2_mt wz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public int2_mt4 ab
+    public b32v2_mt ab
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public readonly int2_mt4 ww
+    public readonly b32v2_mt ww
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
-    public readonly int2_mt4 aa
+    public readonly b32v2_mt aa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
 }
 
-#endregion // int4_mt4
+#endregion // b32v4_mt
 
-#region int4_mt8
+#region b64v4_mt
 
-public partial struct int4_mt8 
+public partial struct b64v4_mt 
 {
-    public readonly int2_mt8 xx
+    public readonly b64v2_mt xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public readonly int2_mt8 rr
+    public readonly b64v2_mt rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public int2_mt8 xy
+    public b64v2_mt xy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public int2_mt8 rg
+    public b64v2_mt rg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; }
     }
-    public int2_mt8 xz
+    public b64v2_mt xz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public int2_mt8 rb
+    public b64v2_mt rb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; }
     }
-    public int2_mt8 xw
+    public b64v2_mt xw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public int2_mt8 ra
+    public b64v2_mt ra
     {
         [MethodImpl(256 | 512)]
         readonly get => new(x, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; }
     }
-    public int2_mt8 yx
+    public b64v2_mt yx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public int2_mt8 gr
+    public b64v2_mt gr
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; }
     }
-    public readonly int2_mt8 yy
+    public readonly b64v2_mt yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public readonly int2_mt8 gg
+    public readonly b64v2_mt gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public int2_mt8 yz
+    public b64v2_mt yz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public int2_mt8 gb
+    public b64v2_mt gb
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; }
     }
-    public int2_mt8 yw
+    public b64v2_mt yw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public int2_mt8 ga
+    public b64v2_mt ga
     {
         [MethodImpl(256 | 512)]
         readonly get => new(y, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; }
     }
-    public int2_mt8 zx
+    public b64v2_mt zx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public int2_mt8 br
+    public b64v2_mt br
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; }
     }
-    public int2_mt8 zy
+    public b64v2_mt zy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public int2_mt8 bg
+    public b64v2_mt bg
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; }
     }
-    public readonly int2_mt8 zz
+    public readonly b64v2_mt zz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public readonly int2_mt8 bb
+    public readonly b64v2_mt bb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z);
     }
-    public int2_mt8 zw
+    public b64v2_mt zw
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public int2_mt8 ba
+    public b64v2_mt ba
     {
         [MethodImpl(256 | 512)]
         readonly get => new(z, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; }
     }
-    public int2_mt8 wx
+    public b64v2_mt wx
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public int2_mt8 ar
+    public b64v2_mt ar
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; }
     }
-    public int2_mt8 wy
+    public b64v2_mt wy
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public int2_mt8 ag
+    public b64v2_mt ag
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; }
     }
-    public int2_mt8 wz
+    public b64v2_mt wz
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public int2_mt8 ab
+    public b64v2_mt ab
     {
         [MethodImpl(256 | 512)]
         readonly get => new(w, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; }
     }
-    public readonly int2_mt8 ww
+    public readonly b64v2_mt ww
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
-    public readonly int2_mt8 aa
+    public readonly b64v2_mt aa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w);
     }
 }
 
-#endregion // int4_mt8
-
-#region int4_mt16
-
-public partial struct int4_mt16 
-{
-    public readonly int2_mt16 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly int2_mt16 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public int2_mt16 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public int2_mt16 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public int2_mt16 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public int2_mt16 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public int2_mt16 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public int2_mt16 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public int2_mt16 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public int2_mt16 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly int2_mt16 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly int2_mt16 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public int2_mt16 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public int2_mt16 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public int2_mt16 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public int2_mt16 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public int2_mt16 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public int2_mt16 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public int2_mt16 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public int2_mt16 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly int2_mt16 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly int2_mt16 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public int2_mt16 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public int2_mt16 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public int2_mt16 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public int2_mt16 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public int2_mt16 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public int2_mt16 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public int2_mt16 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public int2_mt16 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly int2_mt16 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly int2_mt16 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // int4_mt16
-
-#region uint4_mt4
-
-public partial struct uint4_mt4 
-{
-    public readonly uint2_mt4 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly uint2_mt4 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public uint2_mt4 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public uint2_mt4 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public uint2_mt4 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public uint2_mt4 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public uint2_mt4 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public uint2_mt4 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public uint2_mt4 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public uint2_mt4 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly uint2_mt4 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly uint2_mt4 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public uint2_mt4 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public uint2_mt4 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public uint2_mt4 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public uint2_mt4 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public uint2_mt4 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public uint2_mt4 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public uint2_mt4 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public uint2_mt4 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly uint2_mt4 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly uint2_mt4 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public uint2_mt4 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public uint2_mt4 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public uint2_mt4 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public uint2_mt4 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public uint2_mt4 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public uint2_mt4 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public uint2_mt4 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public uint2_mt4 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly uint2_mt4 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly uint2_mt4 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // uint4_mt4
-
-#region uint4_mt8
-
-public partial struct uint4_mt8 
-{
-    public readonly uint2_mt8 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly uint2_mt8 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public uint2_mt8 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public uint2_mt8 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public uint2_mt8 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public uint2_mt8 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public uint2_mt8 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public uint2_mt8 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public uint2_mt8 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public uint2_mt8 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly uint2_mt8 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly uint2_mt8 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public uint2_mt8 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public uint2_mt8 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public uint2_mt8 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public uint2_mt8 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public uint2_mt8 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public uint2_mt8 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public uint2_mt8 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public uint2_mt8 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly uint2_mt8 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly uint2_mt8 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public uint2_mt8 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public uint2_mt8 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public uint2_mt8 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public uint2_mt8 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public uint2_mt8 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public uint2_mt8 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public uint2_mt8 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public uint2_mt8 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly uint2_mt8 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly uint2_mt8 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // uint4_mt8
-
-#region uint4_mt16
-
-public partial struct uint4_mt16 
-{
-    public readonly uint2_mt16 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly uint2_mt16 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public uint2_mt16 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public uint2_mt16 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public uint2_mt16 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public uint2_mt16 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public uint2_mt16 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public uint2_mt16 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public uint2_mt16 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public uint2_mt16 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly uint2_mt16 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly uint2_mt16 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public uint2_mt16 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public uint2_mt16 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public uint2_mt16 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public uint2_mt16 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public uint2_mt16 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public uint2_mt16 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public uint2_mt16 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public uint2_mt16 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly uint2_mt16 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly uint2_mt16 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public uint2_mt16 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public uint2_mt16 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public uint2_mt16 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public uint2_mt16 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public uint2_mt16 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public uint2_mt16 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public uint2_mt16 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public uint2_mt16 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly uint2_mt16 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly uint2_mt16 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // uint4_mt16
-
-#region long4_mt4
-
-public partial struct long4_mt4 
-{
-    public readonly long2_mt4 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly long2_mt4 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public long2_mt4 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public long2_mt4 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public long2_mt4 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public long2_mt4 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public long2_mt4 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public long2_mt4 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public long2_mt4 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public long2_mt4 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly long2_mt4 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly long2_mt4 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public long2_mt4 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public long2_mt4 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public long2_mt4 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public long2_mt4 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public long2_mt4 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public long2_mt4 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public long2_mt4 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public long2_mt4 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly long2_mt4 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly long2_mt4 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public long2_mt4 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public long2_mt4 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public long2_mt4 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public long2_mt4 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public long2_mt4 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public long2_mt4 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public long2_mt4 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public long2_mt4 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly long2_mt4 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly long2_mt4 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // long4_mt4
-
-#region long4_mt8
-
-public partial struct long4_mt8 
-{
-    public readonly long2_mt8 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly long2_mt8 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public long2_mt8 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public long2_mt8 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public long2_mt8 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public long2_mt8 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public long2_mt8 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public long2_mt8 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public long2_mt8 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public long2_mt8 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly long2_mt8 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly long2_mt8 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public long2_mt8 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public long2_mt8 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public long2_mt8 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public long2_mt8 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public long2_mt8 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public long2_mt8 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public long2_mt8 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public long2_mt8 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly long2_mt8 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly long2_mt8 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public long2_mt8 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public long2_mt8 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public long2_mt8 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public long2_mt8 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public long2_mt8 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public long2_mt8 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public long2_mt8 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public long2_mt8 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly long2_mt8 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly long2_mt8 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // long4_mt8
-
-#region long4_mt16
-
-public partial struct long4_mt16 
-{
-    public readonly long2_mt16 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly long2_mt16 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public long2_mt16 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public long2_mt16 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public long2_mt16 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public long2_mt16 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public long2_mt16 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public long2_mt16 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public long2_mt16 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public long2_mt16 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly long2_mt16 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly long2_mt16 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public long2_mt16 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public long2_mt16 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public long2_mt16 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public long2_mt16 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public long2_mt16 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public long2_mt16 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public long2_mt16 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public long2_mt16 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly long2_mt16 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly long2_mt16 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public long2_mt16 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public long2_mt16 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public long2_mt16 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public long2_mt16 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public long2_mt16 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public long2_mt16 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public long2_mt16 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public long2_mt16 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly long2_mt16 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly long2_mt16 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // long4_mt16
-
-#region ulong4_mt4
-
-public partial struct ulong4_mt4 
-{
-    public readonly ulong2_mt4 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly ulong2_mt4 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public ulong2_mt4 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public ulong2_mt4 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public ulong2_mt4 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public ulong2_mt4 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public ulong2_mt4 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public ulong2_mt4 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public ulong2_mt4 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public ulong2_mt4 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly ulong2_mt4 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly ulong2_mt4 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public ulong2_mt4 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public ulong2_mt4 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public ulong2_mt4 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public ulong2_mt4 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public ulong2_mt4 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public ulong2_mt4 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public ulong2_mt4 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public ulong2_mt4 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly ulong2_mt4 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly ulong2_mt4 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public ulong2_mt4 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public ulong2_mt4 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public ulong2_mt4 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public ulong2_mt4 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public ulong2_mt4 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public ulong2_mt4 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public ulong2_mt4 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public ulong2_mt4 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly ulong2_mt4 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly ulong2_mt4 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // ulong4_mt4
-
-#region ulong4_mt8
-
-public partial struct ulong4_mt8 
-{
-    public readonly ulong2_mt8 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly ulong2_mt8 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public ulong2_mt8 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public ulong2_mt8 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public ulong2_mt8 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public ulong2_mt8 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public ulong2_mt8 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public ulong2_mt8 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public ulong2_mt8 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public ulong2_mt8 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly ulong2_mt8 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly ulong2_mt8 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public ulong2_mt8 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public ulong2_mt8 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public ulong2_mt8 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public ulong2_mt8 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public ulong2_mt8 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public ulong2_mt8 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public ulong2_mt8 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public ulong2_mt8 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly ulong2_mt8 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly ulong2_mt8 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public ulong2_mt8 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public ulong2_mt8 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public ulong2_mt8 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public ulong2_mt8 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public ulong2_mt8 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public ulong2_mt8 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public ulong2_mt8 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public ulong2_mt8 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly ulong2_mt8 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly ulong2_mt8 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // ulong4_mt8
-
-#region ulong4_mt16
-
-public partial struct ulong4_mt16 
-{
-    public readonly ulong2_mt16 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly ulong2_mt16 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public ulong2_mt16 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public ulong2_mt16 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public ulong2_mt16 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public ulong2_mt16 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public ulong2_mt16 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public ulong2_mt16 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public ulong2_mt16 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public ulong2_mt16 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly ulong2_mt16 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly ulong2_mt16 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public ulong2_mt16 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public ulong2_mt16 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public ulong2_mt16 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public ulong2_mt16 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public ulong2_mt16 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public ulong2_mt16 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public ulong2_mt16 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public ulong2_mt16 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly ulong2_mt16 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly ulong2_mt16 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public ulong2_mt16 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public ulong2_mt16 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public ulong2_mt16 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public ulong2_mt16 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public ulong2_mt16 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public ulong2_mt16 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public ulong2_mt16 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public ulong2_mt16 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly ulong2_mt16 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly ulong2_mt16 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // ulong4_mt16
-
-#region b32v4_mt4
-
-public partial struct b32v4_mt4 
-{
-    public readonly b32v2_mt4 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly b32v2_mt4 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public b32v2_mt4 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b32v2_mt4 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b32v2_mt4 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b32v2_mt4 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b32v2_mt4 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b32v2_mt4 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b32v2_mt4 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public b32v2_mt4 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly b32v2_mt4 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly b32v2_mt4 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public b32v2_mt4 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b32v2_mt4 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b32v2_mt4 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b32v2_mt4 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b32v2_mt4 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b32v2_mt4 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b32v2_mt4 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public b32v2_mt4 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly b32v2_mt4 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly b32v2_mt4 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public b32v2_mt4 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b32v2_mt4 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b32v2_mt4 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b32v2_mt4 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b32v2_mt4 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b32v2_mt4 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b32v2_mt4 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public b32v2_mt4 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly b32v2_mt4 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly b32v2_mt4 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // b32v4_mt4
-
-#region b32v4_mt8
-
-public partial struct b32v4_mt8 
-{
-    public readonly b32v2_mt8 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly b32v2_mt8 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public b32v2_mt8 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b32v2_mt8 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b32v2_mt8 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b32v2_mt8 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b32v2_mt8 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b32v2_mt8 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b32v2_mt8 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public b32v2_mt8 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly b32v2_mt8 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly b32v2_mt8 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public b32v2_mt8 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b32v2_mt8 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b32v2_mt8 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b32v2_mt8 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b32v2_mt8 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b32v2_mt8 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b32v2_mt8 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public b32v2_mt8 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly b32v2_mt8 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly b32v2_mt8 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public b32v2_mt8 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b32v2_mt8 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b32v2_mt8 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b32v2_mt8 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b32v2_mt8 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b32v2_mt8 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b32v2_mt8 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public b32v2_mt8 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly b32v2_mt8 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly b32v2_mt8 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // b32v4_mt8
-
-#region b32v4_mt16
-
-public partial struct b32v4_mt16 
-{
-    public readonly b32v2_mt16 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly b32v2_mt16 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public b32v2_mt16 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b32v2_mt16 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b32v2_mt16 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b32v2_mt16 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b32v2_mt16 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b32v2_mt16 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b32v2_mt16 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public b32v2_mt16 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly b32v2_mt16 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly b32v2_mt16 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public b32v2_mt16 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b32v2_mt16 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b32v2_mt16 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b32v2_mt16 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b32v2_mt16 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b32v2_mt16 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b32v2_mt16 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public b32v2_mt16 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly b32v2_mt16 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly b32v2_mt16 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public b32v2_mt16 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b32v2_mt16 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b32v2_mt16 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b32v2_mt16 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b32v2_mt16 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b32v2_mt16 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b32v2_mt16 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public b32v2_mt16 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly b32v2_mt16 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly b32v2_mt16 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // b32v4_mt16
-
-#region b64v4_mt4
-
-public partial struct b64v4_mt4 
-{
-    public readonly b64v2_mt4 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly b64v2_mt4 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public b64v2_mt4 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b64v2_mt4 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b64v2_mt4 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b64v2_mt4 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b64v2_mt4 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b64v2_mt4 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b64v2_mt4 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public b64v2_mt4 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly b64v2_mt4 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly b64v2_mt4 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public b64v2_mt4 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b64v2_mt4 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b64v2_mt4 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b64v2_mt4 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b64v2_mt4 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b64v2_mt4 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b64v2_mt4 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public b64v2_mt4 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly b64v2_mt4 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly b64v2_mt4 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public b64v2_mt4 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b64v2_mt4 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b64v2_mt4 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b64v2_mt4 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b64v2_mt4 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b64v2_mt4 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b64v2_mt4 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public b64v2_mt4 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly b64v2_mt4 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly b64v2_mt4 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // b64v4_mt4
-
-#region b64v4_mt8
-
-public partial struct b64v4_mt8 
-{
-    public readonly b64v2_mt8 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly b64v2_mt8 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public b64v2_mt8 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b64v2_mt8 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b64v2_mt8 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b64v2_mt8 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b64v2_mt8 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b64v2_mt8 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b64v2_mt8 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public b64v2_mt8 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly b64v2_mt8 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly b64v2_mt8 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public b64v2_mt8 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b64v2_mt8 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b64v2_mt8 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b64v2_mt8 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b64v2_mt8 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b64v2_mt8 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b64v2_mt8 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public b64v2_mt8 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly b64v2_mt8 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly b64v2_mt8 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public b64v2_mt8 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b64v2_mt8 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b64v2_mt8 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b64v2_mt8 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b64v2_mt8 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b64v2_mt8 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b64v2_mt8 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public b64v2_mt8 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly b64v2_mt8 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly b64v2_mt8 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // b64v4_mt8
-
-#region b64v4_mt16
-
-public partial struct b64v4_mt16 
-{
-    public readonly b64v2_mt16 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly b64v2_mt16 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public b64v2_mt16 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b64v2_mt16 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; }
-    }
-    public b64v2_mt16 xz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b64v2_mt16 rb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; }
-    }
-    public b64v2_mt16 xw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b64v2_mt16 ra
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; }
-    }
-    public b64v2_mt16 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public b64v2_mt16 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; }
-    }
-    public readonly b64v2_mt16 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly b64v2_mt16 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public b64v2_mt16 yz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b64v2_mt16 gb
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; }
-    }
-    public b64v2_mt16 yw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b64v2_mt16 ga
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; }
-    }
-    public b64v2_mt16 zx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b64v2_mt16 br
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; }
-    }
-    public b64v2_mt16 zy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public b64v2_mt16 bg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; }
-    }
-    public readonly b64v2_mt16 zz
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public readonly b64v2_mt16 bb
-    {
-        [MethodImpl(256 | 512)]
-        get => new(z, z);
-    }
-    public b64v2_mt16 zw
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b64v2_mt16 ba
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(z, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; }
-    }
-    public b64v2_mt16 wx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b64v2_mt16 ar
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; }
-    }
-    public b64v2_mt16 wy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b64v2_mt16 ag
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; }
-    }
-    public b64v2_mt16 wz
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public b64v2_mt16 ab
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(w, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; }
-    }
-    public readonly b64v2_mt16 ww
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-    public readonly b64v2_mt16 aa
-    {
-        [MethodImpl(256 | 512)]
-        get => new(w, w);
-    }
-}
-
-#endregion // b64v4_mt16
+#endregion // b64v4_mt

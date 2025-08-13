@@ -2,13 +2,13 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float2x2_mt4
+#region float2x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2x2_mt4 transpose([This] float2x2_mt4 mat)
+    public static float2x2_mt transpose([This] float2x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -17,49 +17,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float2x2_mt4
+#endregion // float2x2_mt
 
-#region float2x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float2x2_mt8 transpose([This] float2x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // float2x2_mt8
-
-#region float2x2_mt16
+#region float2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2x2_mt16 transpose([This] float2x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // float2x2_mt16
-
-#region float2x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3x2_mt4 transpose([This] float2x3_mt4 mat)
+    public static float3x2_mt transpose([This] float2x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -68,49 +34,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float2x3_mt4
+#endregion // float2x3_mt
 
-#region float2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3x2_mt8 transpose([This] float2x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // float2x3_mt8
-
-#region float2x3_mt16
+#region float2x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3x2_mt16 transpose([This] float2x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // float2x3_mt16
-
-#region float2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4x2_mt4 transpose([This] float2x4_mt4 mat)
+    public static float4x2_mt transpose([This] float2x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -119,49 +51,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float2x4_mt4
+#endregion // float2x4_mt
 
-#region float2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4x2_mt8 transpose([This] float2x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // float2x4_mt8
-
-#region float2x4_mt16
+#region float3x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float4x2_mt16 transpose([This] float2x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // float2x4_mt16
-
-#region float3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float2x3_mt4 transpose([This] float3x2_mt4 mat)
+    public static float2x3_mt transpose([This] float3x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -171,51 +69,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float3x2_mt4
+#endregion // float3x2_mt
 
-#region float3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float2x3_mt8 transpose([This] float3x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // float3x2_mt8
-
-#region float3x2_mt16
+#region float3x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2x3_mt16 transpose([This] float3x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // float3x2_mt16
-
-#region float3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt4 transpose([This] float3x3_mt4 mat)
+    public static float3x3_mt transpose([This] float3x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -225,51 +87,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float3x3_mt4
+#endregion // float3x3_mt
 
-#region float3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 transpose([This] float3x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // float3x3_mt8
-
-#region float3x3_mt16
+#region float3x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3x3_mt16 transpose([This] float3x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // float3x3_mt16
-
-#region float3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4x3_mt4 transpose([This] float3x4_mt4 mat)
+    public static float4x3_mt transpose([This] float3x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -279,51 +105,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float3x4_mt4
+#endregion // float3x4_mt
 
-#region float3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4x3_mt8 transpose([This] float3x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // float3x4_mt8
-
-#region float3x4_mt16
+#region float4x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float4x3_mt16 transpose([This] float3x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // float3x4_mt16
-
-#region float4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float2x4_mt4 transpose([This] float4x2_mt4 mat)
+    public static float2x4_mt transpose([This] float4x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -334,53 +124,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float4x2_mt4
+#endregion // float4x2_mt
 
-#region float4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float2x4_mt8 transpose([This] float4x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // float4x2_mt8
-
-#region float4x2_mt16
+#region float4x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float2x4_mt16 transpose([This] float4x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // float4x2_mt16
-
-#region float4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3x4_mt4 transpose([This] float4x3_mt4 mat)
+    public static float3x4_mt transpose([This] float4x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -391,53 +143,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float4x3_mt4
+#endregion // float4x3_mt
 
-#region float4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float3x4_mt8 transpose([This] float4x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // float4x3_mt8
-
-#region float4x3_mt16
+#region float4x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3x4_mt16 transpose([This] float4x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // float4x3_mt16
-
-#region float4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt4 transpose([This] float4x4_mt4 mat)
+    public static float4x4_mt transpose([This] float4x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -448,53 +162,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // float4x4_mt4
+#endregion // float4x4_mt
 
-#region float4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float4x4_mt8 transpose([This] float4x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // float4x4_mt8
-
-#region float4x4_mt16
+#region double2x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float4x4_mt16 transpose([This] float4x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // float4x4_mt16
-
-#region double2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt4 transpose([This] double2x2_mt4 mat)
+    public static double2x2_mt transpose([This] double2x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -503,49 +179,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double2x2_mt4
+#endregion // double2x2_mt
 
-#region double2x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double2x2_mt8 transpose([This] double2x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // double2x2_mt8
-
-#region double2x2_mt16
+#region double2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double2x2_mt16 transpose([This] double2x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // double2x2_mt16
-
-#region double2x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3x2_mt4 transpose([This] double2x3_mt4 mat)
+    public static double3x2_mt transpose([This] double2x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -554,49 +196,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double2x3_mt4
+#endregion // double2x3_mt
 
-#region double2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3x2_mt8 transpose([This] double2x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // double2x3_mt8
-
-#region double2x3_mt16
+#region double2x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3x2_mt16 transpose([This] double2x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // double2x3_mt16
-
-#region double2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4x2_mt4 transpose([This] double2x4_mt4 mat)
+    public static double4x2_mt transpose([This] double2x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -605,49 +213,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double2x4_mt4
+#endregion // double2x4_mt
 
-#region double2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4x2_mt8 transpose([This] double2x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // double2x4_mt8
-
-#region double2x4_mt16
+#region double3x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double4x2_mt16 transpose([This] double2x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // double2x4_mt16
-
-#region double3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double2x3_mt4 transpose([This] double3x2_mt4 mat)
+    public static double2x3_mt transpose([This] double3x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -657,51 +231,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double3x2_mt4
+#endregion // double3x2_mt
 
-#region double3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double2x3_mt8 transpose([This] double3x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // double3x2_mt8
-
-#region double3x2_mt16
+#region double3x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double2x3_mt16 transpose([This] double3x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // double3x2_mt16
-
-#region double3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt4 transpose([This] double3x3_mt4 mat)
+    public static double3x3_mt transpose([This] double3x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -711,51 +249,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double3x3_mt4
+#endregion // double3x3_mt
 
-#region double3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 transpose([This] double3x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // double3x3_mt8
-
-#region double3x3_mt16
+#region double3x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3x3_mt16 transpose([This] double3x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // double3x3_mt16
-
-#region double3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4x3_mt4 transpose([This] double3x4_mt4 mat)
+    public static double4x3_mt transpose([This] double3x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -765,51 +267,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double3x4_mt4
+#endregion // double3x4_mt
 
-#region double3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4x3_mt8 transpose([This] double3x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // double3x4_mt8
-
-#region double3x4_mt16
+#region double4x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double4x3_mt16 transpose([This] double3x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // double3x4_mt16
-
-#region double4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double2x4_mt4 transpose([This] double4x2_mt4 mat)
+    public static double2x4_mt transpose([This] double4x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -820,53 +286,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double4x2_mt4
+#endregion // double4x2_mt
 
-#region double4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double2x4_mt8 transpose([This] double4x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // double4x2_mt8
-
-#region double4x2_mt16
+#region double4x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double2x4_mt16 transpose([This] double4x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // double4x2_mt16
-
-#region double4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3x4_mt4 transpose([This] double4x3_mt4 mat)
+    public static double3x4_mt transpose([This] double4x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -877,53 +305,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double4x3_mt4
+#endregion // double4x3_mt
 
-#region double4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double3x4_mt8 transpose([This] double4x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // double4x3_mt8
-
-#region double4x3_mt16
+#region double4x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3x4_mt16 transpose([This] double4x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // double4x3_mt16
-
-#region double4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt4 transpose([This] double4x4_mt4 mat)
+    public static double4x4_mt transpose([This] double4x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -934,53 +324,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // double4x4_mt4
+#endregion // double4x4_mt
 
-#region double4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double4x4_mt8 transpose([This] double4x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // double4x4_mt8
-
-#region double4x4_mt16
+#region int2x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double4x4_mt16 transpose([This] double4x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // double4x4_mt16
-
-#region int2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int2x2_mt4 transpose([This] int2x2_mt4 mat)
+    public static int2x2_mt transpose([This] int2x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -989,15 +341,160 @@ public static partial class math_mt
     }
 }
 
-#endregion // int2x2_mt4
+#endregion // int2x2_mt
 
-#region int2x2_mt8
+#region int2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2x2_mt8 transpose([This] int2x2_mt8 mat)
+    public static int3x2_mt transpose([This] int2x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y)
+        );
+    }
+}
+
+#endregion // int2x3_mt
+
+#region int2x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static int4x2_mt transpose([This] int2x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
+        );
+    }
+}
+
+#endregion // int2x4_mt
+
+#region int3x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static int2x3_mt transpose([This] int3x2_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x),
+            new(mat.c0.y, mat.c1.y),
+            new(mat.c0.z, mat.c1.z)
+        );
+    }
+}
+
+#endregion // int3x2_mt
+
+#region int3x3_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static int3x3_mt transpose([This] int3x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z)
+        );
+    }
+}
+
+#endregion // int3x3_mt
+
+#region int3x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static int4x3_mt transpose([This] int3x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
+        );
+    }
+}
+
+#endregion // int3x4_mt
+
+#region int4x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static int2x4_mt transpose([This] int4x2_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x),
+            new(mat.c0.y, mat.c1.y),
+            new(mat.c0.z, mat.c1.z),
+            new(mat.c0.w, mat.c1.w)
+        );
+    }
+}
+
+#endregion // int4x2_mt
+
+#region int4x3_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static int3x4_mt transpose([This] int4x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z),
+            new(mat.c0.w, mat.c1.w, mat.c2.w)
+        );
+    }
+}
+
+#endregion // int4x3_mt
+
+#region int4x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static int4x4_mt transpose([This] int4x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
+            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
+        );
+    }
+}
+
+#endregion // int4x4_mt
+
+#region uint2x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint2x2_mt transpose([This] uint2x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1006,15 +503,160 @@ public static partial class math_mt
     }
 }
 
-#endregion // int2x2_mt8
+#endregion // uint2x2_mt
 
-#region int2x2_mt16
+#region uint2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2x2_mt16 transpose([This] int2x2_mt16 mat)
+    public static uint3x2_mt transpose([This] uint2x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y)
+        );
+    }
+}
+
+#endregion // uint2x3_mt
+
+#region uint2x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint4x2_mt transpose([This] uint2x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
+        );
+    }
+}
+
+#endregion // uint2x4_mt
+
+#region uint3x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint2x3_mt transpose([This] uint3x2_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x),
+            new(mat.c0.y, mat.c1.y),
+            new(mat.c0.z, mat.c1.z)
+        );
+    }
+}
+
+#endregion // uint3x2_mt
+
+#region uint3x3_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint3x3_mt transpose([This] uint3x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z)
+        );
+    }
+}
+
+#endregion // uint3x3_mt
+
+#region uint3x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint4x3_mt transpose([This] uint3x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
+        );
+    }
+}
+
+#endregion // uint3x4_mt
+
+#region uint4x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint2x4_mt transpose([This] uint4x2_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x),
+            new(mat.c0.y, mat.c1.y),
+            new(mat.c0.z, mat.c1.z),
+            new(mat.c0.w, mat.c1.w)
+        );
+    }
+}
+
+#endregion // uint4x2_mt
+
+#region uint4x3_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint3x4_mt transpose([This] uint4x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z),
+            new(mat.c0.w, mat.c1.w, mat.c2.w)
+        );
+    }
+}
+
+#endregion // uint4x3_mt
+
+#region uint4x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static uint4x4_mt transpose([This] uint4x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
+            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
+        );
+    }
+}
+
+#endregion // uint4x4_mt
+
+#region long2x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static long2x2_mt transpose([This] long2x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1023,15 +665,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int2x2_mt16
+#endregion // long2x2_mt
 
-#region int2x3_mt4
+#region long2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3x2_mt4 transpose([This] int2x3_mt4 mat)
+    public static long3x2_mt transpose([This] long2x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1040,49 +682,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int2x3_mt4
+#endregion // long2x3_mt
 
-#region int2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3x2_mt8 transpose([This] int2x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // int2x3_mt8
-
-#region int2x3_mt16
+#region long2x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3x2_mt16 transpose([This] int2x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // int2x3_mt16
-
-#region int2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4x2_mt4 transpose([This] int2x4_mt4 mat)
+    public static long4x2_mt transpose([This] long2x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1091,49 +699,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int2x4_mt4
+#endregion // long2x4_mt
 
-#region int2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4x2_mt8 transpose([This] int2x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // int2x4_mt8
-
-#region int2x4_mt16
+#region long3x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int4x2_mt16 transpose([This] int2x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // int2x4_mt16
-
-#region int3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int2x3_mt4 transpose([This] int3x2_mt4 mat)
+    public static long2x3_mt transpose([This] long3x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1143,51 +717,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int3x2_mt4
+#endregion // long3x2_mt
 
-#region int3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int2x3_mt8 transpose([This] int3x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // int3x2_mt8
-
-#region int3x2_mt16
+#region long3x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2x3_mt16 transpose([This] int3x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // int3x2_mt16
-
-#region int3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3x3_mt4 transpose([This] int3x3_mt4 mat)
+    public static long3x3_mt transpose([This] long3x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1197,51 +735,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int3x3_mt4
+#endregion // long3x3_mt
 
-#region int3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3x3_mt8 transpose([This] int3x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // int3x3_mt8
-
-#region int3x3_mt16
+#region long3x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3x3_mt16 transpose([This] int3x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // int3x3_mt16
-
-#region int3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4x3_mt4 transpose([This] int3x4_mt4 mat)
+    public static long4x3_mt transpose([This] long3x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1251,51 +753,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int3x4_mt4
+#endregion // long3x4_mt
 
-#region int3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4x3_mt8 transpose([This] int3x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // int3x4_mt8
-
-#region int3x4_mt16
+#region long4x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int4x3_mt16 transpose([This] int3x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // int3x4_mt16
-
-#region int4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int2x4_mt4 transpose([This] int4x2_mt4 mat)
+    public static long2x4_mt transpose([This] long4x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1306,53 +772,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int4x2_mt4
+#endregion // long4x2_mt
 
-#region int4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int2x4_mt8 transpose([This] int4x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // int4x2_mt8
-
-#region int4x2_mt16
+#region long4x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int2x4_mt16 transpose([This] int4x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // int4x2_mt16
-
-#region int4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3x4_mt4 transpose([This] int4x3_mt4 mat)
+    public static long3x4_mt transpose([This] long4x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1363,53 +791,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int4x3_mt4
+#endregion // long4x3_mt
 
-#region int4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int3x4_mt8 transpose([This] int4x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // int4x3_mt8
-
-#region int4x3_mt16
+#region long4x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3x4_mt16 transpose([This] int4x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // int4x3_mt16
-
-#region int4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt4 transpose([This] int4x4_mt4 mat)
+    public static long4x4_mt transpose([This] long4x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1420,53 +810,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // int4x4_mt4
+#endregion // long4x4_mt
 
-#region int4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int4x4_mt8 transpose([This] int4x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // int4x4_mt8
-
-#region int4x4_mt16
+#region ulong2x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static int4x4_mt16 transpose([This] int4x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // int4x4_mt16
-
-#region uint2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint2x2_mt4 transpose([This] uint2x2_mt4 mat)
+    public static ulong2x2_mt transpose([This] ulong2x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1475,15 +827,160 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint2x2_mt4
+#endregion // ulong2x2_mt
 
-#region uint2x2_mt8
+#region ulong2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint2x2_mt8 transpose([This] uint2x2_mt8 mat)
+    public static ulong3x2_mt transpose([This] ulong2x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y)
+        );
+    }
+}
+
+#endregion // ulong2x3_mt
+
+#region ulong2x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong4x2_mt transpose([This] ulong2x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
+        );
+    }
+}
+
+#endregion // ulong2x4_mt
+
+#region ulong3x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong2x3_mt transpose([This] ulong3x2_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x),
+            new(mat.c0.y, mat.c1.y),
+            new(mat.c0.z, mat.c1.z)
+        );
+    }
+}
+
+#endregion // ulong3x2_mt
+
+#region ulong3x3_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong3x3_mt transpose([This] ulong3x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z)
+        );
+    }
+}
+
+#endregion // ulong3x3_mt
+
+#region ulong3x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong4x3_mt transpose([This] ulong3x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
+        );
+    }
+}
+
+#endregion // ulong3x4_mt
+
+#region ulong4x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong2x4_mt transpose([This] ulong4x2_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x),
+            new(mat.c0.y, mat.c1.y),
+            new(mat.c0.z, mat.c1.z),
+            new(mat.c0.w, mat.c1.w)
+        );
+    }
+}
+
+#endregion // ulong4x2_mt
+
+#region ulong4x3_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong3x4_mt transpose([This] ulong4x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z),
+            new(mat.c0.w, mat.c1.w, mat.c2.w)
+        );
+    }
+}
+
+#endregion // ulong4x3_mt
+
+#region ulong4x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static ulong4x4_mt transpose([This] ulong4x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
+            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
+        );
+    }
+}
+
+#endregion // ulong4x4_mt
+
+#region b32m2x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m2x2_mt transpose([This] b32m2x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1492,15 +989,160 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint2x2_mt8
+#endregion // b32m2x2_mt
 
-#region uint2x2_mt16
+#region b32m2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint2x2_mt16 transpose([This] uint2x2_mt16 mat)
+    public static b32m3x2_mt transpose([This] b32m2x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y)
+        );
+    }
+}
+
+#endregion // b32m2x3_mt
+
+#region b32m2x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m4x2_mt transpose([This] b32m2x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
+        );
+    }
+}
+
+#endregion // b32m2x4_mt
+
+#region b32m3x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m2x3_mt transpose([This] b32m3x2_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x),
+            new(mat.c0.y, mat.c1.y),
+            new(mat.c0.z, mat.c1.z)
+        );
+    }
+}
+
+#endregion // b32m3x2_mt
+
+#region b32m3x3_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m3x3_mt transpose([This] b32m3x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z)
+        );
+    }
+}
+
+#endregion // b32m3x3_mt
+
+#region b32m3x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m4x3_mt transpose([This] b32m3x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
+        );
+    }
+}
+
+#endregion // b32m3x4_mt
+
+#region b32m4x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m2x4_mt transpose([This] b32m4x2_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x),
+            new(mat.c0.y, mat.c1.y),
+            new(mat.c0.z, mat.c1.z),
+            new(mat.c0.w, mat.c1.w)
+        );
+    }
+}
+
+#endregion // b32m4x2_mt
+
+#region b32m4x3_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m3x4_mt transpose([This] b32m4x3_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z),
+            new(mat.c0.w, mat.c1.w, mat.c2.w)
+        );
+    }
+}
+
+#endregion // b32m4x3_mt
+
+#region b32m4x4_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b32m4x4_mt transpose([This] b32m4x4_mt mat)
+    {
+        return new(
+            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
+            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
+            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
+            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
+        );
+    }
+}
+
+#endregion // b32m4x4_mt
+
+#region b64m2x2_mt
+
+[Ex]
+public static partial class math_mt
+{
+    [MethodImpl(256 | 512)]
+    public static b64m2x2_mt transpose([This] b64m2x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1509,15 +1151,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint2x2_mt16
+#endregion // b64m2x2_mt
 
-#region uint2x3_mt4
+#region b64m2x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3x2_mt4 transpose([This] uint2x3_mt4 mat)
+    public static b64m3x2_mt transpose([This] b64m2x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1526,49 +1168,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint2x3_mt4
+#endregion // b64m2x3_mt
 
-#region uint2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3x2_mt8 transpose([This] uint2x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // uint2x3_mt8
-
-#region uint2x3_mt16
+#region b64m2x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3x2_mt16 transpose([This] uint2x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // uint2x3_mt16
-
-#region uint2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4x2_mt4 transpose([This] uint2x4_mt4 mat)
+    public static b64m4x2_mt transpose([This] b64m2x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1577,49 +1185,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint2x4_mt4
+#endregion // b64m2x4_mt
 
-#region uint2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4x2_mt8 transpose([This] uint2x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // uint2x4_mt8
-
-#region uint2x4_mt16
+#region b64m3x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint4x2_mt16 transpose([This] uint2x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // uint2x4_mt16
-
-#region uint3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint2x3_mt4 transpose([This] uint3x2_mt4 mat)
+    public static b64m2x3_mt transpose([This] b64m3x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1629,51 +1203,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint3x2_mt4
+#endregion // b64m3x2_mt
 
-#region uint3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint2x3_mt8 transpose([This] uint3x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // uint3x2_mt8
-
-#region uint3x2_mt16
+#region b64m3x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint2x3_mt16 transpose([This] uint3x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // uint3x2_mt16
-
-#region uint3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt4 transpose([This] uint3x3_mt4 mat)
+    public static b64m3x3_mt transpose([This] b64m3x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1683,51 +1221,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint3x3_mt4
+#endregion // b64m3x3_mt
 
-#region uint3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3x3_mt8 transpose([This] uint3x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // uint3x3_mt8
-
-#region uint3x3_mt16
+#region b64m3x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3x3_mt16 transpose([This] uint3x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // uint3x3_mt16
-
-#region uint3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4x3_mt4 transpose([This] uint3x4_mt4 mat)
+    public static b64m4x3_mt transpose([This] b64m3x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1737,51 +1239,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint3x4_mt4
+#endregion // b64m3x4_mt
 
-#region uint3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4x3_mt8 transpose([This] uint3x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // uint3x4_mt8
-
-#region uint3x4_mt16
+#region b64m4x2_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint4x3_mt16 transpose([This] uint3x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // uint3x4_mt16
-
-#region uint4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint2x4_mt4 transpose([This] uint4x2_mt4 mat)
+    public static b64m2x4_mt transpose([This] b64m4x2_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1792,53 +1258,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint4x2_mt4
+#endregion // b64m4x2_mt
 
-#region uint4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint2x4_mt8 transpose([This] uint4x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // uint4x2_mt8
-
-#region uint4x2_mt16
+#region b64m4x3_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint2x4_mt16 transpose([This] uint4x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // uint4x2_mt16
-
-#region uint4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3x4_mt4 transpose([This] uint4x3_mt4 mat)
+    public static b64m3x4_mt transpose([This] b64m4x3_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1849,53 +1277,15 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint4x3_mt4
+#endregion // b64m4x3_mt
 
-#region uint4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint3x4_mt8 transpose([This] uint4x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // uint4x3_mt8
-
-#region uint4x3_mt16
+#region b64m4x4_mt
 
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3x4_mt16 transpose([This] uint4x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // uint4x3_mt16
-
-#region uint4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt4 transpose([This] uint4x4_mt4 mat)
+    public static b64m4x4_mt transpose([This] b64m4x4_mt mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1906,1986 +1296,4 @@ public static partial class math_mt
     }
 }
 
-#endregion // uint4x4_mt4
-
-#region uint4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt8 transpose([This] uint4x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // uint4x4_mt8
-
-#region uint4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint4x4_mt16 transpose([This] uint4x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // uint4x4_mt16
-
-#region long2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt4 transpose([This] long2x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // long2x2_mt4
-
-#region long2x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt8 transpose([This] long2x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // long2x2_mt8
-
-#region long2x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x2_mt16 transpose([This] long2x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // long2x2_mt16
-
-#region long2x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x2_mt4 transpose([This] long2x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // long2x3_mt4
-
-#region long2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x2_mt8 transpose([This] long2x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // long2x3_mt8
-
-#region long2x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x2_mt16 transpose([This] long2x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // long2x3_mt16
-
-#region long2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x2_mt4 transpose([This] long2x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // long2x4_mt4
-
-#region long2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x2_mt8 transpose([This] long2x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // long2x4_mt8
-
-#region long2x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x2_mt16 transpose([This] long2x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // long2x4_mt16
-
-#region long3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x3_mt4 transpose([This] long3x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // long3x2_mt4
-
-#region long3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x3_mt8 transpose([This] long3x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // long3x2_mt8
-
-#region long3x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x3_mt16 transpose([This] long3x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // long3x2_mt16
-
-#region long3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt4 transpose([This] long3x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // long3x3_mt4
-
-#region long3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt8 transpose([This] long3x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // long3x3_mt8
-
-#region long3x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x3_mt16 transpose([This] long3x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // long3x3_mt16
-
-#region long3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x3_mt4 transpose([This] long3x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // long3x4_mt4
-
-#region long3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x3_mt8 transpose([This] long3x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // long3x4_mt8
-
-#region long3x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x3_mt16 transpose([This] long3x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // long3x4_mt16
-
-#region long4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x4_mt4 transpose([This] long4x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // long4x2_mt4
-
-#region long4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x4_mt8 transpose([This] long4x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // long4x2_mt8
-
-#region long4x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long2x4_mt16 transpose([This] long4x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // long4x2_mt16
-
-#region long4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x4_mt4 transpose([This] long4x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // long4x3_mt4
-
-#region long4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x4_mt8 transpose([This] long4x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // long4x3_mt8
-
-#region long4x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long3x4_mt16 transpose([This] long4x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // long4x3_mt16
-
-#region long4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt4 transpose([This] long4x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // long4x4_mt4
-
-#region long4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt8 transpose([This] long4x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // long4x4_mt8
-
-#region long4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long4x4_mt16 transpose([This] long4x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // long4x4_mt16
-
-#region ulong2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt4 transpose([This] ulong2x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // ulong2x2_mt4
-
-#region ulong2x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt8 transpose([This] ulong2x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // ulong2x2_mt8
-
-#region ulong2x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x2_mt16 transpose([This] ulong2x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // ulong2x2_mt16
-
-#region ulong2x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x2_mt4 transpose([This] ulong2x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // ulong2x3_mt4
-
-#region ulong2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x2_mt8 transpose([This] ulong2x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // ulong2x3_mt8
-
-#region ulong2x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x2_mt16 transpose([This] ulong2x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // ulong2x3_mt16
-
-#region ulong2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x2_mt4 transpose([This] ulong2x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // ulong2x4_mt4
-
-#region ulong2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x2_mt8 transpose([This] ulong2x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // ulong2x4_mt8
-
-#region ulong2x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x2_mt16 transpose([This] ulong2x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // ulong2x4_mt16
-
-#region ulong3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x3_mt4 transpose([This] ulong3x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // ulong3x2_mt4
-
-#region ulong3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x3_mt8 transpose([This] ulong3x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // ulong3x2_mt8
-
-#region ulong3x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x3_mt16 transpose([This] ulong3x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // ulong3x2_mt16
-
-#region ulong3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt4 transpose([This] ulong3x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // ulong3x3_mt4
-
-#region ulong3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt8 transpose([This] ulong3x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // ulong3x3_mt8
-
-#region ulong3x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x3_mt16 transpose([This] ulong3x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // ulong3x3_mt16
-
-#region ulong3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x3_mt4 transpose([This] ulong3x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // ulong3x4_mt4
-
-#region ulong3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x3_mt8 transpose([This] ulong3x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // ulong3x4_mt8
-
-#region ulong3x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x3_mt16 transpose([This] ulong3x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // ulong3x4_mt16
-
-#region ulong4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x4_mt4 transpose([This] ulong4x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // ulong4x2_mt4
-
-#region ulong4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x4_mt8 transpose([This] ulong4x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // ulong4x2_mt8
-
-#region ulong4x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong2x4_mt16 transpose([This] ulong4x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // ulong4x2_mt16
-
-#region ulong4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x4_mt4 transpose([This] ulong4x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // ulong4x3_mt4
-
-#region ulong4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x4_mt8 transpose([This] ulong4x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // ulong4x3_mt8
-
-#region ulong4x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong3x4_mt16 transpose([This] ulong4x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // ulong4x3_mt16
-
-#region ulong4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt4 transpose([This] ulong4x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // ulong4x4_mt4
-
-#region ulong4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt8 transpose([This] ulong4x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // ulong4x4_mt8
-
-#region ulong4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong4x4_mt16 transpose([This] ulong4x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // ulong4x4_mt16
-
-#region b32m2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x2_mt4 transpose([This] b32m2x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // b32m2x2_mt4
-
-#region b32m2x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x2_mt8 transpose([This] b32m2x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // b32m2x2_mt8
-
-#region b32m2x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x2_mt16 transpose([This] b32m2x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // b32m2x2_mt16
-
-#region b32m2x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x2_mt4 transpose([This] b32m2x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // b32m2x3_mt4
-
-#region b32m2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x2_mt8 transpose([This] b32m2x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // b32m2x3_mt8
-
-#region b32m2x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x2_mt16 transpose([This] b32m2x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // b32m2x3_mt16
-
-#region b32m2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x2_mt4 transpose([This] b32m2x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // b32m2x4_mt4
-
-#region b32m2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x2_mt8 transpose([This] b32m2x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // b32m2x4_mt8
-
-#region b32m2x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x2_mt16 transpose([This] b32m2x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // b32m2x4_mt16
-
-#region b32m3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x3_mt4 transpose([This] b32m3x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // b32m3x2_mt4
-
-#region b32m3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x3_mt8 transpose([This] b32m3x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // b32m3x2_mt8
-
-#region b32m3x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x3_mt16 transpose([This] b32m3x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // b32m3x2_mt16
-
-#region b32m3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x3_mt4 transpose([This] b32m3x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // b32m3x3_mt4
-
-#region b32m3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x3_mt8 transpose([This] b32m3x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // b32m3x3_mt8
-
-#region b32m3x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x3_mt16 transpose([This] b32m3x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // b32m3x3_mt16
-
-#region b32m3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x3_mt4 transpose([This] b32m3x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // b32m3x4_mt4
-
-#region b32m3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x3_mt8 transpose([This] b32m3x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // b32m3x4_mt8
-
-#region b32m3x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x3_mt16 transpose([This] b32m3x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // b32m3x4_mt16
-
-#region b32m4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x4_mt4 transpose([This] b32m4x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // b32m4x2_mt4
-
-#region b32m4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x4_mt8 transpose([This] b32m4x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // b32m4x2_mt8
-
-#region b32m4x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m2x4_mt16 transpose([This] b32m4x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // b32m4x2_mt16
-
-#region b32m4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x4_mt4 transpose([This] b32m4x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // b32m4x3_mt4
-
-#region b32m4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x4_mt8 transpose([This] b32m4x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // b32m4x3_mt8
-
-#region b32m4x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m3x4_mt16 transpose([This] b32m4x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // b32m4x3_mt16
-
-#region b32m4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x4_mt4 transpose([This] b32m4x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // b32m4x4_mt4
-
-#region b32m4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x4_mt8 transpose([This] b32m4x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // b32m4x4_mt8
-
-#region b32m4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32m4x4_mt16 transpose([This] b32m4x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // b32m4x4_mt16
-
-#region b64m2x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt4 transpose([This] b64m2x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // b64m2x2_mt4
-
-#region b64m2x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt8 transpose([This] b64m2x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // b64m2x2_mt8
-
-#region b64m2x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x2_mt16 transpose([This] b64m2x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y)
-        );
-    }
-}
-
-#endregion // b64m2x2_mt16
-
-#region b64m2x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt4 transpose([This] b64m2x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // b64m2x3_mt4
-
-#region b64m2x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt8 transpose([This] b64m2x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // b64m2x3_mt8
-
-#region b64m2x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x2_mt16 transpose([This] b64m2x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y)
-        );
-    }
-}
-
-#endregion // b64m2x3_mt16
-
-#region b64m2x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt4 transpose([This] b64m2x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // b64m2x4_mt4
-
-#region b64m2x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt8 transpose([This] b64m2x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // b64m2x4_mt8
-
-#region b64m2x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x2_mt16 transpose([This] b64m2x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
-        );
-    }
-}
-
-#endregion // b64m2x4_mt16
-
-#region b64m3x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt4 transpose([This] b64m3x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // b64m3x2_mt4
-
-#region b64m3x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt8 transpose([This] b64m3x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // b64m3x2_mt8
-
-#region b64m3x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x3_mt16 transpose([This] b64m3x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z)
-        );
-    }
-}
-
-#endregion // b64m3x2_mt16
-
-#region b64m3x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt4 transpose([This] b64m3x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // b64m3x3_mt4
-
-#region b64m3x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt8 transpose([This] b64m3x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // b64m3x3_mt8
-
-#region b64m3x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x3_mt16 transpose([This] b64m3x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z)
-        );
-    }
-}
-
-#endregion // b64m3x3_mt16
-
-#region b64m3x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt4 transpose([This] b64m3x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // b64m3x4_mt4
-
-#region b64m3x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt8 transpose([This] b64m3x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // b64m3x4_mt8
-
-#region b64m3x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x3_mt16 transpose([This] b64m3x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
-        );
-    }
-}
-
-#endregion // b64m3x4_mt16
-
-#region b64m4x2_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt4 transpose([This] b64m4x2_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // b64m4x2_mt4
-
-#region b64m4x2_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt8 transpose([This] b64m4x2_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // b64m4x2_mt8
-
-#region b64m4x2_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m2x4_mt16 transpose([This] b64m4x2_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x),
-            new(mat.c0.y, mat.c1.y),
-            new(mat.c0.z, mat.c1.z),
-            new(mat.c0.w, mat.c1.w)
-        );
-    }
-}
-
-#endregion // b64m4x2_mt16
-
-#region b64m4x3_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt4 transpose([This] b64m4x3_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // b64m4x3_mt4
-
-#region b64m4x3_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt8 transpose([This] b64m4x3_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // b64m4x3_mt8
-
-#region b64m4x3_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m3x4_mt16 transpose([This] b64m4x3_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w)
-        );
-    }
-}
-
-#endregion // b64m4x3_mt16
-
-#region b64m4x4_mt4
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt4 transpose([This] b64m4x4_mt4 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // b64m4x4_mt4
-
-#region b64m4x4_mt8
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt8 transpose([This] b64m4x4_mt8 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // b64m4x4_mt8
-
-#region b64m4x4_mt16
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64m4x4_mt16 transpose([This] b64m4x4_mt16 mat)
-    {
-        return new(
-            new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
-            new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
-            new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
-            new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
-        );
-    }
-}
-
-#endregion // b64m4x4_mt16
+#endregion // b64m4x4_mt

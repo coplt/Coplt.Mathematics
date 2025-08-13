@@ -2,80 +2,80 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region quaternion_mt4
+#region quaternion_mt
 
-public partial record struct quaternion_mt4
+public partial record struct quaternion_mt
 {
-    public float4_mt4 value;
+    public float4_mt value;
 
-    public readonly override string ToString() => $"{nameof(quaternion_mt4)}({value.x}, {value.y}, {value.z}, {value.w})";
+    public readonly override string ToString() => $"{nameof(quaternion_mt)}({value.x}, {value.y}, {value.z}, {value.w})";
 
-    public static quaternion_mt4 Identity
+    public static quaternion_mt Identity
     {
         [MethodImpl(256 | 512)]
         get => new(default, default, default, 1.0f);
     }
     
     [MethodImpl(256 | 512)]
-    public quaternion_mt4(float_mt4 x, float_mt4 y, float_mt4 z, float_mt4 w) => 
+    public quaternion_mt(float_mt x, float_mt y, float_mt z, float_mt w) => 
         value = new(x, y, z, w); 
 
     [MethodImpl(256 | 512)]
-    public quaternion_mt4(float4_mt4 value) => this.value = value; 
+    public quaternion_mt(float4_mt value) => this.value = value; 
 
     [MethodImpl(256 | 512)]
-    public static implicit operator quaternion_mt4(float4_mt4 value) => new(value); 
+    public static implicit operator quaternion_mt(float4_mt value) => new(value); 
 
-    /// <summary>Constructs a unit quaternion from a float3x3_mt4 rotation matrix. The matrix must be orthonormal</summary>
-    /// <param name="m">The float3x3_mt4 orthonormal rotation matrix</param>
+    /// <summary>Constructs a unit quaternion from a float3x3_mt rotation matrix. The matrix must be orthonormal</summary>
+    /// <param name="m">The float3x3_mt orthonormal rotation matrix</param>
     [MethodImpl(256 | 512)]
-    public quaternion_mt4(float3x3_mt4 m)
+    public quaternion_mt(float3x3_mt m)
     {
         var u = m.c0;
         var v = m.c1;
         var w = m.c2;
 
-        var u_sign = (uint_mt4)(u.x.asu() & 0x80000000);
-        var t = (v.y + ((uint_mt4)(w.z.asu() ^ u_sign)).asf());
-        var u_mask = new uint4_mt4((uint_mt4)(u_sign >> 31)).asf();
-        var t_mask = new int4_mt4((int_mt4)(t.asi() >> 31)).asf();
+        var u_sign = (uint_mt)(u.x.asu() & 0x80000000);
+        var t = (v.y + ((uint_mt)(w.z.asu() ^ u_sign)).asf());
+        var u_mask = new uint4_mt((uint_mt)(u_sign >> 31)).asf();
+        var t_mask = new int4_mt((int_mt)(t.asi() >> 31)).asf();
 
         var tr = 1.0f + u.x.abs();
 
         var sign_flips =
-            new uint4_mt4(default, 0x80000000, 0x80000000, 0x80000000).asf()
-            ^ (u_mask & new uint4_mt4(default, 0x80000000, default, 0x80000000).asf())
-            ^ (t_mask & new uint4_mt4(0x80000000, 0x80000000, 0x80000000, default).asf());
+            new uint4_mt(default, 0x80000000, 0x80000000, 0x80000000).asf()
+            ^ (u_mask & new uint4_mt(default, 0x80000000, default, 0x80000000).asf())
+            ^ (t_mask & new uint4_mt(0x80000000, 0x80000000, 0x80000000, default).asf());
 
-        value = new float4_mt4(tr, u.y, w.x, v.z) + (new float4_mt4(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
+        value = new float4_mt(tr, u.y, w.x, v.z) + (new float4_mt(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
 
         value = (value & ~u_mask) | (value.zwxy & u_mask);
         value = (value.wzyx & ~t_mask) | (value & t_mask);
         value = value.normalize();
     }
 
-    /// <summary>Constructs a unit quaternion from an orthonormal float4x4_mt4 matrix</summary>
-    /// <param name="m">The float4x4_mt4 orthonormal rotation matrix</param>
+    /// <summary>Constructs a unit quaternion from an orthonormal float4x4_mt matrix</summary>
+    /// <param name="m">The float4x4_mt orthonormal rotation matrix</param>
     [MethodImpl(256 | 512)]
-    public quaternion_mt4(float4x4_mt4 m)
+    public quaternion_mt(float4x4_mt m)
     {
         var u = m.c0;
         var v = m.c1;
         var w = m.c2;
 
-        var u_sign = (uint_mt4)(u.x.asu() & 0x80000000);
-        var t = v.y + ((uint_mt4)(w.z.asu() ^ u_sign)).asf();
-        var u_mask = new uint4_mt4((uint_mt4)(u_sign >> 31)).asf();
-        var t_mask = new int4_mt4((int_mt4)(t.asi() >> 31)).asf();
+        var u_sign = (uint_mt)(u.x.asu() & 0x80000000);
+        var t = v.y + ((uint_mt)(w.z.asu() ^ u_sign)).asf();
+        var u_mask = new uint4_mt((uint_mt)(u_sign >> 31)).asf();
+        var t_mask = new int4_mt((int_mt)(t.asi() >> 31)).asf();
 
         var tr = (1.0f + u.x.abs());
 
         var sign_flips =
-            new uint4_mt4(default, 0x80000000, 0x80000000, 0x80000000).asf()
-            ^ (u_mask & new uint4_mt4(default, 0x80000000, default, 0x80000000).asf())
-            ^ (t_mask & new uint4_mt4(0x80000000, 0x80000000, 0x80000000, default).asf());
+            new uint4_mt(default, 0x80000000, 0x80000000, 0x80000000).asf()
+            ^ (u_mask & new uint4_mt(default, 0x80000000, default, 0x80000000).asf())
+            ^ (t_mask & new uint4_mt(0x80000000, 0x80000000, 0x80000000, default).asf());
 
-        value = new float4_mt4(tr, u.y, w.x, v.z) + (new float4_mt4(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
+        value = new float4_mt(tr, u.y, w.x, v.z) + (new float4_mt(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
 
         value = (value & ~u_mask) | (value.zwxy & u_mask);
         value = (value.wzyx & ~t_mask) | (value & t_mask);
@@ -90,10 +90,10 @@ public partial record struct quaternion_mt4
     /// <param name="angle">The angle of rotation in radians</param>
     /// <returns>The quaternion representing a rotation around an axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 AxisAngle(float3_mt4 axis, float_mt4 angle)
+    public static quaternion_mt AxisAngle(float3_mt axis, float_mt angle)
     {
         math_mt.sincos(0.5f * angle, out var sina, out var cosa);
-        return new(new float4_mt4(axis * sina, cosa));
+        return new(new float4_mt(axis * sina, cosa));
     }
 
     /// <summary>
@@ -104,10 +104,10 @@ public partial record struct quaternion_mt4
     /// <param name="angle">The angle of rotation in radians</param>
     /// <returns>The quaternion representing a rotation around an axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 AxisAngle(float3_mt4 axis, float angle)
+    public static quaternion_mt AxisAngle(float3_mt axis, float angle)
     {
         math.sincos(0.5f * angle, out var sina, out var cosa);
-        return new(new float4_mt4(axis * sina, cosa));
+        return new(new float4_mt(axis * sina, cosa));
     }
 
     /// <summary>
@@ -120,7 +120,7 @@ public partial record struct quaternion_mt4
     /// <param name="order">The order in which the rotations are applied.</param>
     /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 Euler(float3_mt4 xyz, RotationOrder order = RotationOrder.Default) => order switch
+    public static quaternion_mt Euler(float3_mt xyz, RotationOrder order = RotationOrder.Default) => order switch
     {
         RotationOrder.XYZ => EulerXYZ(xyz),
         RotationOrder.XZY => EulerXZY(xyz),
@@ -135,14 +135,14 @@ public partial record struct quaternion_mt4
     /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in x-y-z order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 EulerXYZ(float3_mt4 xyz)
+    public static quaternion_mt EulerXYZ(float3_mt xyz)
     {
         var (s, c) = (xyz * 0.5f).sincos();
         return new(
-            new float4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt4(c.xyz, s.x) * new float4_mt4(-1.0f, 1.0f, -1.0f, 1.0f)
+            new float4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt(c.xyz, s.x) * new float4_mt(-1.0f, 1.0f, -1.0f, 1.0f)
         );
     }
 
@@ -150,14 +150,14 @@ public partial record struct quaternion_mt4
     /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in x-z-y order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 EulerXZY(float3_mt4 xyz)
+    public static quaternion_mt EulerXZY(float3_mt xyz)
     {
         var (s, c) = (xyz * 0.5f).sincos();
         return new(
-            new float4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt4(c.xyz, s.x) * new float4_mt4(1.0f, 1.0f, -1.0f, -1.0f)
+            new float4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt(c.xyz, s.x) * new float4_mt(1.0f, 1.0f, -1.0f, -1.0f)
         );
     }
 
@@ -165,14 +165,14 @@ public partial record struct quaternion_mt4
     /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in y-x-z order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 EulerYXZ(float3_mt4 xyz)
+    public static quaternion_mt EulerYXZ(float3_mt xyz)
     {
         var (s, c) = (xyz * 0.5f).sincos();
         return new(
-            new float4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt4(c.xyz, s.x) * new float4_mt4(-1.0f, 1.0f, 1.0f, -1.0f)
+            new float4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt(c.xyz, s.x) * new float4_mt(-1.0f, 1.0f, 1.0f, -1.0f)
         );
     }
 
@@ -180,14 +180,14 @@ public partial record struct quaternion_mt4
     /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in y-z-x order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 EulerYZX(float3_mt4 xyz)
+    public static quaternion_mt EulerYZX(float3_mt xyz)
     {
         var (s, c) = (xyz * 0.5f).sincos();
         return new(
-            new float4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt4(c.xyz, s.x) * new float4_mt4(-1.0f, -1.0f, 1.0f, 1.0f)
+            new float4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt(c.xyz, s.x) * new float4_mt(-1.0f, -1.0f, 1.0f, 1.0f)
         );
     }
 
@@ -195,14 +195,14 @@ public partial record struct quaternion_mt4
     /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in z-x-y order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 EulerZXY(float3_mt4 xyz)
+    public static quaternion_mt EulerZXY(float3_mt xyz)
     {
         var (s, c) = (xyz * 0.5f).sincos();
         return new(
-            new float4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt4(c.xyz, s.x) * new float4_mt4(1.0f, -1.0f, -1.0f, 1.0f)
+            new float4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt(c.xyz, s.x) * new float4_mt(1.0f, -1.0f, -1.0f, 1.0f)
         );
     }
 
@@ -210,14 +210,14 @@ public partial record struct quaternion_mt4
     /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A float3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A float3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in z-y-x order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 EulerZYX(float3_mt4 xyz)
+    public static quaternion_mt EulerZYX(float3_mt xyz)
     {
         var (s, c) = (xyz * 0.5f).sincos();
         return new(
-            new float4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt4(c.xyz, s.x) * new float4_mt4(1.0f, -1.0f, 1.0f, -1.0f)
+            new float4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt(c.xyz, s.x) * new float4_mt(1.0f, -1.0f, 1.0f, -1.0f)
         );
     }
 
@@ -225,7 +225,7 @@ public partial record struct quaternion_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 RotateX(float_mt4 angle)
+    public static quaternion_mt RotateX(float_mt angle)
     {
         var (sina, cosa) = math_mt.sincos(angle * 0.5f);
         return new(sina, default, default, cosa);
@@ -235,7 +235,7 @@ public partial record struct quaternion_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 RotateX(float angle)
+    public static quaternion_mt RotateX(float angle)
     {
         var (sina, cosa) = math.sincos(angle * 0.5f);
         return new(sina, default, default, cosa);
@@ -245,7 +245,7 @@ public partial record struct quaternion_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 RotateY(float_mt4 angle)
+    public static quaternion_mt RotateY(float_mt angle)
     {
         var (sina, cosa) = math_mt.sincos(angle * 0.5f);
         return new(default, sina, default, cosa);
@@ -255,7 +255,7 @@ public partial record struct quaternion_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 RotateY(float angle)
+    public static quaternion_mt RotateY(float angle)
     {
         var (sina, cosa) = math.sincos(angle * 0.5f);
         return new(default, sina, default, cosa);
@@ -265,7 +265,7 @@ public partial record struct quaternion_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 RotateZ(float_mt4 angle)
+    public static quaternion_mt RotateZ(float_mt angle)
     {
         var (sina, cosa) = math_mt.sincos(angle * 0.5f);
         return new(default, default, sina, cosa);
@@ -275,7 +275,7 @@ public partial record struct quaternion_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 RotateZ(float angle)
+    public static quaternion_mt RotateZ(float angle)
     {
         var (sina, cosa) = math.sincos(angle * 0.5f);
         return new(default, default, sina, cosa);
@@ -284,16 +284,16 @@ public partial record struct quaternion_mt4
     /// <summary>
     /// Returns a quaternion view rotation given a unit length forward vector and a unit length up vector.
     /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="quaternion_mt4.LookRotationSafe" /> instead.
+    /// If these assumptions are not met use <see cref="quaternion_mt.LookRotationSafe" /> instead.
     /// </summary>
     /// <param name="forward">The view forward direction</param>
     /// <param name="up">The view up direction</param>
     /// <returns>The quaternion view rotation</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 LookRotation(float3_mt4 forward, float3_mt4 up)
+    public static quaternion_mt LookRotation(float3_mt forward, float3_mt up)
     {
         var t = up.cross(forward).normalize();
-        return new(new float3x3_mt4(t, forward.cross(t), forward));
+        return new(new float3x3_mt(t, forward.cross(t), forward));
     }
 
     /// <summary>
@@ -306,7 +306,7 @@ public partial record struct quaternion_mt4
     /// <param name="up">The view up direction</param>
     /// <returns>The quaternion view rotation or the identity quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 LookRotationSafe(float3_mt4 forward, float3_mt4 up)
+    public static quaternion_mt LookRotationSafe(float3_mt forward, float3_mt up)
     {
         var forwardLengthSq = forward.dot(forward);
         var upLengthSq = up.dot(up);
@@ -325,14 +325,14 @@ public partial record struct quaternion_mt4
              & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
         return math_mt.select(
             accept,
-            new quaternion_mt4(new float3x3_mt4(t, forward.cross(t), forward)),
-            new quaternion_mt4(default, default, default, 1.0f)
+            new quaternion_mt(new float3x3_mt(t, forward.cross(t), forward)),
+            new quaternion_mt(default, default, default, 1.0f)
         );
     }
 
     #region Record
 
-    public readonly bool Equals(quaternion_mt4 other) => value.Equals(other.value);
+    public readonly bool Equals(quaternion_mt other) => value.Equals(other.value);
 
     public readonly override int GetHashCode() => value.GetHashCode();
 
@@ -349,107 +349,107 @@ public partial record struct quaternion_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 select([This] b32v4_mt4 c, quaternion_mt4 t, quaternion_mt4 f) =>
+    public static quaternion_mt select([This] b32v4_mt c, quaternion_mt t, quaternion_mt f) =>
         new(select(c, t.value, f.value));
 
     /// <summary>Returns the conjugate of a quaternion value</summary>
     /// <param name="q">The quaternion to conjugate</param>
     /// <returns>The conjugate of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 conjugate([This] quaternion_mt4 q) => 
-        new(q.value * new float4_mt4(-1.0f, -1.0f, -1.0f, 1.0f));
+    public static quaternion_mt conjugate([This] quaternion_mt q) => 
+        new(q.value * new float4_mt(-1.0f, -1.0f, -1.0f, 1.0f));
 
     /// <summary>Returns the inverse of a quaternion value</summary>
     /// <param name="q">The quaternion to invert</param>
     /// <returns>The quaternion inverse of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 inverse([This] quaternion_mt4 q) => 
-        new(q.dot(q).rcp() * q.value *  new float4_mt4(-1.0f, -1.0f, -1.0f, 1.0f));
+    public static quaternion_mt inverse([This] quaternion_mt q) => 
+        new(q.dot(q).rcp() * q.value *  new float4_mt(-1.0f, -1.0f, -1.0f, 1.0f));
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 dot([This] quaternion_mt4 a, quaternion_mt4 b) => a.value.dot(b.value);
+    public static float_mt dot([This] quaternion_mt a, quaternion_mt b) => a.value.dot(b.value);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 length([This] quaternion_mt4 q) => q.lengthsq().sqrt();
+    public static float_mt length([This] quaternion_mt q) => q.lengthsq().sqrt();
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 lengthsq([This] quaternion_mt4 q) => q.dot(q);
+    public static float_mt lengthsq([This] quaternion_mt q) => q.dot(q);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 normalize([This] quaternion_mt4 q) => new(q.dot(q).rsqrt() * q.value);
+    public static quaternion_mt normalize([This] quaternion_mt q) => new(q.dot(q).rsqrt() * q.value);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 normalizeSafe([This] quaternion_mt4 q)
+    public static quaternion_mt normalizeSafe([This] quaternion_mt q)
     {
         var len = q.lengthsq();
-        return select(len > MinNormal<float>(), quaternion_mt4.Identity, new(len.rsqrt() * q.value));
+        return select(len > MinNormal<float>(), quaternion_mt.Identity, new(len.rsqrt() * q.value));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 normalizeSafe([This] quaternion_mt4 q, quaternion_mt4 defaultValue)
+    public static quaternion_mt normalizeSafe([This] quaternion_mt q, quaternion_mt defaultValue)
     {
         var len = q.lengthsq();
         return select(len > MinNormal<float>(), defaultValue, new(len.rsqrt() * q.value));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 unitExp([This] quaternion_mt4 q)
+    public static quaternion_mt unitExp([This] quaternion_mt q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
         v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new float4_mt4(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
+        return new(new float4_mt(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 exp([This] quaternion_mt4 q)
+    public static quaternion_mt exp([This] quaternion_mt q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
         v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new float4_mt4(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * q.value.w.exp());
+        return new(new float4_mt(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * q.value.w.exp());
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 unitLog([This] quaternion_mt4 q)
+    public static quaternion_mt unitLog([This] quaternion_mt q)
     {
         var w = q.value.w.clamp(-1.0f, 1.0f);
         var s = (acos(w) * rsqrt(1.0f - w*w));
-        return new(new float4_mt4(q.value.xyz * s, default));
+        return new(new float4_mt(q.value.xyz * s, default));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 log([This] quaternion_mt4 q)
+    public static quaternion_mt log([This] quaternion_mt q)
     {
         var v_len_sq = q.value.xyz.lengthsq();
         var q_len_sq = v_len_sq + q.value.w * q.value.w;
 
         var s = (acos(clamp(q.value.w * q_len_sq.rsqrt(), -1.0f, 1.0f)) * v_len_sq.rsqrt());
-        return new(new float4_mt4(q.value.xyz * s, (0.5f * q_len_sq.log())));
+        return new(new float4_mt(q.value.xyz * s, (0.5f * q_len_sq.log())));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 mul([This] quaternion_mt4 a, quaternion_mt4 b) => new(
+    public static quaternion_mt mul([This] quaternion_mt a, quaternion_mt b) => new(
         a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
-        * new float4_mt4(1.0f, 1.0f, 1.0f, -1.0f) - a.value.zxyz * b.value.yzxz
+        * new float4_mt(1.0f, 1.0f, 1.0f, -1.0f) - a.value.zxyz * b.value.yzxz
     );
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 mul([This] quaternion_mt4 q, float3_mt4 v)
+    public static float3_mt mul([This] quaternion_mt q, float3_mt v)
     {
         var t = 2.0f * q.value.xyz.cross(v);
         return v + q.value.w * t + q.value.xyz.cross(t);
     }
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 rotate([This] quaternion_mt4 q, float3_mt4 v) => mul(q, v);
+    public static float3_mt rotate([This] quaternion_mt q, float3_mt v) => mul(q, v);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 nlerp([This] float_mt4 t, quaternion_mt4 q1, quaternion_mt4 q2) => 
+    public static quaternion_mt nlerp([This] float_mt t, quaternion_mt q1, quaternion_mt q2) => 
         normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
     
     [MethodImpl(256 | 512)]
-    public static quaternion_mt4 slerp([This] float_mt4 t, quaternion_mt4 q1, quaternion_mt4 q2)
+    public static quaternion_mt slerp([This] float_mt t, quaternion_mt q1, quaternion_mt q2)
     {
         var dt = dot(q1, q2);
         
@@ -459,28 +459,28 @@ public static partial class math_mt
 
         var cond1 = dt < 0.9995f;
         var f_branch = t.nlerp(q1, q2); // if the angle is small, use linear interpolation
-        quaternion_mt4 t_branch;
+        quaternion_mt t_branch;
         {
             var angle = dt.acos();
             var s = (rsqrt(1.0f - dt * dt));    // 1.0f / sin(angle)
             var w1 = (sin(angle * (1.0f - t)) * s);
             var w2 = (sin(angle * t) * s);
-            t_branch = new quaternion_mt4(q1.value * w1 + q2.value * w2);
+            t_branch = new quaternion_mt(q1.value * w1 + q2.value * w2);
         }
         return math_mt.select(cond1, t_branch, f_branch);
     }
     
     [MethodImpl(256 | 512)]
-    public static float_mt4 angle([This] quaternion_mt4 q1, quaternion_mt4 q2)
+    public static float_mt angle([This] quaternion_mt q1, quaternion_mt q2)
     {
         var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
         return diff + diff;
     }
     
     [MethodImpl(256 | 512)]
-    public static float3x3_mt4 adj([This] float3x3_mt4 m, out float_mt4 det)
+    public static float3x3_mt adj([This] float3x3_mt m, out float_mt det)
     {
-        float3x3_mt4 adjT;
+        float3x3_mt adjT;
         adjT.c0 = m.c1.cross(m.c2);
         adjT.c1 = m.c2.cross(m.c0);
         adjT.c2 = m.c0.cross(m.c1);
@@ -490,1113 +490,99 @@ public static partial class math_mt
     }
     
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 adj([This] float3x3_mt4 m, out float3x3_mt4 i)
+    public static b32v4_mt adj([This] float3x3_mt m, out float3x3_mt i)
     {
         var epsilon = 1e-30f;
         return m.adj(out i, epsilon);
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 adj([This] float3x3_mt4 m, out float3x3_mt4 i, float_mt4 epsilon)
+    public static b32v4_mt adj([This] float3x3_mt m, out float3x3_mt i, float_mt epsilon)
     {
-        i = adj(m, out float_mt4 det);
+        i = adj(m, out float_mt det);
         var c = det.abs() > epsilon;
-        var detInv = select(c, det.rcp(), new float3_mt4(1.0f));
+        var detInv = select(c, det.rcp(), new float3_mt(1.0f));
         i = detInv * i;
         return c;
     }
 }
 
-#endregion // quaternion_mt4
+#endregion // quaternion_mt
 
-#region quaternion_mt8
+#region quaternion_d_mt
 
-public partial record struct quaternion_mt8
+public partial record struct quaternion_d_mt
 {
-    public float4_mt8 value;
+    public double4_mt value;
 
-    public readonly override string ToString() => $"{nameof(quaternion_mt8)}({value.x}, {value.y}, {value.z}, {value.w})";
+    public readonly override string ToString() => $"{nameof(quaternion_d_mt)}({value.x}, {value.y}, {value.z}, {value.w})";
 
-    public static quaternion_mt8 Identity
-    {
-        [MethodImpl(256 | 512)]
-        get => new(default, default, default, 1.0f);
-    }
-    
-    [MethodImpl(256 | 512)]
-    public quaternion_mt8(float_mt8 x, float_mt8 y, float_mt8 z, float_mt8 w) => 
-        value = new(x, y, z, w); 
-
-    [MethodImpl(256 | 512)]
-    public quaternion_mt8(float4_mt8 value) => this.value = value; 
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator quaternion_mt8(float4_mt8 value) => new(value); 
-
-    /// <summary>Constructs a unit quaternion from a float3x3_mt8 rotation matrix. The matrix must be orthonormal</summary>
-    /// <param name="m">The float3x3_mt8 orthonormal rotation matrix</param>
-    [MethodImpl(256 | 512)]
-    public quaternion_mt8(float3x3_mt8 m)
-    {
-        var u = m.c0;
-        var v = m.c1;
-        var w = m.c2;
-
-        var u_sign = (uint_mt8)(u.x.asu() & 0x80000000);
-        var t = (v.y + ((uint_mt8)(w.z.asu() ^ u_sign)).asf());
-        var u_mask = new uint4_mt8((uint_mt8)(u_sign >> 31)).asf();
-        var t_mask = new int4_mt8((int_mt8)(t.asi() >> 31)).asf();
-
-        var tr = 1.0f + u.x.abs();
-
-        var sign_flips =
-            new uint4_mt8(default, 0x80000000, 0x80000000, 0x80000000).asf()
-            ^ (u_mask & new uint4_mt8(default, 0x80000000, default, 0x80000000).asf())
-            ^ (t_mask & new uint4_mt8(0x80000000, 0x80000000, 0x80000000, default).asf());
-
-        value = new float4_mt8(tr, u.y, w.x, v.z) + (new float4_mt8(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
-
-        value = (value & ~u_mask) | (value.zwxy & u_mask);
-        value = (value.wzyx & ~t_mask) | (value & t_mask);
-        value = value.normalize();
-    }
-
-    /// <summary>Constructs a unit quaternion from an orthonormal float4x4_mt8 matrix</summary>
-    /// <param name="m">The float4x4_mt8 orthonormal rotation matrix</param>
-    [MethodImpl(256 | 512)]
-    public quaternion_mt8(float4x4_mt8 m)
-    {
-        var u = m.c0;
-        var v = m.c1;
-        var w = m.c2;
-
-        var u_sign = (uint_mt8)(u.x.asu() & 0x80000000);
-        var t = v.y + ((uint_mt8)(w.z.asu() ^ u_sign)).asf();
-        var u_mask = new uint4_mt8((uint_mt8)(u_sign >> 31)).asf();
-        var t_mask = new int4_mt8((int_mt8)(t.asi() >> 31)).asf();
-
-        var tr = (1.0f + u.x.abs());
-
-        var sign_flips =
-            new uint4_mt8(default, 0x80000000, 0x80000000, 0x80000000).asf()
-            ^ (u_mask & new uint4_mt8(default, 0x80000000, default, 0x80000000).asf())
-            ^ (t_mask & new uint4_mt8(0x80000000, 0x80000000, 0x80000000, default).asf());
-
-        value = new float4_mt8(tr, u.y, w.x, v.z) + (new float4_mt8(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
-
-        value = (value & ~u_mask) | (value.zwxy & u_mask);
-        value = (value.wzyx & ~t_mask) | (value & t_mask);
-        value = value.normalize();
-    }
-
-    /// <summary>
-    /// Returns a quaternion representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The quaternion representing a rotation around an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 AxisAngle(float3_mt8 axis, float_mt8 angle)
-    {
-        math_mt.sincos(0.5f * angle, out var sina, out var cosa);
-        return new(new float4_mt8(axis * sina, cosa));
-    }
-
-    /// <summary>
-    /// Returns a quaternion representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The quaternion representing a rotation around an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 AxisAngle(float3_mt8 axis, float angle)
-    {
-        math.sincos(0.5f * angle, out var sina, out var cosa);
-        return new(new float4_mt8(axis * sina, cosa));
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing 3 rotations around the principal axes in a given order.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// When the rotation order is known at compile time, it is recommended for performance reasons to use specific
-    /// Euler rotation constructors such as EulerZXY(...).
-    /// </summary>
-    /// <param name="xyz">A float3 vector containing the rotation angles around the x-, y- and z-axis measures in radians.</param>
-    /// <param name="order">The order in which the rotations are applied.</param>
-    /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 Euler(float3_mt8 xyz, RotationOrder order = RotationOrder.Default) => order switch
-    {
-        RotationOrder.XYZ => EulerXYZ(xyz),
-        RotationOrder.XZY => EulerXZY(xyz),
-        RotationOrder.YXZ => EulerYXZ(xyz),
-        RotationOrder.YZX => EulerYZX(xyz),
-        RotationOrder.ZXY => EulerZXY(xyz),
-        RotationOrder.ZYX => EulerZYX(xyz),
-        _ => Identity,
-    };
-    
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 EulerXYZ(float3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt8(c.xyz, s.x) * new float4_mt8(-1.0f, 1.0f, -1.0f, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 EulerXZY(float3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt8(c.xyz, s.x) * new float4_mt8(1.0f, 1.0f, -1.0f, -1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 EulerYXZ(float3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt8(c.xyz, s.x) * new float4_mt8(-1.0f, 1.0f, 1.0f, -1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 EulerYZX(float3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt8(c.xyz, s.x) * new float4_mt8(-1.0f, -1.0f, 1.0f, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 EulerZXY(float3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt8(c.xyz, s.x) * new float4_mt8(1.0f, -1.0f, -1.0f, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 EulerZYX(float3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt8(c.xyz, s.x) * new float4_mt8(1.0f, -1.0f, 1.0f, -1.0f)
-        );
-    }
-
-    /// <summary>Returns a quaternion that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 RotateX(float_mt8 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5f);
-        return new(sina, default, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 RotateX(float angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5f);
-        return new(sina, default, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 RotateY(float_mt8 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5f);
-        return new(default, sina, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 RotateY(float angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5f);
-        return new(default, sina, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the z-axis by a given number of radians.</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 RotateZ(float_mt8 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5f);
-        return new(default, default, sina, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the z-axis by a given number of radians.</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 RotateZ(float angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5f);
-        return new(default, default, sina, cosa);
-    }
-
-    /// <summary>
-    /// Returns a quaternion view rotation given a unit length forward vector and a unit length up vector.
-    /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="quaternion_mt8.LookRotationSafe" /> instead.
-    /// </summary>
-    /// <param name="forward">The view forward direction</param>
-    /// <param name="up">The view up direction</param>
-    /// <returns>The quaternion view rotation</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 LookRotation(float3_mt8 forward, float3_mt8 up)
-    {
-        var t = up.cross(forward).normalize();
-        return new(new float3x3_mt8(t, forward.cross(t), forward));
-    }
-
-    /// <summary>
-    /// Returns a quaternion view rotation given a forward vector and an up vector.
-    /// The two input vectors are not assumed to be unit length.
-    /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
-    /// the identity will be returned instead.
-    /// </summary>
-    /// <param name="forward">The view forward direction</param>
-    /// <param name="up">The view up direction</param>
-    /// <returns>The quaternion view rotation or the identity quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 LookRotationSafe(float3_mt8 forward, float3_mt8 up)
-    {
-        var forwardLengthSq = forward.dot(forward);
-        var upLengthSq = up.dot(up);
-
-        forward *= forwardLengthSq.rsqrt();
-        up *= upLengthSq.rsqrt();
-
-        var t = up.cross(forward);
-        var tLengthSq = t.dot(t);
-        t *= tLengthSq.rsqrt();
-
-        var mn = forwardLengthSq.min(upLengthSq).min(tLengthSq);
-        var mx = forwardLengthSq.max(upLengthSq).max(tLengthSq);
-
-        var accept = mn > math_mt.MinRotateSafe<float>() & mx < math_mt.MaxRotateSafe<float>()
-             & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(
-            accept,
-            new quaternion_mt8(new float3x3_mt8(t, forward.cross(t), forward)),
-            new quaternion_mt8(default, default, default, 1.0f)
-        );
-    }
-
-    #region Record
-
-    public readonly bool Equals(quaternion_mt8 other) => value.Equals(other.value);
-
-    public readonly override int GetHashCode() => value.GetHashCode();
-
-    private bool PrintMembers(System.Text.StringBuilder sb)
-    {
-        sb.Append($"x = {value.x}, y = {value.y}, z = {value.z}, w = {value.w}");
-        return true;
-    }
-
-    #endregion
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 select([This] b32v4_mt8 c, quaternion_mt8 t, quaternion_mt8 f) =>
-        new(select(c, t.value, f.value));
-
-    /// <summary>Returns the conjugate of a quaternion value</summary>
-    /// <param name="q">The quaternion to conjugate</param>
-    /// <returns>The conjugate of the input quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 conjugate([This] quaternion_mt8 q) => 
-        new(q.value * new float4_mt8(-1.0f, -1.0f, -1.0f, 1.0f));
-
-    /// <summary>Returns the inverse of a quaternion value</summary>
-    /// <param name="q">The quaternion to invert</param>
-    /// <returns>The quaternion inverse of the input quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 inverse([This] quaternion_mt8 q) => 
-        new(q.dot(q).rcp() * q.value *  new float4_mt8(-1.0f, -1.0f, -1.0f, 1.0f));
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 dot([This] quaternion_mt8 a, quaternion_mt8 b) => a.value.dot(b.value);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 length([This] quaternion_mt8 q) => q.lengthsq().sqrt();
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 lengthsq([This] quaternion_mt8 q) => q.dot(q);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 normalize([This] quaternion_mt8 q) => new(q.dot(q).rsqrt() * q.value);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 normalizeSafe([This] quaternion_mt8 q)
-    {
-        var len = q.lengthsq();
-        return select(len > MinNormal<float>(), quaternion_mt8.Identity, new(len.rsqrt() * q.value));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 normalizeSafe([This] quaternion_mt8 q, quaternion_mt8 defaultValue)
-    {
-        var len = q.lengthsq();
-        return select(len > MinNormal<float>(), defaultValue, new(len.rsqrt() * q.value));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 unitExp([This] quaternion_mt8 q)
-    {
-        var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
-        var v_len = v_rcp_len.rcp();
-        v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new float4_mt8(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 exp([This] quaternion_mt8 q)
-    {
-        var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
-        var v_len = v_rcp_len.rcp();
-        v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new float4_mt8(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * q.value.w.exp());
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 unitLog([This] quaternion_mt8 q)
-    {
-        var w = q.value.w.clamp(-1.0f, 1.0f);
-        var s = (acos(w) * rsqrt(1.0f - w*w));
-        return new(new float4_mt8(q.value.xyz * s, default));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 log([This] quaternion_mt8 q)
-    {
-        var v_len_sq = q.value.xyz.lengthsq();
-        var q_len_sq = v_len_sq + q.value.w * q.value.w;
-
-        var s = (acos(clamp(q.value.w * q_len_sq.rsqrt(), -1.0f, 1.0f)) * v_len_sq.rsqrt());
-        return new(new float4_mt8(q.value.xyz * s, (0.5f * q_len_sq.log())));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 mul([This] quaternion_mt8 a, quaternion_mt8 b) => new(
-        a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
-        * new float4_mt8(1.0f, 1.0f, 1.0f, -1.0f) - a.value.zxyz * b.value.yzxz
-    );
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 mul([This] quaternion_mt8 q, float3_mt8 v)
-    {
-        var t = 2.0f * q.value.xyz.cross(v);
-        return v + q.value.w * t + q.value.xyz.cross(t);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 rotate([This] quaternion_mt8 q, float3_mt8 v) => mul(q, v);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 nlerp([This] float_mt8 t, quaternion_mt8 q1, quaternion_mt8 q2) => 
-        normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
-    
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt8 slerp([This] float_mt8 t, quaternion_mt8 q1, quaternion_mt8 q2)
-    {
-        var dt = dot(q1, q2);
-        
-        var sig1 = select(dt < 0.0f, 0x80000000.asf(), default);
-        dt ^= sig1;
-        q2.value ^= sig1;
-
-        var cond1 = dt < 0.9995f;
-        var f_branch = t.nlerp(q1, q2); // if the angle is small, use linear interpolation
-        quaternion_mt8 t_branch;
-        {
-            var angle = dt.acos();
-            var s = (rsqrt(1.0f - dt * dt));    // 1.0f / sin(angle)
-            var w1 = (sin(angle * (1.0f - t)) * s);
-            var w2 = (sin(angle * t) * s);
-            t_branch = new quaternion_mt8(q1.value * w1 + q2.value * w2);
-        }
-        return math_mt.select(cond1, t_branch, f_branch);
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static float_mt8 angle([This] quaternion_mt8 q1, quaternion_mt8 q2)
-    {
-        var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
-        return diff + diff;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt8 adj([This] float3x3_mt8 m, out float_mt8 det)
-    {
-        float3x3_mt8 adjT;
-        adjT.c0 = m.c1.cross(m.c2);
-        adjT.c1 = m.c2.cross(m.c0);
-        adjT.c2 = m.c0.cross(m.c1);
-        det = m.c0.dot(adjT.c0);
-
-        return adjT.transpose();
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 adj([This] float3x3_mt8 m, out float3x3_mt8 i)
-    {
-        var epsilon = 1e-30f;
-        return m.adj(out i, epsilon);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 adj([This] float3x3_mt8 m, out float3x3_mt8 i, float_mt8 epsilon)
-    {
-        i = adj(m, out float_mt8 det);
-        var c = det.abs() > epsilon;
-        var detInv = select(c, det.rcp(), new float3_mt8(1.0f));
-        i = detInv * i;
-        return c;
-    }
-}
-
-#endregion // quaternion_mt8
-
-#region quaternion_mt16
-
-public partial record struct quaternion_mt16
-{
-    public float4_mt16 value;
-
-    public readonly override string ToString() => $"{nameof(quaternion_mt16)}({value.x}, {value.y}, {value.z}, {value.w})";
-
-    public static quaternion_mt16 Identity
-    {
-        [MethodImpl(256 | 512)]
-        get => new(default, default, default, 1.0f);
-    }
-    
-    [MethodImpl(256 | 512)]
-    public quaternion_mt16(float_mt16 x, float_mt16 y, float_mt16 z, float_mt16 w) => 
-        value = new(x, y, z, w); 
-
-    [MethodImpl(256 | 512)]
-    public quaternion_mt16(float4_mt16 value) => this.value = value; 
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator quaternion_mt16(float4_mt16 value) => new(value); 
-
-    /// <summary>Constructs a unit quaternion from a float3x3_mt16 rotation matrix. The matrix must be orthonormal</summary>
-    /// <param name="m">The float3x3_mt16 orthonormal rotation matrix</param>
-    [MethodImpl(256 | 512)]
-    public quaternion_mt16(float3x3_mt16 m)
-    {
-        var u = m.c0;
-        var v = m.c1;
-        var w = m.c2;
-
-        var u_sign = (uint_mt16)(u.x.asu() & 0x80000000);
-        var t = (v.y + ((uint_mt16)(w.z.asu() ^ u_sign)).asf());
-        var u_mask = new uint4_mt16((uint_mt16)(u_sign >> 31)).asf();
-        var t_mask = new int4_mt16((int_mt16)(t.asi() >> 31)).asf();
-
-        var tr = 1.0f + u.x.abs();
-
-        var sign_flips =
-            new uint4_mt16(default, 0x80000000, 0x80000000, 0x80000000).asf()
-            ^ (u_mask & new uint4_mt16(default, 0x80000000, default, 0x80000000).asf())
-            ^ (t_mask & new uint4_mt16(0x80000000, 0x80000000, 0x80000000, default).asf());
-
-        value = new float4_mt16(tr, u.y, w.x, v.z) + (new float4_mt16(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
-
-        value = (value & ~u_mask) | (value.zwxy & u_mask);
-        value = (value.wzyx & ~t_mask) | (value & t_mask);
-        value = value.normalize();
-    }
-
-    /// <summary>Constructs a unit quaternion from an orthonormal float4x4_mt16 matrix</summary>
-    /// <param name="m">The float4x4_mt16 orthonormal rotation matrix</param>
-    [MethodImpl(256 | 512)]
-    public quaternion_mt16(float4x4_mt16 m)
-    {
-        var u = m.c0;
-        var v = m.c1;
-        var w = m.c2;
-
-        var u_sign = (uint_mt16)(u.x.asu() & 0x80000000);
-        var t = v.y + ((uint_mt16)(w.z.asu() ^ u_sign)).asf();
-        var u_mask = new uint4_mt16((uint_mt16)(u_sign >> 31)).asf();
-        var t_mask = new int4_mt16((int_mt16)(t.asi() >> 31)).asf();
-
-        var tr = (1.0f + u.x.abs());
-
-        var sign_flips =
-            new uint4_mt16(default, 0x80000000, 0x80000000, 0x80000000).asf()
-            ^ (u_mask & new uint4_mt16(default, 0x80000000, default, 0x80000000).asf())
-            ^ (t_mask & new uint4_mt16(0x80000000, 0x80000000, 0x80000000, default).asf());
-
-        value = new float4_mt16(tr, u.y, w.x, v.z) + (new float4_mt16(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
-
-        value = (value & ~u_mask) | (value.zwxy & u_mask);
-        value = (value.wzyx & ~t_mask) | (value & t_mask);
-        value = value.normalize();
-    }
-
-    /// <summary>
-    /// Returns a quaternion representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The quaternion representing a rotation around an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 AxisAngle(float3_mt16 axis, float_mt16 angle)
-    {
-        math_mt.sincos(0.5f * angle, out var sina, out var cosa);
-        return new(new float4_mt16(axis * sina, cosa));
-    }
-
-    /// <summary>
-    /// Returns a quaternion representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The quaternion representing a rotation around an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 AxisAngle(float3_mt16 axis, float angle)
-    {
-        math.sincos(0.5f * angle, out var sina, out var cosa);
-        return new(new float4_mt16(axis * sina, cosa));
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing 3 rotations around the principal axes in a given order.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// When the rotation order is known at compile time, it is recommended for performance reasons to use specific
-    /// Euler rotation constructors such as EulerZXY(...).
-    /// </summary>
-    /// <param name="xyz">A float3 vector containing the rotation angles around the x-, y- and z-axis measures in radians.</param>
-    /// <param name="order">The order in which the rotations are applied.</param>
-    /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 Euler(float3_mt16 xyz, RotationOrder order = RotationOrder.Default) => order switch
-    {
-        RotationOrder.XYZ => EulerXYZ(xyz),
-        RotationOrder.XZY => EulerXZY(xyz),
-        RotationOrder.YXZ => EulerYXZ(xyz),
-        RotationOrder.YZX => EulerYZX(xyz),
-        RotationOrder.ZXY => EulerZXY(xyz),
-        RotationOrder.ZYX => EulerZYX(xyz),
-        _ => Identity,
-    };
-    
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 EulerXYZ(float3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt16(c.xyz, s.x) * new float4_mt16(-1.0f, 1.0f, -1.0f, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 EulerXZY(float3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt16(c.xyz, s.x) * new float4_mt16(1.0f, 1.0f, -1.0f, -1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 EulerYXZ(float3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt16(c.xyz, s.x) * new float4_mt16(-1.0f, 1.0f, 1.0f, -1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 EulerYZX(float3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt16(c.xyz, s.x) * new float4_mt16(-1.0f, -1.0f, 1.0f, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 EulerZXY(float3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt16(c.xyz, s.x) * new float4_mt16(1.0f, -1.0f, -1.0f, 1.0f)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A float3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 EulerZYX(float3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5f).sincos();
-        return new(
-            new float4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new float4_mt16(c.xyz, s.x) * new float4_mt16(1.0f, -1.0f, 1.0f, -1.0f)
-        );
-    }
-
-    /// <summary>Returns a quaternion that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 RotateX(float_mt16 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5f);
-        return new(sina, default, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 RotateX(float angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5f);
-        return new(sina, default, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 RotateY(float_mt16 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5f);
-        return new(default, sina, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 RotateY(float angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5f);
-        return new(default, sina, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the z-axis by a given number of radians.</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 RotateZ(float_mt16 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5f);
-        return new(default, default, sina, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the z-axis by a given number of radians.</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 RotateZ(float angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5f);
-        return new(default, default, sina, cosa);
-    }
-
-    /// <summary>
-    /// Returns a quaternion view rotation given a unit length forward vector and a unit length up vector.
-    /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="quaternion_mt16.LookRotationSafe" /> instead.
-    /// </summary>
-    /// <param name="forward">The view forward direction</param>
-    /// <param name="up">The view up direction</param>
-    /// <returns>The quaternion view rotation</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 LookRotation(float3_mt16 forward, float3_mt16 up)
-    {
-        var t = up.cross(forward).normalize();
-        return new(new float3x3_mt16(t, forward.cross(t), forward));
-    }
-
-    /// <summary>
-    /// Returns a quaternion view rotation given a forward vector and an up vector.
-    /// The two input vectors are not assumed to be unit length.
-    /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
-    /// the identity will be returned instead.
-    /// </summary>
-    /// <param name="forward">The view forward direction</param>
-    /// <param name="up">The view up direction</param>
-    /// <returns>The quaternion view rotation or the identity quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 LookRotationSafe(float3_mt16 forward, float3_mt16 up)
-    {
-        var forwardLengthSq = forward.dot(forward);
-        var upLengthSq = up.dot(up);
-
-        forward *= forwardLengthSq.rsqrt();
-        up *= upLengthSq.rsqrt();
-
-        var t = up.cross(forward);
-        var tLengthSq = t.dot(t);
-        t *= tLengthSq.rsqrt();
-
-        var mn = forwardLengthSq.min(upLengthSq).min(tLengthSq);
-        var mx = forwardLengthSq.max(upLengthSq).max(tLengthSq);
-
-        var accept = mn > math_mt.MinRotateSafe<float>() & mx < math_mt.MaxRotateSafe<float>()
-             & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(
-            accept,
-            new quaternion_mt16(new float3x3_mt16(t, forward.cross(t), forward)),
-            new quaternion_mt16(default, default, default, 1.0f)
-        );
-    }
-
-    #region Record
-
-    public readonly bool Equals(quaternion_mt16 other) => value.Equals(other.value);
-
-    public readonly override int GetHashCode() => value.GetHashCode();
-
-    private bool PrintMembers(System.Text.StringBuilder sb)
-    {
-        sb.Append($"x = {value.x}, y = {value.y}, z = {value.z}, w = {value.w}");
-        return true;
-    }
-
-    #endregion
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 select([This] b32v4_mt16 c, quaternion_mt16 t, quaternion_mt16 f) =>
-        new(select(c, t.value, f.value));
-
-    /// <summary>Returns the conjugate of a quaternion value</summary>
-    /// <param name="q">The quaternion to conjugate</param>
-    /// <returns>The conjugate of the input quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 conjugate([This] quaternion_mt16 q) => 
-        new(q.value * new float4_mt16(-1.0f, -1.0f, -1.0f, 1.0f));
-
-    /// <summary>Returns the inverse of a quaternion value</summary>
-    /// <param name="q">The quaternion to invert</param>
-    /// <returns>The quaternion inverse of the input quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 inverse([This] quaternion_mt16 q) => 
-        new(q.dot(q).rcp() * q.value *  new float4_mt16(-1.0f, -1.0f, -1.0f, 1.0f));
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 dot([This] quaternion_mt16 a, quaternion_mt16 b) => a.value.dot(b.value);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 length([This] quaternion_mt16 q) => q.lengthsq().sqrt();
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 lengthsq([This] quaternion_mt16 q) => q.dot(q);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 normalize([This] quaternion_mt16 q) => new(q.dot(q).rsqrt() * q.value);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 normalizeSafe([This] quaternion_mt16 q)
-    {
-        var len = q.lengthsq();
-        return select(len > MinNormal<float>(), quaternion_mt16.Identity, new(len.rsqrt() * q.value));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 normalizeSafe([This] quaternion_mt16 q, quaternion_mt16 defaultValue)
-    {
-        var len = q.lengthsq();
-        return select(len > MinNormal<float>(), defaultValue, new(len.rsqrt() * q.value));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 unitExp([This] quaternion_mt16 q)
-    {
-        var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
-        var v_len = v_rcp_len.rcp();
-        v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new float4_mt16(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 exp([This] quaternion_mt16 q)
-    {
-        var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
-        var v_len = v_rcp_len.rcp();
-        v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new float4_mt16(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * q.value.w.exp());
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 unitLog([This] quaternion_mt16 q)
-    {
-        var w = q.value.w.clamp(-1.0f, 1.0f);
-        var s = (acos(w) * rsqrt(1.0f - w*w));
-        return new(new float4_mt16(q.value.xyz * s, default));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 log([This] quaternion_mt16 q)
-    {
-        var v_len_sq = q.value.xyz.lengthsq();
-        var q_len_sq = v_len_sq + q.value.w * q.value.w;
-
-        var s = (acos(clamp(q.value.w * q_len_sq.rsqrt(), -1.0f, 1.0f)) * v_len_sq.rsqrt());
-        return new(new float4_mt16(q.value.xyz * s, (0.5f * q_len_sq.log())));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 mul([This] quaternion_mt16 a, quaternion_mt16 b) => new(
-        a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
-        * new float4_mt16(1.0f, 1.0f, 1.0f, -1.0f) - a.value.zxyz * b.value.yzxz
-    );
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 mul([This] quaternion_mt16 q, float3_mt16 v)
-    {
-        var t = 2.0f * q.value.xyz.cross(v);
-        return v + q.value.w * t + q.value.xyz.cross(t);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 rotate([This] quaternion_mt16 q, float3_mt16 v) => mul(q, v);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 nlerp([This] float_mt16 t, quaternion_mt16 q1, quaternion_mt16 q2) => 
-        normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
-    
-    [MethodImpl(256 | 512)]
-    public static quaternion_mt16 slerp([This] float_mt16 t, quaternion_mt16 q1, quaternion_mt16 q2)
-    {
-        var dt = dot(q1, q2);
-        
-        var sig1 = select(dt < 0.0f, 0x80000000.asf(), default);
-        dt ^= sig1;
-        q2.value ^= sig1;
-
-        var cond1 = dt < 0.9995f;
-        var f_branch = t.nlerp(q1, q2); // if the angle is small, use linear interpolation
-        quaternion_mt16 t_branch;
-        {
-            var angle = dt.acos();
-            var s = (rsqrt(1.0f - dt * dt));    // 1.0f / sin(angle)
-            var w1 = (sin(angle * (1.0f - t)) * s);
-            var w2 = (sin(angle * t) * s);
-            t_branch = new quaternion_mt16(q1.value * w1 + q2.value * w2);
-        }
-        return math_mt.select(cond1, t_branch, f_branch);
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static float_mt16 angle([This] quaternion_mt16 q1, quaternion_mt16 q2)
-    {
-        var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
-        return diff + diff;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static float3x3_mt16 adj([This] float3x3_mt16 m, out float_mt16 det)
-    {
-        float3x3_mt16 adjT;
-        adjT.c0 = m.c1.cross(m.c2);
-        adjT.c1 = m.c2.cross(m.c0);
-        adjT.c2 = m.c0.cross(m.c1);
-        det = m.c0.dot(adjT.c0);
-
-        return adjT.transpose();
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 adj([This] float3x3_mt16 m, out float3x3_mt16 i)
-    {
-        var epsilon = 1e-30f;
-        return m.adj(out i, epsilon);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 adj([This] float3x3_mt16 m, out float3x3_mt16 i, float_mt16 epsilon)
-    {
-        i = adj(m, out float_mt16 det);
-        var c = det.abs() > epsilon;
-        var detInv = select(c, det.rcp(), new float3_mt16(1.0f));
-        i = detInv * i;
-        return c;
-    }
-}
-
-#endregion // quaternion_mt16
-
-#region quaternion_d_mt4
-
-public partial record struct quaternion_d_mt4
-{
-    public double4_mt4 value;
-
-    public readonly override string ToString() => $"{nameof(quaternion_d_mt4)}({value.x}, {value.y}, {value.z}, {value.w})";
-
-    public static quaternion_d_mt4 Identity
+    public static quaternion_d_mt Identity
     {
         [MethodImpl(256 | 512)]
         get => new(default, default, default, 1.0);
     }
     
     [MethodImpl(256 | 512)]
-    public quaternion_d_mt4(double_mt4 x, double_mt4 y, double_mt4 z, double_mt4 w) => 
+    public quaternion_d_mt(double_mt x, double_mt y, double_mt z, double_mt w) => 
         value = new(x, y, z, w); 
 
     [MethodImpl(256 | 512)]
-    public quaternion_d_mt4(double4_mt4 value) => this.value = value; 
+    public quaternion_d_mt(double4_mt value) => this.value = value; 
 
     [MethodImpl(256 | 512)]
-    public static implicit operator quaternion_d_mt4(double4_mt4 value) => new(value); 
+    public static implicit operator quaternion_d_mt(double4_mt value) => new(value); 
 
-    /// <summary>Constructs a unit quaternion from a double3x3_mt4 rotation matrix. The matrix must be orthonormal</summary>
-    /// <param name="m">The double3x3_mt4 orthonormal rotation matrix</param>
+    /// <summary>Constructs a unit quaternion from a double3x3_mt rotation matrix. The matrix must be orthonormal</summary>
+    /// <param name="m">The double3x3_mt orthonormal rotation matrix</param>
     [MethodImpl(256 | 512)]
-    public quaternion_d_mt4(double3x3_mt4 m)
+    public quaternion_d_mt(double3x3_mt m)
     {
         var u = m.c0;
         var v = m.c1;
         var w = m.c2;
 
-        var u_sign = (ulong_mt4)(u.x.asu() & 0x8000000000000000);
-        var t = (v.y + ((ulong_mt4)(w.z.asu() ^ u_sign)).asf());
-        var u_mask = new ulong4_mt4((ulong_mt4)(u_sign >> 63)).asf();
-        var t_mask = new long4_mt4((long_mt4)(t.asi() >> 63)).asf();
+        var u_sign = (ulong_mt)(u.x.asu() & 0x8000000000000000);
+        var t = (v.y + ((ulong_mt)(w.z.asu() ^ u_sign)).asf());
+        var u_mask = new ulong4_mt((ulong_mt)(u_sign >> 63)).asf();
+        var t_mask = new long4_mt((long_mt)(t.asi() >> 63)).asf();
 
         var tr = 1.0 + u.x.abs();
 
         var sign_flips =
-            new ulong4_mt4(default, 0x8000000000000000, 0x8000000000000000, 0x8000000000000000).asf()
-            ^ (u_mask & new ulong4_mt4(default, 0x8000000000000000, default, 0x8000000000000000).asf())
-            ^ (t_mask & new ulong4_mt4(0x8000000000000000, 0x8000000000000000, 0x8000000000000000, default).asf());
+            new ulong4_mt(default, 0x8000000000000000, 0x8000000000000000, 0x8000000000000000).asf()
+            ^ (u_mask & new ulong4_mt(default, 0x8000000000000000, default, 0x8000000000000000).asf())
+            ^ (t_mask & new ulong4_mt(0x8000000000000000, 0x8000000000000000, 0x8000000000000000, default).asf());
 
-        value = new double4_mt4(tr, u.y, w.x, v.z) + (new double4_mt4(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
+        value = new double4_mt(tr, u.y, w.x, v.z) + (new double4_mt(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
 
         value = (value & ~u_mask) | (value.zwxy & u_mask);
         value = (value.wzyx & ~t_mask) | (value & t_mask);
         value = value.normalize();
     }
 
-    /// <summary>Constructs a unit quaternion from an orthonormal double4x4_mt4 matrix</summary>
-    /// <param name="m">The double4x4_mt4 orthonormal rotation matrix</param>
+    /// <summary>Constructs a unit quaternion from an orthonormal double4x4_mt matrix</summary>
+    /// <param name="m">The double4x4_mt orthonormal rotation matrix</param>
     [MethodImpl(256 | 512)]
-    public quaternion_d_mt4(double4x4_mt4 m)
+    public quaternion_d_mt(double4x4_mt m)
     {
         var u = m.c0;
         var v = m.c1;
         var w = m.c2;
 
-        var u_sign = (ulong_mt4)(u.x.asu() & 0x8000000000000000);
-        var t = v.y + ((ulong_mt4)(w.z.asu() ^ u_sign)).asf();
-        var u_mask = new ulong4_mt4((ulong_mt4)(u_sign >> 63)).asf();
-        var t_mask = new long4_mt4((long_mt4)(t.asi() >> 63)).asf();
+        var u_sign = (ulong_mt)(u.x.asu() & 0x8000000000000000);
+        var t = v.y + ((ulong_mt)(w.z.asu() ^ u_sign)).asf();
+        var u_mask = new ulong4_mt((ulong_mt)(u_sign >> 63)).asf();
+        var t_mask = new long4_mt((long_mt)(t.asi() >> 63)).asf();
 
         var tr = (1.0 + u.x.abs());
 
         var sign_flips =
-            new ulong4_mt4(default, 0x8000000000000000, 0x8000000000000000, 0x8000000000000000).asf()
-            ^ (u_mask & new ulong4_mt4(default, 0x8000000000000000, default, 0x8000000000000000).asf())
-            ^ (t_mask & new ulong4_mt4(0x8000000000000000, 0x8000000000000000, 0x8000000000000000, default).asf());
+            new ulong4_mt(default, 0x8000000000000000, 0x8000000000000000, 0x8000000000000000).asf()
+            ^ (u_mask & new ulong4_mt(default, 0x8000000000000000, default, 0x8000000000000000).asf())
+            ^ (t_mask & new ulong4_mt(0x8000000000000000, 0x8000000000000000, 0x8000000000000000, default).asf());
 
-        value = new double4_mt4(tr, u.y, w.x, v.z) + (new double4_mt4(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
+        value = new double4_mt(tr, u.y, w.x, v.z) + (new double4_mt(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
 
         value = (value & ~u_mask) | (value.zwxy & u_mask);
         value = (value.wzyx & ~t_mask) | (value & t_mask);
@@ -1611,10 +597,10 @@ public partial record struct quaternion_d_mt4
     /// <param name="angle">The angle of rotation in radians</param>
     /// <returns>The quaternion representing a rotation around an axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 AxisAngle(double3_mt4 axis, double_mt4 angle)
+    public static quaternion_d_mt AxisAngle(double3_mt axis, double_mt angle)
     {
         math_mt.sincos(0.5 * angle, out var sina, out var cosa);
-        return new(new double4_mt4(axis * sina, cosa));
+        return new(new double4_mt(axis * sina, cosa));
     }
 
     /// <summary>
@@ -1625,10 +611,10 @@ public partial record struct quaternion_d_mt4
     /// <param name="angle">The angle of rotation in radians</param>
     /// <returns>The quaternion representing a rotation around an axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 AxisAngle(double3_mt4 axis, double angle)
+    public static quaternion_d_mt AxisAngle(double3_mt axis, double angle)
     {
         math.sincos(0.5 * angle, out var sina, out var cosa);
-        return new(new double4_mt4(axis * sina, cosa));
+        return new(new double4_mt(axis * sina, cosa));
     }
 
     /// <summary>
@@ -1641,7 +627,7 @@ public partial record struct quaternion_d_mt4
     /// <param name="order">The order in which the rotations are applied.</param>
     /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 Euler(double3_mt4 xyz, RotationOrder order = RotationOrder.Default) => order switch
+    public static quaternion_d_mt Euler(double3_mt xyz, RotationOrder order = RotationOrder.Default) => order switch
     {
         RotationOrder.XYZ => EulerXYZ(xyz),
         RotationOrder.XZY => EulerXZY(xyz),
@@ -1656,14 +642,14 @@ public partial record struct quaternion_d_mt4
     /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in x-y-z order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 EulerXYZ(double3_mt4 xyz)
+    public static quaternion_d_mt EulerXYZ(double3_mt xyz)
     {
         var (s, c) = (xyz * 0.5).sincos();
         return new(
-            new double4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt4(c.xyz, s.x) * new double4_mt4(-1.0, 1.0, -1.0, 1.0)
+            new double4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt(c.xyz, s.x) * new double4_mt(-1.0, 1.0, -1.0, 1.0)
         );
     }
 
@@ -1671,14 +657,14 @@ public partial record struct quaternion_d_mt4
     /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in x-z-y order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 EulerXZY(double3_mt4 xyz)
+    public static quaternion_d_mt EulerXZY(double3_mt xyz)
     {
         var (s, c) = (xyz * 0.5).sincos();
         return new(
-            new double4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt4(c.xyz, s.x) * new double4_mt4(1.0, 1.0, -1.0, -1.0)
+            new double4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt(c.xyz, s.x) * new double4_mt(1.0, 1.0, -1.0, -1.0)
         );
     }
 
@@ -1686,14 +672,14 @@ public partial record struct quaternion_d_mt4
     /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in y-x-z order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 EulerYXZ(double3_mt4 xyz)
+    public static quaternion_d_mt EulerYXZ(double3_mt xyz)
     {
         var (s, c) = (xyz * 0.5).sincos();
         return new(
-            new double4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt4(c.xyz, s.x) * new double4_mt4(-1.0, 1.0, 1.0, -1.0)
+            new double4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt(c.xyz, s.x) * new double4_mt(-1.0, 1.0, 1.0, -1.0)
         );
     }
 
@@ -1701,14 +687,14 @@ public partial record struct quaternion_d_mt4
     /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in y-z-x order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 EulerYZX(double3_mt4 xyz)
+    public static quaternion_d_mt EulerYZX(double3_mt xyz)
     {
         var (s, c) = (xyz * 0.5).sincos();
         return new(
-            new double4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt4(c.xyz, s.x) * new double4_mt4(-1.0, -1.0, 1.0, 1.0)
+            new double4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt(c.xyz, s.x) * new double4_mt(-1.0, -1.0, 1.0, 1.0)
         );
     }
 
@@ -1716,14 +702,14 @@ public partial record struct quaternion_d_mt4
     /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in z-x-y order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 EulerZXY(double3_mt4 xyz)
+    public static quaternion_d_mt EulerZXY(double3_mt xyz)
     {
         var (s, c) = (xyz * 0.5).sincos();
         return new(
-            new double4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt4(c.xyz, s.x) * new double4_mt4(1.0, -1.0, -1.0, 1.0)
+            new double4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt(c.xyz, s.x) * new double4_mt(1.0, -1.0, -1.0, 1.0)
         );
     }
 
@@ -1731,14 +717,14 @@ public partial record struct quaternion_d_mt4
     /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
     /// </summary>
-    /// <param name="xyz">A double3_mt4 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
+    /// <param name="xyz">A double3_mt vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
     /// <returns>The quaternion representing the Euler angle rotation in z-y-x order</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 EulerZYX(double3_mt4 xyz)
+    public static quaternion_d_mt EulerZYX(double3_mt xyz)
     {
         var (s, c) = (xyz * 0.5).sincos();
         return new(
-            new double4_mt4(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt4(c.xyz, s.x) * new double4_mt4(1.0, -1.0, 1.0, -1.0)
+            new double4_mt(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt(c.xyz, s.x) * new double4_mt(1.0, -1.0, 1.0, -1.0)
         );
     }
 
@@ -1746,7 +732,7 @@ public partial record struct quaternion_d_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 RotateX(double_mt4 angle)
+    public static quaternion_d_mt RotateX(double_mt angle)
     {
         var (sina, cosa) = math_mt.sincos(angle * 0.5);
         return new(sina, default, default, cosa);
@@ -1756,7 +742,7 @@ public partial record struct quaternion_d_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the x-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 RotateX(double angle)
+    public static quaternion_d_mt RotateX(double angle)
     {
         var (sina, cosa) = math.sincos(angle * 0.5);
         return new(sina, default, default, cosa);
@@ -1766,7 +752,7 @@ public partial record struct quaternion_d_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 RotateY(double_mt4 angle)
+    public static quaternion_d_mt RotateY(double_mt angle)
     {
         var (sina, cosa) = math_mt.sincos(angle * 0.5);
         return new(default, sina, default, cosa);
@@ -1776,7 +762,7 @@ public partial record struct quaternion_d_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the y-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 RotateY(double angle)
+    public static quaternion_d_mt RotateY(double angle)
     {
         var (sina, cosa) = math.sincos(angle * 0.5);
         return new(default, sina, default, cosa);
@@ -1786,7 +772,7 @@ public partial record struct quaternion_d_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 RotateZ(double_mt4 angle)
+    public static quaternion_d_mt RotateZ(double_mt angle)
     {
         var (sina, cosa) = math_mt.sincos(angle * 0.5);
         return new(default, default, sina, cosa);
@@ -1796,7 +782,7 @@ public partial record struct quaternion_d_mt4
     /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
     /// <returns>The quaternion representing a rotation around the z-axis</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 RotateZ(double angle)
+    public static quaternion_d_mt RotateZ(double angle)
     {
         var (sina, cosa) = math.sincos(angle * 0.5);
         return new(default, default, sina, cosa);
@@ -1805,16 +791,16 @@ public partial record struct quaternion_d_mt4
     /// <summary>
     /// Returns a quaternion view rotation given a unit length forward vector and a unit length up vector.
     /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="quaternion_d_mt4.LookRotationSafe" /> instead.
+    /// If these assumptions are not met use <see cref="quaternion_d_mt.LookRotationSafe" /> instead.
     /// </summary>
     /// <param name="forward">The view forward direction</param>
     /// <param name="up">The view up direction</param>
     /// <returns>The quaternion view rotation</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 LookRotation(double3_mt4 forward, double3_mt4 up)
+    public static quaternion_d_mt LookRotation(double3_mt forward, double3_mt up)
     {
         var t = up.cross(forward).normalize();
-        return new(new double3x3_mt4(t, forward.cross(t), forward));
+        return new(new double3x3_mt(t, forward.cross(t), forward));
     }
 
     /// <summary>
@@ -1827,7 +813,7 @@ public partial record struct quaternion_d_mt4
     /// <param name="up">The view up direction</param>
     /// <returns>The quaternion view rotation or the identity quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 LookRotationSafe(double3_mt4 forward, double3_mt4 up)
+    public static quaternion_d_mt LookRotationSafe(double3_mt forward, double3_mt up)
     {
         var forwardLengthSq = forward.dot(forward);
         var upLengthSq = up.dot(up);
@@ -1846,14 +832,14 @@ public partial record struct quaternion_d_mt4
              & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
         return math_mt.select(
             accept,
-            new quaternion_d_mt4(new double3x3_mt4(t, forward.cross(t), forward)),
-            new quaternion_d_mt4(default, default, default, 1.0)
+            new quaternion_d_mt(new double3x3_mt(t, forward.cross(t), forward)),
+            new quaternion_d_mt(default, default, default, 1.0)
         );
     }
 
     #region Record
 
-    public readonly bool Equals(quaternion_d_mt4 other) => value.Equals(other.value);
+    public readonly bool Equals(quaternion_d_mt other) => value.Equals(other.value);
 
     public readonly override int GetHashCode() => value.GetHashCode();
 
@@ -1870,107 +856,107 @@ public partial record struct quaternion_d_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 select([This] b64v4_mt4 c, quaternion_d_mt4 t, quaternion_d_mt4 f) =>
+    public static quaternion_d_mt select([This] b64v4_mt c, quaternion_d_mt t, quaternion_d_mt f) =>
         new(select(c, t.value, f.value));
 
     /// <summary>Returns the conjugate of a quaternion value</summary>
     /// <param name="q">The quaternion to conjugate</param>
     /// <returns>The conjugate of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 conjugate([This] quaternion_d_mt4 q) => 
-        new(q.value * new double4_mt4(-1.0, -1.0, -1.0, 1.0));
+    public static quaternion_d_mt conjugate([This] quaternion_d_mt q) => 
+        new(q.value * new double4_mt(-1.0, -1.0, -1.0, 1.0));
 
     /// <summary>Returns the inverse of a quaternion value</summary>
     /// <param name="q">The quaternion to invert</param>
     /// <returns>The quaternion inverse of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 inverse([This] quaternion_d_mt4 q) => 
-        new(q.dot(q).rcp() * q.value *  new double4_mt4(-1.0, -1.0, -1.0, 1.0));
+    public static quaternion_d_mt inverse([This] quaternion_d_mt q) => 
+        new(q.dot(q).rcp() * q.value *  new double4_mt(-1.0, -1.0, -1.0, 1.0));
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 dot([This] quaternion_d_mt4 a, quaternion_d_mt4 b) => a.value.dot(b.value);
+    public static double_mt dot([This] quaternion_d_mt a, quaternion_d_mt b) => a.value.dot(b.value);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 length([This] quaternion_d_mt4 q) => q.lengthsq().sqrt();
+    public static double_mt length([This] quaternion_d_mt q) => q.lengthsq().sqrt();
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 lengthsq([This] quaternion_d_mt4 q) => q.dot(q);
+    public static double_mt lengthsq([This] quaternion_d_mt q) => q.dot(q);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 normalize([This] quaternion_d_mt4 q) => new(q.dot(q).rsqrt() * q.value);
+    public static quaternion_d_mt normalize([This] quaternion_d_mt q) => new(q.dot(q).rsqrt() * q.value);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 normalizeSafe([This] quaternion_d_mt4 q)
+    public static quaternion_d_mt normalizeSafe([This] quaternion_d_mt q)
     {
         var len = q.lengthsq();
-        return select(len > MinNormal<double>(), quaternion_d_mt4.Identity, new(len.rsqrt() * q.value));
+        return select(len > MinNormal<double>(), quaternion_d_mt.Identity, new(len.rsqrt() * q.value));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 normalizeSafe([This] quaternion_d_mt4 q, quaternion_d_mt4 defaultValue)
+    public static quaternion_d_mt normalizeSafe([This] quaternion_d_mt q, quaternion_d_mt defaultValue)
     {
         var len = q.lengthsq();
         return select(len > MinNormal<double>(), defaultValue, new(len.rsqrt() * q.value));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 unitExp([This] quaternion_d_mt4 q)
+    public static quaternion_d_mt unitExp([This] quaternion_d_mt q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
         v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new double4_mt4(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
+        return new(new double4_mt(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 exp([This] quaternion_d_mt4 q)
+    public static quaternion_d_mt exp([This] quaternion_d_mt q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
         v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new double4_mt4(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * q.value.w.exp());
+        return new(new double4_mt(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * q.value.w.exp());
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 unitLog([This] quaternion_d_mt4 q)
+    public static quaternion_d_mt unitLog([This] quaternion_d_mt q)
     {
         var w = q.value.w.clamp(-1.0, 1.0);
         var s = (acos(w) * rsqrt(1.0 - w*w));
-        return new(new double4_mt4(q.value.xyz * s, default));
+        return new(new double4_mt(q.value.xyz * s, default));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 log([This] quaternion_d_mt4 q)
+    public static quaternion_d_mt log([This] quaternion_d_mt q)
     {
         var v_len_sq = q.value.xyz.lengthsq();
         var q_len_sq = v_len_sq + q.value.w * q.value.w;
 
         var s = (acos(clamp(q.value.w * q_len_sq.rsqrt(), -1.0, 1.0)) * v_len_sq.rsqrt());
-        return new(new double4_mt4(q.value.xyz * s, (0.5 * q_len_sq.log())));
+        return new(new double4_mt(q.value.xyz * s, (0.5 * q_len_sq.log())));
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 mul([This] quaternion_d_mt4 a, quaternion_d_mt4 b) => new(
+    public static quaternion_d_mt mul([This] quaternion_d_mt a, quaternion_d_mt b) => new(
         a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
-        * new double4_mt4(1.0, 1.0, 1.0, -1.0) - a.value.zxyz * b.value.yzxz
+        * new double4_mt(1.0, 1.0, 1.0, -1.0) - a.value.zxyz * b.value.yzxz
     );
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 mul([This] quaternion_d_mt4 q, double3_mt4 v)
+    public static double3_mt mul([This] quaternion_d_mt q, double3_mt v)
     {
         var t = 2.0 * q.value.xyz.cross(v);
         return v + q.value.w * t + q.value.xyz.cross(t);
     }
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 rotate([This] quaternion_d_mt4 q, double3_mt4 v) => mul(q, v);
+    public static double3_mt rotate([This] quaternion_d_mt q, double3_mt v) => mul(q, v);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 nlerp([This] double_mt4 t, quaternion_d_mt4 q1, quaternion_d_mt4 q2) => 
+    public static quaternion_d_mt nlerp([This] double_mt t, quaternion_d_mt q1, quaternion_d_mt q2) => 
         normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
     
     [MethodImpl(256 | 512)]
-    public static quaternion_d_mt4 slerp([This] double_mt4 t, quaternion_d_mt4 q1, quaternion_d_mt4 q2)
+    public static quaternion_d_mt slerp([This] double_mt t, quaternion_d_mt q1, quaternion_d_mt q2)
     {
         var dt = dot(q1, q2);
         
@@ -1980,28 +966,28 @@ public static partial class math_mt
 
         var cond1 = dt < 0.9995;
         var f_branch = t.nlerp(q1, q2); // if the angle is small, use linear interpolation
-        quaternion_d_mt4 t_branch;
+        quaternion_d_mt t_branch;
         {
             var angle = dt.acos();
             var s = (rsqrt(1.0 - dt * dt));    // 1.0f / sin(angle)
             var w1 = (sin(angle * (1.0 - t)) * s);
             var w2 = (sin(angle * t) * s);
-            t_branch = new quaternion_d_mt4(q1.value * w1 + q2.value * w2);
+            t_branch = new quaternion_d_mt(q1.value * w1 + q2.value * w2);
         }
         return math_mt.select(cond1, t_branch, f_branch);
     }
     
     [MethodImpl(256 | 512)]
-    public static double_mt4 angle([This] quaternion_d_mt4 q1, quaternion_d_mt4 q2)
+    public static double_mt angle([This] quaternion_d_mt q1, quaternion_d_mt q2)
     {
         var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
         return diff + diff;
     }
     
     [MethodImpl(256 | 512)]
-    public static double3x3_mt4 adj([This] double3x3_mt4 m, out double_mt4 det)
+    public static double3x3_mt adj([This] double3x3_mt m, out double_mt det)
     {
-        double3x3_mt4 adjT;
+        double3x3_mt adjT;
         adjT.c0 = m.c1.cross(m.c2);
         adjT.c1 = m.c2.cross(m.c0);
         adjT.c2 = m.c0.cross(m.c1);
@@ -2011,1035 +997,21 @@ public static partial class math_mt
     }
     
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 adj([This] double3x3_mt4 m, out double3x3_mt4 i)
+    public static b64v4_mt adj([This] double3x3_mt m, out double3x3_mt i)
     {
         var epsilon = 1e-300;
         return m.adj(out i, epsilon);
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 adj([This] double3x3_mt4 m, out double3x3_mt4 i, double_mt4 epsilon)
+    public static b64v4_mt adj([This] double3x3_mt m, out double3x3_mt i, double_mt epsilon)
     {
-        i = adj(m, out double_mt4 det);
+        i = adj(m, out double_mt det);
         var c = det.abs() > epsilon;
-        var detInv = select(c, det.rcp(), new double3_mt4(1.0));
+        var detInv = select(c, det.rcp(), new double3_mt(1.0));
         i = detInv * i;
         return c;
     }
 }
 
-#endregion // quaternion_d_mt4
-
-#region quaternion_d_mt8
-
-public partial record struct quaternion_d_mt8
-{
-    public double4_mt8 value;
-
-    public readonly override string ToString() => $"{nameof(quaternion_d_mt8)}({value.x}, {value.y}, {value.z}, {value.w})";
-
-    public static quaternion_d_mt8 Identity
-    {
-        [MethodImpl(256 | 512)]
-        get => new(default, default, default, 1.0);
-    }
-    
-    [MethodImpl(256 | 512)]
-    public quaternion_d_mt8(double_mt8 x, double_mt8 y, double_mt8 z, double_mt8 w) => 
-        value = new(x, y, z, w); 
-
-    [MethodImpl(256 | 512)]
-    public quaternion_d_mt8(double4_mt8 value) => this.value = value; 
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator quaternion_d_mt8(double4_mt8 value) => new(value); 
-
-    /// <summary>Constructs a unit quaternion from a double3x3_mt8 rotation matrix. The matrix must be orthonormal</summary>
-    /// <param name="m">The double3x3_mt8 orthonormal rotation matrix</param>
-    [MethodImpl(256 | 512)]
-    public quaternion_d_mt8(double3x3_mt8 m)
-    {
-        var u = m.c0;
-        var v = m.c1;
-        var w = m.c2;
-
-        var u_sign = (ulong_mt8)(u.x.asu() & 0x8000000000000000);
-        var t = (v.y + ((ulong_mt8)(w.z.asu() ^ u_sign)).asf());
-        var u_mask = new ulong4_mt8((ulong_mt8)(u_sign >> 63)).asf();
-        var t_mask = new long4_mt8((long_mt8)(t.asi() >> 63)).asf();
-
-        var tr = 1.0 + u.x.abs();
-
-        var sign_flips =
-            new ulong4_mt8(default, 0x8000000000000000, 0x8000000000000000, 0x8000000000000000).asf()
-            ^ (u_mask & new ulong4_mt8(default, 0x8000000000000000, default, 0x8000000000000000).asf())
-            ^ (t_mask & new ulong4_mt8(0x8000000000000000, 0x8000000000000000, 0x8000000000000000, default).asf());
-
-        value = new double4_mt8(tr, u.y, w.x, v.z) + (new double4_mt8(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
-
-        value = (value & ~u_mask) | (value.zwxy & u_mask);
-        value = (value.wzyx & ~t_mask) | (value & t_mask);
-        value = value.normalize();
-    }
-
-    /// <summary>Constructs a unit quaternion from an orthonormal double4x4_mt8 matrix</summary>
-    /// <param name="m">The double4x4_mt8 orthonormal rotation matrix</param>
-    [MethodImpl(256 | 512)]
-    public quaternion_d_mt8(double4x4_mt8 m)
-    {
-        var u = m.c0;
-        var v = m.c1;
-        var w = m.c2;
-
-        var u_sign = (ulong_mt8)(u.x.asu() & 0x8000000000000000);
-        var t = v.y + ((ulong_mt8)(w.z.asu() ^ u_sign)).asf();
-        var u_mask = new ulong4_mt8((ulong_mt8)(u_sign >> 63)).asf();
-        var t_mask = new long4_mt8((long_mt8)(t.asi() >> 63)).asf();
-
-        var tr = (1.0 + u.x.abs());
-
-        var sign_flips =
-            new ulong4_mt8(default, 0x8000000000000000, 0x8000000000000000, 0x8000000000000000).asf()
-            ^ (u_mask & new ulong4_mt8(default, 0x8000000000000000, default, 0x8000000000000000).asf())
-            ^ (t_mask & new ulong4_mt8(0x8000000000000000, 0x8000000000000000, 0x8000000000000000, default).asf());
-
-        value = new double4_mt8(tr, u.y, w.x, v.z) + (new double4_mt8(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
-
-        value = (value & ~u_mask) | (value.zwxy & u_mask);
-        value = (value.wzyx & ~t_mask) | (value & t_mask);
-        value = value.normalize();
-    }
-
-    /// <summary>
-    /// Returns a quaternion representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The quaternion representing a rotation around an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 AxisAngle(double3_mt8 axis, double_mt8 angle)
-    {
-        math_mt.sincos(0.5 * angle, out var sina, out var cosa);
-        return new(new double4_mt8(axis * sina, cosa));
-    }
-
-    /// <summary>
-    /// Returns a quaternion representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The quaternion representing a rotation around an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 AxisAngle(double3_mt8 axis, double angle)
-    {
-        math.sincos(0.5 * angle, out var sina, out var cosa);
-        return new(new double4_mt8(axis * sina, cosa));
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing 3 rotations around the principal axes in a given order.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// When the rotation order is known at compile time, it is recommended for performance reasons to use specific
-    /// Euler rotation constructors such as EulerZXY(...).
-    /// </summary>
-    /// <param name="xyz">A float3 vector containing the rotation angles around the x-, y- and z-axis measures in radians.</param>
-    /// <param name="order">The order in which the rotations are applied.</param>
-    /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 Euler(double3_mt8 xyz, RotationOrder order = RotationOrder.Default) => order switch
-    {
-        RotationOrder.XYZ => EulerXYZ(xyz),
-        RotationOrder.XZY => EulerXZY(xyz),
-        RotationOrder.YXZ => EulerYXZ(xyz),
-        RotationOrder.YZX => EulerYZX(xyz),
-        RotationOrder.ZXY => EulerZXY(xyz),
-        RotationOrder.ZYX => EulerZYX(xyz),
-        _ => Identity,
-    };
-    
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 EulerXYZ(double3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt8(c.xyz, s.x) * new double4_mt8(-1.0, 1.0, -1.0, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 EulerXZY(double3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt8(c.xyz, s.x) * new double4_mt8(1.0, 1.0, -1.0, -1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 EulerYXZ(double3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt8(c.xyz, s.x) * new double4_mt8(-1.0, 1.0, 1.0, -1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 EulerYZX(double3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt8(c.xyz, s.x) * new double4_mt8(-1.0, -1.0, 1.0, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 EulerZXY(double3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt8(c.xyz, s.x) * new double4_mt8(1.0, -1.0, -1.0, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt8 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 EulerZYX(double3_mt8 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt8(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt8(c.xyz, s.x) * new double4_mt8(1.0, -1.0, 1.0, -1.0)
-        );
-    }
-
-    /// <summary>Returns a quaternion that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 RotateX(double_mt8 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5);
-        return new(sina, default, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 RotateX(double angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5);
-        return new(sina, default, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 RotateY(double_mt8 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5);
-        return new(default, sina, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 RotateY(double angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5);
-        return new(default, sina, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the z-axis by a given number of radians.</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 RotateZ(double_mt8 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5);
-        return new(default, default, sina, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the z-axis by a given number of radians.</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 RotateZ(double angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5);
-        return new(default, default, sina, cosa);
-    }
-
-    /// <summary>
-    /// Returns a quaternion view rotation given a unit length forward vector and a unit length up vector.
-    /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="quaternion_d_mt8.LookRotationSafe" /> instead.
-    /// </summary>
-    /// <param name="forward">The view forward direction</param>
-    /// <param name="up">The view up direction</param>
-    /// <returns>The quaternion view rotation</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 LookRotation(double3_mt8 forward, double3_mt8 up)
-    {
-        var t = up.cross(forward).normalize();
-        return new(new double3x3_mt8(t, forward.cross(t), forward));
-    }
-
-    /// <summary>
-    /// Returns a quaternion view rotation given a forward vector and an up vector.
-    /// The two input vectors are not assumed to be unit length.
-    /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
-    /// the identity will be returned instead.
-    /// </summary>
-    /// <param name="forward">The view forward direction</param>
-    /// <param name="up">The view up direction</param>
-    /// <returns>The quaternion view rotation or the identity quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 LookRotationSafe(double3_mt8 forward, double3_mt8 up)
-    {
-        var forwardLengthSq = forward.dot(forward);
-        var upLengthSq = up.dot(up);
-
-        forward *= forwardLengthSq.rsqrt();
-        up *= upLengthSq.rsqrt();
-
-        var t = up.cross(forward);
-        var tLengthSq = t.dot(t);
-        t *= tLengthSq.rsqrt();
-
-        var mn = forwardLengthSq.min(upLengthSq).min(tLengthSq);
-        var mx = forwardLengthSq.max(upLengthSq).max(tLengthSq);
-
-        var accept = mn > math_mt.MinRotateSafe<double>() & mx < math_mt.MaxRotateSafe<double>()
-             & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(
-            accept,
-            new quaternion_d_mt8(new double3x3_mt8(t, forward.cross(t), forward)),
-            new quaternion_d_mt8(default, default, default, 1.0)
-        );
-    }
-
-    #region Record
-
-    public readonly bool Equals(quaternion_d_mt8 other) => value.Equals(other.value);
-
-    public readonly override int GetHashCode() => value.GetHashCode();
-
-    private bool PrintMembers(System.Text.StringBuilder sb)
-    {
-        sb.Append($"x = {value.x}, y = {value.y}, z = {value.z}, w = {value.w}");
-        return true;
-    }
-
-    #endregion
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 select([This] b64v4_mt8 c, quaternion_d_mt8 t, quaternion_d_mt8 f) =>
-        new(select(c, t.value, f.value));
-
-    /// <summary>Returns the conjugate of a quaternion value</summary>
-    /// <param name="q">The quaternion to conjugate</param>
-    /// <returns>The conjugate of the input quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 conjugate([This] quaternion_d_mt8 q) => 
-        new(q.value * new double4_mt8(-1.0, -1.0, -1.0, 1.0));
-
-    /// <summary>Returns the inverse of a quaternion value</summary>
-    /// <param name="q">The quaternion to invert</param>
-    /// <returns>The quaternion inverse of the input quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 inverse([This] quaternion_d_mt8 q) => 
-        new(q.dot(q).rcp() * q.value *  new double4_mt8(-1.0, -1.0, -1.0, 1.0));
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 dot([This] quaternion_d_mt8 a, quaternion_d_mt8 b) => a.value.dot(b.value);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 length([This] quaternion_d_mt8 q) => q.lengthsq().sqrt();
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 lengthsq([This] quaternion_d_mt8 q) => q.dot(q);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 normalize([This] quaternion_d_mt8 q) => new(q.dot(q).rsqrt() * q.value);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 normalizeSafe([This] quaternion_d_mt8 q)
-    {
-        var len = q.lengthsq();
-        return select(len > MinNormal<double>(), quaternion_d_mt8.Identity, new(len.rsqrt() * q.value));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 normalizeSafe([This] quaternion_d_mt8 q, quaternion_d_mt8 defaultValue)
-    {
-        var len = q.lengthsq();
-        return select(len > MinNormal<double>(), defaultValue, new(len.rsqrt() * q.value));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 unitExp([This] quaternion_d_mt8 q)
-    {
-        var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
-        var v_len = v_rcp_len.rcp();
-        v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new double4_mt8(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 exp([This] quaternion_d_mt8 q)
-    {
-        var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
-        var v_len = v_rcp_len.rcp();
-        v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new double4_mt8(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * q.value.w.exp());
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 unitLog([This] quaternion_d_mt8 q)
-    {
-        var w = q.value.w.clamp(-1.0, 1.0);
-        var s = (acos(w) * rsqrt(1.0 - w*w));
-        return new(new double4_mt8(q.value.xyz * s, default));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 log([This] quaternion_d_mt8 q)
-    {
-        var v_len_sq = q.value.xyz.lengthsq();
-        var q_len_sq = v_len_sq + q.value.w * q.value.w;
-
-        var s = (acos(clamp(q.value.w * q_len_sq.rsqrt(), -1.0, 1.0)) * v_len_sq.rsqrt());
-        return new(new double4_mt8(q.value.xyz * s, (0.5 * q_len_sq.log())));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 mul([This] quaternion_d_mt8 a, quaternion_d_mt8 b) => new(
-        a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
-        * new double4_mt8(1.0, 1.0, 1.0, -1.0) - a.value.zxyz * b.value.yzxz
-    );
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 mul([This] quaternion_d_mt8 q, double3_mt8 v)
-    {
-        var t = 2.0 * q.value.xyz.cross(v);
-        return v + q.value.w * t + q.value.xyz.cross(t);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 rotate([This] quaternion_d_mt8 q, double3_mt8 v) => mul(q, v);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 nlerp([This] double_mt8 t, quaternion_d_mt8 q1, quaternion_d_mt8 q2) => 
-        normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
-    
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt8 slerp([This] double_mt8 t, quaternion_d_mt8 q1, quaternion_d_mt8 q2)
-    {
-        var dt = dot(q1, q2);
-        
-        var sig1 = select(dt < 0.0, 0x8000000000000000.asf(), default);
-        dt ^= sig1;
-        q2.value ^= sig1;
-
-        var cond1 = dt < 0.9995;
-        var f_branch = t.nlerp(q1, q2); // if the angle is small, use linear interpolation
-        quaternion_d_mt8 t_branch;
-        {
-            var angle = dt.acos();
-            var s = (rsqrt(1.0 - dt * dt));    // 1.0f / sin(angle)
-            var w1 = (sin(angle * (1.0 - t)) * s);
-            var w2 = (sin(angle * t) * s);
-            t_branch = new quaternion_d_mt8(q1.value * w1 + q2.value * w2);
-        }
-        return math_mt.select(cond1, t_branch, f_branch);
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static double_mt8 angle([This] quaternion_d_mt8 q1, quaternion_d_mt8 q2)
-    {
-        var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
-        return diff + diff;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt8 adj([This] double3x3_mt8 m, out double_mt8 det)
-    {
-        double3x3_mt8 adjT;
-        adjT.c0 = m.c1.cross(m.c2);
-        adjT.c1 = m.c2.cross(m.c0);
-        adjT.c2 = m.c0.cross(m.c1);
-        det = m.c0.dot(adjT.c0);
-
-        return adjT.transpose();
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 adj([This] double3x3_mt8 m, out double3x3_mt8 i)
-    {
-        var epsilon = 1e-300;
-        return m.adj(out i, epsilon);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 adj([This] double3x3_mt8 m, out double3x3_mt8 i, double_mt8 epsilon)
-    {
-        i = adj(m, out double_mt8 det);
-        var c = det.abs() > epsilon;
-        var detInv = select(c, det.rcp(), new double3_mt8(1.0));
-        i = detInv * i;
-        return c;
-    }
-}
-
-#endregion // quaternion_d_mt8
-
-#region quaternion_d_mt16
-
-public partial record struct quaternion_d_mt16
-{
-    public double4_mt16 value;
-
-    public readonly override string ToString() => $"{nameof(quaternion_d_mt16)}({value.x}, {value.y}, {value.z}, {value.w})";
-
-    public static quaternion_d_mt16 Identity
-    {
-        [MethodImpl(256 | 512)]
-        get => new(default, default, default, 1.0);
-    }
-    
-    [MethodImpl(256 | 512)]
-    public quaternion_d_mt16(double_mt16 x, double_mt16 y, double_mt16 z, double_mt16 w) => 
-        value = new(x, y, z, w); 
-
-    [MethodImpl(256 | 512)]
-    public quaternion_d_mt16(double4_mt16 value) => this.value = value; 
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator quaternion_d_mt16(double4_mt16 value) => new(value); 
-
-    /// <summary>Constructs a unit quaternion from a double3x3_mt16 rotation matrix. The matrix must be orthonormal</summary>
-    /// <param name="m">The double3x3_mt16 orthonormal rotation matrix</param>
-    [MethodImpl(256 | 512)]
-    public quaternion_d_mt16(double3x3_mt16 m)
-    {
-        var u = m.c0;
-        var v = m.c1;
-        var w = m.c2;
-
-        var u_sign = (ulong_mt16)(u.x.asu() & 0x8000000000000000);
-        var t = (v.y + ((ulong_mt16)(w.z.asu() ^ u_sign)).asf());
-        var u_mask = new ulong4_mt16((ulong_mt16)(u_sign >> 63)).asf();
-        var t_mask = new long4_mt16((long_mt16)(t.asi() >> 63)).asf();
-
-        var tr = 1.0 + u.x.abs();
-
-        var sign_flips =
-            new ulong4_mt16(default, 0x8000000000000000, 0x8000000000000000, 0x8000000000000000).asf()
-            ^ (u_mask & new ulong4_mt16(default, 0x8000000000000000, default, 0x8000000000000000).asf())
-            ^ (t_mask & new ulong4_mt16(0x8000000000000000, 0x8000000000000000, 0x8000000000000000, default).asf());
-
-        value = new double4_mt16(tr, u.y, w.x, v.z) + (new double4_mt16(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
-
-        value = (value & ~u_mask) | (value.zwxy & u_mask);
-        value = (value.wzyx & ~t_mask) | (value & t_mask);
-        value = value.normalize();
-    }
-
-    /// <summary>Constructs a unit quaternion from an orthonormal double4x4_mt16 matrix</summary>
-    /// <param name="m">The double4x4_mt16 orthonormal rotation matrix</param>
-    [MethodImpl(256 | 512)]
-    public quaternion_d_mt16(double4x4_mt16 m)
-    {
-        var u = m.c0;
-        var v = m.c1;
-        var w = m.c2;
-
-        var u_sign = (ulong_mt16)(u.x.asu() & 0x8000000000000000);
-        var t = v.y + ((ulong_mt16)(w.z.asu() ^ u_sign)).asf();
-        var u_mask = new ulong4_mt16((ulong_mt16)(u_sign >> 63)).asf();
-        var t_mask = new long4_mt16((long_mt16)(t.asi() >> 63)).asf();
-
-        var tr = (1.0 + u.x.abs());
-
-        var sign_flips =
-            new ulong4_mt16(default, 0x8000000000000000, 0x8000000000000000, 0x8000000000000000).asf()
-            ^ (u_mask & new ulong4_mt16(default, 0x8000000000000000, default, 0x8000000000000000).asf())
-            ^ (t_mask & new ulong4_mt16(0x8000000000000000, 0x8000000000000000, 0x8000000000000000, default).asf());
-
-        value = new double4_mt16(tr, u.y, w.x, v.z) + (new double4_mt16(t, v.x, u.z, w.y) ^ sign_flips); // +---, +++-, ++-+, +-++
-
-        value = (value & ~u_mask) | (value.zwxy & u_mask);
-        value = (value.wzyx & ~t_mask) | (value & t_mask);
-        value = value.normalize();
-    }
-
-    /// <summary>
-    /// Returns a quaternion representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The quaternion representing a rotation around an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 AxisAngle(double3_mt16 axis, double_mt16 angle)
-    {
-        math_mt.sincos(0.5 * angle, out var sina, out var cosa);
-        return new(new double4_mt16(axis * sina, cosa));
-    }
-
-    /// <summary>
-    /// Returns a quaternion representing a rotation around a unit axis by an angle in radians.
-    /// The rotation direction is clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="axis">The axis of rotation</param>
-    /// <param name="angle">The angle of rotation in radians</param>
-    /// <returns>The quaternion representing a rotation around an axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 AxisAngle(double3_mt16 axis, double angle)
-    {
-        math.sincos(0.5 * angle, out var sina, out var cosa);
-        return new(new double4_mt16(axis * sina, cosa));
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing 3 rotations around the principal axes in a given order.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// When the rotation order is known at compile time, it is recommended for performance reasons to use specific
-    /// Euler rotation constructors such as EulerZXY(...).
-    /// </summary>
-    /// <param name="xyz">A float3 vector containing the rotation angles around the x-, y- and z-axis measures in radians.</param>
-    /// <param name="order">The order in which the rotations are applied.</param>
-    /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 Euler(double3_mt16 xyz, RotationOrder order = RotationOrder.Default) => order switch
-    {
-        RotationOrder.XYZ => EulerXYZ(xyz),
-        RotationOrder.XZY => EulerXZY(xyz),
-        RotationOrder.YXZ => EulerYXZ(xyz),
-        RotationOrder.YZX => EulerYZX(xyz),
-        RotationOrder.ZXY => EulerZXY(xyz),
-        RotationOrder.ZYX => EulerZYX(xyz),
-        _ => Identity,
-    };
-    
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in x-y-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 EulerXYZ(double3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt16(c.xyz, s.x) * new double4_mt16(-1.0, 1.0, -1.0, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the z-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in x-z-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 EulerXZY(double3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt16(c.xyz, s.x) * new double4_mt16(1.0, 1.0, -1.0, -1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the x-axis and finally the z-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in y-x-z order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 EulerYXZ(double3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt16(c.xyz, s.x) * new double4_mt16(-1.0, 1.0, 1.0, -1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the y-axis, then the z-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in y-z-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 EulerYZX(double3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt16(c.xyz, s.x) * new double4_mt16(-1.0, -1.0, 1.0, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the x-axis and finally the y-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in z-x-y order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 EulerZXY(double3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt16(c.xyz, s.x) * new double4_mt16(1.0, -1.0, -1.0, 1.0)
-        );
-    }
-
-    /// <summary>
-    /// Returns a quaternion constructed by first performing a rotation around the z-axis, then the y-axis and finally the x-axis.
-    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
-    /// </summary>
-    /// <param name="xyz">A double3_mt16 vector containing the rotation angles around the x-, y- and z-axis measures in radians</param>
-    /// <returns>The quaternion representing the Euler angle rotation in z-y-x order</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 EulerZYX(double3_mt16 xyz)
-    {
-        var (s, c) = (xyz * 0.5).sincos();
-        return new(
-            new double4_mt16(s.xyz, c.x) * c.yxxy * c.zzyz + s.yxxy * s.zzyz * new double4_mt16(c.xyz, s.x) * new double4_mt16(1.0, -1.0, 1.0, -1.0)
-        );
-    }
-
-    /// <summary>Returns a quaternion that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 RotateX(double_mt16 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5);
-        return new(sina, default, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the x-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the x-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the x-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 RotateX(double angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5);
-        return new(sina, default, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 RotateY(double_mt16 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5);
-        return new(default, sina, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the y-axis by a given number of radians</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the y-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the y-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 RotateY(double angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5);
-        return new(default, sina, default, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the z-axis by a given number of radians.</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 RotateZ(double_mt16 angle)
-    {
-        var (sina, cosa) = math_mt.sincos(angle * 0.5);
-        return new(default, default, sina, cosa);
-    }
-
-    /// <summary>Returns a quaternion that rotates around the z-axis by a given number of radians.</summary>
-    /// <param name="angle">The clockwise rotation angle when looking along the z-axis towards the origin in radians</param>
-    /// <returns>The quaternion representing a rotation around the z-axis</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 RotateZ(double angle)
-    {
-        var (sina, cosa) = math.sincos(angle * 0.5);
-        return new(default, default, sina, cosa);
-    }
-
-    /// <summary>
-    /// Returns a quaternion view rotation given a unit length forward vector and a unit length up vector.
-    /// The two input vectors are assumed to be unit length and not collinear.
-    /// If these assumptions are not met use <see cref="quaternion_d_mt16.LookRotationSafe" /> instead.
-    /// </summary>
-    /// <param name="forward">The view forward direction</param>
-    /// <param name="up">The view up direction</param>
-    /// <returns>The quaternion view rotation</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 LookRotation(double3_mt16 forward, double3_mt16 up)
-    {
-        var t = up.cross(forward).normalize();
-        return new(new double3x3_mt16(t, forward.cross(t), forward));
-    }
-
-    /// <summary>
-    /// Returns a quaternion view rotation given a forward vector and an up vector.
-    /// The two input vectors are not assumed to be unit length.
-    /// If the magnitude of either of the vectors is so extreme that the calculation cannot be carried out reliably or the vectors are collinear,
-    /// the identity will be returned instead.
-    /// </summary>
-    /// <param name="forward">The view forward direction</param>
-    /// <param name="up">The view up direction</param>
-    /// <returns>The quaternion view rotation or the identity quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 LookRotationSafe(double3_mt16 forward, double3_mt16 up)
-    {
-        var forwardLengthSq = forward.dot(forward);
-        var upLengthSq = up.dot(up);
-
-        forward *= forwardLengthSq.rsqrt();
-        up *= upLengthSq.rsqrt();
-
-        var t = up.cross(forward);
-        var tLengthSq = t.dot(t);
-        t *= tLengthSq.rsqrt();
-
-        var mn = forwardLengthSq.min(upLengthSq).min(tLengthSq);
-        var mx = forwardLengthSq.max(upLengthSq).max(tLengthSq);
-
-        var accept = mn > math_mt.MinRotateSafe<double>() & mx < math_mt.MaxRotateSafe<double>()
-             & forwardLengthSq.isFinite() & upLengthSq.isFinite() & tLengthSq.isFinite();
-        return math_mt.select(
-            accept,
-            new quaternion_d_mt16(new double3x3_mt16(t, forward.cross(t), forward)),
-            new quaternion_d_mt16(default, default, default, 1.0)
-        );
-    }
-
-    #region Record
-
-    public readonly bool Equals(quaternion_d_mt16 other) => value.Equals(other.value);
-
-    public readonly override int GetHashCode() => value.GetHashCode();
-
-    private bool PrintMembers(System.Text.StringBuilder sb)
-    {
-        sb.Append($"x = {value.x}, y = {value.y}, z = {value.z}, w = {value.w}");
-        return true;
-    }
-
-    #endregion
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 select([This] b64v4_mt16 c, quaternion_d_mt16 t, quaternion_d_mt16 f) =>
-        new(select(c, t.value, f.value));
-
-    /// <summary>Returns the conjugate of a quaternion value</summary>
-    /// <param name="q">The quaternion to conjugate</param>
-    /// <returns>The conjugate of the input quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 conjugate([This] quaternion_d_mt16 q) => 
-        new(q.value * new double4_mt16(-1.0, -1.0, -1.0, 1.0));
-
-    /// <summary>Returns the inverse of a quaternion value</summary>
-    /// <param name="q">The quaternion to invert</param>
-    /// <returns>The quaternion inverse of the input quaternion</returns>
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 inverse([This] quaternion_d_mt16 q) => 
-        new(q.dot(q).rcp() * q.value *  new double4_mt16(-1.0, -1.0, -1.0, 1.0));
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 dot([This] quaternion_d_mt16 a, quaternion_d_mt16 b) => a.value.dot(b.value);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 length([This] quaternion_d_mt16 q) => q.lengthsq().sqrt();
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 lengthsq([This] quaternion_d_mt16 q) => q.dot(q);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 normalize([This] quaternion_d_mt16 q) => new(q.dot(q).rsqrt() * q.value);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 normalizeSafe([This] quaternion_d_mt16 q)
-    {
-        var len = q.lengthsq();
-        return select(len > MinNormal<double>(), quaternion_d_mt16.Identity, new(len.rsqrt() * q.value));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 normalizeSafe([This] quaternion_d_mt16 q, quaternion_d_mt16 defaultValue)
-    {
-        var len = q.lengthsq();
-        return select(len > MinNormal<double>(), defaultValue, new(len.rsqrt() * q.value));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 unitExp([This] quaternion_d_mt16 q)
-    {
-        var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
-        var v_len = v_rcp_len.rcp();
-        v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new double4_mt16(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 exp([This] quaternion_d_mt16 q)
-    {
-        var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
-        var v_len = v_rcp_len.rcp();
-        v_len.sincos(out var sin_v_len, out var cos_v_len);
-        return new(new double4_mt16(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * q.value.w.exp());
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 unitLog([This] quaternion_d_mt16 q)
-    {
-        var w = q.value.w.clamp(-1.0, 1.0);
-        var s = (acos(w) * rsqrt(1.0 - w*w));
-        return new(new double4_mt16(q.value.xyz * s, default));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 log([This] quaternion_d_mt16 q)
-    {
-        var v_len_sq = q.value.xyz.lengthsq();
-        var q_len_sq = v_len_sq + q.value.w * q.value.w;
-
-        var s = (acos(clamp(q.value.w * q_len_sq.rsqrt(), -1.0, 1.0)) * v_len_sq.rsqrt());
-        return new(new double4_mt16(q.value.xyz * s, (0.5 * q_len_sq.log())));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 mul([This] quaternion_d_mt16 a, quaternion_d_mt16 b) => new(
-        a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
-        * new double4_mt16(1.0, 1.0, 1.0, -1.0) - a.value.zxyz * b.value.yzxz
-    );
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 mul([This] quaternion_d_mt16 q, double3_mt16 v)
-    {
-        var t = 2.0 * q.value.xyz.cross(v);
-        return v + q.value.w * t + q.value.xyz.cross(t);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 rotate([This] quaternion_d_mt16 q, double3_mt16 v) => mul(q, v);
-
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 nlerp([This] double_mt16 t, quaternion_d_mt16 q1, quaternion_d_mt16 q2) => 
-        normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
-    
-    [MethodImpl(256 | 512)]
-    public static quaternion_d_mt16 slerp([This] double_mt16 t, quaternion_d_mt16 q1, quaternion_d_mt16 q2)
-    {
-        var dt = dot(q1, q2);
-        
-        var sig1 = select(dt < 0.0, 0x8000000000000000.asf(), default);
-        dt ^= sig1;
-        q2.value ^= sig1;
-
-        var cond1 = dt < 0.9995;
-        var f_branch = t.nlerp(q1, q2); // if the angle is small, use linear interpolation
-        quaternion_d_mt16 t_branch;
-        {
-            var angle = dt.acos();
-            var s = (rsqrt(1.0 - dt * dt));    // 1.0f / sin(angle)
-            var w1 = (sin(angle * (1.0 - t)) * s);
-            var w2 = (sin(angle * t) * s);
-            t_branch = new quaternion_d_mt16(q1.value * w1 + q2.value * w2);
-        }
-        return math_mt.select(cond1, t_branch, f_branch);
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static double_mt16 angle([This] quaternion_d_mt16 q1, quaternion_d_mt16 q2)
-    {
-        var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
-        return diff + diff;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static double3x3_mt16 adj([This] double3x3_mt16 m, out double_mt16 det)
-    {
-        double3x3_mt16 adjT;
-        adjT.c0 = m.c1.cross(m.c2);
-        adjT.c1 = m.c2.cross(m.c0);
-        adjT.c2 = m.c0.cross(m.c1);
-        det = m.c0.dot(adjT.c0);
-
-        return adjT.transpose();
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 adj([This] double3x3_mt16 m, out double3x3_mt16 i)
-    {
-        var epsilon = 1e-300;
-        return m.adj(out i, epsilon);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 adj([This] double3x3_mt16 m, out double3x3_mt16 i, double_mt16 epsilon)
-    {
-        i = adj(m, out double_mt16 det);
-        var c = det.abs() > epsilon;
-        var detInv = select(c, det.rcp(), new double3_mt16(1.0));
-        i = detInv * i;
-        return c;
-    }
-}
-
-#endregion // quaternion_d_mt16
+#endregion // quaternion_d_mt

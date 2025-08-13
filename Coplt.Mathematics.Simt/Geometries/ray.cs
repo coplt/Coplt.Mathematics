@@ -2,19 +2,19 @@
 
 namespace Coplt.Mathematics.Simt.Geometries;
 
-#region ray_mt4
+#region ray_mt
 
 [CpuOnly]
-public partial struct ray_mt4
+public partial struct ray_mt
 {
     /// <summary>The origin point of the ray.</summary>
-    public float3_mt4 origin;
+    public float3_mt origin;
 
     /// <summary>The direction of the ray.</summary>
-    public float3_mt4 direction;
+    public float3_mt direction;
         
     [MethodImpl(256 | 512)]
-    public ray_mt4(float3_mt4 origin, float3_mt4 direction)
+    public ray_mt(float3_mt origin, float3_mt direction)
     {
         this.origin = origin;
         this.direction = direction;
@@ -24,23 +24,23 @@ public partial struct ray_mt4
     /// Returns a point at distance units along the ray.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public readonly float3_mt4 point_at(float_mt4 distance) => direction.fma(distance, origin);
+    public readonly float3_mt point_at(float_mt distance) => direction.fma(distance, origin);
 }
 
-#endregion // ray_mt4
-#region ray_mt8
+#endregion // ray_mt
+#region ray_d_mt
 
 [CpuOnly]
-public partial struct ray_mt8
+public partial struct ray_d_mt
 {
     /// <summary>The origin point of the ray.</summary>
-    public float3_mt8 origin;
+    public double3_mt origin;
 
     /// <summary>The direction of the ray.</summary>
-    public float3_mt8 direction;
+    public double3_mt direction;
         
     [MethodImpl(256 | 512)]
-    public ray_mt8(float3_mt8 origin, float3_mt8 direction)
+    public ray_d_mt(double3_mt origin, double3_mt direction)
     {
         this.origin = origin;
         this.direction = direction;
@@ -50,111 +50,7 @@ public partial struct ray_mt8
     /// Returns a point at distance units along the ray.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public readonly float3_mt8 point_at(float_mt8 distance) => direction.fma(distance, origin);
+    public readonly double3_mt point_at(double_mt distance) => direction.fma(distance, origin);
 }
 
-#endregion // ray_mt8
-#region ray_mt16
-
-[CpuOnly]
-public partial struct ray_mt16
-{
-    /// <summary>The origin point of the ray.</summary>
-    public float3_mt16 origin;
-
-    /// <summary>The direction of the ray.</summary>
-    public float3_mt16 direction;
-        
-    [MethodImpl(256 | 512)]
-    public ray_mt16(float3_mt16 origin, float3_mt16 direction)
-    {
-        this.origin = origin;
-        this.direction = direction;
-    }
-
-    /// <summary>
-    /// Returns a point at distance units along the ray.
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public readonly float3_mt16 point_at(float_mt16 distance) => direction.fma(distance, origin);
-}
-
-#endregion // ray_mt16
-#region ray_d_mt4
-
-[CpuOnly]
-public partial struct ray_d_mt4
-{
-    /// <summary>The origin point of the ray.</summary>
-    public double3_mt4 origin;
-
-    /// <summary>The direction of the ray.</summary>
-    public double3_mt4 direction;
-        
-    [MethodImpl(256 | 512)]
-    public ray_d_mt4(double3_mt4 origin, double3_mt4 direction)
-    {
-        this.origin = origin;
-        this.direction = direction;
-    }
-
-    /// <summary>
-    /// Returns a point at distance units along the ray.
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public readonly double3_mt4 point_at(double_mt4 distance) => direction.fma(distance, origin);
-}
-
-#endregion // ray_d_mt4
-#region ray_d_mt8
-
-[CpuOnly]
-public partial struct ray_d_mt8
-{
-    /// <summary>The origin point of the ray.</summary>
-    public double3_mt8 origin;
-
-    /// <summary>The direction of the ray.</summary>
-    public double3_mt8 direction;
-        
-    [MethodImpl(256 | 512)]
-    public ray_d_mt8(double3_mt8 origin, double3_mt8 direction)
-    {
-        this.origin = origin;
-        this.direction = direction;
-    }
-
-    /// <summary>
-    /// Returns a point at distance units along the ray.
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public readonly double3_mt8 point_at(double_mt8 distance) => direction.fma(distance, origin);
-}
-
-#endregion // ray_d_mt8
-#region ray_d_mt16
-
-[CpuOnly]
-public partial struct ray_d_mt16
-{
-    /// <summary>The origin point of the ray.</summary>
-    public double3_mt16 origin;
-
-    /// <summary>The direction of the ray.</summary>
-    public double3_mt16 direction;
-        
-    [MethodImpl(256 | 512)]
-    public ray_d_mt16(double3_mt16 origin, double3_mt16 direction)
-    {
-        this.origin = origin;
-        this.direction = direction;
-    }
-
-    /// <summary>
-    /// Returns a point at distance units along the ray.
-    /// </summary>
-    [MethodImpl(256 | 512)]
-    public readonly double3_mt16 point_at(double_mt16 distance) => direction.fma(distance, origin);
-}
-
-#endregion // ray_d_mt16
+#endregion // ray_d_mt

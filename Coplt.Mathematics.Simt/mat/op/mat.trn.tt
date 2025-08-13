@@ -6,7 +6,7 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -17,13 +17,13 @@ namespace Coplt.Mathematics.Simt;
             {
                 foreach (var size in sizes)
                 {
-                    var vecTypeName = $"{typ.name}{n}_mt{size}";
-                    var typeName = $"{typ.name.Replace('v', 'm')}{n}x{m}_mt{size}";
+                    var vecTypeName = $"{typ.name}{n}_mt";
+                    var typeName = $"{typ.name.Replace('v', 'm')}{n}x{m}_mt";
 
-                    var t_vecTypeName = $"{typ.name}{m}_mt{size}";
-                    var t_typeName = $"{typ.name.Replace('v', 'm')}{m}x{n}_mt{size}";
+                    var t_vecTypeName = $"{typ.name}{m}_mt";
+                    var t_typeName = $"{typ.name.Replace('v', 'm')}{m}x{n}_mt";
 
-                    var simd_method_suffix = n == m ? $"{n}x{m}_mt{size}" : $"{n}x{m}To{m}x{n}_mt{size}";
+                    var simd_method_suffix = n == m ? $"{n}x{m}_mt" : $"{n}x{m}To{m}x{n}_mt";
 
                     var has_simd = typ.simd && !(n == m && n == 2);
 #>

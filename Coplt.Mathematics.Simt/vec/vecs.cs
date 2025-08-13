@@ -2,38 +2,38 @@
 
 namespace Coplt.Mathematics.Simt;
 
-#region float2_mt4
+#region float2_mt
 
 [CpuOnly]
-public partial struct float2_mt4
+public partial struct float2_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => float_mt4.LineCount;
+        get => float_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public float_mt4 x;
-    public float_mt4 y;
+    public float_mt x;
+    public float_mt y;
 
     #endregion // Fields
 
     #region Properties
 
-    public float_mt4 r
+    public float_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public float_mt4 g
+    public float_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
@@ -56,26 +56,26 @@ public partial struct float2_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public float2_mt4(float_mt4 x, float_mt4 y)
+    public float2_mt(float_mt x, float_mt y)
     {
         this.x = x;
         this.y = y;
     }
 
     [MethodImpl(256 | 512)]
-    public float2_mt4(float value)
+    public float2_mt(float value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float2_mt4(float_mt4 value)
+    public float2_mt(float_mt value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float2_mt4(float2 value)
+    public float2_mt(float2 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -86,41 +86,41 @@ public partial struct float2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt4(float value) => new float_mt4(value);
+    public static implicit operator float2_mt(float value) => new float_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt4(float_mt4 value) => new(value);
+    public static implicit operator float2_mt(float_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt4(float2 value) => new(value);
+    public static implicit operator float2_mt(float2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator~(float2_mt4 a) => new(~a.x, ~a.y);
+    public static float2_mt operator~(float2_mt a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator|(float2_mt4 a, float2_mt4 b) => new(a.x | b.x, a.y | b.y);
+    public static float2_mt operator|(float2_mt a, float2_mt b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator&(float2_mt4 a, float2_mt4 b) => new(a.x & b.x, a.y & b.y);
+    public static float2_mt operator&(float2_mt a, float2_mt b) => new(a.x & b.x, a.y & b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator^(float2_mt4 a, float2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+    public static float2_mt operator^(float2_mt a, float2_mt b) => new(a.x ^ b.x, a.y ^ b.y);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator<<(float2_mt4 a, int b) => new(a.x << b, a.y << b);
+    public static float2_mt operator<<(float2_mt a, int b) => new(a.x << b, a.y << b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator>>(float2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+    public static float2_mt operator>>(float2_mt a, int b) => new(a.x >> b, a.y >> b);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator>>>(float2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
+    public static float2_mt operator>>>(float2_mt a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt4 x, out float_mt4 y)
+    public readonly void Deconstruct(out float_mt x, out float_mt y)
     {
         x = this.x;
         y = this.y;
@@ -130,7 +130,7 @@ public partial struct float2_mt4
 
     #region Index
 
-    public float_mt4 this[int i]
+    public float_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -160,380 +160,52 @@ public partial struct float2_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"float2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"float2_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // float2_mt4
-#region float2_mt8
+#endregion // float2_mt
+#region float3_mt
 
 [CpuOnly]
-public partial struct float2_mt8
+public partial struct float3_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => float_mt8.LineCount;
+        get => float_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public float_mt8 x;
-    public float_mt8 y;
+    public float_mt x;
+    public float_mt y;
+    public float_mt z;
 
     #endregion // Fields
 
     #region Properties
 
-    public float_mt8 r
+    public float_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public float_mt8 g
+    public float_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly float2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, float2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public float2_mt8(float_mt8 x, float_mt8 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt8(float value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt8(float_mt8 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt8(float2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt8(float value) => new float_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt8(float_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt8(float2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator~(float2_mt8 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator|(float2_mt8 a, float2_mt8 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator&(float2_mt8 a, float2_mt8 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator^(float2_mt8 a, float2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator<<(float2_mt8 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator>>(float2_mt8 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator>>>(float2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt8 x, out float_mt8 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public float_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"float2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // float2_mt8
-#region float2_mt16
-
-[CpuOnly]
-public partial struct float2_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => float_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public float_mt16 x;
-    public float_mt16 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public float_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public float_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly float2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, float2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public float2_mt16(float_mt16 x, float_mt16 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt16(float value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt16(float_mt16 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt16(float2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt16(float value) => new float_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt16(float_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt16(float2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator~(float2_mt16 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator|(float2_mt16 a, float2_mt16 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator&(float2_mt16 a, float2_mt16 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator^(float2_mt16 a, float2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator<<(float2_mt16 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator>>(float2_mt16 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator>>>(float2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt16 x, out float_mt16 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public float_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"float2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // float2_mt16
-#region float3_mt4
-
-[CpuOnly]
-public partial struct float3_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => float_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public float_mt4 x;
-    public float_mt4 y;
-    public float_mt4 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public float_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public float_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public float_mt4 b
+    public float_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
@@ -557,7 +229,7 @@ public partial struct float3_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public float3_mt4(float_mt4 x, float_mt4 y, float_mt4 z)
+    public float3_mt(float_mt x, float_mt y, float_mt z)
     {
         this.x = x;
         this.y = y;
@@ -565,19 +237,19 @@ public partial struct float3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt4(float value)
+    public float3_mt(float value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt4(float_mt4 value)
+    public float3_mt(float_mt value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt4(float3 value)
+    public float3_mt(float3 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -589,41 +261,41 @@ public partial struct float3_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt4(float value) => new float_mt4(value);
+    public static implicit operator float3_mt(float value) => new float_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt4(float_mt4 value) => new(value);
+    public static implicit operator float3_mt(float_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt4(float3 value) => new(value);
+    public static implicit operator float3_mt(float3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 operator~(float3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+    public static float3_mt operator~(float3_mt a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 operator|(float3_mt4 a, float3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static float3_mt operator|(float3_mt a, float3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 operator&(float3_mt4 a, float3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+    public static float3_mt operator&(float3_mt a, float3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 operator^(float3_mt4 a, float3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+    public static float3_mt operator^(float3_mt a, float3_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 operator<<(float3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+    public static float3_mt operator<<(float3_mt a, int b) => new(a.x << b, a.y << b, a.z << b);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 operator>>(float3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+    public static float3_mt operator>>(float3_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 operator>>>(float3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
+    public static float3_mt operator>>>(float3_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt4 x, out float_mt4 y, out float_mt4 z)
+    public readonly void Deconstruct(out float_mt x, out float_mt y, out float_mt z)
     {
         x = this.x;
         y = this.y;
@@ -634,7 +306,7 @@ public partial struct float3_mt4
 
     #region Index
 
-    public float_mt4 this[int i]
+    public float_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -668,420 +340,60 @@ public partial struct float3_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"float3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"float3_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // float3_mt4
-#region float3_mt8
+#endregion // float3_mt
+#region float4_mt
 
 [CpuOnly]
-public partial struct float3_mt8
+public partial struct float4_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => float_mt8.LineCount;
+        get => float_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public float_mt8 x;
-    public float_mt8 y;
-    public float_mt8 z;
+    public float_mt x;
+    public float_mt y;
+    public float_mt z;
+    public float_mt w;
 
     #endregion // Fields
 
     #region Properties
 
-    public float_mt8 r
+    public float_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public float_mt8 g
+    public float_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-    public float_mt8 b
+    public float_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, float3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public float3_mt8(float_mt8 x, float_mt8 y, float_mt8 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float3_mt8(float value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float3_mt8(float_mt8 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float3_mt8(float3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt8(float value) => new float_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt8(float_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt8(float3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator~(float3_mt8 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator|(float3_mt8 a, float3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator&(float3_mt8 a, float3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator^(float3_mt8 a, float3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator<<(float3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator>>(float3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator>>>(float3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt8 x, out float_mt8 y, out float_mt8 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public float_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"float3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // float3_mt8
-#region float3_mt16
-
-[CpuOnly]
-public partial struct float3_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => float_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public float_mt16 x;
-    public float_mt16 y;
-    public float_mt16 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public float_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public float_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public float_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, float3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public float3_mt16(float_mt16 x, float_mt16 y, float_mt16 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float3_mt16(float value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float3_mt16(float_mt16 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float3_mt16(float3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt16(float value) => new float_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt16(float_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt16(float3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator~(float3_mt16 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator|(float3_mt16 a, float3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator&(float3_mt16 a, float3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator^(float3_mt16 a, float3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator<<(float3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator>>(float3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator>>>(float3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt16 x, out float_mt16 y, out float_mt16 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public float_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"float3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // float3_mt16
-#region float4_mt4
-
-[CpuOnly]
-public partial struct float4_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => float_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public float_mt4 x;
-    public float_mt4 y;
-    public float_mt4 z;
-    public float_mt4 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public float_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public float_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public float_mt4 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public float_mt4 a
+    public float_mt a
     {
         [MethodImpl(256 | 512)]
         readonly get => w;
@@ -1106,7 +418,7 @@ public partial struct float4_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public float4_mt4(float_mt4 x, float_mt4 y, float_mt4 z, float_mt4 w)
+    public float4_mt(float_mt x, float_mt y, float_mt z, float_mt w)
     {
         this.x = x;
         this.y = y;
@@ -1115,19 +427,19 @@ public partial struct float4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt4(float value)
+    public float4_mt(float value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt4(float_mt4 value)
+    public float4_mt(float_mt value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt4(float4 value)
+    public float4_mt(float4 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -1140,41 +452,41 @@ public partial struct float4_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt4(float value) => new float_mt4(value);
+    public static implicit operator float4_mt(float value) => new float_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt4(float_mt4 value) => new(value);
+    public static implicit operator float4_mt(float_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt4(float4 value) => new(value);
+    public static implicit operator float4_mt(float4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 operator~(float4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static float4_mt operator~(float4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 operator|(float4_mt4 a, float4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static float4_mt operator|(float4_mt a, float4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 operator&(float4_mt4 a, float4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+    public static float4_mt operator&(float4_mt a, float4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 operator^(float4_mt4 a, float4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+    public static float4_mt operator^(float4_mt a, float4_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 operator<<(float4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+    public static float4_mt operator<<(float4_mt a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 operator>>(float4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+    public static float4_mt operator>>(float4_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 operator>>>(float4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
+    public static float4_mt operator>>>(float4_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt4 x, out float_mt4 y, out float_mt4 z, out float_mt4 w)
+    public readonly void Deconstruct(out float_mt x, out float_mt y, out float_mt z, out float_mt w)
     {
         x = this.x;
         y = this.y;
@@ -1186,7 +498,7 @@ public partial struct float4_mt4
 
     #region Index
 
-    public float_mt4 this[int i]
+    public float_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -1224,436 +536,44 @@ public partial struct float4_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"float4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"float4_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // float4_mt4
-#region float4_mt8
+#endregion // float4_mt
+#region double2_mt
 
 [CpuOnly]
-public partial struct float4_mt8
+public partial struct double2_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => float_mt8.LineCount;
+        get => double_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public float_mt8 x;
-    public float_mt8 y;
-    public float_mt8 z;
-    public float_mt8 w;
+    public double_mt x;
+    public double_mt y;
 
     #endregion // Fields
 
     #region Properties
 
-    public float_mt8 r
+    public double_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public float_mt8 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public float_mt8 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public float_mt8 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, float4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public float4_mt8(float_mt8 x, float_mt8 y, float_mt8 z, float_mt8 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt8(float value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt8(float_mt8 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt8(float4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt8(float value) => new float_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt8(float_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt8(float4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator~(float4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator|(float4_mt8 a, float4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator&(float4_mt8 a, float4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator^(float4_mt8 a, float4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator<<(float4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator>>(float4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator>>>(float4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt8 x, out float_mt8 y, out float_mt8 z, out float_mt8 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public float_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"float4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // float4_mt8
-#region float4_mt16
-
-[CpuOnly]
-public partial struct float4_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => float_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public float_mt16 x;
-    public float_mt16 y;
-    public float_mt16 z;
-    public float_mt16 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public float_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public float_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public float_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public float_mt16 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, float4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public float4_mt16(float_mt16 x, float_mt16 y, float_mt16 z, float_mt16 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt16(float value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt16(float_mt16 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float4_mt16(float4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt16(float value) => new float_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt16(float_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt16(float4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator~(float4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator|(float4_mt16 a, float4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator&(float4_mt16 a, float4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator^(float4_mt16 a, float4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator<<(float4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator>>(float4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator>>>(float4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out float_mt16 x, out float_mt16 y, out float_mt16 z, out float_mt16 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public float_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"float4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // float4_mt16
-#region double2_mt4
-
-[CpuOnly]
-public partial struct double2_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => double_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public double_mt4 x;
-    public double_mt4 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public double_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public double_mt4 g
+    public double_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
@@ -1676,26 +596,26 @@ public partial struct double2_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public double2_mt4(double_mt4 x, double_mt4 y)
+    public double2_mt(double_mt x, double_mt y)
     {
         this.x = x;
         this.y = y;
     }
 
     [MethodImpl(256 | 512)]
-    public double2_mt4(double value)
+    public double2_mt(double value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double2_mt4(double_mt4 value)
+    public double2_mt(double_mt value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double2_mt4(double2 value)
+    public double2_mt(double2 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -1706,41 +626,41 @@ public partial struct double2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt4(double value) => new double_mt4(value);
+    public static implicit operator double2_mt(double value) => new double_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt4(double_mt4 value) => new(value);
+    public static implicit operator double2_mt(double_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt4(double2 value) => new(value);
+    public static implicit operator double2_mt(double2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator~(double2_mt4 a) => new(~a.x, ~a.y);
+    public static double2_mt operator~(double2_mt a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator|(double2_mt4 a, double2_mt4 b) => new(a.x | b.x, a.y | b.y);
+    public static double2_mt operator|(double2_mt a, double2_mt b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator&(double2_mt4 a, double2_mt4 b) => new(a.x & b.x, a.y & b.y);
+    public static double2_mt operator&(double2_mt a, double2_mt b) => new(a.x & b.x, a.y & b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator^(double2_mt4 a, double2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+    public static double2_mt operator^(double2_mt a, double2_mt b) => new(a.x ^ b.x, a.y ^ b.y);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator<<(double2_mt4 a, int b) => new(a.x << b, a.y << b);
+    public static double2_mt operator<<(double2_mt a, int b) => new(a.x << b, a.y << b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator>>(double2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+    public static double2_mt operator>>(double2_mt a, int b) => new(a.x >> b, a.y >> b);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator>>>(double2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
+    public static double2_mt operator>>>(double2_mt a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt4 x, out double_mt4 y)
+    public readonly void Deconstruct(out double_mt x, out double_mt y)
     {
         x = this.x;
         y = this.y;
@@ -1750,7 +670,7 @@ public partial struct double2_mt4
 
     #region Index
 
-    public double_mt4 this[int i]
+    public double_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -1780,380 +700,52 @@ public partial struct double2_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"double2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"double2_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // double2_mt4
-#region double2_mt8
+#endregion // double2_mt
+#region double3_mt
 
 [CpuOnly]
-public partial struct double2_mt8
+public partial struct double3_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => double_mt8.LineCount;
+        get => double_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public double_mt8 x;
-    public double_mt8 y;
+    public double_mt x;
+    public double_mt y;
+    public double_mt z;
 
     #endregion // Fields
 
     #region Properties
 
-    public double_mt8 r
+    public double_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public double_mt8 g
+    public double_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly double2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, double2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public double2_mt8(double_mt8 x, double_mt8 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double2_mt8(double value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double2_mt8(double_mt8 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double2_mt8(double2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt8(double value) => new double_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt8(double_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt8(double2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator~(double2_mt8 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator|(double2_mt8 a, double2_mt8 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator&(double2_mt8 a, double2_mt8 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator^(double2_mt8 a, double2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator<<(double2_mt8 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator>>(double2_mt8 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator>>>(double2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt8 x, out double_mt8 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public double_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"double2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // double2_mt8
-#region double2_mt16
-
-[CpuOnly]
-public partial struct double2_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => double_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public double_mt16 x;
-    public double_mt16 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public double_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public double_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly double2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, double2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public double2_mt16(double_mt16 x, double_mt16 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double2_mt16(double value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double2_mt16(double_mt16 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double2_mt16(double2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt16(double value) => new double_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt16(double_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt16(double2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator~(double2_mt16 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator|(double2_mt16 a, double2_mt16 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator&(double2_mt16 a, double2_mt16 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator^(double2_mt16 a, double2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator<<(double2_mt16 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator>>(double2_mt16 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator>>>(double2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt16 x, out double_mt16 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public double_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"double2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // double2_mt16
-#region double3_mt4
-
-[CpuOnly]
-public partial struct double3_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => double_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public double_mt4 x;
-    public double_mt4 y;
-    public double_mt4 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public double_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public double_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public double_mt4 b
+    public double_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
@@ -2177,7 +769,7 @@ public partial struct double3_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public double3_mt4(double_mt4 x, double_mt4 y, double_mt4 z)
+    public double3_mt(double_mt x, double_mt y, double_mt z)
     {
         this.x = x;
         this.y = y;
@@ -2185,19 +777,19 @@ public partial struct double3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt4(double value)
+    public double3_mt(double value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt4(double_mt4 value)
+    public double3_mt(double_mt value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt4(double3 value)
+    public double3_mt(double3 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -2209,41 +801,41 @@ public partial struct double3_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt4(double value) => new double_mt4(value);
+    public static implicit operator double3_mt(double value) => new double_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt4(double_mt4 value) => new(value);
+    public static implicit operator double3_mt(double_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt4(double3 value) => new(value);
+    public static implicit operator double3_mt(double3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 operator~(double3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+    public static double3_mt operator~(double3_mt a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 operator|(double3_mt4 a, double3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static double3_mt operator|(double3_mt a, double3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 operator&(double3_mt4 a, double3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+    public static double3_mt operator&(double3_mt a, double3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 operator^(double3_mt4 a, double3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+    public static double3_mt operator^(double3_mt a, double3_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 operator<<(double3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+    public static double3_mt operator<<(double3_mt a, int b) => new(a.x << b, a.y << b, a.z << b);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 operator>>(double3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+    public static double3_mt operator>>(double3_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 operator>>>(double3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
+    public static double3_mt operator>>>(double3_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt4 x, out double_mt4 y, out double_mt4 z)
+    public readonly void Deconstruct(out double_mt x, out double_mt y, out double_mt z)
     {
         x = this.x;
         y = this.y;
@@ -2254,7 +846,7 @@ public partial struct double3_mt4
 
     #region Index
 
-    public double_mt4 this[int i]
+    public double_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -2288,420 +880,60 @@ public partial struct double3_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"double3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"double3_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // double3_mt4
-#region double3_mt8
+#endregion // double3_mt
+#region double4_mt
 
 [CpuOnly]
-public partial struct double3_mt8
+public partial struct double4_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => double_mt8.LineCount;
+        get => double_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public double_mt8 x;
-    public double_mt8 y;
-    public double_mt8 z;
+    public double_mt x;
+    public double_mt y;
+    public double_mt z;
+    public double_mt w;
 
     #endregion // Fields
 
     #region Properties
 
-    public double_mt8 r
+    public double_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public double_mt8 g
+    public double_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-    public double_mt8 b
+    public double_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, double3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public double3_mt8(double_mt8 x, double_mt8 y, double_mt8 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double3_mt8(double value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double3_mt8(double_mt8 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double3_mt8(double3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt8(double value) => new double_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt8(double_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt8(double3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator~(double3_mt8 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator|(double3_mt8 a, double3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator&(double3_mt8 a, double3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator^(double3_mt8 a, double3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator<<(double3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator>>(double3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator>>>(double3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt8 x, out double_mt8 y, out double_mt8 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public double_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"double3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // double3_mt8
-#region double3_mt16
-
-[CpuOnly]
-public partial struct double3_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => double_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public double_mt16 x;
-    public double_mt16 y;
-    public double_mt16 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public double_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public double_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public double_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, double3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public double3_mt16(double_mt16 x, double_mt16 y, double_mt16 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double3_mt16(double value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double3_mt16(double_mt16 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double3_mt16(double3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt16(double value) => new double_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt16(double_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt16(double3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator~(double3_mt16 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator|(double3_mt16 a, double3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator&(double3_mt16 a, double3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator^(double3_mt16 a, double3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator<<(double3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator>>(double3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator>>>(double3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt16 x, out double_mt16 y, out double_mt16 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public double_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"double3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // double3_mt16
-#region double4_mt4
-
-[CpuOnly]
-public partial struct double4_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => double_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public double_mt4 x;
-    public double_mt4 y;
-    public double_mt4 z;
-    public double_mt4 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public double_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public double_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public double_mt4 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public double_mt4 a
+    public double_mt a
     {
         [MethodImpl(256 | 512)]
         readonly get => w;
@@ -2726,7 +958,7 @@ public partial struct double4_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public double4_mt4(double_mt4 x, double_mt4 y, double_mt4 z, double_mt4 w)
+    public double4_mt(double_mt x, double_mt y, double_mt z, double_mt w)
     {
         this.x = x;
         this.y = y;
@@ -2735,19 +967,19 @@ public partial struct double4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt4(double value)
+    public double4_mt(double value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt4(double_mt4 value)
+    public double4_mt(double_mt value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt4(double4 value)
+    public double4_mt(double4 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -2760,41 +992,41 @@ public partial struct double4_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt4(double value) => new double_mt4(value);
+    public static implicit operator double4_mt(double value) => new double_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt4(double_mt4 value) => new(value);
+    public static implicit operator double4_mt(double_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt4(double4 value) => new(value);
+    public static implicit operator double4_mt(double4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 operator~(double4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static double4_mt operator~(double4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 operator|(double4_mt4 a, double4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static double4_mt operator|(double4_mt a, double4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 operator&(double4_mt4 a, double4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+    public static double4_mt operator&(double4_mt a, double4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 operator^(double4_mt4 a, double4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+    public static double4_mt operator^(double4_mt a, double4_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 operator<<(double4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+    public static double4_mt operator<<(double4_mt a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 operator>>(double4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+    public static double4_mt operator>>(double4_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 operator>>>(double4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
+    public static double4_mt operator>>>(double4_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt4 x, out double_mt4 y, out double_mt4 z, out double_mt4 w)
+    public readonly void Deconstruct(out double_mt x, out double_mt y, out double_mt z, out double_mt w)
     {
         x = this.x;
         y = this.y;
@@ -2806,7 +1038,7 @@ public partial struct double4_mt4
 
     #region Index
 
-    public double_mt4 this[int i]
+    public double_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -2844,436 +1076,44 @@ public partial struct double4_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"double4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"double4_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // double4_mt4
-#region double4_mt8
+#endregion // double4_mt
+#region int2_mt
 
 [CpuOnly]
-public partial struct double4_mt8
+public partial struct int2_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => double_mt8.LineCount;
+        get => int_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public double_mt8 x;
-    public double_mt8 y;
-    public double_mt8 z;
-    public double_mt8 w;
+    public int_mt x;
+    public int_mt y;
 
     #endregion // Fields
 
     #region Properties
 
-    public double_mt8 r
+    public int_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public double_mt8 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public double_mt8 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public double_mt8 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, double4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public double4_mt8(double_mt8 x, double_mt8 y, double_mt8 z, double_mt8 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double4_mt8(double value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double4_mt8(double_mt8 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double4_mt8(double4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt8(double value) => new double_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt8(double_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt8(double4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator~(double4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator|(double4_mt8 a, double4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator&(double4_mt8 a, double4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator^(double4_mt8 a, double4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator<<(double4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator>>(double4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator>>>(double4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt8 x, out double_mt8 y, out double_mt8 z, out double_mt8 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public double_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"double4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // double4_mt8
-#region double4_mt16
-
-[CpuOnly]
-public partial struct double4_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => double_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public double_mt16 x;
-    public double_mt16 y;
-    public double_mt16 z;
-    public double_mt16 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public double_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public double_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public double_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public double_mt16 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, double4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public double4_mt16(double_mt16 x, double_mt16 y, double_mt16 z, double_mt16 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double4_mt16(double value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double4_mt16(double_mt16 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public double4_mt16(double4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt16(double value) => new double_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt16(double_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt16(double4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator~(double4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator|(double4_mt16 a, double4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator&(double4_mt16 a, double4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator^(double4_mt16 a, double4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator<<(double4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator>>(double4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator>>>(double4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out double_mt16 x, out double_mt16 y, out double_mt16 z, out double_mt16 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public double_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"double4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // double4_mt16
-#region int2_mt4
-
-[CpuOnly]
-public partial struct int2_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => int_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public int_mt4 x;
-    public int_mt4 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public int_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public int_mt4 g
+    public int_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
@@ -3296,26 +1136,26 @@ public partial struct int2_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public int2_mt4(int_mt4 x, int_mt4 y)
+    public int2_mt(int_mt x, int_mt y)
     {
         this.x = x;
         this.y = y;
     }
 
     [MethodImpl(256 | 512)]
-    public int2_mt4(int value)
+    public int2_mt(int value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int2_mt4(int_mt4 value)
+    public int2_mt(int_mt value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int2_mt4(int2 value)
+    public int2_mt(int2 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -3326,41 +1166,41 @@ public partial struct int2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt4(int value) => new int_mt4(value);
+    public static implicit operator int2_mt(int value) => new int_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt4(int_mt4 value) => new(value);
+    public static implicit operator int2_mt(int_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt4(int2 value) => new(value);
+    public static implicit operator int2_mt(int2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator~(int2_mt4 a) => new(~a.x, ~a.y);
+    public static int2_mt operator~(int2_mt a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator|(int2_mt4 a, int2_mt4 b) => new(a.x | b.x, a.y | b.y);
+    public static int2_mt operator|(int2_mt a, int2_mt b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator&(int2_mt4 a, int2_mt4 b) => new(a.x & b.x, a.y & b.y);
+    public static int2_mt operator&(int2_mt a, int2_mt b) => new(a.x & b.x, a.y & b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator^(int2_mt4 a, int2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+    public static int2_mt operator^(int2_mt a, int2_mt b) => new(a.x ^ b.x, a.y ^ b.y);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator<<(int2_mt4 a, int b) => new(a.x << b, a.y << b);
+    public static int2_mt operator<<(int2_mt a, int b) => new(a.x << b, a.y << b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator>>(int2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+    public static int2_mt operator>>(int2_mt a, int b) => new(a.x >> b, a.y >> b);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator>>>(int2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
+    public static int2_mt operator>>>(int2_mt a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt4 x, out int_mt4 y)
+    public readonly void Deconstruct(out int_mt x, out int_mt y)
     {
         x = this.x;
         y = this.y;
@@ -3370,7 +1210,7 @@ public partial struct int2_mt4
 
     #region Index
 
-    public int_mt4 this[int i]
+    public int_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -3400,380 +1240,52 @@ public partial struct int2_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"int2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"int2_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // int2_mt4
-#region int2_mt8
+#endregion // int2_mt
+#region int3_mt
 
 [CpuOnly]
-public partial struct int2_mt8
+public partial struct int3_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => int_mt8.LineCount;
+        get => int_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public int_mt8 x;
-    public int_mt8 y;
+    public int_mt x;
+    public int_mt y;
+    public int_mt z;
 
     #endregion // Fields
 
     #region Properties
 
-    public int_mt8 r
+    public int_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public int_mt8 g
+    public int_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly int2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, int2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public int2_mt8(int_mt8 x, int_mt8 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int2_mt8(int value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int2_mt8(int_mt8 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int2_mt8(int2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt8(int value) => new int_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt8(int_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt8(int2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator~(int2_mt8 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator|(int2_mt8 a, int2_mt8 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator&(int2_mt8 a, int2_mt8 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator^(int2_mt8 a, int2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator<<(int2_mt8 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator>>(int2_mt8 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator>>>(int2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt8 x, out int_mt8 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public int_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"int2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // int2_mt8
-#region int2_mt16
-
-[CpuOnly]
-public partial struct int2_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => int_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public int_mt16 x;
-    public int_mt16 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public int_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public int_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, int2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public int2_mt16(int_mt16 x, int_mt16 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int2_mt16(int value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int2_mt16(int_mt16 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int2_mt16(int2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt16(int value) => new int_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt16(int_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt16(int2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator~(int2_mt16 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator|(int2_mt16 a, int2_mt16 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator&(int2_mt16 a, int2_mt16 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator^(int2_mt16 a, int2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator<<(int2_mt16 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator>>(int2_mt16 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator>>>(int2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt16 x, out int_mt16 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public int_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"int2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // int2_mt16
-#region int3_mt4
-
-[CpuOnly]
-public partial struct int3_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => int_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public int_mt4 x;
-    public int_mt4 y;
-    public int_mt4 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public int_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public int_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public int_mt4 b
+    public int_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
@@ -3797,7 +1309,7 @@ public partial struct int3_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public int3_mt4(int_mt4 x, int_mt4 y, int_mt4 z)
+    public int3_mt(int_mt x, int_mt y, int_mt z)
     {
         this.x = x;
         this.y = y;
@@ -3805,19 +1317,19 @@ public partial struct int3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt4(int value)
+    public int3_mt(int value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt4(int_mt4 value)
+    public int3_mt(int_mt value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt4(int3 value)
+    public int3_mt(int3 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -3829,41 +1341,41 @@ public partial struct int3_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt4(int value) => new int_mt4(value);
+    public static implicit operator int3_mt(int value) => new int_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt4(int_mt4 value) => new(value);
+    public static implicit operator int3_mt(int_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt4(int3 value) => new(value);
+    public static implicit operator int3_mt(int3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 operator~(int3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+    public static int3_mt operator~(int3_mt a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 operator|(int3_mt4 a, int3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static int3_mt operator|(int3_mt a, int3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 operator&(int3_mt4 a, int3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+    public static int3_mt operator&(int3_mt a, int3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 operator^(int3_mt4 a, int3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+    public static int3_mt operator^(int3_mt a, int3_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 operator<<(int3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+    public static int3_mt operator<<(int3_mt a, int b) => new(a.x << b, a.y << b, a.z << b);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 operator>>(int3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+    public static int3_mt operator>>(int3_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 operator>>>(int3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
+    public static int3_mt operator>>>(int3_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt4 x, out int_mt4 y, out int_mt4 z)
+    public readonly void Deconstruct(out int_mt x, out int_mt y, out int_mt z)
     {
         x = this.x;
         y = this.y;
@@ -3874,7 +1386,7 @@ public partial struct int3_mt4
 
     #region Index
 
-    public int_mt4 this[int i]
+    public int_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -3908,420 +1420,60 @@ public partial struct int3_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"int3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"int3_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // int3_mt4
-#region int3_mt8
+#endregion // int3_mt
+#region int4_mt
 
 [CpuOnly]
-public partial struct int3_mt8
+public partial struct int4_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => int_mt8.LineCount;
+        get => int_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public int_mt8 x;
-    public int_mt8 y;
-    public int_mt8 z;
+    public int_mt x;
+    public int_mt y;
+    public int_mt z;
+    public int_mt w;
 
     #endregion // Fields
 
     #region Properties
 
-    public int_mt8 r
+    public int_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public int_mt8 g
+    public int_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-    public int_mt8 b
+    public int_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, int3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public int3_mt8(int_mt8 x, int_mt8 y, int_mt8 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int3_mt8(int value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int3_mt8(int_mt8 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int3_mt8(int3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt8(int value) => new int_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt8(int_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt8(int3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator~(int3_mt8 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator|(int3_mt8 a, int3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator&(int3_mt8 a, int3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator^(int3_mt8 a, int3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator<<(int3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator>>(int3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator>>>(int3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt8 x, out int_mt8 y, out int_mt8 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public int_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"int3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // int3_mt8
-#region int3_mt16
-
-[CpuOnly]
-public partial struct int3_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => int_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public int_mt16 x;
-    public int_mt16 y;
-    public int_mt16 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public int_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public int_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public int_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, int3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public int3_mt16(int_mt16 x, int_mt16 y, int_mt16 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int3_mt16(int value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int3_mt16(int_mt16 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int3_mt16(int3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt16(int value) => new int_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt16(int_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt16(int3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator~(int3_mt16 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator|(int3_mt16 a, int3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator&(int3_mt16 a, int3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator^(int3_mt16 a, int3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator<<(int3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator>>(int3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator>>>(int3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt16 x, out int_mt16 y, out int_mt16 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public int_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"int3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // int3_mt16
-#region int4_mt4
-
-[CpuOnly]
-public partial struct int4_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => int_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public int_mt4 x;
-    public int_mt4 y;
-    public int_mt4 z;
-    public int_mt4 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public int_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public int_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public int_mt4 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public int_mt4 a
+    public int_mt a
     {
         [MethodImpl(256 | 512)]
         readonly get => w;
@@ -4346,7 +1498,7 @@ public partial struct int4_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public int4_mt4(int_mt4 x, int_mt4 y, int_mt4 z, int_mt4 w)
+    public int4_mt(int_mt x, int_mt y, int_mt z, int_mt w)
     {
         this.x = x;
         this.y = y;
@@ -4355,19 +1507,19 @@ public partial struct int4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt4(int value)
+    public int4_mt(int value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt4(int_mt4 value)
+    public int4_mt(int_mt value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt4(int4 value)
+    public int4_mt(int4 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -4380,41 +1532,41 @@ public partial struct int4_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt4(int value) => new int_mt4(value);
+    public static implicit operator int4_mt(int value) => new int_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt4(int_mt4 value) => new(value);
+    public static implicit operator int4_mt(int_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt4(int4 value) => new(value);
+    public static implicit operator int4_mt(int4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 operator~(int4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static int4_mt operator~(int4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 operator|(int4_mt4 a, int4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static int4_mt operator|(int4_mt a, int4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 operator&(int4_mt4 a, int4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+    public static int4_mt operator&(int4_mt a, int4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 operator^(int4_mt4 a, int4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+    public static int4_mt operator^(int4_mt a, int4_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 operator<<(int4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+    public static int4_mt operator<<(int4_mt a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 operator>>(int4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+    public static int4_mt operator>>(int4_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 operator>>>(int4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
+    public static int4_mt operator>>>(int4_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt4 x, out int_mt4 y, out int_mt4 z, out int_mt4 w)
+    public readonly void Deconstruct(out int_mt x, out int_mt y, out int_mt z, out int_mt w)
     {
         x = this.x;
         y = this.y;
@@ -4426,7 +1578,7 @@ public partial struct int4_mt4
 
     #region Index
 
-    public int_mt4 this[int i]
+    public int_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -4464,436 +1616,44 @@ public partial struct int4_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"int4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"int4_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // int4_mt4
-#region int4_mt8
+#endregion // int4_mt
+#region uint2_mt
 
 [CpuOnly]
-public partial struct int4_mt8
+public partial struct uint2_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => int_mt8.LineCount;
+        get => uint_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public int_mt8 x;
-    public int_mt8 y;
-    public int_mt8 z;
-    public int_mt8 w;
+    public uint_mt x;
+    public uint_mt y;
 
     #endregion // Fields
 
     #region Properties
 
-    public int_mt8 r
+    public uint_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public int_mt8 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public int_mt8 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public int_mt8 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, int4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public int4_mt8(int_mt8 x, int_mt8 y, int_mt8 z, int_mt8 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int4_mt8(int value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int4_mt8(int_mt8 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int4_mt8(int4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt8(int value) => new int_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt8(int_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt8(int4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator~(int4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator|(int4_mt8 a, int4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator&(int4_mt8 a, int4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator^(int4_mt8 a, int4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator<<(int4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator>>(int4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator>>>(int4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt8 x, out int_mt8 y, out int_mt8 z, out int_mt8 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public int_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"int4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // int4_mt8
-#region int4_mt16
-
-[CpuOnly]
-public partial struct int4_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => int_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public int_mt16 x;
-    public int_mt16 y;
-    public int_mt16 z;
-    public int_mt16 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public int_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public int_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public int_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public int_mt16 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, int4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public int4_mt16(int_mt16 x, int_mt16 y, int_mt16 z, int_mt16 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int4_mt16(int value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int4_mt16(int_mt16 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public int4_mt16(int4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt16(int value) => new int_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt16(int_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt16(int4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator~(int4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator|(int4_mt16 a, int4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator&(int4_mt16 a, int4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator^(int4_mt16 a, int4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator<<(int4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator>>(int4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator>>>(int4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out int_mt16 x, out int_mt16 y, out int_mt16 z, out int_mt16 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public int_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"int4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // int4_mt16
-#region uint2_mt4
-
-[CpuOnly]
-public partial struct uint2_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => uint_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public uint_mt4 x;
-    public uint_mt4 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public uint_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public uint_mt4 g
+    public uint_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
@@ -4916,26 +1676,26 @@ public partial struct uint2_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public uint2_mt4(uint_mt4 x, uint_mt4 y)
+    public uint2_mt(uint_mt x, uint_mt y)
     {
         this.x = x;
         this.y = y;
     }
 
     [MethodImpl(256 | 512)]
-    public uint2_mt4(uint value)
+    public uint2_mt(uint value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint2_mt4(uint_mt4 value)
+    public uint2_mt(uint_mt value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint2_mt4(uint2 value)
+    public uint2_mt(uint2 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -4946,41 +1706,41 @@ public partial struct uint2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt4(uint value) => new uint_mt4(value);
+    public static implicit operator uint2_mt(uint value) => new uint_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt4(uint_mt4 value) => new(value);
+    public static implicit operator uint2_mt(uint_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt4(uint2 value) => new(value);
+    public static implicit operator uint2_mt(uint2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator~(uint2_mt4 a) => new(~a.x, ~a.y);
+    public static uint2_mt operator~(uint2_mt a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator|(uint2_mt4 a, uint2_mt4 b) => new(a.x | b.x, a.y | b.y);
+    public static uint2_mt operator|(uint2_mt a, uint2_mt b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator&(uint2_mt4 a, uint2_mt4 b) => new(a.x & b.x, a.y & b.y);
+    public static uint2_mt operator&(uint2_mt a, uint2_mt b) => new(a.x & b.x, a.y & b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator^(uint2_mt4 a, uint2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+    public static uint2_mt operator^(uint2_mt a, uint2_mt b) => new(a.x ^ b.x, a.y ^ b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator<<(uint2_mt4 a, int b) => new(a.x << b, a.y << b);
+    public static uint2_mt operator<<(uint2_mt a, int b) => new(a.x << b, a.y << b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator>>(uint2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+    public static uint2_mt operator>>(uint2_mt a, int b) => new(a.x >> b, a.y >> b);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator>>>(uint2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
+    public static uint2_mt operator>>>(uint2_mt a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt4 x, out uint_mt4 y)
+    public readonly void Deconstruct(out uint_mt x, out uint_mt y)
     {
         x = this.x;
         y = this.y;
@@ -4990,7 +1750,7 @@ public partial struct uint2_mt4
 
     #region Index
 
-    public uint_mt4 this[int i]
+    public uint_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -5020,380 +1780,52 @@ public partial struct uint2_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"uint2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"uint2_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // uint2_mt4
-#region uint2_mt8
+#endregion // uint2_mt
+#region uint3_mt
 
 [CpuOnly]
-public partial struct uint2_mt8
+public partial struct uint3_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => uint_mt8.LineCount;
+        get => uint_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public uint_mt8 x;
-    public uint_mt8 y;
+    public uint_mt x;
+    public uint_mt y;
+    public uint_mt z;
 
     #endregion // Fields
 
     #region Properties
 
-    public uint_mt8 r
+    public uint_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public uint_mt8 g
+    public uint_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, uint2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public uint2_mt8(uint_mt8 x, uint_mt8 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint2_mt8(uint value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint2_mt8(uint_mt8 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint2_mt8(uint2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt8(uint value) => new uint_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt8(uint_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt8(uint2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator~(uint2_mt8 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator|(uint2_mt8 a, uint2_mt8 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator&(uint2_mt8 a, uint2_mt8 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator^(uint2_mt8 a, uint2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator<<(uint2_mt8 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator>>(uint2_mt8 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator>>>(uint2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt8 x, out uint_mt8 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public uint_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"uint2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // uint2_mt8
-#region uint2_mt16
-
-[CpuOnly]
-public partial struct uint2_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => uint_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public uint_mt16 x;
-    public uint_mt16 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public uint_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public uint_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, uint2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public uint2_mt16(uint_mt16 x, uint_mt16 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint2_mt16(uint value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint2_mt16(uint_mt16 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint2_mt16(uint2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt16(uint value) => new uint_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt16(uint_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt16(uint2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator~(uint2_mt16 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator|(uint2_mt16 a, uint2_mt16 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator&(uint2_mt16 a, uint2_mt16 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator^(uint2_mt16 a, uint2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator<<(uint2_mt16 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator>>(uint2_mt16 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator>>>(uint2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt16 x, out uint_mt16 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public uint_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"uint2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // uint2_mt16
-#region uint3_mt4
-
-[CpuOnly]
-public partial struct uint3_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => uint_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public uint_mt4 x;
-    public uint_mt4 y;
-    public uint_mt4 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public uint_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public uint_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public uint_mt4 b
+    public uint_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
@@ -5417,7 +1849,7 @@ public partial struct uint3_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public uint3_mt4(uint_mt4 x, uint_mt4 y, uint_mt4 z)
+    public uint3_mt(uint_mt x, uint_mt y, uint_mt z)
     {
         this.x = x;
         this.y = y;
@@ -5425,19 +1857,19 @@ public partial struct uint3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt4(uint value)
+    public uint3_mt(uint value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt4(uint_mt4 value)
+    public uint3_mt(uint_mt value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt4(uint3 value)
+    public uint3_mt(uint3 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -5449,41 +1881,41 @@ public partial struct uint3_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt4(uint value) => new uint_mt4(value);
+    public static implicit operator uint3_mt(uint value) => new uint_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt4(uint_mt4 value) => new(value);
+    public static implicit operator uint3_mt(uint_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt4(uint3 value) => new(value);
+    public static implicit operator uint3_mt(uint3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator~(uint3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+    public static uint3_mt operator~(uint3_mt a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator|(uint3_mt4 a, uint3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static uint3_mt operator|(uint3_mt a, uint3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator&(uint3_mt4 a, uint3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+    public static uint3_mt operator&(uint3_mt a, uint3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator^(uint3_mt4 a, uint3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+    public static uint3_mt operator^(uint3_mt a, uint3_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator<<(uint3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+    public static uint3_mt operator<<(uint3_mt a, int b) => new(a.x << b, a.y << b, a.z << b);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator>>(uint3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+    public static uint3_mt operator>>(uint3_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator>>>(uint3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
+    public static uint3_mt operator>>>(uint3_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt4 x, out uint_mt4 y, out uint_mt4 z)
+    public readonly void Deconstruct(out uint_mt x, out uint_mt y, out uint_mt z)
     {
         x = this.x;
         y = this.y;
@@ -5494,7 +1926,7 @@ public partial struct uint3_mt4
 
     #region Index
 
-    public uint_mt4 this[int i]
+    public uint_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -5528,420 +1960,60 @@ public partial struct uint3_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"uint3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"uint3_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // uint3_mt4
-#region uint3_mt8
+#endregion // uint3_mt
+#region uint4_mt
 
 [CpuOnly]
-public partial struct uint3_mt8
+public partial struct uint4_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => uint_mt8.LineCount;
+        get => uint_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public uint_mt8 x;
-    public uint_mt8 y;
-    public uint_mt8 z;
+    public uint_mt x;
+    public uint_mt y;
+    public uint_mt z;
+    public uint_mt w;
 
     #endregion // Fields
 
     #region Properties
 
-    public uint_mt8 r
+    public uint_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public uint_mt8 g
+    public uint_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-    public uint_mt8 b
+    public uint_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, uint3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public uint3_mt8(uint_mt8 x, uint_mt8 y, uint_mt8 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint3_mt8(uint value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint3_mt8(uint_mt8 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint3_mt8(uint3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt8(uint value) => new uint_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt8(uint_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt8(uint3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator~(uint3_mt8 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator|(uint3_mt8 a, uint3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator&(uint3_mt8 a, uint3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator^(uint3_mt8 a, uint3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator<<(uint3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator>>(uint3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator>>>(uint3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt8 x, out uint_mt8 y, out uint_mt8 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public uint_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"uint3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // uint3_mt8
-#region uint3_mt16
-
-[CpuOnly]
-public partial struct uint3_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => uint_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public uint_mt16 x;
-    public uint_mt16 y;
-    public uint_mt16 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public uint_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public uint_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public uint_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, uint3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public uint3_mt16(uint_mt16 x, uint_mt16 y, uint_mt16 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint3_mt16(uint value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint3_mt16(uint_mt16 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint3_mt16(uint3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt16(uint value) => new uint_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt16(uint_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt16(uint3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator~(uint3_mt16 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator|(uint3_mt16 a, uint3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator&(uint3_mt16 a, uint3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator^(uint3_mt16 a, uint3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator<<(uint3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator>>(uint3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator>>>(uint3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt16 x, out uint_mt16 y, out uint_mt16 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public uint_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"uint3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // uint3_mt16
-#region uint4_mt4
-
-[CpuOnly]
-public partial struct uint4_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => uint_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public uint_mt4 x;
-    public uint_mt4 y;
-    public uint_mt4 z;
-    public uint_mt4 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public uint_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public uint_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public uint_mt4 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public uint_mt4 a
+    public uint_mt a
     {
         [MethodImpl(256 | 512)]
         readonly get => w;
@@ -5966,7 +2038,7 @@ public partial struct uint4_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public uint4_mt4(uint_mt4 x, uint_mt4 y, uint_mt4 z, uint_mt4 w)
+    public uint4_mt(uint_mt x, uint_mt y, uint_mt z, uint_mt w)
     {
         this.x = x;
         this.y = y;
@@ -5975,19 +2047,19 @@ public partial struct uint4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public uint4_mt4(uint value)
+    public uint4_mt(uint value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint4_mt4(uint_mt4 value)
+    public uint4_mt(uint_mt value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint4_mt4(uint4 value)
+    public uint4_mt(uint4 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -6000,41 +2072,41 @@ public partial struct uint4_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt4(uint value) => new uint_mt4(value);
+    public static implicit operator uint4_mt(uint value) => new uint_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt4(uint_mt4 value) => new(value);
+    public static implicit operator uint4_mt(uint_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt4(uint4 value) => new(value);
+    public static implicit operator uint4_mt(uint4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator~(uint4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static uint4_mt operator~(uint4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator|(uint4_mt4 a, uint4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static uint4_mt operator|(uint4_mt a, uint4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator&(uint4_mt4 a, uint4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+    public static uint4_mt operator&(uint4_mt a, uint4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator^(uint4_mt4 a, uint4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+    public static uint4_mt operator^(uint4_mt a, uint4_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator<<(uint4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+    public static uint4_mt operator<<(uint4_mt a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator>>(uint4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+    public static uint4_mt operator>>(uint4_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator>>>(uint4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
+    public static uint4_mt operator>>>(uint4_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt4 x, out uint_mt4 y, out uint_mt4 z, out uint_mt4 w)
+    public readonly void Deconstruct(out uint_mt x, out uint_mt y, out uint_mt z, out uint_mt w)
     {
         x = this.x;
         y = this.y;
@@ -6046,7 +2118,7 @@ public partial struct uint4_mt4
 
     #region Index
 
-    public uint_mt4 this[int i]
+    public uint_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -6084,436 +2156,44 @@ public partial struct uint4_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"uint4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"uint4_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // uint4_mt4
-#region uint4_mt8
+#endregion // uint4_mt
+#region long2_mt
 
 [CpuOnly]
-public partial struct uint4_mt8
+public partial struct long2_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => uint_mt8.LineCount;
+        get => long_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public uint_mt8 x;
-    public uint_mt8 y;
-    public uint_mt8 z;
-    public uint_mt8 w;
+    public long_mt x;
+    public long_mt y;
 
     #endregion // Fields
 
     #region Properties
 
-    public uint_mt8 r
+    public long_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public uint_mt8 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public uint_mt8 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public uint_mt8 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, uint4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt8(uint_mt8 x, uint_mt8 y, uint_mt8 z, uint_mt8 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt8(uint value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt8(uint_mt8 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt8(uint4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt8(uint value) => new uint_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt8(uint_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt8(uint4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator~(uint4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator|(uint4_mt8 a, uint4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator&(uint4_mt8 a, uint4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator^(uint4_mt8 a, uint4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator<<(uint4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator>>(uint4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator>>>(uint4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt8 x, out uint_mt8 y, out uint_mt8 z, out uint_mt8 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public uint_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"uint4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // uint4_mt8
-#region uint4_mt16
-
-[CpuOnly]
-public partial struct uint4_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => uint_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public uint_mt16 x;
-    public uint_mt16 y;
-    public uint_mt16 z;
-    public uint_mt16 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public uint_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public uint_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public uint_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public uint_mt16 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, uint4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt16(uint_mt16 x, uint_mt16 y, uint_mt16 z, uint_mt16 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt16(uint value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt16(uint_mt16 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public uint4_mt16(uint4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt16(uint value) => new uint_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt16(uint_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt16(uint4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator~(uint4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator|(uint4_mt16 a, uint4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator&(uint4_mt16 a, uint4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator^(uint4_mt16 a, uint4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator<<(uint4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator>>(uint4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator>>>(uint4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out uint_mt16 x, out uint_mt16 y, out uint_mt16 z, out uint_mt16 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public uint_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"uint4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // uint4_mt16
-#region long2_mt4
-
-[CpuOnly]
-public partial struct long2_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => long_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public long_mt4 x;
-    public long_mt4 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public long_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public long_mt4 g
+    public long_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
@@ -6536,26 +2216,26 @@ public partial struct long2_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public long2_mt4(long_mt4 x, long_mt4 y)
+    public long2_mt(long_mt x, long_mt y)
     {
         this.x = x;
         this.y = y;
     }
 
     [MethodImpl(256 | 512)]
-    public long2_mt4(long value)
+    public long2_mt(long value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long2_mt4(long_mt4 value)
+    public long2_mt(long_mt value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long2_mt4(long2 value)
+    public long2_mt(long2 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -6566,41 +2246,41 @@ public partial struct long2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt4(long value) => new long_mt4(value);
+    public static implicit operator long2_mt(long value) => new long_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt4(long_mt4 value) => new(value);
+    public static implicit operator long2_mt(long_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt4(long2 value) => new(value);
+    public static implicit operator long2_mt(long2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator~(long2_mt4 a) => new(~a.x, ~a.y);
+    public static long2_mt operator~(long2_mt a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator|(long2_mt4 a, long2_mt4 b) => new(a.x | b.x, a.y | b.y);
+    public static long2_mt operator|(long2_mt a, long2_mt b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator&(long2_mt4 a, long2_mt4 b) => new(a.x & b.x, a.y & b.y);
+    public static long2_mt operator&(long2_mt a, long2_mt b) => new(a.x & b.x, a.y & b.y);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator^(long2_mt4 a, long2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+    public static long2_mt operator^(long2_mt a, long2_mt b) => new(a.x ^ b.x, a.y ^ b.y);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator<<(long2_mt4 a, int b) => new(a.x << b, a.y << b);
+    public static long2_mt operator<<(long2_mt a, int b) => new(a.x << b, a.y << b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator>>(long2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+    public static long2_mt operator>>(long2_mt a, int b) => new(a.x >> b, a.y >> b);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator>>>(long2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
+    public static long2_mt operator>>>(long2_mt a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt4 x, out long_mt4 y)
+    public readonly void Deconstruct(out long_mt x, out long_mt y)
     {
         x = this.x;
         y = this.y;
@@ -6610,7 +2290,7 @@ public partial struct long2_mt4
 
     #region Index
 
-    public long_mt4 this[int i]
+    public long_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -6640,380 +2320,52 @@ public partial struct long2_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"long2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"long2_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // long2_mt4
-#region long2_mt8
+#endregion // long2_mt
+#region long3_mt
 
 [CpuOnly]
-public partial struct long2_mt8
+public partial struct long3_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => long_mt8.LineCount;
+        get => long_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public long_mt8 x;
-    public long_mt8 y;
+    public long_mt x;
+    public long_mt y;
+    public long_mt z;
 
     #endregion // Fields
 
     #region Properties
 
-    public long_mt8 r
+    public long_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public long_mt8 g
+    public long_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly long2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, long2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public long2_mt8(long_mt8 x, long_mt8 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long2_mt8(long value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long2_mt8(long_mt8 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long2_mt8(long2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt8(long value) => new long_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt8(long_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt8(long2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator~(long2_mt8 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator|(long2_mt8 a, long2_mt8 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator&(long2_mt8 a, long2_mt8 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator^(long2_mt8 a, long2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator<<(long2_mt8 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator>>(long2_mt8 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator>>>(long2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt8 x, out long_mt8 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public long_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"long2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // long2_mt8
-#region long2_mt16
-
-[CpuOnly]
-public partial struct long2_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => long_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public long_mt16 x;
-    public long_mt16 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public long_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public long_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly long2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, long2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public long2_mt16(long_mt16 x, long_mt16 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long2_mt16(long value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long2_mt16(long_mt16 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long2_mt16(long2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt16(long value) => new long_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt16(long_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt16(long2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator~(long2_mt16 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator|(long2_mt16 a, long2_mt16 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator&(long2_mt16 a, long2_mt16 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator^(long2_mt16 a, long2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator<<(long2_mt16 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator>>(long2_mt16 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator>>>(long2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt16 x, out long_mt16 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public long_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"long2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // long2_mt16
-#region long3_mt4
-
-[CpuOnly]
-public partial struct long3_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => long_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public long_mt4 x;
-    public long_mt4 y;
-    public long_mt4 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public long_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public long_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public long_mt4 b
+    public long_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
@@ -7037,7 +2389,7 @@ public partial struct long3_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public long3_mt4(long_mt4 x, long_mt4 y, long_mt4 z)
+    public long3_mt(long_mt x, long_mt y, long_mt z)
     {
         this.x = x;
         this.y = y;
@@ -7045,19 +2397,19 @@ public partial struct long3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt4(long value)
+    public long3_mt(long value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt4(long_mt4 value)
+    public long3_mt(long_mt value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt4(long3 value)
+    public long3_mt(long3 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -7069,41 +2421,41 @@ public partial struct long3_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt4(long value) => new long_mt4(value);
+    public static implicit operator long3_mt(long value) => new long_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt4(long_mt4 value) => new(value);
+    public static implicit operator long3_mt(long_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt4(long3 value) => new(value);
+    public static implicit operator long3_mt(long3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 operator~(long3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+    public static long3_mt operator~(long3_mt a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 operator|(long3_mt4 a, long3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static long3_mt operator|(long3_mt a, long3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 operator&(long3_mt4 a, long3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+    public static long3_mt operator&(long3_mt a, long3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 operator^(long3_mt4 a, long3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+    public static long3_mt operator^(long3_mt a, long3_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 operator<<(long3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+    public static long3_mt operator<<(long3_mt a, int b) => new(a.x << b, a.y << b, a.z << b);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 operator>>(long3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+    public static long3_mt operator>>(long3_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 operator>>>(long3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
+    public static long3_mt operator>>>(long3_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt4 x, out long_mt4 y, out long_mt4 z)
+    public readonly void Deconstruct(out long_mt x, out long_mt y, out long_mt z)
     {
         x = this.x;
         y = this.y;
@@ -7114,7 +2466,7 @@ public partial struct long3_mt4
 
     #region Index
 
-    public long_mt4 this[int i]
+    public long_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -7148,420 +2500,60 @@ public partial struct long3_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"long3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"long3_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // long3_mt4
-#region long3_mt8
+#endregion // long3_mt
+#region long4_mt
 
 [CpuOnly]
-public partial struct long3_mt8
+public partial struct long4_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => long_mt8.LineCount;
+        get => long_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public long_mt8 x;
-    public long_mt8 y;
-    public long_mt8 z;
+    public long_mt x;
+    public long_mt y;
+    public long_mt z;
+    public long_mt w;
 
     #endregion // Fields
 
     #region Properties
 
-    public long_mt8 r
+    public long_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public long_mt8 g
+    public long_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-    public long_mt8 b
+    public long_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, long3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public long3_mt8(long_mt8 x, long_mt8 y, long_mt8 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long3_mt8(long value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long3_mt8(long_mt8 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long3_mt8(long3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt8(long value) => new long_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt8(long_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt8(long3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator~(long3_mt8 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator|(long3_mt8 a, long3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator&(long3_mt8 a, long3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator^(long3_mt8 a, long3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator<<(long3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator>>(long3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator>>>(long3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt8 x, out long_mt8 y, out long_mt8 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public long_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"long3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // long3_mt8
-#region long3_mt16
-
-[CpuOnly]
-public partial struct long3_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => long_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public long_mt16 x;
-    public long_mt16 y;
-    public long_mt16 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public long_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public long_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public long_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, long3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public long3_mt16(long_mt16 x, long_mt16 y, long_mt16 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long3_mt16(long value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long3_mt16(long_mt16 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long3_mt16(long3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt16(long value) => new long_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt16(long_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt16(long3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator~(long3_mt16 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator|(long3_mt16 a, long3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator&(long3_mt16 a, long3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator^(long3_mt16 a, long3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator<<(long3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator>>(long3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator>>>(long3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt16 x, out long_mt16 y, out long_mt16 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public long_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"long3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // long3_mt16
-#region long4_mt4
-
-[CpuOnly]
-public partial struct long4_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => long_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public long_mt4 x;
-    public long_mt4 y;
-    public long_mt4 z;
-    public long_mt4 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public long_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public long_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public long_mt4 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public long_mt4 a
+    public long_mt a
     {
         [MethodImpl(256 | 512)]
         readonly get => w;
@@ -7586,7 +2578,7 @@ public partial struct long4_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public long4_mt4(long_mt4 x, long_mt4 y, long_mt4 z, long_mt4 w)
+    public long4_mt(long_mt x, long_mt y, long_mt z, long_mt w)
     {
         this.x = x;
         this.y = y;
@@ -7595,19 +2587,19 @@ public partial struct long4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public long4_mt4(long value)
+    public long4_mt(long value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long4_mt4(long_mt4 value)
+    public long4_mt(long_mt value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long4_mt4(long4 value)
+    public long4_mt(long4 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -7620,41 +2612,41 @@ public partial struct long4_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt4(long value) => new long_mt4(value);
+    public static implicit operator long4_mt(long value) => new long_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt4(long_mt4 value) => new(value);
+    public static implicit operator long4_mt(long_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt4(long4 value) => new(value);
+    public static implicit operator long4_mt(long4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt4 operator~(long4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static long4_mt operator~(long4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt4 operator|(long4_mt4 a, long4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static long4_mt operator|(long4_mt a, long4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt4 operator&(long4_mt4 a, long4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+    public static long4_mt operator&(long4_mt a, long4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt4 operator^(long4_mt4 a, long4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+    public static long4_mt operator^(long4_mt a, long4_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt4 operator<<(long4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+    public static long4_mt operator<<(long4_mt a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt4 operator>>(long4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+    public static long4_mt operator>>(long4_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt4 operator>>>(long4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
+    public static long4_mt operator>>>(long4_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt4 x, out long_mt4 y, out long_mt4 z, out long_mt4 w)
+    public readonly void Deconstruct(out long_mt x, out long_mt y, out long_mt z, out long_mt w)
     {
         x = this.x;
         y = this.y;
@@ -7666,7 +2658,7 @@ public partial struct long4_mt4
 
     #region Index
 
-    public long_mt4 this[int i]
+    public long_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -7704,436 +2696,44 @@ public partial struct long4_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"long4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"long4_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // long4_mt4
-#region long4_mt8
+#endregion // long4_mt
+#region ulong2_mt
 
 [CpuOnly]
-public partial struct long4_mt8
+public partial struct ulong2_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => long_mt8.LineCount;
+        get => ulong_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public long_mt8 x;
-    public long_mt8 y;
-    public long_mt8 z;
-    public long_mt8 w;
+    public ulong_mt x;
+    public ulong_mt y;
 
     #endregion // Fields
 
     #region Properties
 
-    public long_mt8 r
+    public ulong_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public long_mt8 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public long_mt8 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public long_mt8 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, long4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public long4_mt8(long_mt8 x, long_mt8 y, long_mt8 z, long_mt8 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt8(long value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt8(long_mt8 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt8(long4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt8(long value) => new long_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt8(long_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt8(long4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator~(long4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator|(long4_mt8 a, long4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator&(long4_mt8 a, long4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator^(long4_mt8 a, long4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator<<(long4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator>>(long4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator>>>(long4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt8 x, out long_mt8 y, out long_mt8 z, out long_mt8 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public long_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"long4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // long4_mt8
-#region long4_mt16
-
-[CpuOnly]
-public partial struct long4_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => long_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public long_mt16 x;
-    public long_mt16 y;
-    public long_mt16 z;
-    public long_mt16 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public long_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public long_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public long_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public long_mt16 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, long4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public long4_mt16(long_mt16 x, long_mt16 y, long_mt16 z, long_mt16 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt16(long value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt16(long_mt16 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public long4_mt16(long4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt16(long value) => new long_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt16(long_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt16(long4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator~(long4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator|(long4_mt16 a, long4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator&(long4_mt16 a, long4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator^(long4_mt16 a, long4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator<<(long4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator>>(long4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator>>>(long4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out long_mt16 x, out long_mt16 y, out long_mt16 z, out long_mt16 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public long_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"long4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // long4_mt16
-#region ulong2_mt4
-
-[CpuOnly]
-public partial struct ulong2_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => ulong_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public ulong_mt4 x;
-    public ulong_mt4 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public ulong_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public ulong_mt4 g
+    public ulong_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
@@ -8156,26 +2756,26 @@ public partial struct ulong2_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public ulong2_mt4(ulong_mt4 x, ulong_mt4 y)
+    public ulong2_mt(ulong_mt x, ulong_mt y)
     {
         this.x = x;
         this.y = y;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong2_mt4(ulong value)
+    public ulong2_mt(ulong value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong2_mt4(ulong_mt4 value)
+    public ulong2_mt(ulong_mt value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong2_mt4(ulong2 value)
+    public ulong2_mt(ulong2 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -8186,41 +2786,41 @@ public partial struct ulong2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt4(ulong value) => new ulong_mt4(value);
+    public static implicit operator ulong2_mt(ulong value) => new ulong_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt4(ulong_mt4 value) => new(value);
+    public static implicit operator ulong2_mt(ulong_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt4(ulong2 value) => new(value);
+    public static implicit operator ulong2_mt(ulong2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator~(ulong2_mt4 a) => new(~a.x, ~a.y);
+    public static ulong2_mt operator~(ulong2_mt a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator|(ulong2_mt4 a, ulong2_mt4 b) => new(a.x | b.x, a.y | b.y);
+    public static ulong2_mt operator|(ulong2_mt a, ulong2_mt b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator&(ulong2_mt4 a, ulong2_mt4 b) => new(a.x & b.x, a.y & b.y);
+    public static ulong2_mt operator&(ulong2_mt a, ulong2_mt b) => new(a.x & b.x, a.y & b.y);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator^(ulong2_mt4 a, ulong2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+    public static ulong2_mt operator^(ulong2_mt a, ulong2_mt b) => new(a.x ^ b.x, a.y ^ b.y);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator<<(ulong2_mt4 a, int b) => new(a.x << b, a.y << b);
+    public static ulong2_mt operator<<(ulong2_mt a, int b) => new(a.x << b, a.y << b);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator>>(ulong2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+    public static ulong2_mt operator>>(ulong2_mt a, int b) => new(a.x >> b, a.y >> b);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator>>>(ulong2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
+    public static ulong2_mt operator>>>(ulong2_mt a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt4 x, out ulong_mt4 y)
+    public readonly void Deconstruct(out ulong_mt x, out ulong_mt y)
     {
         x = this.x;
         y = this.y;
@@ -8230,7 +2830,7 @@ public partial struct ulong2_mt4
 
     #region Index
 
-    public ulong_mt4 this[int i]
+    public ulong_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -8260,380 +2860,52 @@ public partial struct ulong2_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"ulong2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"ulong2_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // ulong2_mt4
-#region ulong2_mt8
+#endregion // ulong2_mt
+#region ulong3_mt
 
 [CpuOnly]
-public partial struct ulong2_mt8
+public partial struct ulong3_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => ulong_mt8.LineCount;
+        get => ulong_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public ulong_mt8 x;
-    public ulong_mt8 y;
+    public ulong_mt x;
+    public ulong_mt y;
+    public ulong_mt z;
 
     #endregion // Fields
 
     #region Properties
 
-    public ulong_mt8 r
+    public ulong_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public ulong_mt8 g
+    public ulong_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, ulong2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public ulong2_mt8(ulong_mt8 x, ulong_mt8 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong2_mt8(ulong value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong2_mt8(ulong_mt8 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong2_mt8(ulong2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt8(ulong value) => new ulong_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt8(ulong_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt8(ulong2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator~(ulong2_mt8 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator|(ulong2_mt8 a, ulong2_mt8 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator&(ulong2_mt8 a, ulong2_mt8 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator^(ulong2_mt8 a, ulong2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator<<(ulong2_mt8 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator>>(ulong2_mt8 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator>>>(ulong2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt8 x, out ulong_mt8 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public ulong_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"ulong2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // ulong2_mt8
-#region ulong2_mt16
-
-[CpuOnly]
-public partial struct ulong2_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => ulong_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public ulong_mt16 x;
-    public ulong_mt16 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public ulong_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public ulong_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, ulong2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public ulong2_mt16(ulong_mt16 x, ulong_mt16 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong2_mt16(ulong value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong2_mt16(ulong_mt16 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong2_mt16(ulong2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt16(ulong value) => new ulong_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt16(ulong_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt16(ulong2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator~(ulong2_mt16 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator|(ulong2_mt16 a, ulong2_mt16 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator&(ulong2_mt16 a, ulong2_mt16 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator^(ulong2_mt16 a, ulong2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator<<(ulong2_mt16 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator>>(ulong2_mt16 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator>>>(ulong2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt16 x, out ulong_mt16 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public ulong_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"ulong2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // ulong2_mt16
-#region ulong3_mt4
-
-[CpuOnly]
-public partial struct ulong3_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => ulong_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public ulong_mt4 x;
-    public ulong_mt4 y;
-    public ulong_mt4 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public ulong_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public ulong_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public ulong_mt4 b
+    public ulong_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
@@ -8657,7 +2929,7 @@ public partial struct ulong3_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt4(ulong_mt4 x, ulong_mt4 y, ulong_mt4 z)
+    public ulong3_mt(ulong_mt x, ulong_mt y, ulong_mt z)
     {
         this.x = x;
         this.y = y;
@@ -8665,19 +2937,19 @@ public partial struct ulong3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt4(ulong value)
+    public ulong3_mt(ulong value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt4(ulong_mt4 value)
+    public ulong3_mt(ulong_mt value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt4(ulong3 value)
+    public ulong3_mt(ulong3 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -8689,41 +2961,41 @@ public partial struct ulong3_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt4(ulong value) => new ulong_mt4(value);
+    public static implicit operator ulong3_mt(ulong value) => new ulong_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt4(ulong_mt4 value) => new(value);
+    public static implicit operator ulong3_mt(ulong_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt4(ulong3 value) => new(value);
+    public static implicit operator ulong3_mt(ulong3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator~(ulong3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+    public static ulong3_mt operator~(ulong3_mt a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator|(ulong3_mt4 a, ulong3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static ulong3_mt operator|(ulong3_mt a, ulong3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator&(ulong3_mt4 a, ulong3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+    public static ulong3_mt operator&(ulong3_mt a, ulong3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator^(ulong3_mt4 a, ulong3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+    public static ulong3_mt operator^(ulong3_mt a, ulong3_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator<<(ulong3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+    public static ulong3_mt operator<<(ulong3_mt a, int b) => new(a.x << b, a.y << b, a.z << b);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator>>(ulong3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+    public static ulong3_mt operator>>(ulong3_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator>>>(ulong3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
+    public static ulong3_mt operator>>>(ulong3_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt4 x, out ulong_mt4 y, out ulong_mt4 z)
+    public readonly void Deconstruct(out ulong_mt x, out ulong_mt y, out ulong_mt z)
     {
         x = this.x;
         y = this.y;
@@ -8734,7 +3006,7 @@ public partial struct ulong3_mt4
 
     #region Index
 
-    public ulong_mt4 this[int i]
+    public ulong_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -8768,420 +3040,60 @@ public partial struct ulong3_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"ulong3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"ulong3_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // ulong3_mt4
-#region ulong3_mt8
+#endregion // ulong3_mt
+#region ulong4_mt
 
 [CpuOnly]
-public partial struct ulong3_mt8
+public partial struct ulong4_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => ulong_mt8.LineCount;
+        get => ulong_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public ulong_mt8 x;
-    public ulong_mt8 y;
-    public ulong_mt8 z;
+    public ulong_mt x;
+    public ulong_mt y;
+    public ulong_mt z;
+    public ulong_mt w;
 
     #endregion // Fields
 
     #region Properties
 
-    public ulong_mt8 r
+    public ulong_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public ulong_mt8 g
+    public ulong_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-    public ulong_mt8 b
+    public ulong_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, ulong3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public ulong3_mt8(ulong_mt8 x, ulong_mt8 y, ulong_mt8 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong3_mt8(ulong value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong3_mt8(ulong_mt8 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong3_mt8(ulong3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt8(ulong value) => new ulong_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt8(ulong_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt8(ulong3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator~(ulong3_mt8 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator|(ulong3_mt8 a, ulong3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator&(ulong3_mt8 a, ulong3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator^(ulong3_mt8 a, ulong3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator<<(ulong3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator>>(ulong3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator>>>(ulong3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt8 x, out ulong_mt8 y, out ulong_mt8 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public ulong_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"ulong3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // ulong3_mt8
-#region ulong3_mt16
-
-[CpuOnly]
-public partial struct ulong3_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => ulong_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public ulong_mt16 x;
-    public ulong_mt16 y;
-    public ulong_mt16 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public ulong_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public ulong_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public ulong_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, ulong3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public ulong3_mt16(ulong_mt16 x, ulong_mt16 y, ulong_mt16 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong3_mt16(ulong value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong3_mt16(ulong_mt16 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong3_mt16(ulong3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt16(ulong value) => new ulong_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt16(ulong_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt16(ulong3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator~(ulong3_mt16 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator|(ulong3_mt16 a, ulong3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator&(ulong3_mt16 a, ulong3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator^(ulong3_mt16 a, ulong3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator<<(ulong3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator>>(ulong3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator>>>(ulong3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt16 x, out ulong_mt16 y, out ulong_mt16 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public ulong_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"ulong3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // ulong3_mt16
-#region ulong4_mt4
-
-[CpuOnly]
-public partial struct ulong4_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => ulong_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public ulong_mt4 x;
-    public ulong_mt4 y;
-    public ulong_mt4 z;
-    public ulong_mt4 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public ulong_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public ulong_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public ulong_mt4 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public ulong_mt4 a
+    public ulong_mt a
     {
         [MethodImpl(256 | 512)]
         readonly get => w;
@@ -9206,7 +3118,7 @@ public partial struct ulong4_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public ulong4_mt4(ulong_mt4 x, ulong_mt4 y, ulong_mt4 z, ulong_mt4 w)
+    public ulong4_mt(ulong_mt x, ulong_mt y, ulong_mt z, ulong_mt w)
     {
         this.x = x;
         this.y = y;
@@ -9215,19 +3127,19 @@ public partial struct ulong4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public ulong4_mt4(ulong value)
+    public ulong4_mt(ulong value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong4_mt4(ulong_mt4 value)
+    public ulong4_mt(ulong_mt value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong4_mt4(ulong4 value)
+    public ulong4_mt(ulong4 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -9240,41 +3152,41 @@ public partial struct ulong4_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt4(ulong value) => new ulong_mt4(value);
+    public static implicit operator ulong4_mt(ulong value) => new ulong_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt4(ulong_mt4 value) => new(value);
+    public static implicit operator ulong4_mt(ulong_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt4(ulong4 value) => new(value);
+    public static implicit operator ulong4_mt(ulong4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator~(ulong4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static ulong4_mt operator~(ulong4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator|(ulong4_mt4 a, ulong4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static ulong4_mt operator|(ulong4_mt a, ulong4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator&(ulong4_mt4 a, ulong4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+    public static ulong4_mt operator&(ulong4_mt a, ulong4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator^(ulong4_mt4 a, ulong4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+    public static ulong4_mt operator^(ulong4_mt a, ulong4_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator<<(ulong4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+    public static ulong4_mt operator<<(ulong4_mt a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator>>(ulong4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+    public static ulong4_mt operator>>(ulong4_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator>>>(ulong4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
+    public static ulong4_mt operator>>>(ulong4_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt4 x, out ulong_mt4 y, out ulong_mt4 z, out ulong_mt4 w)
+    public readonly void Deconstruct(out ulong_mt x, out ulong_mt y, out ulong_mt z, out ulong_mt w)
     {
         x = this.x;
         y = this.y;
@@ -9286,7 +3198,7 @@ public partial struct ulong4_mt4
 
     #region Index
 
-    public ulong_mt4 this[int i]
+    public ulong_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -9324,436 +3236,44 @@ public partial struct ulong4_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"ulong4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"ulong4_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // ulong4_mt4
-#region ulong4_mt8
+#endregion // ulong4_mt
+#region b32v2_mt
 
 [CpuOnly]
-public partial struct ulong4_mt8
+public partial struct b32v2_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => ulong_mt8.LineCount;
+        get => b32_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public ulong_mt8 x;
-    public ulong_mt8 y;
-    public ulong_mt8 z;
-    public ulong_mt8 w;
+    public b32_mt x;
+    public b32_mt y;
 
     #endregion // Fields
 
     #region Properties
 
-    public ulong_mt8 r
+    public b32_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public ulong_mt8 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public ulong_mt8 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public ulong_mt8 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, ulong4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt8(ulong_mt8 x, ulong_mt8 y, ulong_mt8 z, ulong_mt8 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt8(ulong value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt8(ulong_mt8 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt8(ulong4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt8(ulong value) => new ulong_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt8(ulong_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt8(ulong4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator~(ulong4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator|(ulong4_mt8 a, ulong4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator&(ulong4_mt8 a, ulong4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator^(ulong4_mt8 a, ulong4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator<<(ulong4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator>>(ulong4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator>>>(ulong4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt8 x, out ulong_mt8 y, out ulong_mt8 z, out ulong_mt8 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public ulong_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"ulong4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // ulong4_mt8
-#region ulong4_mt16
-
-[CpuOnly]
-public partial struct ulong4_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => ulong_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public ulong_mt16 x;
-    public ulong_mt16 y;
-    public ulong_mt16 z;
-    public ulong_mt16 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public ulong_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public ulong_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public ulong_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public ulong_mt16 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, ulong4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt16(ulong_mt16 x, ulong_mt16 y, ulong_mt16 z, ulong_mt16 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt16(ulong value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt16(ulong_mt16 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public ulong4_mt16(ulong4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt16(ulong value) => new ulong_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt16(ulong_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt16(ulong4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator~(ulong4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator|(ulong4_mt16 a, ulong4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator&(ulong4_mt16 a, ulong4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator^(ulong4_mt16 a, ulong4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator<<(ulong4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator>>(ulong4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator>>>(ulong4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out ulong_mt16 x, out ulong_mt16 y, out ulong_mt16 z, out ulong_mt16 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public ulong_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"ulong4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // ulong4_mt16
-#region b32v2_mt4
-
-[CpuOnly]
-public partial struct b32v2_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b32_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b32_mt4 x;
-    public b32_mt4 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b32_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b32_mt4 g
+    public b32_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
@@ -9776,26 +3296,26 @@ public partial struct b32v2_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b32v2_mt4(b32_mt4 x, b32_mt4 y)
+    public b32v2_mt(b32_mt x, b32_mt y)
     {
         this.x = x;
         this.y = y;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2_mt4(b32 value)
+    public b32v2_mt(b32 value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2_mt4(b32_mt4 value)
+    public b32v2_mt(b32_mt value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2_mt4(b32v2 value)
+    public b32v2_mt(b32v2 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -9806,44 +3326,44 @@ public partial struct b32v2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt4(b32 value) => new b32_mt4(value);
+    public static implicit operator b32v2_mt(b32 value) => new b32_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt4(bool value) => (b32)(value);
+    public static implicit operator b32v2_mt(bool value) => (b32)(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt4(b32_mt4 value) => new(value);
+    public static implicit operator b32v2_mt(b32_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt4(b32v2 value) => new(value);
+    public static implicit operator b32v2_mt(b32v2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator~(b32v2_mt4 a) => new(~a.x, ~a.y);
+    public static b32v2_mt operator~(b32v2_mt a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator|(b32v2_mt4 a, b32v2_mt4 b) => new(a.x | b.x, a.y | b.y);
+    public static b32v2_mt operator|(b32v2_mt a, b32v2_mt b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator&(b32v2_mt4 a, b32v2_mt4 b) => new(a.x & b.x, a.y & b.y);
+    public static b32v2_mt operator&(b32v2_mt a, b32v2_mt b) => new(a.x & b.x, a.y & b.y);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator^(b32v2_mt4 a, b32v2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+    public static b32v2_mt operator^(b32v2_mt a, b32v2_mt b) => new(a.x ^ b.x, a.y ^ b.y);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator<<(b32v2_mt4 a, int b) => new(a.x << b, a.y << b);
+    public static b32v2_mt operator<<(b32v2_mt a, int b) => new(a.x << b, a.y << b);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator>>(b32v2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+    public static b32v2_mt operator>>(b32v2_mt a, int b) => new(a.x >> b, a.y >> b);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt4 operator>>>(b32v2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
+    public static b32v2_mt operator>>>(b32v2_mt a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt4 x, out b32_mt4 y)
+    public readonly void Deconstruct(out b32_mt x, out b32_mt y)
     {
         x = this.x;
         y = this.y;
@@ -9853,7 +3373,7 @@ public partial struct b32v2_mt4
 
     #region Index
 
-    public b32_mt4 this[int i]
+    public b32_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -9883,386 +3403,52 @@ public partial struct b32v2_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"b32v2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"b32v2_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // b32v2_mt4
-#region b32v2_mt8
+#endregion // b32v2_mt
+#region b32v3_mt
 
 [CpuOnly]
-public partial struct b32v2_mt8
+public partial struct b32v3_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b32_mt8.LineCount;
+        get => b32_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b32_mt8 x;
-    public b32_mt8 y;
+    public b32_mt x;
+    public b32_mt y;
+    public b32_mt z;
 
     #endregion // Fields
 
     #region Properties
 
-    public b32_mt8 r
+    public b32_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public b32_mt8 g
+    public b32_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b32v2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b32v2_mt8(b32_mt8 x, b32_mt8 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v2_mt8(b32 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v2_mt8(b32_mt8 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v2_mt8(b32v2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt8(b32 value) => new b32_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt8(bool value) => (b32)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt8(b32_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt8(b32v2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator~(b32v2_mt8 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator|(b32v2_mt8 a, b32v2_mt8 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator&(b32v2_mt8 a, b32v2_mt8 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator^(b32v2_mt8 a, b32v2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator<<(b32v2_mt8 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator>>(b32v2_mt8 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt8 operator>>>(b32v2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt8 x, out b32_mt8 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b32_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b32v2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b32v2_mt8
-#region b32v2_mt16
-
-[CpuOnly]
-public partial struct b32v2_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b32_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b32_mt16 x;
-    public b32_mt16 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b32_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b32_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b32v2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b32v2_mt16(b32_mt16 x, b32_mt16 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v2_mt16(b32 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v2_mt16(b32_mt16 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v2_mt16(b32v2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt16(b32 value) => new b32_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt16(bool value) => (b32)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt16(b32_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt16(b32v2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator~(b32v2_mt16 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator|(b32v2_mt16 a, b32v2_mt16 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator&(b32v2_mt16 a, b32v2_mt16 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator^(b32v2_mt16 a, b32v2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator<<(b32v2_mt16 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator>>(b32v2_mt16 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt16 operator>>>(b32v2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt16 x, out b32_mt16 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b32_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b32v2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b32v2_mt16
-#region b32v3_mt4
-
-[CpuOnly]
-public partial struct b32v3_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b32_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b32_mt4 x;
-    public b32_mt4 y;
-    public b32_mt4 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b32_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b32_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b32_mt4 b
+    public b32_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
@@ -10286,7 +3472,7 @@ public partial struct b32v3_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt4(b32_mt4 x, b32_mt4 y, b32_mt4 z)
+    public b32v3_mt(b32_mt x, b32_mt y, b32_mt z)
     {
         this.x = x;
         this.y = y;
@@ -10294,19 +3480,19 @@ public partial struct b32v3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt4(b32 value)
+    public b32v3_mt(b32 value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt4(b32_mt4 value)
+    public b32v3_mt(b32_mt value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt4(b32v3 value)
+    public b32v3_mt(b32v3 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -10318,44 +3504,44 @@ public partial struct b32v3_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt4(b32 value) => new b32_mt4(value);
+    public static implicit operator b32v3_mt(b32 value) => new b32_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt4(bool value) => (b32)(value);
+    public static implicit operator b32v3_mt(bool value) => (b32)(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt4(b32_mt4 value) => new(value);
+    public static implicit operator b32v3_mt(b32_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt4(b32v3 value) => new(value);
+    public static implicit operator b32v3_mt(b32v3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator~(b32v3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+    public static b32v3_mt operator~(b32v3_mt a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator|(b32v3_mt4 a, b32v3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static b32v3_mt operator|(b32v3_mt a, b32v3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator&(b32v3_mt4 a, b32v3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+    public static b32v3_mt operator&(b32v3_mt a, b32v3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator^(b32v3_mt4 a, b32v3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+    public static b32v3_mt operator^(b32v3_mt a, b32v3_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator<<(b32v3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+    public static b32v3_mt operator<<(b32v3_mt a, int b) => new(a.x << b, a.y << b, a.z << b);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator>>(b32v3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+    public static b32v3_mt operator>>(b32v3_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 operator>>>(b32v3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
+    public static b32v3_mt operator>>>(b32v3_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt4 x, out b32_mt4 y, out b32_mt4 z)
+    public readonly void Deconstruct(out b32_mt x, out b32_mt y, out b32_mt z)
     {
         x = this.x;
         y = this.y;
@@ -10366,7 +3552,7 @@ public partial struct b32v3_mt4
 
     #region Index
 
-    public b32_mt4 this[int i]
+    public b32_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -10400,426 +3586,60 @@ public partial struct b32v3_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"b32v3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"b32v3_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // b32v3_mt4
-#region b32v3_mt8
+#endregion // b32v3_mt
+#region b32v4_mt
 
 [CpuOnly]
-public partial struct b32v3_mt8
+public partial struct b32v4_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b32_mt8.LineCount;
+        get => b32_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b32_mt8 x;
-    public b32_mt8 y;
-    public b32_mt8 z;
+    public b32_mt x;
+    public b32_mt y;
+    public b32_mt z;
+    public b32_mt w;
 
     #endregion // Fields
 
     #region Properties
 
-    public b32_mt8 r
+    public b32_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public b32_mt8 g
+    public b32_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-    public b32_mt8 b
+    public b32_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b32v3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b32v3_mt8(b32_mt8 x, b32_mt8 y, b32_mt8 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v3_mt8(b32 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v3_mt8(b32_mt8 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v3_mt8(b32v3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt8(b32 value) => new b32_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt8(bool value) => (b32)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt8(b32_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt8(b32v3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator~(b32v3_mt8 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator|(b32v3_mt8 a, b32v3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator&(b32v3_mt8 a, b32v3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator^(b32v3_mt8 a, b32v3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator<<(b32v3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator>>(b32v3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt8 operator>>>(b32v3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt8 x, out b32_mt8 y, out b32_mt8 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b32_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b32v3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b32v3_mt8
-#region b32v3_mt16
-
-[CpuOnly]
-public partial struct b32v3_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b32_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b32_mt16 x;
-    public b32_mt16 y;
-    public b32_mt16 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b32_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b32_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b32_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b32v3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b32v3_mt16(b32_mt16 x, b32_mt16 y, b32_mt16 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v3_mt16(b32 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v3_mt16(b32_mt16 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v3_mt16(b32v3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt16(b32 value) => new b32_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt16(bool value) => (b32)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt16(b32_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt16(b32v3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator~(b32v3_mt16 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator|(b32v3_mt16 a, b32v3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator&(b32v3_mt16 a, b32v3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator^(b32v3_mt16 a, b32v3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator<<(b32v3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator>>(b32v3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt16 operator>>>(b32v3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt16 x, out b32_mt16 y, out b32_mt16 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b32_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b32v3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b32v3_mt16
-#region b32v4_mt4
-
-[CpuOnly]
-public partial struct b32v4_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b32_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b32_mt4 x;
-    public b32_mt4 y;
-    public b32_mt4 z;
-    public b32_mt4 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b32_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b32_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b32_mt4 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public b32_mt4 a
+    public b32_mt a
     {
         [MethodImpl(256 | 512)]
         readonly get => w;
@@ -10844,7 +3664,7 @@ public partial struct b32v4_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b32v4_mt4(b32_mt4 x, b32_mt4 y, b32_mt4 z, b32_mt4 w)
+    public b32v4_mt(b32_mt x, b32_mt y, b32_mt z, b32_mt w)
     {
         this.x = x;
         this.y = y;
@@ -10853,19 +3673,19 @@ public partial struct b32v4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4_mt4(b32 value)
+    public b32v4_mt(b32 value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4_mt4(b32_mt4 value)
+    public b32v4_mt(b32_mt value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4_mt4(b32v4 value)
+    public b32v4_mt(b32v4 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -10878,44 +3698,44 @@ public partial struct b32v4_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt4(b32 value) => new b32_mt4(value);
+    public static implicit operator b32v4_mt(b32 value) => new b32_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt4(bool value) => (b32)(value);
+    public static implicit operator b32v4_mt(bool value) => (b32)(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt4(b32_mt4 value) => new(value);
+    public static implicit operator b32v4_mt(b32_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt4(b32v4 value) => new(value);
+    public static implicit operator b32v4_mt(b32v4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator~(b32v4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static b32v4_mt operator~(b32v4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator|(b32v4_mt4 a, b32v4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static b32v4_mt operator|(b32v4_mt a, b32v4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator&(b32v4_mt4 a, b32v4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+    public static b32v4_mt operator&(b32v4_mt a, b32v4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator^(b32v4_mt4 a, b32v4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+    public static b32v4_mt operator^(b32v4_mt a, b32v4_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator<<(b32v4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+    public static b32v4_mt operator<<(b32v4_mt a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator>>(b32v4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+    public static b32v4_mt operator>>(b32v4_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt4 operator>>>(b32v4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
+    public static b32v4_mt operator>>>(b32v4_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt4 x, out b32_mt4 y, out b32_mt4 z, out b32_mt4 w)
+    public readonly void Deconstruct(out b32_mt x, out b32_mt y, out b32_mt z, out b32_mt w)
     {
         x = this.x;
         y = this.y;
@@ -10927,7 +3747,7 @@ public partial struct b32v4_mt4
 
     #region Index
 
-    public b32_mt4 this[int i]
+    public b32_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -10965,442 +3785,44 @@ public partial struct b32v4_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"b32v4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"b32v4_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // b32v4_mt4
-#region b32v4_mt8
+#endregion // b32v4_mt
+#region b64v2_mt
 
 [CpuOnly]
-public partial struct b32v4_mt8
+public partial struct b64v2_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b32_mt8.LineCount;
+        get => b64_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b32_mt8 x;
-    public b32_mt8 y;
-    public b32_mt8 z;
-    public b32_mt8 w;
+    public b64_mt x;
+    public b64_mt y;
 
     #endregion // Fields
 
     #region Properties
 
-    public b32_mt8 r
+    public b64_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public b32_mt8 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b32_mt8 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public b32_mt8 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b32v4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt8(b32_mt8 x, b32_mt8 y, b32_mt8 z, b32_mt8 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt8(b32 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt8(b32_mt8 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt8(b32v4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt8(b32 value) => new b32_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt8(bool value) => (b32)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt8(b32_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt8(b32v4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator~(b32v4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator|(b32v4_mt8 a, b32v4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator&(b32v4_mt8 a, b32v4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator^(b32v4_mt8 a, b32v4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator<<(b32v4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator>>(b32v4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt8 operator>>>(b32v4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt8 x, out b32_mt8 y, out b32_mt8 z, out b32_mt8 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b32_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b32v4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b32v4_mt8
-#region b32v4_mt16
-
-[CpuOnly]
-public partial struct b32v4_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b32_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b32_mt16 x;
-    public b32_mt16 y;
-    public b32_mt16 z;
-    public b32_mt16 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b32_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b32_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b32_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public b32_mt16 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b32v4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt16(b32_mt16 x, b32_mt16 y, b32_mt16 z, b32_mt16 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt16(b32 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt16(b32_mt16 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b32v4_mt16(b32v4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt16(b32 value) => new b32_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt16(bool value) => (b32)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt16(b32_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt16(b32v4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator~(b32v4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator|(b32v4_mt16 a, b32v4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator&(b32v4_mt16 a, b32v4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator^(b32v4_mt16 a, b32v4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator<<(b32v4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator>>(b32v4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt16 operator>>>(b32v4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b32_mt16 x, out b32_mt16 y, out b32_mt16 z, out b32_mt16 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b32_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b32v4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b32v4_mt16
-#region b64v2_mt4
-
-[CpuOnly]
-public partial struct b64v2_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b64_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b64_mt4 x;
-    public b64_mt4 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b64_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b64_mt4 g
+    public b64_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
@@ -11423,26 +3845,26 @@ public partial struct b64v2_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b64v2_mt4(b64_mt4 x, b64_mt4 y)
+    public b64v2_mt(b64_mt x, b64_mt y)
     {
         this.x = x;
         this.y = y;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2_mt4(b64 value)
+    public b64v2_mt(b64 value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2_mt4(b64_mt4 value)
+    public b64v2_mt(b64_mt value)
     {
         y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2_mt4(b64v2 value)
+    public b64v2_mt(b64v2 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -11453,44 +3875,44 @@ public partial struct b64v2_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt4(b64 value) => new b64_mt4(value);
+    public static implicit operator b64v2_mt(b64 value) => new b64_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt4(bool value) => (b64)(value);
+    public static implicit operator b64v2_mt(bool value) => (b64)(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt4(b64_mt4 value) => new(value);
+    public static implicit operator b64v2_mt(b64_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt4(b64v2 value) => new(value);
+    public static implicit operator b64v2_mt(b64v2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator~(b64v2_mt4 a) => new(~a.x, ~a.y);
+    public static b64v2_mt operator~(b64v2_mt a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator|(b64v2_mt4 a, b64v2_mt4 b) => new(a.x | b.x, a.y | b.y);
+    public static b64v2_mt operator|(b64v2_mt a, b64v2_mt b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator&(b64v2_mt4 a, b64v2_mt4 b) => new(a.x & b.x, a.y & b.y);
+    public static b64v2_mt operator&(b64v2_mt a, b64v2_mt b) => new(a.x & b.x, a.y & b.y);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator^(b64v2_mt4 a, b64v2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+    public static b64v2_mt operator^(b64v2_mt a, b64v2_mt b) => new(a.x ^ b.x, a.y ^ b.y);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator<<(b64v2_mt4 a, int b) => new(a.x << b, a.y << b);
+    public static b64v2_mt operator<<(b64v2_mt a, int b) => new(a.x << b, a.y << b);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator>>(b64v2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+    public static b64v2_mt operator>>(b64v2_mt a, int b) => new(a.x >> b, a.y >> b);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt4 operator>>>(b64v2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
+    public static b64v2_mt operator>>>(b64v2_mt a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt4 x, out b64_mt4 y)
+    public readonly void Deconstruct(out b64_mt x, out b64_mt y)
     {
         x = this.x;
         y = this.y;
@@ -11500,7 +3922,7 @@ public partial struct b64v2_mt4
 
     #region Index
 
-    public b64_mt4 this[int i]
+    public b64_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -11530,386 +3952,52 @@ public partial struct b64v2_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"b64v2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"b64v2_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // b64v2_mt4
-#region b64v2_mt8
+#endregion // b64v2_mt
+#region b64v3_mt
 
 [CpuOnly]
-public partial struct b64v2_mt8
+public partial struct b64v3_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b64_mt8.LineCount;
+        get => b64_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b64_mt8 x;
-    public b64_mt8 y;
+    public b64_mt x;
+    public b64_mt y;
+    public b64_mt z;
 
     #endregion // Fields
 
     #region Properties
 
-    public b64_mt8 r
+    public b64_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public b64_mt8 g
+    public b64_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b64v2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b64v2_mt8(b64_mt8 x, b64_mt8 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v2_mt8(b64 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v2_mt8(b64_mt8 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v2_mt8(b64v2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt8(b64 value) => new b64_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt8(bool value) => (b64)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt8(b64_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt8(b64v2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator~(b64v2_mt8 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator|(b64v2_mt8 a, b64v2_mt8 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator&(b64v2_mt8 a, b64v2_mt8 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator^(b64v2_mt8 a, b64v2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator<<(b64v2_mt8 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator>>(b64v2_mt8 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt8 operator>>>(b64v2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt8 x, out b64_mt8 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b64_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b64v2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b64v2_mt8
-#region b64v2_mt16
-
-[CpuOnly]
-public partial struct b64v2_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b64_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b64_mt16 x;
-    public b64_mt16 y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b64_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b64_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b64v2 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b64v2_mt16(b64_mt16 x, b64_mt16 y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v2_mt16(b64 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v2_mt16(b64_mt16 value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v2_mt16(b64v2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt16(b64 value) => new b64_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt16(bool value) => (b64)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt16(b64_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt16(b64v2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator~(b64v2_mt16 a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator|(b64v2_mt16 a, b64v2_mt16 b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator&(b64v2_mt16 a, b64v2_mt16 b) => new(a.x & b.x, a.y & b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator^(b64v2_mt16 a, b64v2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator<<(b64v2_mt16 a, int b) => new(a.x << b, a.y << b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator>>(b64v2_mt16 a, int b) => new(a.x >> b, a.y >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt16 operator>>>(b64v2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt16 x, out b64_mt16 y)
-    {
-        x = this.x;
-        y = this.y;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b64_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b64v2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b64v2_mt16
-#region b64v3_mt4
-
-[CpuOnly]
-public partial struct b64v3_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b64_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b64_mt4 x;
-    public b64_mt4 y;
-    public b64_mt4 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b64_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b64_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b64_mt4 b
+    public b64_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
@@ -11933,7 +4021,7 @@ public partial struct b64v3_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt4(b64_mt4 x, b64_mt4 y, b64_mt4 z)
+    public b64v3_mt(b64_mt x, b64_mt y, b64_mt z)
     {
         this.x = x;
         this.y = y;
@@ -11941,19 +4029,19 @@ public partial struct b64v3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt4(b64 value)
+    public b64v3_mt(b64 value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt4(b64_mt4 value)
+    public b64v3_mt(b64_mt value)
     {
         z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt4(b64v3 value)
+    public b64v3_mt(b64v3 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -11965,44 +4053,44 @@ public partial struct b64v3_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt4(b64 value) => new b64_mt4(value);
+    public static implicit operator b64v3_mt(b64 value) => new b64_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt4(bool value) => (b64)(value);
+    public static implicit operator b64v3_mt(bool value) => (b64)(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt4(b64_mt4 value) => new(value);
+    public static implicit operator b64v3_mt(b64_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt4(b64v3 value) => new(value);
+    public static implicit operator b64v3_mt(b64v3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator~(b64v3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+    public static b64v3_mt operator~(b64v3_mt a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator|(b64v3_mt4 a, b64v3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static b64v3_mt operator|(b64v3_mt a, b64v3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator&(b64v3_mt4 a, b64v3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+    public static b64v3_mt operator&(b64v3_mt a, b64v3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator^(b64v3_mt4 a, b64v3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+    public static b64v3_mt operator^(b64v3_mt a, b64v3_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator<<(b64v3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+    public static b64v3_mt operator<<(b64v3_mt a, int b) => new(a.x << b, a.y << b, a.z << b);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator>>(b64v3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+    public static b64v3_mt operator>>(b64v3_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 operator>>>(b64v3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
+    public static b64v3_mt operator>>>(b64v3_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt4 x, out b64_mt4 y, out b64_mt4 z)
+    public readonly void Deconstruct(out b64_mt x, out b64_mt y, out b64_mt z)
     {
         x = this.x;
         y = this.y;
@@ -12013,7 +4101,7 @@ public partial struct b64v3_mt4
 
     #region Index
 
-    public b64_mt4 this[int i]
+    public b64_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -12047,426 +4135,60 @@ public partial struct b64v3_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"b64v3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"b64v3_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // b64v3_mt4
-#region b64v3_mt8
+#endregion // b64v3_mt
+#region b64v4_mt
 
 [CpuOnly]
-public partial struct b64v3_mt8
+public partial struct b64v4_mt
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b64_mt8.LineCount;
+        get => b64_mt.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b64_mt8 x;
-    public b64_mt8 y;
-    public b64_mt8 z;
+    public b64_mt x;
+    public b64_mt y;
+    public b64_mt z;
+    public b64_mt w;
 
     #endregion // Fields
 
     #region Properties
 
-    public b64_mt8 r
+    public b64_mt r
     {
         [MethodImpl(256 | 512)]
         readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
-    public b64_mt8 g
+    public b64_mt g
     {
         [MethodImpl(256 | 512)]
         readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
-    public b64_mt8 b
+    public b64_mt b
     {
         [MethodImpl(256 | 512)]
         readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b64v3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b64v3_mt8(b64_mt8 x, b64_mt8 y, b64_mt8 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v3_mt8(b64 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v3_mt8(b64_mt8 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v3_mt8(b64v3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt8(b64 value) => new b64_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt8(bool value) => (b64)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt8(b64_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt8(b64v3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator~(b64v3_mt8 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator|(b64v3_mt8 a, b64v3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator&(b64v3_mt8 a, b64v3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator^(b64v3_mt8 a, b64v3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator<<(b64v3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator>>(b64v3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt8 operator>>>(b64v3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt8 x, out b64_mt8 y, out b64_mt8 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b64_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b64v3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b64v3_mt8
-#region b64v3_mt16
-
-[CpuOnly]
-public partial struct b64v3_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b64_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b64_mt16 x;
-    public b64_mt16 y;
-    public b64_mt16 z;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b64_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b64_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b64_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b64v3 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b64v3_mt16(b64_mt16 x, b64_mt16 y, b64_mt16 z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v3_mt16(b64 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v3_mt16(b64_mt16 value)
-    {
-        z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v3_mt16(b64v3 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt16(b64 value) => new b64_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt16(bool value) => (b64)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt16(b64_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt16(b64v3 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator~(b64v3_mt16 a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator|(b64v3_mt16 a, b64v3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator&(b64v3_mt16 a, b64v3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator^(b64v3_mt16 a, b64v3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator<<(b64v3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator>>(b64v3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt16 operator>>>(b64v3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt16 x, out b64_mt16 y, out b64_mt16 z)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b64_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b64v3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b64v3_mt16
-#region b64v4_mt4
-
-[CpuOnly]
-public partial struct b64v4_mt4
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b64_mt4.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b64_mt4 x;
-    public b64_mt4 y;
-    public b64_mt4 z;
-    public b64_mt4 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b64_mt4 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b64_mt4 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b64_mt4 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public b64_mt4 a
+    public b64_mt a
     {
         [MethodImpl(256 | 512)]
         readonly get => w;
@@ -12491,7 +4213,7 @@ public partial struct b64v4_mt4
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b64v4_mt4(b64_mt4 x, b64_mt4 y, b64_mt4 z, b64_mt4 w)
+    public b64v4_mt(b64_mt x, b64_mt y, b64_mt z, b64_mt w)
     {
         this.x = x;
         this.y = y;
@@ -12500,19 +4222,19 @@ public partial struct b64v4_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4_mt4(b64 value)
+    public b64v4_mt(b64 value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4_mt4(b64_mt4 value)
+    public b64v4_mt(b64_mt value)
     {
         w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4_mt4(b64v4 value)
+    public b64v4_mt(b64v4 value)
     {
         x = new(value.x);
         y = new(value.y);
@@ -12525,44 +4247,44 @@ public partial struct b64v4_mt4
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt4(b64 value) => new b64_mt4(value);
+    public static implicit operator b64v4_mt(b64 value) => new b64_mt(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt4(bool value) => (b64)(value);
+    public static implicit operator b64v4_mt(bool value) => (b64)(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt4(b64_mt4 value) => new(value);
+    public static implicit operator b64v4_mt(b64_mt value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt4(b64v4 value) => new(value);
+    public static implicit operator b64v4_mt(b64v4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator~(b64v4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static b64v4_mt operator~(b64v4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator|(b64v4_mt4 a, b64v4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static b64v4_mt operator|(b64v4_mt a, b64v4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator&(b64v4_mt4 a, b64v4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+    public static b64v4_mt operator&(b64v4_mt a, b64v4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator^(b64v4_mt4 a, b64v4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+    public static b64v4_mt operator^(b64v4_mt a, b64v4_mt b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator<<(b64v4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+    public static b64v4_mt operator<<(b64v4_mt a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator>>(b64v4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+    public static b64v4_mt operator>>(b64v4_mt a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt4 operator>>>(b64v4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
+    public static b64v4_mt operator>>>(b64v4_mt a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
     #region Deconstruct
 
     [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt4 x, out b64_mt4 y, out b64_mt4 z, out b64_mt4 w)
+    public readonly void Deconstruct(out b64_mt x, out b64_mt y, out b64_mt z, out b64_mt w)
     {
         x = this.x;
         y = this.y;
@@ -12574,7 +4296,7 @@ public partial struct b64v4_mt4
 
     #region Index
 
-    public b64_mt4 this[int i]
+    public b64_mt this[int i]
     {
         [MethodImpl(256 | 512)]
         readonly get => i switch
@@ -12612,407 +4334,9 @@ public partial struct b64v4_mt4
 
     #region ToString
 
-    public readonly override string ToString() => $"b64v4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
+    public readonly override string ToString() => $"b64v4_mt {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
 
-#endregion // b64v4_mt4
-#region b64v4_mt8
-
-[CpuOnly]
-public partial struct b64v4_mt8
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b64_mt8.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b64_mt8 x;
-    public b64_mt8 y;
-    public b64_mt8 z;
-    public b64_mt8 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b64_mt8 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b64_mt8 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b64_mt8 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public b64_mt8 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b64v4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt8(b64_mt8 x, b64_mt8 y, b64_mt8 z, b64_mt8 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt8(b64 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt8(b64_mt8 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt8(b64v4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt8(b64 value) => new b64_mt8(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt8(bool value) => (b64)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt8(b64_mt8 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt8(b64v4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator~(b64v4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator|(b64v4_mt8 a, b64v4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator&(b64v4_mt8 a, b64v4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator^(b64v4_mt8 a, b64v4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator<<(b64v4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator>>(b64v4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt8 operator>>>(b64v4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt8 x, out b64_mt8 y, out b64_mt8 z, out b64_mt8 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b64_mt8 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b64v4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b64v4_mt8
-#region b64v4_mt16
-
-[CpuOnly]
-public partial struct b64v4_mt16
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => b64_mt16.LineCount;
-    }
-
-    #endregion
-
-    #region Fields
-
-    public b64_mt16 x;
-    public b64_mt16 y;
-    public b64_mt16 z;
-    public b64_mt16 w;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public b64_mt16 r
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => x;
-        [MethodImpl(256 | 512)]
-        set => x = value;
-    }
-    public b64_mt16 g
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => y;
-        [MethodImpl(256 | 512)]
-        set => y = value;
-    }
-    public b64_mt16 b
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => z;
-        [MethodImpl(256 | 512)]
-        set => z = value;
-    }
-    public b64_mt16 a
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => w;
-        [MethodImpl(256 | 512)]
-        set => w = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
-
-    [MethodImpl(256 | 512)]
-    public void LaneSet(int index, b64v4 value)
-    {
-        x[index] = value.x;
-        y[index] = value.y;
-        z[index] = value.z;
-        w[index] = value.w;
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt16(b64_mt16 x, b64_mt16 y, b64_mt16 z, b64_mt16 w)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt16(b64 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt16(b64_mt16 value)
-    {
-        w = z = y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public b64v4_mt16(b64v4 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-        z = new(value.z);
-        w = new(value.w);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt16(b64 value) => new b64_mt16(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt16(bool value) => (b64)(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt16(b64_mt16 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt16(b64v4 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator~(b64v4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator|(b64v4_mt16 a, b64v4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator&(b64v4_mt16 a, b64v4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator^(b64v4_mt16 a, b64v4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator<<(b64v4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator>>(b64v4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
-
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt16 operator>>>(b64v4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
-
-    #endregion // Operators
-
-    #region Deconstruct
-
-    [MethodImpl(256 | 512)]
-    public readonly void Deconstruct(out b64_mt16 x, out b64_mt16 y, out b64_mt16 z, out b64_mt16 w)
-    {
-        x = this.x;
-        y = this.y;
-        z = this.z;
-        w = this.w;
-    }
-
-    #endregion // Deconstruct
-
-    #region Index
-
-    public b64_mt16 this[int i]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => i switch
-        {
-            0 => x,
-            1 => y,
-            2 => z,
-            3 => w,
-            _ => throw new IndexOutOfRangeException(nameof(i)),
-        };
-        [MethodImpl(256 | 512)]
-        set
-        {
-            switch (i)
-            {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException(nameof(i));
-            }
-        }
-    }
-
-    #endregion // Index
-
-    #region ToString
-
-    public readonly override string ToString() => $"b64v4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
-    
-    #endregion // ToString
-}
-
-#endregion // b64v4_mt16
+#endregion // b64v4_mt

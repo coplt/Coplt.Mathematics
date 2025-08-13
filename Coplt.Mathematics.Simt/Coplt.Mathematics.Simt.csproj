@@ -10,7 +10,7 @@
         <RunPostBuildEvent>Always</RunPostBuildEvent>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>0.2.0</Version>
+        <Version>0.3.0</Version>
         <Description>HLSL-style linear algebra math library with full simd support</Description>
         <PackageProjectUrl>https://github.com/coplt/Coplt.Mathematics</PackageProjectUrl>
         <RepositoryUrl>https://github.com/coplt/Coplt.Mathematics</RepositoryUrl>

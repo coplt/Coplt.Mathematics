@@ -6,15 +6,15 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
         if (typ.size < 4) continue;
         foreach (var size in sizes)
         {
-            var typeName = $"{typ.name}2_mt{size}";
-            var type = $"{typ.compType}_mt{size}";
+            var typeName = $"{typ.name}2_mt";
+            var type = $"{typ.compType}_mt";
 #>
 
 #region <#= typeName #>

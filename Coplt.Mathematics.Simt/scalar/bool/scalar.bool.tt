@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.Simt;
 
 <#
-    var sizes = new[] { 4, 8, 16 };
+    var sizes = new[] { 16 };
     for (int s = 2; s <= 8; s *= 2)
     {
         var bSize = s * 8;
@@ -26,7 +26,7 @@ namespace Coplt.Mathematics.Simt;
             var num_vectors = Math.Max(1, bitSize / 512);
             bitSize = Math.Min(512, bitSize);
 
-            var typeName = $"{bTypeName}_mt{size}";
+            var typeName = $"{bTypeName}_mt";
 
             IEnumerable<string> ForVectors(string name)
             {
