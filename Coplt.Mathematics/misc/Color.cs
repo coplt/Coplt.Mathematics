@@ -44,8 +44,7 @@ public struct Color(float4 rgba) : IEquatable<Color>
     [MethodImpl(256)]
     public Color(float r, float g, float b, float a = 1) : this(new(r, g, b, a)) { }
 
-    [MethodImpl(256)]
-    public Color(byte r, byte g, byte b, byte a = 255) : this(new float4(r, g, b, a) * (1f / 255f)) { }
+    public static Color FromByte(byte r, byte g, byte b, byte a = 255) => new(new float4(r, g, b, a) * (1f / 255f));
 
     #endregion
 
