@@ -63,7 +63,11 @@ public interface IVectorSelf<Self> where Self : IVectorSelf<Self>, IVector
     public static abstract Self One { [MethodImpl(256 | 512)] get; }
 }
 
-public interface IVectorSelf<T, Self> where Self : IVectorSelf<T, Self>, IVectorSelf<Self>, IVector<T>
+public interface IVector2Self<Self> : IVector2 where Self : IVector2Self<Self>;
+public interface IVector3Self<Self> : IVector3 where Self : IVector3Self<Self>;
+public interface IVector4Self<Self> : IVector4 where Self : IVector4Self<Self>;
+
+public interface IVectorSelf<Self, T> where Self : IVectorSelf<Self, T>, IVectorSelf<Self>, IVector<T>
 {
     [MethodImpl(256 | 512)]
     public static abstract Self Scalar(T value);
@@ -75,6 +79,25 @@ public interface IVectorSelf<T, Self> where Self : IVectorSelf<T, Self>, IVector
     [MethodImpl(256 | 512)]
     public static abstract unsafe Self Load(T* span);
     #pragma warning restore CS8500
+}
+
+public interface IVector2Self<Self, T> : IVector2<T>, IVectorSelf<Self>, IVectorSelf<Self, T>, IVector2Self<Self>
+    where Self : IVector2Self<Self, T>
+{
+    [MethodImpl(256 | 512)]
+    public static abstract Self Construct(T x, T y);
+}
+public interface IVector3Self<Self, T> : IVector3<T>, IVectorSelf<Self>, IVectorSelf<Self, T>, IVector3Self<Self>
+    where Self : IVector3Self<Self, T>
+{
+    [MethodImpl(256 | 512)]
+    public static abstract Self Construct(T x, T y, T z);
+}
+public interface IVector4Self<Self, T> : IVector4<T>, IVectorSelf<Self>, IVectorSelf<Self, T>, IVector4Self<Self>
+    where Self : IVector4Self<Self, T>
+{
+    [MethodImpl(256 | 512)]
+    public static abstract Self Construct(T x, T y, T z, T w);
 }
 
 public interface IMatrixBitops;
@@ -112,4 +135,61 @@ public interface IMatrixSelf<Self> where Self : IMatrixSelf<Self>
     public static abstract Self Zero { [MethodImpl(256 | 512)] get; }
     public static abstract Self One { [MethodImpl(256 | 512)] get; }
     public static abstract Self Identity { [MethodImpl(256 | 512)] get; }
+}
+
+public interface ISoftVector;
+
+public interface ISimdVector64<T>
+{
+    public Vector64<T> Vector64 { get; }
+}
+
+public interface ISimdVector128<T>
+{
+    public Vector128<T> Vector128 { get; }
+}
+
+public interface ISimdVector256<T>
+{
+    public Vector256<T> Vector256 { get; }
+}
+
+public interface ISimdVector64<Self, T> : ISimdVector64<T>
+    where Self : ISimdVector64<Self, T>
+{
+    public static abstract Self FromVector64(Vector64<T> vector);
+}
+
+public interface ISimdVector128<Self, T> : ISimdVector128<T>
+     where Self : ISimdVector128<Self, T>
+{
+    public static abstract Self FromVector128(Vector128<T> vector);
+}
+
+public interface ISimdVector256<Self, T> : ISimdVector256<T>
+    where Self : ISimdVector256<Self, T>
+{
+    public static abstract Self FromVector256(Vector256<T> vector);
+}
+
+public interface IVector2Functor
+{
+    public static abstract Vector64<T> Map<T>(Vector64<T> vector);
+    public static abstract Vector128<T> Map<T>(Vector128<T> vector);
+    public static abstract Vector256<T> Map<T>(Vector256<T> vector);
+    public static abstract (T x, T y) Map<T>(T x, T y);
+}
+
+public interface IVector3Functor
+{
+    public static abstract Vector128<T> Map<T>(Vector128<T> vector);
+    public static abstract Vector256<T> Map<T>(Vector256<T> vector);
+    public static abstract (T x, T y, T z) Map<T>(T x, T y, T z);
+}
+
+public interface IVector4Functor
+{
+    public static abstract Vector128<T> Map<T>(Vector128<T> vector);
+    public static abstract Vector256<T> Map<T>(Vector256<T> vector);
+    public static abstract (T x, T y, T z, T w) Map<T>(T x, T y, T z, T w);
 }

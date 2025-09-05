@@ -109,8 +109,21 @@ namespace Coplt.Mathematics;
 
 [Serializable]
 [JsonConverter(typeof(<#= typeName #>JsonConverter))]
-public partial struct <#= typeName #> : 
-    IVector<#= i #><<#= typ.compType #>>, IVectorSelf<<#= typeName #>>, IVectorSelf<<#= typ.compType #>, <#= typeName #>>
+public partial struct <#= typeName #> : IVector<#= i #>Self<<#= typeName #>, <#= typ.compType #>>
+<#
+            if (typ.simd)
+            {
+#>
+    , ISimdVector<#= bitSize #><<#= typ.simdComp #>>, ISimdVector<#= bitSize #><<#= typeName #>, <#= typ.simdComp #>>
+<#
+            }
+            else
+            {
+#>
+    , ISoftVector
+<#
+            }
+#>
 {
 
     #region Static
@@ -185,6 +198,27 @@ public partial struct <#= typeName #> :
 #>
 
     #endregion
+<#
+            if (typ.simd)
+            {
+#>
+
+    #region Vector
+
+    Vector<#= bitSize #><<#= typ.simdComp #>> ISimdVector<#= bitSize #><<#= typ.simdComp #>>.Vector<#= bitSize #>
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static <#= typeName #> ISimdVector<#= bitSize #><<#= typeName #>, <#= typ.simdComp #>>.FromVector<#= bitSize #>(Vector<#= bitSize #><<#= typ.simdComp #>> vector)
+        => new(vector);
+
+    #endregion
+<#
+            }
+#>
 
     #region ctors
 
@@ -312,6 +346,13 @@ public partial struct <#= typeName #> :
     }
 
     #endregion // ctors
+
+    #region
+
+    static <#= typeName #> IVector<#= i #>Self<<#= typeName #>, <#= typ.compType #>>.Construct(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{typ.compType} {Typ.xyzw[n]}")) #>)
+        => new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}")) #>);
+
+    #endregion
 
     #region deconstruct
 

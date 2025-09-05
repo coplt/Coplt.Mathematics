@@ -5,8 +5,8 @@ namespace Coplt.Mathematics;
 
 [Serializable]
 [JsonConverter(typeof(float2JsonConverter))]
-public partial struct float2 : 
-    IVector2<float>, IVectorSelf<float2>, IVectorSelf<float, float2>
+public partial struct float2 : IVector2Self<float2, float>
+    , ISimdVector64<float>, ISimdVector64<float2, float>
 {
 
     #region Static
@@ -97,6 +97,20 @@ public partial struct float2 :
 
     #endregion
 
+    #region Vector
+
+    Vector64<float> ISimdVector64<float>.Vector64
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static float2 ISimdVector64<float2, float>.FromVector64(Vector64<float> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -154,6 +168,13 @@ public partial struct float2 :
 
     #endregion // ctors
 
+    #region
+
+    static float2 IVector2Self<float2, float>.Construct(float x, float y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -210,8 +231,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(float3JsonConverter))]
-public partial struct float3 : 
-    IVector3<float>, IVectorSelf<float3>, IVectorSelf<float, float3>
+public partial struct float3 : IVector3Self<float3, float>
+    , ISimdVector128<float>, ISimdVector128<float3, float>
 {
 
     #region Static
@@ -316,6 +337,20 @@ public partial struct float3 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<float> ISimdVector128<float>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static float3 ISimdVector128<float3, float>.FromVector128(Vector128<float> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -372,6 +407,13 @@ public partial struct float3 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static float3 IVector3Self<float3, float>.Construct(float x, float y, float z)
+        => new(x, y, z);
+
+    #endregion
 
     #region deconstruct
 
@@ -434,8 +476,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(float4JsonConverter))]
-public partial struct float4 : 
-    IVector4<float>, IVectorSelf<float4>, IVectorSelf<float, float4>
+public partial struct float4 : IVector4Self<float4, float>
+    , ISimdVector128<float>, ISimdVector128<float4, float>
 {
 
     #region Static
@@ -554,6 +596,20 @@ public partial struct float4 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<float> ISimdVector128<float>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static float4 ISimdVector128<float4, float>.FromVector128(Vector128<float> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -610,6 +666,13 @@ public partial struct float4 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static float4 IVector4Self<float4, float>.Construct(float x, float y, float z, float w)
+        => new(x, y, z, w);
+
+    #endregion
 
     #region deconstruct
 
@@ -677,8 +740,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(double2JsonConverter))]
-public partial struct double2 : 
-    IVector2<double>, IVectorSelf<double2>, IVectorSelf<double, double2>
+public partial struct double2 : IVector2Self<double2, double>
+    , ISimdVector128<double>, ISimdVector128<double2, double>
 {
 
     #region Static
@@ -769,6 +832,20 @@ public partial struct double2 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<double> ISimdVector128<double>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static double2 ISimdVector128<double2, double>.FromVector128(Vector128<double> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -826,6 +903,13 @@ public partial struct double2 :
 
     #endregion // ctors
 
+    #region
+
+    static double2 IVector2Self<double2, double>.Construct(double x, double y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -882,8 +966,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(double3JsonConverter))]
-public partial struct double3 : 
-    IVector3<double>, IVectorSelf<double3>, IVectorSelf<double, double3>
+public partial struct double3 : IVector3Self<double3, double>
+    , ISimdVector256<double>, ISimdVector256<double3, double>
 {
 
     #region Static
@@ -988,6 +1072,20 @@ public partial struct double3 :
 
     #endregion
 
+    #region Vector
+
+    Vector256<double> ISimdVector256<double>.Vector256
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static double3 ISimdVector256<double3, double>.FromVector256(Vector256<double> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -1044,6 +1142,13 @@ public partial struct double3 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static double3 IVector3Self<double3, double>.Construct(double x, double y, double z)
+        => new(x, y, z);
+
+    #endregion
 
     #region deconstruct
 
@@ -1106,8 +1211,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(double4JsonConverter))]
-public partial struct double4 : 
-    IVector4<double>, IVectorSelf<double4>, IVectorSelf<double, double4>
+public partial struct double4 : IVector4Self<double4, double>
+    , ISimdVector256<double>, ISimdVector256<double4, double>
 {
 
     #region Static
@@ -1226,6 +1331,20 @@ public partial struct double4 :
 
     #endregion
 
+    #region Vector
+
+    Vector256<double> ISimdVector256<double>.Vector256
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static double4 ISimdVector256<double4, double>.FromVector256(Vector256<double> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -1282,6 +1401,13 @@ public partial struct double4 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static double4 IVector4Self<double4, double>.Construct(double x, double y, double z, double w)
+        => new(x, y, z, w);
+
+    #endregion
 
     #region deconstruct
 
@@ -1349,8 +1475,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(short2JsonConverter))]
-public partial struct short2 : 
-    IVector2<short>, IVectorSelf<short2>, IVectorSelf<short, short2>
+public partial struct short2 : IVector2Self<short2, short>
+    , ISoftVector
 {
 
     #region Static
@@ -1482,6 +1608,13 @@ public partial struct short2 :
 
     #endregion // ctors
 
+    #region
+
+    static short2 IVector2Self<short2, short>.Construct(short x, short y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -1538,8 +1671,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(short3JsonConverter))]
-public partial struct short3 : 
-    IVector3<short>, IVectorSelf<short3>, IVectorSelf<short, short3>
+public partial struct short3 : IVector3Self<short3, short>
+    , ISoftVector
 {
 
     #region Static
@@ -1691,6 +1824,13 @@ public partial struct short3 :
 
     #endregion // ctors
 
+    #region
+
+    static short3 IVector3Self<short3, short>.Construct(short x, short y, short z)
+        => new(x, y, z);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -1752,8 +1892,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(short4JsonConverter))]
-public partial struct short4 : 
-    IVector4<short>, IVectorSelf<short4>, IVectorSelf<short, short4>
+public partial struct short4 : IVector4Self<short4, short>
+    , ISoftVector
 {
 
     #region Static
@@ -1923,6 +2063,13 @@ public partial struct short4 :
 
     #endregion // ctors
 
+    #region
+
+    static short4 IVector4Self<short4, short>.Construct(short x, short y, short z, short w)
+        => new(x, y, z, w);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -1989,8 +2136,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(ushort2JsonConverter))]
-public partial struct ushort2 : 
-    IVector2<ushort>, IVectorSelf<ushort2>, IVectorSelf<ushort, ushort2>
+public partial struct ushort2 : IVector2Self<ushort2, ushort>
+    , ISoftVector
 {
 
     #region Static
@@ -2122,6 +2269,13 @@ public partial struct ushort2 :
 
     #endregion // ctors
 
+    #region
+
+    static ushort2 IVector2Self<ushort2, ushort>.Construct(ushort x, ushort y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -2178,8 +2332,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(ushort3JsonConverter))]
-public partial struct ushort3 : 
-    IVector3<ushort>, IVectorSelf<ushort3>, IVectorSelf<ushort, ushort3>
+public partial struct ushort3 : IVector3Self<ushort3, ushort>
+    , ISoftVector
 {
 
     #region Static
@@ -2331,6 +2485,13 @@ public partial struct ushort3 :
 
     #endregion // ctors
 
+    #region
+
+    static ushort3 IVector3Self<ushort3, ushort>.Construct(ushort x, ushort y, ushort z)
+        => new(x, y, z);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -2392,8 +2553,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(ushort4JsonConverter))]
-public partial struct ushort4 : 
-    IVector4<ushort>, IVectorSelf<ushort4>, IVectorSelf<ushort, ushort4>
+public partial struct ushort4 : IVector4Self<ushort4, ushort>
+    , ISoftVector
 {
 
     #region Static
@@ -2563,6 +2724,13 @@ public partial struct ushort4 :
 
     #endregion // ctors
 
+    #region
+
+    static ushort4 IVector4Self<ushort4, ushort>.Construct(ushort x, ushort y, ushort z, ushort w)
+        => new(x, y, z, w);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -2629,8 +2797,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(int2JsonConverter))]
-public partial struct int2 : 
-    IVector2<int>, IVectorSelf<int2>, IVectorSelf<int, int2>
+public partial struct int2 : IVector2Self<int2, int>
+    , ISimdVector64<int>, ISimdVector64<int2, int>
 {
 
     #region Static
@@ -2721,6 +2889,20 @@ public partial struct int2 :
 
     #endregion
 
+    #region Vector
+
+    Vector64<int> ISimdVector64<int>.Vector64
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static int2 ISimdVector64<int2, int>.FromVector64(Vector64<int> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -2778,6 +2960,13 @@ public partial struct int2 :
 
     #endregion // ctors
 
+    #region
+
+    static int2 IVector2Self<int2, int>.Construct(int x, int y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -2834,8 +3023,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(int3JsonConverter))]
-public partial struct int3 : 
-    IVector3<int>, IVectorSelf<int3>, IVectorSelf<int, int3>
+public partial struct int3 : IVector3Self<int3, int>
+    , ISimdVector128<int>, ISimdVector128<int3, int>
 {
 
     #region Static
@@ -2940,6 +3129,20 @@ public partial struct int3 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<int> ISimdVector128<int>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static int3 ISimdVector128<int3, int>.FromVector128(Vector128<int> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -2996,6 +3199,13 @@ public partial struct int3 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static int3 IVector3Self<int3, int>.Construct(int x, int y, int z)
+        => new(x, y, z);
+
+    #endregion
 
     #region deconstruct
 
@@ -3058,8 +3268,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(int4JsonConverter))]
-public partial struct int4 : 
-    IVector4<int>, IVectorSelf<int4>, IVectorSelf<int, int4>
+public partial struct int4 : IVector4Self<int4, int>
+    , ISimdVector128<int>, ISimdVector128<int4, int>
 {
 
     #region Static
@@ -3178,6 +3388,20 @@ public partial struct int4 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<int> ISimdVector128<int>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static int4 ISimdVector128<int4, int>.FromVector128(Vector128<int> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3234,6 +3458,13 @@ public partial struct int4 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static int4 IVector4Self<int4, int>.Construct(int x, int y, int z, int w)
+        => new(x, y, z, w);
+
+    #endregion
 
     #region deconstruct
 
@@ -3301,8 +3532,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(uint2JsonConverter))]
-public partial struct uint2 : 
-    IVector2<uint>, IVectorSelf<uint2>, IVectorSelf<uint, uint2>
+public partial struct uint2 : IVector2Self<uint2, uint>
+    , ISimdVector64<uint>, ISimdVector64<uint2, uint>
 {
 
     #region Static
@@ -3393,6 +3624,20 @@ public partial struct uint2 :
 
     #endregion
 
+    #region Vector
+
+    Vector64<uint> ISimdVector64<uint>.Vector64
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static uint2 ISimdVector64<uint2, uint>.FromVector64(Vector64<uint> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3450,6 +3695,13 @@ public partial struct uint2 :
 
     #endregion // ctors
 
+    #region
+
+    static uint2 IVector2Self<uint2, uint>.Construct(uint x, uint y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -3506,8 +3758,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(uint3JsonConverter))]
-public partial struct uint3 : 
-    IVector3<uint>, IVectorSelf<uint3>, IVectorSelf<uint, uint3>
+public partial struct uint3 : IVector3Self<uint3, uint>
+    , ISimdVector128<uint>, ISimdVector128<uint3, uint>
 {
 
     #region Static
@@ -3612,6 +3864,20 @@ public partial struct uint3 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<uint> ISimdVector128<uint>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static uint3 ISimdVector128<uint3, uint>.FromVector128(Vector128<uint> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3668,6 +3934,13 @@ public partial struct uint3 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static uint3 IVector3Self<uint3, uint>.Construct(uint x, uint y, uint z)
+        => new(x, y, z);
+
+    #endregion
 
     #region deconstruct
 
@@ -3730,8 +4003,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(uint4JsonConverter))]
-public partial struct uint4 : 
-    IVector4<uint>, IVectorSelf<uint4>, IVectorSelf<uint, uint4>
+public partial struct uint4 : IVector4Self<uint4, uint>
+    , ISimdVector128<uint>, ISimdVector128<uint4, uint>
 {
 
     #region Static
@@ -3850,6 +4123,20 @@ public partial struct uint4 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<uint> ISimdVector128<uint>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static uint4 ISimdVector128<uint4, uint>.FromVector128(Vector128<uint> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3906,6 +4193,13 @@ public partial struct uint4 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static uint4 IVector4Self<uint4, uint>.Construct(uint x, uint y, uint z, uint w)
+        => new(x, y, z, w);
+
+    #endregion
 
     #region deconstruct
 
@@ -3973,8 +4267,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(long2JsonConverter))]
-public partial struct long2 : 
-    IVector2<long>, IVectorSelf<long2>, IVectorSelf<long, long2>
+public partial struct long2 : IVector2Self<long2, long>
+    , ISimdVector128<long>, ISimdVector128<long2, long>
 {
 
     #region Static
@@ -4065,6 +4359,20 @@ public partial struct long2 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<long> ISimdVector128<long>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static long2 ISimdVector128<long2, long>.FromVector128(Vector128<long> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4122,6 +4430,13 @@ public partial struct long2 :
 
     #endregion // ctors
 
+    #region
+
+    static long2 IVector2Self<long2, long>.Construct(long x, long y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -4178,8 +4493,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(long3JsonConverter))]
-public partial struct long3 : 
-    IVector3<long>, IVectorSelf<long3>, IVectorSelf<long, long3>
+public partial struct long3 : IVector3Self<long3, long>
+    , ISimdVector256<long>, ISimdVector256<long3, long>
 {
 
     #region Static
@@ -4284,6 +4599,20 @@ public partial struct long3 :
 
     #endregion
 
+    #region Vector
+
+    Vector256<long> ISimdVector256<long>.Vector256
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static long3 ISimdVector256<long3, long>.FromVector256(Vector256<long> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4340,6 +4669,13 @@ public partial struct long3 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static long3 IVector3Self<long3, long>.Construct(long x, long y, long z)
+        => new(x, y, z);
+
+    #endregion
 
     #region deconstruct
 
@@ -4402,8 +4738,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(long4JsonConverter))]
-public partial struct long4 : 
-    IVector4<long>, IVectorSelf<long4>, IVectorSelf<long, long4>
+public partial struct long4 : IVector4Self<long4, long>
+    , ISimdVector256<long>, ISimdVector256<long4, long>
 {
 
     #region Static
@@ -4522,6 +4858,20 @@ public partial struct long4 :
 
     #endregion
 
+    #region Vector
+
+    Vector256<long> ISimdVector256<long>.Vector256
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static long4 ISimdVector256<long4, long>.FromVector256(Vector256<long> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4578,6 +4928,13 @@ public partial struct long4 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static long4 IVector4Self<long4, long>.Construct(long x, long y, long z, long w)
+        => new(x, y, z, w);
+
+    #endregion
 
     #region deconstruct
 
@@ -4645,8 +5002,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(ulong2JsonConverter))]
-public partial struct ulong2 : 
-    IVector2<ulong>, IVectorSelf<ulong2>, IVectorSelf<ulong, ulong2>
+public partial struct ulong2 : IVector2Self<ulong2, ulong>
+    , ISimdVector128<ulong>, ISimdVector128<ulong2, ulong>
 {
 
     #region Static
@@ -4737,6 +5094,20 @@ public partial struct ulong2 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<ulong> ISimdVector128<ulong>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static ulong2 ISimdVector128<ulong2, ulong>.FromVector128(Vector128<ulong> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4794,6 +5165,13 @@ public partial struct ulong2 :
 
     #endregion // ctors
 
+    #region
+
+    static ulong2 IVector2Self<ulong2, ulong>.Construct(ulong x, ulong y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -4850,8 +5228,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(ulong3JsonConverter))]
-public partial struct ulong3 : 
-    IVector3<ulong>, IVectorSelf<ulong3>, IVectorSelf<ulong, ulong3>
+public partial struct ulong3 : IVector3Self<ulong3, ulong>
+    , ISimdVector256<ulong>, ISimdVector256<ulong3, ulong>
 {
 
     #region Static
@@ -4956,6 +5334,20 @@ public partial struct ulong3 :
 
     #endregion
 
+    #region Vector
+
+    Vector256<ulong> ISimdVector256<ulong>.Vector256
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static ulong3 ISimdVector256<ulong3, ulong>.FromVector256(Vector256<ulong> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -5012,6 +5404,13 @@ public partial struct ulong3 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static ulong3 IVector3Self<ulong3, ulong>.Construct(ulong x, ulong y, ulong z)
+        => new(x, y, z);
+
+    #endregion
 
     #region deconstruct
 
@@ -5074,8 +5473,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(ulong4JsonConverter))]
-public partial struct ulong4 : 
-    IVector4<ulong>, IVectorSelf<ulong4>, IVectorSelf<ulong, ulong4>
+public partial struct ulong4 : IVector4Self<ulong4, ulong>
+    , ISimdVector256<ulong>, ISimdVector256<ulong4, ulong>
 {
 
     #region Static
@@ -5194,6 +5593,20 @@ public partial struct ulong4 :
 
     #endregion
 
+    #region Vector
+
+    Vector256<ulong> ISimdVector256<ulong>.Vector256
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static ulong4 ISimdVector256<ulong4, ulong>.FromVector256(Vector256<ulong> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -5250,6 +5663,13 @@ public partial struct ulong4 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static ulong4 IVector4Self<ulong4, ulong>.Construct(ulong x, ulong y, ulong z, ulong w)
+        => new(x, y, z, w);
+
+    #endregion
 
     #region deconstruct
 
@@ -5317,8 +5737,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(decimal2JsonConverter))]
-public partial struct decimal2 : 
-    IVector2<decimal>, IVectorSelf<decimal2>, IVectorSelf<decimal, decimal2>
+public partial struct decimal2 : IVector2Self<decimal2, decimal>
+    , ISoftVector
 {
 
     #region Static
@@ -5450,6 +5870,13 @@ public partial struct decimal2 :
 
     #endregion // ctors
 
+    #region
+
+    static decimal2 IVector2Self<decimal2, decimal>.Construct(decimal x, decimal y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -5506,8 +5933,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(decimal3JsonConverter))]
-public partial struct decimal3 : 
-    IVector3<decimal>, IVectorSelf<decimal3>, IVectorSelf<decimal, decimal3>
+public partial struct decimal3 : IVector3Self<decimal3, decimal>
+    , ISoftVector
 {
 
     #region Static
@@ -5659,6 +6086,13 @@ public partial struct decimal3 :
 
     #endregion // ctors
 
+    #region
+
+    static decimal3 IVector3Self<decimal3, decimal>.Construct(decimal x, decimal y, decimal z)
+        => new(x, y, z);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -5720,8 +6154,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(decimal4JsonConverter))]
-public partial struct decimal4 : 
-    IVector4<decimal>, IVectorSelf<decimal4>, IVectorSelf<decimal, decimal4>
+public partial struct decimal4 : IVector4Self<decimal4, decimal>
+    , ISoftVector
 {
 
     #region Static
@@ -5891,6 +6325,13 @@ public partial struct decimal4 :
 
     #endregion // ctors
 
+    #region
+
+    static decimal4 IVector4Self<decimal4, decimal>.Construct(decimal x, decimal y, decimal z, decimal w)
+        => new(x, y, z, w);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -5957,8 +6398,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(half2JsonConverter))]
-public partial struct half2 : 
-    IVector2<half>, IVectorSelf<half2>, IVectorSelf<half, half2>
+public partial struct half2 : IVector2Self<half2, half>
+    , ISoftVector
 {
 
     #region Static
@@ -6090,6 +6531,13 @@ public partial struct half2 :
 
     #endregion // ctors
 
+    #region
+
+    static half2 IVector2Self<half2, half>.Construct(half x, half y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -6146,8 +6594,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(half3JsonConverter))]
-public partial struct half3 : 
-    IVector3<half>, IVectorSelf<half3>, IVectorSelf<half, half3>
+public partial struct half3 : IVector3Self<half3, half>
+    , ISoftVector
 {
 
     #region Static
@@ -6299,6 +6747,13 @@ public partial struct half3 :
 
     #endregion // ctors
 
+    #region
+
+    static half3 IVector3Self<half3, half>.Construct(half x, half y, half z)
+        => new(x, y, z);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -6360,8 +6815,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(half4JsonConverter))]
-public partial struct half4 : 
-    IVector4<half>, IVectorSelf<half4>, IVectorSelf<half, half4>
+public partial struct half4 : IVector4Self<half4, half>
+    , ISoftVector
 {
 
     #region Static
@@ -6531,6 +6986,13 @@ public partial struct half4 :
 
     #endregion // ctors
 
+    #region
+
+    static half4 IVector4Self<half4, half>.Construct(half x, half y, half z, half w)
+        => new(x, y, z, w);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -6597,8 +7059,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b16v2JsonConverter))]
-public partial struct b16v2 : 
-    IVector2<b16>, IVectorSelf<b16v2>, IVectorSelf<b16, b16v2>
+public partial struct b16v2 : IVector2Self<b16v2, b16>
+    , ISoftVector
 {
 
     #region Static
@@ -6730,6 +7192,13 @@ public partial struct b16v2 :
 
     #endregion // ctors
 
+    #region
+
+    static b16v2 IVector2Self<b16v2, b16>.Construct(b16 x, b16 y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -6786,8 +7255,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b16v3JsonConverter))]
-public partial struct b16v3 : 
-    IVector3<b16>, IVectorSelf<b16v3>, IVectorSelf<b16, b16v3>
+public partial struct b16v3 : IVector3Self<b16v3, b16>
+    , ISoftVector
 {
 
     #region Static
@@ -6939,6 +7408,13 @@ public partial struct b16v3 :
 
     #endregion // ctors
 
+    #region
+
+    static b16v3 IVector3Self<b16v3, b16>.Construct(b16 x, b16 y, b16 z)
+        => new(x, y, z);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -7000,8 +7476,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b16v4JsonConverter))]
-public partial struct b16v4 : 
-    IVector4<b16>, IVectorSelf<b16v4>, IVectorSelf<b16, b16v4>
+public partial struct b16v4 : IVector4Self<b16v4, b16>
+    , ISoftVector
 {
 
     #region Static
@@ -7171,6 +7647,13 @@ public partial struct b16v4 :
 
     #endregion // ctors
 
+    #region
+
+    static b16v4 IVector4Self<b16v4, b16>.Construct(b16 x, b16 y, b16 z, b16 w)
+        => new(x, y, z, w);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -7237,8 +7720,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b32v2JsonConverter))]
-public partial struct b32v2 : 
-    IVector2<b32>, IVectorSelf<b32v2>, IVectorSelf<b32, b32v2>
+public partial struct b32v2 : IVector2Self<b32v2, b32>
+    , ISimdVector64<uint>, ISimdVector64<b32v2, uint>
 {
 
     #region Static
@@ -7329,6 +7812,20 @@ public partial struct b32v2 :
 
     #endregion
 
+    #region Vector
+
+    Vector64<uint> ISimdVector64<uint>.Vector64
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static b32v2 ISimdVector64<b32v2, uint>.FromVector64(Vector64<uint> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -7386,6 +7883,13 @@ public partial struct b32v2 :
 
     #endregion // ctors
 
+    #region
+
+    static b32v2 IVector2Self<b32v2, b32>.Construct(b32 x, b32 y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -7442,8 +7946,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b32v3JsonConverter))]
-public partial struct b32v3 : 
-    IVector3<b32>, IVectorSelf<b32v3>, IVectorSelf<b32, b32v3>
+public partial struct b32v3 : IVector3Self<b32v3, b32>
+    , ISimdVector128<uint>, ISimdVector128<b32v3, uint>
 {
 
     #region Static
@@ -7548,6 +8052,20 @@ public partial struct b32v3 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<uint> ISimdVector128<uint>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static b32v3 ISimdVector128<b32v3, uint>.FromVector128(Vector128<uint> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -7604,6 +8122,13 @@ public partial struct b32v3 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static b32v3 IVector3Self<b32v3, b32>.Construct(b32 x, b32 y, b32 z)
+        => new(x, y, z);
+
+    #endregion
 
     #region deconstruct
 
@@ -7666,8 +8191,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b32v4JsonConverter))]
-public partial struct b32v4 : 
-    IVector4<b32>, IVectorSelf<b32v4>, IVectorSelf<b32, b32v4>
+public partial struct b32v4 : IVector4Self<b32v4, b32>
+    , ISimdVector128<uint>, ISimdVector128<b32v4, uint>
 {
 
     #region Static
@@ -7786,6 +8311,20 @@ public partial struct b32v4 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<uint> ISimdVector128<uint>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static b32v4 ISimdVector128<b32v4, uint>.FromVector128(Vector128<uint> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -7842,6 +8381,13 @@ public partial struct b32v4 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static b32v4 IVector4Self<b32v4, b32>.Construct(b32 x, b32 y, b32 z, b32 w)
+        => new(x, y, z, w);
+
+    #endregion
 
     #region deconstruct
 
@@ -7909,8 +8455,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b64v2JsonConverter))]
-public partial struct b64v2 : 
-    IVector2<b64>, IVectorSelf<b64v2>, IVectorSelf<b64, b64v2>
+public partial struct b64v2 : IVector2Self<b64v2, b64>
+    , ISimdVector128<ulong>, ISimdVector128<b64v2, ulong>
 {
 
     #region Static
@@ -8001,6 +8547,20 @@ public partial struct b64v2 :
 
     #endregion
 
+    #region Vector
+
+    Vector128<ulong> ISimdVector128<ulong>.Vector128
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static b64v2 ISimdVector128<b64v2, ulong>.FromVector128(Vector128<ulong> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8058,6 +8618,13 @@ public partial struct b64v2 :
 
     #endregion // ctors
 
+    #region
+
+    static b64v2 IVector2Self<b64v2, b64>.Construct(b64 x, b64 y)
+        => new(x, y);
+
+    #endregion
+
     #region deconstruct
 
     [MethodImpl(256 | 512)]
@@ -8114,8 +8681,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b64v3JsonConverter))]
-public partial struct b64v3 : 
-    IVector3<b64>, IVectorSelf<b64v3>, IVectorSelf<b64, b64v3>
+public partial struct b64v3 : IVector3Self<b64v3, b64>
+    , ISimdVector256<ulong>, ISimdVector256<b64v3, ulong>
 {
 
     #region Static
@@ -8220,6 +8787,20 @@ public partial struct b64v3 :
 
     #endregion
 
+    #region Vector
+
+    Vector256<ulong> ISimdVector256<ulong>.Vector256
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static b64v3 ISimdVector256<b64v3, ulong>.FromVector256(Vector256<ulong> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8276,6 +8857,13 @@ public partial struct b64v3 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static b64v3 IVector3Self<b64v3, b64>.Construct(b64 x, b64 y, b64 z)
+        => new(x, y, z);
+
+    #endregion
 
     #region deconstruct
 
@@ -8338,8 +8926,8 @@ public static partial class ctor
 
 [Serializable]
 [JsonConverter(typeof(b64v4JsonConverter))]
-public partial struct b64v4 : 
-    IVector4<b64>, IVectorSelf<b64v4>, IVectorSelf<b64, b64v4>
+public partial struct b64v4 : IVector4Self<b64v4, b64>
+    , ISimdVector256<ulong>, ISimdVector256<b64v4, ulong>
 {
 
     #region Static
@@ -8458,6 +9046,20 @@ public partial struct b64v4 :
 
     #endregion
 
+    #region Vector
+
+    Vector256<ulong> ISimdVector256<ulong>.Vector256
+    {
+        [MethodImpl(256 | 512), CpuOnly]
+        get => vector;
+    }
+
+    [MethodImpl(256 | 512), CpuOnly]
+    static b64v4 ISimdVector256<b64v4, ulong>.FromVector256(Vector256<ulong> vector)
+        => new(vector);
+
+    #endregion
+
     #region ctors
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8514,6 +9116,13 @@ public partial struct b64v4 :
     }
 
     #endregion // ctors
+
+    #region
+
+    static b64v4 IVector4Self<b64v4, b64>.Construct(b64 x, b64 y, b64 z, b64 w)
+        => new(x, y, z, w);
+
+    #endregion
 
     #region deconstruct
 

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "coplt.mathematics": {
+        "type": "Project"
+      }
+    },
+    "net8.0": {
+      "coplt.mathematics": {
+        "type": "Project"
+      }
+    },
+    "net9.0": {
+      "coplt.mathematics": {
+        "type": "Project"
+      }
+    }
+  }
+}
