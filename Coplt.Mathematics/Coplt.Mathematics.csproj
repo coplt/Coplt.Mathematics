@@ -2,21 +2,23 @@
 
     <PropertyGroup>
         <Nullable>enable</Nullable>
-        <LangVersion>13.0</LangVersion>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <LangVersion>14.0</LangVersion>
+        <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
         <TransformOnBuild>true</TransformOnBuild>
         <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
         <NoWarn>CS8981;CS0169;CS1591</NoWarn>
         <RunPostBuildEvent>Always</RunPostBuildEvent>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>0.17.0</Version>
+        <Version>0.18.0</Version>
         <Description>HLSL-style linear algebra math library with full simd support</Description>
         <PackageProjectUrl>https://github.com/coplt/Coplt.Mathematics</PackageProjectUrl>
         <RepositoryUrl>https://github.com/coplt/Coplt.Mathematics</RepositoryUrl>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
