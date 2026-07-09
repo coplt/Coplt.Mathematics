@@ -777,312 +777,6 @@ public static partial class simd
 
     #endregion
 
-    #region Round
-
-    [MethodImpl(256 | 512)]
-    public static Vector64<float> Round(Vector64<float> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector64.Round(x);
-        #else
-        if (Sse41.IsSupported)
-        {
-            return Sse41.RoundToNearestInteger(x.ToVector128()).GetLower();
-        }
-        if (AdvSimd.IsSupported)
-        {
-            return AdvSimd.RoundToNearest(x);
-        }
-        if (PackedSimd.IsSupported)
-        {
-            return PackedSimd.RoundToNearest(x.ToVector128()).GetLower();
-        }
-        return Vector64.Create(
-            MathF.Round(x.GetElement(0)),
-            MathF.Round(x.GetElement(1))
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector128<float> Round(Vector128<float> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector128.Round(x);
-        #else
-        if (Sse41.IsSupported)
-        {
-            return Sse41.RoundToNearestInteger(x);
-        }
-        if (AdvSimd.IsSupported)
-        {
-            return AdvSimd.RoundToNearest(x);
-        }
-        if (PackedSimd.IsSupported)
-        {
-            return PackedSimd.RoundToNearest(x);
-        }
-        return Vector128.Create(
-            Round(x.GetLower()),
-            Round(x.GetUpper())
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector256<float> Round(Vector256<float> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector256.Round(x);
-        #else
-        if (Avx.IsSupported)
-        {
-            return Avx.RoundToNearestInteger(x);
-        }
-        return Vector256.Create(
-            Round(x.GetLower()),
-            Round(x.GetUpper())
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector512<float> Round(Vector512<float> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector512.Round(x);
-        #else
-        if (Avx512F.IsSupported)
-        {
-            return Avx512F.RoundScale(x, 0);
-        }
-        return Vector512.Create(
-            Round(x.GetLower()),
-            Round(x.GetUpper())
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector128<double> Round(Vector128<double> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector128.Round(x);
-        #else
-        if (Sse41.IsSupported)
-        {
-            return Sse41.RoundToNearestInteger(x);
-        }
-        if (AdvSimd.Arm64.IsSupported)
-        {
-            return AdvSimd.Arm64.RoundToNearest(x);
-        }
-        if (PackedSimd.IsSupported)
-        {
-            return PackedSimd.RoundToNearest(x);
-        }
-        return Vector128.Create(
-            Math.Round(x.GetElement(0)),
-            Math.Round(x.GetElement(1))
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector256<double> Round(Vector256<double> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector256.Round(x);
-        #else
-        if (Avx.IsSupported)
-        {
-            return Avx.RoundToNearestInteger(x);
-        }
-        return Vector256.Create(
-            Round(x.GetLower()),
-            Round(x.GetUpper())
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector512<double> Round(Vector512<double> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector512.Round(x);
-        #else
-        if (Avx512F.IsSupported)
-        {
-            return Avx512F.RoundScale(x, 0);
-        }
-        return Vector512.Create(
-            Round(x.GetLower()),
-            Round(x.GetUpper())
-        );
-        #endif
-    }
-
-    public static bool IsRoundF256HardwareAccelerated
-    {
-        [MethodImpl(256 | 512)]
-        get => Avx.IsSupported;
-    }
-
-    public static bool IsRoundD512HardwareAccelerated
-    {
-        [MethodImpl(256 | 512)]
-        get => Avx512F.IsSupported;
-    }
-
-    #endregion
-
-    #region RoundToZero
-
-    [MethodImpl(256 | 512)]
-    public static Vector64<float> RoundToZero(Vector64<float> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector64.Truncate(x);
-        #else
-        if (Sse41.IsSupported)
-        {
-            return Sse41.RoundToZero(x.ToVector128()).GetLower();
-        }
-        if (AdvSimd.IsSupported)
-        {
-            return AdvSimd.RoundToZero(x);
-        }
-        if (PackedSimd.IsSupported)
-        {
-            return PackedSimd.Truncate(x.ToVector128()).GetLower();
-        }
-        return Vector64.Create(
-            MathF.Round(x.GetElement(0), MidpointRounding.ToZero),
-            MathF.Round(x.GetElement(1), MidpointRounding.ToZero)
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector128<float> RoundToZero(Vector128<float> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector128.Truncate(x);
-        #else
-        if (Sse41.IsSupported)
-        {
-            return Sse41.RoundToZero(x);
-        }
-        if (AdvSimd.IsSupported)
-        {
-            return AdvSimd.RoundToZero(x);
-        }
-        if (PackedSimd.IsSupported)
-        {
-            return PackedSimd.Truncate(x);
-        }
-        return Vector128.Create(
-            RoundToZero(x.GetLower()),
-            RoundToZero(x.GetUpper())
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector256<float> RoundToZero(Vector256<float> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector256.Truncate(x);
-        #else
-        if (Avx.IsSupported)
-        {
-            return Avx.RoundToZero(x);
-        }
-        return Vector256.Create(
-            RoundToZero(x.GetLower()),
-            RoundToZero(x.GetUpper())
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector512<float> RoundToZero(Vector512<float> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector512.Truncate(x);
-        #else
-        if (Avx512F.IsSupported)
-        {
-            return Avx512F.RoundScale(x, 3);
-        }
-        return Vector512.Create(
-            RoundToZero(x.GetLower()),
-            RoundToZero(x.GetUpper())
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector128<double> RoundToZero(Vector128<double> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector128.Truncate(x);
-        #else
-        if (Sse41.IsSupported)
-        {
-            return Sse41.RoundToZero(x);
-        }
-        if (AdvSimd.Arm64.IsSupported)
-        {
-            return AdvSimd.Arm64.RoundToZero(x);
-        }
-        if (PackedSimd.IsSupported)
-        {
-            return PackedSimd.Truncate(x);
-        }
-        return Vector128.Create(
-            Math.Round(x.GetElement(0), MidpointRounding.ToZero),
-            Math.Round(x.GetElement(1), MidpointRounding.ToZero)
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector256<double> RoundToZero(Vector256<double> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector256.Truncate(x);
-        #else
-        if (Avx.IsSupported)
-        {
-            return Avx.RoundToZero(x);
-        }
-        return Vector256.Create(
-            RoundToZero(x.GetLower()),
-            RoundToZero(x.GetUpper())
-        );
-        #endif
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector512<double> RoundToZero(Vector512<double> x)
-    {
-        #if NET9_0_OR_GREATER
-        return Vector512.Truncate(x);
-        #else
-        if (Avx512F.IsSupported)
-        {
-            return Avx512F.RoundScale(x, 3);
-        }
-        return Vector512.Create(
-            RoundToZero(x.GetLower()),
-            RoundToZero(x.GetUpper())
-        );
-        #endif
-    }
-
-    #endregion
-
     #region Rem
 
     [MethodImpl(256 | 512)]
@@ -1514,7 +1208,7 @@ public static partial class simd
     {
         if (Vector64.IsHardwareAccelerated)
         {
-            i = RoundToZero(d);
+            i = Vector64.Truncate(d);
             return d - i;
         }
         if (Vector128.IsHardwareAccelerated)
@@ -1537,7 +1231,7 @@ public static partial class simd
     {
         if (Vector128.IsHardwareAccelerated)
         {
-            i = RoundToZero(d);
+            i = Vector128.Truncate(d);
             return d - i;
         }
 
@@ -1554,7 +1248,7 @@ public static partial class simd
     {
         if (Vector256.IsHardwareAccelerated)
         {
-            i = RoundToZero(d);
+            i = Vector256.Truncate(d);
             return d - i;
         }
 
@@ -1571,7 +1265,7 @@ public static partial class simd
     {
         if (Vector512.IsHardwareAccelerated)
         {
-            i = RoundToZero(d);
+            i = Vector512.Truncate(d);
             return d - i;
         }
 
@@ -1588,7 +1282,7 @@ public static partial class simd
     {
         if (Vector128.IsHardwareAccelerated)
         {
-            i = RoundToZero(d);
+            i = Vector128.Truncate(d);
             return d - i;
         }
 
@@ -1605,7 +1299,7 @@ public static partial class simd
     {
         if (Vector256.IsHardwareAccelerated)
         {
-            i = RoundToZero(d);
+            i = Vector256.Truncate(d);
             return d - i;
         }
 
@@ -1622,7 +1316,7 @@ public static partial class simd
     {
         if (Vector512.IsHardwareAccelerated)
         {
-            i = RoundToZero(d);
+            i = Vector512.Truncate(d);
             return d - i;
         }
 
@@ -1859,11 +1553,7 @@ public static partial class simd
         {
             return X86.Fma.MultiplySubtract(a.ToVector128(), b.ToVector128(), c.ToVector128()).GetLower();
         }
-        if (AdvSimd.IsSupported)
-        {
-            return AdvSimd.FusedMultiplyAdd(-c, a, b);
-        }
-        return a * b - c;
+        return Vector64.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
@@ -1874,11 +1564,7 @@ public static partial class simd
         {
             return X86.Fma.MultiplySubtract(a, b, c);
         }
-        if (AdvSimd.IsSupported)
-        {
-            return AdvSimd.FusedMultiplyAdd(-c, a, b);
-        }
-        return a * b - c;
+        return Vector128.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
@@ -1889,11 +1575,7 @@ public static partial class simd
         {
             return X86.Fma.MultiplySubtract(a, b, c);
         }
-        if (AdvSimd.Arm64.IsSupported)
-        {
-            return AdvSimd.Arm64.FusedMultiplyAdd(-c, a, b);
-        }
-        return a * b - c;
+        return Vector128.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
@@ -1904,15 +1586,7 @@ public static partial class simd
         {
             return X86.Fma.MultiplySubtract(a, b, c);
         }
-        if (AdvSimd.IsSupported)
-        {
-            var nc = -c;
-            return Vector256.Create(
-                AdvSimd.FusedMultiplyAdd(nc.GetLower(), a.GetLower(), b.GetLower()),
-                AdvSimd.FusedMultiplyAdd(nc.GetUpper(), a.GetUpper(), b.GetUpper())
-            );
-        }
-        return a * b - c;
+        return Vector256.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
@@ -1923,15 +1597,7 @@ public static partial class simd
         {
             return X86.Fma.MultiplySubtract(a, b, c);
         }
-        if (AdvSimd.Arm64.IsSupported)
-        {
-            var nc = -c;
-            return Vector256.Create(
-                AdvSimd.Arm64.FusedMultiplyAdd(nc.GetLower(), a.GetLower(), b.GetLower()),
-                AdvSimd.Arm64.FusedMultiplyAdd(nc.GetUpper(), a.GetUpper(), b.GetUpper())
-            );
-        }
-        return a * b - c;
+        return Vector256.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
@@ -1949,7 +1615,7 @@ public static partial class simd
                 X86.Fma.MultiplySubtract(a.GetUpper(), b.GetUpper(), c.GetUpper())
             );
         }
-        return a * b - c;
+        return Vector512.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
@@ -1967,7 +1633,7 @@ public static partial class simd
                 X86.Fma.MultiplySubtract(a.GetUpper(), b.GetUpper(), c.GetUpper())
             );
         }
-        return a * b - c;
+        return Vector512.FusedMultiplyAdd(a, b, -c);
     }
 
     #endregion
@@ -1986,7 +1652,7 @@ public static partial class simd
         {
             return AdvSimd.FusedMultiplySubtract(c, a, b);
         }
-        return c - a * b;
+        return Vector64.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
@@ -2001,7 +1667,7 @@ public static partial class simd
         {
             return AdvSimd.FusedMultiplySubtract(c, a, b);
         }
-        return c - a * b;
+        return Vector128.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
@@ -2016,7 +1682,7 @@ public static partial class simd
         {
             return AdvSimd.Arm64.FusedMultiplySubtract(c, a, b);
         }
-        return c - a * b;
+        return Vector128.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
@@ -2034,7 +1700,7 @@ public static partial class simd
                 AdvSimd.FusedMultiplySubtract(c.GetUpper(), a.GetUpper(), b.GetUpper())
             );
         }
-        return c - a * b;
+        return Vector256.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
@@ -2052,7 +1718,7 @@ public static partial class simd
                 AdvSimd.Arm64.FusedMultiplySubtract(c.GetUpper(), a.GetUpper(), b.GetUpper())
             );
         }
-        return c - a * b;
+        return Vector256.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
@@ -2070,7 +1736,7 @@ public static partial class simd
                 Fnma(a.GetUpper(), b.GetUpper(), c.GetUpper())
             );
         }
-        return c - a * b;
+        return Vector512.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
@@ -2081,7 +1747,7 @@ public static partial class simd
         {
             return Avx512F.FusedMultiplyAddNegated(a, b, c);
         }
-        return c - a * b;
+        return Vector512.FusedMultiplyAdd(-a, b, c);
     }
 
     #endregion

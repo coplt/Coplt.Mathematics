@@ -156,7 +156,7 @@ public static partial class simd_math
     public static Vector64<f32> Rem(Vector64<f32> x, Vector64<f32> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector64.Truncate(div);
         return simd.Fnma(flr, y, x);
     }
 
@@ -164,7 +164,7 @@ public static partial class simd_math
     public static Vector64<f32> Rem(Vector64<f32> x, f32 y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector64.Truncate(div);
         return simd.Fnma(flr, Vector64.Create(y), x);
     }
 
@@ -176,7 +176,7 @@ public static partial class simd_math
     public static Vector128<f32> Rem(Vector128<f32> x, Vector128<f32> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, y, x);
     }
 
@@ -184,7 +184,7 @@ public static partial class simd_math
     public static Vector128<f32> Rem(Vector128<f32> x, f32 y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, Vector128.Create(y), x);
     }
 
@@ -196,7 +196,7 @@ public static partial class simd_math
     public static Vector256<f32> Rem(Vector256<f32> x, Vector256<f32> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, y, x);
     }
 
@@ -204,7 +204,7 @@ public static partial class simd_math
     public static Vector256<f32> Rem(Vector256<f32> x, f32 y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, Vector256.Create(y), x);
     }
 
@@ -216,7 +216,7 @@ public static partial class simd_math
     public static Vector512<f32> Rem(Vector512<f32> x, Vector512<f32> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, y, x);
     }
 
@@ -224,7 +224,7 @@ public static partial class simd_math
     public static Vector512<f32> Rem(Vector512<f32> x, f32 y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, Vector512.Create(y), x);
     }
 
@@ -236,7 +236,7 @@ public static partial class simd_math
     public static Vector128<f64> Rem(Vector128<f64> x, Vector128<f64> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, y, x);
     }
 
@@ -244,7 +244,7 @@ public static partial class simd_math
     public static Vector128<f64> Rem(Vector128<f64> x, f64 y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, Vector128.Create(y), x);
     }
 
@@ -256,7 +256,7 @@ public static partial class simd_math
     public static Vector256<f64> Rem(Vector256<f64> x, Vector256<f64> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, y, x);
     }
 
@@ -264,7 +264,7 @@ public static partial class simd_math
     public static Vector256<f64> Rem(Vector256<f64> x, f64 y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, Vector256.Create(y), x);
     }
 
@@ -276,7 +276,7 @@ public static partial class simd_math
     public static Vector512<f64> Rem(Vector512<f64> x, Vector512<f64> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, y, x);
     }
 
@@ -284,7 +284,7 @@ public static partial class simd_math
     public static Vector512<f64> Rem(Vector512<f64> x, f64 y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, Vector512.Create(y), x);
     }
 
@@ -317,7 +317,7 @@ public static partial class simd_math
     {
         var add = x + (Vector64.LessThan(x, default) & Vector64.Create(math.F_PI));
         var div = x * math.F_1_Div_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector64.Truncate(div);
         return simd.Fnma(flr, Vector64.Create(math.F_PI), add);
     }
 
@@ -326,7 +326,7 @@ public static partial class simd_math
     {
         var add = x + (Vector64.LessThan(x, default) & Vector64.Create(math.F_2_PI));
         var div = x * math.F_1_Div_2_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector64.Truncate(div);
         return simd.Fnma(flr, Vector64.Create(math.F_2_PI), add);
     }
 
@@ -335,7 +335,7 @@ public static partial class simd_math
     {
         var add = x + (Vector64.LessThan(x, default) & Vector64.Create(math.F_4_PI));
         var div = x * math.F_1_Div_4_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector64.Truncate(div);
         return simd.Fnma(flr, Vector64.Create(math.F_4_PI), add);
     }
 
@@ -364,7 +364,7 @@ public static partial class simd_math
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.F_PI));
         var div = x * math.F_1_Div_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, Vector128.Create(math.F_PI), add);
     }
 
@@ -373,7 +373,7 @@ public static partial class simd_math
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.F_2_PI));
         var div = x * math.F_1_Div_2_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, Vector128.Create(math.F_2_PI), add);
     }
 
@@ -382,7 +382,7 @@ public static partial class simd_math
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.F_4_PI));
         var div = x * math.F_1_Div_4_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, Vector128.Create(math.F_4_PI), add);
     }
 
@@ -411,7 +411,7 @@ public static partial class simd_math
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.F_PI));
         var div = x * math.F_1_Div_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, Vector256.Create(math.F_PI), add);
     }
 
@@ -420,7 +420,7 @@ public static partial class simd_math
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.F_2_PI));
         var div = x * math.F_1_Div_2_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, Vector256.Create(math.F_2_PI), add);
     }
 
@@ -429,7 +429,7 @@ public static partial class simd_math
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.F_4_PI));
         var div = x * math.F_1_Div_4_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, Vector256.Create(math.F_4_PI), add);
     }
 
@@ -458,7 +458,7 @@ public static partial class simd_math
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.F_PI));
         var div = x * math.F_1_Div_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, Vector512.Create(math.F_PI), add);
     }
 
@@ -467,7 +467,7 @@ public static partial class simd_math
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.F_2_PI));
         var div = x * math.F_1_Div_2_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, Vector512.Create(math.F_2_PI), add);
     }
 
@@ -476,7 +476,7 @@ public static partial class simd_math
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.F_4_PI));
         var div = x * math.F_1_Div_4_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, Vector512.Create(math.F_4_PI), add);
     }
 
@@ -505,7 +505,7 @@ public static partial class simd_math
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.D_PI));
         var div = x * math.D_1_Div_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, Vector128.Create(math.D_PI), add);
     }
 
@@ -514,7 +514,7 @@ public static partial class simd_math
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.D_2_PI));
         var div = x * math.D_1_Div_2_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, Vector128.Create(math.D_2_PI), add);
     }
 
@@ -523,7 +523,7 @@ public static partial class simd_math
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.D_4_PI));
         var div = x * math.D_1_Div_4_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector128.Truncate(div);
         return simd.Fnma(flr, Vector128.Create(math.D_4_PI), add);
     }
 
@@ -552,7 +552,7 @@ public static partial class simd_math
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.D_PI));
         var div = x * math.D_1_Div_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, Vector256.Create(math.D_PI), add);
     }
 
@@ -561,7 +561,7 @@ public static partial class simd_math
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.D_2_PI));
         var div = x * math.D_1_Div_2_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, Vector256.Create(math.D_2_PI), add);
     }
 
@@ -570,7 +570,7 @@ public static partial class simd_math
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.D_4_PI));
         var div = x * math.D_1_Div_4_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector256.Truncate(div);
         return simd.Fnma(flr, Vector256.Create(math.D_4_PI), add);
     }
 
@@ -599,7 +599,7 @@ public static partial class simd_math
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.D_PI));
         var div = x * math.D_1_Div_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, Vector512.Create(math.D_PI), add);
     }
 
@@ -608,7 +608,7 @@ public static partial class simd_math
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.D_2_PI));
         var div = x * math.D_1_Div_2_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, Vector512.Create(math.D_2_PI), add);
     }
 
@@ -617,7 +617,7 @@ public static partial class simd_math
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.D_4_PI));
         var div = x * math.D_1_Div_4_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = Vector512.Truncate(div);
         return simd.Fnma(flr, Vector512.Create(math.D_4_PI), add);
     }
 
@@ -648,7 +648,7 @@ public static partial class simd_math
         xl = (xl & Vector64.Create(0x7FFFFF)) | Vector64.Create(0x7F << 23);
 
         var d = (xl.AsSingle() | Vector64<f32>.One) * Vector64.Create(2.0f / 3.0f);
-        
+
         #region Approx
 
         // A Taylor Series approximation of ln(x) that relies on the identity that ln(x) = 2*atan((x-1)/(x+1)).
@@ -1061,7 +1061,7 @@ public static partial class simd_math
             Vector64.Create(-81.0f * math.F_1_Div_Log2)
         );
 
-        var fx = simd.Round(xx);
+        var fx = Vector64.Round(xx);
 
         xx -= fx;
         var r = simd.Fma(xx, Vector64.Create(1.530610536076361E-05f), Vector64.Create(0.000154631026827329f));
@@ -1104,7 +1104,7 @@ public static partial class simd_math
             Vector128.Create(-81.0f * math.F_1_Div_Log2)
         );
 
-        var fx = simd.Round(xx);
+        var fx = Vector128.Round(xx);
 
         xx -= fx;
         var r = simd.Fma(xx, Vector128.Create(1.530610536076361E-05f), Vector128.Create(0.000154631026827329f));
@@ -1147,7 +1147,7 @@ public static partial class simd_math
             Vector256.Create(-81.0f * math.F_1_Div_Log2)
         );
 
-        var fx = simd.Round(xx);
+        var fx = Vector256.Round(xx);
 
         xx -= fx;
         var r = simd.Fma(xx, Vector256.Create(1.530610536076361E-05f), Vector256.Create(0.000154631026827329f));
@@ -1190,7 +1190,7 @@ public static partial class simd_math
             Vector512.Create(-81.0f * math.F_1_Div_Log2)
         );
 
-        var fx = simd.Round(xx);
+        var fx = Vector512.Round(xx);
 
         xx -= fx;
         var r = simd.Fma(xx, Vector512.Create(1.530610536076361E-05f), Vector512.Create(0.000154631026827329f));
@@ -1232,7 +1232,7 @@ public static partial class simd_math
             Vector128.Min(x, Vector128.Create(709.0 * 1.4426950408889634)),
             Vector128.Create(-709.0 * 1.4426950408889634)
         );
-        var fx = simd.Round(xx);
+        var fx = Vector128.Round(xx);
 
         xx -= fx;
         var sq = xx * xx;
@@ -1279,7 +1279,7 @@ public static partial class simd_math
             Vector256.Min(x, Vector256.Create(709.0 * 1.4426950408889634)),
             Vector256.Create(-709.0 * 1.4426950408889634)
         );
-        var fx = simd.Round(xx);
+        var fx = Vector256.Round(xx);
 
         xx -= fx;
         var sq = xx * xx;
@@ -1326,7 +1326,7 @@ public static partial class simd_math
             Vector512.Min(x, Vector512.Create(709.0 * 1.4426950408889634)),
             Vector512.Create(-709.0 * 1.4426950408889634)
         );
-        var fx = simd.Round(xx);
+        var fx = Vector512.Round(xx);
 
         xx -= fx;
         var sq = xx * xx;

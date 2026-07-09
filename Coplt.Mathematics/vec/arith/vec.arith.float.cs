@@ -95,7 +95,7 @@ public static partial class math
     public static float2 round([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.Round(a.vector));
+            return new(Vector64.Round(a.vector));
         return new(a.x.round(), a.y.round());
     }
 
@@ -103,7 +103,7 @@ public static partial class math
     public static float2 trunc([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.RoundToZero(a.vector));
+            return new(Vector64.Truncate(a.vector));
         return new(a.x.trunc(), a.y.trunc());
     }
 
@@ -300,7 +300,7 @@ public static partial class math
     public static float3 round([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Round(a.vector));
+            return new(Vector128.Round(a.vector));
         return new(a.x.round(), a.y.round(), a.z.round());
     }
 
@@ -308,7 +308,7 @@ public static partial class math
     public static float3 trunc([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.RoundToZero(a.vector));
+            return new(Vector128.Truncate(a.vector));
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc());
     }
 
@@ -505,7 +505,7 @@ public static partial class math
     public static float4 round([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Round(a.vector));
+            return new(Vector128.Round(a.vector));
         return new(a.x.round(), a.y.round(), a.z.round(), a.w.round());
     }
 
@@ -513,7 +513,7 @@ public static partial class math
     public static float4 trunc([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.RoundToZero(a.vector));
+            return new(Vector128.Truncate(a.vector));
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc(), a.w.trunc());
     }
 
@@ -710,7 +710,7 @@ public static partial class math
     public static double2 round([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Round(a.vector));
+            return new(Vector128.Round(a.vector));
         return new(a.x.round(), a.y.round());
     }
 
@@ -718,7 +718,7 @@ public static partial class math
     public static double2 trunc([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.RoundToZero(a.vector));
+            return new(Vector128.Truncate(a.vector));
         return new(a.x.trunc(), a.y.trunc());
     }
 
@@ -915,7 +915,7 @@ public static partial class math
     public static double3 round([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Round(a.vector));
+            return new(Vector256.Round(a.vector));
         return new(a.x.round(), a.y.round(), a.z.round());
     }
 
@@ -923,7 +923,7 @@ public static partial class math
     public static double3 trunc([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.RoundToZero(a.vector));
+            return new(Vector256.Truncate(a.vector));
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc());
     }
 
@@ -1120,7 +1120,7 @@ public static partial class math
     public static double4 round([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Round(a.vector));
+            return new(Vector256.Round(a.vector));
         return new(a.x.round(), a.y.round(), a.z.round(), a.w.round());
     }
 
@@ -1128,7 +1128,7 @@ public static partial class math
     public static double4 trunc([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.RoundToZero(a.vector));
+            return new(Vector256.Truncate(a.vector));
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc(), a.w.trunc());
     }
 
