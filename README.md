@@ -35,9 +35,3 @@ hlsl-style linear algebra library
 
 - [ ] tests
 - [ ] rewrite the function with too low precision
-
----
-
-## Related Projects
-
-- https://github.com/coplt/Coplt.Shader
