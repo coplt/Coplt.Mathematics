@@ -378,7 +378,14 @@ public static partial class math
     public static <#= typeName #> lerp(<#= typeName #> start, <#= typeName #> end, [This] <#= typeName #> t)
     {
 <#
-            if (typ.simd)
+            if (typ.f && typ.bin && typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.Lerp(start.vector, end.vector, t.vector));
+<#
+            }
+            else if (typ.simd)
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)

@@ -142,7 +142,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.Round(a.vector));
+            return new(Vector<#= bitSize #>.Round(a.vector));
 <#
             }
 #>
@@ -157,7 +157,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.RoundToZero(a.vector));
+            return new(Vector<#= bitSize #>.Truncate(a.vector));
 <#
             }
 #>

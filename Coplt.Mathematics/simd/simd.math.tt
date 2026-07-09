@@ -63,7 +63,7 @@ public static partial class simd_math
     public static <#= vt #> Rem(<#= vt #> x, <#= vt #> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = <#= vector #>.Truncate(div);
         return simd.Fnma(flr, y, x);
     }
 
@@ -71,7 +71,7 @@ public static partial class simd_math
     public static <#= vt #> Rem(<#= vt #> x, <#= type #> y)
     {
         var div = x / y;
-        var flr = simd.RoundToZero(div);
+        var flr = <#= vector #>.Truncate(div);
         return simd.Fnma(flr, <#= vector #>.Create(y), x);
     }
 
@@ -114,7 +114,7 @@ public static partial class simd_math
     {
         var add = x + (<#= vector #>.LessThan(x, default) & <#= vector #>.Create(math.<#= mc #>_PI));
         var div = x * math.<#= mc #>_1_Div_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = <#= vector #>.Truncate(div);
         return simd.Fnma(flr, <#= vector #>.Create(math.<#= mc #>_PI), add);
     }
 
@@ -123,7 +123,7 @@ public static partial class simd_math
     {
         var add = x + (<#= vector #>.LessThan(x, default) & <#= vector #>.Create(math.<#= mc #>_2_PI));
         var div = x * math.<#= mc #>_1_Div_2_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = <#= vector #>.Truncate(div);
         return simd.Fnma(flr, <#= vector #>.Create(math.<#= mc #>_2_PI), add);
     }
 
@@ -132,7 +132,7 @@ public static partial class simd_math
     {
         var add = x + (<#= vector #>.LessThan(x, default) & <#= vector #>.Create(math.<#= mc #>_4_PI));
         var div = x * math.<#= mc #>_1_Div_4_PI;
-        var flr = simd.RoundToZero(div);
+        var flr = <#= vector #>.Truncate(div);
         return simd.Fnma(flr, <#= vector #>.Create(math.<#= mc #>_4_PI), add);
     }
 
@@ -316,7 +316,7 @@ public static partial class simd_math
             <#= vector #>.Create(-81.0f * math.F_1_Div_Log2)
         );
 
-        var fx = simd.Round(xx);
+        var fx = <#= vector #>.Round(xx);
 
         xx -= fx;
         var r = simd.Fma(xx, <#= vector #>.Create(1.530610536076361E-05f), <#= vector #>.Create(0.000154631026827329f));
@@ -369,7 +369,7 @@ public static partial class simd_math
             <#= vector #>.Min(x, <#= vector #>.Create(709.0 * 1.4426950408889634)),
             <#= vector #>.Create(-709.0 * 1.4426950408889634)
         );
-        var fx = simd.Round(xx);
+        var fx = <#= vector #>.Round(xx);
 
         xx -= fx;
         var sq = xx * xx;

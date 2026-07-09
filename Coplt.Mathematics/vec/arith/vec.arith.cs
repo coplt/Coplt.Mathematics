@@ -163,7 +163,7 @@ public static partial class math
     public static float2 lerp(float2 start, float2 end, [This] float2 t)
     {
         if (Vector64.IsHardwareAccelerated)
-            return fma(t, end - start, start);
+            return new(Vector64.Lerp(start.vector, end.vector, t.vector));
         return start + t * (end - start);
     }
 
@@ -497,7 +497,7 @@ public static partial class math
     public static float3 lerp(float3 start, float3 end, [This] float3 t)
     {
         if (Vector128.IsHardwareAccelerated)
-            return fma(t, end - start, start);
+            return new(Vector128.Lerp(start.vector, end.vector, t.vector));
         return start + t * (end - start);
     }
 
@@ -838,7 +838,7 @@ public static partial class math
     public static float4 lerp(float4 start, float4 end, [This] float4 t)
     {
         if (Vector128.IsHardwareAccelerated)
-            return fma(t, end - start, start);
+            return new(Vector128.Lerp(start.vector, end.vector, t.vector));
         return start + t * (end - start);
     }
 
@@ -1172,7 +1172,7 @@ public static partial class math
     public static double2 lerp(double2 start, double2 end, [This] double2 t)
     {
         if (Vector128.IsHardwareAccelerated)
-            return fma(t, end - start, start);
+            return new(Vector128.Lerp(start.vector, end.vector, t.vector));
         return start + t * (end - start);
     }
 
@@ -1506,7 +1506,7 @@ public static partial class math
     public static double3 lerp(double3 start, double3 end, [This] double3 t)
     {
         if (Vector256.IsHardwareAccelerated)
-            return fma(t, end - start, start);
+            return new(Vector256.Lerp(start.vector, end.vector, t.vector));
         return start + t * (end - start);
     }
 
@@ -1847,7 +1847,7 @@ public static partial class math
     public static double4 lerp(double4 start, double4 end, [This] double4 t)
     {
         if (Vector256.IsHardwareAccelerated)
-            return fma(t, end - start, start);
+            return new(Vector256.Lerp(start.vector, end.vector, t.vector));
         return start + t * (end - start);
     }
 

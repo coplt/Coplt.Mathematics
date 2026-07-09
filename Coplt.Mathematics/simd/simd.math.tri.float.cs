@@ -4,215 +4,6 @@ namespace Coplt.Mathematics.Simd;
 
 public static partial class simd_math
 {
-    #region Sin Cos
-
-    #region SinCos
-
-    [MethodImpl(512)]
-    public static Vector64<f32> SinCos(Vector64<f32> x) => Sin_impl(x + Vector64.Create(0.0f, math.F_Half_PI));
-
-    [MethodImpl(512)]
-    public static Vector128<f32> SinCos(Vector128<f32> x) => Sin_impl(x + Vector128.Create(0.0f, 0.0f, math.F_Half_PI, math.F_Half_PI));
-
-    [MethodImpl(512)]
-    public static Vector256<f32> SinCos(Vector256<f32> x) =>
-        Sin_impl(x + Vector256.Create(0.0f, 0.0f, 0.0f, 0.0f, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI));
-
-    [MethodImpl(512)]
-    public static Vector512<f32> SinCos(Vector512<f32> x) =>
-        Sin_impl(x + Vector512.Create(
-            0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-            math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI
-        ));
-
-    #endregion
-
-    #region Vector64<f32>
-
-    [MethodImpl(512)]
-    public static Vector64<f32> Cos(Vector64<f32> x) => Sin_impl(x + Vector64.Create(math.F_Half_PI));
-
-    [MethodImpl(512)]
-    public static Vector64<f32> Sin(Vector64<f32> x) => Sin_impl(x);
-
-    [MethodImpl(256 | 512)]
-    private static Vector64<f32> Sin_impl(Vector64<f32> x)
-    {
-        // Since sin() is periodic around 2pi, this converts x into the range of [0, 2pi]
-        var xt = Wrap0To2Pi(x);
-
-        // Since sin() in [0, 2pi] is an odd function around pi, this converts the range to [0, pi], then stores whether or not the result needs to be negated in is_neg.
-        var is_neg = Vector64.GreaterThan(xt, Vector64.Create(math.F_PI));
-        xt -= is_neg & Vector64.Create(math.F_PI);
-
-        is_neg &= Vector64.Create(-2.0f);
-        is_neg += Vector64<f32>.One;
-
-        var is_nan = simd.Ne(x, x);
-        is_nan += Vector64.GreaterThan(x, Vector64.Create(f32.MaxValue));
-        is_nan += Vector64.LessThan(x, Vector64.Create(f32.MinValue));
-
-        // Since sin() on [0, pi] is an even function around pi/2, this "folds" the range into [0, pi/2]. I.e. 3pi/5 becomes 2pi/5.
-        xt = Vector64.Create(math.F_Half_PI) - Vector64.Abs(xt - Vector64.Create(math.F_Half_PI));
-
-        var sq = xt * xt;
-        var r = simd.Fma(sq, Vector64.Create(-0.0000000000007384998082865f), Vector64.Create(0.000000000160490521296459f));
-        r = simd.Fma(r, sq, Vector64.Create(-0.00000002505191090496049f));
-        r = simd.Fma(r, sq, Vector64.Create(0.00000275573170815073144f));
-        r = simd.Fma(r, sq, Vector64.Create(-0.00019841269828860068271f));
-        r = simd.Fma(r, sq, Vector64.Create(0.008333333333299304989001f));
-        r = simd.Fma(r, sq, Vector64.Create(-0.166666666666663509013977f));
-        r = simd.Fma(r, sq, Vector64<f32>.One);
-
-        r *= xt;
-
-        r = simd.Fma(r, is_neg, is_nan);
-
-        return r;
-    }
-
-    #endregion
-
-    #region Vector128<f32>
-
-    [MethodImpl(512)]
-    public static Vector128<f32> Cos(Vector128<f32> x) => Sin_impl(x + Vector128.Create(math.F_Half_PI));
-
-    [MethodImpl(512)]
-    public static Vector128<f32> Sin(Vector128<f32> x) => Sin_impl(x);
-
-    [MethodImpl(256 | 512)]
-    private static Vector128<f32> Sin_impl(Vector128<f32> x)
-    {
-        // Since sin() is periodic around 2pi, this converts x into the range of [0, 2pi]
-        var xt = Wrap0To2Pi(x);
-
-        // Since sin() in [0, 2pi] is an odd function around pi, this converts the range to [0, pi], then stores whether or not the result needs to be negated in is_neg.
-        var is_neg = Vector128.GreaterThan(xt, Vector128.Create(math.F_PI));
-        xt -= is_neg & Vector128.Create(math.F_PI);
-
-        is_neg &= Vector128.Create(-2.0f);
-        is_neg += Vector128<f32>.One;
-
-        var is_nan = simd.Ne(x, x);
-        is_nan += Vector128.GreaterThan(x, Vector128.Create(f32.MaxValue));
-        is_nan += Vector128.LessThan(x, Vector128.Create(f32.MinValue));
-
-        // Since sin() on [0, pi] is an even function around pi/2, this "folds" the range into [0, pi/2]. I.e. 3pi/5 becomes 2pi/5.
-        xt = Vector128.Create(math.F_Half_PI) - Vector128.Abs(xt - Vector128.Create(math.F_Half_PI));
-
-        var sq = xt * xt;
-        var r = simd.Fma(sq, Vector128.Create(-0.0000000000007384998082865f), Vector128.Create(0.000000000160490521296459f));
-        r = simd.Fma(r, sq, Vector128.Create(-0.00000002505191090496049f));
-        r = simd.Fma(r, sq, Vector128.Create(0.00000275573170815073144f));
-        r = simd.Fma(r, sq, Vector128.Create(-0.00019841269828860068271f));
-        r = simd.Fma(r, sq, Vector128.Create(0.008333333333299304989001f));
-        r = simd.Fma(r, sq, Vector128.Create(-0.166666666666663509013977f));
-        r = simd.Fma(r, sq, Vector128<f32>.One);
-
-        r *= xt;
-
-        r = simd.Fma(r, is_neg, is_nan);
-
-        return r;
-    }
-
-    #endregion
-
-    #region Vector256<f32>
-
-    [MethodImpl(512)]
-    public static Vector256<f32> Cos(Vector256<f32> x) => Sin_impl(x + Vector256.Create(math.F_Half_PI));
-
-    [MethodImpl(512)]
-    public static Vector256<f32> Sin(Vector256<f32> x) => Sin_impl(x);
-
-    [MethodImpl(256 | 512)]
-    private static Vector256<f32> Sin_impl(Vector256<f32> x)
-    {
-        // Since sin() is periodic around 2pi, this converts x into the range of [0, 2pi]
-        var xt = Wrap0To2Pi(x);
-
-        // Since sin() in [0, 2pi] is an odd function around pi, this converts the range to [0, pi], then stores whether or not the result needs to be negated in is_neg.
-        var is_neg = Vector256.GreaterThan(xt, Vector256.Create(math.F_PI));
-        xt -= is_neg & Vector256.Create(math.F_PI);
-
-        is_neg &= Vector256.Create(-2.0f);
-        is_neg += Vector256<f32>.One;
-
-        var is_nan = simd.Ne(x, x);
-        is_nan += Vector256.GreaterThan(x, Vector256.Create(f32.MaxValue));
-        is_nan += Vector256.LessThan(x, Vector256.Create(f32.MinValue));
-
-        // Since sin() on [0, pi] is an even function around pi/2, this "folds" the range into [0, pi/2]. I.e. 3pi/5 becomes 2pi/5.
-        xt = Vector256.Create(math.F_Half_PI) - Vector256.Abs(xt - Vector256.Create(math.F_Half_PI));
-
-        var sq = xt * xt;
-        var r = simd.Fma(sq, Vector256.Create(-0.0000000000007384998082865f), Vector256.Create(0.000000000160490521296459f));
-        r = simd.Fma(r, sq, Vector256.Create(-0.00000002505191090496049f));
-        r = simd.Fma(r, sq, Vector256.Create(0.00000275573170815073144f));
-        r = simd.Fma(r, sq, Vector256.Create(-0.00019841269828860068271f));
-        r = simd.Fma(r, sq, Vector256.Create(0.008333333333299304989001f));
-        r = simd.Fma(r, sq, Vector256.Create(-0.166666666666663509013977f));
-        r = simd.Fma(r, sq, Vector256<f32>.One);
-
-        r *= xt;
-
-        r = simd.Fma(r, is_neg, is_nan);
-
-        return r;
-    }
-
-    #endregion
-
-    #region Vector512<f32>
-
-    [MethodImpl(512)]
-    public static Vector512<f32> Cos(Vector512<f32> x) => Sin_impl(x + Vector512.Create(math.F_Half_PI));
-
-    [MethodImpl(512)]
-    public static Vector512<f32> Sin(Vector512<f32> x) => Sin_impl(x);
-
-    [MethodImpl(256 | 512)]
-    private static Vector512<f32> Sin_impl(Vector512<f32> x)
-    {
-        // Since sin() is periodic around 2pi, this converts x into the range of [0, 2pi]
-        var xt = Wrap0To2Pi(x);
-
-        // Since sin() in [0, 2pi] is an odd function around pi, this converts the range to [0, pi], then stores whether or not the result needs to be negated in is_neg.
-        var is_neg = Vector512.GreaterThan(xt, Vector512.Create(math.F_PI));
-        xt -= is_neg & Vector512.Create(math.F_PI);
-
-        is_neg &= Vector512.Create(-2.0f);
-        is_neg += Vector512<f32>.One;
-
-        var is_nan = simd.Ne(x, x);
-        is_nan += Vector512.GreaterThan(x, Vector512.Create(f32.MaxValue));
-        is_nan += Vector512.LessThan(x, Vector512.Create(f32.MinValue));
-
-        // Since sin() on [0, pi] is an even function around pi/2, this "folds" the range into [0, pi/2]. I.e. 3pi/5 becomes 2pi/5.
-        xt = Vector512.Create(math.F_Half_PI) - Vector512.Abs(xt - Vector512.Create(math.F_Half_PI));
-
-        var sq = xt * xt;
-        var r = simd.Fma(sq, Vector512.Create(-0.0000000000007384998082865f), Vector512.Create(0.000000000160490521296459f));
-        r = simd.Fma(r, sq, Vector512.Create(-0.00000002505191090496049f));
-        r = simd.Fma(r, sq, Vector512.Create(0.00000275573170815073144f));
-        r = simd.Fma(r, sq, Vector512.Create(-0.00019841269828860068271f));
-        r = simd.Fma(r, sq, Vector512.Create(0.008333333333299304989001f));
-        r = simd.Fma(r, sq, Vector512.Create(-0.166666666666663509013977f));
-        r = simd.Fma(r, sq, Vector512<f32>.One);
-
-        r *= xt;
-
-        r = simd.Fma(r, is_neg, is_nan);
-
-        return r;
-    }
-
-    #endregion
-
-    #endregion
-
     #region Tan
 
     #region Vector64<f32>
@@ -1208,8 +999,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector64<f32> Atan2(Vector64<f32> y, Vector64<f32> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = Vector64.IsInfinity(x).AsSingle();
+        var y_is_inf = Vector64.IsInfinity(y).AsSingle();
         var x_iz = Vector64.Equals(x, default);
         var y_iz = Vector64.Equals(y, default);
         var y_sign = y & -Vector64<f32>.Zero;
@@ -1269,8 +1060,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector128<f32> Atan2(Vector128<f32> y, Vector128<f32> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = Vector128.IsInfinity(x).AsSingle();
+        var y_is_inf = Vector128.IsInfinity(y).AsSingle();
         var x_iz = Vector128.Equals(x, default);
         var y_iz = Vector128.Equals(y, default);
         var y_sign = y & -Vector128<f32>.Zero;
@@ -1330,8 +1121,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector256<f32> Atan2(Vector256<f32> y, Vector256<f32> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = Vector256.IsInfinity(x).AsSingle();
+        var y_is_inf = Vector256.IsInfinity(y).AsSingle();
         var x_iz = Vector256.Equals(x, default);
         var y_iz = Vector256.Equals(y, default);
         var y_sign = y & -Vector256<f32>.Zero;
@@ -1391,8 +1182,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector512<f32> Atan2(Vector512<f32> y, Vector512<f32> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = Vector512.IsInfinity(x).AsSingle();
+        var y_is_inf = Vector512.IsInfinity(y).AsSingle();
         var x_iz = Vector512.Equals(x, default);
         var y_iz = Vector512.Equals(y, default);
         var y_sign = y & -Vector512<f32>.Zero;

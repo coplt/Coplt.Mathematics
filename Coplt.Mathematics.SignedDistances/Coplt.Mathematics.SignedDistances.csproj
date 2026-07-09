@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <Nullable>enable</Nullable>
-        <LangVersion>13.0</LangVersion>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <LangVersion>14.0</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
         <TransformOnBuild>true</TransformOnBuild>
         <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
         <NoWarn>CS8981;CS0169</NoWarn>

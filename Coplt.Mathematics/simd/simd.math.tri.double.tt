@@ -20,76 +20,6 @@ namespace Coplt.Mathematics.Simd;
 
 public static partial class simd_math
 {
-    #region Sin Cos
-
-    #region SinCos
-
-    [MethodImpl(256 | 512)]
-    public static <#= vt128 #> SinCos(<#= vt128 #> x) => Sin(x + <#= v128 #>.Create(0.0, math.D_Half_PI));
-
-    [MethodImpl(256 | 512)]
-    public static <#= vt256 #>SinCos(<#= vt256 #> x) => Sin(x + <#= v256 #>.Create(0.0, 0.0, math.D_Half_PI, math.D_Half_PI));
-
-    [MethodImpl(256 | 512)]
-    public static <#= vt512 #> SinCos(<#= vt512 #> x) =>
-        Sin(x + <#= v512 #>.Create(0.0, 0.0, 0.0, 0.0, math.D_Half_PI, math.D_Half_PI, math.D_Half_PI, math.D_Half_PI));
-
-    #endregion
-
-<#
-    foreach (var size in sizes)
-    {
-        var vector = $"Vector{size}";
-        var vt = $"{vector}<{type}>";
-#>
-    #region <#= vt #>
-
-    [MethodImpl(256 | 512)]
-    public static <#= vt #> Cos(<#= vt #> x) => Sin(x + <#= vector #>.Create(math.D_Half_PI));
-
-    [MethodImpl(256 | 512)]
-    public static <#= vt #> Sin(<#= vt #> x)
-    {
-        // Since sin() is periodic around 2pi, this converts x into the range of [0, 2pi]
-        var xt = Wrap0To2Pi(x);
-
-        // Since sin() in [0, 2pi] is an odd function around pi, this converts the range to [0, pi], then stores whether or not the result needs to be negated in is_neg.
-        var is_neg = <#= vector #>.GreaterThan(xt, <#= vector #>.Create(math.D_PI));
-        xt -= is_neg & <#= vector #>.Create(math.D_PI);
-
-        is_neg &= <#= vector #>.Create(-2.0);
-        is_neg += <#= vt #>.One;
-
-        var is_nan = simd.Ne(x, x);
-        is_nan += <#= vector #>.GreaterThan(x, <#= vector #>.Create(f64.MaxValue));
-        is_nan += <#= vector #>.LessThan(x, <#= vector #>.Create(f64.MinValue));
-
-        // Since sin() on [0, pi] is an even function around pi/2, this "folds" the range into [0, pi/2]. I.e. 3pi/5 becomes 2pi/5.
-        xt = <#= vector #>.Create(math.D_Half_PI) - <#= vector #>.Abs(xt - <#= vector #>.Create(math.D_Half_PI));
-
-        var sq = xt * xt;
-        var r = simd.Fma(sq, <#= vector #>.Create(-0.0000000000007384998082865), <#= vector #>.Create(0.000000000160490521296459));
-        r = simd.Fma(r, sq, <#= vector #>.Create(-0.00000002505191090496049));
-        r = simd.Fma(r, sq, <#= vector #>.Create(0.00000275573170815073144));
-        r = simd.Fma(r, sq, <#= vector #>.Create(-0.00019841269828860068271));
-        r = simd.Fma(r, sq, <#= vector #>.Create(0.008333333333299304989001));
-        r = simd.Fma(r, sq, <#= vector #>.Create(-0.166666666666663509013977));
-        r = simd.Fma(r, sq, <#= vt #>.One);
-
-        r *= xt;
-
-        r = simd.Fma(r, is_neg, is_nan);
-
-        return r;
-    }
-
-    #endregion
-
-<#
-    }
-#>
-    #endregion
-
     #region Tan
 
 <#
@@ -513,8 +443,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static <#= vt #> Atan2(<#= vt #> y, <#= vt #> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsDouble();
-        var y_is_inf = simd.IsInfinity(y).AsDouble();
+        var x_is_inf = <#= vector #>.IsInfinity(x).AsDouble();
+        var y_is_inf = <#= vector #>.IsInfinity(y).AsDouble();
         var x_iz = <#= vector #>.Equals(x, default);
         var y_iz = <#= vector #>.Equals(y, default);
         var y_sign = y & -<#= vt #>.Zero;
