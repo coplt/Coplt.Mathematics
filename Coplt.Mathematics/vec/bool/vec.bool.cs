@@ -41,7 +41,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b16v2 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b16v2 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b16v2 v)
     {
         return !v.x && !v.y;
     }
@@ -88,7 +92,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b16v3 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b16v3 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b16v3 v)
     {
         return !v.x && !v.y && !v.z;
     }
@@ -135,7 +143,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b16v4 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b16v4 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b16v4 v)
     {
         return !v.x && !v.y && !v.z && !v.w;
     }
@@ -175,7 +187,7 @@ public static partial class math
     public static bool all([This] b32v2 v)
     {
         if (Vector64.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() >= 0xF;
+            return Vector64.AllWhereAllBitsSet(v.vector);
         return v.x && v.y;
     }
 
@@ -183,15 +195,19 @@ public static partial class math
     public static bool any([This] b32v2 v)
     {
         if (Vector64.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() != 0;
+            return Vector64.AnyWhereAllBitsSet(v.vector);
         return v.x || v.y;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b32v2 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b32v2 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b32v2 v)
     {
         if (Vector64.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() == 0;
+            return Vector64.NoneWhereAllBitsSet(v.vector);
         return !v.x && !v.y;
     }
 }
@@ -230,7 +246,7 @@ public static partial class math
     public static bool all([This] b32v3 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() >= 0x7;
+            return Vector128.AllWhereAllBitsSet(v.vector | Vector128.Create(0, 0, 0, -1).AsUInt32());
         return v.x && v.y && v.z;
     }
 
@@ -238,15 +254,19 @@ public static partial class math
     public static bool any([This] b32v3 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() != 0;
+            return Vector128.AnyWhereAllBitsSet(v.vector);
         return v.x || v.y || v.z;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b32v3 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b32v3 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b32v3 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() == 0;
+            return Vector128.NoneWhereAllBitsSet(v.vector);
         return !v.x && !v.y && !v.z;
     }
 }
@@ -285,7 +305,7 @@ public static partial class math
     public static bool all([This] b32v4 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() >= 0xF;
+            return Vector128.AllWhereAllBitsSet(v.vector);
         return v.x && v.y && v.z && v.w;
     }
 
@@ -293,15 +313,19 @@ public static partial class math
     public static bool any([This] b32v4 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() != 0;
+            return Vector128.AnyWhereAllBitsSet(v.vector);
         return v.x || v.y || v.z || v.w;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b32v4 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b32v4 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b32v4 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() == 0;
+            return Vector128.NoneWhereAllBitsSet(v.vector);
         return !v.x && !v.y && !v.z && !v.w;
     }
 }
@@ -340,7 +364,7 @@ public static partial class math
     public static bool all([This] b64v2 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() >= 0xF;
+            return Vector128.AllWhereAllBitsSet(v.vector);
         return v.x && v.y;
     }
 
@@ -348,15 +372,19 @@ public static partial class math
     public static bool any([This] b64v2 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() != 0;
+            return Vector128.AnyWhereAllBitsSet(v.vector);
         return v.x || v.y;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b64v2 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b64v2 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b64v2 v)
     {
         if (Vector128.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() == 0;
+            return Vector128.NoneWhereAllBitsSet(v.vector);
         return !v.x && !v.y;
     }
 }
@@ -395,7 +423,7 @@ public static partial class math
     public static bool all([This] b64v3 v)
     {
         if (Vector256.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() >= 0x7;
+            return Vector256.AllWhereAllBitsSet(v.vector | Vector256.Create(0, 0, 0, -1).AsUInt64());
         return v.x && v.y && v.z;
     }
 
@@ -403,15 +431,19 @@ public static partial class math
     public static bool any([This] b64v3 v)
     {
         if (Vector256.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() != 0;
+            return Vector256.AnyWhereAllBitsSet(v.vector);
         return v.x || v.y || v.z;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b64v3 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b64v3 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b64v3 v)
     {
         if (Vector256.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() == 0;
+            return Vector256.NoneWhereAllBitsSet(v.vector);
         return !v.x && !v.y && !v.z;
     }
 }
@@ -450,7 +482,7 @@ public static partial class math
     public static bool all([This] b64v4 v)
     {
         if (Vector256.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() >= 0xF;
+            return Vector256.AllWhereAllBitsSet(v.vector);
         return v.x && v.y && v.z && v.w;
     }
 
@@ -458,15 +490,19 @@ public static partial class math
     public static bool any([This] b64v4 v)
     {
         if (Vector256.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() != 0;
+            return Vector256.AnyWhereAllBitsSet(v.vector);
         return v.x || v.y || v.z || v.w;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] b64v4 v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] b64v4 v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] b64v4 v)
     {
         if (Vector256.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() == 0;
+            return Vector256.NoneWhereAllBitsSet(v.vector);
         return !v.x && !v.y && !v.z && !v.w;
     }
 }

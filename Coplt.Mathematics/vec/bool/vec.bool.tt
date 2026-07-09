@@ -66,8 +66,19 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() >= 0x<#= i == 3 ? "7" : "F" #>;
 <#
+                if (i is 3)
+                {
+#>
+            return Vector<#= bitSize #>.AllWhereAllBitsSet(v.vector | Vector<#= bitSize #>.Create(0, 0, 0, -1).As<#= typ.Type #>());
+<#
+                }
+                else
+                {
+#>
+            return Vector<#= bitSize #>.AllWhereAllBitsSet(v.vector);
+<#
+                }
             }
 #>
         return <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"v.{Typ.xyzw[n]}")) #>;
@@ -81,7 +92,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() != 0;
+            return Vector<#= bitSize #>.AnyWhereAllBitsSet(v.vector);
 <#
             }
 #>
@@ -89,14 +100,18 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse([This] <#= typeName #> v)
+    [Obsolete("use math.none(v)")]
+    public static bool allFalse([This] <#= typeName #> v) => none(v);
+
+    [MethodImpl(256 | 512)]
+    public static bool none([This] <#= typeName #> v)
     {
 <#
             if (typ.simd)
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return v.vector.ExtractMostSignificantBits() == 0;
+            return Vector<#= bitSize #>.NoneWhereAllBitsSet(v.vector);
 <#
             }
 #>
