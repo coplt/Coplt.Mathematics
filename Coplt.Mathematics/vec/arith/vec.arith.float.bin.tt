@@ -45,7 +45,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.IsInfinity(a.vector).AsUInt<#= bSize #>());
+            return new(Vector<#= bitSize #>.IsInfinity(a.vector).AsUInt<#= bSize #>());
 <#
             }
 #>
@@ -60,7 +60,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(Vector<#= bitSize #>.Equals(a.vector, Vector<#= bitSize #>.Create(<#= typ.simdComp #>.PositiveInfinity)).AsUInt<#= bSize #>());
+            return new(Vector<#= bitSize #>.IsPositiveInfinity(a.vector).AsUInt<#= bSize #>());
 <#
             }
 #>
@@ -75,7 +75,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(Vector<#= bitSize #>.Equals(a.vector, Vector<#= bitSize #>.Create(<#= typ.simdComp #>.NegativeInfinity)).AsUInt<#= bSize #>());
+            return new(Vector<#= bitSize #>.IsNegativeInfinity(a.vector).AsUInt<#= bSize #>());
 <#
             }
 #>

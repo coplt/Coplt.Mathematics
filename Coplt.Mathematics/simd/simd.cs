@@ -2086,59 +2086,6 @@ public static partial class simd
 
     #endregion
 
-    #region IsInfinity
-
-    [MethodImpl(256 | 512)]
-    public static Vector64<int> IsInfinity(Vector64<float> f)
-    {
-        var bits = f.AsInt32();
-        return Vector64.Equals(bits & Vector64.Create(int.MaxValue), Vector64.Create(0x7F800000));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector128<int> IsInfinity(Vector128<float> f)
-    {
-        var bits = f.AsInt32();
-        return Vector128.Equals(bits & Vector128.Create(int.MaxValue), Vector128.Create(0x7F800000));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector256<int> IsInfinity(Vector256<float> f)
-    {
-        var bits = f.AsInt32();
-        return Vector256.Equals(bits & Vector256.Create(int.MaxValue), Vector256.Create(0x7F800000));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector512<int> IsInfinity(Vector512<float> f)
-    {
-        var bits = f.AsInt32();
-        return Vector512.Equals(bits & Vector512.Create(int.MaxValue), Vector512.Create(0x7F800000));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector128<long> IsInfinity(Vector128<double> f)
-    {
-        var bits = f.AsInt64();
-        return Vector128.Equals(bits & Vector128.Create(long.MaxValue), Vector128.Create(0x7FF0000000000000L));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector256<long> IsInfinity(Vector256<double> f)
-    {
-        var bits = f.AsInt64();
-        return Vector256.Equals(bits & Vector256.Create(long.MaxValue), Vector256.Create(0x7FF0000000000000L));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static Vector512<long> IsInfinity(Vector512<double> f)
-    {
-        var bits = f.AsInt64();
-        return Vector512.Equals(bits & Vector512.Create(long.MaxValue), Vector512.Create(0x7FF0000000000000L));
-    }
-
-    #endregion
-
     #region CMin
 
     [MethodImpl(256 | 512)]

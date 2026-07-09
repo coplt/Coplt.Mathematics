@@ -20,7 +20,7 @@ public static partial class math
     public static b32v2 isInf([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.IsInfinity(a.vector).AsUInt32());
+            return new(Vector64.IsInfinity(a.vector).AsUInt32());
         return new(a.x.isInf(), a.y.isInf());
     }
 
@@ -28,7 +28,7 @@ public static partial class math
     public static b32v2 isPosInf([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(Vector64.Equals(a.vector, Vector64.Create(float.PositiveInfinity)).AsUInt32());
+            return new(Vector64.IsPositiveInfinity(a.vector).AsUInt32());
         return new(a.x.isPosInf(), a.y.isPosInf());
     }
 
@@ -36,7 +36,7 @@ public static partial class math
     public static b32v2 isNegInf([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(Vector64.Equals(a.vector, Vector64.Create(float.NegativeInfinity)).AsUInt32());
+            return new(Vector64.IsNegativeInfinity(a.vector).AsUInt32());
         return new(a.x.isNegInf(), a.y.isNegInf());
     }
 
@@ -329,7 +329,7 @@ public static partial class math
     public static b32v3 isInf([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.IsInfinity(a.vector).AsUInt32());
+            return new(Vector128.IsInfinity(a.vector).AsUInt32());
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf());
     }
 
@@ -337,7 +337,7 @@ public static partial class math
     public static b32v3 isPosInf([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(Vector128.Equals(a.vector, Vector128.Create(float.PositiveInfinity)).AsUInt32());
+            return new(Vector128.IsPositiveInfinity(a.vector).AsUInt32());
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf());
     }
 
@@ -345,7 +345,7 @@ public static partial class math
     public static b32v3 isNegInf([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(Vector128.Equals(a.vector, Vector128.Create(float.NegativeInfinity)).AsUInt32());
+            return new(Vector128.IsNegativeInfinity(a.vector).AsUInt32());
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf());
     }
 
@@ -640,7 +640,7 @@ public static partial class math
     public static b32v4 isInf([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.IsInfinity(a.vector).AsUInt32());
+            return new(Vector128.IsInfinity(a.vector).AsUInt32());
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
     }
 
@@ -648,7 +648,7 @@ public static partial class math
     public static b32v4 isPosInf([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(Vector128.Equals(a.vector, Vector128.Create(float.PositiveInfinity)).AsUInt32());
+            return new(Vector128.IsPositiveInfinity(a.vector).AsUInt32());
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf(), a.w.isPosInf());
     }
 
@@ -656,7 +656,7 @@ public static partial class math
     public static b32v4 isNegInf([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(Vector128.Equals(a.vector, Vector128.Create(float.NegativeInfinity)).AsUInt32());
+            return new(Vector128.IsNegativeInfinity(a.vector).AsUInt32());
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf(), a.w.isNegInf());
     }
 
@@ -953,7 +953,7 @@ public static partial class math
     public static b64v2 isInf([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.IsInfinity(a.vector).AsUInt64());
+            return new(Vector128.IsInfinity(a.vector).AsUInt64());
         return new(a.x.isInf(), a.y.isInf());
     }
 
@@ -961,7 +961,7 @@ public static partial class math
     public static b64v2 isPosInf([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(Vector128.Equals(a.vector, Vector128.Create(double.PositiveInfinity)).AsUInt64());
+            return new(Vector128.IsPositiveInfinity(a.vector).AsUInt64());
         return new(a.x.isPosInf(), a.y.isPosInf());
     }
 
@@ -969,7 +969,7 @@ public static partial class math
     public static b64v2 isNegInf([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(Vector128.Equals(a.vector, Vector128.Create(double.NegativeInfinity)).AsUInt64());
+            return new(Vector128.IsNegativeInfinity(a.vector).AsUInt64());
         return new(a.x.isNegInf(), a.y.isNegInf());
     }
 
@@ -1262,7 +1262,7 @@ public static partial class math
     public static b64v3 isInf([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.IsInfinity(a.vector).AsUInt64());
+            return new(Vector256.IsInfinity(a.vector).AsUInt64());
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf());
     }
 
@@ -1270,7 +1270,7 @@ public static partial class math
     public static b64v3 isPosInf([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(Vector256.Equals(a.vector, Vector256.Create(double.PositiveInfinity)).AsUInt64());
+            return new(Vector256.IsPositiveInfinity(a.vector).AsUInt64());
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf());
     }
 
@@ -1278,7 +1278,7 @@ public static partial class math
     public static b64v3 isNegInf([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(Vector256.Equals(a.vector, Vector256.Create(double.NegativeInfinity)).AsUInt64());
+            return new(Vector256.IsNegativeInfinity(a.vector).AsUInt64());
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf());
     }
 
@@ -1573,7 +1573,7 @@ public static partial class math
     public static b64v4 isInf([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.IsInfinity(a.vector).AsUInt64());
+            return new(Vector256.IsInfinity(a.vector).AsUInt64());
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
     }
 
@@ -1581,7 +1581,7 @@ public static partial class math
     public static b64v4 isPosInf([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(Vector256.Equals(a.vector, Vector256.Create(double.PositiveInfinity)).AsUInt64());
+            return new(Vector256.IsPositiveInfinity(a.vector).AsUInt64());
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf(), a.w.isPosInf());
     }
 
@@ -1589,7 +1589,7 @@ public static partial class math
     public static b64v4 isNegInf([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(Vector256.Equals(a.vector, Vector256.Create(double.NegativeInfinity)).AsUInt64());
+            return new(Vector256.IsNegativeInfinity(a.vector).AsUInt64());
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf(), a.w.isNegInf());
     }
 

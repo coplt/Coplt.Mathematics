@@ -1208,8 +1208,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector64<f32> Atan2(Vector64<f32> y, Vector64<f32> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = Vector64.IsInfinity(x).AsSingle();
+        var y_is_inf = Vector64.IsInfinity(y).AsSingle();
         var x_iz = Vector64.Equals(x, default);
         var y_iz = Vector64.Equals(y, default);
         var y_sign = y & -Vector64<f32>.Zero;
@@ -1269,8 +1269,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector128<f32> Atan2(Vector128<f32> y, Vector128<f32> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = Vector128.IsInfinity(x).AsSingle();
+        var y_is_inf = Vector128.IsInfinity(y).AsSingle();
         var x_iz = Vector128.Equals(x, default);
         var y_iz = Vector128.Equals(y, default);
         var y_sign = y & -Vector128<f32>.Zero;
@@ -1330,8 +1330,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector256<f32> Atan2(Vector256<f32> y, Vector256<f32> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = Vector256.IsInfinity(x).AsSingle();
+        var y_is_inf = Vector256.IsInfinity(y).AsSingle();
         var x_iz = Vector256.Equals(x, default);
         var y_iz = Vector256.Equals(y, default);
         var y_sign = y & -Vector256<f32>.Zero;
@@ -1391,8 +1391,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector512<f32> Atan2(Vector512<f32> y, Vector512<f32> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = Vector512.IsInfinity(x).AsSingle();
+        var y_is_inf = Vector512.IsInfinity(y).AsSingle();
         var x_iz = Vector512.Equals(x, default);
         var y_iz = Vector512.Equals(y, default);
         var y_sign = y & -Vector512<f32>.Zero;

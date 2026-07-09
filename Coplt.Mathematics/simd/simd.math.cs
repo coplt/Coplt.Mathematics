@@ -648,7 +648,7 @@ public static partial class simd_math
         xl = (xl & Vector64.Create(0x7FFFFF)) | Vector64.Create(0x7F << 23);
 
         var d = (xl.AsSingle() | Vector64<f32>.One) * Vector64.Create(2.0f / 3.0f);
-
+        
         #region Approx
 
         // A Taylor Series approximation of ln(x) that relies on the identity that ln(x) = 2*atan((x-1)/(x+1)).

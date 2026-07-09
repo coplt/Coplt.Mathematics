@@ -512,8 +512,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static <#= vt #> Atan2(<#= vt #> y, <#= vt #> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsSingle();
-        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_is_inf = <#= vector #>.IsInfinity(x).AsSingle();
+        var y_is_inf = <#= vector #>.IsInfinity(y).AsSingle();
         var x_iz = <#= vector #>.Equals(x, default);
         var y_iz = <#= vector #>.Equals(y, default);
         var y_sign = y & -<#= vt #>.Zero;

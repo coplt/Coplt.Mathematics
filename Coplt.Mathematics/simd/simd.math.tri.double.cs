@@ -1046,8 +1046,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector128<f64> Atan2(Vector128<f64> y, Vector128<f64> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsDouble();
-        var y_is_inf = simd.IsInfinity(y).AsDouble();
+        var x_is_inf = Vector128.IsInfinity(x).AsDouble();
+        var y_is_inf = Vector128.IsInfinity(y).AsDouble();
         var x_iz = Vector128.Equals(x, default);
         var y_iz = Vector128.Equals(y, default);
         var y_sign = y & -Vector128<f64>.Zero;
@@ -1128,8 +1128,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector256<f64> Atan2(Vector256<f64> y, Vector256<f64> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsDouble();
-        var y_is_inf = simd.IsInfinity(y).AsDouble();
+        var x_is_inf = Vector256.IsInfinity(x).AsDouble();
+        var y_is_inf = Vector256.IsInfinity(y).AsDouble();
         var x_iz = Vector256.Equals(x, default);
         var y_iz = Vector256.Equals(y, default);
         var y_sign = y & -Vector256<f64>.Zero;
@@ -1210,8 +1210,8 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static Vector512<f64> Atan2(Vector512<f64> y, Vector512<f64> x)
     {
-        var x_is_inf = simd.IsInfinity(x).AsDouble();
-        var y_is_inf = simd.IsInfinity(y).AsDouble();
+        var x_is_inf = Vector512.IsInfinity(x).AsDouble();
+        var y_is_inf = Vector512.IsInfinity(y).AsDouble();
         var x_iz = Vector512.Equals(x, default);
         var y_iz = Vector512.Equals(y, default);
         var y_sign = y & -Vector512<f64>.Zero;
