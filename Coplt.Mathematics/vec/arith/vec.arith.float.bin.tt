@@ -90,7 +90,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.Log(a.vector));
+            return new(Vector<#= bitSize #>.Log(a.vector));
 <#
             }
 #>
@@ -106,7 +106,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.Log2(a.vector));
+            return new(Vector<#= bitSize #>.Log2(a.vector));
 <#
             }
 #>
@@ -122,7 +122,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.Log(a.vector) / simd.Log(b.vector));
+            return new(Vector<#= bitSize #>.Log(a.vector) / Vector<#= bitSize #>.Log(b.vector));
 <#
             }
 #>
@@ -138,7 +138,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.Log10(a.vector));
+            return log2(a) * (0.6931471805599453094172321214581765680755001343602552541206800094<#= typ.suffix #> / 2.3025850929940456840179914546843642076011014886287729760333279009<#= typ.suffix #>);
 <#
             }
 #>
@@ -154,7 +154,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.Exp(a.vector));
+            return new(Vector<#= bitSize #>.Exp(a.vector));
 <#
             }
 #>
@@ -538,7 +538,7 @@ public static partial class math
     public static <#= typeName #> chgsign([This] <#= typeName #> a, <#= typeName #> b)
     {
         var sig = new <#= typ.maskType #><#= i #>(<#=
-                    typ.name switch { "half" => "0x8000", "float" => "0x8000_0000", "double" => "0x8000_0000_0000_0000", _ => "" } #>).asf();
+                typ.name switch { "half" => "0x8000", "float" => "0x8000_0000", "double" => "0x8000_0000_0000_0000", _ => "" } #>).asf();
         return (b & sig) ^ a;
     }
 }

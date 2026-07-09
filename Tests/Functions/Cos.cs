@@ -6,7 +6,7 @@ namespace Tests.Functions;
 
 public class TestCos
 {
-    [Test]
+    [Test, Parallelizable]
     public void TestFloat4([Random(-10f, 10.0f, 100)] float x)
     {
         var a = math.cos(new float4(x));
@@ -16,7 +16,7 @@ public class TestCos
         Assert.That(b, Is.EqualTo(a.x).Within(1).Ulps);
     }
 
-    [Test]
+    [Test, Parallelizable]
     public void TestDouble4([Random(-10, 10.0, 100)] double x)
     {
         var a = math.cos(new double4(x));

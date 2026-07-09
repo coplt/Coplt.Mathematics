@@ -4,23 +4,24 @@ using Coplt.Mathematics.Simd;
 
 namespace Tests.Functions;
 
-public class TestSin
+[Parallelizable]
+public class TestExp
 {
     [Test, Parallelizable]
-    public void TestFloat4([Random(-10f, 10.0f, 100)] float x)
+    public void TestLogFloat4([Random(0.000_1f, 1_000_000.0f, 1000)] float x)
     {
-        var a = math.sin(new float4(x));
-        var b = MathF.Sin(x);
+        var a = math.exp(new float4(x));
+        var b = MathF.Exp(x);
         Console.WriteLine($"{a}");
         Console.WriteLine($"{b}");
         Assert.That(b, Is.EqualTo(a.x).Within(1).Ulps);
     }
 
     [Test, Parallelizable]
-    public void TestDouble4([Random(-10, 10.0, 100)] double x)
+    public void TestLogDouble4([Random(0.000_1, 1_000_000.0, 1000)] double x)
     {
-        var a = math.sin(new double4(x));
-        var b = Math.Sin(x);
+        var a = math.exp(new double4(x));
+        var b = Math.Exp(x);
         Console.WriteLine($"{a}");
         Console.WriteLine($"{b}");
         Assert.That(b, Is.EqualTo(a.x).Within(1).Ulps);

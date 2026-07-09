@@ -19,18 +19,6 @@ hlsl-style linear algebra library
 > <a name="note-3"></a>
 > 3. Lower precision than C# system library
 
-### Function ULPs (vs C# system library)
-
-| function | float | double |
-|----------|-------|--------|
-| log2     | 1     | 1      |
-| asin     | 2     | 2      |
-| acos     | 2     | 2      |
-| atan     | 2     | 2      |
-| atan2    | 2     | 2      |
-
-- The function that needs to be rewritten due to insufficient precision is not in the table
-
 ## Todo
 
 - [ ] tests

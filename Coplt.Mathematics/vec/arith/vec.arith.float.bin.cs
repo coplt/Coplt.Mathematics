@@ -44,7 +44,7 @@ public static partial class math
     public static float2 log([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.Log(a.vector));
+            return new(Vector64.Log(a.vector));
         return new(a.x.log(), a.y.log());
     }
 
@@ -52,7 +52,7 @@ public static partial class math
     public static float2 log2([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.Log2(a.vector));
+            return new(Vector64.Log2(a.vector));
         return new(a.x.log2(), a.y.log2());
     }
 
@@ -60,7 +60,7 @@ public static partial class math
     public static float2 log([This] float2 a, float2 b)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.Log(a.vector) / simd.Log(b.vector));
+            return new(Vector64.Log(a.vector) / Vector64.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y));
     }
 
@@ -68,7 +68,7 @@ public static partial class math
     public static float2 log10([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.Log10(a.vector));
+            return log2(a) * (0.6931471805599453094172321214581765680755001343602552541206800094f / 2.3025850929940456840179914546843642076011014886287729760333279009f);
         return new(a.x.log10(), a.y.log10());
     }
 
@@ -76,7 +76,7 @@ public static partial class math
     public static float2 exp([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.Exp(a.vector));
+            return new(Vector64.Exp(a.vector));
         return new(a.x.exp(), a.y.exp());
     }
 
@@ -353,7 +353,7 @@ public static partial class math
     public static float3 log([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log(a.vector));
+            return new(Vector128.Log(a.vector));
         return new(a.x.log(), a.y.log(), a.z.log());
     }
 
@@ -361,7 +361,7 @@ public static partial class math
     public static float3 log2([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log2(a.vector));
+            return new(Vector128.Log2(a.vector));
         return new(a.x.log2(), a.y.log2(), a.z.log2());
     }
 
@@ -369,7 +369,7 @@ public static partial class math
     public static float3 log([This] float3 a, float3 b)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log(a.vector) / simd.Log(b.vector));
+            return new(Vector128.Log(a.vector) / Vector128.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z));
     }
 
@@ -377,7 +377,7 @@ public static partial class math
     public static float3 log10([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log10(a.vector));
+            return log2(a) * (0.6931471805599453094172321214581765680755001343602552541206800094f / 2.3025850929940456840179914546843642076011014886287729760333279009f);
         return new(a.x.log10(), a.y.log10(), a.z.log10());
     }
 
@@ -385,7 +385,7 @@ public static partial class math
     public static float3 exp([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Exp(a.vector));
+            return new(Vector128.Exp(a.vector));
         return new(a.x.exp(), a.y.exp(), a.z.exp());
     }
 
@@ -664,7 +664,7 @@ public static partial class math
     public static float4 log([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log(a.vector));
+            return new(Vector128.Log(a.vector));
         return new(a.x.log(), a.y.log(), a.z.log(), a.w.log());
     }
 
@@ -672,7 +672,7 @@ public static partial class math
     public static float4 log2([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log2(a.vector));
+            return new(Vector128.Log2(a.vector));
         return new(a.x.log2(), a.y.log2(), a.z.log2(), a.w.log2());
     }
 
@@ -680,7 +680,7 @@ public static partial class math
     public static float4 log([This] float4 a, float4 b)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log(a.vector) / simd.Log(b.vector));
+            return new(Vector128.Log(a.vector) / Vector128.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z), a.w.log(b.w));
     }
 
@@ -688,7 +688,7 @@ public static partial class math
     public static float4 log10([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log10(a.vector));
+            return log2(a) * (0.6931471805599453094172321214581765680755001343602552541206800094f / 2.3025850929940456840179914546843642076011014886287729760333279009f);
         return new(a.x.log10(), a.y.log10(), a.z.log10(), a.w.log10());
     }
 
@@ -696,7 +696,7 @@ public static partial class math
     public static float4 exp([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Exp(a.vector));
+            return new(Vector128.Exp(a.vector));
         return new(a.x.exp(), a.y.exp(), a.z.exp(), a.w.exp());
     }
 
@@ -977,7 +977,7 @@ public static partial class math
     public static double2 log([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log(a.vector));
+            return new(Vector128.Log(a.vector));
         return new(a.x.log(), a.y.log());
     }
 
@@ -985,7 +985,7 @@ public static partial class math
     public static double2 log2([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log2(a.vector));
+            return new(Vector128.Log2(a.vector));
         return new(a.x.log2(), a.y.log2());
     }
 
@@ -993,7 +993,7 @@ public static partial class math
     public static double2 log([This] double2 a, double2 b)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log(a.vector) / simd.Log(b.vector));
+            return new(Vector128.Log(a.vector) / Vector128.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y));
     }
 
@@ -1001,7 +1001,7 @@ public static partial class math
     public static double2 log10([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Log10(a.vector));
+            return log2(a) * (0.6931471805599453094172321214581765680755001343602552541206800094 / 2.3025850929940456840179914546843642076011014886287729760333279009);
         return new(a.x.log10(), a.y.log10());
     }
 
@@ -1009,7 +1009,7 @@ public static partial class math
     public static double2 exp([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.Exp(a.vector));
+            return new(Vector128.Exp(a.vector));
         return new(a.x.exp(), a.y.exp());
     }
 
@@ -1286,7 +1286,7 @@ public static partial class math
     public static double3 log([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Log(a.vector));
+            return new(Vector256.Log(a.vector));
         return new(a.x.log(), a.y.log(), a.z.log());
     }
 
@@ -1294,7 +1294,7 @@ public static partial class math
     public static double3 log2([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Log2(a.vector));
+            return new(Vector256.Log2(a.vector));
         return new(a.x.log2(), a.y.log2(), a.z.log2());
     }
 
@@ -1302,7 +1302,7 @@ public static partial class math
     public static double3 log([This] double3 a, double3 b)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Log(a.vector) / simd.Log(b.vector));
+            return new(Vector256.Log(a.vector) / Vector256.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z));
     }
 
@@ -1310,7 +1310,7 @@ public static partial class math
     public static double3 log10([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Log10(a.vector));
+            return log2(a) * (0.6931471805599453094172321214581765680755001343602552541206800094 / 2.3025850929940456840179914546843642076011014886287729760333279009);
         return new(a.x.log10(), a.y.log10(), a.z.log10());
     }
 
@@ -1318,7 +1318,7 @@ public static partial class math
     public static double3 exp([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Exp(a.vector));
+            return new(Vector256.Exp(a.vector));
         return new(a.x.exp(), a.y.exp(), a.z.exp());
     }
 
@@ -1597,7 +1597,7 @@ public static partial class math
     public static double4 log([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Log(a.vector));
+            return new(Vector256.Log(a.vector));
         return new(a.x.log(), a.y.log(), a.z.log(), a.w.log());
     }
 
@@ -1605,7 +1605,7 @@ public static partial class math
     public static double4 log2([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Log2(a.vector));
+            return new(Vector256.Log2(a.vector));
         return new(a.x.log2(), a.y.log2(), a.z.log2(), a.w.log2());
     }
 
@@ -1613,7 +1613,7 @@ public static partial class math
     public static double4 log([This] double4 a, double4 b)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Log(a.vector) / simd.Log(b.vector));
+            return new(Vector256.Log(a.vector) / Vector256.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z), a.w.log(b.w));
     }
 
@@ -1621,7 +1621,7 @@ public static partial class math
     public static double4 log10([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Log10(a.vector));
+            return log2(a) * (0.6931471805599453094172321214581765680755001343602552541206800094 / 2.3025850929940456840179914546843642076011014886287729760333279009);
         return new(a.x.log10(), a.y.log10(), a.z.log10(), a.w.log10());
     }
 
@@ -1629,7 +1629,7 @@ public static partial class math
     public static double4 exp([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.Exp(a.vector));
+            return new(Vector256.Exp(a.vector));
         return new(a.x.exp(), a.y.exp(), a.z.exp(), a.w.exp());
     }
 
