@@ -303,7 +303,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.Sin(a.vector));
+            return new(Vector<#= bitSize #>.Sin(a.vector));
 <#
             }
 #>
@@ -318,7 +318,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.Cos(a.vector));
+            return new(Vector<#= bitSize #>.Cos(a.vector));
 <#
             }
 #>
@@ -334,7 +334,7 @@ public static partial class math
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
         {
-            var (sin, cos) = simd.SinCos(a.vector);
+            var (sin, cos) = Vector<#= bitSize #>.SinCos(a.vector);
             return (new(sin), new(cos));
         }
 <#
@@ -357,7 +357,7 @@ public static partial class math
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
         {
-            (sin.vector, cos.vector) = simd.SinCos(a.vector);
+            (sin.vector, cos.vector) = Vector<#= bitSize #>.SinCos(a.vector);
             return;
         }
 <#
