@@ -17,6 +17,7 @@
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
@@ -33,22 +34,26 @@
     </ItemGroup>
 
     <ItemGroup>
-        <TextTemplate Include="**\*.tt"/>
+        <TextTemplate Include="**\*.tt" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj"
+            OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Polyfill" Version="11.4.0">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+        <PackageReference Include="Polyfill" Version="11.4.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <!--    Inputs="@(TextTemplate)" Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')"-->
-    <Target Name="TextTemplateTransform" BeforeTargets="PrepareForBuild" Inputs="@(TextTemplate)" Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')">
-        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool run t4 -v %(TextTemplate.Identity) -o %(TextTemplate.RelativeDir)%(TextTemplate.Filename).cs -I=%(TextTemplate.RelativeDir)" EnvironmentVariables="ProjectDir=$(ProjectDir)"/>
+    <Target Name="TextTemplateTransform" BeforeTargets="PrepareForBuild" Inputs="@(TextTemplate)"
+        Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')">
+        <Exec WorkingDirectory="$(ProjectDir)"
+            Command="dotnet tool run t4 -v %(TextTemplate.Identity) -o %(TextTemplate.RelativeDir)%(TextTemplate.Filename).cs -I=%(TextTemplate.RelativeDir)"
+            EnvironmentVariables="ProjectDir=$(ProjectDir)" />
     </Target>
 </Project>
