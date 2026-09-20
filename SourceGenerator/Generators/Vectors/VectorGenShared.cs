@@ -75,6 +75,27 @@ internal static class VectorGenShared
     }
 
     /// <summary>
+    /// The name of the field that keeps the value of a 64 bit vector. The <c>vector</c> property of the vector
+    /// reinterprets it, so the value of the vector does not have to go through a 64 bit vector type.
+    /// </summary>
+    public const string Vector64Field = "_vector";
+
+    /// <summary>
+    /// The 128 bit value of a 64 bit vector, its field is widened by the utility of the vector type.
+    /// </summary>
+    /// <param name="self">The prefix of the vector, empty for the vector itself</param>
+    /// <param name="scalar">The type of a component of the 128 bit register</param>
+    /// <returns>The raw simd expression of the value</returns>
+    public static string Load64(string self, string scalar) => $"{self}{Vector64Field}.Load64<{scalar}>()";
+
+    /// <summary>
+    /// Builds a 64 bit vector from a 128 bit expression, the lower 64 bits of it are the value of the vector.
+    /// </summary>
+    /// <param name="expr">The raw simd expression of the result</param>
+    /// <returns>The construction of the result</returns>
+    public static string From128(string expr) => $"new() {{ {Vector64Field} = ({expr}).AsUInt64()[0] }}";
+
+    /// <summary>
     /// Emits the header every generated vector file starts with.
     /// </summary>
     /// <param name="sb">The builder of the file</param>

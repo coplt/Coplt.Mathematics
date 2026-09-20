@@ -47,6 +47,10 @@ public partial class VectorGenerator
         // the component wise construction of the result, every component is cast back to the scalar type
         string NewCompWise(Func<int, string> get) => $"new({Join(n => $"({scalar})({get(n)})")})";
 
+        // the 128 bit value of a 64 bit vector and the construction of a 64 bit vector from a 128 bit one
+        string Load64(string self) => VectorGenShared.Load64(self, typ.simdComp);
+        string From128(string expr) => VectorGenShared.From128(expr);
+
         // the construction of a simd result, see VectorGenShared.Vector. Only the division and the remainder of a
         // 3 component floating point vector need the mask, they divide the zero padding lane by zero
         string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, size, expr, masked);
@@ -103,7 +107,7 @@ public partial class VectorGenerator
             sb.AppendLine($"    public static {type} operator -({type} a)");
             sb.AppendLine("    {");
             EmitAccel($"return {FromVector("-a.vector")};",
-                $"return {FromVector("Vector128.GetLower(-a.vector.ToVector128())")};",
+                $"return {From128($"-{Load64("a.")}")};",
                 $"return new({Join(n => $"{cast}(-a.{comp[n]})")});");
             sb.AppendLine("    }");
             sb.AppendLine();
@@ -122,25 +126,25 @@ public partial class VectorGenerator
         }
 
         EmitBinOp("+", $"return {FromVector("a.vector + b.vector")};",
-            $"return {FromVector("Vector128.GetLower(a.vector.ToVector128() + b.vector.ToVector128())")};",
+            $"return {From128($"{Load64("a.")} + {Load64("b.")}")};",
             NewCompWise(n => $"a.{comp[n]} + b.{comp[n]}"));
         EmitBinOp("-", $"return {FromVector("a.vector - b.vector")};",
-            $"return {FromVector("Vector128.GetLower(a.vector.ToVector128() - b.vector.ToVector128())")};",
+            $"return {From128($"{Load64("a.")} - {Load64("b.")}")};",
             NewCompWise(n => $"a.{comp[n]} - b.{comp[n]}"));
         EmitBinOp("*", $"return {FromVector("a.vector * b.vector")};",
-            $"return {FromVector("Vector128.GetLower(a.vector.ToVector128() * b.vector.ToVector128())")};",
+            $"return {From128($"{Load64("a.")} * {Load64("b.")}")};",
             NewCompWise(n => $"a.{comp[n]} * b.{comp[n]}"));
         // the padding lane of a 3 component integer vector is zero, dividing by it would throw
         EmitBinOp("/",
             $"return {FromVector("a.vector / b.vector" + (simd && i && size == 3 ? $".WithElement(3, {typ.one})" : ""), f)};",
             // the widened value of a 64 bit integer vector has zero padding lanes, the division by them would
             // throw, a floating point vector only produces a nan there and drops it again
-            i ? null : $"return {FromVector("Vector128.GetLower(a.vector.ToVector128() / b.vector.ToVector128())")};",
+            i ? null : $"return {From128($"{Load64("a.")} / {Load64("b.")}")};",
             NewCompWise(n => $"a.{comp[n]} / b.{comp[n]}"));
         // the integer remainder is derived from the division, so it goes through the guarded division operator
         if (f)
             EmitBinOp("%", $"return {FromVector("simd.Rem(a.vector, b.vector)", true)};",
-                $"return {FromVector("Vector128.GetLower(simd.Rem(a.vector.ToVector128(), b.vector.ToVector128()))")};",
+                $"return {From128($"simd.Rem({Load64("a.")}, {Load64("b.")})")};",
                 NewCompWise(n => $"a.{comp[n]} % b.{comp[n]}"));
         else
             EmitBinOp("%", "return a - (a / b) * b;", null,
@@ -161,7 +165,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public {type} abs()");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Abs(vector)")};",
-            $"return {FromVector("Vector128.GetLower(Vector128.Abs(vector.ToVector128()))")};",
+            $"return {From128($"Vector128.Abs({Load64("")})")};",
             $"return {NewCompWise(n => $"{comp[n]}.abs()")};");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -173,7 +177,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public {type} sign()");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"simd.{signOp}(vector)")};",
-            $"return {FromVector($"Vector128.GetLower(simd.{signOp}(vector.ToVector128()))")};",
+            $"return {From128($"simd.{signOp}({Load64("")})")};",
             $"return {NewCompWise(n => $"{comp[n]}.sign()")};");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -193,7 +197,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public {type} min(in {type} other)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Min(vector, other.vector)")};",
-            $"return {FromVector("Vector128.GetLower(Vector128.Min(vector.ToVector128(), other.vector.ToVector128()))")};",
+            $"return {From128($"Vector128.Min({Load64("")}, {Load64("other.")})")};",
             $"return {NewCompWise(n => $"{comp[n]}.min(other.{comp[n]})")};");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -203,7 +207,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public {type} max(in {type} other)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max(vector, other.vector)")};",
-            $"return {FromVector("Vector128.GetLower(Vector128.Max(vector.ToVector128(), other.vector.ToVector128()))")};",
+            $"return {From128($"Vector128.Max({Load64("")}, {Load64("other.")})")};",
             $"return {NewCompWise(n => $"{comp[n]}.max(other.{comp[n]})")};");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -213,7 +217,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public {type} clamp(in {type} min, in {type} max)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max(min.vector, {vecName}.Min(max.vector, vector))")};",
-            $"return {FromVector($"Vector128.GetLower(Vector128.Max(min.vector.ToVector128(), Vector128.Min(max.vector.ToVector128(), vector.ToVector128())))")};",
+            $"return {From128($"Vector128.Max({Load64("min.")}, Vector128.Min({Load64("max.")}, {Load64("")}))")};",
             $"return {NewCompWise(n => $"{comp[n]}.clamp(min.{comp[n]}, max.{comp[n]})")};");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -225,7 +229,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public {type} clamp({scalar} min, {scalar} max)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max({vecName}.Create(min), {vecName}.Min({vecName}.Create(max), vector))")};",
-            $"return {FromVector($"Vector128.GetLower(Vector128.Max(Vector128.Create(min), Vector128.Min(Vector128.Create(max), vector.ToVector128())))")};",
+            $"return {From128($"Vector128.Max(Vector128.Create(min), Vector128.Min(Vector128.Create(max), {Load64("")}))")};",
             $"return {NewCompWise(n => $"{comp[n]}.clamp(min, max)")};");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -248,8 +252,8 @@ public partial class VectorGenerator
                 ? $"return {FromVector($"{vecName}.Lerp(start.vector, end.vector, vector)")};"
                 : "return fma(this, end - start, start);",
             f
-                ? $"return {FromVector("Vector128.GetLower(Vector128.Lerp(start.vector.ToVector128(), end.vector.ToVector128(), vector.ToVector128()))")};"
-                : $"return {FromVector("Vector128.GetLower(vector.ToVector128() * (end.vector.ToVector128() - start.vector.ToVector128()) + start.vector.ToVector128())")};",
+                ? $"return {From128($"Vector128.Lerp({Load64("start.")}, {Load64("end.")}, {Load64("")})")};"
+                : $"return {From128($"{Load64("")} * ({Load64("end.")} - {Load64("start.")}) + {Load64("start.")}")};",
             "return start + this * (end - start);");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -260,8 +264,8 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return fma(new {type}(t), end - start, start);",
             f
-                ? $"return {FromVector($"Vector128.GetLower(simd.Fma(Vector128.Create({cast}t), end.vector.ToVector128() - start.vector.ToVector128(), start.vector.ToVector128()))")};"
-                : $"return {FromVector($"Vector128.GetLower(Vector128.Create({cast}t) * (end.vector.ToVector128() - start.vector.ToVector128()) + start.vector.ToVector128())")};",
+                ? $"return {From128($"simd.Fma(Vector128.Create({cast}t), {Load64("end.")} - {Load64("start.")}, {Load64("start.")})")};"
+                : $"return {From128($"Vector128.Create({cast}t) * ({Load64("end.")} - {Load64("start.")}) + {Load64("start.")}")};",
             $"return start + new {type}(t) * (end - start);");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -272,8 +276,8 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return fma(this, {cast}(end - start), new {type}(start));",
             f
-                ? $"return {FromVector($"Vector128.GetLower(simd.Fma(vector.ToVector128(), Vector128.Create({cast}(end - start)), Vector128.Create({cast}start)))")};"
-                : $"return {FromVector($"Vector128.GetLower(vector.ToVector128() * Vector128.Create({cast}(end - start)) + Vector128.Create({cast}start))")};",
+                ? $"return {From128($"simd.Fma({Load64("")}, Vector128.Create({cast}(end - start)), Vector128.Create({cast}start))")};"
+                : $"return {From128($"{Load64("")} * Vector128.Create({cast}(end - start)) + Vector128.Create({cast}start)")};",
             $"return new {type}(start) + this * new {type}({cast}(end - start));");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -370,15 +374,15 @@ public partial class VectorGenerator
 
         EmitFma("fma",
             f ? $"return {FromVector("simd.Fma(a.vector, b.vector, c.vector)")};" : "return (a * b) + c;",
-            f ? $"return {FromVector("Vector128.GetLower(simd.Fma(a.vector.ToVector128(), b.vector.ToVector128(), c.vector.ToVector128()))")};" : null,
+            f ? $"return {From128($"simd.Fma({Load64("a.")}, {Load64("b.")}, {Load64("c.")})")};" : null,
             "fma");
         EmitFma("fms",
             f ? $"return {FromVector("simd.Fms(a.vector, b.vector, c.vector)")};" : "return (a * b) - c;",
-            f ? $"return {FromVector("Vector128.GetLower(simd.Fms(a.vector.ToVector128(), b.vector.ToVector128(), c.vector.ToVector128()))")};" : null,
+            f ? $"return {From128($"simd.Fms({Load64("a.")}, {Load64("b.")}, {Load64("c.")})")};" : null,
             "fms");
         EmitFma("fnma",
             f ? $"return {FromVector("simd.Fnma(a.vector, b.vector, c.vector)")};" : "return c - (a * b);",
-            f ? $"return {FromVector("Vector128.GetLower(simd.Fnma(a.vector.ToVector128(), b.vector.ToVector128(), c.vector.ToVector128()))")};" : null,
+            f ? $"return {From128($"simd.Fnma({Load64("a.")}, {Load64("b.")}, {Load64("c.")})")};" : null,
             "fnma");
 
         sb.AppendLine("    #endregion");

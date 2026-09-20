@@ -97,8 +97,14 @@ public partial class VectorGenerator
             var masked = simd && dst == 3 && size == 4;
             // a 64 bit vector has no hardware support on every platform, the shuffle can widen it to 128 bits
             var wide = simd && reg == srcReg && srcReg == 64;
+            // a 64 bit vector keeps its value in a 64 bit field, the shuffle of it runs in a 128 bit register
+            var dstIs64 = simd && dstReg == 64;
 
             string FromVector(string expr) => VectorGenShared.Vector(simd, dst, expr, masked);
+
+            // the lower lanes of the register are the value of a 64 bit destination
+            string FromRegister(string expr) =>
+                dstIs64 && reg > 64 ? VectorGenShared.From128(expr) : FromVector(expr);
 
             sb.AppendLine();
             sb.AppendLine($"    #region {dst} components");
@@ -140,11 +146,14 @@ public partial class VectorGenerator
                 }
 
                 var fallback = $"new({VectorGenShared.Join(dst, i => comp[digits[i]])})";
-                // the value of a shorter vector is widened with the trailing lanes set to zero, so the shuffle
-                // can read them and the padding lane of a 3 component result stays zero
-                var shuffle = $"{vecName}.Shuffle({(widen ? $"vector.ToVector{reg}()" : "vector")}, " +
+                // the value of the vector is widened to the register of the shuffle, a 64 bit value is loaded
+                // from the field of the vector type and its upper lanes are zero
+                var widenExpr = srcReg == 64 ? VectorGenShared.Load64("", typ.simdComp) : $"vector.ToVector{reg}()";
+                var shuffle = $"{vecName}.Shuffle({(widen ? widenExpr : "vector")}, " +
                               $"{vecName}.Create({Args(idx)}))";
-                var expr = narrow ? $"{shuffle}.GetLower()" : shuffle;
+                // the lower lanes of the register are the value of a shorter vector, the value of a 64 bit
+                // vector is already the lower half of the wider register
+                var expr = narrow && dstReg > 64 ? $"{shuffle}.GetLower()" : shuffle;
                 // the inverse of the combination, it permutes the value in the same way as the combination
                 // permutes the vector, so a setter can assign the permuted value to the whole vector
                 var invName = VectorGenShared.Join(size, i => Typ.xyzw[inv[i]], "");
@@ -164,15 +173,16 @@ public partial class VectorGenerator
                     sb.AppendLine($"        {acc}");
                     sb.AppendLine("        {");
                     sb.AppendLine($"            if ({vecName}.IsHardwareAccelerated)");
-                    sb.AppendLine($"                return {FromVector(expr)};");
+                    sb.AppendLine($"                return {FromRegister(expr)};");
                     if (wide)
                     {
                         // a 64 bit vector is widened to a 128 bit one by the shuffle, it reads the two
                         // components from the lower lanes of the wider register
                         var wideIdx = new[] { idx[0], idx[1], 0, 0 };
                         sb.AppendLine("            if (Vector128.IsHardwareAccelerated)");
-                        sb.AppendLine($"                return {FromVector("Vector128.GetLower(" +
-                                                                           $"Vector128.Shuffle(vector.ToVector128(), Vector128.Create({Args(wideIdx)})))")};");
+                        sb.AppendLine($"                return {FromRegister(
+                            $"Vector128.GetLower(Vector128.Shuffle({VectorGenShared.Load64("", typ.simdComp)}, " +
+                            $"Vector128.Create({Args(wideIdx)})))")};");
                     }
 
                     sb.AppendLine($"            return {fallback};");
@@ -202,7 +212,13 @@ public partial class VectorGenerator
                         {
                             // the vector and the value are mixed by the mask, the lanes the combination does
                             // not write keep their component and the value is read through the inverse of it
-                            var setValue = $"value.vector{(dstReg == srcReg ? "" : $".ToVector{srcReg}()")}";
+                            // the value is widened to the register of the vector, a 64 bit value is loaded from
+                            // the field of the vector type instead of ToVector128
+                            var setValue = dstReg == srcReg
+                                ? "value.vector"
+                                : dstReg == 64
+                                    ? VectorGenShared.Load64("value.", typ.simdComp)
+                                    : $"value.vector.ToVector{srcReg}()";
                             sb.AppendLine($"            if ({srcVecName}.IsHardwareAccelerated)");
                             sb.AppendLine($"                vector = {srcVecName}.ConditionalSelect(" +
                                           $"{srcVecName}.Create({Args(sel, false)}).{AsMethod(typ.simdComp)}(), " +

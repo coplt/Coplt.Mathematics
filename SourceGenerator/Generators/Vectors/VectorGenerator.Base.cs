@@ -56,6 +56,10 @@ public partial class VectorGenerator
         // the construction of a simd result, see VectorGenShared.Vector
         string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, size, expr, masked);
 
+        // the 128 bit value of a 64 bit vector and the construction of a 64 bit vector from a 128 bit one
+        string Load64(string self) => VectorGenShared.Load64(self, typ.simdComp);
+        string From128(string expr) => VectorGenShared.From128(expr);
+
         // the mask that keeps the padding lane of a 3 component vector at zero
         var mask = !simd || size != 3
             ? null
@@ -244,7 +248,22 @@ public partial class VectorGenerator
         sb.AppendLine();
         sb.AppendLine("    #region fields");
         sb.AppendLine();
-        if (simd)
+        if (simd && bitSize == 64)
+        {
+            Doc($"The raw 64 bits of the vector, the <c>vector</c> property reinterprets them" +
+                "<para>Writing it directly <b>bypasses</b> the property</para>");
+            sb.AppendLine($"    internal ulong {VectorGenShared.Vector64Field};");
+            sb.AppendLine();
+            Doc($"The raw <see cref=\"{vecName}{{T}}\"/> value of the vector");
+            sb.AppendLine($"    public {vecType} vector");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        readonly get => Unsafe.BitCast<ulong, {vecType}>({VectorGenShared.Vector64Field});");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        set => {VectorGenShared.Vector64Field} = Unsafe.BitCast<{vecType}, ulong>(value);");
+            sb.AppendLine("    }");
+        }
+        else if (simd)
         {
             Doc($"The raw <see cref=\"{vecName}{{T}}\"/> value of the vector" +
                 "<para>Writing it directly <b>bypasses</b> the mask that keeps the padding lane of a 3 component vector at zero</para>");
@@ -496,10 +515,10 @@ public partial class VectorGenerator
         {
             string MaskExpr(string name, bool to64)
             {
-                var args = to64 ? "left.vector.ToVector128(), right.vector.ToVector128()" : "left.vector, right.vector";
+                var args = to64 ? $"{Load64("left.")}, {Load64("right.")}" : "left.vector, right.vector";
                 var expr = $"{name}.{vecOp}({args}).{maskAs}()";
                 if (invert) expr = $"~{expr}";
-                return to64 ? $"Vector128.GetLower({expr})" : expr;
+                return expr;
             }
 
             Doc(doc);
@@ -520,7 +539,7 @@ public partial class VectorGenerator
                 if (bitSize == 64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return {FromVector(MaskExpr("Vector128", true), masked)};");
+                    sb.AppendLine($"            return {From128(MaskExpr("Vector128", true))};");
                 }
             }
 
@@ -561,11 +580,11 @@ public partial class VectorGenerator
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                     if (lessOp == null)
-                        sb.AppendLine($"            return Vector128.{vecOp}(left.vector.ToVector128(), right.vector.ToVector128());");
+                        sb.AppendLine($"            return Vector128.{vecOp}({Load64("left.")}, {Load64("right.")});");
                     else
                         // the upper lanes of the widened operands are zero, only the low 64 bits of the mask are meaningful
                         sb.AppendLine(
-                            $"            return Vector64.EqualsAll(Vector128.GetLower(Vector128.{lessOp}(left.vector.ToVector128(), right.vector.ToVector128()).AsUInt32()), Vector64<uint>.AllBitsSet);");
+                            $"            return Vector128.{lessOp}({Load64("left.")}, {Load64("right.")}).AsUInt64()[0] == ulong.MaxValue;");
                 }
             }
 
@@ -580,7 +599,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitSimd(
             $"{vecName}.EqualsAll(vector, other.vector)",
-            "Vector128.EqualsAll(vector.ToVector128(), other.vector.ToVector128())",
+            $"Vector128.EqualsAll({Load64("")}, {Load64("other.")})",
             Join(i => $"{comp[i]} == other.{comp[i]}", " && "));
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -610,8 +629,8 @@ public partial class VectorGenerator
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                     sb.AppendLine("        {");
-                    sb.AppendLine("            if (Vector128.LessThanAny(vector.ToVector128(), other.vector.ToVector128())) return -1;");
-                    sb.AppendLine("            if (Vector128.GreaterThanAny(vector.ToVector128(), other.vector.ToVector128())) return 1;");
+                    sb.AppendLine($"            if (Vector128.LessThanAny({Load64("")}, {Load64("other.")})) return -1;");
+                    sb.AppendLine($"            if (Vector128.GreaterThanAny({Load64("")}, {Load64("other.")})) return 1;");
                     sb.AppendLine("            return 0;");
                     sb.AppendLine("        }");
                 }
@@ -663,13 +682,13 @@ public partial class VectorGenerator
             if (simd)
             {
                 var accel = $"a.vector {op} {vecRhs}";
-                var wide = $"Vector128.GetLower(a.vector.ToVector128() {op} {wideRhs})";
+                var wide = $"{Load64("a.")} {op} {wideRhs}";
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
                 sb.AppendLine($"            return {FromVector(accel)};");
                 if (bitSize == 64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return {FromVector(wide)};");
+                    sb.AppendLine($"            return {From128(wide)};");
                 }
             }
 
@@ -690,18 +709,18 @@ public partial class VectorGenerator
             if (bitSize == 64)
             {
                 sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                sb.AppendLine($"            return {FromVector("Vector128.GetLower(~a.vector.ToVector128())")};");
+                sb.AppendLine($"            return {From128($"~{Load64("a.")}")};");
             }
         }
 
         sb.AppendLine($"        return new({Join(i => $"a.{comp[i]}.BitNot()")});");
         sb.AppendLine("    }");
         sb.AppendLine();
-        EmitBitOp("&", type, "b.vector", "b.vector.ToVector128()",
+        EmitBitOp("&", type, "b.vector", Load64("b."),
             Join(i => $"a.{comp[i]}.BitAnd(b.{comp[i]})"));
-        EmitBitOp("|", type, "b.vector", "b.vector.ToVector128()",
+        EmitBitOp("|", type, "b.vector", Load64("b."),
             Join(i => $"a.{comp[i]}.BitOr(b.{comp[i]})"));
-        EmitBitOp("^", type, "b.vector", "b.vector.ToVector128()",
+        EmitBitOp("^", type, "b.vector", Load64("b."),
             Join(i => $"a.{comp[i]}.BitXor(b.{comp[i]})"));
         if (!bol)
         {
