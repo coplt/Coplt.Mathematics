@@ -1,11 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
         <TargetFramework>netstandard2.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <Nullable>enable</Nullable>
         <LangVersion>13</LangVersion>
+        <RazorLangVersion>3.0</RazorLangVersion>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <IsRoslynComponent>true</IsRoslynComponent>
@@ -13,6 +14,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.32" />
+        <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
         <PackageReference Include="Coplt.RoslynUtilities" Version="0.4.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,6 +29,13 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <RazorComponent Include="../Coplt.Mathematics/**/*.razor">
+            <Link>Templates\%(RecursiveDir)%(FileName)%(Extension)</Link>
+            <TargetPath>Templates\%(RecursiveDir)%(FileName)%(Extension)</TargetPath>
+        </RazorComponent>
     </ItemGroup>
 
 </Project>

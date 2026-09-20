@@ -1,0 +1,232 @@
+﻿// auto generated, do not modify manually
+
+namespace Coplt.Experimental.Mathematics;
+
+@code {
+    [Parameter]
+    public Typ Typ { get; set; }
+    [Parameter]
+    public int Size { get; set; }
+}
+
+@{
+    var byteSize = Typ.size * (Size is 3 ? 4 : Size);
+    var bitSize = 8 * byteSize;
+    var typeName = $"{Typ.name}{Size}";
+
+    var vectorName = $"Vector{bitSize}";
+    var vectorType = $"{vectorName}<{Typ.simdComp}>";
+}
+
+[Serializable]
+public partial struct @typeName
+{
+    #region Meta
+
+    public static bool IsSimdAccelerated { [MethodImpl(256)] get => @(Typ.simd ? "true" : "false"); }
+    public static bool Length { [MethodImpl(256)] get => @Size; }
+    public static bool SizeByte { [MethodImpl(256)] get => @byteSize; }
+    public static bool SizeBit { [MethodImpl(256)] get => @bitSize; }
+
+    #endregion // Meta
+
+    #region Constants
+
+    public static @typeName Zero { [MethodImpl(256)] get => default; }
+    public static @typeName One { [MethodImpl(256)] get => new(@Typ.one); }
+    public static @typeName Two { [MethodImpl(256)] get => new(@Typ.two); }
+
+    #endregion // Constants
+
+    #region Fields
+
+    @if (Typ.simd)
+    {
+        @:[CpuOnly]
+        @:public @vectorType vector;
+        
+        @:[MethodImpl(256), CpuOnly]
+        @:public static explicit operator @(vectorType)(@typeName self) => self.vector;
+        
+        for (var c = 0; c < Size; c++)
+        {
+            var comp = Typ.xyzw[c];
+            @:public @Typ.compType @comp
+            @:{
+            @:    [MethodImpl(256)] readonly get => vector.GetElement(@c);
+            @:    [MethodImpl(256)] set => vector = vector.WithElement(@c, value);
+            @:}
+        }
+    }
+    else
+    {
+        for (var c = 0; c < Size; c++)
+        {
+            var comp = Typ.xyzw[c];
+            @:private @Typ.compType _@comp
+            @:public @Typ.compType @comp
+            @:{
+            @:    [MethodImpl(256)] readonly get => _@comp;
+            @:    [MethodImpl(256)] set => _@comp = value;
+            @:}
+        }
+        if (Size == 3)
+        {
+            @:private @Typ.compType _align;
+        }
+    }
+
+    @for (var c = 0; c < Size; c++)
+    {
+        var xyzw = Typ.xyzw[c];
+        var rgba = Typ.rgba[c];
+        @:public @Typ.compType @rgba
+        @:{
+        @:    [MethodImpl(256)] readonly get => @xyzw;
+        @:    [MethodImpl(256)] set => @xyzw = value;
+        @:}
+    }
+
+    #endregion // Fields
+
+    #region Ctor
+
+    @if (Typ.simd)
+    {
+        @:[MethodImpl(256), CpuOnly]
+        @:public @(typeName)(@vectorType vector) => this.vector = vector 
+            @if (Size == 3) { 
+                @: & @(vectorName).Create(-1, -1, -1, 0).As@(Typ.Type)()
+            };
+    }
+
+    [MethodImpl(256)]
+    public @(typeName)(@(Enumerable.Range(0, Size).Select(n => $"{Typ.compType} {Typ.xyzw[n]}").Join(","))
+    {
+        @if(Typ.simd) 
+        {
+            @:vector = @(vectorName).Create(@(Enumerable.Range(0, Size).Select(n => $"{Typ.xyzw[n]}").Join(","))
+                if (Size == 3) { 
+                    @: , default
+                }
+            @:);
+        }
+        else
+        {
+            for (var c = 0; c < Size; c++)
+            {
+                var comp = Typ.xyzw[c];
+                @: this.@comp = @comp;
+            }
+        }
+    }
+
+    [MethodImpl(256)]
+    public @(typeName)(@Typ.compType broadcast)
+    {
+        @if (Typ.simd)
+        {
+            if (Size == 3)
+            {
+                @:vector = @(vectorName).Create(broadcast);
+            }
+            else
+            {
+                @:vector = @(vectorName).Create((@Typ.shuffleCast) broadcast, broadcast, broadcast, default);
+            }
+        }
+        else
+        {
+            for (var c = 0; c < Size; c++)
+            {
+                var comp = Typ.xyzw[c];
+                @: @comp = broadcast;
+            }
+        }
+    }
+
+    [MethodImpl(256)]
+    public static implicit operator @(typeName)(@Typ.compType broadcast) => new(broadcast);
+    
+    [MethodImpl(256)]
+    public static @(typeName) Broadcast(@Typ.compType scalar) => new(scalar);
+    
+    [MethodImpl(256)]
+    public static @(typeName) Scalar(@Typ.compType scalar)
+    {
+        @if (Typ.simd)
+        {
+            @:return new(@(vectorName).CreateScalar(scalar));
+        }
+        else
+        {
+            @:return new() { x = scalar };
+        }
+    }
+
+    [MethodImpl(256)]
+    public static @(typeName) Load(ReadOnlySpan &lt; @Typ.compType > span) => new(span);
+
+    [MethodImpl(256)]
+    public @(typeName)(ReadOnlySpan &lt; @Typ.compType > span)
+    {
+        @if (Typ.simd)
+        {
+            @:vector = @(vectorName).LoadUnsafe(in MemoryMarshal.Cast< @Typ.compType, @Typ.simdComp >(span)[0])
+            if (Size == 3)
+            {
+                @: & @(vectorName).Create(-1, -1, -1, 0).As@(Typ.Type)()
+            }
+            ;
+        }
+        else
+        {
+            for (var c = 0; c < Size; c++)
+            {
+                var comp = Typ.xyzw[c];
+                @: @comp = span[@c];
+            }
+        }
+    }
+
+    [MethodImpl(256)]
+    public static unsafe @(typeName) Load(@Typ.compType* ptr) => new(ptr);
+
+    [MethodImpl(256)]
+    public unsafe @(typeName)(@Typ.compType* ptr)
+    {
+        @if (Typ.simd)
+        {
+            @:vector = @(vectorName).Load(( @Typ.simdComp * ) ptr)
+            if (Size == 3)
+            {
+                @: & @(vectorName).Create(-1, -1, -1, 0).As@(Typ.Type)()
+            }
+            ;
+        }
+        else
+        {
+            for (var c = 0; c < Size; c++)
+            {
+                var comp = Typ.xyzw[c];
+                @: @comp = ptr[@c];
+            }
+        }
+    }
+
+    #endregion // Ctor
+
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(@(Enumerable.Range(0, Size).Select(n => $"out {Typ.compType} {Typ.xyzw[n]}").Join(","))
+    {
+        @for (var c = 0; c < Size; c++)
+        {
+            var comp = Typ.xyzw[c];
+            @: @comp = this.@comp;
+        }
+    }
+    
+    #endregion // Deconstruct
+}

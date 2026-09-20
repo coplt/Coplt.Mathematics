@@ -1,12 +1,12 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
-public interface IVector<Self, Scalar> :
-    IEquatable<Self>, IComparable<Self>, IComparable,
-    IComparisonOperators<Self, Self, bool>,
-    IBitwiseOperators<Self, Self, Self>,
-    IShiftOperators<Self, Self, Scalar>
-    where Self : unmanaged, IVector<Self, Scalar>
-    where Scalar : unmanaged
+public interface IVector<TSelf, TScalar> :
+    IEquatable<TSelf>, IComparable<TSelf>, IComparable,
+    IComparisonOperators<TSelf, TSelf, bool>,
+    IBitwiseOperators<TSelf, TSelf, TSelf>,
+    IShiftOperators<TSelf, TSelf, TScalar>
+    where TSelf : unmanaged, IVector<TSelf, TScalar>
+    where TScalar : unmanaged
 {
     #region Meta
 
@@ -19,24 +19,24 @@ public interface IVector<Self, Scalar> :
 
     #region Constants
 
-    public static abstract Self Zero { get; }
-    public static abstract Self One { get; }
-    public static abstract Self Two { get; }
+    public static abstract TSelf Zero { get; }
+    public static abstract TSelf One { get; }
+    public static abstract TSelf Two { get; }
 
     #endregion
 
     #region Ctor
 
-    public static abstract Self CreateBroadcast(Scalar scalar);
-    public static abstract Self CreateScalar(Scalar scalar);
-    public static abstract Self Load(ReadOnlySpan<Scalar> span);
-    public static abstract Self Load(Scalar* ptr);
+    public static abstract TSelf Broadcast(TScalar scalar);
+    public static abstract TSelf Scalar(TScalar scalar);
+    public static abstract TSelf Load(ReadOnlySpan<TScalar> span);
+    public static abstract unsafe TSelf Load(TScalar* ptr);
 
     #endregion
 
     #region Index
 
-    public Scalar this[int index] { get; set; }
+    public TScalar this[int index] { get; set; }
 
     #endregion
 }
