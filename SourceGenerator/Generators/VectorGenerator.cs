@@ -200,6 +200,24 @@ public class VectorGenerator : IIncrementalGenerator
             sb.AppendLine($"        {attr}");
             sb.AppendLine($"        get => new(({scalar})({typ.two}));");
             sb.AppendLine("    }");
+            sb.AppendLine();
+            sb.AppendLine($"    public static {scalar} ScalarTwo");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => ({scalar})({typ.two});");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            sb.AppendLine($"    public static {scalar} ScalarZero");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine("        get => default;");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            sb.AppendLine($"    public static {scalar} ScalarOne");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => {typ.one};");
+            sb.AppendLine("    }");
         }
         sb.AppendLine();
         sb.AppendLine("    #endregion");
@@ -436,26 +454,38 @@ public class VectorGenerator : IIncrementalGenerator
         // emits the bool result of a comparison operator required by IComparisonOperators
         void EmitBoolOp(string op, string vecOp, string scalarOp)
         {
+            // the padding lane of a 3 component vector is zero on both sides, an all comparison over the whole
+            // vector would be false for it, so the mask is compared against the expected mask instead
+            var lessOp = vecOp switch
+            {
+                "LessThanAll" => "LessThan",
+                "GreaterThanAll" => "GreaterThan",
+                _ => null,
+            };
+            var expected = size != 3
+                ? $"{vecName}<{(typ.size == 4 ? "uint" : "ulong")}>.AllBitsSet"
+                : typ.size == 4
+                    ? $"{vecName}.Create(-1, -1, -1, 0).AsUInt32()"
+                    : $"{vecName}.Create(-1L, -1L, -1L, 0L).AsUInt64()";
+
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    static bool IComparisonOperators<{type}, {type}, bool>.operator {op}({type} left, {type} right)");
             sb.AppendLine("    {");
             if (simd)
             {
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
-                sb.AppendLine($"            return {vecName}.{vecOp}(left.vector, right.vector);");
+                if (lessOp == null)
+                    sb.AppendLine($"            return {vecName}.{vecOp}(left.vector, right.vector);");
+                else
+                    sb.AppendLine($"            return {vecName}.EqualsAll({vecName}.{lessOp}(left.vector, right.vector).{maskAs}(), {expected});");
                 if (bitSize == 64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    if (vecOp is "LessThanAll" or "GreaterThanAll")
-                    {
-                        // the upper lanes of the widened operands are zero, only the low 64 bits of the mask are meaningful
-                        var vec = vecOp == "LessThanAll" ? "LessThan" : "GreaterThan";
-                        sb.AppendLine($"            return Vector64.EqualsAll(Vector128.GetLower(Vector128.{vec}(left.vector.ToVector128(), right.vector.ToVector128()).AsUInt32()), Vector64<uint>.AllBitsSet);");
-                    }
-                    else
-                    {
+                    if (lessOp == null)
                         sb.AppendLine($"            return Vector128.{vecOp}(left.vector.ToVector128(), right.vector.ToVector128());");
-                    }
+                    else
+                        // the upper lanes of the widened operands are zero, only the low 64 bits of the mask are meaningful
+                        sb.AppendLine($"            return Vector64.EqualsAll(Vector128.GetLower(Vector128.{lessOp}(left.vector.ToVector128(), right.vector.ToVector128()).AsUInt32()), Vector64<uint>.AllBitsSet);");
                 }
             }
             sb.AppendLine($"        return {Join(i => $"left.{comp[i]} {scalarOp} right.{comp[i]}", " && ")};");

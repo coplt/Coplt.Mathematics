@@ -48,6 +48,21 @@ public interface INumberVector<TSelf, TScalar> :
     public static abstract TSelf One { get; }
     public static abstract TSelf Two { get; }
 
+    /// <summary>
+    /// The scalar zero
+    /// </summary>
+    public static abstract TScalar ScalarZero { get; }
+
+    /// <summary>
+    /// The scalar one
+    /// </summary>
+    public static abstract TScalar ScalarOne { get; }
+
+    /// <summary>
+    /// The scalar two
+    /// </summary>
+    public static abstract TScalar ScalarTwo { get; }
+
     #endregion
 }
 
