@@ -452,10 +452,26 @@ public partial class VectorGenerator
 
             InheritDoc();
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public {type} cross(in {type} other) => new(");
-            sb.AppendLine($"        ({scalar})(y * other.z - z * other.y),");
-            sb.AppendLine($"        ({scalar})(z * other.x - x * other.z),");
-            sb.AppendLine($"        ({scalar})(x * other.y - y * other.x));");
+            sb.AppendLine($"    public {type} cross(in {type} other)");
+            sb.AppendLine("    {");
+            // the cross product is the difference of the two products of the cyclically rotated operands. The
+            // rotation is done inside the register instead of through the swizzle members, so the member is a
+            // few intrinsics and does not wait for the members of the vector to be inlined. The lane a rotated
+            // operand reads from the padding lane is multiplied by the padding lane of the other side, so the
+            // rotation of the result keeps that lane zero and the result needs no mask.
+            sb.AppendLine("        // (a * b.yzx - a.yzx * b).yzx;");
+            var yzx = $"{typ.shuffleCast}1, {typ.shuffleCast}2, {typ.shuffleCast}0, {typ.shuffleCast}3";
+            var rotate = $"{vecName}.Shuffle(vector, {vecName}.Create({yzx}))";
+            var rotateOther = $"{vecName}.Shuffle(other.vector, {vecName}.Create({yzx}))";
+            var product = f
+                ? $"simd.Fnma({rotate}, other.vector, vector * {rotateOther})"
+                : $"vector * {rotateOther} - {rotate} * other.vector";
+            EmitAccel(
+                $"return {FromVector($"{vecName}.Shuffle({product}, {vecName}.Create({yzx}))")};",
+                null,
+                $"return new({Join(n => $"({scalar})({comp[(n + 1) % 3]} * other.{comp[(n + 2) % 3]} - " +
+                                        $"{comp[(n + 2) % 3]} * other.{comp[(n + 1) % 3]})")});");
+            sb.AppendLine("    }");
             sb.AppendLine();
 
             sb.AppendLine("    #endregion");

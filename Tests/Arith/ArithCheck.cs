@@ -310,7 +310,7 @@ internal static class ArithCheck
     /// reductions and the equality checks rely on it. <paramref name="padding"/> reads that lane.
     /// </summary>
     public static void PaddingStaysZero<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
+        where T : unmanaged, IVector3Arithmetic<T, TScalar>
         where TScalar : unmanaged, INumber<TScalar>
     {
         var one = TScalar.One;
@@ -344,6 +344,7 @@ internal static class ArithCheck
             StaysZero(T.fma(a, b, a), "fma");
             StaysZero(T.fms(a, b, a), "fms");
             StaysZero(T.fnma(a, b, a), "fnma");
+            StaysZero(a.cross(b), "cross");
         }
     }
 

@@ -7,7 +7,8 @@ namespace Coplt.Analyzers.Generators;
 
 /// <summary>
 /// Generates the vector structs described by <see cref="Typ"/>. The base members are emitted by
-/// <c>Gen</c> and the arithmetic members by <c>GenArith</c>, every part lives in its own file.
+/// <c>Gen</c>, the swizzle members by <c>GenSwizzle</c> and the arithmetic members by <c>GenArith</c>,
+/// every part lives in its own file.
 /// </summary>
 [Generator]
 public partial class VectorGenerator : IIncrementalGenerator
@@ -25,6 +26,10 @@ public partial class VectorGenerator : IIncrementalGenerator
                     ctx.AddSource(
                         $"{VecNamespace}.{typ.name}{size}.g.cs",
                         SourceText.From(Gen(typ, size), Encoding.UTF8));
+                    // the swizzle members implement the swizzle interfaces, they are emitted into their own file
+                    ctx.AddSource(
+                        $"{VecNamespace}.{typ.name}{size}.swizzle.g.cs",
+                        SourceText.From(GenSwizzle(typ, size), Encoding.UTF8));
                     // the arithmetic members implement the IVectorArithmetic interfaces, they are emitted
                     // into their own file so they stay separate from the members of the base type
                     if (typ.arith)

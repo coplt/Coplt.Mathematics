@@ -54,9 +54,11 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
             var digits = new StringBuilder(length);
             var xyzw = new StringBuilder(length);
             var rgba = new StringBuilder(length);
+            var indices = new int[length];
             for (var i = 0; i < length; i++)
             {
                 var index = combination >> (2 * (length - 1 - i)) & 3;
+                indices[i] = index;
                 digits.Append((char)('0' + index));
                 xyzw.Append(Typ.xyzw[index]);
                 rgba.Append(Typ.rgba[index]);
@@ -72,6 +74,22 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
             sb.AppendLine($"    public TOut {c} {{ get; }}");
             sb.AppendLine("}");
             sb.AppendLine();
+
+            // a combination with a repeated index cannot be written by any vector, so it never has a set
+            // interface, the setters of the interfaces that collect them keep the same condition
+            var distinct = true;
+            for (var i = 0; i < length && distinct; i++)
+            {
+                for (var j = i + 1; j < length; j++)
+                {
+                    if (indices[i] != indices[j]) continue;
+                    distinct = false;
+                    break;
+                }
+            }
+
+            if (!distinct) continue;
+
             sb.AppendLine($"public interface IVectorSetSwizzle{d}<in TIn>");
             sb.AppendLine("{");
             sb.AppendLine($"    public TIn {s} {{ set; }}");
