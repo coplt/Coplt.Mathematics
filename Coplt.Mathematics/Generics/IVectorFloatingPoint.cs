@@ -1,7 +1,8 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
 /// <summary>
-/// An arithmetic vector of floating point components, it adds the floating point math functions
+/// An <see cref="ISignedVectorArithmetic{Self,Scalar}"/> of floating point components, it adds the floating
+/// point math functions
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 /// <typeparam name="Scalar">The type of a single component</typeparam>
@@ -53,9 +54,8 @@ public interface IVectorFloatingPoint<Self, Scalar> :
     public Self mod(in Self other);
 
     /// <summary>
-    /// Splits the vector into its integral and its fractional part,
-    /// it returns the fractional part and stores the integral part into
-    /// <paramref name="i"/>
+    /// Splits the vector into its integral and its fractional part
+    /// <para>It returns the fractional part and stores the integral part into <paramref name="i"/></para>
     /// </summary>
     /// <param name="i">Receives the integral part</param>
     /// <returns>The fractional part</returns>
@@ -112,9 +112,9 @@ public interface IVectorFloatingPoint<Self, Scalar> :
     public Self saturate();
 
     /// <summary>
-    /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, this vector is the value,
-    /// the result is 0 when the value is below the minimum, 1 when it is above the maximum and a smooth
-    /// hermite curve in between
+    /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, this vector is the value
+    /// <para>The result is 0 when the value is below the minimum, 1 when it is above the maximum and a smooth
+    /// hermite curve in between</para>
     /// </summary>
     /// <param name="min">The value at 0</param>
     /// <param name="max">The value at 1</param>
@@ -122,8 +122,8 @@ public interface IVectorFloatingPoint<Self, Scalar> :
     public Self smoothstep(in Self min, in Self max);
 
     /// <summary>
-    /// Returns this vector reflected around the normal <paramref name="n"/>,
-    /// <paramref name="n"/> has to be normalized
+    /// Returns this vector reflected around the normal <paramref name="n"/>
+    /// <para><paramref name="n"/> <b>has to be</b> normalized</para>
     /// </summary>
     /// <param name="n">The normalized normal of the surface</param>
     /// <returns>The reflected vector</returns>
@@ -134,24 +134,24 @@ public interface IVectorFloatingPoint<Self, Scalar> :
     #region Project
 
     /// <summary>
-    /// Returns the projection of this vector onto <paramref name="onto"/>,
-    /// it is the component of this vector that is parallel to <paramref name="onto"/>
+    /// Returns the projection of this vector onto <paramref name="onto"/>
+    /// <para>It is the component of this vector that is parallel to <paramref name="onto"/></para>
     /// </summary>
-    /// <param name="onto">The vector to project onto, it does not have to be normalized</param>
+    /// <param name="onto">The vector to project onto, it does <b>not</b> have to be normalized</param>
     /// <returns>The projected vector</returns>
     public Self project(in Self onto);
 
     /// <summary>
-    /// Returns the projection of this vector onto the plane that has <paramref name="plane_normal"/> as its
-    /// normal, it is the component of this vector that is inside the plane
+    /// Returns the projection of this vector onto the plane that has <paramref name="plane_normal"/> as its normal
+    /// <para>It is the component of this vector that is inside the plane</para>
     /// </summary>
-    /// <param name="plane_normal">The normal of the plane, it does not have to be normalized</param>
+    /// <param name="plane_normal">The normal of the plane, it does <b>not</b> have to be normalized</param>
     /// <returns>The projected vector</returns>
     public Self project_on_plane(in Self plane_normal);
 
     /// <summary>
-    /// Returns the projection of this vector onto <paramref name="onto"/>, it is the same as
-    /// <see cref="project(in Self)"/> but <paramref name="onto"/> is assumed to be normalized
+    /// Returns the projection of this vector onto <paramref name="onto"/>
+    /// <para>It is the same as <see cref="project(in Self)"/> but <paramref name="onto"/> is assumed to be normalized</para>
     /// </summary>
     /// <param name="onto">The normalized vector to project onto</param>
     /// <returns>The projected vector</returns>
@@ -159,8 +159,8 @@ public interface IVectorFloatingPoint<Self, Scalar> :
 
     /// <summary>
     /// Returns the projection of this vector onto the plane that has <paramref name="plane_normal"/> as its
-    /// normal, it is the same as <see cref="project_on_plane(in Self)"/> but
-    /// <paramref name="plane_normal"/> is assumed to be normalized
+    /// normal, it is the same as <see cref="project_on_plane(in Self)"/> but <paramref name="plane_normal"/> is
+    /// assumed to be normalized
     /// </summary>
     /// <param name="plane_normal">The normalized normal of the plane</param>
     /// <returns>The projected vector</returns>

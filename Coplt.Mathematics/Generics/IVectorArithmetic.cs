@@ -1,7 +1,7 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
 /// <summary>
-/// A number vector that also supports the element wise arithmetic operators
+/// A <see cref="INumberVector{Self,Scalar}"/> that also supports the element wise arithmetic operators
 /// <c>+</c>, <c>-</c>, <c>*</c>, <c>/</c> and <c>%</c> and the common arithmetic helpers
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
@@ -26,7 +26,7 @@ public interface IVectorArithmetic<Self, Scalar> :
     public Self abs();
 
     /// <summary>
-    /// Returns -1, 0 or 1 for every component depending on its sign
+    /// Returns <c>-1</c>, <c>0</c> or <c>1</c> for every component depending on its sign
     /// </summary>
     /// <returns>The sign of every component</returns>
     public Self sign();
@@ -184,6 +184,7 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     public static abstract Self fma(in Self a, in Self b, in Self c);
+
     /// <summary>
     /// Fusion Subtraction and Multiplication
     /// <code>(a * b) - c</code>
@@ -192,6 +193,7 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     public static abstract Self fms(in Self a, in Self b, in Self c);
+
     /// <summary>
     /// Fusion Multiplication and Subtraction
     /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
@@ -200,6 +202,7 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     public static abstract Self fnma(in Self a, in Self b, in Self c);
+
     /// <summary>
     /// Fusion Multiplication and Subtraction
     /// <code>c - (a * b)</code>
@@ -209,6 +212,7 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// <param name="b">Multiplier b</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static virtual Self fsm(in Self c, in Self a, in Self b) => Self.fnma(a, b, c);
+
     /// <summary>
     /// Fusion Addition and Multiplication
     /// <code>c + (a * b)</code>
@@ -218,6 +222,7 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// <param name="b">Multiplier b</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static virtual Self fam(in Self c, in Self a, in Self b) => Self.fma(a, b, c);
+
     /// <summary>
     /// Fusion Addition and Multiplication
     /// <code>(a * b) + c</code>
@@ -251,15 +256,15 @@ public interface IVectorArithmetic<Self, Scalar> :
     public Scalar cmax();
 
     /// <summary>
-    /// Returns the smallest component, it is safe when the vector has a padding component
-    /// that is not part of the vector, it is slower than <see cref="cmin"/>
+    /// Returns the smallest component
+    /// <para>It is safe when the vector has a padding component that is not part of the vector, it is slower than <see cref="cmin"/></para>
     /// </summary>
     /// <returns>The smallest component</returns>
     public Scalar cmin_safe();
 
     /// <summary>
-    /// Returns the largest component, it is safe when the vector has a padding component
-    /// that is not part of the vector, it is slower than <see cref="cmax"/>
+    /// Returns the largest component
+    /// <para>It is safe when the vector has a padding component that is not part of the vector, it is slower than <see cref="cmax"/></para>
     /// </summary>
     /// <returns>The largest component</returns>
     public Scalar cmax_safe();
@@ -268,7 +273,7 @@ public interface IVectorArithmetic<Self, Scalar> :
 }
 
 /// <summary>
-/// An arithmetic vector that also has a negative operator
+/// An <see cref="IVectorArithmetic{Self,Scalar}"/> that also has a negative operator
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 /// <typeparam name="Scalar">The type of a single component</typeparam>
@@ -279,7 +284,7 @@ public interface ISignedVectorArithmetic<Self, Scalar> :
     where Scalar : unmanaged;
 
 /// <summary>
-/// An arithmetic vector of 3 components, it also has the cross product
+/// An <see cref="IVectorArithmetic{Self,Scalar}"/> of 3 components, it also has the cross product
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 /// <typeparam name="Scalar">The type of a single component</typeparam>
@@ -292,6 +297,7 @@ public interface IVector3Arithmetic<Self, Scalar> :
 
     /// <summary>
     /// Returns the cross product of the two vectors
+    /// <code>a.yzx * b.zxy - a.zxy * b.yzx</code>
     /// </summary>
     /// <param name="other">The other vector</param>
     /// <returns>The vector that is perpendicular to both vectors</returns>

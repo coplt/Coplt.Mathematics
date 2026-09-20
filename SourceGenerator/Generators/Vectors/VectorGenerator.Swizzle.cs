@@ -25,16 +25,11 @@ public partial class VectorGenerator
         var srcVecName = $"Vector{srcReg}";
         var srcLanes = srcReg / (8 * typ.size);
 
-        // the type parameters of the interfaces, the same sized type is the first one, a setter exists for a
-        // combination that is not longer than the vector because its indices have to be distinct
-        var getArgs = new List<string> { type };
-        var setArgs = new List<string> { type };
-        for (var d = 2; d <= 4; d++)
-        {
-            if (d == size) continue;
-            getArgs.Add($"{typ.name}{d}");
-            if (d < size) setArgs.Add($"{typ.name}{d}");
-        }
+        // the type parameters and the type arguments of the interfaces, the same sized type is the first one
+        var get = VectorGenShared.SwizzleTypes(typ, size, false);
+        var set = VectorGenShared.SwizzleTypes(typ, size, true);
+        var getArgs = get.Args;
+        var setArgs = set.Args;
 
         var sb = new StringBuilder();
 
@@ -77,10 +72,9 @@ public partial class VectorGenerator
             return b.ToString();
         }
 
+        // the documentation of the type is carried by the declaration of the base members, only one of the
+        // partial declarations of a type may have it
         VectorGenShared.FileHeader(sb, false, true);
-        sb.AppendLine("/// <summary>");
-        sb.AppendLine($"/// The swizzle members of {type}, they implement the swizzle interfaces of the vector");
-        sb.AppendLine("/// </summary>");
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine($"    IVectorGetSwizzleForVec{size}<{string.Join(", ", getArgs)}>,");
         sb.AppendLine($"    IVectorSetSwizzleForVec{size}<{string.Join(", ", setArgs)}>");

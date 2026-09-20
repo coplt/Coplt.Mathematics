@@ -68,6 +68,7 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
             var s = xyzw.ToString();
             var c = rgba.ToString();
 
+            sb.AppendLine($"/// <summary>The <c>{s}</c> and <c>{c}</c> swizzle, its type is <typeparamref name=\"TOut\"/></summary>");
             sb.AppendLine($"public interface IVectorGetSwizzle{d}<out TOut>");
             sb.AppendLine("{");
             sb.AppendLine($"    public TOut {s} {{ get; }}");
@@ -90,6 +91,7 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
 
             if (!distinct) continue;
 
+            sb.AppendLine($"/// <summary>The <c>{s}</c> and <c>{c}</c> swizzle, a vector assigns <typeparamref name=\"TIn\"/> to it</summary>");
             sb.AppendLine($"public interface IVectorSetSwizzle{d}<in TIn>");
             sb.AppendLine("{");
             sb.AppendLine($"    public TIn {s} {{ set; }}");
@@ -167,8 +169,9 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
         }
 
         sb.AppendLine("/// <summary>");
-        sb.AppendLine($"/// Every swizzle interface a {size} component vector has to implement, the type parameters");
-        sb.AppendLine("/// are the types of the combinations, the same sized type first and the other ones after it.");
+        sb.AppendLine($"/// Every swizzle interface a {size} component vector has to implement");
+        sb.AppendLine("/// <para>The first type parameter is the type of the same sized combination, the ones after it are");
+        sb.AppendLine("/// the types of the other sizes, from the short to the long</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine($"public interface IVector{kind}SwizzleForVec{size}<{string.Join(", ", parameters)}> :");
         for (var i = 0; i < members.Count; i++)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Coplt.Analyzers.Generators;
@@ -8,6 +9,71 @@ namespace Coplt.Analyzers.Generators;
 /// </summary>
 internal static class VectorGenShared
 {
+    /// <summary>
+    /// Returns the arithmetic interfaces the vector described by <paramref name="typ"/> implements: a signed
+    /// vector has the signed arithmetic, the other ones the plain arithmetic, and a 3 component vector also has
+    /// the cross product on top of it.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <returns>The name and the type arguments of every interface</returns>
+    public static List<(string Name, List<string> Args)> ArithInterfaces(Typ typ, int size)
+    {
+        var args = new List<string> { $"{typ.name}{size}", typ.compType };
+        var ifaces = new List<(string Name, List<string> Args)>();
+        if (typ.sig) ifaces.Add(("ISignedVectorArithmetic", args));
+        else if (size != 3) ifaces.Add(("IVectorArithmetic", args));
+        if (size == 3) ifaces.Add(("IVector3Arithmetic", args));
+        return ifaces;
+    }
+
+    /// <summary>
+    /// Returns the names of the type parameters and the type arguments of the interface that collects the
+    /// swizzle interfaces of a vector of <paramref name="size"/> components: the getters or the setters, the
+    /// same sized type is the first one and a setter only exists for a combination that is not longer than the
+    /// vector because its indices have to be distinct.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="set">True for the interface that collects the setters</param>
+    /// <returns>The name of every type parameter and the type argument of every one of them</returns>
+    public static (List<string> Params, List<string> Args) SwizzleTypes(Typ typ, int size, bool set)
+    {
+        var parameters = new List<string> { set ? "TIn" : "TSelf" };
+        var args = new List<string> { $"{typ.name}{size}" };
+        for (var d = 2; d <= 4; d++)
+        {
+            if (d == size) continue;
+            if (set && d > size) continue;
+            parameters.Add($"TVec{d}");
+            args.Add($"{typ.name}{d}");
+        }
+
+        return (parameters, args);
+    }
+
+    /// <summary>
+    /// Makes the reference to a generic interface. A reference cannot carry the type arguments of a constructed
+    /// interface, so the reference names the interface with the type parameters it declares and its text shows
+    /// the constructed interface.
+    /// </summary>
+    /// <param name="name">The name of the interface without its type arguments</param>
+    /// <param name="parameters">The names of the type parameters the interface declares</param>
+    /// <param name="args">The type arguments of the constructed interface</param>
+    /// <returns>The reference</returns>
+    public static string IfaceRef(string name, List<string> parameters, List<string> args)
+    {
+        // the arguments are shown in the text of the reference and every one of them is a reference of its own
+        var text = new StringBuilder();
+        for (var i = 0; i < args.Count; i++)
+        {
+            if (i != 0) text.Append(", ");
+            text.Append($"<see cref=\"{args[i]}\"/>");
+        }
+
+        return $"<see cref=\"{name}{{{string.Join(",", parameters)}}}\">{name}&lt;{text}&gt;</see>";
+    }
+
     /// <summary>
     /// Emits the header every generated vector file starts with.
     /// </summary>

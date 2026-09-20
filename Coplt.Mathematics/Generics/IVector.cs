@@ -15,8 +15,8 @@ public interface IVector<TSelf, TScalar> :
     #region Meta
 
     /// <summary>
-    /// True when the vector is backed by a hardware accelerated simd type, the operators of the vector still
-    /// work when it is false, they only fall back to the component wise implementation
+    /// True when the vector is backed by a hardware accelerated simd type
+    /// <para>The operators of the vector still work when it is false, they only fall back to the component wise implementation</para>
     /// </summary>
     public static abstract bool IsSimdAccelerated { get; }
 
@@ -26,12 +26,14 @@ public interface IVector<TSelf, TScalar> :
     public static abstract int Length { get; }
 
     /// <summary>
-    /// The size of the vector in bytes, a 3 component vector is padded to the size of a 4 component one
+    /// The size of the vector in bytes
+    /// <para>A 3 component vector is padded to the size of a 4 component one</para>
     /// </summary>
     public static abstract int SizeByte { get; }
 
     /// <summary>
-    /// The size of the vector in bits, a 3 component vector is padded to the size of a 4 component one
+    /// The size of the vector in bits
+    /// <para>A 3 component vector is padded to the size of a 4 component one</para>
     /// </summary>
     public static abstract int SizeBit { get; }
 
@@ -47,23 +49,24 @@ public interface IVector<TSelf, TScalar> :
     public static abstract TSelf Broadcast(TScalar scalar);
 
     /// <summary>
-    /// Creates a vector with only the x component set to <paramref name="scalar"/>, the other components are zero
+    /// Creates a vector with only the <c>x</c> component set to <paramref name="scalar"/>
+    /// <para>The other components are zero</para>
     /// </summary>
-    /// <param name="scalar">The value of the x component</param>
+    /// <param name="scalar">The value of the <c>x</c> component</param>
     /// <returns>The vector</returns>
     public static abstract TSelf Scalar(TScalar scalar);
 
     /// <summary>
-    /// Loads a vector from the beginning of <paramref name="span"/>, a simd backed vector reads a whole simd
-    /// register, so the span has to be at least as long as the padded vector
+    /// Loads a vector from the beginning of <paramref name="span"/>
+    /// <para>A simd backed vector reads a whole simd register, so the span has to be at least as long as the padded vector</para>
     /// </summary>
     /// <param name="span">The span to load from</param>
     /// <returns>The loaded vector</returns>
     public static abstract TSelf Load(ReadOnlySpan<TScalar> span);
 
     /// <summary>
-    /// Loads a vector from <paramref name="ptr"/>, a simd backed vector reads a whole simd register, so the
-    /// pointer has to point to at least as many components as the padded vector
+    /// Loads a vector from <paramref name="ptr"/>
+    /// <para>A simd backed vector reads a whole simd register, so the pointer has to point to at least as many components as the padded vector</para>
     /// </summary>
     /// <param name="ptr">The pointer to load from</param>
     /// <returns>The loaded vector</returns>
@@ -74,7 +77,8 @@ public interface IVector<TSelf, TScalar> :
     #region Index
 
     /// <summary>
-    /// Gets or sets the component at <paramref name="index"/>, 0 is x, 1 is y, 2 is z and 3 is w
+    /// Gets or sets the component at <paramref name="index"/>
+    /// <para>The index <c>0</c> is <c>x</c>, <c>1</c> is <c>y</c>, <c>2</c> is <c>z</c> and <c>3</c> is <c>w</c></para>
     /// </summary>
     /// <param name="index">The index of the component</param>
     /// <returns>The component</returns>
@@ -85,8 +89,8 @@ public interface IVector<TSelf, TScalar> :
 }
 
 /// <summary>
-/// A vector of numbers, it adds the numeric constants, the ordering operators and the shift operators
-/// to <see cref="IVector{TSelf,TScalar}"/>
+/// A <see cref="IVector{TSelf,TScalar}"/> of numbers, it adds the numeric constants, the ordering operators
+/// and the shift operators
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
@@ -116,17 +120,20 @@ public interface INumberVector<TSelf, TScalar> :
     public static abstract TSelf Two { get; }
 
     /// <summary>
-    /// The scalar zero, it is here because <typeparamref name="TScalar"/> is not constrained to a number interface
+    /// The scalar zero
+    /// <para>It is here because <typeparamref name="TScalar"/> is not constrained to a number interface</para>
     /// </summary>
     public static abstract TScalar ScalarZero { get; }
 
     /// <summary>
-    /// The scalar one, it is here because <typeparamref name="TScalar"/> is not constrained to a number interface
+    /// The scalar one
+    /// <para>It is here because <typeparamref name="TScalar"/> is not constrained to a number interface</para>
     /// </summary>
     public static abstract TScalar ScalarOne { get; }
 
     /// <summary>
-    /// The scalar two, it is here because <typeparamref name="TScalar"/> is not constrained to a number interface
+    /// The scalar two
+    /// <para>It is here because <typeparamref name="TScalar"/> is not constrained to a number interface</para>
     /// </summary>
     public static abstract TScalar ScalarTwo { get; }
 
@@ -134,7 +141,8 @@ public interface INumberVector<TSelf, TScalar> :
 }
 
 /// <summary>
-/// A vector of booleans, it is a mask, so it has no numeric constants, no ordering operators and no shift operators
+/// A <see cref="IVector{TSelf,TScalar}"/> of booleans, it is a mask
+/// <para>It has no numeric constants, no ordering operators and no shift operators</para>
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>

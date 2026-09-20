@@ -35,10 +35,7 @@ public partial class VectorGenerator
         var comp = VectorGenShared.Components(size);
 
         // a signed vector also has the negation operator, a 3 component vector also has the cross product
-        var ifaces = new List<string>();
-        if (sig) ifaces.Add($"ISignedVectorArithmetic<{type}, {scalar}>");
-        else if (size != 3) ifaces.Add($"IVectorArithmetic<{type}, {scalar}>");
-        if (size == 3) ifaces.Add($"IVector3Arithmetic<{type}, {scalar}>");
+        var ifaces = VectorGenShared.ArithInterfaces(typ, size);
 
         var sb = new StringBuilder();
 
@@ -77,14 +74,13 @@ public partial class VectorGenerator
             sb.AppendLine($"        {fallback}");
         }
 
+        // the documentation of the type is carried by the declaration of the base members, only one of the
+        // partial declarations of a type may have it
         VectorGenShared.FileHeader(sb, true);
-        sb.AppendLine("/// <summary>");
-        sb.AppendLine($"/// The arithmetic members of {type}, they implement {string.Join(" and ", ifaces)}");
-        sb.AppendLine("/// </summary>");
         sb.AppendLine($"public partial struct {type} :");
         for (var n = 0; n < ifaces.Count; n++)
         {
-            sb.AppendLine($"    {ifaces[n]}" + (n == ifaces.Count - 1 ? "" : ","));
+            sb.AppendLine($"    {ifaces[n].Name}<{string.Join(", ", ifaces[n].Args)}>" + (n == ifaces.Count - 1 ? "" : ","));
         }
 
         sb.AppendLine("{");
@@ -470,6 +466,7 @@ public partial class VectorGenerator
                 sb.AppendLine("        // padding lane of the result stays zero and the masking constructor is not needed, like in the");
                 sb.AppendLine("        // DirectX Math library and the standard library.");
             }
+
             var yzx = $"{typ.shuffleCast}1, {typ.shuffleCast}2, {typ.shuffleCast}0, {typ.shuffleCast}0";
             var zxy = $"{typ.shuffleCast}2, {typ.shuffleCast}0, {typ.shuffleCast}1, {typ.shuffleCast}0";
             var vYzx = $"{vecName}.Shuffle(vector, {vecName}.Create({yzx}))";

@@ -1,8 +1,8 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
 /// <summary>
-/// A floating point vector that can also produce a bool vector, it adds the checks for the special
-/// floating point values
+/// A <see cref="IVectorFloatingPointIeee754{Self,Scalar}"/> that can also produce a bool vector, it adds the
+/// checks for the special floating point values
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 /// <typeparam name="Scalar">The type of a single component</typeparam>
@@ -48,7 +48,7 @@ public interface IVectorFloatingPointIeee754BoolOps<Self, Scalar, out BoolVector
 }
 
 /// <summary>
-/// A floating point vector with the ieee 754 math functions
+/// A <see cref="IVectorFloatingPoint{Self,Scalar}"/> with the ieee 754 math functions
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 /// <typeparam name="Scalar">The type of a single component</typeparam>

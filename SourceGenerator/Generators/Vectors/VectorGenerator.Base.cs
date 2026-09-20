@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Coplt.Analyzers.Generators;
@@ -80,11 +81,48 @@ public partial class VectorGenerator
         // the members that implement one of the vector interfaces inherit the documentation from it
         void InheritDoc() => sb.AppendLine("    /// <inheritdoc/>");
 
-        VectorGenShared.FileHeader(sb, false);
+        // only one of the partial declarations of a type may carry the documentation of the type, so the
+        // documentation that names the interfaces of every part lives on the base members
+        var get = VectorGenShared.SwizzleTypes(typ, size, false);
+        var set = VectorGenShared.SwizzleTypes(typ, size, true);
+        var parts = new List<string>
+        {
+            "The base members implement " +
+            VectorGenShared.IfaceRef(iface, new List<string> { "TSelf", "TScalar" }, new List<string> { type, scalar }),
+        };
+        if (typ.arith)
+        {
+            var arith = new List<string>();
+            foreach (var i in VectorGenShared.ArithInterfaces(typ, size))
+            {
+                arith.Add(VectorGenShared.IfaceRef(i.Name, new List<string> { "Self", "Scalar" }, i.Args));
+            }
+
+            parts.Add($"the arithmetic members implement {string.Join(" and ", arith)}");
+        }
+
+        parts.Add("the swizzle members implement " +
+                  VectorGenShared.IfaceRef($"IVectorGetSwizzleForVec{size}", get.Params, get.Args) + " and " +
+                  VectorGenShared.IfaceRef($"IVectorSetSwizzleForVec{size}", set.Params, set.Args));
+
+        // the swizzle interfaces are referenced by the documentation and implemented by the swizzle members
+        VectorGenShared.FileHeader(sb, false, true);
         sb.AppendLine("/// <summary>");
-        sb.AppendLine($"/// {type} is a vector of {size} {scalar} components" +
-                      (size == 3 ? ", it is padded to 4 components" : "") +
-                      (simd ? ", it is backed by a hardware accelerated simd type" : ""));
+        sb.AppendLine($"/// <c>{type}</c> is a vector of {size} <see cref=\"{scalar}\"/> components");
+        if (size == 3 || simd)
+        {
+            sb.Append("/// <para>It is ");
+            if (size == 3)
+            {
+                sb.Append("padded to 4 components");
+                if (simd) sb.Append(" and it is ");
+            }
+
+            if (simd) sb.Append("backed by a hardware accelerated simd type");
+            sb.AppendLine("</para>");
+        }
+
+        sb.AppendLine($"/// <para>{string.Join(", ", parts)}</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("[Serializable]");
         sb.AppendLine($"public partial struct {type} :");
@@ -208,7 +246,8 @@ public partial class VectorGenerator
         sb.AppendLine();
         if (simd)
         {
-            Doc("The raw simd value of the vector, writing it directly bypasses the padding lane mask of a 3 component vector");
+            Doc($"The raw <see cref=\"{vecName}{{T}}\"/> value of the vector" +
+                "<para>Writing it directly <b>bypasses</b> the mask that keeps the padding lane of a 3 component vector at zero</para>");
             sb.AppendLine($"    public {vecType} vector;");
         }
         else
@@ -220,7 +259,7 @@ public partial class VectorGenerator
         sb.AppendLine();
         for (var i = 0; i < size; i++)
         {
-            Doc($"The {comp[i]} component");
+            Doc($"The <c>{comp[i]}</c> component");
             sb.AppendLine($"    public {scalar} {comp[i]}");
             sb.AppendLine("    {");
             sb.AppendLine($"        {attr}");
@@ -235,7 +274,7 @@ public partial class VectorGenerator
         {
             var xyzw = comp[i];
             var rgba = Typ.rgba[i];
-            Doc($"The {colorName[i]} component, it is the same as <c>{xyzw}</c>");
+            Doc($"The {colorName[i]} component, it is the same as <see cref=\"{xyzw}\"/>");
             sb.AppendLine($"    public {scalar} {rgba}");
             sb.AppendLine("    {");
             sb.AppendLine($"        {attr}");
@@ -258,9 +297,10 @@ public partial class VectorGenerator
         if (simd)
         {
             Doc(mask == null
-                ? "Creates a vector from a raw simd value"
-                : "Creates a vector from a raw simd value, the padding lane of a 3 component vector is set to zero");
-            DocParam("vector", "The raw simd value");
+                ? $"Creates a vector from a raw <see cref=\"{vecName}{{T}}\"/> value"
+                : $"Creates a vector from a raw <see cref=\"{vecName}{{T}}\"/> value" +
+                  "<para>The padding lane of a 3 component vector is set to zero</para>");
+            DocParam("vector", $"The raw <see cref=\"{vecName}{{T}}\"/> value");
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public {type}({vecType} vector) => this.vector = " +
                           (mask == null ? "vector;" : $"vector & {mask};"));
@@ -268,7 +308,7 @@ public partial class VectorGenerator
         }
 
         Doc("Creates a vector from its components");
-        for (var i = 0; i < size; i++) DocParam(comp[i], $"The {comp[i]} component");
+        for (var i = 0; i < size; i++) DocParam(comp[i], $"The <c>{comp[i]}</c> component");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public {type}({Join(i => $"{scalar} {comp[i]}")})");
         sb.AppendLine("    {");
@@ -311,8 +351,8 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} Broadcast({scalar} value) => new(value);");
         sb.AppendLine();
-        Doc($"Creates a vector with only the {comp[0]} component set to <paramref name=\"value\"/>, the other components are zero");
-        DocParam("value", $"The value of the {comp[0]} component");
+        Doc($"Creates a vector with only the <c>{comp[0]}</c> component set to <paramref name=\"value\"/><para>The other components are zero</para>");
+        DocParam("value", $"The value of the <c>{comp[0]}</c> component");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} Scalar({scalar} value) => new() {{ " +
                       (simd ? $"vector = {vecName}.CreateScalar({cast}value)" : $"{comp[0]} = value") + " };");
@@ -322,7 +362,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public static {type} Load(ReadOnlySpan<{scalar}> span) => new(span);");
         sb.AppendLine();
         Doc(simd
-            ? "Creates a vector from the beginning of <paramref name=\"span\"/>, it reads a whole simd register, so the span has to be at least as long as the padded vector"
+            ? "Creates a vector from the beginning of <paramref name=\"span\"/><para>It reads a whole simd register, so the span has to be at least as long as the padded vector</para>"
             : "Creates a vector from the beginning of <paramref name=\"span\"/>");
         DocParam("span", "The span to load from");
         sb.AppendLine($"    {attrCpu}");
@@ -345,7 +385,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public static unsafe {type} Load({scalar}* ptr) => new(ptr);");
         sb.AppendLine();
         Doc(simd
-            ? "Creates a vector from <paramref name=\"ptr\"/>, it reads a whole simd register, so the pointer has to point to at least as many components as the padded vector"
+            ? "Creates a vector from <paramref name=\"ptr\"/><para>It reads a whole simd register, so the pointer has to point to at least as many components as the padded vector</para>"
             : "Creates a vector from <paramref name=\"ptr\"/>");
         DocParam("ptr", "The pointer to load from");
         sb.AppendLine($"    {attrCpu}");
@@ -372,7 +412,7 @@ public partial class VectorGenerator
         sb.AppendLine("    #region deconstruct");
         sb.AppendLine();
         Doc("Deconstructs the vector into its components");
-        for (var i = 0; i < size; i++) DocParam(comp[i], $"Receives the {comp[i]} component");
+        for (var i = 0; i < size; i++) DocParam(comp[i], $"Receives the <c>{comp[i]}</c> component");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly void Deconstruct({Join(i => $"out {scalar} {comp[i]}")})");
         sb.AppendLine("    {");
@@ -465,7 +505,7 @@ public partial class VectorGenerator
             Doc(doc);
             DocParam("left", "The left vector");
             DocParam("right", "The right vector");
-            sb.AppendLine("    /// <returns>A mask with the result of every component</returns>");
+            sb.AppendLine("    /// <returns>A mask with the result of <i>every</i> component</returns>");
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public static {boolType} operator {op}({type} left, {type} right)");
             sb.AppendLine("    {");
