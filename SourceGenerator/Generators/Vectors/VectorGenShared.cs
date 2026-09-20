@@ -43,6 +43,18 @@ internal static class VectorGenShared
     }
 
     /// <summary>
+    /// Builds a result from a raw simd expression. The constructor masks the padding lane of a 3 component
+    /// vector, an expression that keeps that lane at zero writes the field directly and skips the mask.
+    /// </summary>
+    /// <param name="simd">True when the vector is backed by a hardware accelerated simd type</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="expr">The raw simd expression of the result</param>
+    /// <param name="masked">True when the expression can leave something else than zero in the padding lane</param>
+    /// <returns>The construction of the result</returns>
+    public static string Vector(bool simd, int size, string expr, bool masked = false) =>
+        simd && size == 3 && masked ? $"new({expr})" : $"new() {{ vector = {expr} }}";
+
+    /// <summary>
     /// Joins the part of every component with <paramref name="sep"/>.
     /// </summary>
     /// <param name="size">The number of components of the vector</param>

@@ -52,6 +52,9 @@ public partial class VectorGenerator
             ? $"{vecName}.Create({first}, value, value, default)"
             : $"{vecName}.Create({first})";
 
+        // the construction of a simd result, see VectorGenShared.Vector
+        string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, size, expr, masked);
+
         // the mask that keeps the padding lane of a 3 component vector at zero
         var mask = !simd || size != 3
             ? null
@@ -466,14 +469,18 @@ public partial class VectorGenerator
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public static {boolType} operator {op}({type} left, {type} right)");
             sb.AppendLine("    {");
+            // the padding lane is zero on both sides, so a comparison over the whole vector of it is false, the
+            // operators that keep false there write the field directly, the ones that turn it into true need the
+            // mask because the mask of every component is compared against theirs by the bool vector checks
+            var masked = op is "==" or "<=" or ">=";
             if (simd)
             {
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
-                sb.AppendLine($"            return new({MaskExpr(vecName, false)});");
+                sb.AppendLine($"            return {FromVector(MaskExpr(vecName, false), masked)};");
                 if (bitSize == 64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return new({MaskExpr("Vector128", true)});");
+                    sb.AppendLine($"            return {FromVector(MaskExpr("Vector128", true), masked)};");
                 }
             }
 
@@ -612,14 +619,17 @@ public partial class VectorGenerator
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public static {type} operator {op}({type} a, {rhs} b)");
             sb.AppendLine("    {");
+            // the padding lane is zero on both sides and every bitwise operator keeps it zero
             if (simd)
             {
+                var accel = $"a.vector {op} {vecRhs}";
+                var wide = $"Vector128.GetLower(a.vector.ToVector128() {op} {wideRhs})";
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
-                sb.AppendLine($"            return new(a.vector {op} {vecRhs});");
+                sb.AppendLine($"            return {FromVector(accel)};");
                 if (bitSize == 64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return new(Vector128.GetLower(a.vector.ToVector128() {op} {wideRhs}));");
+                    sb.AppendLine($"            return {FromVector(wide)};");
                 }
             }
 
@@ -634,12 +644,13 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         if (simd)
         {
+            // the complement of the zero padding lane is all ones, this one keeps the mask
             sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
-            sb.AppendLine("            return new(~a.vector);");
+            sb.AppendLine($"            return {FromVector("~a.vector", true)};");
             if (bitSize == 64)
             {
                 sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                sb.AppendLine("            return new(Vector128.GetLower(~a.vector.ToVector128()));");
+                sb.AppendLine($"            return {FromVector("Vector128.GetLower(~a.vector.ToVector128())")};");
             }
         }
 

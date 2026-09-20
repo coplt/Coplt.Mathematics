@@ -50,11 +50,9 @@ public partial class VectorGenerator
         // the component wise construction of the result, every component is cast back to the scalar type
         string NewCompWise(Func<int, string> get) => $"new({Join(n => $"({scalar})({get(n)})")})";
 
-        // builds a result from a raw simd expression. The constructor masks the padding lane of a 3 component
-        // vector, an expression that keeps that lane zero writes the field directly and skips the mask, only the
-        // division and the remainder of a 3 component floating point vector need it, they divide zero by zero
-        string FromVector(string expr, bool masked = false) =>
-            simd && size == 3 && masked ? $"new({expr})" : $"new() {{ vector = {expr} }}";
+        // the construction of a simd result, see VectorGenShared.Vector. Only the division and the remainder of a
+        // 3 component floating point vector need the mask, they divide the zero padding lane by zero
+        string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, size, expr, masked);
 
         // emits the accelerated simd fast path, the scalar expression is used when nothing is accelerated,
         // every statement includes the return. The vector type is fixed, a 64 bit vector can only reach 128 bit
