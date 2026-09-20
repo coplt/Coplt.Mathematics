@@ -30,7 +30,7 @@ public interface IVector<TSelf, TScalar> :
     public static abstract TSelf Broadcast(TScalar scalar);
     public static abstract TSelf Scalar(TScalar scalar);
     public static abstract TSelf Load(ReadOnlySpan<TScalar> span);
-    public static abstract TSelf Load(TScalar* ptr);
+    public static abstract unsafe TSelf Load(TScalar* ptr);
 
     #endregion
 
