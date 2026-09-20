@@ -1,5 +1,11 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
+/// <summary>
+/// A number vector that also supports the element wise arithmetic operators
+/// <c>+</c>, <c>-</c>, <c>*</c>, <c>/</c> and <c>%</c> and the common arithmetic helpers
+/// </summary>
+/// <typeparam name="Self">The vector type itself</typeparam>
+/// <typeparam name="Scalar">The type of a single component</typeparam>
 public interface IVectorArithmetic<Self, Scalar> :
     INumberVector<Self, Scalar>,
     IUnaryPlusOperators<Self, Self>,
@@ -13,43 +19,157 @@ public interface IVectorArithmetic<Self, Scalar> :
 {
     #region Sign
 
+    /// <summary>
+    /// Returns the absolute value of every component
+    /// </summary>
+    /// <returns>The absolute value of the vector</returns>
     public Self abs();
+
+    /// <summary>
+    /// Returns -1, 0 or 1 for every component depending on its sign
+    /// </summary>
+    /// <returns>The sign of every component</returns>
     public Self sign();
 
     #endregion
 
     #region Min Max Clamp
 
+    /// <summary>
+    /// Returns the smaller of the two vectors component by component
+    /// </summary>
+    /// <param name="other">The other vector</param>
+    /// <returns>The component wise minimum</returns>
     public Self min(in Self other);
+
+    /// <summary>
+    /// Returns the larger of the two vectors component by component
+    /// </summary>
+    /// <param name="other">The other vector</param>
+    /// <returns>The component wise maximum</returns>
     public Self max(in Self other);
 
+    /// <summary>
+    /// Clamps every component to the inclusive range of <paramref name="min"/> and <paramref name="max"/>
+    /// </summary>
+    /// <param name="min">The lower bound of every component</param>
+    /// <param name="max">The upper bound of every component</param>
+    /// <returns>The clamped vector</returns>
     public Self clamp(in Self min, in Self max);
+
+    /// <summary>
+    /// Clamps every component to the inclusive range of <paramref name="min"/> and <paramref name="max"/>
+    /// </summary>
+    /// <param name="min">The lower bound of every component</param>
+    /// <param name="max">The upper bound of every component</param>
+    /// <returns>The clamped vector</returns>
     public Self clamp(Scalar min, Scalar max);
 
     #endregion
 
     #region Lerp Unlerp Remap
 
+    /// <summary>
+    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, this vector is the t value
+    /// </summary>
+    /// <param name="start">The value at t = 0</param>
+    /// <param name="end">The value at t = 1</param>
+    /// <returns>The interpolated vector</returns>
     public Self lerp(in Self start, in Self end);
+
+    /// <summary>
+    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, this vector is the t value
+    /// </summary>
+    /// <param name="start">The value at t = 0</param>
+    /// <param name="end">The value at t = 1</param>
+    /// <returns>The interpolated vector</returns>
     public Self lerp(Scalar start, Scalar end);
+
+    /// <summary>
+    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>
+    /// </summary>
+    /// <param name="t">The interpolation factor, 0 is <paramref name="start"/> and 1 is <paramref name="end"/></param>
+    /// <param name="start">The value at t = 0</param>
+    /// <param name="end">The value at t = 1</param>
+    /// <returns>The interpolated vector</returns>
     public static abstract Self lerp(Scalar t, in Self start, in Self end);
 
+    /// <summary>
+    /// Returns where this vector is between <paramref name="start"/> and <paramref name="end"/>, it is the
+    /// inverse of <see cref="lerp(in Self, in Self)"/>
+    /// </summary>
+    /// <param name="start">The value at t = 0</param>
+    /// <param name="end">The value at t = 1</param>
+    /// <returns>The position of this vector between the two values</returns>
     public Self unlerp(in Self start, in Self end);
+
+    /// <summary>
+    /// Returns where this vector is between <paramref name="start"/> and <paramref name="end"/>
+    /// </summary>
+    /// <param name="start">The value at t = 0</param>
+    /// <param name="end">The value at t = 1</param>
+    /// <returns>The position of this vector between the two values</returns>
     public Self unlerp(Scalar start, Scalar end);
+
+    /// <summary>
+    /// Returns where <paramref name="a"/> is between <paramref name="start"/> and <paramref name="end"/>
+    /// </summary>
+    /// <param name="a">The value to place</param>
+    /// <param name="start">The value at t = 0</param>
+    /// <param name="end">The value at t = 1</param>
+    /// <returns>The position of <paramref name="a"/> between the two values</returns>
     public static abstract Self unlerp(Scalar a, in Self start, in Self end);
 
+    /// <summary>
+    /// Remaps this vector from the range <paramref name="src_start"/> to <paramref name="src_end"/> into the
+    /// range <paramref name="dst_start"/> to <paramref name="dst_end"/>
+    /// </summary>
+    /// <param name="src_start">The lower bound of the source range</param>
+    /// <param name="src_end">The upper bound of the source range</param>
+    /// <param name="dst_start">The lower bound of the destination range</param>
+    /// <param name="dst_end">The upper bound of the destination range</param>
+    /// <returns>The remapped vector</returns>
     public Self remap(in Self src_start, in Self src_end, in Self dst_start, in Self dst_end);
+
+    /// <summary>
+    /// Remaps this vector from the range <paramref name="src_start"/> to <paramref name="src_end"/> into the
+    /// range <paramref name="dst_start"/> to <paramref name="dst_end"/>
+    /// </summary>
+    /// <param name="src_start">The lower bound of the source range</param>
+    /// <param name="src_end">The upper bound of the source range</param>
+    /// <param name="dst_start">The lower bound of the destination range</param>
+    /// <param name="dst_end">The upper bound of the destination range</param>
+    /// <returns>The remapped vector</returns>
     public Self remap(Scalar src_start, Scalar src_end, Scalar dst_start, Scalar dst_end);
 
     #endregion
 
     #region Dot LengthSq DistanceSq Square
 
+    /// <summary>
+    /// Returns the dot product of the two vectors
+    /// </summary>
+    /// <param name="other">The other vector</param>
+    /// <returns>The sum of the products of the components</returns>
     public Scalar dot(in Self other);
 
+    /// <summary>
+    /// Returns the squared length of the vector, it is the same as <c>dot(self)</c> but avoids the square root
+    /// </summary>
+    /// <returns>The squared length</returns>
     public Scalar length_sq();
+
+    /// <summary>
+    /// Returns the squared distance between the two vectors
+    /// </summary>
+    /// <param name="to">The other vector</param>
+    /// <returns>The squared distance</returns>
     public Scalar distance_sq(in Self to);
 
+    /// <summary>
+    /// Returns the vector with every component squared
+    /// </summary>
+    /// <returns>The squared vector</returns>
     public Self square();
 
     #endregion
@@ -84,18 +204,18 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// Fusion Multiplication and Subtraction
     /// <code>c - (a * b)</code>
     /// </summary>
+    /// <param name="c">Minuend c</param>
     /// <param name="a">Multiplier a</param>
     /// <param name="b">Multiplier b</param>
-    /// <param name="c">Minuend c</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static virtual Self fsm(in Self c, in Self a, in Self b) => Self.fnma(a, b, c);
     /// <summary>
     /// Fusion Addition and Multiplication
     /// <code>c + (a * b)</code>
     /// </summary>
+    /// <param name="c">Addend c</param>
     /// <param name="a">Multiplier a</param>
     /// <param name="b">Multiplier b</param>
-    /// <param name="c">Addend c</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static virtual Self fam(in Self c, in Self a, in Self b) => Self.fma(a, b, c);
     /// <summary>
@@ -112,23 +232,57 @@ public interface IVectorArithmetic<Self, Scalar> :
 
     #region CSum CMin CMax
 
+    /// <summary>
+    /// Returns the sum of all components
+    /// </summary>
+    /// <returns>The sum of the components</returns>
     public Scalar csum();
 
+    /// <summary>
+    /// Returns the smallest component
+    /// </summary>
+    /// <returns>The smallest component</returns>
     public Scalar cmin();
+
+    /// <summary>
+    /// Returns the largest component
+    /// </summary>
+    /// <returns>The largest component</returns>
     public Scalar cmax();
 
+    /// <summary>
+    /// Returns the smallest component, it is safe when the vector has a padding component
+    /// that is not part of the vector, it is slower than <see cref="cmin"/>
+    /// </summary>
+    /// <returns>The smallest component</returns>
     public Scalar cmin_safe();
+
+    /// <summary>
+    /// Returns the largest component, it is safe when the vector has a padding component
+    /// that is not part of the vector, it is slower than <see cref="cmax"/>
+    /// </summary>
+    /// <returns>The largest component</returns>
     public Scalar cmax_safe();
 
     #endregion
 }
 
+/// <summary>
+/// An arithmetic vector that also has a negative operator
+/// </summary>
+/// <typeparam name="Self">The vector type itself</typeparam>
+/// <typeparam name="Scalar">The type of a single component</typeparam>
 public interface ISignedVectorArithmetic<Self, Scalar> :
     IVectorArithmetic<Self, Scalar>,
     IUnaryNegationOperators<Self, Self>
     where Self : unmanaged, ISignedVectorArithmetic<Self, Scalar>
     where Scalar : unmanaged;
 
+/// <summary>
+/// An arithmetic vector of 3 components, it also has the cross product
+/// </summary>
+/// <typeparam name="Self">The vector type itself</typeparam>
+/// <typeparam name="Scalar">The type of a single component</typeparam>
 public interface IVector3Arithmetic<Self, Scalar> :
     IVectorArithmetic<Self, Scalar>
     where Self : unmanaged, IVector3Arithmetic<Self, Scalar>
@@ -136,7 +290,13 @@ public interface IVector3Arithmetic<Self, Scalar> :
 {
     #region Cross
 
+    /// <summary>
+    /// Returns the cross product of the two vectors
+    /// </summary>
+    /// <param name="other">The other vector</param>
+    /// <returns>The vector that is perpendicular to both vectors</returns>
     public Self cross(in Self other);
 
     #endregion
 }
+
