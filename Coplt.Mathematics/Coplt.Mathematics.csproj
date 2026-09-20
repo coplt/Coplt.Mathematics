@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <Nullable>enable</Nullable>
-        <LangVersion>14.0</LangVersion>
+        <LangVersion>15.0</LangVersion>
         <TargetFramework>net10.0</TargetFramework>
         <TransformOnBuild>true</TransformOnBuild>
         <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
@@ -38,6 +38,13 @@
 
     <ItemGroup>
         <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Polyfill" Version="11.4.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
     <!--    Inputs="@(TextTemplate)" Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')"-->
