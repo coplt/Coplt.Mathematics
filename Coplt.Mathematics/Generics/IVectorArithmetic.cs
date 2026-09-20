@@ -1,7 +1,7 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
 public interface IVectorArithmetic<Self, Scalar> :
-    IVector<Self, Scalar>,
+    INumberVector<Self, Scalar>,
     IUnaryPlusOperators<Self, Self>,
     IAdditionOperators<Self, Self, Self>,
     ISubtractionOperators<Self, Self, Self>,

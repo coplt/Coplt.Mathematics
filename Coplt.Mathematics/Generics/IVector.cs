@@ -1,10 +1,8 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
 public interface IVector<TSelf, TScalar> :
-    IEquatable<TSelf>, IComparable<TSelf>, IComparable,
-    IComparisonOperators<TSelf, TSelf, bool>,
-    IBitwiseOperators<TSelf, TSelf, TSelf>,
-    IShiftOperators<TSelf, int, TSelf>
+    IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>,
+    IBitwiseOperators<TSelf, TSelf, TSelf>
     where TSelf : unmanaged, IVector<TSelf, TScalar>
     where TScalar : unmanaged
 {
@@ -14,14 +12,6 @@ public interface IVector<TSelf, TScalar> :
     public static abstract int Length { get; }
     public static abstract int SizeByte { get; }
     public static abstract int SizeBit { get; }
-
-    #endregion
-
-    #region Constants
-
-    public static abstract TSelf Zero { get; }
-    public static abstract TSelf One { get; }
-    public static abstract TSelf Two { get; }
 
     #endregion
 
@@ -37,6 +27,42 @@ public interface IVector<TSelf, TScalar> :
     #region Index
 
     public TScalar this[int index] { get; set; }
+
+    #endregion
+}
+
+/// <summary>
+/// A vector of numbers, it has the numeric constants and the ordering and shift operators.
+/// </summary>
+public interface INumberVector<TSelf, TScalar> :
+    IVector<TSelf, TScalar>,
+    IComparable<TSelf>, IComparable,
+    IComparisonOperators<TSelf, TSelf, bool>,
+    IShiftOperators<TSelf, int, TSelf>
+    where TSelf : unmanaged, INumberVector<TSelf, TScalar>
+    where TScalar : unmanaged
+{
+    #region Constants
+
+    public static abstract TSelf Zero { get; }
+    public static abstract TSelf One { get; }
+    public static abstract TSelf Two { get; }
+
+    #endregion
+}
+
+/// <summary>
+/// A vector of booleans, it is a mask, so it has no numeric constants, no ordering and no shifts.
+/// </summary>
+public interface IBoolVector<TSelf, TScalar> :
+    IVector<TSelf, TScalar>
+    where TSelf : unmanaged, IBoolVector<TSelf, TScalar>
+    where TScalar : unmanaged
+{
+    #region Constants
+
+    public static abstract TSelf True { get; }
+    public static abstract TSelf False { get; }
 
     #endregion
 }

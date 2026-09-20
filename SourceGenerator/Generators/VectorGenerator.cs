@@ -19,9 +19,6 @@ public class VectorGenerator : IIncrementalGenerator
         {
             foreach (var typ in Typ.Typs)
             {
-                // IVector requires Two and the shift operators, which have no meaning for bool masks
-                if (typ.bol) continue;
-
                 for (var size = 2; size <= 4; size++)
                 {
                     ctx.AddSource(
@@ -38,6 +35,9 @@ public class VectorGenerator : IIncrementalGenerator
         var scalar = typ.compType;
         var byteSize = typ.size * (size == 3 ? 4 : size);
         var bitSize = 8 * byteSize;
+        var bol = typ.bol;
+        var iface = bol ? "IBoolVector" : "INumberVector";
+        var boolType = $"b{typ.size * 8}v{size}";
         var simd = typ.simd;
         var vecName = $"Vector{bitSize}";
         var vecType = $"{vecName}<{typ.simdComp}>";
@@ -95,7 +95,10 @@ public class VectorGenerator : IIncrementalGenerator
         sb.AppendLine($"namespace {VecNamespace};");
         sb.AppendLine();
         sb.AppendLine("[Serializable]");
-        sb.AppendLine($"public partial struct {type} : IVector<{type}, {scalar}>");
+        sb.AppendLine($"public partial struct {type} :");
+        sb.AppendLine($"    {iface}<{type}, {scalar}>,");
+        sb.AppendLine($"    IEqualityOperators<{type}, {type}, {boolType}>,");
+        sb.AppendLine($"    IComparisonOperators<{type}, {type}, {boolType}>");
         sb.AppendLine("{");
 
         #region Meta
@@ -136,23 +139,40 @@ public class VectorGenerator : IIncrementalGenerator
         sb.AppendLine();
         sb.AppendLine("    #region Constants");
         sb.AppendLine();
-        sb.AppendLine($"    public static {type} Zero");
-        sb.AppendLine("    {");
-        sb.AppendLine($"        {attr}");
-        sb.AppendLine("        get => default;");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-        sb.AppendLine($"    public static {type} One");
-        sb.AppendLine("    {");
-        sb.AppendLine($"        {attr}");
-        sb.AppendLine($"        get => new({typ.one});");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-        sb.AppendLine($"    public static {type} Two");
-        sb.AppendLine("    {");
-        sb.AppendLine($"        {attr}");
-        sb.AppendLine($"        get => new(({scalar})({typ.two}));");
-        sb.AppendLine("    }");
+        if (bol)
+        {
+            sb.AppendLine($"    public static {type} True");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => new({typ.one});");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            sb.AppendLine($"    public static {type} False");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine("        get => default;");
+            sb.AppendLine("    }");
+        }
+        else
+        {
+            sb.AppendLine($"    public static {type} Zero");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine("        get => default;");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            sb.AppendLine($"    public static {type} One");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => new({typ.one});");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            sb.AppendLine($"    public static {type} Two");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => new(({scalar})({typ.two}));");
+            sb.AppendLine("    }");
+        }
         sb.AppendLine();
         sb.AppendLine("    #endregion");
 
@@ -344,43 +364,73 @@ public class VectorGenerator : IIncrementalGenerator
         sb.AppendLine($"    public readonly bool Equals({type} other) => " +
                       Join(i => $"{comp[i]} == other.{comp[i]}", " && ") + ";");
         sb.AppendLine();
+        if (!bol)
+        {
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine("    public readonly int CompareTo(object? obj)");
+            sb.AppendLine("    {");
+            sb.AppendLine("        if (ReferenceEquals(null, obj)) return 1;");
+            sb.AppendLine($"        return obj is {type} other ? CompareTo(other) : throw new ArgumentException($\"Object must be of type {{nameof({type})}}\");");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public readonly int CompareTo({type} other)");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        if ({Join(i => $"{comp[i]} < other.{comp[i]}", " || ")}) return -1;");
+            sb.AppendLine($"        if ({Join(i => $"{comp[i]} > other.{comp[i]}", " || ")}) return 1;");
+            sb.AppendLine("        return 0;");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
         sb.AppendLine($"    {attr}");
-        sb.AppendLine("    public readonly int CompareTo(object? obj)");
-        sb.AppendLine("    {");
-        sb.AppendLine("        if (ReferenceEquals(null, obj)) return 1;");
-        sb.AppendLine($"        return obj is {type} other ? CompareTo(other) : throw new ArgumentException($\"Object must be of type {{nameof({type})}}\");");
-        sb.AppendLine("    }");
+        sb.AppendLine($"    public static {boolType} operator ==({type} left, {type} right) => new(" +
+                      Join(i => $"left.{comp[i]} == right.{comp[i]}") + ");");
         sb.AppendLine();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly int CompareTo({type} other)");
-        sb.AppendLine("    {");
-        sb.AppendLine($"        if ({Join(i => $"{comp[i]} < other.{comp[i]}", " || ")}) return -1;");
-        sb.AppendLine($"        if ({Join(i => $"{comp[i]} > other.{comp[i]}", " || ")}) return 1;");
-        sb.AppendLine("        return 0;");
-        sb.AppendLine("    }");
+        sb.AppendLine($"    public static {boolType} operator !=({type} left, {type} right) => new(" +
+                      Join(i => $"left.{comp[i]} != right.{comp[i]}") + ");");
         sb.AppendLine();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static bool operator ==({type} left, {type} right) => left.Equals(right);");
+        sb.AppendLine($"    public static {boolType} operator <({type} left, {type} right) => new(" +
+                      Join(i => $"left.{comp[i]} < right.{comp[i]}") + ");");
         sb.AppendLine();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static bool operator !=({type} left, {type} right) => !left.Equals(right);");
+        sb.AppendLine($"    public static {boolType} operator >({type} left, {type} right) => new(" +
+                      Join(i => $"left.{comp[i]} > right.{comp[i]}") + ");");
         sb.AppendLine();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static bool operator <({type} left, {type} right) => " +
-                      Join(i => $"left.{comp[i]} < right.{comp[i]}", " && ") + ";");
+        sb.AppendLine($"    public static {boolType} operator <=({type} left, {type} right) => new(" +
+                      Join(i => $"left.{comp[i]} <= right.{comp[i]}") + ");");
         sb.AppendLine();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static bool operator >({type} left, {type} right) => " +
-                      Join(i => $"left.{comp[i]} > right.{comp[i]}", " && ") + ";");
+        sb.AppendLine($"    public static {boolType} operator >=({type} left, {type} right) => new(" +
+                      Join(i => $"left.{comp[i]} >= right.{comp[i]}") + ");");
         sb.AppendLine();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static bool operator <=({type} left, {type} right) => " +
-                      Join(i => $"left.{comp[i]} <= right.{comp[i]}", " && ") + ";");
+        sb.AppendLine($"    static bool IEqualityOperators<{type}, {type}, bool>.operator ==({type} left, {type} right) => left.Equals(right);");
         sb.AppendLine();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static bool operator >=({type} left, {type} right) => " +
-                      Join(i => $"left.{comp[i]} >= right.{comp[i]}", " && ") + ";");
+        sb.AppendLine($"    static bool IEqualityOperators<{type}, {type}, bool>.operator !=({type} left, {type} right) => !left.Equals(right);");
         sb.AppendLine();
+        if (!bol)
+        {
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static bool IComparisonOperators<{type}, {type}, bool>.operator <({type} left, {type} right) => " +
+                          Join(i => $"left.{comp[i]} < right.{comp[i]}", " && ") + ";");
+            sb.AppendLine();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static bool IComparisonOperators<{type}, {type}, bool>.operator >({type} left, {type} right) => " +
+                          Join(i => $"left.{comp[i]} > right.{comp[i]}", " && ") + ";");
+            sb.AppendLine();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static bool IComparisonOperators<{type}, {type}, bool>.operator <=({type} left, {type} right) => " +
+                          Join(i => $"left.{comp[i]} <= right.{comp[i]}", " && ") + ";");
+            sb.AppendLine();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static bool IComparisonOperators<{type}, {type}, bool>.operator >=({type} left, {type} right) => " +
+                          Join(i => $"left.{comp[i]} >= right.{comp[i]}", " && ") + ";");
+            sb.AppendLine();
+        }
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} operator ~({type} a) => new(" + Join(i => $"a.{comp[i]}.BitNot()") + ");");
         sb.AppendLine();
@@ -396,18 +446,21 @@ public class VectorGenerator : IIncrementalGenerator
         sb.AppendLine($"    public static {type} operator ^({type} a, {type} b) => new(" +
                       Join(i => $"a.{comp[i]}.BitXor(b.{comp[i]})") + ");");
         sb.AppendLine();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} operator <<({type} a, int b) => new(" +
-                      Join(i => $"a.{comp[i]}.BitShiftLeft(b)") + ");");
-        sb.AppendLine();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} operator >>({type} a, int b) => new(" +
-                      Join(i => $"a.{comp[i]}.BitShiftRight(b)") + ");");
-        sb.AppendLine();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} operator >>>({type} a, int b) => new(" +
-                      Join(i => $"a.{comp[i]}.BitShiftRightUnsigned(b)") + ");");
-        sb.AppendLine();
+        if (!bol)
+        {
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} operator <<({type} a, int b) => new(" +
+                          Join(i => $"a.{comp[i]}.BitShiftLeft(b)") + ");");
+            sb.AppendLine();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} operator >>({type} a, int b) => new(" +
+                          Join(i => $"a.{comp[i]}.BitShiftRight(b)") + ");");
+            sb.AppendLine();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} operator >>>({type} a, int b) => new(" +
+                          Join(i => $"a.{comp[i]}.BitShiftRightUnsigned(b)") + ");");
+            sb.AppendLine();
+        }
         sb.AppendLine("    #endregion");
 
         #endregion
