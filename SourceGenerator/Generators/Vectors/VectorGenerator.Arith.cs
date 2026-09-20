@@ -454,20 +454,35 @@ public partial class VectorGenerator
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public {type} cross(in {type} other)");
             sb.AppendLine("    {");
-            // the cross product is the difference of the two products of the cyclically rotated operands. The
-            // rotation is done inside the register instead of through the swizzle members, so the member is a
-            // few intrinsics and does not wait for the members of the vector to be inlined. The lane a rotated
-            // operand reads from the padding lane is multiplied by the padding lane of the other side, so the
-            // rotation of the result keeps that lane zero and the result needs no mask.
-            sb.AppendLine("        // (a * b.yzx - a.yzx * b).yzx;");
-            var yzx = $"{typ.shuffleCast}1, {typ.shuffleCast}2, {typ.shuffleCast}0, {typ.shuffleCast}3";
-            var rotate = $"{vecName}.Shuffle(vector, {vecName}.Create({yzx}))";
-            var rotateOther = $"{vecName}.Shuffle(other.vector, {vecName}.Create({yzx}))";
+            // the DirectX Math XMVector3Cross method, the standard library uses it too. The rotation of the
+            // result is folded into the shuffle of the operands and the components are shuffled inside the
+            // register instead of through the swizzle members, so the member does not wait for them to be
+            // inlined. The fourth lane of both products reads the first component, so their difference is zero
+            // there and the result needs no mask.
+            sb.AppendLine("        // a.yzx * b.zxy - a.zxy * b.yzx;");
+            if (simd)
+            {
+                sb.AppendLine("        // The rotation of the result is folded into the shuffles of the operands, so the four shuffles come");
+                sb.AppendLine("        // before the products and none of them depends on one, they can issue in parallel with the");
+                sb.AppendLine("        // multiplications. The rotated form, fnma(a.yzx, b, a * b.yzx).yzx, leaves a shuffle behind the");
+                sb.AppendLine("        // fused operation instead, so the same instruction count reaches the result one step later. The");
+                sb.AppendLine("        // fourth lane of both products reads the first component, their difference is zero there, so the");
+                sb.AppendLine("        // padding lane of the result stays zero and the masking constructor is not needed, like in the");
+                sb.AppendLine("        // DirectX Math library and the standard library.");
+            }
+            var yzx = $"{typ.shuffleCast}1, {typ.shuffleCast}2, {typ.shuffleCast}0, {typ.shuffleCast}0";
+            var zxy = $"{typ.shuffleCast}2, {typ.shuffleCast}0, {typ.shuffleCast}1, {typ.shuffleCast}0";
+            var vYzx = $"{vecName}.Shuffle(vector, {vecName}.Create({yzx}))";
+            var vZxy = $"{vecName}.Shuffle(vector, {vecName}.Create({zxy}))";
+            var oYzx = $"{vecName}.Shuffle(other.vector, {vecName}.Create({yzx}))";
+            var oZxy = $"{vecName}.Shuffle(other.vector, {vecName}.Create({zxy}))";
+            // the first product is the addend of the fused operation, so the difference costs a single
+            // instruction on the targets that have it and two on the ones that do not
             var product = f
-                ? $"simd.Fnma({rotate}, other.vector, vector * {rotateOther})"
-                : $"vector * {rotateOther} - {rotate} * other.vector";
+                ? $"simd.Fnma({vZxy}, {oYzx}, {vYzx} * {oZxy})"
+                : $"{vYzx} * {oZxy} - {vZxy} * {oYzx}";
             EmitAccel(
-                $"return {FromVector($"{vecName}.Shuffle({product}, {vecName}.Create({yzx}))")};",
+                $"return {FromVector(product)};",
                 null,
                 $"return new({Join(n => $"({scalar})({comp[(n + 1) % 3]} * other.{comp[(n + 2) % 3]} - " +
                                         $"{comp[(n + 2) % 3]} * other.{comp[(n + 1) % 3]})")});");
