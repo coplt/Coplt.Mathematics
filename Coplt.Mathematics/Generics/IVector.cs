@@ -4,7 +4,7 @@ public interface IVector<TSelf, TScalar> :
     IEquatable<TSelf>, IComparable<TSelf>, IComparable,
     IComparisonOperators<TSelf, TSelf, bool>,
     IBitwiseOperators<TSelf, TSelf, TSelf>,
-    IShiftOperators<TSelf, TSelf, TScalar>
+    IShiftOperators<TSelf, int, TSelf>
     where TSelf : unmanaged, IVector<TSelf, TScalar>
     where TScalar : unmanaged
 {

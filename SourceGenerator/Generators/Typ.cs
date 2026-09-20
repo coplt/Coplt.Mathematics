@@ -72,7 +72,6 @@ public record struct Typ(
         new("uint", nameof(UInt32), sizeof(uint), "u", "1u", arith: true, i: true, simd: true, shuffleCast: "(uint)"),
         new("long", nameof(Int64), sizeof(long), "L", "1L", arith: true, sig: true, i: true, simd: true),
         new("ulong", nameof(UInt64), sizeof(ulong), "UL", "1UL", arith: true, i: true, simd: true, shuffleCast: "(ulong)"),
-        new("decimal", nameof(Decimal), sizeof(decimal), "m", "1m", arith: true, f: true, sig: true, bitop: false, bin: false),
         new("half", "Half", sizeof(ushort), "f.half()", "(half)1.0", arith: true, sig: true, f: true)
         {
             two = "(half)2.0f",
@@ -108,20 +107,19 @@ public record struct Typ(
         { "uint", ["int", "half"] },
         { "long", ["uint", "int", "ulong", "half"] },
         { "ulong", ["uint", "int", "long", "half"] },
-        { "float", ["uint", "int", "ulong", "long", "decimal", "half"] },
-        { "double", ["uint", "int", "ulong", "long", "float", "decimal", "half"] },
-        { "decimal", ["uint", "int", "ulong", "long", "float", "double"] },
+        { "float", ["uint", "int", "ulong", "long", "half"] },
+        { "double", ["uint", "int", "ulong", "long", "float", "half"] },
         { "half", ["uint", "int", "ulong", "long"] },
-        { "b16v", ["uint", "int", "ulong", "long", "float", "double", "decimal", "half", "b32v", "b64v"] },
-        { "b32v", ["uint", "int", "ulong", "long", "float", "double", "decimal", "half", "b16v", "b64v"] },
-        { "b64v", ["uint", "int", "ulong", "long", "float", "double", "decimal", "half", "b16v", "b32v"] },
+        { "b16v", ["uint", "int", "ulong", "long", "float", "double", "half", "b32v", "b64v"] },
+        { "b32v", ["uint", "int", "ulong", "long", "float", "double", "half", "b16v", "b64v"] },
+        { "b64v", ["uint", "int", "ulong", "long", "float", "double", "half", "b16v", "b32v"] },
     };
     public static Dictionary<string, string[]> ImplicitConverts = new()
     {
-        { "int", ["long", "float", "double", "decimal"] },
-        { "uint", ["long", "ulong", "float", "double", "decimal"] },
-        { "long", ["double", "decimal"] },
-        { "ulong", ["double", "decimal"] },
+        { "int", ["long", "float", "double"] },
+        { "uint", ["long", "ulong", "float", "double"] },
+        { "long", ["double"] },
+        { "ulong", ["double"] },
         { "float", ["double"] },
         { "half", ["float", "double"] },
     };
