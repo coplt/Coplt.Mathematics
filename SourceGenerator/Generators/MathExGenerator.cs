@@ -49,9 +49,9 @@ public class MathExGenerator : IIncrementalGenerator
                 static (ctx, _) =>
                 {
                     var diagnostics = new List<Diagnostic>();
+                    var compilation = ctx.SemanticModel.Compilation;
                     var syntax = (TypeDeclarationSyntax)ctx.TargetNode;
                     var symbol = (INamedTypeSymbol)ctx.TargetSymbol;
-                    var nullable = ctx.SemanticModel.Compilation.Options.NullableContextOptions;
 
                     var src_name = symbol.Name;
 
@@ -61,13 +61,7 @@ public class MathExGenerator : IIncrementalGenerator
                     if (ex_to == null) return default;
 
                     symbol = (INamedTypeSymbol)ex_to.ConstructorArguments[0].Value!;
-                    var rawFullName = symbol.ToDisplayString();
-                    var nameWraps = symbol.WrapNames();
-                    var nameWrap = symbol.WrapName();
-
-                    var usings = new HashSet<string>();
-                    Utils.GetUsings(syntax, usings);
-                    var genBase = new GenBase(rawFullName, nullable, usings, nameWraps, nameWrap);
+                    var genBase = Utils.BuildGenBase(syntax, symbol, compilation);
 
                     return (syntax, symbol.Name, src_name, genBase, diagnostics: AlwaysEq.Create(diagnostics));
                 }
