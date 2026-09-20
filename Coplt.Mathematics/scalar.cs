@@ -476,11 +476,11 @@ public static partial class math
     [MethodImpl(256 | 512)]
     internal static byte BitShiftRightUnsigned(this byte a, int b) => (byte)(a >>> b);
     [MethodImpl(256 | 512)]
-    internal static sbyte BitShiftRightUnsigned(this sbyte a, int b) => (sbyte)(a >>> b);
+    internal static sbyte BitShiftRightUnsigned(this sbyte a, int b) => (sbyte)((byte)a >>> b);
     [MethodImpl(256 | 512)]
     internal static ushort BitShiftRightUnsigned(this ushort a, int b) => (ushort)(a >>> b);
     [MethodImpl(256 | 512)]
-    internal static short BitShiftRightUnsigned(this short a, int b) => (short)(a >>> b);
+    internal static short BitShiftRightUnsigned(this short a, int b) => (short)((ushort)a >>> b);
     [MethodImpl(256 | 512)]
     internal static uint BitShiftRightUnsigned(this uint a, int b) => a >>> b;
     [MethodImpl(256 | 512)]
