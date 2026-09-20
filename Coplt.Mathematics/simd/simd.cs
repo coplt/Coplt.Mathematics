@@ -1436,7 +1436,7 @@ public static partial class simd
         {
             return AdvSimd.FusedMultiplyAdd(c, a, b);
         }
-        return a * b + c;
+        return Vector64.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
@@ -1451,7 +1451,7 @@ public static partial class simd
         {
             return AdvSimd.FusedMultiplyAdd(c, a, b);
         }
-        return a * b + c;
+        return Vector128.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
@@ -1466,7 +1466,7 @@ public static partial class simd
         {
             return AdvSimd.Arm64.FusedMultiplyAdd(c, a, b);
         }
-        return a * b + c;
+        return Vector128.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
@@ -1484,7 +1484,7 @@ public static partial class simd
                 AdvSimd.FusedMultiplyAdd(c.GetUpper(), a.GetUpper(), b.GetUpper())
             );
         }
-        return a * b + c;
+        return Vector256.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
@@ -1502,7 +1502,7 @@ public static partial class simd
                 AdvSimd.Arm64.FusedMultiplyAdd(c.GetUpper(), a.GetUpper(), b.GetUpper())
             );
         }
-        return a * b + c;
+        return Vector256.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
@@ -1520,7 +1520,7 @@ public static partial class simd
                 X86.Fma.MultiplyAdd(a.GetUpper(), b.GetUpper(), c.GetUpper())
             );
         }
-        return a * b + c;
+        return Vector512.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
@@ -1538,7 +1538,7 @@ public static partial class simd
                 X86.Fma.MultiplyAdd(a.GetUpper(), b.GetUpper(), c.GetUpper())
             );
         }
-        return a * b + c;
+        return Vector512.FusedMultiplyAdd(a, b, c);
     }
 
     #endregion
