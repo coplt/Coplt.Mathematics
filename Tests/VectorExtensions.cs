@@ -178,4 +178,10 @@ internal static class VectorExtensions
     // type of the mask of the first one cannot be inferred
 
     #endregion
+
+    #region IVectorSelect
+
+    public static T select<T, B>(this T t, in B c, in T f) where T : unmanaged, IVectorSelect<T, B> => T.select(c, t, f);
+
+    #endregion
 }

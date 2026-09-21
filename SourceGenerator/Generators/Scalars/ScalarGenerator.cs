@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -61,59 +62,86 @@ public class ScalarGenerator : IIncrementalGenerator
         sb.AppendLine($"namespace {Namespace};");
         sb.AppendLine();
 
-        // the members of the two forms of an operation are the same operation, the static form is the one that
-        // the math class carries and the other one is called on a value
+        // the members of the two forms of an operation are the same operation, the static form is the one that the
+        // math class carries and the other one is called on a value. An operation that works on another kind of
+        // value than the one it is generated for is called on that one and lives in a block of its own
         void Members(bool extension)
         {
-            var indent = extension ? "        " : "    ";
-            var region = "";
+            var members = new List<ScalarOp>();
+            var receivers = new List<string> { scalar };
             foreach (var op in ScalarOps.Operations)
             {
                 if (!ScalarOps.Matches(op, typ)) continue;
-                // an operation that does not work on its first parameter has no second form
+                // an operation that does not work on its first parameter has no member that is called on a value
                 if (extension && op.Self < 0) continue;
-                if (region != op.Kind)
+                members.Add(op);
+                if (!extension) continue;
+                var receiver = op.Receiver(scalar);
+                if (!receivers.Contains(receiver)) receivers.Add(receiver);
+            }
+
+            foreach (var receiver in receivers)
+            {
+                if (extension)
                 {
-                    if (region.Length != 0)
+                    sb.AppendLine($"    extension({receiver} value)");
+                    sb.AppendLine("    {");
+                }
+
+                var indent = extension ? "        " : "    ";
+                var region = "";
+                foreach (var op in members)
+                {
+                    if (extension && op.Receiver(scalar) != receiver) continue;
+                    if (region != op.Kind)
                     {
-                        sb.AppendLine($"{indent}#endregion");
+                        if (region.Length != 0)
+                        {
+                            sb.AppendLine($"{indent}#endregion");
+                            sb.AppendLine();
+                        }
+
+                        region = op.Kind;
+                        sb.AppendLine($"{indent}#region {ScalarOps.Region(op.Kind)}");
                         sb.AppendLine();
                     }
 
-                    region = op.Kind;
-                    sb.AppendLine($"{indent}#region {ScalarOps.Region(op.Kind)}");
+                    var parameters = op.ParameterNames(extension);
+                    var returns = op.Returns.Length == 0 ? scalar : op.Returns.Replace("{s}", scalar);
+                    var body = op.Source(typ, op.Operands(extension));
+                    var head = extension
+                        ? $"public {returns} {op.Name}({op.Parameters(scalar, extension)})"
+                        : $"public static {returns} {op.Name}({op.Parameters(scalar, extension)})";
+
+                    ScalarDocs.Emit(sb, indent, op.Name, parameters);
+                    sb.AppendLine($"{indent}{Attr}");
+                    // an operation whose body is more than an expression is written out, one statement on a line
+                    if (body.IndexOf('\n') < 0)
+                    {
+                        var expression = body.EndsWith(";", StringComparison.Ordinal) ? body[..^1] : body;
+                        sb.AppendLine($"{indent}{head} => {expression};");
+                        sb.AppendLine();
+                        continue;
+                    }
+
+                    sb.AppendLine($"{indent}{head}");
+                    sb.AppendLine($"{indent}{{");
+                    foreach (var line in body.Split('\n')) sb.AppendLine($"{indent}    {line}");
+                    sb.AppendLine($"{indent}}}");
                     sb.AppendLine();
                 }
 
-                var parameters = op.ParameterNames(extension);
-                var returns = op.Returns.Length == 0 ? scalar : op.Returns.Replace("{s}", scalar);
-                var body = op.Source(typ, op.Operands(extension));
-                var head = extension
-                    ? $"public {returns} {op.Name}({op.Parameters(scalar, extension)})"
-                    : $"public static {returns} {op.Name}({op.Parameters(scalar, extension)})";
-
-                ScalarDocs.Emit(sb, indent, op.Name, parameters);
-                sb.AppendLine($"{indent}{Attr}");
-                // an operation whose body is more than an expression is written out, one statement on a line
-                if (body.IndexOf('\n') < 0)
+                if (region.Length != 0)
                 {
-                    var expression = body.EndsWith(";", StringComparison.Ordinal) ? body[..^1] : body;
-                    sb.AppendLine($"{indent}{head} => {expression};");
+                    sb.AppendLine($"{indent}#endregion");
                     sb.AppendLine();
-                    continue;
                 }
 
-                sb.AppendLine($"{indent}{head}");
-                sb.AppendLine($"{indent}{{");
-                foreach (var line in body.Split('\n')) sb.AppendLine($"{indent}    {line}");
-                sb.AppendLine($"{indent}}}");
-                sb.AppendLine();
-            }
-
-            if (region.Length != 0)
-            {
-                sb.AppendLine($"{indent}#endregion");
-                sb.AppendLine();
+                if (extension)
+                {
+                    sb.AppendLine("    }");
+                    sb.AppendLine();
+                }
             }
         }
 
@@ -124,10 +152,8 @@ public class ScalarGenerator : IIncrementalGenerator
         sb.AppendLine();
         sb.AppendLine($"public static partial class {Extension}");
         sb.AppendLine("{");
-        sb.AppendLine($"    extension({scalar} value)");
-        sb.AppendLine("    {");
+        // every receiver of a member is emitted into a block of its own, see Members
         Members(true);
-        sb.AppendLine("    }");
         sb.AppendLine("}");
 
         return sb.ToString();

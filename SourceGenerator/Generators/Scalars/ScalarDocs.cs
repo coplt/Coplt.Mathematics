@@ -167,6 +167,16 @@ internal static class ScalarDocs
         { "sincos", ("Returns the sine and the cosine of the value in radians", "The sine and the cosine", "a=The value;sin=Receives the sine;cos=Receives the cosine") },
 
         #endregion
+
+        #region select
+
+        {
+            "select",
+            ("Returns the value of the second parameter where the condition is true and the value of the third where it is false", "The selected value",
+                "c=The condition;t|a=The value that is returned when the condition is true;f|b=The value that is returned when the condition is false")
+        },
+
+        #endregion
     };
 
     /// <summary>

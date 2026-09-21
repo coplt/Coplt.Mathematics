@@ -145,6 +145,26 @@ public class TestScalarMath
     }
 
     /// <summary>
+    /// The select of a value takes a condition instead of a value of its own type, the member that is called on
+    /// a value is called on the condition.
+    /// </summary>
+    [Test]
+    public void Select()
+    {
+        Assert.That(select(true, 1, 2), Is.EqualTo(1));
+        Assert.That(select(false, 1, 2), Is.EqualTo(2));
+        Assert.That(select(true, 1.5f, 2.5f), Is.EqualTo(1.5f));
+        Assert.That(select(false, 1.5, 2.5), Is.EqualTo(2.5));
+        Assert.That(select(false, (Half)1, (Half)2), Is.EqualTo((Half)2));
+        Assert.That(select(true, 1u, 2u), Is.EqualTo(1u));
+
+        Assert.That(true.select(1, 2), Is.EqualTo(1));
+        Assert.That(false.select(1, 2), Is.EqualTo(2));
+        Assert.That(false.select(1u, 2u), Is.EqualTo(2u));
+        Assert.That(false.select(1.5f, 2.5f), Is.EqualTo(2.5f));
+    }
+
+    /// <summary>
     /// The members that are called on a value are the second form of every function of the <c>math</c> class.
     /// </summary>
     [Test]

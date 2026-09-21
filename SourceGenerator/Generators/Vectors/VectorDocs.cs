@@ -189,6 +189,16 @@ internal static class VectorDocs
         },
 
         #endregion
+
+        #region IVectorSelect
+
+        {
+            "select",
+            ("Returns the component of the second vector where the mask is true and the component of the third where it is false", "The selected vector",
+                "c=The mask;t|a=The vector that the true components are taken from;f|b=The vector that the false components are taken from")
+        },
+
+        #endregion
     };
 
     /// <summary>

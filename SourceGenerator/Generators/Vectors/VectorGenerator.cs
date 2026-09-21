@@ -11,8 +11,8 @@ namespace Coplt.Analyzers.Generators;
 /// integer members by <c>GenInt</c>, the floating point members by <c>GenFloat</c>, the ieee 754 members by
 /// <c>GenIeee</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
-/// <c>GenConv</c>, the json converters by <c>GenJson</c> and the as members of the math class by <c>GenMathAs</c>,
-/// every part lives in its own file.
+/// <c>GenConv</c>, the json converters by <c>GenJson</c>, the as members of the math class by <c>GenMathAs</c> and
+/// the select members by <c>GenSelect</c>, every part lives in its own file.
 /// </summary>
 [Generator]
 public partial class VectorGenerator : IIncrementalGenerator
@@ -107,6 +107,11 @@ public partial class VectorGenerator : IIncrementalGenerator
                                 $"{VecNamespace}.{name}.conv.g.cs",
                                 SourceText.From(conv, Encoding.UTF8));
                         }
+
+                        // the select member implements IVectorSelect, it is emitted into its own file as well
+                        ctx.AddSource(
+                            $"{VecNamespace}.{name}.select.g.cs",
+                            SourceText.From(GenSelect(typ, size, storeVariant), Encoding.UTF8));
 
                         // the converter that reads and writes the vector as json is emitted into its own file
                         // as well

@@ -43,16 +43,58 @@ internal sealed record ScalarOp(
     string[]? Ext = null)
 {
     /// <summary>
-    /// Returns the name of the value of a parameter, the declaration of a parameter may carry a modifier in
-    /// front of it or a default value behind it.
+    /// The tokens of the part of a declaration in front of its default value. The last token is the name of the
+    /// value, the ones in front of it are its type and its modifier, one of the two at most, see
+    /// <see cref="Declaration"/>.
     /// </summary>
-    public static string ValueName(string declaration)
+    /// <param name="declaration">The declaration of the parameter</param>
+    /// <returns>The tokens of the declaration</returns>
+    public static string[] Head(string declaration)
     {
         var equals = declaration.IndexOf('=');
         var text = (equals < 0 ? declaration : declaration[..equals]).Trim();
-        var space = text.LastIndexOf(' ');
-        return space < 0 ? text : text[(space + 1)..];
+        return text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
     }
+
+    /// <summary>
+    /// Returns the name of the value of a parameter, see <see cref="Head"/>.
+    /// </summary>
+    /// <param name="declaration">The declaration of the parameter</param>
+    /// <returns>The name of the value</returns>
+    public static string ValueName(string declaration) => Head(declaration)[^1];
+
+    /// <summary>
+    /// Returns the type of the value of a parameter: the type the operation is generated for unless the
+    /// declaration names one of its own, see <see cref="TypeKeywords"/>.
+    /// </summary>
+    /// <param name="scalar">The type of the value</param>
+    /// <param name="declaration">The declaration of the parameter</param>
+    /// <returns>The type of the value</returns>
+    public static string TypeOf(string scalar, string declaration)
+    {
+        var head = Head(declaration);
+        return head.Length > 1 && Array.IndexOf(TypeKeywords, head[0]) >= 0 ? head[0] : scalar;
+    }
+
+    /// <summary>
+    /// The keywords that a declaration uses as the type of the value of a parameter. A declaration that starts
+    /// with one of them takes a value of that type instead of a value of the type the operation is generated for,
+    /// which the select of a condition needs.
+    /// </summary>
+    public static readonly string[] TypeKeywords =
+    [
+        "bool", "sbyte", "byte", "short", "ushort", "int", "uint", "long", "ulong", "float", "double", "half",
+        "decimal",
+    ];
+
+    /// <summary>
+    /// The type that the member of the operation that is called on a value is called on, empty when the operation
+    /// has no such member. It is the type of the parameter the operation works on, which is not the type of the
+    /// value itself for an operation that takes a condition.
+    /// </summary>
+    /// <param name="scalar">The type of the value</param>
+    /// <returns>The type of the receiver</returns>
+    public string Receiver(string scalar) => Self < 0 ? "" : TypeOf(scalar, Params[Self]);
 
     /// <summary>
     /// The names of the values of the parameters of the member that is called on a value, in the order of the
@@ -93,8 +135,8 @@ internal sealed record ScalarOp(
     }
 
     /// <summary>
-    /// The declaration of a parameter of one of the two forms of the operation: the modifier that may be in
-    /// front of the type of the value, the type itself and the default value that may be behind it.
+    /// The declaration of a parameter of one of the two forms of the operation: its type, which is the type of the
+    /// value unless the declaration names another one, its name and the default value that may be behind it.
     /// </summary>
     /// <param name="scalar">The type of the value</param>
     /// <param name="parameter">The declaration of the parameter</param>
@@ -102,12 +144,17 @@ internal sealed record ScalarOp(
     public static string Declaration(string scalar, string parameter)
     {
         var equals = parameter.IndexOf('=');
-        var head = (equals < 0 ? parameter : parameter[..equals]).Trim();
         var suffix = equals < 0 ? "" : parameter[equals..].Trim();
-        var space = head.LastIndexOf(' ');
-        var modifier = space < 0 ? "" : head[..space].Trim();
-        var name = space < 0 ? head : head[(space + 1)..];
-        var text = modifier.Length == 0 ? $"{scalar} {name}" : $"{modifier} {scalar} {name}";
+        var head = Head(parameter);
+        var name = head[^1];
+        var text = head.Length switch
+        {
+            // the declaration names the type of the value itself
+            2 when Array.IndexOf(TypeKeywords, head[0]) >= 0 => $"{head[0]} {name}",
+            // the declaration carries a modifier in front of the type of the value
+            2 => $"{head[0]} {scalar} {name}",
+            _ => $"{scalar} {name}",
+        };
         return suffix.Length == 0 ? text : $"{text} {suffix}";
     }
 
@@ -161,9 +208,11 @@ internal sealed record ScalarOp(
 /// <summary>
 /// The operations of the scalar types. Every one of them is a member of the <c>math</c> class and a member that
 /// is called on a value, the names are the ones of the members of the vectors that have the same operation.
-/// <para>The body of an operation is the expression of the BCL alone, it never calls a member of the <c>math</c>
-/// class and no member of it calls another one: a scalar function that refers to itself would not end and the
-/// scalar functions are the base of everything that is built on them, see <see cref="VectorScalar"/>.</para>
+/// <para>The body of an operation is the expression of the BCL or the forwarding to another operation of the
+/// same layer: the squared distance is the squared length of the difference, the remainder, the smoothstep and
+/// the reflection are fused multiply adds. A forwarding never forms a cycle, a scalar function that would reach
+/// itself would not end, and a vector that has no accelerated path computes what the function of the <c>math</c>
+/// class computes, see <see cref="VectorScalar"/>.</para>
 /// </summary>
 internal static class ScalarOps
 {
@@ -268,9 +317,10 @@ internal static class ScalarOps
         Op("fnma", "a", ["a", "b", "c"], intBody: "{c}({2} - {0} * {1})"),
         Op("dot", "a", ["a", "b"], body: "{0} * {1}", intBody: "{c}({0} * {1})", ext: ["other"]),
         Op("length_sq", "a", ["a"], body: "{0} * {0}", intBody: "{c}({0} * {0})"),
+        // the squared distance is the squared length of the difference, see the forwarding below
         Op("distance_sq", "a", ["a", "b"],
-            body: "({1} - {0}) * ({1} - {0})",
-            intBody: "{c}(({1} - {0}) * ({1} - {0}))",
+            body: "math.length_sq({1} - {0})",
+            intBody: "math.length_sq({c}({1} - {0}))",
             ext: ["to"]),
 
         #endregion
@@ -300,8 +350,11 @@ internal static class ScalarOps
         Op("saturate", "f", ["a"]),
         Op("step", "f", ["threshold", "a"], self: 1, body: "{1} >= {0} ? {o} : {z}"),
         Op("smoothstep", "f", ["min", "max", "a"], self: 2,
-            body: "var t = {s}.Clamp(({2} - {0}) / ({1} - {0}), {z}, {o});\nreturn t * t * ({three} - ({two} * t));"),
-        Op("reflect", "f", ["a", "n"], body: "{0} - {two} * {1} * ({0} * {1})"),
+            body: "var t = {s}.Clamp(({2} - {0}) / ({1} - {0}), {z}, {o});\n" +
+                  "return t * t * math.fnma({two}, t, {three});"),
+        // the reflection is the value minus twice the product of the normal with the projection of the value
+        // onto it, the fused multiply add leaves the product exact
+        Op("reflect", "f", ["a", "n"], body: "math.fnma({two} * {1}, {0} * {1}, {0})"),
         Op("project", "f", ["a", "onto"], body: "({0} * {1}) / ({1} * {1}) * {1}"),
         Op("project_safe", "f", ["a", "onto", "default_value = default"],
             body: "var proj = ({0} * {1}) / ({1} * {1}) * {1};\nreturn {s}.IsFinite(proj) ? proj : {2};"),
@@ -363,6 +416,14 @@ internal static class ScalarOps
             body: "({1}, {2}) = {s}.SinCos({0});"),
 
         #endregion
+
+        #region select
+
+        // the condition is a bool, the declaration of the parameter names its own type, every value can be
+        // selected and the member that is called on a value is called on the condition
+        Op("select", "s", ["bool c", "t", "f"], body: "{0} ? {1} : {2}"),
+
+        #endregion
     ];
 
     /// <summary>
@@ -395,7 +456,7 @@ internal static class ScalarOps
     /// <returns>True when the type has the operation</returns>
     public static bool Matches(ScalarOp op, Typ typ) => op.Kind switch
     {
-        "a" => typ.arith,
+        "a" or "s" => typ.arith,
         "i" => typ.i,
         "u" => typ.i && !typ.sig,
         "f" or "e" => typ.f,
@@ -413,6 +474,7 @@ internal static class ScalarOps
         "i" or "u" => "integer",
         "f" => "floating point",
         "e" => "ieee754",
+        "s" => "select",
         _ => kind,
     };
 
