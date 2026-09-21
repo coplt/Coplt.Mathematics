@@ -758,23 +758,41 @@ public partial class VectorGenerator
             }
         }
 
-        sb.AppendLine($"        return new({Join(i => $"a.{comp[i]}.BitNot()")});");
+        // a component that is an integer or a mask has the bitwise operators of its own, the bits of a floating
+        // point one are reached through the bit conversions of the BCL
+        var bitwise = !typ.i && !bol;
+
+        string BitNot(string x) => bitwise
+            ? VectorScalar.FromBits(scalar, $"~{VectorScalar.Bits(scalar, x)}")
+            : $"({scalar})~{x}";
+
+        string BitOp(string op, string x, string y) => bitwise
+            ? VectorScalar.FromBits(scalar, $"({VectorScalar.Bits(scalar, x)} {op} {VectorScalar.Bits(scalar, y)})")
+            : $"({scalar})({x} {op} {y})";
+
+        // the shift of a value is the shift of its bits, a narrow signed value is widened to its unsigned form
+        // for the logical one, so the bits above the value do not reach it
+        string BitShift(string op, string x, string n) => bitwise
+            ? VectorScalar.FromBits(scalar, $"({VectorScalar.Bits(scalar, x)} {op} {n})")
+            : $"({scalar})({(op == ">>>" ? VectorScalar.Unsigned(scalar, x) : x)} {op} {n})";
+
+        sb.AppendLine($"        return new({Join(i => BitNot($"a.{comp[i]}"))});");
         sb.AppendLine("    }");
         sb.AppendLine();
         EmitBitOp("&", type, "b.vector", Load64("b."),
-            Join(i => $"a.{comp[i]}.BitAnd(b.{comp[i]})"));
+            Join(i => BitOp("&", $"a.{comp[i]}", $"b.{comp[i]}")));
         EmitBitOp("|", type, "b.vector", Load64("b."),
-            Join(i => $"a.{comp[i]}.BitOr(b.{comp[i]})"));
+            Join(i => BitOp("|", $"a.{comp[i]}", $"b.{comp[i]}")));
         EmitBitOp("^", type, "b.vector", Load64("b."),
-            Join(i => $"a.{comp[i]}.BitXor(b.{comp[i]})"));
+            Join(i => BitOp("^", $"a.{comp[i]}", $"b.{comp[i]}")));
         if (!bol)
         {
             EmitBitOp("<<", "int", "b", "b",
-                Join(i => $"a.{comp[i]}.BitShiftLeft(b)"));
+                Join(i => BitShift("<<", $"a.{comp[i]}", "b")));
             EmitBitOp(">>", "int", "b", "b",
-                Join(i => $"a.{comp[i]}.BitShiftRight(b)"));
+                Join(i => BitShift(">>", $"a.{comp[i]}", "b")));
             EmitBitOp(">>>", "int", "b", "b",
-                Join(i => $"a.{comp[i]}.BitShiftRightUnsigned(b)"));
+                Join(i => BitShift(">>>", $"a.{comp[i]}", "b")));
         }
 
         sb.AppendLine("    #endregion");

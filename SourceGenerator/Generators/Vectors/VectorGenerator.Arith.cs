@@ -178,7 +178,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Abs(vector)")};",
             $"return {From128($"Vector128.Abs({Load64("")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.abs()")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "abs", comp[n]))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -190,7 +190,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"simd.{signOp}(vector)")};",
             $"return {From128($"simd.{signOp}({Load64("")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.sign()")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "sign", comp[n]))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -210,7 +210,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Min(vector, other.vector)")};",
             $"return {From128($"Vector128.Min({Load64("")}, {Load64("other.")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.min(other.{comp[n]})")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "min", comp[n], $"other.{comp[n]}"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -220,7 +220,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max(vector, other.vector)")};",
             $"return {From128($"Vector128.Max({Load64("")}, {Load64("other.")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.max(other.{comp[n]})")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "max", comp[n], $"other.{comp[n]}"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -230,7 +230,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max(min.vector, {vecName}.Min(max.vector, vector))")};",
             $"return {From128($"Vector128.Max({Load64("min.")}, Vector128.Min({Load64("max.")}, {Load64("")}))")};",
-            $"return {NewCompWise(n => $"{comp[n]}.clamp(min.{comp[n]}, max.{comp[n]})")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "clamp", comp[n], $"min.{comp[n]}", $"max.{comp[n]}"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -242,7 +242,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max({vecName}.Create(min), {vecName}.Min({vecName}.Create(max), vector))")};",
             $"return {From128($"Vector128.Max(Vector128.Create(min), Vector128.Min(Vector128.Create(max), {Load64("")}))")};",
-            $"return {NewCompWise(n => $"{comp[n]}.clamp(min, max)")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "clamp", comp[n], "min", "max"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -378,11 +378,22 @@ public partial class VectorGenerator
         // emits one of the fused multiply add variants
         void EmitFma(string name, string accelerated, string? wide, string scalarName)
         {
+            // the fused operation of a floating point component is the one of the BCL, an integer component has
+            // no fused operation, its two operations are only fused by the operand order of the name
+            string Body(int n) => f
+                ? VectorScalar.Expr(scalar, scalarName, $"a.{comp[n]}", $"b.{comp[n]}", $"c.{comp[n]}")
+                : name switch
+                {
+                    "fma" => $"a.{comp[n]} * b.{comp[n]} + c.{comp[n]}",
+                    "fms" => $"a.{comp[n]} * b.{comp[n]} - c.{comp[n]}",
+                    _ => $"c.{comp[n]} - a.{comp[n]} * b.{comp[n]}",
+                };
+
             InheritDoc();
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public static {type} {name}(in {type} a, in {type} b, in {type} c)");
             sb.AppendLine("    {");
-            EmitAccel(accelerated, wide, $"return {NewCompWise(n => $"a.{comp[n]}.{scalarName}(b.{comp[n]}, c.{comp[n]})")};");
+            EmitAccel(accelerated, wide, $"return {NewCompWise(Body)};");
             sb.AppendLine("    }");
             sb.AppendLine();
         }
@@ -449,7 +460,7 @@ public partial class VectorGenerator
             }
 
             var chain = comp[0];
-            for (var n = 1; n < size; n++) chain += $".{scalarName}({comp[n]})";
+            for (var n = 1; n < size; n++) chain = VectorScalar.Expr(scalar, scalarName, chain, comp[n]);
             sb.AppendLine($"        return {chain};");
             sb.AppendLine("    }");
             sb.AppendLine();

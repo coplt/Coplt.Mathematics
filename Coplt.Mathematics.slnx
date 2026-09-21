@@ -1,6 +1,8 @@
 <Solution>
   <Project Path="Coplt.Mathematics.SignedDistances/Coplt.Mathematics.SignedDistances.csproj" />
-  <Project Path="Coplt.Mathematics/Coplt.Mathematics.csproj" />
+  <Project Path="Coplt.Mathematics.Old/Coplt.Mathematics.Old.csproj" />
+  <Project Path="Coplt.Mathematics.New/Coplt.Mathematics.New.csproj" />
+  <Project Path="SourceGenerator.Old/SourceGenerator.Old.csproj" />
   <Project Path="SourceGenerator/SourceGenerator.csproj" />
   <Project Path="Tests/Tests.csproj" />
 </Solution>

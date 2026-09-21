@@ -1,4 +1,4 @@
-﻿namespace Coplt.Experimental.Mathematics;
+﻿namespace Coplt.Mathematics;
 
 public static partial class math
 {

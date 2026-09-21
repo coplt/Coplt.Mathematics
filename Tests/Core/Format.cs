@@ -101,11 +101,10 @@ public class TestVectorFormat
     }
 
     [Test]
-    public void LegacyBool()
+    public void BoolScalar()
     {
         var chars = new char[8];
         var utf8 = new byte[8];
-        var v = new Coplt.Mathematics.b32v2(B32.True, B32.False);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(B16.True.ToString(), Is.EqualTo("true"));
@@ -123,8 +122,6 @@ public class TestVectorFormat
             Assert.That(B16.False.TryFormat(chars.AsSpan(0, 5), out nc, default, null), Is.True);
             Assert.That(B16.False.TryFormat(chars.AsSpan(0, 4), out nc, default, null), Is.False);
             Assert.That(nc, Is.EqualTo(0));
-            // the legacy vectors print the text of their bool components
-            Assert.That(v.ToString(), Is.EqualTo("b32v2(true, false)"));
         }
     }
 

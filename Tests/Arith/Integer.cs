@@ -172,10 +172,10 @@ public class TestInteger
     }
 
     /// <summary>
-    /// The members have to keep the values of the legacy implementation, which is checked against it directly.
+    /// The members are checked over the values that are at a boundary of the operation.
     /// </summary>
     [Test]
-    public void MatchesTheLegacyImplementation()
+    public void Values()
     {
         uint[] values =
         [
@@ -185,15 +185,10 @@ public class TestInteger
 
         foreach (var a in values)
         {
-            var current = new uint3(a).is_pow2();
-            var legacy = Coplt.Mathematics.math.isPow2(new Coplt.Mathematics.uint3(a));
-            var currentUp = new uint3(a).up2pow2();
-            var legacyUp = Coplt.Mathematics.math.up2pow2(new Coplt.Mathematics.uint3(a));
-
             using (Assert.EnterMultipleScope())
             {
-                Assert.That((bool)current.x, Is.EqualTo((bool)legacy.x), $"is_pow2({a})");
-                Assert.That(currentUp.x, Is.EqualTo(legacyUp.x), $"up2pow2({a})");
+                Assert.That((bool)new uint3(a).is_pow2().x, Is.EqualTo(IsPow2(a)), $"is_pow2({a})");
+                Assert.That(new uint3(a).up2pow2().x, Is.EqualTo(Up2Pow2(a)), $"up2pow2({a})");
             }
         }
 
@@ -201,13 +196,30 @@ public class TestInteger
 
         foreach (var a in signed)
         {
-            var current = new int3(a).is_pow2();
-            var legacy = Coplt.Mathematics.math.isPow2(new Coplt.Mathematics.int3(a));
-
             using (Assert.EnterMultipleScope())
             {
-                Assert.That((bool)current.x, Is.EqualTo((bool)legacy.x), $"is_pow2({a})");
+                Assert.That((bool)new int3(a).is_pow2().x, Is.EqualTo(a > 0 && (a & (a - 1)) == 0), $"is_pow2({a})");
             }
         }
+    }
+
+    /// <summary>
+    /// A power of two has exactly one bit set, zero is not one of them.
+    /// </summary>
+    private static bool IsPow2(uint a) => a != 0 && (a & (a - 1)) == 0;
+
+    /// <summary>
+    /// Rounds up to the next power of two, zero stays zero and a value above the top wraps to zero.
+    /// </summary>
+    private static uint Up2Pow2(uint a)
+    {
+        if (a == 0) return 0;
+        var x = a - 1;
+        x |= x >> 1;
+        x |= x >> 2;
+        x |= x >> 4;
+        x |= x >> 8;
+        x |= x >> 16;
+        return x + 1;
     }
 }

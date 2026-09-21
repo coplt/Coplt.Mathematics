@@ -133,7 +133,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd.Mod(vector, other.vector)", true)};",
             $"return {From128($"simd.Mod({Load64("")}, {Load64("other.")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.mod(other.{comp[n]})")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "mod", comp[n], $"other.{comp[n]}"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -157,7 +157,7 @@ public partial class VectorGenerator
         sb.AppendLine("    #region ceil floor round trunc frac");
         sb.AppendLine();
 
-        void Rounding(string name, string op, string scalarName)
+        void Rounding(string name, string op)
         {
             InheritDoc();
             sb.AppendLine($"    {attr}");
@@ -165,15 +165,15 @@ public partial class VectorGenerator
             sb.AppendLine("    {");
             EmitAccel($"return {FromVector($"{vecName}.{op}(vector)")};",
                 $"return {From128($"Vector128.{op}({Load64("")})")};",
-                $"return {NewCompWise(n => $"{comp[n]}.{scalarName}()")};");
+                $"return {NewCompWise(n => VectorScalar.Expr(scalar, name, comp[n]))};");
             sb.AppendLine("    }");
             sb.AppendLine();
         }
 
-        Rounding("ceil", "Ceiling", "ceil");
-        Rounding("floor", "Floor", "floor");
-        Rounding("round", "Round", "round");
-        Rounding("trunc", "Truncate", "trunc");
+        Rounding("ceil", "Ceiling");
+        Rounding("floor", "Floor");
+        Rounding("round", "Round");
+        Rounding("trunc", "Truncate");
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
@@ -181,7 +181,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"vector - {vecName}.Floor(vector)")};",
             $"return {From128($"{Load64("")} - Vector128.Floor({Load64("")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.frac()")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "frac", comp[n]))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -202,7 +202,7 @@ public partial class VectorGenerator
         // the reciprocal of the zero padding lane is an infinity, the mask keeps it at zero
         EmitAccel($"return {FromVector("simd.Rcp(vector)", true)};",
             $"return {From128($"simd.Rcp({Load64("")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.rcp()")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "rcp", comp[n]))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -299,7 +299,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd_math.Wrap(vector, min.vector, max.vector)", true)};",
             $"return {From128($"simd_math.Wrap({Load64("")}, {Load64("min.")}, {Load64("max.")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.wrap(min.{comp[n]}, max.{comp[n]})")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "wrap", comp[n], $"min.{comp[n]}", $"max.{comp[n]}"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -309,7 +309,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd_math.Wrap(vector, min, max)", true)};",
             $"return {From128($"simd_math.Wrap({Load64("")}, min, max)")};",
-            $"return {NewCompWise(n => $"{comp[n]}.wrap(min, max)")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "wrap", comp[n], "min", "max"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 

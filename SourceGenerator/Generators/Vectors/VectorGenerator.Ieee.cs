@@ -93,7 +93,7 @@ public partial class VectorGenerator
             sb.AppendLine("    {");
             EmitAccel($"return {FromVector($"{accelFn}(vector)")};",
                 $"return {From128($"{wideFn}({Load64("")})")};",
-                $"return {NewCompWise(n => $"{comp[n]}.{scalarName}()")};");
+                $"return {NewCompWise(n => VectorScalar.Expr(scalar, scalarName, comp[n]))};");
             sb.AppendLine("    }");
             sb.AppendLine();
         }
@@ -124,7 +124,7 @@ public partial class VectorGenerator
                 }
             }
 
-            sb.AppendLine($"        return new({Join(n => $"{comp[n]}.{scalarName}()")});");
+            sb.AppendLine($"        return new({Join(n => VectorScalar.Expr(scalar, scalarName, comp[n]))});");
             sb.AppendLine("    }");
             sb.AppendLine();
         }
@@ -153,7 +153,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd.Log(a.vector) / simd.Log(b.vector)")};",
             $"return {From128($"simd.Log({Load64("a.")}) / simd.Log({Load64("b.")})")};",
-            $"return {NewCompWise(n => $"a.{comp[n]}.log(b.{comp[n]})")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "log_base", $"a.{comp[n]}", $"b.{comp[n]}"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -189,7 +189,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd.Pow(vector, other.vector)")};",
             $"return {From128($"simd.Pow({Load64("")}, {Load64("other.")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.pow(other.{comp[n]})")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "pow", comp[n], $"other.{comp[n]}"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -199,7 +199,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"simd.Pow(vector, {vecName}.Create(v))")};",
             $"return {From128($"simd.Pow({Load64("")}, Vector128.Create(v))")};",
-            $"return {NewCompWise(n => $"{comp[n]}.pow(v)")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "pow", comp[n], "v"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -218,7 +218,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {scalar} length() => length_sq().sqrt();");
+        sb.AppendLine($"    public readonly {scalar} length() => {VectorScalar.Expr(scalar, "sqrt", "length_sq()")};");
         sb.AppendLine();
 
         InheritDoc();
@@ -238,7 +238,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} normalize() => this * length_sq().rsqrt();");
+        sb.AppendLine($"    public readonly {type} normalize() => this * {VectorScalar.Expr(scalar, "rsqrt", "length_sq()")};");
         sb.AppendLine();
 
         InheritDoc();
@@ -247,7 +247,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         sb.AppendLine("        var len = length_sq();");
         // the smallest normal value of the component type is the bound, a shorter vector is zero for the result
-        sb.AppendLine($"        return len > {Lit("1.175494351e-38")} ? this * len.rsqrt() : default;");
+        sb.AppendLine($"        return len > {Lit("1.175494351e-38")} ? this * {VectorScalar.Expr(scalar, "rsqrt", "len")} : default;");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -291,8 +291,8 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         sb.AppendLine("        var ni = i.dot(n);");
         sb.AppendLine($"        var k = ({scalar})({Lit("1")} - index_of_refraction * index_of_refraction * ({Lit("1")} - ni * ni));");
-        sb.AppendLine($"        return k >= ({scalar})0");
-        sb.AppendLine("            ? index_of_refraction * i - (index_of_refraction * ni + k.sqrt()) * n");
+        sb.AppendLine($"        return k >= {VectorScalar.Zero(scalar)}");
+        sb.AppendLine("            ? index_of_refraction * i - (index_of_refraction * ni + " + VectorScalar.Expr(scalar, "sqrt", "k") + ") * n");
         sb.AppendLine("            : default;");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -335,7 +335,7 @@ public partial class VectorGenerator
         // the vector is flipped when the dot product of the normal and the incident vector is not negative
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} face_forward(in {type} i, in {type} ng) => ng.dot(i) >= ({scalar})0 ? -this : this;");
+        sb.AppendLine($"    public readonly {type} face_forward(in {type} i, in {type} ng) => ng.dot(i) >= {VectorScalar.Zero(scalar)} ? -this : this;");
         sb.AppendLine();
 
         sb.AppendLine("    #endregion");
@@ -387,7 +387,7 @@ public partial class VectorGenerator
             }
         }
 
-        for (var i = 0; i < size; i++) sb.AppendLine($"        this.{comp[i]}.sincos(out var s{i}, out var c{i});");
+        for (var i = 0; i < size; i++) sb.AppendLine($"        var (s{i}, c{i}) = {VectorScalar.Expr(scalar, "sincos", $"this.{comp[i]}")};");
         sb.AppendLine($"        sin = new({Join(i => $"s{i}")});");
         sb.AppendLine($"        cos = new({Join(i => $"c{i}")});");
         sb.AppendLine("    }");
@@ -415,7 +415,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd.Atan2(vector, v.vector)")};",
             $"return {From128($"simd.Atan2({Load64("")}, {Load64("v.")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.atan2(v.{comp[n]})")};");
+            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "atan2", comp[n], $"v.{comp[n]}"))};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -488,9 +488,9 @@ public partial class VectorGenerator
         sb.AppendLine($"    public readonly {boolType} is_finite() => abs() < new {type}({scalar}.PositiveInfinity);");
         sb.AppendLine();
 
-        BoolMember("is_inf", "IsInfinity", "isInf");
-        BoolMember("is_pos_inf", "IsPositiveInfinity", "isPosInf");
-        BoolMember("is_neg_inf", "IsNegativeInfinity", "isNegInf");
+        BoolMember("is_inf", "IsInfinity", "is_inf");
+        BoolMember("is_pos_inf", "IsPositiveInfinity", "is_pos_inf");
+        BoolMember("is_neg_inf", "IsNegativeInfinity", "is_neg_inf");
 
         sb.AppendLine("    #endregion");
 

@@ -223,15 +223,14 @@ public class TestIeee754
             Assert.That(new double3(9, 16, 25).sqrt().z, Is.EqualTo(5d).Within(1e-12));
         }
 
-        // the element wise power keeps the value of the legacy implementation
-        var lv = Coplt.Mathematics.math.pow(new Coplt.Mathematics.float3(2f, 3f, 4f), new Coplt.Mathematics.float3(0.5f, 2f, 3f));
+        // the element wise power of a value that has a reference
         var nv = new float3(2f, 3f, 4f).pow(new float3(0.5f, 2f, 3f));
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(nv.x, Is.EqualTo(lv.x).Within(1e-6f));
-            Assert.That(nv.y, Is.EqualTo(lv.y).Within(1e-6f));
-            Assert.That(nv.z, Is.EqualTo(lv.z).Within(1e-6f));
+            Assert.That(nv.x, Is.EqualTo(1.4142135f).Within(1e-6f));
+            Assert.That(nv.y, Is.EqualTo(9f).Within(1e-6f));
+            Assert.That(nv.z, Is.EqualTo(64f).Within(1e-6f));
         }
     }
 
@@ -285,19 +284,13 @@ public class TestIeee754
             // a grazing direction cannot leave a denser medium
             var g = new float3(0f, -0.5f, -0.8660254f);
             Assert.That(float3.refract(g, new float3(0f, 1f, 0f), 1.5f), Is.EqualTo(default(float3)));
-        }
-
-        // the result keeps the value of the legacy implementation
-        var li = Coplt.Mathematics.math.normalize(new Coplt.Mathematics.float3(0.3f, -0.4f, 0.5f));
-        var v = new float3(li.x, li.y, li.z);
-        var r = float3.refract(v, new float3(0f, 0f, 1f), 1.2f);
-        var lr = Coplt.Mathematics.math.refract(li, new Coplt.Mathematics.float3(0f, 0f, 1f), 1.2f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(r.x, Is.EqualTo(lr.x).Within(1e-6f));
-            Assert.That(r.y, Is.EqualTo(lr.y).Within(1e-6f));
-            Assert.That(r.z, Is.EqualTo(lr.z).Within(1e-6f));
+            // both sides are the same material, the normal points the same way as the incident direction, so the
+            // normal component of the direction is flipped and the other two are kept
+            var d = float3.normalize(new float3(0.3f, -0.4f, 0.5f));
+            var r = float3.refract(d, new float3(0f, 0f, 1f), 1f);
+            Assert.That(r.x, Is.EqualTo(d.x).Within(1e-5f));
+            Assert.That(r.y, Is.EqualTo(d.y).Within(1e-5f));
+            Assert.That(r.z, Is.EqualTo(-d.z).Within(1e-5f));
         }
     }
 
