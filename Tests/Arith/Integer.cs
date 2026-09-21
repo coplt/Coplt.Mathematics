@@ -17,9 +17,8 @@ public class TestInteger
     /// Every integer vector implements the check of a power of two, so it is reachable through the interface and
     /// the mask of it is the bool vector of the shape of the vector.
     /// </summary>
-    private static void Check<T, TScalar, TBool>(T v)
-        where T : unmanaged, IVectorInteger<T, TScalar, TBool>
-        where TScalar : unmanaged
+    private static void Check<T, TBool>(T v)
+        where T : unmanaged, IVectorInteger<T, TBool>
         where TBool : unmanaged
     {
         var mask = v.is_pow2();
@@ -35,12 +34,11 @@ public class TestInteger
     /// A vector without a sign also has the rounding up to the next power of two, which the interface of the
     /// plain integer vector does not declare because it is not meaningful for a negative value.
     /// </summary>
-    private static void CheckUnsigned<T, TScalar, TBool>(T v)
-        where T : unmanaged, IVectorUnsignedInteger<T, TScalar, TBool>
-        where TScalar : unmanaged
+    private static void CheckUnsigned<T, TBool>(T v)
+        where T : unmanaged, IVectorUnsignedInteger<T, TBool>
         where TBool : unmanaged
     {
-        Check<T, TScalar, TBool>(v);
+        Check<T, TBool>(v);
         _ = v.up2pow2();
     }
 
@@ -49,33 +47,33 @@ public class TestInteger
     {
         // the type of a single component and the type of the mask cannot be inferred from the vector, they have
         // to be spelled out
-        Check<short2, short, b16v2>(new short2(1, 2));
-        Check<short3, short, b16v3>(new short3(1, 2, 3));
-        Check<short4, short, b16v4>(new short4(1, 2, 3, 4));
-        Check<int2, int, b32v2>(new int2(1, 2));
-        Check<int3, int, b32v3>(new int3(1, 2, 3));
-        Check<int4, int, b32v4>(new int4(1, 2, 3, 4));
-        Check<long2, long, b64v2>(new long2(1, 2));
-        Check<long3, long, b64v3>(new long3(1, 2, 3));
-        Check<long4, long, b64v4>(new long4(1, 2, 3, 4));
+        Check<short2, b16v2>(new short2(1, 2));
+        Check<short3, b16v3>(new short3(1, 2, 3));
+        Check<short4, b16v4>(new short4(1, 2, 3, 4));
+        Check<int2, b32v2>(new int2(1, 2));
+        Check<int3, b32v3>(new int3(1, 2, 3));
+        Check<int4, b32v4>(new int4(1, 2, 3, 4));
+        Check<long2, b64v2>(new long2(1, 2));
+        Check<long3, b64v3>(new long3(1, 2, 3));
+        Check<long4, b64v4>(new long4(1, 2, 3, 4));
 
-        CheckUnsigned<ushort2, ushort, b16v2>(new ushort2(1, 2));
-        CheckUnsigned<ushort3, ushort, b16v3>(new ushort3(1, 2, 3));
-        CheckUnsigned<ushort4, ushort, b16v4>(new ushort4(1, 2, 3, 4));
-        CheckUnsigned<uint2, uint, b32v2>(new uint2(1, 2));
-        CheckUnsigned<uint3, uint, b32v3>(new uint3(1, 2, 3));
-        CheckUnsigned<uint4, uint, b32v4>(new uint4(1, 2, 3, 4));
-        CheckUnsigned<ulong2, ulong, b64v2>(new ulong2(1, 2));
-        CheckUnsigned<ulong3, ulong, b64v3>(new ulong3(1, 2, 3));
-        CheckUnsigned<ulong4, ulong, b64v4>(new ulong4(1, 2, 3, 4));
+        CheckUnsigned<ushort2, b16v2>(new ushort2(1, 2));
+        CheckUnsigned<ushort3, b16v3>(new ushort3(1, 2, 3));
+        CheckUnsigned<ushort4, b16v4>(new ushort4(1, 2, 3, 4));
+        CheckUnsigned<uint2, b32v2>(new uint2(1, 2));
+        CheckUnsigned<uint3, b32v3>(new uint3(1, 2, 3));
+        CheckUnsigned<uint4, b32v4>(new uint4(1, 2, 3, 4));
+        CheckUnsigned<ulong2, b64v2>(new ulong2(1, 2));
+        CheckUnsigned<ulong3, b64v3>(new ulong3(1, 2, 3));
+        CheckUnsigned<ulong4, b64v4>(new ulong4(1, 2, 3, 4));
 
         // the storage variant of a vector implements the same interface as the regular one
-        Check<int2s, int, b32v2>(new int2s(1, 2));
-        Check<int3s, int, b32v3>(new int3s(1, 2, 3));
-        Check<long3s, long, b64v3>(new long3s(1, 2, 3));
-        CheckUnsigned<uint2s, uint, b32v2>(new uint2s(1, 2));
-        CheckUnsigned<uint3s, uint, b32v3>(new uint3s(1, 2, 3));
-        CheckUnsigned<ulong3s, ulong, b64v3>(new ulong3s(1, 2, 3));
+        Check<int2s, b32v2>(new int2s(1, 2));
+        Check<int3s, b32v3>(new int3s(1, 2, 3));
+        Check<long3s, b64v3>(new long3s(1, 2, 3));
+        CheckUnsigned<uint2s, b32v2>(new uint2s(1, 2));
+        CheckUnsigned<uint3s, b32v3>(new uint3s(1, 2, 3));
+        CheckUnsigned<ulong3s, b64v3>(new ulong3s(1, 2, 3));
     }
 
     [Test]

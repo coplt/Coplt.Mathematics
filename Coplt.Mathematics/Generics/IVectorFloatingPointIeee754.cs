@@ -1,16 +1,16 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
 /// <summary>
-/// A <see cref="IVectorFloatingPointIeee754{Self,Scalar}"/> that can also produce a bool vector, it adds the
-/// checks for the special floating point values
+/// An <see cref="IVectorFloatingPointIeee754{Self}"/> that can also produce a bool vector, it adds the checks
+/// for the special floating point values
+/// <para>It does not name the type of a single component because none of these members needs it, <see
+/// cref="IVectorFloatingPointIeee754BoolOps{Self,Scalar,BoolVector}"/> adds the members that do</para>
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
-/// <typeparam name="Scalar">The type of a single component</typeparam>
 /// <typeparam name="BoolVector">The bool vector type that has the same shape as this vector</typeparam>
-public interface IVectorFloatingPointIeee754BoolOps<Self, Scalar, out BoolVector> :
-    IVectorFloatingPointIeee754<Self, Scalar>
-    where Self : unmanaged, IVectorFloatingPointIeee754BoolOps<Self, Scalar, BoolVector>
-    where Scalar : unmanaged
+public interface IVectorFloatingPointIeee754BoolOps<Self, out BoolVector> :
+    IVectorFloatingPointIeee754<Self>
+    where Self : unmanaged, IVectorFloatingPointIeee754BoolOps<Self, BoolVector>
 {
     #region IsNaN IsFinite IsInfinity IsPositiveInfinity
 
@@ -48,14 +48,27 @@ public interface IVectorFloatingPointIeee754BoolOps<Self, Scalar, out BoolVector
 }
 
 /// <summary>
-/// A <see cref="IVectorFloatingPoint{Self,Scalar}"/> with the ieee 754 math functions
+/// A <see cref="IVectorFloatingPointIeee754{Self,Scalar}"/> that can also produce a bool vector, it adds the
+/// checks for the special floating point values
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 /// <typeparam name="Scalar">The type of a single component</typeparam>
-public interface IVectorFloatingPointIeee754<Self, Scalar> :
-    IVectorFloatingPoint<Self, Scalar>
-    where Self : unmanaged, IVectorFloatingPointIeee754<Self, Scalar>
-    where Scalar : unmanaged
+/// <typeparam name="BoolVector">The bool vector type that has the same shape as this vector</typeparam>
+public interface IVectorFloatingPointIeee754BoolOps<Self, Scalar, out BoolVector> :
+    IVectorFloatingPointIeee754BoolOps<Self, BoolVector>,
+    IVectorFloatingPointIeee754<Self, Scalar>
+    where Self : unmanaged, IVectorFloatingPointIeee754BoolOps<Self, Scalar, BoolVector>
+    where Scalar : unmanaged;
+
+/// <summary>
+/// A <see cref="IVectorFloatingPoint{Self}"/> with the ieee 754 math functions
+/// <para>It does not name the type of a single component because none of these members needs it, <see
+/// cref="IVectorFloatingPointIeee754{Self,Scalar}"/> adds the members that do</para>
+/// </summary>
+/// <typeparam name="Self">The vector type itself</typeparam>
+public interface IVectorFloatingPointIeee754<Self> :
+    IVectorFloatingPoint<Self>
+    where Self : unmanaged, IVectorFloatingPointIeee754<Self>
 {
     #region Log
 
@@ -111,11 +124,11 @@ public interface IVectorFloatingPointIeee754<Self, Scalar> :
     #region Pow Sqrt RSqrt
 
     /// <summary>
-    /// Returns every component raised to the power of <paramref name="v"/>
+    /// Returns every component raised to the power of the matching component of <paramref name="v"/>
     /// </summary>
-    /// <param name="v">The exponent</param>
+    /// <param name="v">The exponent of every component</param>
     /// <returns>The power</returns>
-    public Self pow(Scalar v);
+    public Self pow(Self v);
 
     /// <summary>
     /// Returns the square root of every component
@@ -128,23 +141,6 @@ public interface IVectorFloatingPointIeee754<Self, Scalar> :
     /// </summary>
     /// <returns>The reciprocal of the square root</returns>
     public Self rsqrt();
-
-    #endregion
-
-    #region Length Distance
-
-    /// <summary>
-    /// Returns the length of the vector, it is the same as <c>sqrt(length_sq())</c>
-    /// </summary>
-    /// <returns>The length of the vector</returns>
-    public Scalar length();
-
-    /// <summary>
-    /// Returns the distance between the two vectors, it is the same as the length of the difference
-    /// </summary>
-    /// <param name="to">The other vector</param>
-    /// <returns>The distance</returns>
-    public Scalar distance(in Self to);
 
     #endregion
 
@@ -173,16 +169,6 @@ public interface IVectorFloatingPointIeee754<Self, Scalar> :
     /// <param name="threshold">The threshold</param>
     /// <returns>The step vector</returns>
     public Self step(in Self threshold);
-
-    /// <summary>
-    /// Returns the refraction direction, <paramref name="i"/> has to be normalized and
-    /// <paramref name="n"/> has to point against <paramref name="i"/>
-    /// </summary>
-    /// <param name="i">The normalized vector of the incoming direction</param>
-    /// <param name="n">The normalized normal, it has to point against <paramref name="i"/></param>
-    /// <param name="index_of_refraction">The ratio between the index of refraction of the two materials</param>
-    /// <returns>The refracted direction</returns>
-    public static abstract Self refract(in Self i, in Self n, Scalar index_of_refraction);
 
     #endregion
 
@@ -338,6 +324,60 @@ public interface IVectorFloatingPointIeee754<Self, Scalar> :
     /// <param name="sign">The vector that provides the sign of every component</param>
     /// <returns>The vector with the changed sign</returns>
     public Self chg_sign(in Self sign);
+
+    #endregion
+}
+
+/// <summary>
+/// A <see cref="IVectorFloatingPoint{Self,Scalar}"/> with the ieee 754 math functions
+/// </summary>
+/// <typeparam name="Self">The vector type itself</typeparam>
+/// <typeparam name="Scalar">The type of a single component</typeparam>
+public interface IVectorFloatingPointIeee754<Self, Scalar> :
+    IVectorFloatingPointIeee754<Self>,
+    IVectorFloatingPoint<Self, Scalar>
+    where Self : unmanaged, IVectorFloatingPointIeee754<Self, Scalar>
+    where Scalar : unmanaged
+{
+    #region Pow
+
+    /// <summary>
+    /// Returns every component raised to the power of <paramref name="v"/>
+    /// </summary>
+    /// <param name="v">The exponent</param>
+    /// <returns>The power</returns>
+    public Self pow(Scalar v);
+
+    #endregion
+
+    #region Length Distance
+
+    /// <summary>
+    /// Returns the length of the vector, it is the same as <c>sqrt(length_sq())</c>
+    /// </summary>
+    /// <returns>The length of the vector</returns>
+    public Scalar length();
+
+    /// <summary>
+    /// Returns the distance between the two vectors, it is the same as the length of the difference
+    /// </summary>
+    /// <param name="to">The other vector</param>
+    /// <returns>The distance</returns>
+    public Scalar distance(in Self to);
+
+    #endregion
+
+    #region Refract
+
+    /// <summary>
+    /// Returns the refraction direction, <paramref name="i"/> has to be normalized and
+    /// <paramref name="n"/> has to point against <paramref name="i"/>
+    /// </summary>
+    /// <param name="i">The normalized vector of the incoming direction</param>
+    /// <param name="n">The normalized normal, it has to point against <paramref name="i"/></param>
+    /// <param name="index_of_refraction">The ratio between the index of refraction of the two materials</param>
+    /// <returns>The refracted direction</returns>
+    public static abstract Self refract(in Self i, in Self n, Scalar index_of_refraction);
 
     #endregion
 }

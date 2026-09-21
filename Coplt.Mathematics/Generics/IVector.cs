@@ -3,14 +3,14 @@
 /// <summary>
 /// The base of every vector, it only declares what a number vector and a bool vector have in common:
 /// the meta data, the constructors, the indexer and the bitwise operators
+/// <para>It does not name the type of a single component because none of these members needs it, <see
+/// cref="IVector{TSelf,TScalar}"/> adds the members that do</para>
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
-/// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IVector<TSelf, TScalar> :
+public interface IVector<TSelf> :
     IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>,
     IBitwiseOperators<TSelf, TSelf, TSelf>
-    where TSelf : unmanaged, IVector<TSelf, TScalar>
-    where TScalar : unmanaged
+    where TSelf : unmanaged, IVector<TSelf>
 {
     #region Meta
 
@@ -38,7 +38,18 @@ public interface IVector<TSelf, TScalar> :
     public static abstract int SizeBit { get; }
 
     #endregion
+}
 
+/// <summary>
+/// The base of every vector, it only declares what a number vector and a bool vector have in common:
+/// the meta data, the constructors, the indexer and the bitwise operators
+/// </summary>
+/// <typeparam name="TSelf">The vector type itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IVector<TSelf, TScalar> : IVector<TSelf>
+    where TSelf : unmanaged, IVector<TSelf, TScalar>
+    where TScalar : unmanaged
+{
     #region Ctor
 
     /// <summary>
@@ -89,18 +100,17 @@ public interface IVector<TSelf, TScalar> :
 }
 
 /// <summary>
-/// A <see cref="IVector{TSelf,TScalar}"/> of numbers, it adds the numeric constants, the ordering operators
-/// and the shift operators
+/// A <see cref="IVector{TSelf}"/> of numbers, it adds the numeric constants, the ordering operators and the
+/// shift operators
+/// <para>It does not name the type of a single component because none of these members needs it, <see
+/// cref="INumberVector{TSelf,TScalar}"/> adds the scalar constants that do</para>
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
-/// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface INumberVector<TSelf, TScalar> :
-    IVector<TSelf, TScalar>,
-    IComparable<TSelf>, IComparable,
+public interface INumberVector<TSelf> :
+    IVector<TSelf>, IComparable<TSelf>, IComparable,
     IComparisonOperators<TSelf, TSelf, bool>,
     IShiftOperators<TSelf, int, TSelf>
-    where TSelf : unmanaged, INumberVector<TSelf, TScalar>
-    where TScalar : unmanaged
+    where TSelf : unmanaged, INumberVector<TSelf>
 {
     #region Constants
 
@@ -118,6 +128,22 @@ public interface INumberVector<TSelf, TScalar> :
     /// A vector with every component set to two
     /// </summary>
     public static abstract TSelf Two { get; }
+
+    #endregion
+}
+
+/// <summary>
+/// A <see cref="IVector{TSelf,TScalar}"/> of numbers, it adds the numeric constants, the ordering operators
+/// and the shift operators
+/// </summary>
+/// <typeparam name="TSelf">The vector type itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface INumberVector<TSelf, TScalar> :
+    INumberVector<TSelf>, IVector<TSelf, TScalar>
+    where TSelf : unmanaged, INumberVector<TSelf, TScalar>
+    where TScalar : unmanaged
+{
+    #region Constants
 
     /// <summary>
     /// The scalar zero
@@ -141,15 +167,14 @@ public interface INumberVector<TSelf, TScalar> :
 }
 
 /// <summary>
-/// A <see cref="IVector{TSelf,TScalar}"/> of booleans, it is a mask
-/// <para>It has no numeric constants, no ordering operators and no shift operators</para>
+/// A <see cref="IVector{TSelf}"/> of booleans, it is a mask
+/// <para>It has no numeric constants, no ordering operators and no shift operators, and it does not name the
+/// type of a single component because none of its members needs it</para>
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
-/// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IBoolVector<TSelf, TScalar> :
-    IVector<TSelf, TScalar>
-    where TSelf : unmanaged, IBoolVector<TSelf, TScalar>
-    where TScalar : unmanaged
+public interface IBoolVector<TSelf> :
+    IVector<TSelf>
+    where TSelf : unmanaged, IBoolVector<TSelf>
 {
     #region Constants
 
@@ -165,3 +190,15 @@ public interface IBoolVector<TSelf, TScalar> :
 
     #endregion
 }
+
+/// <summary>
+/// A <see cref="IVector{TSelf,TScalar}"/> of booleans, it is a mask
+/// <para>It has no numeric constants, no ordering operators and no shift operators</para>
+/// </summary>
+/// <typeparam name="TSelf">The vector type itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IBoolVector<TSelf, TScalar> :
+    IBoolVector<TSelf>,
+    IVector<TSelf, TScalar>
+    where TSelf : unmanaged, IBoolVector<TSelf, TScalar>
+    where TScalar : unmanaged;

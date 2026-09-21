@@ -1,15 +1,15 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
 /// <summary>
-/// An <see cref="ISignedVectorArithmetic{Self,Scalar}"/> of floating point components, it adds the floating
-/// point math functions
+/// An <see cref="ISignedVectorArithmetic{Self}"/> of floating point components, it adds the floating point math
+/// functions
+/// <para>It does not name the type of a single component because none of these members needs it, <see
+/// cref="IVectorFloatingPoint{Self,Scalar}"/> adds the members that do</para>
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
-/// <typeparam name="Scalar">The type of a single component</typeparam>
-public interface IVectorFloatingPoint<Self, Scalar> :
-    ISignedVectorArithmetic<Self, Scalar>
-    where Self : unmanaged, IVectorFloatingPoint<Self, Scalar>
-    where Scalar : unmanaged
+public interface IVectorFloatingPoint<Self> :
+    ISignedVectorArithmetic<Self>
+    where Self : unmanaged, IVectorFloatingPoint<Self>
 {
     #region Math Constants
 
@@ -191,6 +191,23 @@ public interface IVectorFloatingPoint<Self, Scalar> :
     /// <param name="max">The upper bound of the range</param>
     /// <returns>The wrapped vector</returns>
     public Self wrap(in Self min, in Self max);
+
+    #endregion
+}
+
+/// <summary>
+/// An <see cref="ISignedVectorArithmetic{Self,Scalar}"/> of floating point components, it adds the floating
+/// point math functions
+/// </summary>
+/// <typeparam name="Self">The vector type itself</typeparam>
+/// <typeparam name="Scalar">The type of a single component</typeparam>
+public interface IVectorFloatingPoint<Self, Scalar> :
+    IVectorFloatingPoint<Self>,
+    ISignedVectorArithmetic<Self, Scalar>
+    where Self : unmanaged, IVectorFloatingPoint<Self, Scalar>
+    where Scalar : unmanaged
+{
+    #region Wrap
 
     /// <summary>
     /// Wraps every component into the range of <paramref name="min"/> and <paramref name="max"/>

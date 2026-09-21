@@ -17,7 +17,6 @@ public partial class VectorGenerator
     private static string GenInt(Typ typ, int size, bool storeVariant)
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
-        var scalar = typ.compType;
         // the bool vector that has the same number of components as the vector
         var boolType = $"b{typ.size * 8}v{size}";
 
@@ -26,8 +25,8 @@ public partial class VectorGenerator
         sb.AppendLine($"public partial struct {type} :");
         // the rounding up to the next power of two is only meaningful for a vector that has no sign
         sb.AppendLine(typ.sig
-            ? $"    IVectorInteger<{type}, {scalar}, {boolType}>"
-            : $"    IVectorUnsignedInteger<{type}, {scalar}, {boolType}>");
+            ? $"    IVectorInteger<{type}, {boolType}>"
+            : $"    IVectorUnsignedInteger<{type}, {boolType}>");
         sb.AppendLine("{");
 
         #region is_pow2

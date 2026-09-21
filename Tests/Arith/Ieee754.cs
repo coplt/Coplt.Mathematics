@@ -33,6 +33,7 @@ public class TestIeee754
         v.exp2();
         v.exp10();
         v.pow(default);
+        v.pow(v);
         v.sqrt();
         v.rsqrt();
         _ = v.length();
@@ -215,7 +216,22 @@ public class TestIeee754
             Assert.That(v.rsqrt().y, Is.EqualTo(1f / 3f).Within(1e-3f));
             Assert.That(new float3(2f).pow(10f).x, Is.EqualTo(1024f).Within(1e-2f));
             Assert.That(new float3(2f).pow(0.5f).x, Is.EqualTo(MathF.Sqrt(2f)).Within(1e-5f));
+            // the exponent can be a vector as well
+            Assert.That(new float3(2f).pow(new float3(3f)).x, Is.EqualTo(8f).Within(1e-3f));
+            Assert.That(new double3(2, 3, 4).pow(new double3(2, 2, 2)).z, Is.EqualTo(16d).Within(1e-9));
+            Assert.That(new float2s(3f, 4f).pow(new float2s(2f, 2f)), Is.EqualTo(new float2s(9f, 16f)));
             Assert.That(new double3(9, 16, 25).sqrt().z, Is.EqualTo(5d).Within(1e-12));
+        }
+
+        // the element wise power keeps the value of the legacy implementation
+        var lv = Coplt.Mathematics.math.pow(new Coplt.Mathematics.float3(2f, 3f, 4f), new Coplt.Mathematics.float3(0.5f, 2f, 3f));
+        var nv = new float3(2f, 3f, 4f).pow(new float3(0.5f, 2f, 3f));
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(nv.x, Is.EqualTo(lv.x).Within(1e-6f));
+            Assert.That(nv.y, Is.EqualTo(lv.y).Within(1e-6f));
+            Assert.That(nv.z, Is.EqualTo(lv.z).Within(1e-6f));
         }
     }
 

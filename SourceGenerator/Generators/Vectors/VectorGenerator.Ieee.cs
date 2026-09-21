@@ -181,6 +181,16 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
+        sb.AppendLine($"    public readonly {type} pow({type} other)");
+        sb.AppendLine("    {");
+        EmitAccel($"return {FromVector("simd.Pow(vector, other.vector)")};",
+            $"return {From128($"simd.Pow({Load64("")}, {Load64("other.")})")};",
+            $"return {NewCompWise(n => $"{comp[n]}.pow(other.{comp[n]})")};");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+
+        InheritDoc();
+        sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} pow({scalar} v)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"simd.Pow(vector, {vecName}.Create(v))")};",
