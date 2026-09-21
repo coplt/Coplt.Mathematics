@@ -129,7 +129,7 @@ public partial class VectorGenerator
         // the modulo of the library truncates the quotient towards zero on both the simd path and the scalar one
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} mod(in {type} other)");
+        sb.AppendLine($"    public readonly {type} mod(in {type} other)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd.Mod(vector, other.vector)", true)};",
             $"return {From128($"simd.Mod({Load64("")}, {Load64("other.")})")};",
@@ -140,7 +140,7 @@ public partial class VectorGenerator
         // the integral part of a value is its truncation, the fractional part is what is left of it
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} modf(out {type} i)");
+        sb.AppendLine($"    public readonly {type} modf(out {type} i)");
         sb.AppendLine("    {");
         sb.AppendLine("        i = trunc();");
         sb.AppendLine("        return this - i;");
@@ -161,7 +161,7 @@ public partial class VectorGenerator
         {
             InheritDoc();
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public {type} {name}()");
+            sb.AppendLine($"    public readonly {type} {name}()");
             sb.AppendLine("    {");
             EmitAccel($"return {FromVector($"{vecName}.{op}(vector)")};",
                 $"return {From128($"Vector128.{op}({Load64("")})")};",
@@ -177,7 +177,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} frac()");
+        sb.AppendLine($"    public readonly {type} frac()");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"vector - {vecName}.Floor(vector)")};",
             $"return {From128($"{Load64("")} - Vector128.Floor({Load64("")})")};",
@@ -197,7 +197,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} rcp()");
+        sb.AppendLine($"    public readonly {type} rcp()");
         sb.AppendLine("    {");
         // the reciprocal of the zero padding lane is an infinity, the mask keeps it at zero
         EmitAccel($"return {FromVector("simd.Rcp(vector)", true)};",
@@ -209,12 +209,12 @@ public partial class VectorGenerator
         // the vector is clamped into the range of zero and one, the clamp carries the simd fast path itself
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} saturate() => clamp(default, {type}.One);");
+        sb.AppendLine($"    public readonly {type} saturate() => clamp(default, {type}.One);");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} smoothstep(in {type} min, in {type} max)");
+        sb.AppendLine($"    public readonly {type} smoothstep(in {type} min, in {type} max)");
         sb.AppendLine("    {");
         sb.AppendLine("        var t = ((this - min) / (max - min)).saturate();");
         // (3 - (2 * t)) is the hermite curve of the interpolation, it is fused by the fma helper
@@ -224,7 +224,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} reflect(in {type} n)");
+        sb.AppendLine($"    public readonly {type} reflect(in {type} n)");
         sb.AppendLine("    {");
         // this - (2 * n * dot(this, n)), the dot product is broadcast into the vector by the fma helper
         sb.AppendLine($"        return fnma(new {type}({Lit("2")}) * n, this.dot(n), this);");
@@ -243,22 +243,22 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} project(in {type} onto) => this.dot(onto) / onto.dot(onto) * onto;");
+        sb.AppendLine($"    public readonly {type} project(in {type} onto) => this.dot(onto) / onto.dot(onto) * onto;");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} project_normalized(in {type} onto) => this.dot(onto) * onto;");
+        sb.AppendLine($"    public readonly {type} project_normalized(in {type} onto) => this.dot(onto) * onto;");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} project_on_plane(in {type} plane_normal) => this - this.project(plane_normal);");
+        sb.AppendLine($"    public readonly {type} project_on_plane(in {type} plane_normal) => this - this.project(plane_normal);");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} project_on_plane_normalized(in {type} plane_normal) => this - this.project_normalized(plane_normal);");
+        sb.AppendLine($"    public readonly {type} project_on_plane_normalized(in {type} plane_normal) => this - this.project_normalized(plane_normal);");
         sb.AppendLine();
 
         sb.AppendLine("    #endregion");
@@ -273,12 +273,12 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} radians() => this * {type}.DegToRad;");
+        sb.AppendLine($"    public readonly {type} radians() => this * {type}.DegToRad;");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} degrees() => this * {type}.RadToDeg;");
+        sb.AppendLine($"    public readonly {type} degrees() => this * {type}.RadToDeg;");
         sb.AppendLine();
 
         sb.AppendLine("    #endregion");
@@ -295,7 +295,7 @@ public partial class VectorGenerator
         // range below the upper bound, the offset is the remainder of the width of the range
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} wrap(in {type} min, in {type} max)");
+        sb.AppendLine($"    public readonly {type} wrap(in {type} min, in {type} max)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd_math.Wrap(vector, min.vector, max.vector)", true)};",
             $"return {From128($"simd_math.Wrap({Load64("")}, {Load64("min.")}, {Load64("max.")})")};",
@@ -305,7 +305,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} wrap({scalar} min, {scalar} max)");
+        sb.AppendLine($"    public readonly {type} wrap({scalar} min, {scalar} max)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector("simd_math.Wrap(vector, min, max)", true)};",
             $"return {From128($"simd_math.Wrap({Load64("")}, min, max)")};",

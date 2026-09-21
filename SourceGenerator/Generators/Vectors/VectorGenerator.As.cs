@@ -137,7 +137,7 @@ public partial class VectorGenerator
             var (shortName, longName, _) = AsNames[target.name];
             foreach (var name in new[] { shortName, longName })
             {
-                Member(summary, returns, $"public {targetName} {name}() => Unsafe.BitCast<{type}, {targetName}>(this);");
+                Member(summary, returns, $"public readonly {targetName} {name}() => Unsafe.BitCast<{type}, {targetName}>(this);");
             }
         }
 
@@ -145,14 +145,14 @@ public partial class VectorGenerator
         {
             Member($"Converts the vector to its storage variant <see cref=\"{store}\"/>",
                 "The storage variant of the vector",
-                $"public {store} to_storage() => ({store})this;");
+                $"public readonly {store} to_storage() => ({store})this;");
         }
 
         if (regular != null)
         {
             Member($"Converts the storage variant of the vector to the regular <see cref=\"{regular}\"/>",
                 "The regular vector",
-                $"public {regular} to_compute() => ({regular})this;");
+                $"public readonly {regular} to_compute() => ({regular})this;");
         }
 
         sb.AppendLine("}");

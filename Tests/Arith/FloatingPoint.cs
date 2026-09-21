@@ -3,7 +3,7 @@ using Coplt.Experimental.Mathematics;
 using Coplt.Mathematics.Generics;
 using half = System.Half;
 
-namespace Tests.Core;
+namespace Tests.Arith;
 
 /// <summary>
 /// The floating point members of a vector implement <c>IVectorFloatingPoint</c>: the constants of the component

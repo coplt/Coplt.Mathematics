@@ -174,7 +174,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} abs()");
+        sb.AppendLine($"    public readonly {type} abs()");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Abs(vector)")};",
             $"return {From128($"Vector128.Abs({Load64("")})")};",
@@ -186,7 +186,7 @@ public partial class VectorGenerator
         var signOp = f ? "SignFloat" : sig ? "SignInt" : "SignUInt";
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} sign()");
+        sb.AppendLine($"    public readonly {type} sign()");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"simd.{signOp}(vector)")};",
             $"return {From128($"simd.{signOp}({Load64("")})")};",
@@ -206,7 +206,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} min(in {type} other)");
+        sb.AppendLine($"    public readonly {type} min(in {type} other)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Min(vector, other.vector)")};",
             $"return {From128($"Vector128.Min({Load64("")}, {Load64("other.")})")};",
@@ -216,7 +216,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} max(in {type} other)");
+        sb.AppendLine($"    public readonly {type} max(in {type} other)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max(vector, other.vector)")};",
             $"return {From128($"Vector128.Max({Load64("")}, {Load64("other.")})")};",
@@ -226,7 +226,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} clamp(in {type} min, in {type} max)");
+        sb.AppendLine($"    public readonly {type} clamp(in {type} min, in {type} max)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max(min.vector, {vecName}.Min(max.vector, vector))")};",
             $"return {From128($"Vector128.Max({Load64("min.")}, Vector128.Min({Load64("max.")}, {Load64("")}))")};",
@@ -238,7 +238,7 @@ public partial class VectorGenerator
         // vectors, the scalar expression clamps every component on its own
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} clamp({scalar} min, {scalar} max)");
+        sb.AppendLine($"    public readonly {type} clamp({scalar} min, {scalar} max)");
         sb.AppendLine("    {");
         EmitAccel($"return {FromVector($"{vecName}.Max({vecName}.Create(min), {vecName}.Min({vecName}.Create(max), vector))")};",
             $"return {From128($"Vector128.Max(Vector128.Create(min), Vector128.Min(Vector128.Create(max), {Load64("")}))")};",
@@ -258,7 +258,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} lerp(in {type} start, in {type} end)");
+        sb.AppendLine($"    public readonly {type} lerp(in {type} start, in {type} end)");
         sb.AppendLine("    {");
         EmitAccel(f
                 ? $"return {FromVector($"{vecName}.Lerp(start.vector, end.vector, vector)")};"
@@ -284,7 +284,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} lerp({scalar} start, {scalar} end)");
+        sb.AppendLine($"    public readonly {type} lerp({scalar} start, {scalar} end)");
         sb.AppendLine("    {");
         EmitAccel($"return fma(this, {cast}(end - start), new {type}(start));",
             f
@@ -296,12 +296,12 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} unlerp(in {type} start, in {type} end) => (this - start) / (end - start);");
+        sb.AppendLine($"    public readonly {type} unlerp(in {type} start, in {type} end) => (this - start) / (end - start);");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} unlerp({scalar} start, {scalar} end) => (this - start) / new {type}({cast}(end - start));");
+        sb.AppendLine($"    public readonly {type} unlerp({scalar} start, {scalar} end) => (this - start) / new {type}({cast}(end - start));");
         sb.AppendLine();
 
         InheritDoc();
@@ -311,13 +311,13 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} remap(in {type} src_start, in {type} src_end, in {type} dst_start, in {type} dst_end) =>");
+        sb.AppendLine($"    public readonly {type} remap(in {type} src_start, in {type} src_end, in {type} dst_start, in {type} dst_end) =>");
         sb.AppendLine("        unlerp(src_start, src_end).lerp(dst_start, dst_end);");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} remap({scalar} src_start, {scalar} src_end, {scalar} dst_start, {scalar} dst_end) =>");
+        sb.AppendLine($"    public readonly {type} remap({scalar} src_start, {scalar} src_end, {scalar} dst_start, {scalar} dst_end) =>");
         sb.AppendLine("        unlerp(src_start, src_end).lerp(dst_start, dst_end);");
         sb.AppendLine();
 
@@ -333,7 +333,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {scalar} dot(in {type} other)");
+        sb.AppendLine($"    public readonly {scalar} dot(in {type} other)");
         sb.AppendLine("    {");
         // the sum of the products is the component sum of the element wise product, the scalar sum and its
         // acceleration are the ones of csum: a 64 bit vector also has the 128 bit path of it and the padding
@@ -346,7 +346,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {scalar} length_sq()");
+        sb.AppendLine($"    public readonly {scalar} length_sq()");
         sb.AppendLine("    {");
         // dot with itself, the 128 bit path reads the value of the vector twice
         EmitAccel($"return {vecName}.Dot(vector, vector);",
@@ -357,12 +357,12 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {scalar} distance_sq(in {type} to) => (to - this).length_sq();");
+        sb.AppendLine($"    public readonly {scalar} distance_sq(in {type} to) => (to - this).length_sq();");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {type} square() => this * this;");
+        sb.AppendLine($"    public readonly {type} square() => this * this;");
         sb.AppendLine();
 
         sb.AppendLine("    #endregion");
@@ -412,7 +412,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public {scalar} csum()");
+        sb.AppendLine($"    public readonly {scalar} csum()");
         sb.AppendLine("    {");
         // a 64 bit vector sums the two lanes of its own register and falls back to the 128 bit one, the
         // padding lanes of the widened value are zero, so they do not change the sum
@@ -428,7 +428,7 @@ public partial class VectorGenerator
         {
             InheritDoc();
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public {scalar} {name}()");
+            sb.AppendLine($"    public readonly {scalar} {name}()");
             sb.AppendLine("    {");
             // the safe variants of a floating point vector only take the accelerated path when the padding
             // lanes of the value cannot disturb the reduction
@@ -474,7 +474,7 @@ public partial class VectorGenerator
 
             InheritDoc();
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public {type} cross(in {type} other)");
+            sb.AppendLine($"    public readonly {type} cross(in {type} other)");
             sb.AppendLine("    {");
             // the DirectX Math XMVector3Cross method, the standard library uses it too. The rotation of the
             // result is folded into the shuffle of the operands and the components are shuffled inside the
