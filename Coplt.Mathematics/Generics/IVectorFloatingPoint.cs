@@ -49,17 +49,19 @@ public interface IVectorFloatingPoint<Self> :
     /// <summary>
     /// Returns the component wise remainder of the division of the two vectors
     /// </summary>
-    /// <param name="other">The divisor</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The divisor</param>
     /// <returns>The remainder</returns>
-    public Self mod(in Self other);
+    public static abstract Self mod(in Self a, in Self b);
 
     /// <summary>
     /// Splits the vector into its integral and its fractional part
     /// <para>It returns the fractional part and stores the integral part into <paramref name="i"/></para>
     /// </summary>
+    /// <param name="a">The vector</param>
     /// <param name="i">Receives the integral part</param>
     /// <returns>The fractional part</returns>
-    public Self modf(out Self i);
+    public static abstract Self modf(in Self a, out Self i);
 
     #endregion
 
@@ -69,31 +71,31 @@ public interface IVectorFloatingPoint<Self> :
     /// Rounds every component up to the smallest integral value that is not less than it
     /// </summary>
     /// <returns>The rounded vector</returns>
-    public Self ceil();
+    public static abstract Self ceil(in Self a);
 
     /// <summary>
     /// Rounds every component down to the largest integral value that is not greater than it
     /// </summary>
     /// <returns>The rounded vector</returns>
-    public Self floor();
+    public static abstract Self floor(in Self a);
 
     /// <summary>
     /// Rounds every component to the nearest integral value
     /// </summary>
     /// <returns>The rounded vector</returns>
-    public Self round();
+    public static abstract Self round(in Self a);
 
     /// <summary>
     /// Rounds every component towards zero
     /// </summary>
     /// <returns>The rounded vector</returns>
-    public Self trunc();
+    public static abstract Self trunc(in Self a);
 
     /// <summary>
     /// Returns the fractional part of every component, it is the same as <c>mod(1)</c>
     /// </summary>
     /// <returns>The fractional part</returns>
-    public Self frac();
+    public static abstract Self frac(in Self a);
 
     #endregion
 
@@ -103,68 +105,77 @@ public interface IVectorFloatingPoint<Self> :
     /// Returns the reciprocal of every component, it is the same as <c>1 / self</c>
     /// </summary>
     /// <returns>The reciprocal</returns>
-    public Self rcp();
+    public static abstract Self rcp(in Self a);
 
     /// <summary>
     /// Clamps every component to the range 0 to 1
     /// </summary>
     /// <returns>The clamped vector</returns>
-    public Self saturate();
+    public static abstract Self saturate(in Self a);
 
     /// <summary>
-    /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, this vector is the value
+    /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, <paramref name="a"/> is
+    /// the value
     /// <para>The result is 0 when the value is below the minimum, 1 when it is above the maximum and a smooth
     /// hermite curve in between</para>
     /// </summary>
     /// <param name="min">The value at 0</param>
     /// <param name="max">The value at 1</param>
+    /// <param name="a">The value to place between the two bounds</param>
     /// <returns>The interpolated vector</returns>
-    public Self smoothstep(in Self min, in Self max);
+    public static abstract Self smoothstep(in Self min, in Self max, in Self a);
 
     /// <summary>
-    /// Returns this vector reflected around the normal <paramref name="n"/>
+    /// Returns <paramref name="a"/> reflected around the normal <paramref name="n"/>
     /// <para><paramref name="n"/> <b>has to be</b> normalized</para>
     /// </summary>
+    /// <param name="a">The vector to reflect</param>
     /// <param name="n">The normalized normal of the surface</param>
     /// <returns>The reflected vector</returns>
-    public Self reflect(in Self n);
+    public static abstract Self reflect(in Self a, in Self n);
 
     #endregion
 
     #region Project
 
     /// <summary>
-    /// Returns the projection of this vector onto <paramref name="onto"/>
-    /// <para>It is the component of this vector that is parallel to <paramref name="onto"/></para>
+    /// Returns the projection of <paramref name="a"/> onto <paramref name="onto"/>
+    /// <para>It is the component of <paramref name="a"/> that is parallel to <paramref name="onto"/></para>
     /// </summary>
+    /// <param name="a">The vector to project</param>
     /// <param name="onto">The vector to project onto, it does <b>not</b> have to be normalized</param>
     /// <returns>The projected vector</returns>
-    public Self project(in Self onto);
+    public static abstract Self project(in Self a, in Self onto);
 
     /// <summary>
-    /// Returns the projection of this vector onto the plane that has <paramref name="plane_normal"/> as its normal
-    /// <para>It is the component of this vector that is inside the plane</para>
+    /// Returns the projection of <paramref name="a"/> onto the plane that has <paramref name="plane_normal"/> as
+    /// its normal
+    /// <para>It is the component of <paramref name="a"/> that is inside the plane</para>
     /// </summary>
+    /// <param name="a">The vector to project</param>
     /// <param name="plane_normal">The normal of the plane, it does <b>not</b> have to be normalized</param>
     /// <returns>The projected vector</returns>
-    public Self project_on_plane(in Self plane_normal);
+    public static abstract Self project_on_plane(in Self a, in Self plane_normal);
 
     /// <summary>
-    /// Returns the projection of this vector onto <paramref name="onto"/>
-    /// <para>It is the same as <see cref="project(in Self)"/> but <paramref name="onto"/> is assumed to be normalized</para>
+    /// Returns the projection of <paramref name="a"/> onto <paramref name="onto"/>
+    /// <para>It is the same as <see cref="project(in Self, in Self)"/> but <paramref name="onto"/> is assumed to
+    /// be normalized</para>
     /// </summary>
+    /// <param name="a">The vector to project</param>
     /// <param name="onto">The normalized vector to project onto</param>
     /// <returns>The projected vector</returns>
-    public Self project_normalized(in Self onto);
+    public static abstract Self project_normalized(in Self a, in Self onto);
 
     /// <summary>
-    /// Returns the projection of this vector onto the plane that has <paramref name="plane_normal"/> as its
-    /// normal, it is the same as <see cref="project_on_plane(in Self)"/> but <paramref name="plane_normal"/> is
-    /// assumed to be normalized
+    /// Returns the projection of <paramref name="a"/> onto the plane that has <paramref name="plane_normal"/> as
+    /// its normal, it is the same as <see cref="project_on_plane(in Self, in Self)"/> but
+    /// <paramref name="plane_normal"/> is assumed to be normalized
     /// </summary>
+    /// <param name="a">The vector to project</param>
     /// <param name="plane_normal">The normalized normal of the plane</param>
     /// <returns>The projected vector</returns>
-    public Self project_on_plane_normalized(in Self plane_normal);
+    public static abstract Self project_on_plane_normalized(in Self a, in Self plane_normal);
 
     #endregion
 
@@ -173,12 +184,12 @@ public interface IVectorFloatingPoint<Self> :
     /// <summary>
     /// Degrees -> Radians
     /// </summary>
-    public Self radians();
+    public static abstract Self radians(in Self a);
 
     /// <summary>
     /// Radians -> Degrees
     /// </summary>
-    public Self degrees();
+    public static abstract Self degrees(in Self a);
 
     #endregion
 
@@ -187,10 +198,11 @@ public interface IVectorFloatingPoint<Self> :
     /// <summary>
     /// Wraps every component into the range of <paramref name="min"/> and <paramref name="max"/>
     /// </summary>
+    /// <param name="a">The vector</param>
     /// <param name="min">The lower bound of the range</param>
     /// <param name="max">The upper bound of the range</param>
     /// <returns>The wrapped vector</returns>
-    public Self wrap(in Self min, in Self max);
+    public static abstract Self wrap(in Self a, in Self min, in Self max);
 
     #endregion
 }
@@ -212,10 +224,11 @@ public interface IVectorFloatingPoint<Self, Scalar> :
     /// <summary>
     /// Wraps every component into the range of <paramref name="min"/> and <paramref name="max"/>
     /// </summary>
+    /// <param name="a">The vector</param>
     /// <param name="min">The lower bound of the range</param>
     /// <param name="max">The upper bound of the range</param>
     /// <returns>The wrapped vector</returns>
-    public Self wrap(Scalar min, Scalar max);
+    public static abstract Self wrap(in Self a, Scalar min, Scalar max);
 
     #endregion
 }

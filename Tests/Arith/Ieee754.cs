@@ -36,8 +36,8 @@ public class TestIeee754
         v.pow(v);
         v.sqrt();
         v.rsqrt();
-        _ = v.length();
-        _ = v.distance(v);
+        _ = T.length(v);
+        _ = T.distance(v, v);
         v.normalize();
         v.normalize_safe();
         v.step(v);
@@ -61,11 +61,11 @@ public class TestIeee754
         v.acosh();
         v.atanh();
         v.chg_sign(v);
-        v.is_NaN();
-        v.is_finite();
-        v.is_inf();
-        v.is_pos_inf();
-        v.is_neg_inf();
+        T.is_NaN(v);
+        T.is_finite(v);
+        T.is_inf(v);
+        T.is_pos_inf(v);
+        T.is_neg_inf(v);
 
         using (Assert.EnterMultipleScope())
         {
@@ -75,7 +75,7 @@ public class TestIeee754
             Assert.That(v.cos().Equals(cos), Is.True);
             Assert.That(sin.Equals(s), Is.True);
             Assert.That(cos.Equals(c), Is.True);
-            Assert.That(v.is_NaN().Equals(v.is_NaN()), Is.True);
+            Assert.That(T.is_NaN(v).Equals(T.is_NaN(v)), Is.True);
             Assert.That(Unsafe.SizeOf<TBool>(), Is.GreaterThan(0));
         }
     }

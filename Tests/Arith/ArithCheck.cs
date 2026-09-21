@@ -130,8 +130,8 @@ internal static class ArithCheck
                 Vec<T, TScalar>(length, simd, one + one * four, one + two * four, one + three * four, one + four * four),
                 "lerp with the vector as t");
 
-            AllEqual<T, TScalar>(T.lerp(zero, asc, allFive), asc, "static lerp at t = 0");
-            AllEqual<T, TScalar>(T.lerp(one, asc, allFive), allFive, "static lerp at t = 1");
+            AllEqual<T, TScalar>(T.lerp(asc, allFive, zero), asc, "static lerp at t = 0");
+            AllEqual<T, TScalar>(T.lerp(asc, allFive, one), allFive, "static lerp at t = 1");
 
             AllEqual<T, TScalar>(allOne.lerp(one, five), allFive, "scalar lerp at t = 1");
             AllEqual<T, TScalar>(allOne.unlerp(one, five), vZero, "scalar unlerp at the lower bound");
@@ -167,12 +167,12 @@ internal static class ArithCheck
                 sum += asc[i];
             }
 
-            ScalarEqual(asc.dot(allFive), dotAscFive, "dot");
-            ScalarEqual(asc.dot(asc), lengthSq, "dot with itself");
-            ScalarEqual(asc.length_sq(), lengthSq, "length_sq");
-            ScalarEqual(asc.distance_sq(allFive), distanceSq, "distance_sq");
-            ScalarEqual(asc.distance_sq(asc), zero, "distance_sq with itself");
-            ScalarEqual(asc.square().dot(allOne), lengthSq, "square");
+            ScalarEqual(T.dot(asc, allFive), dotAscFive, "dot");
+            ScalarEqual(T.dot(asc, asc), lengthSq, "dot with itself");
+            ScalarEqual(T.length_sq(asc), lengthSq, "length_sq");
+            ScalarEqual(T.distance_sq(asc, allFive), distanceSq, "distance_sq");
+            ScalarEqual(T.distance_sq(asc, asc), zero, "distance_sq with itself");
+            ScalarEqual(T.dot(T.square(asc), allOne), lengthSq, "square");
 
             AllEqual<T, TScalar>(asc.square(), asc * asc, "square is x * x");
 
@@ -191,18 +191,18 @@ internal static class ArithCheck
 
             #region csum cmin cmax
 
-            ScalarEqual(asc.csum(), sum, "csum");
-            ScalarEqual(vZero.csum(), zero, "csum of zero");
-            ScalarEqual(allOne.csum(), TScalar.CreateChecked(length), "csum of a broadcast vector");
+            ScalarEqual(T.csum(asc), sum, "csum");
+            ScalarEqual(T.csum(vZero), zero, "csum of zero");
+            ScalarEqual(T.csum(allOne), TScalar.CreateChecked(length), "csum of a broadcast vector");
 
-            ScalarEqual(asc.cmin(), one, "cmin");
-            ScalarEqual(asc.cmax(), TScalar.CreateChecked(length), "cmax");
-            ScalarEqual(asc.cmin_safe(), one, "cmin_safe");
-            ScalarEqual(asc.cmax_safe(), TScalar.CreateChecked(length), "cmax_safe");
-            ScalarEqual(allFive.cmin(), five, "cmin of a broadcast vector");
-            ScalarEqual(allFive.cmax(), five, "cmax of a broadcast vector");
-            ScalarEqual(allFive.cmin_safe(), five, "cmin_safe of a broadcast vector");
-            ScalarEqual(allFive.cmax_safe(), five, "cmax_safe of a broadcast vector");
+            ScalarEqual(T.cmin(asc), one, "cmin");
+            ScalarEqual(T.cmax(asc), TScalar.CreateChecked(length), "cmax");
+            ScalarEqual(T.cmin_safe(asc), one, "cmin_safe");
+            ScalarEqual(T.cmax_safe(asc), TScalar.CreateChecked(length), "cmax_safe");
+            ScalarEqual(T.cmin(allFive), five, "cmin of a broadcast vector");
+            ScalarEqual(T.cmax(allFive), five, "cmax of a broadcast vector");
+            ScalarEqual(T.cmin_safe(allFive), five, "cmin_safe of a broadcast vector");
+            ScalarEqual(T.cmax_safe(allFive), five, "cmax_safe of a broadcast vector");
 
             #endregion
         }
@@ -235,13 +235,13 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(negAll.sign(), negAll, "sign of the negatives");
             AllEqual<T, TScalar>(negAll.square(), allOne, "square of the negatives");
 
-            ScalarEqual(negAll.csum(), negLength, "csum of the negatives");
+            ScalarEqual(T.csum(negAll), negLength, "csum of the negatives");
             // the padding lane of a 3 component vector is zero, a reduction that picks it up would return zero
             // instead of the negative components, the fast and the safe variants are both checked by these
-            ScalarEqual(negAll.cmin(), negOne, "cmin of the negatives");
-            ScalarEqual(negAll.cmax(), negOne, "cmax of the negatives");
-            ScalarEqual(negAll.cmin_safe(), negOne, "cmin_safe of the negatives");
-            ScalarEqual(negAll.cmax_safe(), negOne, "cmax_safe of the negatives");
+            ScalarEqual(T.cmin(negAll), negOne, "cmin of the negatives");
+            ScalarEqual(T.cmax(negAll), negOne, "cmax of the negatives");
+            ScalarEqual(T.cmin_safe(negAll), negOne, "cmin_safe of the negatives");
+            ScalarEqual(T.cmax_safe(negAll), negOne, "cmax_safe of the negatives");
         }
     }
 
@@ -274,9 +274,9 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(vZero.cross(axisZ), vZero, "0 cross z");
             AllEqual<T, TScalar>(axisX.cross(allTwo * axisY), allTwo * axisZ, "cross is linear");
 
-            ScalarEqual(axisZ.dot(axisX.cross(axisY)), one, "cross of the basis vectors is the third axis");
-            ScalarEqual(axisX.dot(axisX.cross(axisY)), zero, "cross is orthogonal to the left operand");
-            ScalarEqual(axisY.dot(axisX.cross(axisY)), zero, "cross is orthogonal to the right operand");
+            ScalarEqual(T.dot(axisZ, T.cross(axisX, axisY)), one, "cross of the basis vectors is the third axis");
+            ScalarEqual(T.dot(axisX, T.cross(axisX, axisY)), zero, "cross is orthogonal to the left operand");
+            ScalarEqual(T.dot(axisY, T.cross(axisX, axisY)), zero, "cross is orthogonal to the right operand");
         }
     }
 

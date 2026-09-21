@@ -18,8 +18,8 @@ public static partial class math
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asf<T, TResult>(in T source) where T : IVectorAsF<TResult>
-        => source.asf();
+    public static TResult asf<T, TResult>(in T source) where T : unmanaged, IVectorAsF<T, TResult>
+        => T.asf(source);
 
     /// <summary>
     /// Reinterprets the bits of <paramref name="source"/> as the vector of the signed component
@@ -30,8 +30,8 @@ public static partial class math
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asi<T, TResult>(in T source) where T : IVectorAsI<TResult>
-        => source.asi();
+    public static TResult asi<T, TResult>(in T source) where T : unmanaged, IVectorAsI<T, TResult>
+        => T.asi(source);
 
     /// <summary>
     /// Reinterprets the bits of <paramref name="source"/> as the vector of the unsigned component
@@ -42,8 +42,8 @@ public static partial class math
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asu<T, TResult>(in T source) where T : IVectorAsU<TResult>
-        => source.asu();
+    public static TResult asu<T, TResult>(in T source) where T : unmanaged, IVectorAsU<T, TResult>
+        => T.asu(source);
 
     /// <summary>
     /// Reinterprets the bits of <paramref name="source"/> as the vector of the boolean component
@@ -54,6 +54,6 @@ public static partial class math
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asb<T, TResult>(in T source) where T : IVectorAsB<TResult>
-        => source.asb();
+    public static TResult asb<T, TResult>(in T source) where T : unmanaged, IVectorAsB<T, TResult>
+        => T.asb(source);
 }

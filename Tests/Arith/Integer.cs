@@ -21,11 +21,11 @@ public class TestInteger
         where T : unmanaged, IVectorInteger<T, TBool>
         where TBool : unmanaged
     {
-        var mask = v.is_pow2();
+        var mask = T.is_pow2(v);
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(mask.Equals(v.is_pow2()), Is.True);
+            Assert.That(mask.Equals(T.is_pow2(v)), Is.True);
             Assert.That(Unsafe.SizeOf<TBool>(), Is.GreaterThan(0));
         }
     }
@@ -39,7 +39,7 @@ public class TestInteger
         where TBool : unmanaged
     {
         Check<T, TBool>(v);
-        _ = v.up2pow2();
+        _ = T.up2pow2(v);
     }
 
     [Test]

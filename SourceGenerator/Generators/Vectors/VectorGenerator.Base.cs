@@ -391,6 +391,7 @@ public partial class VectorGenerator
             sb.AppendLine($"    public static implicit operator {regular}(in {type} value) => {toRegular};");
             sb.AppendLine();
         }
+
         Doc("Creates a vector with every component set to <paramref name=\"value\"/>");
         DocParam("value", "The value of every component");
         sb.AppendLine($"    {attr}");
@@ -426,7 +427,8 @@ public partial class VectorGenerator
         {
             // routed through the vector constructor so the padding lane mask is applied
             sb.AppendLine($"    public {type}(ReadOnlySpan<{scalar}> span) : this({vecName}.{spanLoad}) {{ }}");
-        }        else
+        }
+        else
         {
             sb.AppendLine($"    public {type}(ReadOnlySpan<{scalar}> span)");
             sb.AppendLine("    {");
@@ -779,6 +781,6 @@ public partial class VectorGenerator
 
         sb.AppendLine("}");
 
-        return sb.ToString();
+        return VectorDocs.Apply(sb.ToString());
     }
 }

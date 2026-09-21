@@ -18,31 +18,31 @@ public interface IVectorFloatingPointIeee754BoolOps<Self, out BoolVector> :
     /// Returns a mask that is true where the component is NaN
     /// </summary>
     /// <returns>The mask</returns>
-    public BoolVector is_NaN();
+    public static abstract BoolVector is_NaN(in Self a);
 
     /// <summary>
     /// Returns a mask that is true where the component is finite, so it is neither NaN nor an infinity
     /// </summary>
     /// <returns>The mask</returns>
-    public BoolVector is_finite();
+    public static abstract BoolVector is_finite(in Self a);
 
     /// <summary>
     /// Returns a mask that is true where the component is a positive or a negative infinity
     /// </summary>
     /// <returns>The mask</returns>
-    public BoolVector is_inf();
+    public static abstract BoolVector is_inf(in Self a);
 
     /// <summary>
     /// Returns a mask that is true where the component is a positive infinity
     /// </summary>
     /// <returns>The mask</returns>
-    public BoolVector is_pos_inf();
+    public static abstract BoolVector is_pos_inf(in Self a);
 
     /// <summary>
     /// Returns a mask that is true where the component is a negative infinity
     /// </summary>
     /// <returns>The mask</returns>
-    public BoolVector is_neg_inf();
+    public static abstract BoolVector is_neg_inf(in Self a);
 
     #endregion
 }
@@ -76,26 +76,27 @@ public interface IVectorFloatingPointIeee754<Self> :
     /// Returns the natural logarithm of every component
     /// </summary>
     /// <returns>The natural logarithm</returns>
-    public Self log();
+    public static abstract Self log(in Self a);
 
     /// <summary>
     /// Returns the base 2 logarithm of every component
     /// </summary>
     /// <returns>The base 2 logarithm</returns>
-    public Self log2();
+    public static abstract Self log2(in Self a);
 
     /// <summary>
-    /// Returns the logarithm of every component with <paramref name="other"/> as the base
+    /// Returns the logarithm of every component with <paramref name="b"/> as the base
     /// </summary>
-    /// <param name="other">The base of the logarithm</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The base of the logarithm</param>
     /// <returns>The logarithm</returns>
-    public Self log(in Self other);
+    public static abstract Self log(in Self a, in Self b);
 
     /// <summary>
     /// Returns the base 10 logarithm of every component
     /// </summary>
     /// <returns>The base 10 logarithm</returns>
-    public Self log10();
+    public static abstract Self log10(in Self a);
 
     #endregion
 
@@ -105,58 +106,61 @@ public interface IVectorFloatingPointIeee754<Self> :
     /// Returns <c>e</c> raised to the power of every component
     /// </summary>
     /// <returns>The exponential</returns>
-    public Self exp();
+    public static abstract Self exp(in Self a);
 
     /// <summary>
     /// Returns 2 raised to the power of every component
     /// </summary>
     /// <returns>The exponential</returns>
-    public Self exp2();
+    public static abstract Self exp2(in Self a);
 
     /// <summary>
     /// Returns 10 raised to the power of every component
     /// </summary>
     /// <returns>The exponential</returns>
-    public Self exp10();
+    public static abstract Self exp10(in Self a);
 
     #endregion
 
     #region Pow Sqrt RSqrt
 
     /// <summary>
-    /// Returns every component raised to the power of the matching component of <paramref name="v"/>
+    /// Returns every component raised to the power of the matching component of <paramref name="b"/>
     /// </summary>
-    /// <param name="v">The exponent of every component</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The exponent of every component</param>
     /// <returns>The power</returns>
-    public Self pow(Self v);
+    public static abstract Self pow(in Self a, in Self b);
 
     /// <summary>
     /// Returns the square root of every component
     /// </summary>
     /// <returns>The square root</returns>
-    public Self sqrt();
+    public static abstract Self sqrt(in Self a);
 
     /// <summary>
     /// Returns the reciprocal of the square root of every component, it is the same as <c>rcp(sqrt())</c>
     /// </summary>
     /// <returns>The reciprocal of the square root</returns>
-    public Self rsqrt();
+    public static abstract Self rsqrt(in Self a);
 
     #endregion
 
     #region Normalize
 
     /// <summary>
-    /// Returns this vector scaled to a length of 1, the result is a NaN vector when the length is zero
+    /// Returns <paramref name="a"/> scaled to a length of 1, the result is a NaN vector when the length is zero
     /// </summary>
+    /// <param name="a">The vector to normalize</param>
     /// <returns>The normalized vector</returns>
-    public Self normalize();
+    public static abstract Self normalize(in Self a);
 
     /// <summary>
-    /// Returns this vector scaled to a length of 1, it returns a zero vector when the length is zero
+    /// Returns <paramref name="a"/> scaled to a length of 1, it returns a zero vector when the length is zero
     /// </summary>
+    /// <param name="a">The vector to normalize</param>
     /// <returns>The normalized vector</returns>
-    public Self normalize_safe();
+    public static abstract Self normalize_safe(in Self a);
 
     #endregion
 
@@ -168,42 +172,37 @@ public interface IVectorFloatingPointIeee754<Self> :
     /// </summary>
     /// <param name="threshold">The threshold</param>
     /// <returns>The step vector</returns>
-    public Self step(in Self threshold);
+    /// <param name="a">The vector</param>
+    public static abstract Self step(in Self threshold, in Self a);
 
     #endregion
 
     #region ProjectSafe
 
     /// <summary>
-    /// Returns the projection of this vector onto <paramref name="onto"/>, it returns a zero vector when
-    /// <paramref name="onto"/> is zero
+    /// Returns the projection of <paramref name="a"/> onto <paramref name="onto"/>, it returns
+    /// <paramref name="default_value"/> when the projection is not finite
     /// </summary>
+    /// <param name="a">The vector to project</param>
     /// <param name="onto">The vector to project onto</param>
+    /// <param name="default_value">The value that is returned when the projection is not finite</param>
     /// <returns>The projected vector</returns>
-    public Self project_safe(in Self onto);
-
-    /// <summary>
-    /// Returns the projection of this vector onto <paramref name="onto"/>, it returns
-    /// <paramref name="default_value"/> when <paramref name="onto"/> is zero
-    /// </summary>
-    /// <param name="onto">The vector to project onto</param>
-    /// <param name="default_value">The value that is returned when <paramref name="onto"/> is zero</param>
-    /// <returns>The projected vector</returns>
-    public Self project_safe(in Self onto, in Self default_value);
+    public static abstract Self project_safe(in Self a, in Self onto, in Self default_value = default);
 
     #endregion
 
     #region FaceForward
 
     /// <summary>
-    /// Returns this vector with the sign chosen so that it faces away from the incident vector
+    /// Returns <paramref name="a"/> with the sign chosen so that it faces away from the incident vector
     /// <paramref name="i"/>, it is the same as flipping the sign when the dot product of
     /// <paramref name="ng"/> and <paramref name="i"/> is not negative
     /// </summary>
+    /// <param name="a">The vector to orient</param>
     /// <param name="i">The incident vector</param>
     /// <param name="ng">The normal that is used to choose the sign</param>
     /// <returns>The oriented vector</returns>
-    public Self face_forward(in Self i, in Self ng);
+    public static abstract Self face_forward(in Self a, in Self i, in Self ng);
 
     #endregion
 
@@ -213,32 +212,33 @@ public interface IVectorFloatingPointIeee754<Self> :
     /// Returns the sine of every component in radians
     /// </summary>
     /// <returns>The sine</returns>
-    public Self sin();
+    public static abstract Self sin(in Self a);
 
     /// <summary>
     /// Returns the cosine of every component in radians
     /// </summary>
     /// <returns>The cosine</returns>
-    public Self cos();
+    public static abstract Self cos(in Self a);
 
     /// <summary>
     /// Returns the sine and the cosine of every component in radians
     /// </summary>
     /// <returns>The sine and the cosine</returns>
-    public (Self sin, Self cos) sincos();
+    public static abstract (Self sin, Self cos) sincos(in Self a);
 
     /// <summary>
     /// Computes the sine and the cosine of every component in radians
     /// </summary>
     /// <param name="sin">Receives the sine</param>
+    /// <param name="a">The vector</param>
     /// <param name="cos">Receives the cosine</param>
-    public void sincos(out Self sin, out Self cos);
+    public static abstract void sincos(in Self a, out Self sin, out Self cos);
 
     /// <summary>
     /// Returns the tangent of every component in radians
     /// </summary>
     /// <returns>The tangent</returns>
-    public Self tan();
+    public static abstract Self tan(in Self a);
 
     #endregion
 
@@ -248,27 +248,28 @@ public interface IVectorFloatingPointIeee754<Self> :
     /// Returns the arc sine of every component, the result is in radians
     /// </summary>
     /// <returns>The arc sine</returns>
-    public Self asin();
+    public static abstract Self asin(in Self a);
 
     /// <summary>
     /// Returns the arc cosine of every component, the result is in radians
     /// </summary>
     /// <returns>The arc cosine</returns>
-    public Self acos();
+    public static abstract Self acos(in Self a);
 
     /// <summary>
     /// Returns the arc tangent of every component, the result is in radians
     /// </summary>
     /// <returns>The arc tangent</returns>
-    public Self atan();
+    public static abstract Self atan(in Self a);
 
     /// <summary>
-    /// Returns the arc tangent of this vector divided by <paramref name="v"/>, the signs of both are used to
-    /// find the quadrant of the result
+    /// Returns the arc tangent of <paramref name="a"/> divided by <paramref name="b"/>, the signs of both are
+    /// used to find the quadrant of the result
     /// </summary>
-    /// <param name="v">The divisor</param>
+    /// <param name="a">The numerator</param>
+    /// <param name="b">The divisor</param>
     /// <returns>The arc tangent, it is in radians</returns>
-    public Self atan2(in Self v);
+    public static abstract Self atan2(in Self a, in Self b);
 
     #endregion
 
@@ -278,19 +279,19 @@ public interface IVectorFloatingPointIeee754<Self> :
     /// Returns the hyperbolic sine of every component
     /// </summary>
     /// <returns>The hyperbolic sine</returns>
-    public Self sinh();
+    public static abstract Self sinh(in Self a);
 
     /// <summary>
     /// Returns the hyperbolic cosine of every component
     /// </summary>
     /// <returns>The hyperbolic cosine</returns>
-    public Self cosh();
+    public static abstract Self cosh(in Self a);
 
     /// <summary>
     /// Returns the hyperbolic tangent of every component
     /// </summary>
     /// <returns>The hyperbolic tangent</returns>
-    public Self tanh();
+    public static abstract Self tanh(in Self a);
 
     #endregion
 
@@ -300,30 +301,31 @@ public interface IVectorFloatingPointIeee754<Self> :
     /// Returns the inverse hyperbolic sine of every component
     /// </summary>
     /// <returns>The inverse hyperbolic sine</returns>
-    public Self asinh();
+    public static abstract Self asinh(in Self a);
 
     /// <summary>
     /// Returns the inverse hyperbolic cosine of every component
     /// </summary>
     /// <returns>The inverse hyperbolic cosine</returns>
-    public Self acosh();
+    public static abstract Self acosh(in Self a);
 
     /// <summary>
     /// Returns the inverse hyperbolic tangent of every component
     /// </summary>
     /// <returns>The inverse hyperbolic tangent</returns>
-    public Self atanh();
+    public static abstract Self atanh(in Self a);
 
     #endregion
 
     #region ChgSign
 
     /// <summary>
-    /// Returns a vector that has the magnitude of this vector and the sign of <paramref name="sign"/>
+    /// Returns a vector that has the magnitude of <paramref name="a"/> and the sign of <paramref name="sign"/>
     /// </summary>
+    /// <param name="a">The vector that provides the magnitude of every component</param>
     /// <param name="sign">The vector that provides the sign of every component</param>
     /// <returns>The vector with the changed sign</returns>
-    public Self chg_sign(in Self sign);
+    public static abstract Self chg_sign(in Self a, in Self sign);
 
     #endregion
 }
@@ -342,11 +344,12 @@ public interface IVectorFloatingPointIeee754<Self, Scalar> :
     #region Pow
 
     /// <summary>
-    /// Returns every component raised to the power of <paramref name="v"/>
+    /// Returns every component raised to the power of <paramref name="b"/>
     /// </summary>
-    /// <param name="v">The exponent</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The exponent</param>
     /// <returns>The power</returns>
-    public Self pow(Scalar v);
+    public static abstract Self pow(in Self a, Scalar b);
 
     #endregion
 
@@ -356,14 +359,15 @@ public interface IVectorFloatingPointIeee754<Self, Scalar> :
     /// Returns the length of the vector, it is the same as <c>sqrt(length_sq())</c>
     /// </summary>
     /// <returns>The length of the vector</returns>
-    public Scalar length();
+    public static abstract Scalar length(in Self a);
 
     /// <summary>
     /// Returns the distance between the two vectors, it is the same as the length of the difference
     /// </summary>
-    /// <param name="to">The other vector</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The other vector</param>
     /// <returns>The distance</returns>
-    public Scalar distance(in Self to);
+    public static abstract Scalar distance(in Self a, in Self b);
 
     #endregion
 

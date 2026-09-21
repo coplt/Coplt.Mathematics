@@ -22,14 +22,16 @@ public interface IVectorArithmetic<Self> :
     /// <summary>
     /// Returns the absolute value of every component
     /// </summary>
+    /// <param name="a">The vector</param>
     /// <returns>The absolute value of the vector</returns>
-    public Self abs();
+    public static abstract Self abs(in Self a);
 
     /// <summary>
     /// Returns <c>-1</c>, <c>0</c> or <c>1</c> for every component depending on its sign
     /// </summary>
+    /// <param name="a">The vector</param>
     /// <returns>The sign of every component</returns>
-    public Self sign();
+    public static abstract Self sign(in Self a);
 
     #endregion
 
@@ -38,56 +40,65 @@ public interface IVectorArithmetic<Self> :
     /// <summary>
     /// Returns the smaller of the two vectors component by component
     /// </summary>
-    /// <param name="other">The other vector</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The other vector</param>
     /// <returns>The component wise minimum</returns>
-    public Self min(in Self other);
+    public static abstract Self min(in Self a, in Self b);
 
     /// <summary>
     /// Returns the larger of the two vectors component by component
     /// </summary>
-    /// <param name="other">The other vector</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The other vector</param>
     /// <returns>The component wise maximum</returns>
-    public Self max(in Self other);
+    public static abstract Self max(in Self a, in Self b);
 
     /// <summary>
-    /// Clamps every component to the inclusive range of <paramref name="min"/> and <paramref name="max"/>
+    /// Clamps every component of <paramref name="a"/> to the inclusive range of <paramref name="min"/> and
+    /// <paramref name="max"/>
     /// </summary>
+    /// <param name="a">The vector</param>
     /// <param name="min">The lower bound of every component</param>
     /// <param name="max">The upper bound of every component</param>
     /// <returns>The clamped vector</returns>
-    public Self clamp(in Self min, in Self max);
+    public static abstract Self clamp(in Self a, in Self min, in Self max);
 
     #endregion
 
     #region Lerp Unlerp Remap
 
     /// <summary>
-    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, this vector is the t value
+    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, <paramref name="t"/> is the
+    /// interpolation factor
+    /// <para>The receiver of the legacy member is the factor, so it is the last parameter here</para>
     /// </summary>
     /// <param name="start">The value at t = 0</param>
     /// <param name="end">The value at t = 1</param>
+    /// <param name="t">The interpolation factor, 0 is <paramref name="start"/> and 1 is <paramref name="end"/></param>
     /// <returns>The interpolated vector</returns>
-    public Self lerp(in Self start, in Self end);
+    public static abstract Self lerp(in Self start, in Self end, in Self t);
 
     /// <summary>
-    /// Returns where this vector is between <paramref name="start"/> and <paramref name="end"/>, it is the
-    /// inverse of <see cref="lerp(in Self, in Self)"/>
+    /// Returns where <paramref name="a"/> is between <paramref name="start"/> and <paramref name="end"/>, it is
+    /// the inverse of <see cref="lerp(in Self, in Self, in Self)"/>
     /// </summary>
+    /// <param name="a">The vector to place</param>
     /// <param name="start">The value at t = 0</param>
     /// <param name="end">The value at t = 1</param>
-    /// <returns>The position of this vector between the two values</returns>
-    public Self unlerp(in Self start, in Self end);
+    /// <returns>The position of the vector between the two values</returns>
+    public static abstract Self unlerp(in Self a, in Self start, in Self end);
 
     /// <summary>
-    /// Remaps this vector from the range <paramref name="src_start"/> to <paramref name="src_end"/> into the
-    /// range <paramref name="dst_start"/> to <paramref name="dst_end"/>
+    /// Remaps <paramref name="a"/> from the range <paramref name="src_start"/> to <paramref name="src_end"/>
+    /// into the range <paramref name="dst_start"/> to <paramref name="dst_end"/>
     /// </summary>
+    /// <param name="a">The vector to remap</param>
     /// <param name="src_start">The lower bound of the source range</param>
     /// <param name="src_end">The upper bound of the source range</param>
     /// <param name="dst_start">The lower bound of the destination range</param>
     /// <param name="dst_end">The upper bound of the destination range</param>
     /// <returns>The remapped vector</returns>
-    public Self remap(in Self src_start, in Self src_end, in Self dst_start, in Self dst_end);
+    public static abstract Self remap(in Self a, in Self src_start, in Self src_end, in Self dst_start, in Self dst_end);
 
     #endregion
 
@@ -96,8 +107,9 @@ public interface IVectorArithmetic<Self> :
     /// <summary>
     /// Returns the vector with every component squared
     /// </summary>
+    /// <param name="a">The vector</param>
     /// <returns>The squared vector</returns>
-    public Self square();
+    public static abstract Self square(in Self a);
 
     #endregion
 
@@ -178,24 +190,28 @@ public interface IVectorArithmetic<Self, Scalar> :
     #region Min Max Clamp
 
     /// <summary>
-    /// Clamps every component to the inclusive range of <paramref name="min"/> and <paramref name="max"/>
+    /// Clamps every component of <paramref name="a"/> to the inclusive range of <paramref name="min"/> and
+    /// <paramref name="max"/>
     /// </summary>
+    /// <param name="a">The vector</param>
     /// <param name="min">The lower bound of every component</param>
     /// <param name="max">The upper bound of every component</param>
     /// <returns>The clamped vector</returns>
-    public Self clamp(Scalar min, Scalar max);
+    public static abstract Self clamp(in Self a, Scalar min, Scalar max);
 
     #endregion
 
     #region Lerp Unlerp Remap
 
     /// <summary>
-    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, this vector is the t value
+    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, <paramref name="t"/> is the
+    /// interpolation factor
     /// </summary>
     /// <param name="start">The value at t = 0</param>
     /// <param name="end">The value at t = 1</param>
+    /// <param name="t">The interpolation factor, 0 is <paramref name="start"/> and 1 is <paramref name="end"/></param>
     /// <returns>The interpolated vector</returns>
-    public Self lerp(Scalar start, Scalar end);
+    public static abstract Self lerp(Scalar start, Scalar end, in Self t);
 
     /// <summary>
     /// Interpolates between <paramref name="start"/> and <paramref name="end"/>
@@ -204,15 +220,16 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// <param name="start">The value at t = 0</param>
     /// <param name="end">The value at t = 1</param>
     /// <returns>The interpolated vector</returns>
-    public static abstract Self lerp(Scalar t, in Self start, in Self end);
+    public static abstract Self lerp(in Self start, in Self end, Scalar t);
 
     /// <summary>
-    /// Returns where this vector is between <paramref name="start"/> and <paramref name="end"/>
+    /// Returns where <paramref name="a"/> is between <paramref name="start"/> and <paramref name="end"/>
     /// </summary>
+    /// <param name="a">The value to place</param>
     /// <param name="start">The value at t = 0</param>
     /// <param name="end">The value at t = 1</param>
-    /// <returns>The position of this vector between the two values</returns>
-    public Self unlerp(Scalar start, Scalar end);
+    /// <returns>The position of <paramref name="a"/> between the two values</returns>
+    public static abstract Self unlerp(in Self a, Scalar start, Scalar end);
 
     /// <summary>
     /// Returns where <paramref name="a"/> is between <paramref name="start"/> and <paramref name="end"/>
@@ -224,15 +241,16 @@ public interface IVectorArithmetic<Self, Scalar> :
     public static abstract Self unlerp(Scalar a, in Self start, in Self end);
 
     /// <summary>
-    /// Remaps this vector from the range <paramref name="src_start"/> to <paramref name="src_end"/> into the
-    /// range <paramref name="dst_start"/> to <paramref name="dst_end"/>
+    /// Remaps <paramref name="a"/> from the range <paramref name="src_start"/> to <paramref name="src_end"/> into
+    /// the range <paramref name="dst_start"/> to <paramref name="dst_end"/>
     /// </summary>
+    /// <param name="a">The vector to remap</param>
     /// <param name="src_start">The lower bound of the source range</param>
     /// <param name="src_end">The upper bound of the source range</param>
     /// <param name="dst_start">The lower bound of the destination range</param>
     /// <param name="dst_end">The upper bound of the destination range</param>
     /// <returns>The remapped vector</returns>
-    public Self remap(Scalar src_start, Scalar src_end, Scalar dst_start, Scalar dst_end);
+    public static abstract Self remap(in Self a, Scalar src_start, Scalar src_end, Scalar dst_start, Scalar dst_end);
 
     #endregion
 
@@ -241,22 +259,24 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// <summary>
     /// Returns the dot product of the two vectors
     /// </summary>
-    /// <param name="other">The other vector</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The other vector</param>
     /// <returns>The sum of the products of the components</returns>
-    public Scalar dot(in Self other);
+    public static abstract Scalar dot(in Self a, in Self b);
 
     /// <summary>
     /// Returns the squared length of the vector, it is the same as <c>dot(self)</c> but avoids the square root
     /// </summary>
     /// <returns>The squared length</returns>
-    public Scalar length_sq();
+    public static abstract Scalar length_sq(in Self a);
 
     /// <summary>
     /// Returns the squared distance between the two vectors
     /// </summary>
-    /// <param name="to">The other vector</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The other vector</param>
     /// <returns>The squared distance</returns>
-    public Scalar distance_sq(in Self to);
+    public static abstract Scalar distance_sq(in Self a, in Self b);
 
     #endregion
 
@@ -266,33 +286,33 @@ public interface IVectorArithmetic<Self, Scalar> :
     /// Returns the sum of all components
     /// </summary>
     /// <returns>The sum of the components</returns>
-    public Scalar csum();
+    public static abstract Scalar csum(in Self a);
 
     /// <summary>
     /// Returns the smallest component
     /// </summary>
     /// <returns>The smallest component</returns>
-    public Scalar cmin();
+    public static abstract Scalar cmin(in Self a);
 
     /// <summary>
     /// Returns the largest component
     /// </summary>
     /// <returns>The largest component</returns>
-    public Scalar cmax();
+    public static abstract Scalar cmax(in Self a);
 
     /// <summary>
     /// Returns the smallest component
     /// <para>It is safe when the vector has a padding component that is not part of the vector, it is slower than <see cref="cmin"/></para>
     /// </summary>
     /// <returns>The smallest component</returns>
-    public Scalar cmin_safe();
+    public static abstract Scalar cmin_safe(in Self a);
 
     /// <summary>
     /// Returns the largest component
     /// <para>It is safe when the vector has a padding component that is not part of the vector, it is slower than <see cref="cmax"/></para>
     /// </summary>
     /// <returns>The largest component</returns>
-    public Scalar cmax_safe();
+    public static abstract Scalar cmax_safe(in Self a);
 
     #endregion
 }
@@ -331,9 +351,10 @@ public interface IVector3Arithmetic<Self> :
     /// Returns the cross product of the two vectors
     /// <code>a.yzx * b.zxy - a.zxy * b.yzx</code>
     /// </summary>
-    /// <param name="other">The other vector</param>
+    /// <param name="a">The vector</param>
+    /// <param name="b">The other vector</param>
     /// <returns>The vector that is perpendicular to both vectors</returns>
-    public Self cross(in Self other);
+    public static abstract Self cross(in Self a, in Self b);
 
     #endregion
 }

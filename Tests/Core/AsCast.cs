@@ -20,12 +20,12 @@ public class TestAsCast
     /// types that have one are checked with the four interfaces.
     /// </summary>
     private static void CheckAs<T, F, I, U, B>(T v)
-        where T : IVectorAsF<F>, IVectorAsI<I>, IVectorAsU<U>, IVectorAsB<B>
+        where T : unmanaged, IVectorAsF<T, F>, IVectorAsI<T, I>, IVectorAsU<T, U>, IVectorAsB<T, B>
     {
-        v.asf();
-        v.asi();
-        v.asu();
-        v.asb();
+        T.asf(v);
+        T.asi(v);
+        T.asu(v);
+        T.asb(v);
 
         using (Assert.EnterMultipleScope())
         {
@@ -47,15 +47,15 @@ public class TestAsCast
 
         // a 2 component storage variant has no bool member, no bool vector of its own 8 bytes exists
         var v = new float2s(1, 2);
-        IVectorAsF<float2s> f = v;
-        IVectorAsI<int2s> i = v;
-        IVectorAsU<uint2s> u = v;
+        IVectorAsF<float2s, float2s> f = v;
+        IVectorAsI<float2s, int2s> i = v;
+        IVectorAsU<float2s, uint2s> u = v;
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((f.asf().x, f.asf().y), Is.EqualTo((1f, 2f)));
-            Assert.That((i.asi().x, i.asi().y), Is.EqualTo((0x3F800000, 0x40000000)));
-            Assert.That((u.asu().x, u.asu().y), Is.EqualTo((0x3F800000u, 0x40000000u)));
+            Assert.That((float2s.asf(v).x, float2s.asf(v).y), Is.EqualTo((1f, 2f)));
+            Assert.That((float2s.asi(v).x, float2s.asi(v).y), Is.EqualTo((0x3F800000, 0x40000000)));
+            Assert.That((float2s.asu(v).x, float2s.asu(v).y), Is.EqualTo((0x3F800000u, 0x40000000u)));
         }
     }
 

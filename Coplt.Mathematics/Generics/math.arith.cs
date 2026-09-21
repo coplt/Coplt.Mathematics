@@ -16,7 +16,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The absolute value of the vector</returns>
     [MethodImpl(256)]
-    public static T abs<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => v.abs();
+    public static T abs<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => T.abs(v);
 
     /// <summary>
     /// Returns <c>-1</c>, <c>0</c> or <c>1</c> for every component depending on its sign
@@ -25,7 +25,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The sign of every component</returns>
     [MethodImpl(256)]
-    public static T sign<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => v.sign();
+    public static T sign<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => T.sign(v);
 
     /// <summary>
     /// Returns the smaller of the two vectors component by component
@@ -35,7 +35,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The component wise minimum</returns>
     [MethodImpl(256)]
-    public static T min<T>(in T v, in T other) where T : unmanaged, IVectorArithmetic<T> => v.min(other);
+    public static T min<T>(in T v, in T other) where T : unmanaged, IVectorArithmetic<T> => T.min(v, other);
 
     /// <summary>
     /// Returns the larger of the two vectors component by component
@@ -45,7 +45,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The component wise maximum</returns>
     [MethodImpl(256)]
-    public static T max<T>(in T v, in T other) where T : unmanaged, IVectorArithmetic<T> => v.max(other);
+    public static T max<T>(in T v, in T other) where T : unmanaged, IVectorArithmetic<T> => T.max(v, other);
 
     /// <summary>
     /// Clamps every component of the vector to the inclusive range of <paramref name="min"/> and
@@ -57,7 +57,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The clamped vector</returns>
     [MethodImpl(256)]
-    public static T clamp<T>(in T v, in T min, in T max) where T : unmanaged, IVectorArithmetic<T> => v.clamp(min, max);
+    public static T clamp<T>(in T v, in T min, in T max) where T : unmanaged, IVectorArithmetic<T> => T.clamp(v, min, max);
 
     /// <summary>
     /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, the vector is the t value
@@ -68,7 +68,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The interpolated vector</returns>
     [MethodImpl(256)]
-    public static T lerp<T>(in T v, in T start, in T end) where T : unmanaged, IVectorArithmetic<T> => v.lerp(start, end);
+    public static T lerp<T>(in T v, in T start, in T end) where T : unmanaged, IVectorArithmetic<T> => T.lerp(start, end, v);
 
     /// <summary>
     /// Returns where the vector is between <paramref name="start"/> and <paramref name="end"/>, it is the inverse
@@ -80,7 +80,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The position of the vector between the two values</returns>
     [MethodImpl(256)]
-    public static T unlerp<T>(in T v, in T start, in T end) where T : unmanaged, IVectorArithmetic<T> => v.unlerp(start, end);
+    public static T unlerp<T>(in T v, in T start, in T end) where T : unmanaged, IVectorArithmetic<T> => T.unlerp(v, start, end);
 
     /// <summary>
     /// Remaps the vector from the range <paramref name="src_start"/> to <paramref name="src_end"/> into the range
@@ -95,7 +95,7 @@ public static partial class math
     /// <returns>The remapped vector</returns>
     [MethodImpl(256)]
     public static T remap<T>(in T v, in T src_start, in T src_end, in T dst_start, in T dst_end)
-        where T : unmanaged, IVectorArithmetic<T> => v.remap(src_start, src_end, dst_start, dst_end);
+        where T : unmanaged, IVectorArithmetic<T> => T.remap(v, src_start, src_end, dst_start, dst_end);
 
     /// <summary>
     /// Returns the vector with every component squared
@@ -104,7 +104,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The squared vector</returns>
     [MethodImpl(256)]
-    public static T square<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => v.square();
+    public static T square<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => T.square(v);
 
     /// <summary>
     /// Returns the cross product of the two vectors
@@ -115,7 +115,7 @@ public static partial class math
     /// <typeparam name="T">The type of the vector</typeparam>
     /// <returns>The vector that is perpendicular to both vectors</returns>
     [MethodImpl(256)]
-    public static T cross<T>(in T v, in T other) where T : unmanaged, IVector3Arithmetic<T> => v.cross(other);
+    public static T cross<T>(in T v, in T other) where T : unmanaged, IVector3Arithmetic<T> => T.cross(v, other);
 
     /// <summary>
     /// Fusion Addition and Multiplication

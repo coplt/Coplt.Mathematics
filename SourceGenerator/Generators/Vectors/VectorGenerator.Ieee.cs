@@ -143,13 +143,17 @@ public partial class VectorGenerator
         Unary("log", "Log", "log");
         Unary("log2", "Log2", "log2");
 
+        // the logarithm of any base is the quotient of the two logarithms. The receiver is the first parameter
+        // because the interface declares the member as a static one, and a member of the vector that takes the
+        // vector itself as its only parameter would have the same parameter list as the one of the natural
+        // logarithm
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} log(in {type} other)");
+        sb.AppendLine($"    public static {type} log(in {type} a, in {type} b)");
         sb.AppendLine("    {");
-        EmitAccel($"return {FromVector("simd.Log(vector) / simd.Log(other.vector)")};",
-            $"return {From128($"simd.Log({Load64("")}) / simd.Log({Load64("other.")})")};",
-            $"return {NewCompWise(n => $"{comp[n]}.log(other.{comp[n]})")};");
+        EmitAccel($"return {FromVector("simd.Log(a.vector) / simd.Log(b.vector)")};",
+            $"return {From128($"simd.Log({Load64("a.")}) / simd.Log({Load64("b.")})")};",
+            $"return {NewCompWise(n => $"a.{comp[n]}.log(b.{comp[n]})")};");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -493,6 +497,6 @@ public partial class VectorGenerator
         #endregion
 
         sb.AppendLine("}");
-        return sb.ToString();
+        return VectorDocs.Apply(sb.ToString());
     }
 }

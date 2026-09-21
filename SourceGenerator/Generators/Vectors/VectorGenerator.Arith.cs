@@ -521,6 +521,6 @@ public partial class VectorGenerator
         sb.AppendLine("}");
         sb.AppendLine();
 
-        return sb.ToString();
+        return VectorDocs.Apply(sb.ToString());
     }
 }

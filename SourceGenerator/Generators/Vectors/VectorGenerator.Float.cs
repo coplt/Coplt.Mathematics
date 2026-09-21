@@ -318,6 +318,6 @@ public partial class VectorGenerator
         #endregion
 
         sb.AppendLine("}");
-        return sb.ToString();
+        return VectorDocs.Apply(sb.ToString());
     }
 }

@@ -17,7 +17,7 @@ public interface IVectorInteger<Self, out BoolVector>
     /// <para>A zero and a negative component are not a power of two</para>
     /// </summary>
     /// <returns>The mask</returns>
-    public BoolVector is_pow2();
+    public static abstract BoolVector is_pow2(in Self a);
 
     #endregion
 }
@@ -41,7 +41,7 @@ public interface IVectorUnsignedInteger<Self, out BoolVector> :
     /// is kept and a zero stays zero
     /// </summary>
     /// <returns>The rounded up vector</returns>
-    public Self up2pow2();
+    public static abstract Self up2pow2(in Self a);
 
     #endregion
 }

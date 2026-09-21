@@ -120,7 +120,7 @@ public partial class VectorGenerator
         {
             var targetName = TargetName(target);
             var (_, _, kind) = AsNames[target.name];
-            ifaces.Add($"{AsInterfaces[kind]}<{targetName}>");
+            ifaces.Add($"{AsInterfaces[kind]}<{type}, {targetName}>");
         }
 
         sb.AppendLine($"public partial struct {type} :");
@@ -128,16 +128,22 @@ public partial class VectorGenerator
         sb.AppendLine("{");
 
         // the as members reinterpret the bits of the vector as another vector of the same group, the name of
-        // every member is built from the components of the target
+        // every member is built from the components of the target. The vector keeps the member of every target on
+        // itself and the interface declares it as a static member that takes the vector as its parameter, so
+        // every target also has the static member that forwards to the one of the vector
         foreach (var target in targets)
         {
             var targetName = TargetName(target);
-            var summary = $"Reinterprets the bits of the vector as <see cref=\"{targetName}\"/>";
-            var returns = $"The vector of <see cref=\"{targetName}\"/> that has the bits of the vector";
             var (shortName, longName, _) = AsNames[target.name];
+            var summary = $"Reinterprets the bits of <paramref name=\"source\"/> as <see cref=\"{targetName}\"/>";
+            var returns = $"The vector of <see cref=\"{targetName}\"/> that has the bits of <paramref name=\"source\"/>";
+            Member(summary, returns, $"public static {targetName} {shortName}(in {type} source) => source.{shortName}();");
+            Member(summary, returns, $"public static {targetName} {longName}(in {type} source) => source.{longName}();");
             foreach (var name in new[] { shortName, longName })
             {
-                Member(summary, returns, $"public readonly {targetName} {name}() => Unsafe.BitCast<{type}, {targetName}>(this);");
+                Member($"Reinterprets the bits of the vector as <see cref=\"{targetName}\"/>",
+                    $"The vector of <see cref=\"{targetName}\"/> that has the bits of the vector",
+                    $"public readonly {targetName} {name}() => Unsafe.BitCast<{type}, {targetName}>(this);");
             }
         }
 
@@ -189,8 +195,8 @@ public partial class VectorGenerator
         sb.AppendLine("        /// <param name=\"source\">The vector to reinterpret</param>");
         sb.AppendLine($"        /// <returns>The vector of <see cref=\"{type}\"/> that has the bits of <paramref name=\"source\"/></returns>");
         sb.AppendLine("        [MethodImpl(256)]");
-        sb.AppendLine($"        public static {type} {name}<T>(in T source) where T : {iface}<{type}>");
-        sb.AppendLine($"            => source.{name}();");
+        sb.AppendLine($"        public static {type} {name}<T>(in T source) where T : unmanaged, {iface}<T, {type}>");
+        sb.AppendLine($"            => T.{name}(source);");
         sb.AppendLine("    }");
         sb.AppendLine("}");
 
