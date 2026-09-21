@@ -212,7 +212,7 @@ public interface IVectorFloatingPointIeee754<Self, Scalar> :
     /// <summary>
     /// Returns this vector with the sign chosen so that it faces away from the incident vector
     /// <paramref name="i"/>, it is the same as flipping the sign when the dot product of
-    /// <paramref name="ng"/> and <paramref name="i"/> is negative
+    /// <paramref name="ng"/> and <paramref name="i"/> is not negative
     /// </summary>
     /// <param name="i">The incident vector</param>
     /// <param name="ng">The normal that is used to choose the sign</param>
