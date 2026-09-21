@@ -28,9 +28,6 @@ public partial class VectorGenerator
         var vecName = $"Vector{bitSize}";
         var cast = typ.arithCast;
         var attr = "[MethodImpl(256)]";
-        // a scalar operation on a floating point component is a single instruction because the components always
-        // live in a simd register, so a 2 component floating point vector gains nothing from a simd reduction
-        var scalarOnly = f && bitSize == 64;
 
         var comp = VectorGenShared.Components(size);
 
@@ -324,8 +321,10 @@ public partial class VectorGenerator
         sb.AppendLine($"    public {scalar} dot(in {type} other)");
         sb.AppendLine("    {");
         // the sum of the products is the component sum of the element wise product, the scalar sum and its
-        // acceleration are the ones of csum
-        EmitAccel($"return {vecName}.Dot(vector, other.vector);", null,
+        // acceleration are the ones of csum: a 64 bit vector also has the 128 bit path of it and the padding
+        // lanes the widened values are given are zero, so they do not contribute to the sum
+        EmitAccel($"return {vecName}.Dot(vector, other.vector);",
+            bitSize == 64 ? $"return Vector128.Dot({Load64("")}, {Load64("other.")});" : null,
             "return (this * other).csum();");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -334,8 +333,9 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public {scalar} length_sq()");
         sb.AppendLine("    {");
-        // dot with itself
-        EmitAccel($"return {vecName}.Dot(vector, vector);", null,
+        // dot with itself, the 128 bit path reads the value of the vector twice
+        EmitAccel($"return {vecName}.Dot(vector, vector);",
+            bitSize == 64 ? $"return Vector128.Dot({Load64("")}, {Load64("")});" : null,
             "return (this * this).csum();");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -399,7 +399,10 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public {scalar} csum()");
         sb.AppendLine("    {");
-        EmitAccel(scalarOnly ? null : $"return {vecName}.Sum(vector);", null,
+        // a 64 bit vector sums the two lanes of its own register and falls back to the 128 bit one, the
+        // padding lanes of the widened value are zero, so they do not change the sum
+        EmitAccel($"return {vecName}.Sum(vector);",
+            bitSize == 64 ? $"return Vector128.Sum({Load64("")});" : null,
             $"return {cast}({Join(n => comp[n], " + ")});");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -412,15 +415,16 @@ public partial class VectorGenerator
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public {scalar} {name}()");
             sb.AppendLine("    {");
-            // a floating point 2 component vector reduces with a single scalar operation, its components always
-            // live in a simd register, so it has no accelerated path at all
-            if (simd && (!safeOnly || i) && !scalarOnly)
+            // the safe variants of a floating point vector only take the accelerated path when the padding
+            // lane of the value cannot disturb the reduction
+            if (simd && (!safeOnly || i))
             {
                 var op = size == 3 ? vecOp + "3" : vecOp;
-                // the reduction of a 2 component integer vector is a couple of scalar operations, the wider types
-                // are not worth checking for it, a wider vector would have to widen the value first
+                // the helper of a 64 bit vector reduces the two lanes of its own register, it reads them from
+                // a 64 bit register and from the 128 bit one when the platform has no 64 bit hardware support,
+                // so the gate accepts either register, the wider types reduce the register of the value itself
                 var gate = bitSize == 64
-                    ? $"{vecName}.IsHardwareAccelerated"
+                    ? $"{vecName}.IsHardwareAccelerated || Vector128.IsHardwareAccelerated"
                     : $"Vector{bitSize4}.IsHardwareAccelerated || Vector{bitSize2}.IsHardwareAccelerated";
                 sb.AppendLine($"        if ({gate})");
                 sb.AppendLine($"            return simd.{op}(vector);");
