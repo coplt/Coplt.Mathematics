@@ -174,6 +174,7 @@ internal static class VectorGenShared
             if (storeVariant) return exact;
             return exact == 64 ? 128 : exact;
         }
+
         // the storage variant of a 3 component vector has no register, it keeps its components in fields
         if (size == 3 && storeVariant) return 0;
         return 8 * typ.size * 4;
@@ -197,6 +198,19 @@ internal static class VectorGenShared
     /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>True when the vector is backed by a register</returns>
     public static bool Simd(Typ typ, int size, bool storeVariant) => Register(typ, size, storeVariant) != 0;
+
+    /// <summary>
+    /// Returns the size of the value of a vector in bytes. The value of a vector that has no register is kept in
+    /// fields, a 3 component one is padded to the width of a 4 component one.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The size of the value of the vector in bytes</returns>
+    public static int ByteSize(Typ typ, int size, bool storeVariant) =>
+        Simd(typ, size, storeVariant)
+            ? Register(typ, size, storeVariant) / 8
+            : typ.size * (size == 3 ? 4 : size);
 
     /// <summary>
     /// Returns the number of lanes of the register of a vector.
