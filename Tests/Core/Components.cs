@@ -350,7 +350,7 @@ public class TestVectorComponents
         var t3 = new b32v3(B32.False);
         var q2 = new b64v2(B64.False);
 
-        f2.vector = Vector64.Create(1f, 2f);
+        f2.vector = Vector128.Create(1f, 2f, 3f, 4f);
         f3.vector = Vector128.Create(1f, 2f, 3f, 4f);
         d2.vector = Vector128.Create(1d, 2d);
         i3.vector = Vector128.Create(1, 2, 3, 4);
@@ -361,6 +361,8 @@ public class TestVectorComponents
         using (Assert.EnterMultipleScope())
         {
             Assert.That((f2.x, f2.y), Is.EqualTo((1f, 2f)));
+            // writing the field directly bypasses the mask, the padding lanes are whatever was written
+            Assert.That((f2.vector.GetElement(2), f2.vector.GetElement(3)), Is.EqualTo((3f, 4f)));
             // writing the field directly bypasses the mask, the padding lane is whatever was written
             Assert.That((f3.x, f3.y, f3.z), Is.EqualTo((1f, 2f, 3f)));
             Assert.That(f3.vector.GetElement(3), Is.EqualTo(4f));

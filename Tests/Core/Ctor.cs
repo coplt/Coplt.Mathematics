@@ -244,16 +244,16 @@ public class TestVectorCtor
     [Test]
     public void FromVectorAndPaddingLane()
     {
-        var f2 = new float2(Vector64.Create(1f, 2f));
+        var f2 = new float2(Vector128.Create(1f, 2f, 99f, 99f));
         var f3 = new float3(Vector128.Create(1f, 2f, 3f, 99f));
         var f4 = new float4(Vector128.Create(1f, 2f, 3f, 4f));
         var d2 = new double2(Vector128.Create(1d, 2d));
         var d3 = new double3(Vector256.Create(1d, 2d, 3d, 99d));
         var d4 = new double4(Vector256.Create(1d, 2d, 3d, 4d));
-        var i2 = new int2(Vector64.Create(1, 2));
+        var i2 = new int2(Vector128.Create(1, 2, 99, 99));
         var i3 = new int3(Vector128.Create(1, 2, 3, 99));
         var i4 = new int4(Vector128.Create(1, 2, 3, 4));
-        var u2 = new uint2(Vector64.Create(1u, 2u));
+        var u2 = new uint2(Vector128.Create(1u, 2u, 99u, 99u));
         var u3 = new uint3(Vector128.Create(1u, 2u, 3u, 99u));
         var u4 = new uint4(Vector128.Create(1u, 2u, 3u, 4u));
         var l2 = new long2(Vector128.Create(1L, 2L));
@@ -262,7 +262,7 @@ public class TestVectorCtor
         var ul2 = new ulong2(Vector128.Create(1UL, 2UL));
         var ul3 = new ulong3(Vector256.Create(1UL, 2UL, 3UL, 99UL));
         var ul4 = new ulong4(Vector256.Create(1UL, 2UL, 3UL, 4UL));
-        var t2 = new b32v2(Vector64.Create(~0u, 0u));
+        var t2 = new b32v2(Vector128.Create(~0u, 0u, ~0u, ~0u));
         var t3 = new b32v3(Vector128.Create(~0u, 0u, ~0u, ~0u));
         var t4 = new b32v4(Vector128.Create(~0u, 0u, ~0u, 0u));
         var q2 = new b64v2(Vector128.Create(~0UL, 0UL));
@@ -295,6 +295,12 @@ public class TestVectorCtor
             Assert.That((q2.x, q2.y), Is.EqualTo((B64.True, B64.False)));
             Assert.That((q3.x, q3.y, q3.z), Is.EqualTo((B64.True, B64.False, B64.True)));
             Assert.That((q4.x, q4.y, q4.z, q4.w), Is.EqualTo((B64.True, B64.False, B64.True, B64.False)));
+
+            // a 2 component vector whose register is widened to 128 bits zeroes its padding lanes
+            Assert.That(f2.vector.GetElement(3), Is.EqualTo(0f));
+            Assert.That(i2.vector.GetElement(3), Is.EqualTo(0));
+            Assert.That(u2.vector.GetElement(3), Is.EqualTo(0u));
+            Assert.That(t2.vector.GetElement(3), Is.EqualTo(0u));
 
             // a 3 component vector zeroes its padding lane, the other components are kept
             Assert.That(f3.vector.GetElement(3), Is.EqualTo(0f));

@@ -4,15 +4,28 @@ using Coplt.Experimental.Mathematics;
 namespace Tests.Arith;
 
 /// <summary>
-/// The padding lane checks of the simd backed 3 component vectors. They store their components in a hardware
-/// vector, so they have to keep the fourth lane at zero, the comparison masks, the reductions and the equality
-/// checks rely on it. The vectors that are not simd backed do not have such a lane.
+/// The padding lane checks of the simd backed vectors whose register is wider than the vector. A 3 component
+/// vector stores its components in a 128 or 256 bit register and a 2 component one in a 128 bit register, so
+/// both have to keep their padding lanes at zero, the comparison masks, the reductions and the equality checks
+/// rely on it. The vectors that are not simd backed do not have such lanes.
 /// </summary>
 public class TestSimdPaddingLane
 {
     [Test]
     public void ConstructorsMaskThePaddingLane()
     {
+        Assert.That(new float2(1, 2).vector.GetElement(2), Is.EqualTo(0f), "float2 padding from components");
+        Assert.That(new float2(1, 2).vector.GetElement(3), Is.EqualTo(0f), "float2 padding from components");
+        Assert.That(new float2(Vector128.Create(1f, 2f, 42f, 42f)).vector.GetElement(3), Is.EqualTo(0f),
+            "float2 from a raw simd value");
+        Assert.That(new int2(Vector128.Create(1, 2, 42, 42)).vector.GetElement(2), Is.EqualTo(0),
+            "int2 from a raw simd value");
+        Assert.That(new uint2(Vector128.Create(1u, 2u, 42u, 42u)).vector.GetElement(3), Is.EqualTo(0u),
+            "uint2 from a raw simd value");
+        Assert.That(new float2(1).vector.GetElement(3), Is.EqualTo(0f), "float2 broadcast");
+        Assert.That(new float2(new[] { 1f, 2f, 42f, 42f }).vector.GetElement(3), Is.EqualTo(0f),
+            "float2 loaded from a span");
+
         Assert.That(new float3(1, 2, 3).vector.GetElement(3), Is.EqualTo(0f), "float3 from components");
         Assert.That(new double3(1, 2, 3).vector.GetElement(3), Is.EqualTo(0d), "double3 from components");
         Assert.That(new int3(1, 2, 3).vector.GetElement(3), Is.EqualTo(0), "int3 from components");
@@ -43,6 +56,22 @@ public class TestSimdPaddingLane
     [Test]
     public void Float()
         => ArithCheck.PaddingStaysZero<float3, float>(true, static v => v.vector.GetElement(3));
+
+    [Test]
+    public void PaddingOfFloat2Low()
+        => ArithCheck.PaddingStaysZero2<float2, float>(true, static v => v.vector.GetElement(2));
+
+    [Test]
+    public void PaddingOfFloat2High()
+        => ArithCheck.PaddingStaysZero2<float2, float>(true, static v => v.vector.GetElement(3));
+
+    [Test]
+    public void PaddingOfInt2()
+        => ArithCheck.PaddingStaysZero2<int2, int>(true, static v => v.vector.GetElement(3));
+
+    [Test]
+    public void PaddingOfUInt2()
+        => ArithCheck.PaddingStaysZero2<uint2, uint>(true, static v => v.vector.GetElement(3));
 
     [Test]
     public void Double()

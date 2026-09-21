@@ -11,17 +11,26 @@ public partial class VectorGenerator
     /// constants, the fields, the constructors, the deconstruction, the indexer and the operators. They implement
     /// <c>IVector</c> and the operators of <c>INumberVector</c> / <c>IBoolVector</c>.
     /// </summary>
-    private static string Gen(Typ typ, int size)
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    private static string Gen(Typ typ, int size, bool storeVariant)
     {
-        var type = $"{typ.name}{size}";
+        var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;
         var byteSize = typ.size * (size == 3 ? 4 : size);
         var bitSize = 8 * byteSize;
         var bol = typ.bol;
         var iface = bol ? "IBoolVector" : "INumberVector";
         var boolType = $"b{typ.size * 8}v{size}";
-        var simd = typ.simd;
-        var vecName = $"Vector{bitSize}";
+        var simd = VectorGenShared.Simd(typ, size, storeVariant);
+        // the value of a 64 bit vector is kept in a raw ulong field, the other simd vectors keep the register
+        var v64 = VectorGenShared.Uses64(typ, size, storeVariant);
+        var reg = VectorGenShared.Register(typ, size, storeVariant);
+        var lanes = VectorGenShared.Lanes(typ, size, storeVariant);
+        // the register of a 2 or 3 component vector is wider than the vector, the extra lanes are padding
+        var pad = VectorGenShared.PadLanes(typ, size, storeVariant) > 0;
+        var vecName = $"Vector{reg}";
         var vecType = $"{vecName}<{typ.simdComp}>";
         var cast = typ.shuffleCast;
         var attr = "[MethodImpl(256)]";
@@ -34,38 +43,36 @@ public partial class VectorGenerator
 
         string Join(Func<int, string> f, string sep = ", ") => VectorGenShared.Join(size, f, sep);
 
+        // every argument of the create call that is not a component is a padding lane and is set to zero
         string Create(params string[] values)
         {
-            if (bitSize == 64) return $"{vecName}.Create({values[0]}, {values[1]})";
-            if (values.Length == 3) return $"{vecName}.Create({values[0]}, {values[1]}, {values[2]}, default)";
-            var b = new StringBuilder($"{vecName}.Create(");
-            for (var i = 0; i < values.Length; i++)
-            {
-                if (i != 0) b.Append(", ");
-                b.Append(values[i]);
-            }
-
-            b.Append(')');
-            return b.ToString();
+            var all = new List<string>(values);
+            for (var i = size; i < lanes; i++) all.Add("default");
+            return $"{vecName}.Create({string.Join(", ", all)})";
         }
 
-        string Broadcast(string first) => size == 3
-            ? $"{vecName}.Create({first}, value, value, default)"
-            : $"{vecName}.Create({first})";
+        string Broadcast(string first)
+        {
+            if (lanes == size) return $"{vecName}.Create({first})";
+            var all = new List<string>();
+            for (var i = 0; i < size; i++) all.Add(first);
+            for (var i = size; i < lanes; i++) all.Add("default");
+            return $"{vecName}.Create({string.Join(", ", all)})";
+        }
 
         // the construction of a simd result, see VectorGenShared.Vector
-        string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, size, expr, masked);
+        string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, pad, expr, masked);
 
         // the 128 bit value of a 64 bit vector and the construction of a 64 bit vector from a 128 bit one
         string Load64(string self) => VectorGenShared.Load64(self, typ.simdComp);
         string From128(string expr) => VectorGenShared.From128(expr);
 
-        // the mask that keeps the padding lane of a 3 component vector at zero
-        var mask = !simd || size != 3
+        // the mask that keeps the padding lanes of the register at zero
+        var mask = !pad
             ? null
             : typ.size == 4
-                ? $"{vecName}.Create(-1, -1, -1, 0).{AsMethod(typ.simdComp)}()"
-                : $"{vecName}.Create(-1L, -1L, -1L, 0L).{AsMethod(typ.simdComp)}()";
+                ? $"{vecName}.Create({VectorGenShared.Join(lanes, i => i < size ? "-1" : "0")}).{AsMethod(typ.simdComp)}()"
+                : $"{vecName}.Create({VectorGenShared.Join(lanes, i => i < size ? "-1L" : "0L")}).{AsMethod(typ.simdComp)}()";
         // the int type that has the same width as the components, the comparison masks use it
         var maskAs = typ.size == 4 ? "AsUInt32" : "AsUInt64";
         // bool components are wrappers, the span/pointer has to be reinterpreted
@@ -87,8 +94,8 @@ public partial class VectorGenerator
 
         // only one of the partial declarations of a type may carry the documentation of the type, so the
         // documentation that names the interfaces of every part lives on the base members
-        var get = VectorGenShared.SwizzleTypes(typ, size, false);
-        var set = VectorGenShared.SwizzleTypes(typ, size, true);
+        var get = VectorGenShared.SwizzleTypes(typ, size, false, storeVariant);
+        var set = VectorGenShared.SwizzleTypes(typ, size, true, storeVariant);
         var parts = new List<string>
         {
             "The base members implement " +
@@ -97,7 +104,7 @@ public partial class VectorGenerator
         if (typ.arith)
         {
             var arith = new List<string>();
-            foreach (var i in VectorGenShared.ArithInterfaces(typ, size))
+            foreach (var i in VectorGenShared.ArithInterfaces(typ, size, storeVariant))
             {
                 arith.Add(VectorGenShared.IfaceRef(i.Name, new List<string> { "Self", "Scalar" }, i.Args));
             }
@@ -113,17 +120,16 @@ public partial class VectorGenerator
         VectorGenShared.FileHeader(sb, false, true);
         sb.AppendLine("/// <summary>");
         sb.AppendLine($"/// <c>{type}</c> is a vector of {size} <see cref=\"{scalar}\"/> components");
-        if (size == 3 || simd)
+        if (pad || simd)
         {
-            sb.Append("/// <para>It is ");
-            if (size == 3)
-            {
-                sb.Append("padded to 4 components");
-                if (simd) sb.Append(" and it is ");
-            }
-
-            if (simd) sb.Append("backed by a hardware accelerated simd type");
-            sb.AppendLine("</para>");
+            var traits = new List<string>();
+            if (pad) traits.Add($"padded to {lanes} components");
+            if (simd) traits.Add("backed by a hardware accelerated simd type");
+            sb.AppendLine($"/// <para>It is {string.Join(" and it is ", traits)}</para>");
+        }
+        else if (storeVariant)
+        {
+            sb.AppendLine("/// <para>It keeps its components in fields, it has no simd register</para>");
         }
 
         sb.AppendLine($"/// <para>{string.Join(", ", parts)}</para>");
@@ -248,7 +254,7 @@ public partial class VectorGenerator
         sb.AppendLine();
         sb.AppendLine("    #region fields");
         sb.AppendLine();
-        if (simd && bitSize == 64)
+        if (simd && v64)
         {
             Doc($"The raw 64 bits of the vector, the <c>vector</c> property reinterprets them" +
                 "<para>Writing it directly <b>bypasses</b> the property</para>");
@@ -266,7 +272,9 @@ public partial class VectorGenerator
         else if (simd)
         {
             Doc($"The raw <see cref=\"{vecName}{{T}}\"/> value of the vector" +
-                "<para>Writing it directly <b>bypasses</b> the mask that keeps the padding lane of a 3 component vector at zero</para>");
+                (pad
+                    ? "<para>Writing it directly <b>bypasses</b> the mask that keeps the padding lanes at zero</para>"
+                    : ""));
             sb.AppendLine($"    public {vecType} vector;");
         }
         else
@@ -318,7 +326,7 @@ public partial class VectorGenerator
             Doc(mask == null
                 ? $"Creates a vector from a raw <see cref=\"{vecName}{{T}}\"/> value"
                 : $"Creates a vector from a raw <see cref=\"{vecName}{{T}}\"/> value" +
-                  "<para>The padding lane of a 3 component vector is set to zero</para>");
+                  "<para>The padding lanes of the register are set to zero</para>");
             DocParam("vector", $"The raw <see cref=\"{vecName}{{T}}\"/> value");
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public {type}({vecType} vector) => this.vector = " +
@@ -354,6 +362,35 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static implicit operator {type}({scalar} value) => new(value);");
         sb.AppendLine();
+        if (storeVariant)
+        {
+            // the storage variant and the regular vector keep the same components in different storages, the
+            // conversions go through the register of the 64 bit value and through the components otherwise
+            var regular = VectorGenShared.VecName(typ, size, false);
+            var fromRegular = v64 ? From128("value.vector") : $"new({Join(i => $"value.{comp[i]}")})";
+            // the value of the storage variant is widened by the helper of the vector type, it zeroes the
+            // padding lanes of the regular register
+            var toRegular = v64
+                ? $"new() {{ vector = {Load64("value.")} }}"
+                : $"new({Join(i => $"value.{comp[i]}")})";
+            Doc($"Creates the vector from the regular <see cref=\"{regular}\"/>");
+            DocParam("value", "The vector to convert");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public {type}(in {regular} value) => this = {fromRegular};");
+            sb.AppendLine();
+            Doc($"Converts the regular <see cref=\"{regular}\"/> to the vector");
+            DocParam("value", "The vector to convert");
+            sb.AppendLine("    /// <returns>The vector</returns>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static implicit operator {type}(in {regular} value) => {fromRegular};");
+            sb.AppendLine();
+            Doc($"Converts the vector to the regular <see cref=\"{regular}\"/>");
+            DocParam("value", "The vector to convert");
+            sb.AppendLine("    /// <returns>The regular vector</returns>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static implicit operator {regular}(in {type} value) => {toRegular};");
+            sb.AppendLine();
+        }
         Doc("Creates a vector with every component set to <paramref name=\"value\"/>");
         DocParam("value", "The value of every component");
         sb.AppendLine($"    {attr}");
@@ -389,8 +426,7 @@ public partial class VectorGenerator
         {
             // routed through the vector constructor so the padding lane mask is applied
             sb.AppendLine($"    public {type}(ReadOnlySpan<{scalar}> span) : this({vecName}.{spanLoad}) {{ }}");
-        }
-        else
+        }        else
         {
             sb.AppendLine($"    public {type}(ReadOnlySpan<{scalar}> span)");
             sb.AppendLine("    {");
@@ -500,7 +536,7 @@ public partial class VectorGenerator
             {
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
                 sb.AppendLine($"            return {full};");
-                if (bitSize == 64)
+                if (v64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                     sb.AppendLine($"            return {wide};");
@@ -528,18 +564,24 @@ public partial class VectorGenerator
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public static {boolType} operator {op}({type} left, {type} right)");
             sb.AppendLine("    {");
-            // the padding lane is zero on both sides, so a comparison over the whole vector of it is false, the
-            // operators that keep false there write the field directly, the ones that turn it into true need the
-            // mask because the mask of every component is compared against theirs by the bool vector checks
+            // the padding lanes are zero on both sides, so a comparison over the whole vector of them is false,
+            // the operators that keep false there write the field directly, the ones that turn it into true need
+            // the mask because the mask of every component is compared against theirs by the bool vector checks
             var masked = op is "==" or "<=" or ">=";
             if (simd)
             {
+                // the mask is a vector of the bool type of the vector and its register is 128 bits wide, so the
+                // mask of the 64 bit register of the value is widened to it, the padding lanes the widening
+                // creates are false and the ones the comparison creates are masked by the constructor
+                var mask64 = MaskExpr(vecName, false);
+                if (v64) mask64 = $"Vector128.Create({mask64})";
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
-                sb.AppendLine($"            return {FromVector(MaskExpr(vecName, false), masked)};");
-                if (bitSize == 64)
+                sb.AppendLine($"            return {(masked ? $"new({mask64})" : $"new() {{ vector = {mask64} }}")};");
+                if (v64)
                 {
+                    var mask128 = MaskExpr("Vector128", true);
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return {From128(MaskExpr("Vector128", true))};");
+                    sb.AppendLine($"            return {(masked ? $"new({mask128})" : $"new() {{ vector = {mask128} }}")};");
                 }
             }
 
@@ -551,19 +593,18 @@ public partial class VectorGenerator
         // emits the bool result of a comparison operator required by IComparisonOperators
         void EmitBoolOp(string op, string vecOp, string scalarOp)
         {
-            // the padding lane of a 3 component vector is zero on both sides, an all comparison over the whole
-            // vector would be false for it, so the mask is compared against the expected mask instead
+            // the padding lanes of a vector whose register is wider than it are zero on both sides, an all
+            // comparison over the whole register would be false for them, so the mask is compared against the
+            // expected mask instead
             var lessOp = vecOp switch
             {
                 "LessThanAll" => "LessThan",
                 "GreaterThanAll" => "GreaterThan",
                 _ => null,
             };
-            var expected = size != 3
+            var expected = !pad
                 ? $"{vecName}<{(typ.size == 4 ? "uint" : "ulong")}>.AllBitsSet"
-                : typ.size == 4
-                    ? $"{vecName}.Create(-1, -1, -1, 0).AsUInt32()"
-                    : $"{vecName}.Create(-1L, -1L, -1L, 0L).AsUInt64()";
+                : $"{vecName}.Create({VectorGenShared.Join(lanes, i => i < size ? (typ.size == 4 ? "-1" : "-1L") : (typ.size == 4 ? "0" : "0L"))}).AsUInt{(typ.size == 4 ? "32" : "64")}()";
 
             InheritDoc();
             sb.AppendLine($"    {attr}");
@@ -576,7 +617,7 @@ public partial class VectorGenerator
                     sb.AppendLine($"            return {vecName}.{vecOp}(left.vector, right.vector);");
                 else
                     sb.AppendLine($"            return {vecName}.EqualsAll({vecName}.{lessOp}(left.vector, right.vector).{maskAs}(), {expected});");
-                if (bitSize == 64)
+                if (v64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                     if (lessOp == null)
@@ -625,7 +666,7 @@ public partial class VectorGenerator
                 sb.AppendLine($"            if ({vecName}.GreaterThanAny(vector, other.vector)) return 1;");
                 sb.AppendLine("            return 0;");
                 sb.AppendLine("        }");
-                if (bitSize == 64)
+                if (v64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                     sb.AppendLine("        {");
@@ -685,7 +726,7 @@ public partial class VectorGenerator
                 var wide = $"{Load64("a.")} {op} {wideRhs}";
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
                 sb.AppendLine($"            return {FromVector(accel)};");
-                if (bitSize == 64)
+                if (v64)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                     sb.AppendLine($"            return {From128(wide)};");
@@ -703,10 +744,10 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         if (simd)
         {
-            // the complement of the zero padding lane is all ones, this one keeps the mask
+            // the complement of the zero padding lanes is all ones, this one keeps the mask
             sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
             sb.AppendLine($"            return {FromVector("~a.vector", true)};");
-            if (bitSize == 64)
+            if (v64)
             {
                 sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                 sb.AppendLine($"            return {From128($"~{Load64("a.")}")};");

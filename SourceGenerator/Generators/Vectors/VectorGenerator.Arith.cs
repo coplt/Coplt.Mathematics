@@ -11,28 +11,35 @@ public partial class VectorGenerator
     /// the <c>IVectorArithmetic</c> interfaces. They are emitted into their own file, so the base members and the
     /// arithmetic members stay separate.
     /// </summary>
-    private static string GenArith(Typ typ, int size)
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    private static string GenArith(Typ typ, int size, bool storeVariant)
     {
-        var type = $"{typ.name}{size}";
+        var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;
-        var byteSize = typ.size * (size == 3 ? 4 : size);
-        var bitSize = 8 * byteSize;
-        // the bit size of a padded 4 component vector and of a 2 component one, the simd reductions
-        // pick their implementation by them
+        var simd = VectorGenShared.Simd(typ, size, storeVariant);
+        // the value of a 64 bit vector is kept in a raw ulong field, the other simd vectors keep the register
+        var v64 = VectorGenShared.Uses64(typ, size, storeVariant);
+        var reg = VectorGenShared.Register(typ, size, storeVariant);
+        var lanes = VectorGenShared.Lanes(typ, size, storeVariant);
+        // the register of a 2 or 3 component vector is wider than the vector, the extra lanes are padding
+        var pad = VectorGenShared.PadLanes(typ, size, storeVariant) > 0;
+        // the bit size of the register of a 2 component vector and of a padded 4 component one, the simd
+        // reductions pick their implementation by them
         var bitSize2 = 8 * typ.size * 2;
         var bitSize4 = 8 * typ.size * 4;
-        var simd = typ.simd;
         var sig = typ.sig;
         var f = typ.f;
         var i = typ.i;
-        var vecName = $"Vector{bitSize}";
+        var vecName = $"Vector{reg}";
         var cast = typ.arithCast;
         var attr = "[MethodImpl(256)]";
 
         var comp = VectorGenShared.Components(size);
 
         // a signed vector also has the negation operator, a 3 component vector also has the cross product
-        var ifaces = VectorGenShared.ArithInterfaces(typ, size);
+        var ifaces = VectorGenShared.ArithInterfaces(typ, size, storeVariant);
 
         var sb = new StringBuilder();
 
@@ -50,22 +57,22 @@ public partial class VectorGenerator
 
         // the construction of a simd result, see VectorGenShared.Vector. Only the division and the remainder of a
         // 3 component floating point vector need the mask, they divide the zero padding lane by zero
-        string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, size, expr, masked);
+        string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, pad, expr, masked);
 
         // emits the accelerated simd fast path, the scalar expression is used when nothing is accelerated,
-        // every statement includes the return. The vector type is fixed, a 64 bit vector can only reach 128 bit
-        // vectors by widening its value, that is the path for a platform that has no 64 bit hardware support.
-        // The accelerated expression is null when the scalar expression is already the best the member can do.
-        // The wide expression is null when a wider path does not pay off: the member is built from the operators
-        // of the vector, which carry the 128 bit path themselves, or the scalar expression is already a single
-        // operation.
+        // every statement includes the return. The vector type is fixed, a value that is kept in a 64 bit
+        // register can only reach 128 bit vectors by widening itself, that is the path for a platform that has
+        // no 64 bit hardware support. The accelerated expression is null when the scalar expression is already
+        // the best the member can do. The wide expression is null when a wider path does not pay off: the member
+        // is built from the operators of the vector, which carry the 128 bit path themselves, or the scalar
+        // expression is already a single operation.
         void EmitAccel(string? accelerated, string? wide, string fallback)
         {
             if (simd && accelerated != null)
             {
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
                 sb.AppendLine($"            {accelerated}");
-                if (bitSize == 64 && wide != null)
+                if (v64 && wide != null)
                 {
                     sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                     sb.AppendLine($"            {wide}");
@@ -131,9 +138,17 @@ public partial class VectorGenerator
         EmitBinOp("*", $"return {FromVector("a.vector * b.vector")};",
             $"return {From128($"{Load64("a.")} * {Load64("b.")}")};",
             NewCompWise(n => $"a.{comp[n]} * b.{comp[n]}"));
-        // the padding lane of a 3 component integer vector is zero, dividing by it would throw
+        // the padding lanes of the register are zero, an integer division by them would throw, so the
+        // denominator is patched to one there
+        var padOne = "";
+        if (simd && i && pad)
+        {
+            for (var n = size; n < lanes; n++) padOne += $".WithElement({n}, {typ.one})";
+        }
+
+        // the padding lanes of a 3 component integer vector are zero, dividing by them would throw
         EmitBinOp("/",
-            $"return {FromVector("a.vector / b.vector" + (simd && i && size == 3 ? $".WithElement(3, {typ.one})" : ""), f)};",
+            $"return {FromVector("a.vector / b.vector" + padOne, f)};",
             // the widened value of a 64 bit integer vector has zero padding lanes, the division by them would
             // throw, a floating point vector only produces a nan there and drops it again
             i ? null : $"return {From128($"{Load64("a.")} / {Load64("b.")}")};",
@@ -324,7 +339,7 @@ public partial class VectorGenerator
         // acceleration are the ones of csum: a 64 bit vector also has the 128 bit path of it and the padding
         // lanes the widened values are given are zero, so they do not contribute to the sum
         EmitAccel($"return {vecName}.Dot(vector, other.vector);",
-            bitSize == 64 ? $"return Vector128.Dot({Load64("")}, {Load64("other.")});" : null,
+            v64 ? $"return Vector128.Dot({Load64("")}, {Load64("other.")});" : null,
             "return (this * other).csum();");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -335,7 +350,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         // dot with itself, the 128 bit path reads the value of the vector twice
         EmitAccel($"return {vecName}.Dot(vector, vector);",
-            bitSize == 64 ? $"return Vector128.Dot({Load64("")}, {Load64("")});" : null,
+            v64 ? $"return Vector128.Dot({Load64("")}, {Load64("")});" : null,
             "return (this * this).csum();");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -402,7 +417,7 @@ public partial class VectorGenerator
         // a 64 bit vector sums the two lanes of its own register and falls back to the 128 bit one, the
         // padding lanes of the widened value are zero, so they do not change the sum
         EmitAccel($"return {vecName}.Sum(vector);",
-            bitSize == 64 ? $"return Vector128.Sum({Load64("")});" : null,
+            v64 ? $"return Vector128.Sum({Load64("")});" : null,
             $"return {cast}({Join(n => comp[n], " + ")});");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -416,18 +431,21 @@ public partial class VectorGenerator
             sb.AppendLine($"    public {scalar} {name}()");
             sb.AppendLine("    {");
             // the safe variants of a floating point vector only take the accelerated path when the padding
-            // lane of the value cannot disturb the reduction
+            // lanes of the value cannot disturb the reduction
             if (simd && (!safeOnly || i))
             {
                 var op = size == 3 ? vecOp + "3" : vecOp;
                 // the helper of a 64 bit vector reduces the two lanes of its own register, it reads them from
                 // a 64 bit register and from the 128 bit one when the platform has no 64 bit hardware support,
                 // so the gate accepts either register, the wider types reduce the register of the value itself
-                var gate = bitSize == 64
+                var gate = v64
                     ? $"{vecName}.IsHardwareAccelerated || Vector128.IsHardwareAccelerated"
                     : $"Vector{bitSize4}.IsHardwareAccelerated || Vector{bitSize2}.IsHardwareAccelerated";
+                // a 2 component vector whose register is widened to 128 bits keeps its padding lanes at zero,
+                // the helper of the 64 bit register reduces the two lanes of it without them
+                var operand = pad && size == 2 ? "vector.GetLower()" : "vector";
                 sb.AppendLine($"        if ({gate})");
-                sb.AppendLine($"            return simd.{op}(vector);");
+                sb.AppendLine($"            return simd.{op}({operand});");
             }
 
             var chain = comp[0];

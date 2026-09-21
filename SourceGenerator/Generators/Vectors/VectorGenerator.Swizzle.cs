@@ -13,21 +13,32 @@ public partial class VectorGenerator
     /// members implement the swizzle interfaces of <c>Coplt.Mathematics.Generics.Swizzle</c>. They are emitted
     /// into their own file, so the base members and the arithmetic members stay separate.
     /// </summary>
-    private static string GenSwizzle(Typ typ, int size)
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    private static string GenSwizzle(Typ typ, int size, bool storeVariant)
     {
-        var type = $"{typ.name}{size}";
-        var simd = typ.simd;
+        var type = VectorGenShared.VecName(typ, size, storeVariant);
+        var simd = VectorGenShared.Simd(typ, size, storeVariant);
+        // the value of a 64 bit vector is kept in a raw ulong field, the other simd vectors keep the register
+        var v64 = VectorGenShared.Uses64(typ, size, storeVariant);
         var cast = typ.shuffleCast;
         var attr = "[MethodImpl(256)]";
         var comp = VectorGenShared.Components(size);
-        // the register of the vector itself, a 3 component vector is padded to 4 lanes
-        var srcReg = 8 * typ.size * (size == 2 ? 2 : 4);
+        // the register of the value of the vector, a 2 or 3 component vector has padding lanes in it when its
+        // register is wider than the vector itself
+        var srcReg = VectorGenShared.Register(typ, size, storeVariant);
         var srcVecName = $"Vector{srcReg}";
-        var srcLanes = srcReg / (8 * typ.size);
+        var srcLanes = srcReg == 0 ? size : srcReg / (8 * typ.size);
+        // a 64 bit vector is widened to 128 bits with zero upper lanes, a wider register keeps its own padding
+        // lanes at zero, so the padding lanes of a result read a lane that is known to be zero
+        var srcPad = v64 || srcLanes > size;
+        var padIdx = v64 ? 2 : srcLanes - 1;
 
-        // the type parameters and the type arguments of the interfaces, the same sized type is the first one
-        var get = VectorGenShared.SwizzleTypes(typ, size, false);
-        var set = VectorGenShared.SwizzleTypes(typ, size, true);
+        // the type parameters and the type arguments of the interfaces, the same sized type is the first one,
+        // a combination of another size is a vector without the storage variant
+        var get = VectorGenShared.SwizzleTypes(typ, size, false, storeVariant);
+        var set = VectorGenShared.SwizzleTypes(typ, size, true, storeVariant);
         var getArgs = get.Args;
         var setArgs = set.Args;
 
@@ -82,29 +93,35 @@ public partial class VectorGenerator
 
         for (var dst = 2; dst <= 4; dst++)
         {
-            var ret = $"{typ.name}{dst}";
-            var dstReg = 8 * typ.size * (dst == 2 ? 2 : 4);
+            // the combination with the same size as the vector is the vector itself, the ones of another size
+            // are vectors without the storage variant
+            var sameSize = dst == size;
+            var ret = sameSize ? type : VectorGenShared.VecName(typ, dst, false);
+            var dstReg = VectorGenShared.Register(typ, dst, sameSize && storeVariant);
+            var dst64 = VectorGenShared.Uses64(typ, dst, sameSize && storeVariant);
+            var dstPad = VectorGenShared.PadLanes(typ, dst, sameSize && storeVariant) > 0;
             var reg = Math.Max(srcReg, dstReg);
+            // a vector without a register still needs the lanes of its padded value for the arrays of the indices,
+            // the shuffle itself is not emitted for it
+            if (reg == 0) reg = 8 * typ.size * (Math.Max(size, dst) == 2 ? 2 : 4);
             var vecName = $"Vector{reg}";
             var lanes = reg / (8 * typ.size);
-            // the value of the vector has to be created in a wider register because the register has more lanes
+            // the value of the vector has to be created in a wider register because it has more lanes
             var widen = reg > srcReg;
             // the result is taken from the lower lanes of the register
             var narrow = reg > dstReg;
-            // the padding lane of the result can hold something else than zero only when the shuffle reads it
-            // from the fourth lane of a 4 component vector, the lanes that a shorter vector does not have are
-            // created as zeros and the padding lane of a 3 component vector is one
-            var masked = simd && dst == 3 && size == 4;
+            // the padding lanes of a result hold something else than zero only when the shuffle reads them from
+            // a lane that is a component of the source, the padding lanes of the source are zero
+            var masked = simd && dstPad && !srcPad;
             // a 64 bit vector has no hardware support on every platform, the shuffle can widen it to 128 bits
             var wide = simd && reg == srcReg && srcReg == 64;
-            // a 64 bit vector keeps its value in a 64 bit field, the shuffle of it runs in a 128 bit register
-            var dstIs64 = simd && dstReg == 64;
 
-            string FromVector(string expr) => VectorGenShared.Vector(simd, dst, expr, masked);
+            // the construction of a result, see VectorGenShared.Vector
+            string FromVector(string expr) => VectorGenShared.Vector(simd, dstPad, expr, masked);
 
-            // the lower lanes of the register are the value of a 64 bit destination
+            // the storage variant of a 2 component vector keeps the lower 64 bits of the register
             string FromRegister(string expr) =>
-                dstIs64 && reg > 64 ? VectorGenShared.From128(expr) : FromVector(expr);
+                dst64 && reg > 64 ? VectorGenShared.From128(expr) : FromVector(expr);
 
             sb.AppendLine();
             sb.AppendLine($"    #region {dst} components");
@@ -133,7 +150,8 @@ public partial class VectorGenerator
                 // the index of every component inside the combination, and the lanes the combination reads
                 var idx = new int[lanes];
                 for (var i = 0; i < dst; i++) idx[i] = digits[i];
-                for (var i = dst; i < lanes; i++) idx[i] = dst == 3 ? 3 : 0;
+                // the padding lanes of the result read a lane that is known to be zero
+                for (var i = dst; i < lanes; i++) idx[i] = padIdx;
                 // the index the value of a setter is read from for every lane of the vector, and the lanes the
                 // combination writes, a lane the combination does not write keeps the value of the vector
                 var inv = new int[srcLanes];
@@ -212,13 +230,15 @@ public partial class VectorGenerator
                         {
                             // the vector and the value are mixed by the mask, the lanes the combination does
                             // not write keep their component and the value is read through the inverse of it
-                            // the value is widened to the register of the vector, a 64 bit value is loaded from
-                            // the field of the vector type instead of ToVector128
+                            // the value is read in the register of the vector, the value of a 64 bit vector is
+                            // loaded from its field instead of ToVector and a wider one is narrowed
                             var setValue = dstReg == srcReg
                                 ? "value.vector"
-                                : dstReg == 64
+                                : dst64
                                     ? VectorGenShared.Load64("value.", typ.simdComp)
-                                    : $"value.vector.ToVector{srcReg}()";
+                                    : srcReg == 64
+                                        ? "value.vector.GetLower()"
+                                        : $"value.vector.ToVector{srcReg}()";
                             sb.AppendLine($"            if ({srcVecName}.IsHardwareAccelerated)");
                             sb.AppendLine($"                vector = {srcVecName}.ConditionalSelect(" +
                                           $"{srcVecName}.Create({Args(sel, false)}).{AsMethod(typ.simdComp)}(), " +

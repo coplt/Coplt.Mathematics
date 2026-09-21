@@ -15,14 +15,14 @@ internal static class ArithCheck
 
     /// <summary>
     /// Builds a vector from the components of <paramref name="values"/>, a shorter vector only uses the leading
-    /// ones. A simd backed 3 component vector reads a whole simd register, so its padding lane is not part of the
-    /// vector and stays zero.
+    /// ones. A simd backed vector reads a whole simd register, so it is given the padded number of components
+    /// and its padding lanes are not part of the vector.
     /// </summary>
     private static T Vec<T, TScalar>(int length, bool simd, params TScalar[] values)
         where T : unmanaged, IVector<T, TScalar>
         where TScalar : unmanaged
     {
-        var data = new TScalar[simd && length == 3 ? 4 : length];
+        var data = new TScalar[simd ? 4 : length];
         for (var i = 0; i < values.Length && i < data.Length; i++) data[i] = values[i];
         return T.Load(data);
     }
@@ -345,6 +345,48 @@ internal static class ArithCheck
             StaysZero(T.fms(a, b, a), "fms");
             StaysZero(T.fnma(a, b, a), "fnma");
             StaysZero(a.cross(b), "cross");
+        }
+    }
+
+    /// <summary>
+    /// The padding lanes of a simd backed 2 component vector whose register is widened to 128 bits have to stay
+    /// zero, the comparison masks, the reductions and the equality checks rely on it. <paramref name="padding"/>
+    /// reads one of those lanes.
+    /// </summary>
+    public static void PaddingStaysZero2<T, TScalar>(bool simd, Func<T, TScalar> padding)
+        where T : unmanaged, IVectorArithmetic<T, TScalar>
+        where TScalar : unmanaged, INumber<TScalar>
+    {
+        var one = TScalar.One;
+        var two = TScalar.CreateChecked(2);
+        var three = TScalar.CreateChecked(3);
+        var a = Vec<T, TScalar>(2, simd, one, two);
+        // the second component of b differs from the one of a, so no unlerp divides by zero
+        var b = Vec<T, TScalar>(2, simd, three, one);
+
+        void StaysZero(T v, string what)
+            => Assert.That(padding(v), Is.EqualTo(default(TScalar)), $"padding lane after {what}");
+
+        using (Assert.EnterMultipleScope())
+        {
+            StaysZero(a, "the load");
+            StaysZero(a + b, "+");
+            StaysZero(a - b, "-");
+            StaysZero(a * b, "*");
+            StaysZero(a / b, "/");
+            StaysZero(a % b, "%");
+            StaysZero(a.abs(), "abs");
+            StaysZero(a.sign(), "sign");
+            StaysZero(a.min(b), "min");
+            StaysZero(a.max(b), "max");
+            StaysZero(a.clamp(b, a), "clamp");
+            StaysZero(a.square(), "square");
+            StaysZero(a.lerp(b, a), "lerp");
+            StaysZero(a.unlerp(a, b), "unlerp");
+            StaysZero(a.remap(a, b, b, a), "remap");
+            StaysZero(T.fma(a, b, a), "fma");
+            StaysZero(T.fms(a, b, a), "fms");
+            StaysZero(T.fnma(a, b, a), "fnma");
         }
     }
 

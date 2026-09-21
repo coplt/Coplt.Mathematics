@@ -23,20 +23,27 @@ public partial class VectorGenerator : IIncrementalGenerator
             {
                 for (var size = 2; size <= 4; size++)
                 {
-                    ctx.AddSource(
-                        $"{VecNamespace}.{typ.name}{size}.g.cs",
-                        SourceText.From(Gen(typ, size), Encoding.UTF8));
-                    // the swizzle members implement the swizzle interfaces, they are emitted into their own file
-                    ctx.AddSource(
-                        $"{VecNamespace}.{typ.name}{size}.swizzle.g.cs",
-                        SourceText.From(GenSwizzle(typ, size), Encoding.UTF8));
-                    // the arithmetic members implement the IVectorArithmetic interfaces, they are emitted
-                    // into their own file so they stay separate from the members of the base type
-                    if (typ.arith)
+                    // a simd backed 2 or 3 component vector also has a storage variant beside the regular one
+                    var variants = VectorGenShared.HasStorageVariant(typ, size) ? 2 : 1;
+                    for (var variant = 0; variant < variants; variant++)
                     {
+                        var storeVariant = variant == 1;
+                        var name = VectorGenShared.VecName(typ, size, storeVariant);
                         ctx.AddSource(
-                            $"{VecNamespace}.{typ.name}{size}.arith.g.cs",
-                            SourceText.From(GenArith(typ, size), Encoding.UTF8));
+                            $"{VecNamespace}.{name}.g.cs",
+                            SourceText.From(Gen(typ, size, storeVariant), Encoding.UTF8));
+                        // the swizzle members implement the swizzle interfaces, they are emitted into their own file
+                        ctx.AddSource(
+                            $"{VecNamespace}.{name}.swizzle.g.cs",
+                            SourceText.From(GenSwizzle(typ, size, storeVariant), Encoding.UTF8));
+                        // the arithmetic members implement the IVectorArithmetic interfaces, they are emitted
+                        // into their own file so they stay separate from the members of the base type
+                        if (typ.arith)
+                        {
+                            ctx.AddSource(
+                                $"{VecNamespace}.{name}.arith.g.cs",
+                                SourceText.From(GenArith(typ, size, storeVariant), Encoding.UTF8));
+                        }
                     }
                 }
             }

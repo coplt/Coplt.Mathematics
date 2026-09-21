@@ -69,6 +69,32 @@ public class TestSwizzle
     }
 
     [Test]
+    public void StorageVariant()
+    {
+        // the same sized combination is the variant itself, a combination of another size is a regular vector
+        var v2 = new float2s(1, 2);
+        Check(v2.xy, new float2s(1, 2), "float2s.xy");
+        Check(v2.yx, new float2s(2, 1), "float2s.yx");
+        Check(v2.xxx, new float3(1, 1, 1), "float2s.xxx");
+        Check(v2.xyxy, new float4(1, 2, 1, 2), "float2s.xyxy");
+
+        var v3 = new float3s(1, 2, 3);
+        Check(v3.xyz, new float3s(1, 2, 3), "float3s.xyz");
+        Check(v3.zyx, new float3s(3, 2, 1), "float3s.zyx");
+        Check(v3.xy, new float2(1, 2), "float3s.xy");
+        Check(v3.xyzz, new float4(1, 2, 3, 3), "float3s.xyzz");
+
+        // a setter only writes the components of the combination
+        var a = new float2s(1, 2);
+        a.yx = new float2s(7, 8);
+        Check(a, new float2s(8, 7), "float2s.yx setter");
+
+        var b = new float3s(1, 2, 3);
+        b.xy = new float2(7, 8);
+        Check(b, new float3s(7, 8, 3), "float3s.xy setter");
+    }
+
+    [Test]
     public void Repeat()
     {
         var v = new float4(1, 2, 3, 4);

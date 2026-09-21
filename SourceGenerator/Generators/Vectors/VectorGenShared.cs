@@ -16,10 +16,11 @@ internal static class VectorGenShared
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>The name and the type arguments of every interface</returns>
-    public static List<(string Name, List<string> Args)> ArithInterfaces(Typ typ, int size)
+    public static List<(string Name, List<string> Args)> ArithInterfaces(Typ typ, int size, bool storeVariant)
     {
-        var args = new List<string> { $"{typ.name}{size}", typ.compType };
+        var args = new List<string> { VecName(typ, size, storeVariant), typ.compType };
         var ifaces = new List<(string Name, List<string> Args)>();
         if (typ.sig) ifaces.Add(("ISignedVectorArithmetic", args));
         else if (size != 3) ifaces.Add(("IVectorArithmetic", args));
@@ -36,17 +37,19 @@ internal static class VectorGenShared
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
     /// <param name="set">True for the interface that collects the setters</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>The name of every type parameter and the type argument of every one of them</returns>
-    public static (List<string> Params, List<string> Args) SwizzleTypes(Typ typ, int size, bool set)
+    public static (List<string> Params, List<string> Args) SwizzleTypes(Typ typ, int size, bool set, bool storeVariant)
     {
         var parameters = new List<string> { set ? "TIn" : "TSelf" };
-        var args = new List<string> { $"{typ.name}{size}" };
+        var args = new List<string> { VecName(typ, size, storeVariant) };
         for (var d = 2; d <= 4; d++)
         {
             if (d == size) continue;
             if (set && d > size) continue;
             parameters.Add($"TVec{d}");
-            args.Add($"{typ.name}{d}");
+            // a combination of another size is a vector without the storage variant
+            args.Add(VecName(typ, d, false));
         }
 
         return (parameters, args);
@@ -132,16 +135,100 @@ internal static class VectorGenShared
     }
 
     /// <summary>
-    /// Builds a result from a raw simd expression. The constructor masks the padding lane of a 3 component
-    /// vector, an expression that keeps that lane at zero writes the field directly and skips the mask.
+    /// True when the vector has a storage variant. Only the 2 component vectors whose register is 64 bits wide
+    /// and the 3 component ones have one: the first ones keep the exact bits of their value instead of a padded
+    /// 128 bit register, the last ones keep their components in fields and have no register at all.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <returns>True when the storage variant exists</returns>
+    public static bool HasStorageVariant(Typ typ, int size) =>
+        typ.arith && typ.simd && (size == 3 || (size == 2 && 8 * typ.size * 2 == 64));
+
+    /// <summary>
+    /// Returns the name of a vector, the storage variant of a vector has the <c>s</c> suffix.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The name of the vector</returns>
+    public static string VecName(Typ typ, int size, bool storeVariant) =>
+        storeVariant ? $"{typ.name}{size}s" : $"{typ.name}{size}";
+
+    /// <summary>
+    /// Returns the bit size of the register that keeps the value of a vector, 0 when the vector has no register.
+    /// A 3 or 4 component vector is padded to 4 lanes, the 2 component ones keep the exact width of their value
+    /// beside the storage variant of a 4 byte component vector, whose value is widened to 128 bits because the
+    /// 64 bit register of it is not accelerated on every platform.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The bit size of the register</returns>
+    public static int Register(Typ typ, int size, bool storeVariant)
+    {
+        if (!typ.simd) return 0;
+        if (size == 2)
+        {
+            var exact = 8 * typ.size * 2;
+            if (storeVariant) return exact;
+            return exact == 64 ? 128 : exact;
+        }
+        // the storage variant of a 3 component vector has no register, it keeps its components in fields
+        if (size == 3 && storeVariant) return 0;
+        return 8 * typ.size * 4;
+    }
+
+    /// <summary>
+    /// True when the value of the vector is kept in a 64 bit register behind a raw <c>ulong</c> field instead of
+    /// a <c>Vector64</c> field, the property of the vector reinterprets the bits of it.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>True when the value is kept in a raw ulong field</returns>
+    public static bool Uses64(Typ typ, int size, bool storeVariant) => storeVariant && size == 2 && typ.simd;
+
+    /// <summary>
+    /// True when the vector is backed by a hardware accelerated register.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>True when the vector is backed by a register</returns>
+    public static bool Simd(Typ typ, int size, bool storeVariant) => Register(typ, size, storeVariant) != 0;
+
+    /// <summary>
+    /// Returns the number of lanes of the register of a vector.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The number of lanes of the register</returns>
+    public static int Lanes(Typ typ, int size, bool storeVariant) =>
+        Register(typ, size, storeVariant) / (8 * typ.size);
+
+    /// <summary>
+    /// Returns the number of lanes of the register of a vector that are padding, 0 when the register is exactly
+    /// as wide as the vector and the vector has no register at all.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The number of padding lanes</returns>
+    public static int PadLanes(Typ typ, int size, bool storeVariant) => Lanes(typ, size, storeVariant) - size;
+
+    /// <summary>
+    /// Builds a result from a raw simd expression. The constructor masks the padding lanes of a register that is
+    /// wider than the vector, an expression that keeps them at zero writes the field directly and skips the mask.
     /// </summary>
     /// <param name="simd">True when the vector is backed by a hardware accelerated simd type</param>
-    /// <param name="size">The number of components of the vector</param>
+    /// <param name="pad">True when the register of the vector has padding lanes</param>
     /// <param name="expr">The raw simd expression of the result</param>
-    /// <param name="masked">True when the expression can leave something else than zero in the padding lane</param>
+    /// <param name="masked">True when the expression can leave something else than zero in the padding lanes</param>
     /// <returns>The construction of the result</returns>
-    public static string Vector(bool simd, int size, string expr, bool masked = false) =>
-        simd && size == 3 && masked ? $"new({expr})" : $"new() {{ vector = {expr} }}";
+    public static string Vector(bool simd, bool pad, string expr, bool masked = false) =>
+        simd && pad && masked ? $"new({expr})" : $"new() {{ vector = {expr} }}";
 
     /// <summary>
     /// Joins the part of every component with <paramref name="sep"/>.
