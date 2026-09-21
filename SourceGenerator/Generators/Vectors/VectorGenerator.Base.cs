@@ -117,7 +117,7 @@ public partial class VectorGenerator
                   VectorGenShared.IfaceRef($"IVectorSetSwizzleForVec{size}", set.Params, set.Args));
 
         // the swizzle interfaces are referenced by the documentation and implemented by the swizzle members
-        VectorGenShared.FileHeader(sb, false, true);
+        VectorGenShared.FileHeader(sb, false, true, true);
         sb.AppendLine("/// <summary>");
         sb.AppendLine($"/// <c>{type}</c> is a vector of {size} <see cref=\"{scalar}\"/> components");
         if (pad || simd)
@@ -135,6 +135,8 @@ public partial class VectorGenerator
         sb.AppendLine($"/// <para>{string.Join(", ", parts)}</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("[Serializable]");
+        // the converter of the vector is generated beside it
+        sb.AppendLine($"[JsonConverter(typeof({type}JsonConverter))]");
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine($"    {iface}<{type}, {scalar}>,");
         sb.AppendLine($"    IEqualityOperators<{type}, {type}, {boolType}>,");
