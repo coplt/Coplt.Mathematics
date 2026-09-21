@@ -60,6 +60,51 @@ public class TestAsCast
     }
 
     [Test]
+    public void MathForwarding()
+    {
+        // a generic member of the math class is constrained by the interface of the kind of the target vector,
+        // so it reaches the target vector from every member of its group
+        var f = math.asf(new int2(0x3F800000, 0x40000000));
+        var h = math.asf(new short2(0x3C00, 0x4000));
+        var i = math.asi(new float2(1, 2));
+        var u = math.asu(new float2(1, 2));
+        var b = math.asb(new short2(-1, 2));
+        var s = math.asf(new float2s(1, 2));
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((f.x, f.y), Is.EqualTo((1f, 2f)));
+            Assert.That(((float)h.x, (float)h.y), Is.EqualTo((1f, 2f)));
+            Assert.That((i.x, i.y), Is.EqualTo((0x3F800000, 0x40000000)));
+            Assert.That((u.x, u.y), Is.EqualTo((0x3F800000u, 0x40000000u)));
+            Assert.That((bool)b.x, Is.True);
+            Assert.That((bool)b.y, Is.True);
+            Assert.That((s.x, s.y), Is.EqualTo((1f, 2f)));
+        }
+    }
+
+    [Test]
+    public void MathGenericForwarding()
+    {
+        // the type of the result of the double generic member of the math class cannot be inferred from the
+        // source vector by the compiler of today, so it has to be spelled out
+        var f = math.asf<int2, float2>(new int2(0x3F800000, 0x40000000));
+        var h = math.asf<short2, half2>(new short2(0x3C00, 0x4000));
+        var i = math.asi<float2s, int2s>(new float2s(1, 2));
+        var u = math.asu<float3, uint3>(new float3(1, 2, 3));
+        var b = math.asb<double3s, b64v3>(new double3s(1, 2, 3));
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((f.x, f.y), Is.EqualTo((1f, 2f)));
+            Assert.That(((float)h.x, (float)h.y), Is.EqualTo((1f, 2f)));
+            Assert.That((i.x, i.y), Is.EqualTo((0x3F800000, 0x40000000)));
+            Assert.That((u.x, u.y, u.z), Is.EqualTo((0x3F800000u, 0x40000000u, 0x40400000u)));
+            Assert.That((bool)b.x, Is.True);
+        }
+    }
+
+    [Test]
     public void Float2()
     {
         var v = new float2(1, 2);

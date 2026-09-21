@@ -5,7 +5,7 @@ namespace Coplt.Mathematics.Generics;
 /// <para>Every member of a group keeps the bits of the vector, only the type of the components changes, so a round trip through any of them keeps every component</para>
 /// </summary>
 /// <typeparam name="T">The vector of the floating point component</typeparam>
-public interface IVectorAsF<T>
+public interface IVectorAsF<out T>
 {
     /// <summary>
     /// Reinterprets the bits of the vector as the vector of the floating point component
@@ -19,7 +19,7 @@ public interface IVectorAsF<T>
 /// <para>Every member of a group keeps the bits of the vector, only the type of the components changes, so a round trip through any of them keeps every component</para>
 /// </summary>
 /// <typeparam name="T">The vector of the signed component</typeparam>
-public interface IVectorAsI<T>
+public interface IVectorAsI<out T>
 {
     /// <summary>
     /// Reinterprets the bits of the vector as the vector of the signed component
@@ -33,7 +33,7 @@ public interface IVectorAsI<T>
 /// <para>Every member of a group keeps the bits of the vector, only the type of the components changes, so a round trip through any of them keeps every component</para>
 /// </summary>
 /// <typeparam name="T">The vector of the unsigned component</typeparam>
-public interface IVectorAsU<T>
+public interface IVectorAsU<out T>
 {
     /// <summary>
     /// Reinterprets the bits of the vector as the vector of the unsigned component
@@ -47,7 +47,7 @@ public interface IVectorAsU<T>
 /// <para>The vector of a storage variant reinterprets its bits as the regular bool vector, the bool vector has no storage variant of its own</para>
 /// </summary>
 /// <typeparam name="T">The vector of the boolean component</typeparam>
-public interface IVectorAsB<T>
+public interface IVectorAsB<out T>
 {
     /// <summary>
     /// Reinterprets the bits of the vector as the vector of the boolean component

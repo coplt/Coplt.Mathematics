@@ -8,8 +8,8 @@ namespace Coplt.Analyzers.Generators;
 /// <summary>
 /// Generates the vector structs described by <see cref="Typ"/>. The base members are emitted by
 /// <c>Gen</c>, the swizzle members by <c>GenSwizzle</c> and the arithmetic members by <c>GenArith</c>,
-/// the as members and the conversions between a vector and its storage variant by <c>GenAs</c>,
-/// every part lives in its own file.
+/// the as members and the conversions between a vector and its storage variant by <c>GenAs</c> and the
+/// as members of the math class by <c>GenMathAs</c>, every part lives in its own file.
 /// </summary>
 [Generator]
 public partial class VectorGenerator : IIncrementalGenerator
@@ -55,6 +55,12 @@ public partial class VectorGenerator : IIncrementalGenerator
                             ctx.AddSource(
                                 $"{VecNamespace}.{name}.as.g.cs",
                                 SourceText.From(cast, Encoding.UTF8));
+                            // the as member of the kind of the vector is also a member of the math class, it
+                            // forwards the call to the vector itself, the forwarding of every target vector
+                            // lives in the extension class of its own
+                            ctx.AddSource(
+                                $"{VecNamespace}.ex_{name}.g.cs",
+                                SourceText.From(GenMathAs(typ, size, storeVariant), Encoding.UTF8));
                         }
                     }
                 }

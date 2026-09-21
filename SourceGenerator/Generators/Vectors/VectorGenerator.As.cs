@@ -158,4 +158,42 @@ public partial class VectorGenerator
         sb.AppendLine("}");
         return sb.ToString();
     }
+
+    /// <summary>
+    /// Generates the as member of the <c>math</c> class for the vector described by <paramref name="typ"/>. The
+    /// vector itself is the target of the kind of its own component, so a generic member that is constrained by
+    /// the interface of that kind reaches the vector from every member of its group: <c>math.asf(float2)</c> and
+    /// <c>math.asf(int2)</c> both reach the floating point vector of the group. The member forwards the call to
+    /// the as member of the target vector itself. The forwarding of every target has the same name and the same
+    /// parameters, a constraint does not take part in the signature of a member, so every one of them is an
+    /// extension member of a class of its own and is emitted into its own file.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The file</returns>
+    private static string GenMathAs(Typ typ, int size, bool storeVariant)
+    {
+        var type = VectorGenShared.VecName(typ, size, storeVariant);
+        var (name, _, kind) = AsNames[typ.name];
+        var iface = AsInterfaces[kind];
+
+        var sb = new StringBuilder();
+
+        VectorGenShared.FileHeader(sb, false);
+        sb.AppendLine($"public static partial class ex_{type}");
+        sb.AppendLine("{");
+        sb.AppendLine("    extension(math)");
+        sb.AppendLine("    {");
+        sb.AppendLine($"        /// <summary>Reinterprets the bits of <paramref name=\"source\"/> as <see cref=\"{type}\"/></summary>");
+        sb.AppendLine("        /// <param name=\"source\">The vector to reinterpret</param>");
+        sb.AppendLine($"        /// <returns>The vector of <see cref=\"{type}\"/> that has the bits of <paramref name=\"source\"/></returns>");
+        sb.AppendLine("        [MethodImpl(256)]");
+        sb.AppendLine($"        public static {type} {name}<T>(in T source) where T : {iface}<{type}>");
+        sb.AppendLine($"            => source.{name}();");
+        sb.AppendLine("    }");
+        sb.AppendLine("}");
+
+        return sb.ToString();
+    }
 }
