@@ -378,16 +378,11 @@ public partial class VectorGenerator
         // emits one of the fused multiply add variants
         void EmitFma(string name, string accelerated, string? wide, string scalarName)
         {
-            // the fused operation of a floating point component is the one of the BCL, an integer component has
-            // no fused operation, its two operations are only fused by the operand order of the name
+            // the function of a floating point component fuses the two operations of the name into one rounding,
+            // the function of an integer component only names the order of its two operations
             string Body(int n) => f
                 ? VectorScalar.Expr(scalar, scalarName, $"a.{comp[n]}", $"b.{comp[n]}", $"c.{comp[n]}")
-                : name switch
-                {
-                    "fma" => $"a.{comp[n]} * b.{comp[n]} + c.{comp[n]}",
-                    "fms" => $"a.{comp[n]} * b.{comp[n]} - c.{comp[n]}",
-                    _ => $"c.{comp[n]} - a.{comp[n]} * b.{comp[n]}",
-                };
+                : $"math.{name}(a.{comp[n]}, b.{comp[n]}, c.{comp[n]})";
 
             InheritDoc();
             sb.AppendLine($"    {attr}");

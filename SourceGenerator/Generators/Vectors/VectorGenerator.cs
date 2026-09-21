@@ -17,7 +17,7 @@ namespace Coplt.Analyzers.Generators;
 [Generator]
 public partial class VectorGenerator : IIncrementalGenerator
 {
-    public const string VecNamespace = "Coplt.Experimental.Mathematics";
+    public const string VecNamespace = "Coplt.Mathematics";
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {

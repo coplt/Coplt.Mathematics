@@ -1,6 +1,6 @@
 ﻿using Coplt.Mathematics.Generics;
 
-namespace Coplt.Experimental.Mathematics;
+namespace Coplt.Mathematics;
 
 // The arithmetic members of the vectors are members of the vector itself, a member of the math class reaches them
 // as well. The parameters of every member below are the ones of the interface of its operation in the same order,

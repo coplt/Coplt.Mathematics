@@ -4,66 +4,67 @@ using System.Collections.Generic;
 namespace Coplt.Analyzers.Generators;
 
 /// <summary>
-/// The expression of an operation on a single component. The BCL exposes the members of the numeric interfaces
-/// as the static members of the numeric types themselves, so the operation of a component is a call of the type
-/// of the component: <c>float.Sqrt(x)</c>, <c>half.Log(x)</c> and <c>int.Clamp(x, min, max)</c>. An operation
-/// that the numeric interfaces do not name is built from the ones they do: the remainder is
-/// <c>x - y * floor(x / y)</c> and the reciprocal is <c>one / x</c>.
+/// The expression of an operation on a single component. The scalar types have the same operation as their
+/// members of the <c>math</c> class, see <see cref="ScalarOps"/>, so the scalar fallback of a component wise
+/// operation is the call of the function of the <c>math</c> class: <c>math.sqrt(x)</c>, <c>math.abs(x)</c> and
+/// <c>math.clamp(x, min, max)</c>. The scalar functions are the single place that defines what an operation
+/// computes, a vector that no hardware supports computes the same values as a single value does.
 /// </summary>
 internal static class VectorScalar
 {
     /// <summary>
-    /// The expression of every operation, <c>{s}</c> is the type of the component and <c>{0}</c>, <c>{1}</c> and
-    /// <c>{2}</c> are the operands of the operation in the order of the interface member.
+    /// The expression of every operation, <c>{0}</c>, <c>{1}</c> and <c>{2}</c> are the operands of the
+    /// operation in the order of the interface member.
     /// </summary>
     private static readonly Dictionary<string, string> Templates = new()
     {
-        { "abs", "{s}.Abs({0})" },
-        { "sign", "{s}.Sign({0})" },
-        { "min", "{s}.Min({0}, {1})" },
-        { "max", "{s}.Max({0}, {1})" },
-        { "clamp", "{s}.Clamp({0}, {1}, {2})" },
-        { "saturate", "{s}.Clamp({0}, {z}, {o})" },
-        { "mod", "{0} - {1} * {s}.Floor({0} / {1})" },
-        { "frac", "{0} - {s}.Floor({0})" },
-        { "ceil", "{s}.Ceiling({0})" },
-        { "floor", "{s}.Floor({0})" },
-        { "round", "{s}.Round({0})" },
-        { "trunc", "{s}.Truncate({0})" },
-        { "rcp", "{o} / {0}" },
-        { "sqrt", "{s}.Sqrt({0})" },
-        { "rsqrt", "{o} / {s}.Sqrt({0})" },
-        { "log", "{s}.Log({0})" },
-        { "log_base", "{s}.Log({0}, {1})" },
-        { "log2", "{s}.Log2({0})" },
-        { "log10", "{s}.Log10({0})" },
-        { "exp", "{s}.Exp({0})" },
-        { "exp2", "{s}.Exp2({0})" },
-        { "exp10", "{s}.Exp10({0})" },
-        { "pow", "{s}.Pow({0}, {1})" },
-        { "sin", "{s}.Sin({0})" },
-        { "cos", "{s}.Cos({0})" },
-        { "sincos", "{s}.SinCos({0})" },
-        { "tan", "{s}.Tan({0})" },
-        { "asin", "{s}.Asin({0})" },
-        { "acos", "{s}.Acos({0})" },
-        { "atan", "{s}.Atan({0})" },
-        { "atan2", "{s}.Atan2({0}, {1})" },
-        { "sinh", "{s}.Sinh({0})" },
-        { "cosh", "{s}.Cosh({0})" },
-        { "tanh", "{s}.Tanh({0})" },
-        { "asinh", "{s}.Asinh({0})" },
-        { "acosh", "{s}.Acosh({0})" },
-        { "atanh", "{s}.Atanh({0})" },
-        { "is_NaN", "{s}.IsNaN({0})" },
-        { "is_finite", "{s}.IsFinite({0})" },
-        { "is_inf", "{s}.IsInfinity({0})" },
-        { "is_pos_inf", "{s}.IsPositiveInfinity({0})" },
-        { "is_neg_inf", "{s}.IsNegativeInfinity({0})" },
-        { "wrap", "({0} >= {z} ? ({1}) : ({2})) + {0} % ({2} - {1})" },
-        { "fma", "{s}.FusedMultiplyAdd({0}, {1}, {2})" },
-        { "fms", "{s}.FusedMultiplyAdd({0}, {1}, -{2})" },
-        { "fnma", "{s}.FusedMultiplyAdd(-{0}, {1}, {2})" },
+        { "abs", "math.abs({0})" },
+        { "sign", "math.sign({0})" },
+        { "min", "math.min({0}, {1})" },
+        { "max", "math.max({0}, {1})" },
+        { "clamp", "math.clamp({0}, {1}, {2})" },
+        { "saturate", "math.saturate({0})" },
+        { "mod", "math.mod({0}, {1})" },
+        { "frac", "math.frac({0})" },
+        { "ceil", "math.ceil({0})" },
+        { "floor", "math.floor({0})" },
+        { "round", "math.round({0})" },
+        { "trunc", "math.trunc({0})" },
+        { "rcp", "math.rcp({0})" },
+        { "sqrt", "math.sqrt({0})" },
+        { "rsqrt", "math.rsqrt({0})" },
+        { "log", "math.log({0})" },
+        // the base of the logarithm is the second parameter of the same function
+        { "log_base", "math.log({0}, {1})" },
+        { "log2", "math.log2({0})" },
+        { "log10", "math.log10({0})" },
+        { "exp", "math.exp({0})" },
+        { "exp2", "math.exp2({0})" },
+        { "exp10", "math.exp10({0})" },
+        { "pow", "math.pow({0}, {1})" },
+        { "sin", "math.sin({0})" },
+        { "cos", "math.cos({0})" },
+        { "sincos", "math.sincos({0})" },
+        { "tan", "math.tan({0})" },
+        { "asin", "math.asin({0})" },
+        { "acos", "math.acos({0})" },
+        { "atan", "math.atan({0})" },
+        { "atan2", "math.atan2({0}, {1})" },
+        { "sinh", "math.sinh({0})" },
+        { "cosh", "math.cosh({0})" },
+        { "tanh", "math.tanh({0})" },
+        { "asinh", "math.asinh({0})" },
+        { "acosh", "math.acosh({0})" },
+        { "atanh", "math.atanh({0})" },
+        { "is_NaN", "math.is_NaN({0})" },
+        { "is_finite", "math.is_finite({0})" },
+        { "is_inf", "math.is_inf({0})" },
+        { "is_pos_inf", "math.is_pos_inf({0})" },
+        { "is_neg_inf", "math.is_neg_inf({0})" },
+        { "wrap", "math.wrap({0}, {1}, {2})" },
+        { "fma", "math.fma({0}, {1}, {2})" },
+        { "fms", "math.fms({0}, {1}, {2})" },
+        { "fnma", "math.fnma({0}, {1}, {2})" },
     };
 
     /// <summary>
@@ -76,15 +77,8 @@ internal static class VectorScalar
     /// <exception cref="InvalidOperationException">When the operation is not known</exception>
     public static string Expr(string scalar, string op, params string[] args)
     {
-        // the absolute value of a value that cannot be negative is the value itself, the BCL does not expose the
-        // member of an unsigned type
-        if (op == "abs" && !Signed(scalar)) return args[0];
-        if (!Templates.TryGetValue(op, out var template))
+        if (!Templates.TryGetValue(op, out var text))
             throw new InvalidOperationException($"unknown scalar operation {op}");
-        var text = template
-            .Replace("{s}", scalar)
-            .Replace("{z}", Zero(scalar))
-            .Replace("{o}", One(scalar));
         for (var i = 0; i < args.Length; i++) text = text.Replace($"{{{i}}}", args[i]);
         return text;
     }

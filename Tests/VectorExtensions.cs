@@ -1,4 +1,4 @@
-using Coplt.Experimental.Mathematics;
+using Coplt.Mathematics;
 using Coplt.Mathematics.Generics;
 
 namespace Tests;

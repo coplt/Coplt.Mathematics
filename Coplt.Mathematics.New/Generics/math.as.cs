@@ -1,6 +1,6 @@
 using Coplt.Mathematics.Generics;
 
-namespace Coplt.Experimental.Mathematics;
+namespace Coplt.Mathematics;
 
 // The as members of the vectors are members of the vector itself, a member of the math class reaches them as
 // well. The type of the result of one of the members below cannot be inferred from the source vector by the

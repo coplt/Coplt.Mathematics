@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Coplt.Experimental.Mathematics;
+namespace Coplt.Mathematics;
 
 internal static class VectorUtils
 {

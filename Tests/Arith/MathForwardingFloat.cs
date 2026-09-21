@@ -1,4 +1,4 @@
-using Coplt.Experimental.Mathematics;
+using Coplt.Mathematics;
 using Coplt.Mathematics.Generics;
 using B32 = Coplt.Mathematics.b32;
 

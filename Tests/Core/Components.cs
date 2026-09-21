@@ -1,5 +1,5 @@
 using System.Runtime.Intrinsics;
-using Coplt.Experimental.Mathematics;
+using Coplt.Mathematics;
 using B16 = Coplt.Mathematics.b16;
 using B32 = Coplt.Mathematics.b32;
 using B64 = Coplt.Mathematics.b64;

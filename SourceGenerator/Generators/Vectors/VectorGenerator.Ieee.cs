@@ -318,7 +318,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public readonly {type} project_safe(in {type} onto, in {type} default_value)");
         sb.AppendLine("    {");
         sb.AppendLine("        var proj = this.project(onto);");
-        sb.AppendLine($"        return {Join(i => $"{scalar}.IsFinite(proj.{comp[i]})", " && ")} ? proj : default_value;");
+        sb.AppendLine($"        return {Join(i => $"math.is_finite(proj.{comp[i]})", " && ")} ? proj : default_value;");
         sb.AppendLine("    }");
         sb.AppendLine();
 

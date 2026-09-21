@@ -1,5 +1,5 @@
 using System.Runtime.Intrinsics;
-using Coplt.Experimental.Mathematics;
+using Coplt.Mathematics;
 
 namespace Tests.Arith;
 
