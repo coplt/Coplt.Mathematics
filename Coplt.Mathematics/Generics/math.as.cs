@@ -17,6 +17,7 @@ public static partial class math
     /// <param name="source">The vector to reinterpret</param>
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
+    [OverloadResolutionPriority(1000)]
     public static TResult asf<T, TResult>(in T source) where T : IVectorAsF<TResult>
         => source.asf();
 
@@ -28,6 +29,7 @@ public static partial class math
     /// <param name="source">The vector to reinterpret</param>
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
+    [OverloadResolutionPriority(1000)]
     public static TResult asi<T, TResult>(in T source) where T : IVectorAsI<TResult>
         => source.asi();
 
@@ -39,6 +41,7 @@ public static partial class math
     /// <param name="source">The vector to reinterpret</param>
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
+    [OverloadResolutionPriority(1000)]
     public static TResult asu<T, TResult>(in T source) where T : IVectorAsU<TResult>
         => source.asu();
 
@@ -50,6 +53,7 @@ public static partial class math
     /// <param name="source">The vector to reinterpret</param>
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
+    [OverloadResolutionPriority(1000)]
     public static TResult asb<T, TResult>(in T source) where T : IVectorAsB<TResult>
         => source.asb();
 }
