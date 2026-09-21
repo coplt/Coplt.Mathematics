@@ -779,6 +779,71 @@ public partial class VectorGenerator
 
         #endregion
 
+        #region str
+
+        // the format of a vector is the list of its components between parentheses, the name of its type is not
+        // a part of it, and every component is formatted with the format and the provider of the call
+        void EmitFormatLiteral(string literal) =>
+            sb.AppendLine($"        if (!FormatUtils.TryFormatPart(ref dst, ref n, {literal})) return false;");
+
+        // a component of a bool vector is a mask, its text is the lower case name of the value it tests and the
+        // format and the provider are not used, the other components are formatted with them
+        void EmitFormatComponent(int i, bool utf8) =>
+            sb.AppendLine(bol
+                ? $"        if (!FormatUtils.TryFormatPart(ref dst, ref n, (bool){comp[i]} ? {Literal("true", utf8)} : {Literal("false", utf8)})) return false;"
+                : $"        if (!FormatUtils.TryFormatPart(ref dst, ref n, {comp[i]}, format, provider)) return false;");
+
+        string Literal(string text, bool utf8) => utf8 ? $"\"{text}\"u8" : $"\"{text}\"";
+
+        // the body of a TryFormat, the literals of the utf8 one are the utf8 literals of the same text
+        void EmitFormatBody(string open, string separator, string close, bool utf8)
+        {
+            sb.AppendLine("    {");
+            sb.AppendLine("        nc = 0;");
+            sb.AppendLine("        var n = 0;");
+            EmitFormatLiteral(open);
+            for (var i = 0; i < size; i++)
+            {
+                if (i != 0) EmitFormatLiteral(separator);
+                EmitFormatComponent(i, utf8);
+            }
+
+            EmitFormatLiteral(close);
+            sb.AppendLine("        nc = n;");
+            sb.AppendLine("        return true;");
+            sb.AppendLine("    }");
+        }
+
+        // the text of a component of the ToString members, a bool component ignores the format and the provider
+        // and its conditional expression has to be parenthesized to be the whole of an interpolation
+        string ComponentText(int i, bool formatted) => bol
+            ? $"{{((bool){comp[i]} ? \"true\" : \"false\")}}"
+            : formatted
+                ? $"{{{comp[i]}.ToString(format, formatProvider)}}"
+                : $"{{{comp[i]}}}";
+
+        sb.AppendLine();
+        sb.AppendLine("    #region str");
+        sb.AppendLine();
+        Doc($"Formats the vector as <c>({Join(i => comp[i])})</c>");
+        sb.AppendLine("    public readonly override string ToString() => $\"(" + Join(i => ComponentText(i, false)) + ")\";");
+        sb.AppendLine();
+        InheritDoc();
+        sb.AppendLine("    public readonly string ToString(string? format, IFormatProvider? formatProvider)");
+        sb.AppendLine("        => $\"(" + Join(i => ComponentText(i, true)) + ")\";");
+        sb.AppendLine();
+        InheritDoc();
+        sb.AppendLine("    public readonly bool TryFormat(Span<char> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)");
+        EmitFormatBody("\"(\"", "\", \"", "\")\"", false);
+        sb.AppendLine();
+        InheritDoc();
+        sb.AppendLine("    public readonly bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)");
+        EmitFormatBody("\"(\"u8", "\", \"u8", "\")\"u8", true);
+        sb.AppendLine();
+        sb.AppendLine("    #endregion");
+
+        #endregion
+
         sb.AppendLine("}");
 
         return VectorDocs.Apply(sb.ToString());

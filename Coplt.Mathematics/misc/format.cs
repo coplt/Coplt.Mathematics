@@ -131,13 +131,7 @@ internal static class FormatUtils
     #endif
 
     public static bool TryFormatPart(ref Span<char> dst, ref int nc, bool part, ReadOnlySpan<char> format, IFormatProvider? provider)
-    {
-        var r = part.TryFormat(dst, out var ic);
-        nc += ic;
-        if (!r) return false;
-        dst = dst[ic..];
-        return true;
-    }
+        => TryFormatPart(ref dst, ref nc, part ? "true" : "false");
 
     #endregion
 
@@ -163,7 +157,7 @@ internal static class FormatUtils
     }
 
     public static bool TryFormatPart(ref Span<byte> dst, ref int nc, bool part, ReadOnlySpan<char> format, IFormatProvider? provider)
-        => TryFormatPart(ref dst, ref nc, part ? "True"u8 : "False"u8);
+        => TryFormatPart(ref dst, ref nc, part ? "true"u8 : "false"u8);
 
     #endregion
 }

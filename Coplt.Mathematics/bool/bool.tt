@@ -32,31 +32,20 @@ public readonly partial record struct <#= typeName #> : IEquatable<bool>, IForma
 
     #region ToString
 
-    public readonly override string ToString() => ((bool)this).ToString();
+    public readonly override string ToString() => ((bool)this) ? "true" : "false";
 
     public readonly string ToString(string? format, IFormatProvider? formatProvider) => ToString();
 
     public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
-        => ((bool)this).TryFormat(destination, out charsWritten);
+    {
+        charsWritten = 0;
+        return FormatUtils.TryFormatPart(ref destination, ref charsWritten, ((bool)this) ? "true" : "false");
+    }
 
     public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
         charsWritten = 0;
-        if (this)
-        {
-            if (destination.Length < 4) return false;
-            var lit = "True"u8;
-            lit.CopyTo(destination);
-            charsWritten = 4;
-        }
-        else 
-        {
-            if (destination.Length < 5) return false;
-            var lit = "False"u8;
-            lit.CopyTo(destination);
-            charsWritten = 5;
-        }
-        return true;
+        return FormatUtils.TryFormatPart(ref destination, ref charsWritten, ((bool)this) ? "true"u8 : "false"u8);
     }
 
     #endregion

@@ -2,14 +2,17 @@
 
 /// <summary>
 /// The base of every vector, it only declares what a number vector and a bool vector have in common:
-/// the meta data, the constructors, the indexer and the bitwise operators
+/// the meta data, the constructors, the indexer, the bitwise operators and the formatting
 /// <para>It does not name the type of a single component because none of these members needs it, <see
 /// cref="IVector{TSelf,TScalar}"/> adds the members that do</para>
+/// <para>A vector is formatted as the list of its components between parentheses, the name of its type is
+/// not a part of it</para>
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
 public interface IVector<TSelf> :
     IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>,
-    IBitwiseOperators<TSelf, TSelf, TSelf>
+    IBitwiseOperators<TSelf, TSelf, TSelf>,
+    ISpanFormattable, IUtf8SpanFormattable
     where TSelf : unmanaged, IVector<TSelf>
 {
     #region Meta
