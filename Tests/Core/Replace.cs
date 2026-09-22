@@ -92,4 +92,37 @@ public class TestVectorReplace
             Assert.That((bool)b64v4.Rxw(t, new b64v2(true, true)).w, Is.True);
         }
     }
+
+    /// <summary>
+    /// Every member has two forms: the member that is called on the vector replaces the components of a copy of
+    /// it, which is the form that a caller uses instead of the extension member of the legacy library, and the
+    /// static one that a generic caller is constrained by forwards to it.
+    /// </summary>
+    [Test]
+    public void InstanceForm()
+    {
+        var f2 = new float2(1, 2);
+        var f3 = new float3(1, 2, 3);
+        var f4 = new float4(1, 2, 3, 4);
+        var d3 = new double3(1, 2, 3);
+        var t2 = new b32v2(true, false);
+        var st = new float3s(1, 2, 3);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(f2.Rx(3), Is.EqualTo(float2.Rx(f2, 3)));
+            Assert.That(f2.Rx(3), Is.EqualTo(new float2(3, 2)));
+            Assert.That(f2.Ry(3), Is.EqualTo(new float2(1, 3)));
+            Assert.That(f3.Rz(4), Is.EqualTo(new float3(1, 2, 4)));
+            Assert.That(f3.Rxy(new float2(4, 5)), Is.EqualTo(new float3(4, 5, 3)));
+            Assert.That(d3.Rxz(new double2(4, 5)), Is.EqualTo(new double3(4, 2, 5)));
+            Assert.That(t2.Ry(false), Is.EqualTo(new b32v2(true, false)));
+            Assert.That(st.Ryz(new float2(4, 5)), Is.EqualTo(new float3s(1, 4, 5)));
+            Assert.That(f4.Rw(5), Is.EqualTo(new float4(1, 2, 3, 5)));
+            Assert.That(f4.Rxyz(new float3(5, 6, 7)), Is.EqualTo(new float4(5, 6, 7, 4)));
+            Assert.That(f4.Ryzw(new float3(5, 6, 7)), Is.EqualTo(new float4(1, 5, 6, 7)));
+            Assert.That(f4.Rxz(new float2(5, 6)), Is.EqualTo(new float4(5, 2, 6, 4)));
+            Assert.That(f4.Ryw(new float2(5, 6)), Is.EqualTo(float4.Ryw(f4, new float2(5, 6))));
+        }
+    }
 }

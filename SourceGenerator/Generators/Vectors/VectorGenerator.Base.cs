@@ -98,6 +98,7 @@ public partial class VectorGenerator
         var set = VectorGenShared.SwizzleTypes(typ, size, true, storeVariant);
         var type2 = VectorGenShared.VecName(typ, 2, false);
         var type3 = VectorGenShared.VecName(typ, 3, false);
+        var type4 = VectorGenShared.VecName(typ, 4, false);
         var parts = new List<string>
         {
             "The base members implement " +
@@ -143,6 +144,21 @@ public partial class VectorGenerator
             parts.Add("the replace members implement " +
                       VectorGenShared.IfaceRef("IVector4Replace", new List<string> { "TSelf", "TScalar", "TVector2", "TVector3" },
                           new List<string> { type, scalar, type2, type3 }));
+        }
+
+        // the members of the legacy insert api implement the interfaces of the insert as well, they are the
+        // legacy spelling of the members of the create of the longer vectors and forward to them
+        if (size == 2)
+        {
+            parts.Add("the insert members implement " +
+                      VectorGenShared.IfaceRef("IVector2Insert", new List<string> { "TSelf", "TScalar", "TVector3", "TVector4" },
+                          new List<string> { type, scalar, type3, type4 }));
+        }
+        else if (size == 3)
+        {
+            parts.Add("the insert members implement " +
+                      VectorGenShared.IfaceRef("IVector3Insert", new List<string> { "TSelf", "TScalar", "TVector4" },
+                          new List<string> { type, scalar, type4 }));
         }
 
         if (typ.arith)

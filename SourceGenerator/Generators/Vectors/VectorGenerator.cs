@@ -8,8 +8,8 @@ namespace Coplt.Analyzers.Generators;
 /// <summary>
 /// Generates the vector structs described by <see cref="Typ"/>. The base members are emitted by
 /// <c>Gen</c>, the members that create a vector out of another one by <c>GenCtor</c>, the members that replace
-/// the components of the vector by <c>GenReplace</c>, the swizzle members by
-/// <c>GenSwizzle</c>, the arithmetic members by <c>GenArith</c>, the
+/// the components of the vector by <c>GenReplace</c>, the members of the legacy insert api by <c>GenInsert</c>,
+/// the swizzle members by <c>GenSwizzle</c>, the arithmetic members by <c>GenArith</c>, the
 /// integer members by <c>GenInt</c>, the floating point members by <c>GenFloat</c>, the ieee 754 members by
 /// <c>GenIeee</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
@@ -49,6 +49,16 @@ public partial class VectorGenerator : IIncrementalGenerator
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.replace.g.cs",
                             SourceText.From(GenReplace(typ, size, storeVariant), Encoding.UTF8));
+                        // the members of the legacy insert api implement the IVector2Insert and the
+                        // IVector3Insert interfaces, they forward to the members of the create of the longer
+                        // vectors and a vector of 4 components has no member of them
+                        var insert = GenInsert(typ, size, storeVariant);
+                        if (insert != null)
+                        {
+                            ctx.AddSource(
+                                $"{VecNamespace}.{name}.insert.g.cs",
+                                SourceText.From(insert, Encoding.UTF8));
+                        }
                         // the swizzle members implement the swizzle interfaces, they are emitted into their own file
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.swizzle.g.cs",
