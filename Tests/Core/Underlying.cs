@@ -7,9 +7,10 @@ namespace Tests.Core;
 /// <summary>
 /// The bits of the value of a vector are reachable through the underlying interface of the width of its
 /// register: the interface of a vector without a register only marks it, the members of the other ones return
-/// the bits of the value as a vector of bytes and build a value from them. A value that is built from raw bits
-/// goes through the constructor of the vector, which keeps the lanes beyond its value at zero, and the unsafe
-/// member of the interface writes the bits as they are.
+/// the bits of the value as a vector of bytes and build a value from them, they tell whether the value fills
+/// the register of the vector and give the mask of the lanes of it that the value does not reach. A value that
+/// is built from raw bits goes through the constructor of the vector, which keeps the lanes beyond its value at
+/// zero, and the unsafe member of the interface writes the bits as they are.
 /// </summary>
 public class TestVectorUnderlying
 {
@@ -93,6 +94,41 @@ public class TestVectorUnderlying
             // the lane is the only difference, the components of the value are the ones of the bits
             Assert.That((masked[0], masked[1], masked[2]), Is.EqualTo((0x3F800000u, 0x40000000u, 0x40400000u)));
             Assert.That((raw[0], raw[1], raw[2]), Is.EqualTo((0x3F800000u, 0x40000000u, 0x40400000u)));
+        }
+    }
+
+    [Test]
+    public void PaddingLanes()
+    {
+        // the bits of a vector of 4 components hold a value of 4 components in a register of 3 lanes
+        var bits = float4.GetUnderlying(new float4(1, 2, 3, 4));
+        var raw = float3.GetUnderlying(float3.UnsafeFromUnderlying(bits)).As<byte, uint>();
+        var mask = float3.PaddingLanesMask.As<byte, uint>();
+        using (Assert.EnterMultipleScope())
+        {
+            // the value of a vector of 2 32 bit components does not fill the register of 128 bits it is kept in
+            Assert.That(float2.HavePaddingLanes, Is.True);
+            Assert.That(b32v2.HavePaddingLanes, Is.True);
+            // the value of a vector of 4 32 bit components fills its register, so it has no padding lane
+            Assert.That(float4.HavePaddingLanes, Is.False);
+            Assert.That(b32v4.HavePaddingLanes, Is.False);
+            // a register of 64 bits is exactly as wide as the value it keeps
+            Assert.That(float2s.HavePaddingLanes, Is.False);
+            // the register of a vector of 3 components is as wide as the one of a vector of 4 components
+            Assert.That(float3.HavePaddingLanes, Is.True);
+            Assert.That(double3.HavePaddingLanes, Is.True);
+            Assert.That(double4.HavePaddingLanes, Is.False);
+            // every bit of a lane of the value is set in the mask and the lane the value does not reach is zero
+            Assert.That((mask[0], mask[1], mask[2]), Is.EqualTo((uint.MaxValue, uint.MaxValue, uint.MaxValue)));
+            Assert.That(mask[3], Is.EqualTo(0u));
+            // the mask keeps the value as it is and drops what the unsafe member wrote beyond it
+            Assert.That(raw[3], Is.EqualTo(0x40800000u));
+            Assert.That((raw[0] & mask[0], raw[1] & mask[1], raw[2] & mask[2]),
+                Is.EqualTo((raw[0], raw[1], raw[2])));
+            Assert.That(raw[3] & mask[3], Is.EqualTo(0u));
+            // the mask of a vector that has no padding lane keeps every bit of a value
+            Assert.That(float4.PaddingLanesMask.As<byte, uint>()[3], Is.EqualTo(uint.MaxValue));
+            Assert.That(double4.PaddingLanesMask.As<byte, ulong>()[3], Is.EqualTo(ulong.MaxValue));
         }
     }
 

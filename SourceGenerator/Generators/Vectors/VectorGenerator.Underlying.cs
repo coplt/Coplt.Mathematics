@@ -10,7 +10,10 @@ public partial class VectorGenerator
     /// marked, every other one implements the interface of the width of its register. A value that is built
     /// from raw bits goes through the constructor of the vector, which masks the lanes that are beyond the
     /// value, and <c>UnsafeFromUnderlying</c> writes the register itself for the code that knows the value it
-    /// writes. The members are emitted into their own file.
+    /// writes, the member is left out for a 64 bit register because it is exactly as wide as the value and has
+    /// no lane to mask. The lanes that are beyond the value are the padding lanes of the register, the width of
+    /// them is told by <c>HavePaddingLanes</c> and <c>PaddingLanesMask</c>. The members are emitted into their
+    /// own file.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -37,6 +40,31 @@ public partial class VectorGenerator
 
         if (reg != 0)
         {
+            // the mask that keeps the lanes of the register that are beyond the value at zero, it is all bits
+            // set when the value fills the register of the vector and a register that is wider than the value
+            // is masked out of the components of the vector itself
+            var lanes = VectorGenShared.Lanes(typ, size, storeVariant);
+            var mask = $"{vecName}.Create(" +
+                       VectorGenShared.Join(lanes, i => i < size
+                           ? typ.size == 4 ? "-1" : "-1L"
+                           : typ.size == 4 ? "0" : "0L") +
+                       $").{AsMethod(comp)}().As<{comp}, byte>()";
+            // the lanes that are beyond the value are kept at zero by the ctor of the vector, they are the
+            // padding lanes of the register and the interface of the width describes them
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    public static bool HavePaddingLanes");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => {(VectorGenShared.PadLanes(typ, size, storeVariant) > 0 ? "true" : "false")};");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    public static {vecName}<byte> PaddingLanesMask");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => {mask};");
+            sb.AppendLine("    }");
+            sb.AppendLine();
             // the bits of the value are the bits of its register, the ctor of the vector masks the lanes that
             // are beyond the value and writing the register itself leaves them as they are
             sb.AppendLine("    /// <inheritdoc/>");
@@ -49,11 +77,16 @@ public partial class VectorGenerator
                           (v64
                               ? $"new() {{ vector = vector.As<byte, {comp}>() }};"
                               : $"new(vector.As<byte, {comp}>());"));
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static {type} UnsafeFromUnderlying({vecName}<byte> vector) => " +
-                          $"new() {{ vector = vector.As<byte, {comp}>() }};");
+            // a 64 bit register is exactly as wide as the value of the vector it keeps, so there is no padding
+            // lane to leave as they are and the interface of the width does not declare the member
+            if (reg != 64)
+            {
+                sb.AppendLine();
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    public static {type} UnsafeFromUnderlying({vecName}<byte> vector) => " +
+                              $"new() {{ vector = vector.As<byte, {comp}>() }};");
+            }
         }
 
         sb.AppendLine("}");
