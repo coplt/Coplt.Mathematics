@@ -1,3 +1,4 @@
+using System.Numerics;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Generics;
 using B32 = Coplt.Mathematics.b32;
@@ -85,7 +86,7 @@ public class TestMathFloatForwarding
     /// </summary>
     private static void CheckExtra<T, TScalar, TBool>(T v)
         where T : unmanaged, IVectorFloatingPointIeee754BoolOps<T, TScalar, TBool>
-        where TScalar : unmanaged
+        where TScalar : unmanaged, INumberBase<TScalar>
     {
         math.pow(v, default(TScalar));
         math.wrap(v, default(TScalar), default(TScalar));

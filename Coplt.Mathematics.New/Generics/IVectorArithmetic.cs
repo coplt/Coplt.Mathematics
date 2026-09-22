@@ -368,4 +368,4 @@ public interface IVector3Arithmetic<Self, Scalar> :
     IVector3Arithmetic<Self>,
     IVectorArithmetic<Self, Scalar>
     where Self : unmanaged, IVector3Arithmetic<Self, Scalar>
-    where Scalar : unmanaged;
+    where Scalar : unmanaged, INumberBase<Scalar>;

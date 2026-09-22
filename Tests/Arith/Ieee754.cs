@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
@@ -22,7 +23,7 @@ public class TestIeee754
     /// </summary>
     private static void Check<T, TScalar, TBool>(T v)
         where T : unmanaged, IVectorFloatingPointIeee754BoolOps<T, TScalar, TBool>
-        where TScalar : unmanaged
+        where TScalar : unmanaged, INumberBase<TScalar>
         where TBool : unmanaged
     {
         v.log();

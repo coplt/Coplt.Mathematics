@@ -58,7 +58,7 @@ public interface IVectorFloatingPointIeee754BoolOps<Self, Scalar, out BoolVector
     IVectorFloatingPointIeee754BoolOps<Self, BoolVector>,
     IVectorFloatingPointIeee754<Self, Scalar>
     where Self : unmanaged, IVectorFloatingPointIeee754BoolOps<Self, Scalar, BoolVector>
-    where Scalar : unmanaged;
+    where Scalar : unmanaged, INumberBase<Scalar>;
 
 /// <summary>
 /// A <see cref="IVectorFloatingPoint{Self}"/> with the ieee 754 math functions

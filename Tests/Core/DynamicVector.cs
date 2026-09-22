@@ -17,57 +17,37 @@ public class TestDynamicVector
     private readonly struct LaneVisitor : IVectorUnderlyingVisitor<int>
     {
         /// <summary>A vector without a register has no lane at all</summary>
-        public static int AcceptSoft<TVector, TScalar>(in TVector vector)
-            where TVector : unmanaged, IDynamicVector<TVector>, INumberVector<TVector, TScalar>, IVectorSoftUnderlying
-            where TScalar : unmanaged => 0;
+        static int IVectorUnderlyingVisitor<int>.AcceptSoft<TVector, TScalar>(in TVector vector) => 0;
 
         /// <summary>The lanes of a register of 64 bits</summary>
-        public static int Accept<TVector, TScalar>(in Vector64<TScalar> vector)
-            where TVector : unmanaged, IDynamicVector<TVector>, INumberVector<TVector, TScalar>,
-            IVector64Underlying<TVector>
-            where TScalar : unmanaged => 64 / (8 * Unsafe.SizeOf<TScalar>());
+        static int IVectorUnderlyingVisitor<int>.Accept<TVector, TScalar>(in Vector64<TScalar> vector) => 64 / (8 * Unsafe.SizeOf<TScalar>());
 
         /// <summary>The lanes of a register of 128 bits</summary>
-        public static int Accept<TVector, TScalar>(in Vector128<TScalar> vector)
-            where TVector : unmanaged, IDynamicVector<TVector>, INumberVector<TVector, TScalar>,
-            IVector128Underlying<TVector>
-            where TScalar : unmanaged => 128 / (8 * Unsafe.SizeOf<TScalar>());
+        static int IVectorUnderlyingVisitor<int>.Accept<TVector, TScalar>(in Vector128<TScalar> vector) => 128 / (8 * Unsafe.SizeOf<TScalar>());
 
         /// <summary>The lanes of a register of 256 bits</summary>
-        public static int Accept<TVector, TScalar>(in Vector256<TScalar> vector)
-            where TVector : unmanaged, IDynamicVector<TVector>, INumberVector<TVector, TScalar>,
-            IVector256Underlying<TVector>
-            where TScalar : unmanaged => 256 / (8 * Unsafe.SizeOf<TScalar>());
+        static int IVectorUnderlyingVisitor<int>.Accept<TVector, TScalar>(in Vector256<TScalar> vector) => 256 / (8 * Unsafe.SizeOf<TScalar>());
     }
 
     /// <summary>Reads the bits of the first component of the value the vector hands over</summary>
     private readonly struct FirstVisitor : IVectorDimensionVisitor<uint>
     {
         /// <summary>Reads the first component of a vector of 2 components</summary>
-        public static uint AcceptVector2<TVector, TScalar>(in TVector vector)
-            where TVector : unmanaged, IDynamicVector<TVector>, INumberVector<TVector, TScalar>,
-            IVector2<TVector, TScalar>
-            where TScalar : unmanaged
+        static uint IVectorDimensionVisitor<uint>.AcceptVector2<TVector, TScalar>(in TVector vector)
         {
             var x = TVector.get_x(vector);
             return Unsafe.As<TScalar, uint>(ref x);
         }
 
         /// <summary>Reads the first component of a vector of 3 components</summary>
-        public static uint AcceptVector3<TVector, TScalar>(in TVector vector)
-            where TVector : unmanaged, IDynamicVector<TVector>, INumberVector<TVector, TScalar>,
-            IVector3<TVector, TScalar>
-            where TScalar : unmanaged
+        static uint IVectorDimensionVisitor<uint>.AcceptVector3<TVector, TScalar>(in TVector vector)
         {
             var x = TVector.get_x(vector);
             return Unsafe.As<TScalar, uint>(ref x);
         }
 
         /// <summary>Reads the first component of a vector of 4 components</summary>
-        public static uint AcceptVector4<TVector, TScalar>(in TVector vector)
-            where TVector : unmanaged, IDynamicVector<TVector>, INumberVector<TVector, TScalar>,
-            IVector4<TVector, TScalar>
-            where TScalar : unmanaged
+        static uint IVectorDimensionVisitor<uint>.AcceptVector4<TVector, TScalar>(in TVector vector)
         {
             var x = TVector.get_x(vector);
             return Unsafe.As<TScalar, uint>(ref x);

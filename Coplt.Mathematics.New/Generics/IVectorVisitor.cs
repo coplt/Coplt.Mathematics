@@ -95,7 +95,7 @@ public interface IVectorUnderlyingVisitor<out R>
     public static abstract R AcceptSoft<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVectorSoftUnderlying
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, INumberBase<TScalar>;
 
     /// <summary>
     /// Returns the result of a vector whose register is 64 bits wide
@@ -107,7 +107,7 @@ public interface IVectorUnderlyingVisitor<out R>
     public static abstract R Accept<TVector, TScalar>(in Vector64<TScalar> vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector64Underlying<TVector>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, INumberBase<TScalar>;
 
     /// <summary>
     /// Returns the result of a vector whose register is 128 bits wide
@@ -119,7 +119,7 @@ public interface IVectorUnderlyingVisitor<out R>
     public static abstract R Accept<TVector, TScalar>(in Vector128<TScalar> vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector128Underlying<TVector>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, INumberBase<TScalar>;
 
     /// <summary>
     /// Returns the result of a vector whose register is 256 bits wide
@@ -131,7 +131,7 @@ public interface IVectorUnderlyingVisitor<out R>
     public static abstract R Accept<TVector, TScalar>(in Vector256<TScalar> vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector256Underlying<TVector>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, INumberBase<TScalar>;
 }
 
 /// <summary>
@@ -154,7 +154,7 @@ public interface IVectorDimensionVisitor<out R>
     public static abstract R AcceptVector2<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, INumberBase<TScalar>;
 
     /// <summary>
     /// Returns the result of a vector of 3 components
@@ -166,7 +166,7 @@ public interface IVectorDimensionVisitor<out R>
     public static abstract R AcceptVector3<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, INumberBase<TScalar>;
 
     /// <summary>
     /// Returns the result of a vector of 4 components
@@ -178,7 +178,7 @@ public interface IVectorDimensionVisitor<out R>
     public static abstract R AcceptVector4<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, INumberBase<TScalar>;
 }
 
 /// <summary>
@@ -258,10 +258,11 @@ public interface IVectorDimensionVisitorReturnVector
     /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
     /// <param name="vector">The value of the vector that dispatched the call</param>
     /// <returns>The vector the visitor builds</returns>
-    public static abstract TVector AcceptVector2<TVector, TScalar>(in TVector vector)
+    public static virtual TVector AcceptVector2<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
-        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => throw new NotSupportedException();
 
     /// <summary>
     /// Returns a vector of the type of the vector that has 3 components
@@ -270,10 +271,11 @@ public interface IVectorDimensionVisitorReturnVector
     /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
     /// <param name="vector">The value of the vector that dispatched the call</param>
     /// <returns>The vector the visitor builds</returns>
-    public static abstract TVector AcceptVector3<TVector, TScalar>(in TVector vector)
+    public static virtual TVector AcceptVector3<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
-        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => throw new NotSupportedException();
 
     /// <summary>
     /// Returns a vector of the type of the vector that has 4 components
@@ -282,10 +284,17 @@ public interface IVectorDimensionVisitorReturnVector
     /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
     /// <param name="vector">The value of the vector that dispatched the call</param>
     /// <returns>The vector the visitor builds</returns>
-    public static abstract TVector AcceptVector4<TVector, TScalar>(in TVector vector)
+    public static virtual TVector AcceptVector4<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
-        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => throw new NotSupportedException();
+
+    public static virtual TVector AcceptTMatrix4x4<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TVector : unmanaged, IDynamicVector<TVector>,
+        INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => throw new NotSupportedException();
 }
 
 /// <summary>
