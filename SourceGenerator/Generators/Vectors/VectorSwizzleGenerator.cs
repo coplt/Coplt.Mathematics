@@ -68,11 +68,22 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
             var s = xyzw.ToString();
             var c = rgba.ToString();
 
-            sb.AppendLine($"/// <summary>The <c>{s}</c> and <c>{c}</c> swizzle, its type is <typeparamref name=\"TOut\"/></summary>");
-            sb.AppendLine($"public interface IVectorGetSwizzle{d}<out TOut>");
+            // a member of a swizzle interface is static because the member of the type is a property of the
+            // vector itself, so the interface names the type of the vector beside the type of the combination
+            sb.AppendLine($"/// <summary>The <c>{s}</c> and <c>{c}</c> swizzle of a vector, its type is <typeparamref name=\"TOut\"/></summary>");
+            sb.AppendLine("/// <typeparam name=\"TSelf\">The type of the vector itself</typeparam>");
+            sb.AppendLine("/// <typeparam name=\"TOut\">The type of the combination</typeparam>");
+            sb.AppendLine($"public interface IVectorGetSwizzle{d}<TSelf, out TOut> where TSelf : unmanaged");
             sb.AppendLine("{");
-            sb.AppendLine($"    public TOut {s} {{ get; }}");
-            sb.AppendLine($"    public TOut {c} {{ get; }}");
+            sb.AppendLine($"    /// <summary>Returns the <c>{s}</c> swizzle of <paramref name=\"self\"/></summary>");
+            sb.AppendLine("    /// <param name=\"self\">The vector</param>");
+            sb.AppendLine($"    /// <returns>The <c>{s}</c> combination of the components of <paramref name=\"self\"/></returns>");
+            sb.AppendLine($"    public static abstract TOut get_{s}(in TSelf self);");
+            sb.AppendLine();
+            sb.AppendLine($"    /// <summary>Returns the <c>{c}</c> swizzle of <paramref name=\"self\"/>, it is the same as <see cref=\"get_{s}\"/></summary>");
+            sb.AppendLine("    /// <param name=\"self\">The vector</param>");
+            sb.AppendLine($"    /// <returns>The <c>{c}</c> combination of the components of <paramref name=\"self\"/></returns>");
+            sb.AppendLine($"    public static abstract TOut get_{c}(in TSelf self);");
             sb.AppendLine("}");
             sb.AppendLine();
 
@@ -91,11 +102,21 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
 
             if (!distinct) continue;
 
-            sb.AppendLine($"/// <summary>The <c>{s}</c> and <c>{c}</c> swizzle, a vector assigns <typeparamref name=\"TIn\"/> to it</summary>");
-            sb.AppendLine($"public interface IVectorSetSwizzle{d}<in TIn>");
+            sb.AppendLine($"/// <summary>The <c>{s}</c> and <c>{c}</c> swizzle of a vector, a vector assigns <typeparamref name=\"TIn\"/> to it</summary>");
+            sb.AppendLine("/// <typeparam name=\"TSelf\">The type of the vector itself</typeparam>");
+            sb.AppendLine("/// <typeparam name=\"TIn\">The type of the combination</typeparam>");
+            sb.AppendLine($"public interface IVectorSetSwizzle{d}<TSelf, in TIn> where TSelf : unmanaged");
             sb.AppendLine("{");
-            sb.AppendLine($"    public TIn {s} {{ set; }}");
-            sb.AppendLine($"    public TIn {c} {{ set; }}");
+            sb.AppendLine($"    /// <summary>Sets the <c>{s}</c> swizzle of <paramref name=\"self\"/> to <paramref name=\"value\"/></summary>");
+            sb.AppendLine("    /// <param name=\"self\">The vector</param>");
+            sb.AppendLine($"    /// <param name=\"value\">The <c>{s}</c> combination the vector takes</param>");
+            sb.AppendLine($"    public static abstract void set_{s}(ref TSelf self, TIn value);");
+            sb.AppendLine();
+            sb.AppendLine(
+                $"    /// <summary>Sets the <c>{c}</c> swizzle of <paramref name=\"self\"/> to <paramref name=\"value\"/>, it is the same as <see cref=\"set_{s}\"/></summary>");
+            sb.AppendLine("    /// <param name=\"self\">The vector</param>");
+            sb.AppendLine($"    /// <param name=\"value\">The <c>{c}</c> combination the vector takes</param>");
+            sb.AppendLine($"    public static abstract void set_{c}(ref TSelf self, TIn value);");
             sb.AppendLine("}");
             sb.AppendLine();
         }
@@ -164,7 +185,7 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
         {
             foreach (var digits in Combinations(size, lengths[i], set))
             {
-                members.Add($"IVector{kind}Swizzle{digits}<{types[i]}>");
+                members.Add($"IVector{kind}Swizzle{digits}<{self}, {types[i]}>");
             }
         }
 
@@ -179,6 +200,8 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
             sb.AppendLine($"    {members[i]}{(i == members.Count - 1 ? "" : ",")}");
         }
 
+        // the type of the vector itself is the first parameter of every interface the collector names
+        sb.AppendLine($"    where {self} : unmanaged");
         sb.AppendLine("{");
         sb.AppendLine("}");
         sb.AppendLine();

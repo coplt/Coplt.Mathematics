@@ -27,7 +27,7 @@ public class TestSwizzle
         {
             for (var i = 0; i < T.Length; i++)
             {
-                Assert.That(actual[i], Is.EqualTo(expected[i]), $"{what}, component {i}");
+                Assert.That(T.get_at((T)actual, i), Is.EqualTo(T.get_at((T)expected, i)), $"{what}, component {i}");
             }
         }
     }

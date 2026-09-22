@@ -38,8 +38,8 @@ public partial class VectorGenerator
 
         var comp = VectorGenShared.Components(size);
 
-        string Getter(int i) => simd ? $"vector.GetElement({i})" : $"_{comp[i]}";
-        string Setter(int i) => simd ? $"vector = vector.WithElement({i}, value);" : $"_{comp[i]} = value;";
+        string Getter(int i) => $"vector.GetElement({i})";
+        string Setter(int i) => $"vector = vector.WithElement({i}, value);";
 
         string Join(Func<int, string> f, string sep = ", ") => VectorGenShared.Join(size, f, sep);
 
@@ -364,21 +364,31 @@ public partial class VectorGenerator
         }
         else
         {
-            for (var i = 0; i < size; i++) sb.AppendLine($"    private {scalar} _{comp[i]};");
+            // a vector without a register keeps its components in fields, the fields are its value
+            for (var i = 0; i < size; i++)
+            {
+                Doc($"The <c>{comp[i]}</c> component");
+                sb.AppendLine($"    public {scalar} {comp[i]};");
+            }
+
             if (size == 3) sb.AppendLine($"    private {scalar} _align;");
         }
 
-        sb.AppendLine();
-        for (var i = 0; i < size; i++)
+        if (simd)
         {
-            Doc($"The <c>{comp[i]}</c> component");
-            sb.AppendLine($"    public {scalar} {comp[i]}");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        readonly get => {Getter(i)};");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        set => {Setter(i)}");
-            sb.AppendLine("    }");
+            // a component of a vector with a register is a view of it
+            sb.AppendLine();
+            for (var i = 0; i < size; i++)
+            {
+                Doc($"The <c>{comp[i]}</c> component");
+                sb.AppendLine($"    public {scalar} {comp[i]}");
+                sb.AppendLine("    {");
+                sb.AppendLine($"        {attr}");
+                sb.AppendLine($"        readonly get => {Getter(i)};");
+                sb.AppendLine($"        {attr}");
+                sb.AppendLine($"        set => {Setter(i)}");
+                sb.AppendLine("    }");
+            }
         }
 
         var colorName = new[] { "red", "green", "blue", "alpha" };
@@ -596,6 +606,47 @@ public partial class VectorGenerator
         sb.AppendLine("            }");
         sb.AppendLine("        }");
         sb.AppendLine("    }");
+        sb.AppendLine();
+        sb.AppendLine("    #endregion");
+
+        #endregion
+
+        #region components
+
+        sb.AppendLine();
+        sb.AppendLine("    #region components");
+        sb.AppendLine();
+
+        // the components are reached through the static members of the interface of them, the fields and the
+        // properties of the type stay beside them for the code that names the type of the vector. The members
+        // replace a property of the interface, so they are implemented explicitly and they do not become a part
+        // of the surface of the type itself.
+        for (var i = 0; i < size; i++)
+        {
+            // the first two components are declared by the interface of 2 components and every longer one adds
+            // its own component to it
+            var components = $"IVector{(i < 2 ? 2 : i + 1)}Components<{type}, {scalar}>";
+            foreach (var name in new[] { comp[i], Typ.rgba[i] })
+            {
+                InheritDoc();
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {scalar} {components}.get_{name}(in {type} self) => self.{name};");
+                sb.AppendLine();
+                InheritDoc();
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static void {components}.set_{name}(ref {type} self, {scalar} value) => self.{name} = value;");
+                sb.AppendLine();
+            }
+        }
+
+        // the index of a component replaced the indexer of the interface
+        InheritDoc();
+        sb.AppendLine($"    {attr}");
+        sb.AppendLine($"    static {scalar} IVector<{type}, {scalar}>.get_at(in {type} self, int i) => self[i];");
+        sb.AppendLine();
+        InheritDoc();
+        sb.AppendLine($"    {attr}");
+        sb.AppendLine($"    static void IVector<{type}, {scalar}>.set_at(ref {type} self, int i, {scalar} value) => self[i] = value;");
         sb.AppendLine();
         sb.AppendLine("    #endregion");
 

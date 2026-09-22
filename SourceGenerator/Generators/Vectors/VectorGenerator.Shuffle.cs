@@ -140,10 +140,10 @@ public partial class VectorGenerator
                     {
                         // the digits of the name of a case are the components of its result
                         sb.AppendLine($"            case {lh}.{comp[i]}{comp[j]}_{comp[k]}{comp[l]}:");
-                        sb.AppendLine($"                r.x = a.{comp[i]};");
-                        sb.AppendLine($"                r.y = a.{comp[j]};");
-                        sb.AppendLine($"                r.z = b.{comp[k]};");
-                        sb.AppendLine($"                r.w = b.{comp[l]};");
+                        sb.AppendLine($"                T.set_x(ref r, T.get_{comp[i]}(a));");
+                        sb.AppendLine($"                T.set_y(ref r, T.get_{comp[j]}(a));");
+                        sb.AppendLine($"                T.set_z(ref r, T.get_{comp[k]}(b));");
+                        sb.AppendLine($"                T.set_w(ref r, T.get_{comp[l]}(b));");
                         sb.AppendLine("                break;");
                     }
                 }

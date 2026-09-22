@@ -45,7 +45,7 @@ public interface IVector<TSelf> :
 
 /// <summary>
 /// The base of every vector, it only declares what a number vector and a bool vector have in common:
-/// the meta data, the constructors, the indexer and the bitwise operators
+/// the meta data, the constructors, the index of a component and the bitwise operators
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
@@ -58,13 +58,24 @@ public interface IVector<TSelf, TScalar> :
     #region Index
 
     /// <summary>
-    /// Gets or sets the component at <paramref name="index"/>
+    /// Returns the component of <paramref name="self"/> at <paramref name="index"/>
     /// <para>The index <c>0</c> is <c>x</c>, <c>1</c> is <c>y</c>, <c>2</c> is <c>z</c> and <c>3</c> is <c>w</c></para>
     /// </summary>
+    /// <param name="self">The vector</param>
     /// <param name="index">The index of the component</param>
     /// <returns>The component</returns>
     /// <exception cref="System.IndexOutOfRangeException">When the index is not in the range of the vector</exception>
-    public TScalar this[int index] { get; set; }
+    public static abstract TScalar get_at(in TSelf self, int index);
+
+    /// <summary>
+    /// Sets the component of <paramref name="self"/> at <paramref name="index"/> to <paramref name="value"/>
+    /// <para>The index <c>0</c> is <c>x</c>, <c>1</c> is <c>y</c>, <c>2</c> is <c>z</c> and <c>3</c> is <c>w</c></para>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="index">The index of the component</param>
+    /// <param name="value">The value of the component</param>
+    /// <exception cref="System.IndexOutOfRangeException">When the index is not in the range of the vector</exception>
+    public static abstract void set_at(ref TSelf self, int index, TScalar value);
 
     #endregion
 }

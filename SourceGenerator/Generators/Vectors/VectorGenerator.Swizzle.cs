@@ -284,6 +284,33 @@ public partial class VectorGenerator
 
                 sb.AppendLine("    }");
                 sb.AppendLine();
+
+                // the members of the interfaces of the combination forward to the property of it. They replace
+                // a property, so they are implemented explicitly and they do not become a part of the surface
+                // of the type itself.
+                var digitsName = VectorGenShared.Join(dst, i => ((char)('0' + digits[i])).ToString(), "");
+                var getIface = $"IVectorGetSwizzle{digitsName}<{type}, {ret}>";
+                InheritDoc();
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {ret} {getIface}.get_{name}(in {type} self) => self.{name};");
+                sb.AppendLine();
+                InheritDoc();
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {ret} {getIface}.get_{colorName}(in {type} self) => self.{colorName};");
+                if (writable)
+                {
+                    var setIface = $"IVectorSetSwizzle{digitsName}<{type}, {ret}>";
+                    sb.AppendLine();
+                    InheritDoc();
+                    sb.AppendLine($"    {attr}");
+                    sb.AppendLine($"    static void {setIface}.set_{name}(ref {type} self, {ret} value) => self.{name} = value;");
+                    sb.AppendLine();
+                    InheritDoc();
+                    sb.AppendLine($"    {attr}");
+                    sb.AppendLine($"    static void {setIface}.set_{colorName}(ref {type} self, {ret} value) => self.{colorName} = value;");
+                }
+
+                sb.AppendLine();
             }
 
             sb.AppendLine("    #endregion");

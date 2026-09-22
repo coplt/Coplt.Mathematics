@@ -35,7 +35,7 @@ internal static class ArithCheck
         where TScalar : unmanaged
     {
         for (var i = 0; i < T.Length; i++)
-            Assert.That(actual[i], Is.EqualTo(expected[i]), $"{what}, component {i}");
+            Assert.That(T.get_at(actual, i), Is.EqualTo(T.get_at(expected, i)), $"{what}, component {i}");
     }
 
     private static void ScalarEqual<TScalar>(TScalar actual, TScalar expected, string what)
@@ -161,10 +161,10 @@ internal static class ArithCheck
             var sum = zero;
             for (var i = 0; i < length; i++)
             {
-                dotAscFive += asc[i] * allFive[i];
-                lengthSq += asc[i] * asc[i];
-                distanceSq += (five - asc[i]) * (five - asc[i]);
-                sum += asc[i];
+                dotAscFive += T.get_at(asc, i) * T.get_at(allFive, i);
+                lengthSq += T.get_at(asc, i) * T.get_at(asc, i);
+                distanceSq += (five - T.get_at(asc, i)) * (five - T.get_at(asc, i));
+                sum += T.get_at(asc, i);
             }
 
             ScalarEqual(T.dot(asc, allFive), dotAscFive, "dot");

@@ -36,11 +36,11 @@ public class TestVectorCtorFromVectors
         using (Assert.EnterMultipleScope())
         {
             var v = T.Create(xy, a);
-            Assert.That((v[0], v[1], v[2]), Is.EqualTo((xy[0], xy[1], a)));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2)), Is.EqualTo((TVector2.get_at(xy, 0), TVector2.get_at(xy, 1), a)));
             v = T.Create(a, yz);
-            Assert.That((v[0], v[1], v[2]), Is.EqualTo((a, yz[0], yz[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2)), Is.EqualTo((a, TVector2.get_at(yz, 0), TVector2.get_at(yz, 1))));
             v = T.InsertY(xz, a);
-            Assert.That((v[0], v[1], v[2]), Is.EqualTo((xz[0], a, xz[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2)), Is.EqualTo((TVector2.get_at(xz, 0), a, TVector2.get_at(xz, 1))));
         }
     }
 
@@ -65,30 +65,30 @@ public class TestVectorCtorFromVectors
         {
             // the first pair of the arguments is the beginning of the vector and the second one its end
             var v = T.Create(xy, zw);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xy[0], xy[1], zw[0], zw[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector2.get_at(xy, 0), TVector2.get_at(xy, 1), TVector2.get_at(zw, 0), TVector2.get_at(zw, 1))));
             v = T.Create(xy, a, b);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xy[0], xy[1], a, b)));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector2.get_at(xy, 0), TVector2.get_at(xy, 1), a, b)));
             v = T.Create(a, b, zw);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((a, b, zw[0], zw[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((a, b, TVector2.get_at(zw, 0), TVector2.get_at(zw, 1))));
             v = T.Create(a, yz, b);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((a, yz[0], yz[1], b)));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((a, TVector2.get_at(yz, 0), TVector2.get_at(yz, 1), b)));
             // the pair of an insert holds the components of the vector that the member names
             v = T.InsertYZ(xw, yz);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xw[0], yz[0], yz[1], xw[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector2.get_at(xw, 0), TVector2.get_at(yz, 0), TVector2.get_at(yz, 1), TVector2.get_at(xw, 1))));
             v = T.InsertYZ(xw, a, b);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xw[0], a, b, xw[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector2.get_at(xw, 0), a, b, TVector2.get_at(xw, 1))));
             v = T.InsertXW(yz, xw);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xw[0], yz[0], yz[1], xw[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector2.get_at(xw, 0), TVector2.get_at(yz, 0), TVector2.get_at(yz, 1), TVector2.get_at(xw, 1))));
             v = T.InsertXW(yz, a, b);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((a, yz[0], yz[1], b)));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((a, TVector2.get_at(yz, 0), TVector2.get_at(yz, 1), b)));
             v = T.InsertYW(xz, yw);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xz[0], yw[0], xz[1], yw[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector2.get_at(xz, 0), TVector2.get_at(yw, 0), TVector2.get_at(xz, 1), TVector2.get_at(yw, 1))));
             v = T.InsertYW(xz, a, b);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xz[0], a, xz[1], b)));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector2.get_at(xz, 0), a, TVector2.get_at(xz, 1), b)));
             v = T.InsertXZ(yw, xz);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xz[0], yw[0], xz[1], yw[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector2.get_at(xz, 0), TVector2.get_at(yw, 0), TVector2.get_at(xz, 1), TVector2.get_at(yw, 1))));
             v = T.InsertXZ(yw, a, b);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((a, yw[0], b, yw[1])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((a, TVector2.get_at(yw, 0), b, TVector2.get_at(yw, 1))));
         }
     }
 
@@ -109,13 +109,13 @@ public class TestVectorCtorFromVectors
         using (Assert.EnterMultipleScope())
         {
             var v = T.Create(xyz, a);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xyz[0], xyz[1], xyz[2], a)));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector3.get_at(xyz, 0), TVector3.get_at(xyz, 1), TVector3.get_at(xyz, 2), a)));
             v = T.Create(a, yzw);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((a, yzw[0], yzw[1], yzw[2])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((a, TVector3.get_at(yzw, 0), TVector3.get_at(yzw, 1), TVector3.get_at(yzw, 2))));
             v = T.InsertY(xzw, a);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xzw[0], a, xzw[1], xzw[2])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector3.get_at(xzw, 0), a, TVector3.get_at(xzw, 1), TVector3.get_at(xzw, 2))));
             v = T.InsertZ(xyw, a);
-            Assert.That((v[0], v[1], v[2], v[3]), Is.EqualTo((xyw[0], xyw[1], a, xyw[2])));
+            Assert.That((T.get_at(v, 0), T.get_at(v, 1), T.get_at(v, 2), T.get_at(v, 3)), Is.EqualTo((TVector3.get_at(xyw, 0), TVector3.get_at(xyw, 1), a, TVector3.get_at(xyw, 2))));
         }
     }
 

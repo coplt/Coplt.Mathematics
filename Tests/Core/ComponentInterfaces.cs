@@ -7,7 +7,8 @@ namespace Tests.Core;
 /// A vector implements the interface of its size, which names the size of the vector, the members every vector
 /// has and the components it reaches by name: the component interfaces declare the <c>xyzw</c> spelling of a
 /// component and the <c>rgba</c> one, and the two of them reach the same component. The size is a type of its
-/// own as well, so generic code can constrain the shape of a vector without naming its components.
+/// own as well, so generic code can constrain the shape of a vector without naming its components, and every
+/// member of the interfaces is static, so generic code reaches the components with the static form.
 /// </summary>
 public class TestVectorComponentInterfaces
 {
@@ -20,15 +21,16 @@ public class TestVectorComponentInterfaces
         where S : unmanaged
     {
         var v = start;
-        v.x = x;
-        v.y = y;
-        v.z = z;
-        v.w = w;
-        v.a = v.w;
-        v.b = v.z;
-        v.g = v.y;
-        v.r = v.x;
-        return (v.x, v.y, v.z, v.w);
+        T.set_x(ref v, x);
+        T.set_y(ref v, y);
+        T.set_z(ref v, z);
+        T.set_w(ref v, w);
+        // the rgba spelling of a component reaches the same one
+        T.set_a(ref v, T.get_w(v));
+        T.set_b(ref v, T.get_z(v));
+        T.set_g(ref v, T.get_y(v));
+        T.set_r(ref v, T.get_x(v));
+        return (T.get_x(v), T.get_y(v), T.get_z(v), T.get_w(v));
     }
 
     /// <summary>
@@ -40,13 +42,13 @@ public class TestVectorComponentInterfaces
         where S : unmanaged
     {
         var v = start;
-        v.x = x;
-        v.y = y;
-        v.z = z;
-        v.b = v.z;
-        v.g = v.y;
-        v.r = v.x;
-        return (v.x, v.y, v.z);
+        T.set_x(ref v, x);
+        T.set_y(ref v, y);
+        T.set_z(ref v, z);
+        T.set_b(ref v, T.get_z(v));
+        T.set_g(ref v, T.get_y(v));
+        T.set_r(ref v, T.get_x(v));
+        return (T.get_x(v), T.get_y(v), T.get_z(v));
     }
 
     /// <summary>
@@ -58,11 +60,11 @@ public class TestVectorComponentInterfaces
         where S : unmanaged
     {
         var v = start;
-        v.x = x;
-        v.y = y;
-        v.g = v.y;
-        v.r = v.x;
-        return (v.x, v.y);
+        T.set_x(ref v, x);
+        T.set_y(ref v, y);
+        T.set_g(ref v, T.get_y(v));
+        T.set_r(ref v, T.get_x(v));
+        return (T.get_x(v), T.get_y(v));
     }
 
     [Test]
@@ -125,7 +127,7 @@ public class TestVectorComponentInterfaces
     /// </summary>
     private static (int Length, S x, S y) Size2<T, S>(T v)
         where T : unmanaged, IVector2<T, S>
-        where S : unmanaged => (T.Length, v.x, v.y);
+        where S : unmanaged => (T.Length, T.get_x(v), T.get_y(v));
 
     /// <summary>
     /// The shape of a vector of 4 components and its four components together, so a member can constrain both
@@ -133,7 +135,7 @@ public class TestVectorComponentInterfaces
     /// </summary>
     private static (int Length, S x, S y, S z, S w) Size4<T, S>(T v)
         where T : unmanaged, IVector4<T, S>
-        where S : unmanaged => (T.Length, v.x, v.y, v.z, v.w);
+        where S : unmanaged => (T.Length, T.get_x(v), T.get_y(v), T.get_z(v), T.get_w(v));
 
     /// <summary>
     /// The size of a vector whose components are not known, the constraint of the member only names the shape
