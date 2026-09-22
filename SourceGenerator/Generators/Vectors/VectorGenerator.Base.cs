@@ -161,6 +161,14 @@ public partial class VectorGenerator
                           new List<string> { type, scalar, type4 }));
         }
 
+        // a shuffle combines two vectors of the same type, only a vector of 4 components has its members
+        if (size == 4)
+        {
+            parts.Add("the shuffle members implement " +
+                      VectorGenShared.IfaceRef("IVectorShuffle", new List<string> { "TSelf" },
+                          new List<string> { type }));
+        }
+
         if (typ.arith)
         {
             var arith = new List<string>();
