@@ -89,8 +89,9 @@ public partial class VectorGenerator
     /// Generates the helper that shuffles a vector that has no register to shuffle. The pattern of the dynamic
     /// member of such a vector is only known at run time, so the helper cannot be compiled to a single
     /// instruction and it dispatches the pattern with a switch: it reads the components the pattern names and
-    /// writes them into the result, which is the same code for every vector type because the components are
-    /// reached through the indexer of <c>IVector</c>. The helper is emitted once for all of the vectors.
+    /// writes them into the result, which is the same code for every vector type because a vector of 4
+    /// components reaches every one of them by name through <c>IVector4Components</c>. The helper is emitted
+    /// once for all of the vectors.
     /// </summary>
     /// <returns>The helper</returns>
     private static string GenShuffleSoft()
@@ -104,9 +105,9 @@ public partial class VectorGenerator
         sb.AppendLine("/// <summary>");
         sb.AppendLine("/// The shuffle of a vector that has no register to shuffle");
         sb.AppendLine("/// <para>A vector without a register keeps its components in fields, so a shuffle of it reads the");
-        sb.AppendLine("/// components the pattern names and writes them into the result. The components are reached through");
-        sb.AppendLine("/// the indexer of <see cref=\"IVector{TSelf,TScalar}\"/>, so the helper is the same for every vector");
-        sb.AppendLine("/// type and it is not a part of the surface of the library</para>");
+        sb.AppendLine("/// components the pattern names and writes them into the result. A vector of 4 components reaches");
+        sb.AppendLine("/// every one of them by name through <see cref=\"IVector4Components{TSelf,TScalar}\"/>, so the helper");
+        sb.AppendLine("/// is the same for every vector type and it is not a part of the surface of the library</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("internal static class shuffle_soft");
         sb.AppendLine("{");
@@ -123,7 +124,7 @@ public partial class VectorGenerator
         sb.AppendLine("    /// <returns>The vector that the pattern <paramref name=\"lh\"/> names</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine("    public static T shuffle<T, S>(in T a, in T b, Shuffle42 lh)");
-        sb.AppendLine("        where T : unmanaged, IVector<T, S>");
+        sb.AppendLine("        where T : unmanaged, IVector4Components<T, S>");
         sb.AppendLine("        where S : unmanaged");
         sb.AppendLine("    {");
         sb.AppendLine("        T r = default;");
@@ -137,12 +138,12 @@ public partial class VectorGenerator
                 {
                     for (var l = 0; l < comp.Length; l++)
                     {
-                        // the digits of the name of a case are the indices of the components of its result
+                        // the digits of the name of a case are the components of its result
                         sb.AppendLine($"            case {lh}.{comp[i]}{comp[j]}_{comp[k]}{comp[l]}:");
-                        sb.AppendLine($"                r[0] = a[{i}];");
-                        sb.AppendLine($"                r[1] = a[{j}];");
-                        sb.AppendLine($"                r[2] = b[{k}];");
-                        sb.AppendLine($"                r[3] = b[{l}];");
+                        sb.AppendLine($"                r.x = a.{comp[i]};");
+                        sb.AppendLine($"                r.y = a.{comp[j]};");
+                        sb.AppendLine($"                r.z = b.{comp[k]};");
+                        sb.AppendLine($"                r.w = b.{comp[l]};");
                         sb.AppendLine("                break;");
                     }
                 }

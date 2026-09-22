@@ -7,7 +7,8 @@ namespace Coplt.Analyzers.Generators;
 
 /// <summary>
 /// Generates the vector structs described by <see cref="Typ"/>. The base members are emitted by
-/// <c>Gen</c>, the members that create a vector out of another one by <c>GenCtor</c>, the members that replace
+/// <c>Gen</c>, the members that reach the raw bits of the value by <c>GenUnderlying</c>, the members that
+/// create a vector out of another one by <c>GenCtor</c>, the members that replace
 /// the components of the vector by <c>GenReplace</c>, the members of the legacy insert api by <c>GenInsert</c>,
 /// the members that combine two vectors by <c>GenShuffle</c> and the helper that shuffles a vector without a
 /// register by <c>GenShuffleSoft</c>, the swizzle members by <c>GenSwizzle</c>, the
@@ -48,6 +49,11 @@ public partial class VectorGenerator : IIncrementalGenerator
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.g.cs",
                             SourceText.From(Gen(typ, size, storeVariant), Encoding.UTF8));
+                        // the members that reach the bits of the value implement the underlying interface of the
+                        // width of the register of the vector
+                        ctx.AddSource(
+                            $"{VecNamespace}.{name}.underlying.g.cs",
+                            SourceText.From(GenUnderlying(typ, size, storeVariant), Encoding.UTF8));
                         // the members that create the vector out of another one implement the IVectorCtor
                         // interfaces, they are emitted into their own file so they stay separate from the
                         // members of the base type

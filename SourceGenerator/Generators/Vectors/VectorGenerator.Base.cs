@@ -102,8 +102,19 @@ public partial class VectorGenerator
         var parts = new List<string>
         {
             "The base members implement " +
+            VectorGenShared.IfaceRef($"IVector{size}", new List<string> { "TSelf", "TScalar" },
+                new List<string> { type, scalar }) + " and " +
             VectorGenShared.IfaceRef(iface, new List<string> { "TSelf", "TScalar" }, new List<string> { type, scalar }),
         };
+
+        // the bits of the value are reachable as a raw vector of bytes, the width of the register of the
+        // vector decides the interface of them
+        var underlying = VectorGenShared.Register(typ, size, storeVariant);
+        parts.Add(underlying == 0
+            ? "the value has no register, it is only marked as <see cref=\"IVectorSoftUnderlying\"/>"
+            : "the underlying members implement " +
+              VectorGenShared.IfaceRef($"IVector{underlying}Underlying", new List<string> { "TSelf" },
+                  new List<string> { type }));
         // the members that create the vector out of another one implement the interfaces of the create members
         if (size == 2)
         {
@@ -207,6 +218,9 @@ public partial class VectorGenerator
         // and the attribute names it in full
         sb.AppendLine($"[JsonConverter(typeof({VectorGenerator.JsonNamespace}.{type}JsonConverter))]");
         sb.AppendLine($"public partial struct {type} :");
+        // the interface of the size of the vector names the size and the components of the vector beside the
+        // members of the kind of the vector
+        sb.AppendLine($"    IVector{size}<{type}, {scalar}>,");
         sb.AppendLine($"    {iface}<{type}, {scalar}>,");
         sb.AppendLine($"    IEqualityOperators<{type}, {type}, {boolType}>,");
         sb.AppendLine($"    IComparisonOperators<{type}, {type}, {boolType}>");
