@@ -96,11 +96,35 @@ public partial class VectorGenerator
         // documentation that names the interfaces of every part lives on the base members
         var get = VectorGenShared.SwizzleTypes(typ, size, false, storeVariant);
         var set = VectorGenShared.SwizzleTypes(typ, size, true, storeVariant);
+        var type2 = VectorGenShared.VecName(typ, 2, false);
+        var type3 = VectorGenShared.VecName(typ, 3, false);
         var parts = new List<string>
         {
             "The base members implement " +
             VectorGenShared.IfaceRef(iface, new List<string> { "TSelf", "TScalar" }, new List<string> { type, scalar }),
         };
+        // the members that create the vector out of another one implement the interfaces of the create members
+        if (size == 2)
+        {
+            parts.Add("the create members implement " +
+                      VectorGenShared.IfaceRef("IVector2Ctor", new List<string> { "TSelf", "TScalar" },
+                          new List<string> { type, scalar }));
+        }
+        else if (size == 3)
+        {
+            parts.Add("the create members implement " +
+                      VectorGenShared.IfaceRef("IVector3CtorFromVector2", new List<string> { "TSelf", "TScalar", "TVector2" },
+                          new List<string> { type, scalar, type2 }));
+        }
+        else
+        {
+            parts.Add("the create members implement " +
+                      VectorGenShared.IfaceRef("IVector4CtorFromVector2", new List<string> { "TSelf", "TScalar", "TVector2" },
+                          new List<string> { type, scalar, type2 }) + " and " +
+                      VectorGenShared.IfaceRef("IVector4CtorFromVector3", new List<string> { "TSelf", "TScalar", "TVector3" },
+                          new List<string> { type, scalar, type3 }));
+        }
+
         if (typ.arith)
         {
             var arith = new List<string>();

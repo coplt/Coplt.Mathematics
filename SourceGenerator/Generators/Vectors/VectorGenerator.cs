@@ -7,7 +7,8 @@ namespace Coplt.Analyzers.Generators;
 
 /// <summary>
 /// Generates the vector structs described by <see cref="Typ"/>. The base members are emitted by
-/// <c>Gen</c>, the swizzle members by <c>GenSwizzle</c>, the arithmetic members by <c>GenArith</c>, the
+/// <c>Gen</c>, the members that create a vector out of another one by <c>GenCtor</c>, the swizzle members by
+/// <c>GenSwizzle</c>, the arithmetic members by <c>GenArith</c>, the
 /// integer members by <c>GenInt</c>, the floating point members by <c>GenFloat</c>, the ieee 754 members by
 /// <c>GenIeee</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
@@ -36,6 +37,12 @@ public partial class VectorGenerator : IIncrementalGenerator
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.g.cs",
                             SourceText.From(Gen(typ, size, storeVariant), Encoding.UTF8));
+                        // the members that create the vector out of another one implement the IVectorCtor
+                        // interfaces, they are emitted into their own file so they stay separate from the
+                        // members of the base type
+                        ctx.AddSource(
+                            $"{VecNamespace}.{name}.ctor.g.cs",
+                            SourceText.From(GenCtor(typ, size, storeVariant), Encoding.UTF8));
                         // the swizzle members implement the swizzle interfaces, they are emitted into their own file
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.swizzle.g.cs",

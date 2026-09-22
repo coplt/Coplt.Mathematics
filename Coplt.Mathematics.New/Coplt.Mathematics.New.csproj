@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <RootNamespace>Coplt.Mathematics</RootNamespace>
+        <AssemblyName>Coplt.Mathematics</AssemblyName>
         <Nullable>enable</Nullable>
         <LangVersion>15.0</LangVersion>
         <TargetFramework>net10.0</TargetFramework>
@@ -31,8 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj"
-            OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
 </Project>

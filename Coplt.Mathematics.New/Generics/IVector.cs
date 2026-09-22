@@ -49,45 +49,12 @@ public interface IVector<TSelf> :
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IVector<TSelf, TScalar> : IVector<TSelf>
+public interface IVector<TSelf, TScalar> :
+    IVector<TSelf>,
+    IVectorCtor<TSelf, TScalar>
     where TSelf : unmanaged, IVector<TSelf, TScalar>
     where TScalar : unmanaged
 {
-    #region Ctor
-
-    /// <summary>
-    /// Creates a vector with every component set to <paramref name="scalar"/>
-    /// </summary>
-    /// <param name="scalar">The value of every component</param>
-    /// <returns>The broadcast vector</returns>
-    public static abstract TSelf Broadcast(TScalar scalar);
-
-    /// <summary>
-    /// Creates a vector with only the <c>x</c> component set to <paramref name="scalar"/>
-    /// <para>The other components are zero</para>
-    /// </summary>
-    /// <param name="scalar">The value of the <c>x</c> component</param>
-    /// <returns>The vector</returns>
-    public static abstract TSelf Scalar(TScalar scalar);
-
-    /// <summary>
-    /// Loads a vector from the beginning of <paramref name="span"/>
-    /// <para>A simd backed vector reads a whole simd register, so the span has to be at least as long as the padded vector</para>
-    /// </summary>
-    /// <param name="span">The span to load from</param>
-    /// <returns>The loaded vector</returns>
-    public static abstract TSelf Load(ReadOnlySpan<TScalar> span);
-
-    /// <summary>
-    /// Loads a vector from <paramref name="ptr"/>
-    /// <para>A simd backed vector reads a whole simd register, so the pointer has to point to at least as many components as the padded vector</para>
-    /// </summary>
-    /// <param name="ptr">The pointer to load from</param>
-    /// <returns>The loaded vector</returns>
-    public static abstract unsafe TSelf Load(TScalar* ptr);
-
-    #endregion
-
     #region Index
 
     /// <summary>
