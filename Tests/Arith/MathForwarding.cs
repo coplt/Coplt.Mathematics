@@ -16,7 +16,7 @@ public class TestMathArithForwarding
     /// every one of them is the interface that has no component type.
     /// </summary>
     private static void Check<T>(T v)
-        where T : unmanaged, IVectorArithmetic<T>
+        where T : unmanaged, IVectorArithmetic<T>, IDynamicVector<T>
     {
         math.abs(v);
         math.sign(v);

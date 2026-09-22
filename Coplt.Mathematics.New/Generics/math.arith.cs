@@ -11,15 +11,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns the absolute value of every component
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The absolute value of the vector</returns>
-    [MethodImpl(256)]
-    public static T abs<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => T.abs(v);
-
-    /// <summary>
     /// Returns <c>-1</c>, <c>0</c> or <c>1</c> for every component depending on its sign
     /// </summary>
     /// <param name="v">The vector</param>
@@ -107,17 +98,6 @@ public static partial class math
     /// <returns>The squared vector</returns>
     [MethodImpl(256)]
     public static T square<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => T.square(v);
-
-    /// <summary>
-    /// Returns the cross product of the two vectors
-    /// <code>a.yzx * b.zxy - a.zxy * b.yzx</code>
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <param name="other">The other vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The vector that is perpendicular to both vectors</returns>
-    [MethodImpl(256)]
-    public static T cross<T>(in T v, in T other) where T : unmanaged, IVector3Arithmetic<T> => T.cross(v, other);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -382,4 +362,3 @@ public static partial class math
         where T : unmanaged, IVectorArithmetic<T, TScalar>
         where TScalar : unmanaged => T.cmax_safe(v);
 }
-
