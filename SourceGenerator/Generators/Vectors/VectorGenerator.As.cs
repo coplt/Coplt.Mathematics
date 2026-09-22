@@ -74,11 +74,13 @@ public partial class VectorGenerator
     /// Generates the as members of the vector described by <paramref name="typ"/> and the conversion between the
     /// vector and its storage variant. The as members reinterpret the bits of the vector as the vector of another
     /// component type of the same width, the short spelling of the name of a target and the long one are emitted
-    /// side by side, every member of the group implements the interface of its own kind. The regular vector and
-    /// its storage variant convert into each other with <c>to_storage</c> and <c>to_compute</c>: the first one is
-    /// emitted beside the as members of the regular vector, the second one beside the as members of the storage
-    /// variant. Every member is a member of the vector itself, they are emitted into their own file, so they stay
-    /// separate from the members of the base type and the arithmetic.
+    /// side by side, every member of the group implements the interface of its own kind. A vector of 3 or 4
+    /// components also converts into the one of the other size of its own kind, the two of them keep their
+    /// components in a register of the same width and the component that one of them does not hold is zero. The
+    /// regular vector and its storage variant convert into each other with <c>to_storage</c> and
+    /// <c>to_compute</c>: the first one is emitted beside the as members of the regular vector, the second one
+    /// beside the as members of the storage variant. Every member is a member of the vector itself, they are
+    /// emitted into their own file, so they stay separate from the members of the base type and the arithmetic.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -87,12 +89,21 @@ public partial class VectorGenerator
     private static string? GenAs(Typ typ, int size, bool storeVariant)
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
+        // the register of the vector, a vector without one keeps its components in fields
+        var simd = VectorGenShared.Simd(typ, size, storeVariant);
         var targets = AsTargets(typ, size, storeVariant);
         // a regular vector that has a storage variant also converts to it, the as members of a storage variant
         // always exist and the conversion of it always exists as well
         var store = storeVariant ? null : VectorGenShared.HasStorageVariant(typ, size) ? VectorGenShared.VecName(typ, size, true) : null;
         var regular = storeVariant ? VectorGenShared.VecName(typ, size, false) : null;
         if (targets.Count == 0 && store == null && regular == null) return null;
+
+        // the 3 component vector and the 4 component one hold their components in the register of the same
+        // width, so the bits of one of them are the bits of the other one whose dropped or added component is
+        // zero: the vector of the 3 component size converts into the one of the 4 component size and back
+        var type2 = VectorGenShared.VecName(typ, 2, false);
+        var type3 = VectorGenShared.VecName(typ, 3, false);
+        var type4 = VectorGenShared.VecName(typ, 4, false);
 
         var sb = new StringBuilder();
         var first = true;
@@ -123,6 +134,11 @@ public partial class VectorGenerator
             ifaces.Add($"{AsInterfaces[kind]}<{type}, {targetName}>");
         }
 
+        // the member that converts the vector into the one of the other size implements the interface of its own
+        if (size == 3 || size == 4) ifaces.Add($"IVectorAs2<{type}, {type2}>");
+        if (size == 3) ifaces.Add($"IVectorAs4<{type}, {type4}>");
+        else if (size == 4) ifaces.Add($"IVectorAs3<{type}, {type3}>");
+
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine($"    {string.Join(",\n    ", ifaces)}");
         sb.AppendLine("{");
@@ -145,6 +161,52 @@ public partial class VectorGenerator
                     $"The vector of <see cref=\"{targetName}\"/> that has the bits of the vector",
                     $"public readonly {targetName} {name}() => Unsafe.BitCast<{type}, {targetName}>(this);");
             }
+        }
+
+        // the 3 component vector and the 4 component one convert into each other and into the 2 component
+        // vector without a copy of the components when the vector is simd backed: the register of a vector of
+        // 4 byte components is as wide as the one of its 2 component vector and twice as wide when a component
+        // is 8 bytes wide, so only the lower half of it reaches the second component of the 2 component vector
+        if (size == 3 || size == 4)
+        {
+            var wide = !simd
+                ? ""
+                : VectorGenShared.Register(typ, size, storeVariant) > VectorGenShared.Register(typ, 2, false)
+                    ? ".GetLower()"
+                    : "";
+            Member(
+                $"Reinterprets the bits of <paramref name=\"source\"/> as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
+                $"The 2 component vector that has the bits of <paramref name=\"source\"/>", simd
+                    ? $"public static {type2} as2(in {type} source) => new(source.vector{wide});"
+                    : $"public static {type2} as2(in {type} source) => new(source.x, source.y);");
+            Member($"Reinterprets the bits of the vector as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
+                $"The 2 component vector that has the bits of the vector", simd
+                    ? $"public readonly {type2} as2() => new(vector{wide});"
+                    : $"public readonly {type2} as2() => new(x, y);");
+        }
+
+        if (size == 4)
+        {
+            Member(
+                $"Reinterprets the bits of <paramref name=\"source\"/> as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the source has to be zero</para>",
+                $"The 3 component vector that has the bits of <paramref name=\"source\"/>", simd
+                    ? $"public static {type3} as3(in {type} source) => new(source.vector);"
+                    : $"public static {type3} as3(in {type} source) => source.xyz;");
+            Member($"Reinterprets the bits of the vector as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the vector has to be zero</para>",
+                $"The 3 component vector that has the bits of the vector", simd
+                    ? $"public readonly {type3} as3() => new(vector);"
+                    : $"public readonly {type3} as3() => xyz;");
+        }
+        else if (size == 3)
+        {
+            Member($"Reinterprets the bits of <paramref name=\"source\"/> as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
+                $"The 4 component vector that has the bits of <paramref name=\"source\"/>", simd
+                    ? $"public static {type4} as4(in {type} source) => new() {{ vector = source.vector }};"
+                    : $"public static {type4} as4(in {type} source) => new(source.x, source.y, source.z, default);");
+            Member($"Reinterprets the bits of the vector as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
+                $"The 4 component vector that has the bits of the vector", simd
+                    ? $"public readonly {type4} as4() => new() {{ vector = vector }};"
+                    : $"public readonly {type4} as4() => new(x, y, z, default);");
         }
 
         if (store != null)

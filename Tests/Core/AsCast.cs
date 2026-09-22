@@ -232,4 +232,82 @@ public class TestAsCast
             Assert.That((l.x, l.y, l.z), Is.EqualTo((-1L, 2L, 3L)));
         }
     }
+
+    /// <summary>
+    /// A vector of 3 components and one of 4 components convert into each other with <c>as3</c> and <c>as4</c>
+    /// and into the 2 component one with <c>as2</c>: the two of them keep their components in a register of the
+    /// same width as the one of the 2 component vector, so the components that the target vector does not hold
+    /// are zero. A vector that has no register converts with the components of the other one and the same
+    /// components are zero as well.
+    /// </summary>
+    [Test]
+    public void SizeConversion()
+    {
+        var f3 = new float3(1, 2, 3);
+        var d3 = new double3(1, 2, 3);
+        var l3 = new long3(1, 2, 3);
+        var s3 = new short3(1, 2, 3);
+        var h3 = new half3((Half)1, (Half)2, (Half)3);
+        var t3 = new b32v3(true, false, true);
+        var f3s = new float3s(1, 2, 3);
+
+        using (Assert.EnterMultipleScope())
+        {
+            // the components behind the second one are the padding lanes of the 2 component vector
+            Assert.That(float4.as2(new float4(1, 2, 3, 4)), Is.EqualTo(new float2(1, 2)));
+            Assert.That(float3.as2(f3), Is.EqualTo(new float2(1, 2)));
+            Assert.That(new float4(1, 2, 3, 4).as2(), Is.EqualTo(new float2(1, 2)));
+            Assert.That(double3.as2(d3), Is.EqualTo(new double2(1, 2)));
+            Assert.That(double4.as2(double3.as4(d3)), Is.EqualTo(new double2(1, 2)));
+            Assert.That(long3.as2(l3), Is.EqualTo(new long2(1, 2)));
+            Assert.That(short3.as2(s3), Is.EqualTo(new short2(1, 2)));
+            Assert.That(half3.as2(h3), Is.EqualTo(new half2((Half)1, (Half)2)));
+            Assert.That(float3s.as2(f3s), Is.EqualTo(new float2(1, 2)));
+            Assert.That(double3s.as2(d3.to_storage()), Is.EqualTo(new double2(1, 2)));
+            Assert.That((bool)b32v4.as2(b32v3.as4(t3)).x, Is.True);
+            Assert.That((bool)b64v3.as2(new b64v3(true, false, true)).y, Is.False);
+            // the 4 component vector that a 3 component one converts into has a w component of zero
+            var f4 = float3.as4(f3);
+            Assert.That((f4.x, f4.y, f4.z, f4.w), Is.EqualTo((1f, 2f, 3f, 0f)));
+            Assert.That(float3.as4(f3).w, Is.EqualTo(f3.as4().w));
+            Assert.That((double3.as4(d3).x, double3.as4(d3).w), Is.EqualTo((1d, 0d)));
+            Assert.That((long3.as4(l3).z, long3.as4(l3).w), Is.EqualTo((3L, 0L)));
+            Assert.That((short3.as4(s3).z, short3.as4(s3).w), Is.EqualTo(((short)3, (short)0)));
+            Assert.That((half3.as4(h3).z, half3.as4(h3).w), Is.EqualTo(((Half)3, (Half)0)));
+            Assert.That(half3.as4(h3), Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)0)));
+            Assert.That((bool)b32v3.as4(t3).w, Is.False);
+            // the storage variant of a 3 component vector has no register, it converts component by component
+            Assert.That(float3s.as4(f3s), Is.EqualTo(f4));
+            // the component that the 3 component vector cannot hold is dropped
+            Assert.That(float4.as3(f4), Is.EqualTo(f3));
+            Assert.That(float4.as3(new float4(1, 2, 3, 4)), Is.EqualTo(f3));
+            Assert.That(double4.as3(double3.as4(d3)), Is.EqualTo(d3));
+            Assert.That(long4.as3(long3.as4(l3)), Is.EqualTo(l3));
+            Assert.That(short4.as3(short3.as4(s3)), Is.EqualTo(s3));
+            Assert.That(half4.as3(half3.as4(h3)), Is.EqualTo(h3));
+            Assert.That(b32v4.as3(b32v3.as4(t3)), Is.EqualTo(t3));
+            Assert.That(float4.as3(float3s.as4(f3s)), Is.EqualTo(f3));
+        }
+    }
+
+    /// <summary>
+    /// The conversion between the sizes is a member of the <c>math</c> class as well, its result type cannot be
+    /// inferred from the source vector by the compiler of today, so it has to be spelled out.
+    /// </summary>
+    [Test]
+    public void SizeConversionForwarding()
+    {
+        var f2 = math.as2<float4, float2>(new float4(1, 2, 3, 4));
+        var f4 = math.as4<float3, float4>(new float3(1, 2, 3));
+        var f3 = math.as3<float4, float3>(new float4(1, 2, 3, 0));
+        var t3 = math.as3<b64v4, b64v3>(new b64v4(true, false, true, false));
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(f2, Is.EqualTo(new float2(1, 2)));
+            Assert.That(f4, Is.EqualTo(new float4(1, 2, 3, 0)));
+            Assert.That(f3, Is.EqualTo(new float3(1, 2, 3)));
+            Assert.That(((bool)t3.x, (bool)t3.y, (bool)t3.z), Is.EqualTo((true, false, true)));
+        }
+    }
 }

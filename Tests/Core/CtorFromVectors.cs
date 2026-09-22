@@ -120,6 +120,45 @@ public class TestVectorCtorFromVectors
     }
 
     /// <summary>
+    /// The members that create a vector from a part of a shorter one stand on a public constructor of the vector,
+    /// the constructor forwards to the member, so both of them build the same vector and a caller that does not
+    /// need the interface behind the member can use the constructor alone.
+    /// </summary>
+    [Test]
+    public void Constructors()
+    {
+        var f2 = new float2(1, 2);
+        var d2 = new double2(1, 2);
+        var u2 = new uint2(1, 2);
+        var t2 = new b32v2(true, false);
+        var f3 = new float3(1, 2, 3);
+        var d3 = new double3(1, 2, 3);
+        var t3 = new b32v3(true, false, true);
+        var h3 = new half3((Half)1, (Half)2, (Half)3);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(new float3(f2, 3), Is.EqualTo(float3.Create(f2, 3)));
+            Assert.That(new float3(1, f2), Is.EqualTo(new float3(1, 1, 2)));
+            Assert.That(new double3(d2, 3), Is.EqualTo(new double3(1, 2, 3)));
+            Assert.That(new uint3(1, u2), Is.EqualTo(new uint3(1, 1, 2)));
+            Assert.That(new half3(h3.xy, (Half)3), Is.EqualTo(h3));
+            Assert.That((bool)((b32v3)new b32v3(t2, true)).z, Is.True);
+            // the storage variant of a vector keeps the components of the one it is created from
+            Assert.That(new float3s(f2, 3), Is.EqualTo(float3.Create(f2, 3).to_storage()));
+
+            Assert.That(new float4(f2, new float2(3, 4)), Is.EqualTo(new float4(1, 2, 3, 4)));
+            Assert.That(new float4(f2, 3, 4), Is.EqualTo(new float4(1, 2, 3, 4)));
+            Assert.That(new float4(1, 2, new float2(3, 4)), Is.EqualTo(new float4(1, 2, 3, 4)));
+            Assert.That(new float4(1, f2, 4), Is.EqualTo(new float4(1, 1, 2, 4)));
+            Assert.That(new double4(d3, 4), Is.EqualTo(double4.Create(d3, 4)));
+            Assert.That(new double4(1, d3), Is.EqualTo(new double4(1, 1, 2, 3)));
+            Assert.That((bool)new b32v4(t3, true).w, Is.True);
+            Assert.That(new half4(h3, (Half)4), Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)4)));
+        }
+    }
+
+    /// <summary>
     /// Checks the members that create a vector from its own components, they are the base of every other
     /// create.
     /// </summary>

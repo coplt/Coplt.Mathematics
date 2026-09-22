@@ -125,6 +125,26 @@ public partial class VectorGenerator
                           new List<string> { type, scalar, type3 }));
         }
 
+        // the members that replace the components of the vector implement the interfaces of the replace members
+        if (size == 2)
+        {
+            parts.Add("the replace members implement " +
+                      VectorGenShared.IfaceRef("IVectorReplace", new List<string> { "TSelf", "TScalar" },
+                          new List<string> { type, scalar }));
+        }
+        else if (size == 3)
+        {
+            parts.Add("the replace members implement " +
+                      VectorGenShared.IfaceRef("IVector3Replace", new List<string> { "TSelf", "TScalar", "TVector2" },
+                          new List<string> { type, scalar, type2 }));
+        }
+        else
+        {
+            parts.Add("the replace members implement " +
+                      VectorGenShared.IfaceRef("IVector4Replace", new List<string> { "TSelf", "TScalar", "TVector2", "TVector3" },
+                          new List<string> { type, scalar, type2, type3 }));
+        }
+
         if (typ.arith)
         {
             var arith = new List<string>();
