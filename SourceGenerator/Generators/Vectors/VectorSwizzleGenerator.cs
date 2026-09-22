@@ -7,9 +7,10 @@ namespace Coplt.Analyzers.Generators;
 
 /// <summary>
 /// Generates the swizzle interfaces. Every combination of the components is declared as a get interface and a
-/// set interface, the digits of the name are the indices of the components, so <c>01</c> is <c>xy</c>. The two
-/// spellings of a combination, <c>xyzw</c> and <c>rgba</c>, are declared on the same interface. The interfaces
-/// are covariant for the getters and contravariant for the setters, a vector type implements every combination
+/// set interface, the digits of the name are the indices of the components, so <c>01</c> is <c>xy</c>. An
+/// interface declares the <c>xyzw</c> spelling of a combination only, the <c>rgba</c> spelling of it is a
+/// spelling of the member of the type itself. The two of them reach the same component. The interfaces are
+/// covariant for the getters and contravariant for the setters, a vector type implements every combination
 /// it has and generic code can ask for the members it needs. The scattered interfaces are collected by the
 /// interfaces of <c>GenForVec</c>, one for every size of the vector itself.
 /// </summary>
@@ -53,7 +54,6 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
         {
             var digits = new StringBuilder(length);
             var xyzw = new StringBuilder(length);
-            var rgba = new StringBuilder(length);
             var indices = new int[length];
             for (var i = 0; i < length; i++)
             {
@@ -61,16 +61,16 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
                 indices[i] = index;
                 digits.Append((char)('0' + index));
                 xyzw.Append(Typ.xyzw[index]);
-                rgba.Append(Typ.rgba[index]);
             }
 
             var d = digits.ToString();
             var s = xyzw.ToString();
-            var c = rgba.ToString();
 
             // a member of a swizzle interface is static because the member of the type is a property of the
-            // vector itself, so the interface names the type of the vector beside the type of the combination
-            sb.AppendLine($"/// <summary>The <c>{s}</c> and <c>{c}</c> swizzle of a vector, its type is <typeparamref name=\"TOut\"/></summary>");
+            // vector itself, so the interface names the type of the vector beside the type of the combination.
+            // The interface declares the xyzw spelling of a combination only, the rgba one is a spelling of the
+            // member of the type itself and it is not a part of the interface.
+            sb.AppendLine($"/// <summary>The <c>{s}</c> swizzle of a vector, its type is <typeparamref name=\"TOut\"/></summary>");
             sb.AppendLine("/// <typeparam name=\"TSelf\">The type of the vector itself</typeparam>");
             sb.AppendLine("/// <typeparam name=\"TOut\">The type of the combination</typeparam>");
             sb.AppendLine($"public interface IVectorGetSwizzle{d}<TSelf, out TOut> where TSelf : unmanaged");
@@ -79,11 +79,6 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
             sb.AppendLine("    /// <param name=\"self\">The vector</param>");
             sb.AppendLine($"    /// <returns>The <c>{s}</c> combination of the components of <paramref name=\"self\"/></returns>");
             sb.AppendLine($"    public static abstract TOut get_{s}(in TSelf self);");
-            sb.AppendLine();
-            sb.AppendLine($"    /// <summary>Returns the <c>{c}</c> swizzle of <paramref name=\"self\"/>, it is the same as <see cref=\"get_{s}\"/></summary>");
-            sb.AppendLine("    /// <param name=\"self\">The vector</param>");
-            sb.AppendLine($"    /// <returns>The <c>{c}</c> combination of the components of <paramref name=\"self\"/></returns>");
-            sb.AppendLine($"    public static abstract TOut get_{c}(in TSelf self);");
             sb.AppendLine("}");
             sb.AppendLine();
 
@@ -102,7 +97,7 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
 
             if (!distinct) continue;
 
-            sb.AppendLine($"/// <summary>The <c>{s}</c> and <c>{c}</c> swizzle of a vector, a vector assigns <typeparamref name=\"TIn\"/> to it</summary>");
+            sb.AppendLine($"/// <summary>The <c>{s}</c> swizzle of a vector, a vector assigns <typeparamref name=\"TIn\"/> to it</summary>");
             sb.AppendLine("/// <typeparam name=\"TSelf\">The type of the vector itself</typeparam>");
             sb.AppendLine("/// <typeparam name=\"TIn\">The type of the combination</typeparam>");
             sb.AppendLine($"public interface IVectorSetSwizzle{d}<TSelf, in TIn> where TSelf : unmanaged");
@@ -111,12 +106,6 @@ public class VectorSwizzleGenerator : IIncrementalGenerator
             sb.AppendLine("    /// <param name=\"self\">The vector</param>");
             sb.AppendLine($"    /// <param name=\"value\">The <c>{s}</c> combination the vector takes</param>");
             sb.AppendLine($"    public static abstract void set_{s}(ref TSelf self, TIn value);");
-            sb.AppendLine();
-            sb.AppendLine(
-                $"    /// <summary>Sets the <c>{c}</c> swizzle of <paramref name=\"self\"/> to <paramref name=\"value\"/>, it is the same as <see cref=\"set_{s}\"/></summary>");
-            sb.AppendLine("    /// <param name=\"self\">The vector</param>");
-            sb.AppendLine($"    /// <param name=\"value\">The <c>{c}</c> combination the vector takes</param>");
-            sb.AppendLine($"    public static abstract void set_{c}(ref TSelf self, TIn value);");
             sb.AppendLine("}");
             sb.AppendLine();
         }
