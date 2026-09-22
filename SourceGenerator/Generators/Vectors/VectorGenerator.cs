@@ -14,12 +14,20 @@ namespace Coplt.Analyzers.Generators;
 /// <c>GenIeee</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
 /// <c>GenConv</c>, the json converters by <c>GenJson</c>, the as members of the math class by <c>GenMathAs</c> and
-/// the select members by <c>GenSelect</c>, every part lives in its own file.
+/// the select members by <c>GenSelect</c>, every part lives in its own file. The json converters are the only
+/// members that are not declared in <c>Coplt.Mathematics</c> itself, they are emitted into
+/// <c>Coplt.Mathematics.Json</c> so that a project that does not use them does not carry their types.
 /// </summary>
 [Generator]
 public partial class VectorGenerator : IIncrementalGenerator
 {
     public const string VecNamespace = "Coplt.Mathematics";
+
+    /// <summary>
+    /// The namespace the json converters of the vectors are emitted into, the converters are kept out of
+    /// <c>Coplt.Mathematics</c> so that the types of <c>System.Text.Json</c> are not a part of its surface.
+    /// </summary>
+    public const string JsonNamespace = "Coplt.Mathematics.Json";
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -59,6 +67,7 @@ public partial class VectorGenerator : IIncrementalGenerator
                                 $"{VecNamespace}.{name}.insert.g.cs",
                                 SourceText.From(insert, Encoding.UTF8));
                         }
+
                         // the swizzle members implement the swizzle interfaces, they are emitted into their own file
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.swizzle.g.cs",
@@ -137,9 +146,10 @@ public partial class VectorGenerator : IIncrementalGenerator
                             SourceText.From(GenSelect(typ, size, storeVariant), Encoding.UTF8));
 
                         // the converter that reads and writes the vector as json is emitted into its own file
-                        // as well
+                        // as well, it is the only part that is not declared in the namespace of the vector
+                        // itself but in the one the converters share
                         ctx.AddSource(
-                            $"{VecNamespace}.{name}.json.g.cs",
+                            $"{JsonNamespace}.{name}.json.g.cs",
                             SourceText.From(GenJson(typ, size, storeVariant), Encoding.UTF8));
                     }
                 }

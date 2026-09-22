@@ -8,9 +8,10 @@ public partial class VectorGenerator
     /// Generates the converter that reads and writes the vector described by <paramref name="typ"/> as json: the
     /// value is an array of its components in order, a component of a bool vector is written as a bool and every
     /// other one as a number, the name of the type is not a part of the value. The converter is emitted into its
-    /// own file and the declaration of the vector carries the attribute that binds it, see <c>Gen</c>. A value
-    /// that is not an array and one that does not hold the components of the vector are both rejected by
-    /// <c>VectorUtils.ThrowJsonToken</c>, the message of the exception is not repeated in every converter.
+    /// own file and into <c>Coplt.Mathematics.Json</c> instead of the namespace of the vector, the declaration of
+    /// the vector carries the attribute that binds it, see <c>Gen</c>. A value that is not an array and one that
+    /// does not hold the components of the vector are both rejected by <c>VectorUtils.ThrowJsonToken</c>, the
+    /// message of the exception is not repeated in every converter.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -25,7 +26,7 @@ public partial class VectorGenerator
         var getter = $"reader.Get{typ.jsonType}()";
 
         var sb = new StringBuilder();
-        VectorGenShared.FileHeader(sb, false, false, true);
+        VectorGenShared.FileHeader(sb, false, false, true, VectorGenerator.JsonNamespace);
         // the converter reads and writes the members of the vector, it can only run on the cpu
         sb.AppendLine("[CpuOnly]");
         sb.AppendLine($"public class {type}JsonConverter : JsonConverter<{type}>");

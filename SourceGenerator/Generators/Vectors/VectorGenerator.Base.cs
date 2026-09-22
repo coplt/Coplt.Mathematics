@@ -195,8 +195,9 @@ public partial class VectorGenerator
         sb.AppendLine($"/// <para>{string.Join(", ", parts)}</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("[Serializable]");
-        // the converter of the vector is generated beside it
-        sb.AppendLine($"[JsonConverter(typeof({type}JsonConverter))]");
+        // the converter of the vector is generated beside it, it lives in the namespace the converters share
+        // and the attribute names it in full
+        sb.AppendLine($"[JsonConverter(typeof({VectorGenerator.JsonNamespace}.{type}JsonConverter))]");
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine($"    {iface}<{type}, {scalar}>,");
         sb.AppendLine($"    IEqualityOperators<{type}, {type}, {boolType}>,");
