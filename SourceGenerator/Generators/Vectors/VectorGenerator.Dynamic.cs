@@ -9,10 +9,11 @@ public partial class VectorGenerator
     /// vector and the count of its components are a part of its type, so the type itself is the only one that
     /// knows them and a caller that does not know the type of the vector reaches them by calling the member of
     /// a visitor that matches them. The value of the vector is handed to the member: it receives the register of
-    /// a vector that keeps its value in one and the vector itself when it has no register, and the visitor that
-    /// returns a vector builds it out of the type of the vector, which the constraints of its members name.
-    /// Every vector of a number type implements the interface, a mask does not: the constraint of a member of a
-    /// visitor names the vector interface of a number and a mask implements the one of a bool instead.
+    /// a vector that keeps its value in one and the vector itself when it has no register, and a member that
+    /// takes two vectors hands both of them over the same way. The visitor that returns a vector builds it out
+    /// of the type of the vector, which the constraints of its members name. Every vector of a number type
+    /// implements the interface, a mask does not: the constraint of a member of a visitor names the vector
+    /// interface of a number and a mask implements the one of a bool instead.
     /// </summary>
     /// <param name="typ">The type of the component of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -27,11 +28,15 @@ public partial class VectorGenerator
         var scalar = typ.compType;
         var reg = VectorGenShared.Register(typ, size, storeVariant);
         // a vector without a register hands the vector itself to the visitor, the other ones hand it the
-        // register they keep their value in
+        // register they keep their value in, the members that take two vectors hand both of them over
         var underlying = reg == 0
             ? $"V.AcceptSoft<{type}, {scalar}>(self)"
             : $"V.Accept<{type}, {scalar}>(self.vector)";
+        var underlying2 = reg == 0
+            ? $"V.AcceptSoft<{type}, {scalar}>(a, b)"
+            : $"V.Accept<{type}, {scalar}>(a.vector, b.vector)";
         var dimension = $"V.AcceptVector{size}<{type}, {scalar}>(self)";
+        var dimension2 = $"V.AcceptVector{size}<{type}, {scalar}>(a, b)";
 
         var sb = new StringBuilder();
 
@@ -60,6 +65,16 @@ public partial class VectorGenerator
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {type} VisitDimensionReturnVector<V>(in {type} self) " +
                       $"where V : IVectorDimensionVisitorReturnVector => {dimension};");
+        sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {type} VisitUnderlyingReturnVector<V>(in {type} a, in {type} b) " +
+                      $"where V : IVectorUnderlyingVisitor2ReturnVector => {underlying2};");
+        sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {type} VisitDimensionReturnVector<V>(in {type} a, in {type} b) " +
+                      $"where V : IVectorDimensionVisitor2ReturnVector => {dimension2};");
         sb.AppendLine("}");
         return sb.ToString();
     }

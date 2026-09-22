@@ -49,6 +49,28 @@ public interface IDynamicVector<TSelf>
     /// <returns>The vector that the member of <typeparamref name="V"/> builds</returns>
     public static abstract TSelf VisitDimensionReturnVector<V>(in TSelf self)
         where V : IVectorDimensionVisitorReturnVector;
+
+    /// <summary>
+    /// Dispatches the width of the register of two vectors to <typeparamref name="V"/>, the result is a vector
+    /// of the type of the vectors themselves
+    /// </summary>
+    /// <typeparam name="V">The type of the visitor to dispatch to</typeparam>
+    /// <param name="a">The first vector to hand to the visitor</param>
+    /// <param name="b">The second one</param>
+    /// <returns>The vector that the member of <typeparamref name="V"/> builds</returns>
+    public static abstract TSelf VisitUnderlyingReturnVector<V>(in TSelf a, in TSelf b)
+        where V : IVectorUnderlyingVisitor2ReturnVector;
+
+    /// <summary>
+    /// Dispatches the count of the components of two vectors to <typeparamref name="V"/>, the result is a vector
+    /// of the type of the vectors themselves
+    /// </summary>
+    /// <typeparam name="V">The type of the visitor to dispatch to</typeparam>
+    /// <param name="a">The first vector to hand to the visitor</param>
+    /// <param name="b">The second one</param>
+    /// <returns>The vector that the member of <typeparamref name="V"/> builds</returns>
+    public static abstract TSelf VisitDimensionReturnVector<V>(in TSelf a, in TSelf b)
+        where V : IVectorDimensionVisitor2ReturnVector;
 }
 
 /// <summary>
@@ -181,7 +203,7 @@ public interface IVectorUnderlyingVisitorReturnVector
     public static abstract TVector AcceptSoft<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVectorSoftUnderlying
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
 
     /// <summary>
     /// Returns a vector of the type of the vector whose register is 64 bits wide
@@ -193,7 +215,7 @@ public interface IVectorUnderlyingVisitorReturnVector
     public static abstract TVector Accept<TVector, TScalar>(in Vector64<TScalar> vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector64Underlying<TVector>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
 
     /// <summary>
     /// Returns a vector of the type of the vector whose register is 128 bits wide
@@ -205,7 +227,7 @@ public interface IVectorUnderlyingVisitorReturnVector
     public static abstract TVector Accept<TVector, TScalar>(in Vector128<TScalar> vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector128Underlying<TVector>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
 
     /// <summary>
     /// Returns a vector of the type of the vector whose register is 256 bits wide
@@ -217,7 +239,7 @@ public interface IVectorUnderlyingVisitorReturnVector
     public static abstract TVector Accept<TVector, TScalar>(in Vector256<TScalar> vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector256Underlying<TVector>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
 }
 
 /// <summary>
@@ -239,7 +261,7 @@ public interface IVectorDimensionVisitorReturnVector
     public static abstract TVector AcceptVector2<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
 
     /// <summary>
     /// Returns a vector of the type of the vector that has 3 components
@@ -251,7 +273,7 @@ public interface IVectorDimensionVisitorReturnVector
     public static abstract TVector AcceptVector3<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
 
     /// <summary>
     /// Returns a vector of the type of the vector that has 4 components
@@ -263,5 +285,121 @@ public interface IVectorDimensionVisitorReturnVector
     public static abstract TVector AcceptVector4<TVector, TScalar>(in TVector vector)
         where TVector : unmanaged, IDynamicVector<TVector>,
         INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
-        where TScalar : unmanaged;
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+}
+
+/// <summary>
+/// A visitor the width of the register of a vector dispatches to, every member of it takes two values and
+/// returns a vector
+/// <para>A vector of a number type dispatches to the member of the width of its register, a vector without a
+/// register dispatches to <see cref="AcceptSoft{TVector,TScalar}"/> and the other ones to the member of the
+/// register they keep their value in</para>
+/// <para>The member of the visitor reaches the properties of the type of the vector and the two values that are
+/// handed to it, the registers of a vector that keeps its value in one and the vectors themselves when they
+/// have no register, and it builds the result out of the type of the vector: the underlying interface of the
+/// width is reachable through it, so a register can be turned back into a vector of that type</para>
+/// </summary>
+public interface IVectorUnderlyingVisitor2ReturnVector
+{
+    /// <summary>
+    /// Returns a vector of the type of the vector that has no register
+    /// </summary>
+    /// <typeparam name="TVector">The type of the vector that dispatched the call</typeparam>
+    /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
+    /// <param name="a">The value of the first vector that dispatched the call</param>
+    /// <param name="b">The value of the second one</param>
+    /// <returns>The vector the visitor builds</returns>
+    public static abstract TVector AcceptSoft<TVector, TScalar>(in TVector a, in TVector b)
+        where TVector : unmanaged, IDynamicVector<TVector>,
+        INumberVector<TVector, TScalar>, IVectorSoftUnderlying
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+
+    /// <summary>
+    /// Returns a vector of the type of the vector whose register is 64 bits wide
+    /// </summary>
+    /// <typeparam name="TVector">The type of the vector that dispatched the call</typeparam>
+    /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
+    /// <param name="a">The register that keeps the value of the first vector that dispatched the call</param>
+    /// <param name="b">The register that keeps the value of the second one</param>
+    /// <returns>The vector the visitor builds</returns>
+    public static abstract TVector Accept<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b)
+        where TVector : unmanaged, IDynamicVector<TVector>,
+        INumberVector<TVector, TScalar>, IVector64Underlying<TVector>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+
+    /// <summary>
+    /// Returns a vector of the type of the vector whose register is 128 bits wide
+    /// </summary>
+    /// <typeparam name="TVector">The type of the vector that dispatched the call</typeparam>
+    /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
+    /// <param name="a">The register that keeps the value of the first vector that dispatched the call</param>
+    /// <param name="b">The register that keeps the value of the second one</param>
+    /// <returns>The vector the visitor builds</returns>
+    public static abstract TVector Accept<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        where TVector : unmanaged, IDynamicVector<TVector>,
+        INumberVector<TVector, TScalar>, IVector128Underlying<TVector>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+
+    /// <summary>
+    /// Returns a vector of the type of the vector whose register is 256 bits wide
+    /// </summary>
+    /// <typeparam name="TVector">The type of the vector that dispatched the call</typeparam>
+    /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
+    /// <param name="a">The register that keeps the value of the first vector that dispatched the call</param>
+    /// <param name="b">The register that keeps the value of the second one</param>
+    /// <returns>The vector the visitor builds</returns>
+    public static abstract TVector Accept<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        where TVector : unmanaged, IDynamicVector<TVector>,
+        INumberVector<TVector, TScalar>, IVector256Underlying<TVector>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+}
+
+/// <summary>
+/// A visitor the count of the components of a vector dispatches to, every member of it takes two values and
+/// returns a vector
+/// <para>A vector of 2 components dispatches to <see cref="AcceptVector2{TVector,TScalar}"/>, a vector of 3
+/// components to the member of 3 and a vector of 4 components to the member of 4</para>
+/// <para>The member of the visitor reaches the properties of the type of the vector and the two values that are
+/// handed to it, and it builds the result out of the type of the vector</para>
+/// </summary>
+public interface IVectorDimensionVisitor2ReturnVector
+{
+    /// <summary>
+    /// Returns a vector of the type of the vector that has 2 components
+    /// </summary>
+    /// <typeparam name="TVector">The type of the vector that dispatched the call</typeparam>
+    /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
+    /// <param name="a">The value of the first vector that dispatched the call</param>
+    /// <param name="b">The value of the second one</param>
+    /// <returns>The vector the visitor builds</returns>
+    public static abstract TVector AcceptVector2<TVector, TScalar>(in TVector a, in TVector b)
+        where TVector : unmanaged, IDynamicVector<TVector>,
+        INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+
+    /// <summary>
+    /// Returns a vector of the type of the vector that has 3 components
+    /// </summary>
+    /// <typeparam name="TVector">The type of the vector that dispatched the call</typeparam>
+    /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
+    /// <param name="a">The value of the first vector that dispatched the call</param>
+    /// <param name="b">The value of the second one</param>
+    /// <returns>The vector the visitor builds</returns>
+    public static abstract TVector AcceptVector3<TVector, TScalar>(in TVector a, in TVector b)
+        where TVector : unmanaged, IDynamicVector<TVector>,
+        INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
+
+    /// <summary>
+    /// Returns a vector of the type of the vector that has 4 components
+    /// </summary>
+    /// <typeparam name="TVector">The type of the vector that dispatched the call</typeparam>
+    /// <typeparam name="TScalar">The type of a single component of the vector</typeparam>
+    /// <param name="a">The value of the first vector that dispatched the call</param>
+    /// <param name="b">The value of the second one</param>
+    /// <returns>The vector the visitor builds</returns>
+    public static abstract TVector AcceptVector4<TVector, TScalar>(in TVector a, in TVector b)
+        where TVector : unmanaged, IDynamicVector<TVector>,
+        INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>;
 }
