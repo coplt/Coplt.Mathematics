@@ -6,31 +6,32 @@ namespace Coplt.Mathematics
     public static partial class math
     {
         /// <summary>
-        /// Returns the absolute value of every component
+        /// Returns the absolute value of every component of the value
         /// </summary>
-        /// <param name="vector">The vector</param>
-        /// <typeparam name="T">The type of the vector</typeparam>
-        /// <returns>The absolute value of the vector</returns>
+        /// <param name="value">The value</param>
+        /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
+        /// <returns>The value whose every component is the absolute value of the component of the value</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T abs<T>(in T vector) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_abs>(vector);
+        public static T abs<T>(in T value) where T : unmanaged, INumberAlgebraDispatch<T>
+            => T.Visit_Self<impl_abs>(value);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.abs{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T abs<T>([In] this ref T vector) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_abs>(vector);
+        public static T abs<T>([In] this ref T value) where T : unmanaged, INumberAlgebraDispatch<T>
+            => T.Visit_Self<impl_abs>(value);
     }
 }
 
 namespace Coplt.Mathematics.Implements
 {
     /// <summary>
-    /// The absolute value of a value: the register of a vector is handed to the member of the visitor that
-    /// matches the width of it and the default members of the visitor reach the member of the scalar for every
-    /// component of a value that is handed over as a vector
+    /// The absolute value of a value
+    /// <para>The value of a vector that keeps it in a register reaches the member of the visitor that matches
+    /// the width of the register, the value of every other vector reaches the member of the scalar for every
+    /// component of it and the value of a matrix reaches it for every component of every one of its columns</para>
     /// </summary>
     internal struct impl_abs : INumberAlgebraVisitor_Self_Self<impl_abs>
     {

@@ -11,18 +11,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Clamps every component of the vector to the inclusive range of <paramref name="min"/> and
-    /// <paramref name="max"/>
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <param name="min">The lower bound of every component</param>
-    /// <param name="max">The upper bound of every component</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The clamped vector</returns>
-    [MethodImpl(256)]
-    public static T clamp<T>(in T v, in T min, in T max) where T : unmanaged, IVectorArithmetic<T> => T.clamp(v, min, max);
-
-    /// <summary>
     /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, <paramref name="t"/> is the
     /// interpolation factor
     /// </summary>

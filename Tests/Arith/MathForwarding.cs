@@ -7,8 +7,9 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The arithmetic members of a vector are members of the vector itself and the members of the math class reach
-/// them as well. None of the forwarded members needs the type of a single component, so the compiler infers the
-/// vector type from the argument and a call of them does not have to name it.
+/// them as well, the members that dispatch the value of a value reach the value of a matrix as well. None of the
+/// forwarded members needs the type of a single component, so the compiler infers the vector type from the
+/// argument and a call of them does not have to name it.
 /// </summary>
 public class TestMathArithForwarding
 {
@@ -76,6 +77,7 @@ public class TestMathArithForwarding
         math.sign(m);
         math.min(m, m);
         math.max(m, m);
+        math.clamp(m, m, m);
     }
 
     [Test]
@@ -104,6 +106,11 @@ public class TestMathArithForwarding
             Assert.That(math.min(new int3(1, 2, 3), new int3(3, 2, 1)), Is.EqualTo(new int3(1, 2, 1)));
             Assert.That(math.max(new int3(1, 2, 3), new int3(3, 2, 1)), Is.EqualTo(new int3(3, 2, 3)));
             Assert.That(math.clamp(new int3(-1, 2, 5), new int3(0), new int3(3)), Is.EqualTo(new int3(0, 2, 3)));
+            // a vector whose register is 64 bits wide and one that has no register reach the member of their
+            // own kind
+            Assert.That(math.clamp(new int2(-1, 2), new int2(0), new int2(1)), Is.EqualTo(new int2(0, 1)));
+            Assert.That(math.clamp(new float3s(-1f, 2f, 5f), new float3s(0f, 0f, 0f), new float3s(3f, 3f, 3f)),
+                Is.EqualTo(new float3s(0f, 2f, 3f)));
             Assert.That(math.square(new int3(2, 3, 4)), Is.EqualTo(new int3(4, 9, 16)));
             Assert.That(math.lerp(default(float3), new float3(2f), new float3(0.5f)), Is.EqualTo(new float3(1f)));
             Assert.That(math.unlerp(new float3(1f), default, new float3(2f)), Is.EqualTo(new float3(0.5f)));
@@ -150,6 +157,19 @@ public class TestMathArithForwarding
             var d = new float3x2(new float3(9f, 2f, 1f), new float3(4f, 8f, 6f));
             Assert.That(math.min(c, d), Is.EqualTo(new float3x2(new float3(1f, 2f, 1f), new float3(4f, 2f, 6f))));
             Assert.That(math.max(c, d), Is.EqualTo(new float3x2(new float3(9f, 5f, 3f), new float3(4f, 8f, 6f))));
+            // a member that takes three values reaches the value of every column of a matrix as well
+            Assert.That(math.clamp(c, new float3x2(new float3(1f, 2f, 2f), new float3(2f, 2f, 2f)),
+                    new float3x2(new float3(8f, 8f, 8f), new float3(8f, 4f, 4f))),
+                Is.EqualTo(new float3x2(new float3(1f, 5f, 3f), new float3(4f, 2f, 4f))));
+            var e = new float3x3s(new float3s(1f, 5f, 3f), new float3s(4f, 2f, 6f), new float3s(7f, 8f, 9f));
+            Assert.That(math.clamp(e, new float3x3s(new float3s(2f, 2f, 2f), new float3s(2f, 2f, 2f),
+                    new float3s(2f, 2f, 2f)), new float3x3s(new float3s(6f, 6f, 6f), new float3s(6f, 6f, 6f),
+                    new float3s(6f, 6f, 6f))),
+                Is.EqualTo(new float3x3s(new float3s(2f, 5f, 3f), new float3s(4f, 2f, 6f),
+                    new float3s(6f, 6f, 6f))));
+            Assert.That(math.clamp(new int2x2(new int2(-1, 2), new int2(5, 0)), new int2x2(new int2(0), new int2(0)),
+                    new int2x2(new int2(3), new int2(3))),
+                Is.EqualTo(new int2x2(new int2(0, 2), new int2(3, 0))));
         }
     }
 

@@ -55,6 +55,25 @@ public class TestDynamicVector
             => TVector.FromUnderlying(b.As<TScalar, byte>());
     }
 
+    /// <summary>Builds the value that dispatched the call out of the third of the three values it is handed</summary>
+    private readonly struct ThirdVisitor : INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>
+    {
+        /// <summary>The third of the three scalars</summary>
+        static TScalar INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptScalar<TScalar>(TScalar a, TScalar b, TScalar c) => c;
+
+        /// <summary>Builds the third value out of its register of 64 bits</summary>
+        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b, in Vector64<TScalar> c)
+            => TVector.FromUnderlying(c.As<TScalar, byte>());
+
+        /// <summary>Builds the third value out of its register of 128 bits</summary>
+        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b, in Vector128<TScalar> c)
+            => TVector.FromUnderlying(c.As<TScalar, byte>());
+
+        /// <summary>Builds the third value out of its register of 256 bits</summary>
+        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b, in Vector256<TScalar> c)
+            => TVector.FromUnderlying(c.As<TScalar, byte>());
+    }
+
     /// <summary>
     /// Tells which member of the visitor the dispatch reached: the register of a vector is replaced by the one
     /// of the vector, every other value reaches the scalar of the visitor for every one of its components and
@@ -93,6 +112,12 @@ public class TestDynamicVector
         where T : unmanaged, INumberAlgebraDispatch<T>
         where V : INumberAlgebraVisitor_Self_Self_Self<V>
         => T.Visit_Self<V>(a, b);
+
+    /// <summary>Dispatches the three values of a vector or of a matrix to a visitor</summary>
+    private static T Visit<T, V>(in T a, in T b, in T c)
+        where T : unmanaged, INumberAlgebraDispatch<T>
+        where V : INumberAlgebraVisitor_Self_Self_Self_Self<V>
+        => T.Visit_Self<V>(a, b, c);
 
     /// <summary>
     /// Counts the members that dispatch the value of the type: the member of an explicit implementation of an
@@ -140,9 +165,9 @@ public class TestDynamicVector
                     new float3x3s(new float3s(1, 2, 3), new float3s(4, 5, 6), new float3s(7, 8, 9))),
                 Is.EqualTo(new float3x3s(new float3s(1, 2, 3), new float3s(4, 5, 6), new float3s(7, 8, 9))));
             // every member of a visitor names the algebra of a number, so a mask does not dispatch at all
-            Assert.That(CountVisit<float2>(), Is.EqualTo(2));
-            Assert.That(CountVisit<float2x2>(), Is.EqualTo(2));
-            Assert.That(CountVisit<float3x2>(), Is.EqualTo(2));
+            Assert.That(CountVisit<float2>(), Is.EqualTo(3));
+            Assert.That(CountVisit<float2x2>(), Is.EqualTo(3));
+            Assert.That(CountVisit<float3x2>(), Is.EqualTo(3));
             Assert.That(CountVisit<b32v2>(), Is.EqualTo(0));
             Assert.That(CountVisit<b16m2x2>(), Is.EqualTo(0));
         }
@@ -198,6 +223,35 @@ public class TestDynamicVector
             // of the width of its register, and a mask dispatches nothing at all
             Assert.That(Visit<float2x2, WhichVisitor>(new float2x2(new float2(1, 2), new float2(3, 4))),
                 Is.EqualTo(new float2x2(new float2(1, 1), new float2(1, 1))));
+        }
+    }
+
+    [Test]
+    public void Third()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // a visitor of three values reaches the member of three values, of the kind of the value it reaches
+            Assert.That(Visit<float2, ThirdVisitor>(new float2(1, 2), new float2(3, 4), new float2(5, 6)),
+                Is.EqualTo(new float2(5, 6)));
+            Assert.That(Visit<float3, ThirdVisitor>(new float3(1, 2, 3), new float3(4, 5, 6), new float3(7, 8, 9)),
+                Is.EqualTo(new float3(7, 8, 9)));
+            Assert.That(Visit<double4, ThirdVisitor>(new double4(1, 2, 3, 4), new double4(5, 6, 7, 8),
+                    new double4(9, 10, 11, 12)),
+                Is.EqualTo(new double4(9, 10, 11, 12)));
+            Assert.That(Visit<int2s, ThirdVisitor>(new int2s(1, 2), new int2s(3, 4), new int2s(5, 6)),
+                Is.EqualTo(new int2s(5, 6)));
+            Assert.That(Visit<float3s, ThirdVisitor>(new float3s(1, 2, 3), new float3s(4, 5, 6),
+                    new float3s(7, 8, 9)),
+                Is.EqualTo(new float3s(7, 8, 9)));
+            Assert.That(Visit<half2, ThirdVisitor>(new half2((Half)1, (Half)2), new half2((Half)3, (Half)4),
+                    new half2((Half)5, (Half)6)),
+                Is.EqualTo(new half2((Half)5, (Half)6)));
+            // every column of a matrix is handed over the same way
+            var a = new float3x2(new float3(1, 2, 3), new float3(4, 5, 6));
+            var b = new float3x2(new float3(7, 8, 9), new float3(10, 11, 12));
+            var c = new float3x2(new float3(13, 14, 15), new float3(16, 17, 18));
+            Assert.That(Visit<float3x2, ThirdVisitor>(a, b, c), Is.EqualTo(c));
         }
     }
 }

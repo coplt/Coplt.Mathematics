@@ -6,12 +6,12 @@ namespace Coplt.Mathematics
     public static partial class math
     {
         /// <summary>
-        /// Returns the larger of the two vectors component by component
+        /// Returns the larger of the two values component by component
         /// </summary>
-        /// <param name="a">The vector a</param>
-        /// <param name="b">The vector b</param>
-        /// <typeparam name="T">The type of the vector</typeparam>
-        /// <returns>The component wise maximum</returns>
+        /// <param name="a">The first of the two values</param>
+        /// <param name="b">The second of the two values</param>
+        /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
+        /// <returns>The larger of the two values component by component</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T max<T>(in T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_max>(a, b);
@@ -29,9 +29,10 @@ namespace Coplt.Mathematics
 namespace Coplt.Mathematics.Implements
 {
     /// <summary>
-    /// The larger of two values: the registers of the vectors are handed to the member of the visitor that
-    /// matches their width and the default members of the visitor reach the member of the scalar for every
-    /// component of a value that is handed over as a vector
+    /// The larger of two values
+    /// <para>The values of the vectors that keep them in a register reach the member of the visitor that matches
+    /// the width of the register, the values of every other vector reach the member of the scalar for every
+    /// component of them and the values of a matrix reach it for every component of every one of its columns</para>
     /// </summary>
     internal struct impl_max : INumberAlgebraVisitor_Self_Self_Self<impl_max>
     {

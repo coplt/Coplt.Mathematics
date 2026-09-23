@@ -37,6 +37,9 @@ public partial class VectorGenerator
         var two = reg == 0
             ? $"V.AcceptVector{size}<{type}, {scalar}>(a, b)"
             : $"V.AcceptVector<{type}, {scalar}>(a.vector, b.vector)";
+        var three = reg == 0
+            ? $"V.AcceptVector{size}<{type}, {scalar}>(a, b, c)"
+            : $"V.AcceptVector<{type}, {scalar}>(a.vector, b.vector, c.vector)";
 
         var sb = new StringBuilder();
 
@@ -51,6 +54,11 @@ public partial class VectorGenerator
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b)");
         sb.AppendLine($"        => {two};");
+        sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
+        sb.AppendLine($"        => {three};");
         sb.AppendLine();
         sb.AppendLine("    #endregion");
         sb.AppendLine();

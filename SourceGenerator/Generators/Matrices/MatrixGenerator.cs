@@ -623,6 +623,11 @@ public class MatrixGenerator : IIncrementalGenerator
             sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b)");
             sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
             sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
+            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b, c);");
+            sb.AppendLine();
             sb.AppendLine("    #endregion");
             sb.AppendLine();
         }
