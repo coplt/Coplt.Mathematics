@@ -201,6 +201,25 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine("        }");
         sb.AppendLine("    }");
         sb.AppendLine();
+        // the component of the matrix at a row and a column is a member of its own, the row of it leads the
+        // name so that the texts of two matrices of a different shape read the same
+        for (var r = 0; r < rows; r++)
+        {
+            for (var c = 0; c < cols; c++)
+            {
+                sb.AppendLine($"    /// <summary>The component of the matrix at the row <c>{r}</c> and the " +
+                              $"column <c>{c}</c></summary>");
+                sb.AppendLine($"    public {scalar} m{r}{c}");
+                sb.AppendLine("    {");
+                sb.AppendLine($"        {attr}");
+                sb.AppendLine($"        readonly get => c{c}.{Typ.xyzw[r]};");
+                sb.AppendLine($"        {attr}");
+                sb.AppendLine($"        set => c{c}.{Typ.xyzw[r]} = value;");
+                sb.AppendLine("    }");
+                sb.AppendLine();
+            }
+        }
+
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    static {col} Algebras.IMatrixVector<{type}, {col}>.get_vector(in {type} self, int column) => " +
@@ -358,12 +377,12 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
                 sb.AppendLine($"    static {col} Algebras.IMatrix{shape}Vector<{type}, {col}>.get_c{j}(in {type} self) => " +
-                              $"self[{j}];");
+                              $"self.c{j};");
                 sb.AppendLine();
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
                 sb.AppendLine($"    static void Algebras.IMatrix{shape}Vector<{type}, {col}>.set_c{j}(ref {type} self, in {col} value) => " +
-                              $"self[{j}] = value;");
+                              $"self.c{j} = value;");
                 sb.AppendLine();
             }
 
@@ -374,12 +393,12 @@ public class MatrixGenerator : IIncrementalGenerator
                     sb.AppendLine("    /// <inheritdoc/>");
                     sb.AppendLine($"    {attr}");
                     sb.AppendLine($"    static {scalar} Algebras.IMatrix{shape}Scalar<{type}, {scalar}>.get_m{r}{c}(in {type} self) => " +
-                                  $"self[{r}, {c}];");
+                                  $"self.c{c}.{Typ.xyzw[r]};");
                     sb.AppendLine();
                     sb.AppendLine("    /// <inheritdoc/>");
                     sb.AppendLine($"    {attr}");
                     sb.AppendLine($"    static void Algebras.IMatrix{shape}Scalar<{type}, {scalar}>.set_m{r}{c}(ref {type} self, {scalar} value) => " +
-                                  $"self[{r}, {c}] = value;");
+                                  $"self.c{c}.{Typ.xyzw[r]} = value;");
                     sb.AppendLine();
                 }
             }
