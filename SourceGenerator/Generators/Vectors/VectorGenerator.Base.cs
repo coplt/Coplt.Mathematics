@@ -95,7 +95,9 @@ public partial class VectorGenerator
         // the name of the interface of the kind of the vector in the algebra library
         string AlgebraIface() => bol
             ? "IBoolVector"
-            : typ.sig ? "ISignedNumberVector" : "INumberVector";
+            : typ.sig
+                ? "ISignedNumberVector"
+                : "INumberVector";
 
         // only one of the partial declarations of a type may carry the documentation of the type, so the
         // documentation that names the interfaces of every part lives on the base members
@@ -384,22 +386,26 @@ public partial class VectorGenerator
         sb.AppendLine();
         sb.AppendLine("    #region matrix");
         sb.AppendLine();
-        Prop("public static int Width", "1");
-        Prop("public static int Height", $"{size}");
+        Prop("public static int Columns", "1");
+        Prop("public static int Rows", $"{size}");
         Prop($"public static {type} Identity", one);
         Prop($"public static {type} VectorZero", "default");
         Prop($"public static {type} VectorOne", one);
         Prop($"public static {type} VectorTwo", two);
-        Fn($"public static {type} Vector({type} scalar)", "scalar");
-        Fn($"public static {type} Broadcast({type} scalar)", "scalar");
+        Fn($"public static {type} Vector(in {type} scalar)", "scalar");
+        Fn($"public static {type} Broadcast(in {type} scalar)", "scalar");
         Fn($"public static {type} Load(ReadOnlySpan<{type}> span)", "span[0]");
         Fn($"public static unsafe {type} Load({type}* ptr)", "*ptr");
-        Fn($"public static {type} get_vector(in {type} self, int index)", "self");
-        Method($"public static void set_vector(ref {type} self, int index, {type} value)", "self = value;");
-        Fn($"public static {scalar} get(in {type} self, int index)", "self[index]");
-        Method($"public static void set(ref {type} self, int index, {scalar} value)", "self[index] = value;");
-        Fn($"public static {scalar} get(in {type} self, int column, int row)", "self[row]");
-        Method($"public static void set(ref {type} self, int column, int row, {scalar} value)", "self[row] = value;");
+        Fn($"static {type} Algebras.IMatrixVector<{type}, {type}>.get_vector(in {type} self, int index)", "self");
+        Method($"static void Algebras.IMatrixVector<{type}, {type}>.set_vector(ref {type} self, int index, in {type} value)",
+            "self = value;");
+        Fn($"static {scalar} Algebras.IAlgebra<{type}, {scalar}>.get(in {type} self, int index)", "self[index]");
+        Method($"static void Algebras.IAlgebra<{type}, {scalar}>.set(ref {type} self, int index, {scalar} value)",
+            "self[index] = value;");
+        Fn($"static {scalar} Algebras.IMatrixScalar<{type}, {scalar}>.get(in {type} self, int row, int column)",
+            "self[row]");
+        Method($"static void Algebras.IMatrixScalar<{type}, {scalar}>.set(ref {type} self, int row, int column, {scalar} value)",
+            "self[row] = value;");
         sb.AppendLine("    #endregion");
 
         #endregion
