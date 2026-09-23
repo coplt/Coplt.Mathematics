@@ -92,6 +92,11 @@ public partial class VectorGenerator
         // the members that implement one of the vector interfaces inherit the documentation from it
         void InheritDoc() => sb.AppendLine("    /// <inheritdoc/>");
 
+        // the name of the interface of the kind of the vector in the algebra library
+        string AlgebraIface() => bol
+            ? "IBoolVector"
+            : typ.sig ? "ISignedNumberVector" : "INumberVector";
+
         // only one of the partial declarations of a type may carry the documentation of the type, so the
         // documentation that names the interfaces of every part lives on the base members
         var type2 = VectorGenShared.VecName(typ, 2, false);
@@ -210,13 +215,22 @@ public partial class VectorGenerator
         // the converter of the vector is generated beside it, it lives in the namespace the converters share
         // and the attribute names it in full
         sb.AppendLine($"[JsonConverter(typeof({VectorGenerator.JsonNamespace}.{type}JsonConverter))]");
-        sb.AppendLine($"public partial struct {type} :");
         // the interface of the size of the vector names the size and the components of the vector beside the
-        // members of the kind of the vector
-        sb.AppendLine($"    IVector{size}<{type}, {scalar}>,");
-        sb.AppendLine($"    {iface}<{type}, {scalar}>,");
-        sb.AppendLine($"    IEqualityOperators<{type}, {type}, {boolType}>,");
-        sb.AppendLine($"    IComparisonOperators<{type}, {type}, {boolType}>");
+        // members of the kind of the vector, the algebra interfaces are implemented beside the older ones and
+        // the two families stay beside each other until the older one is migrated away
+        var ifaces = new List<string>
+        {
+            $"IVector{size}<{type}, {scalar}>",
+            $"{iface}<{type}, {scalar}>",
+            $"IEqualityOperators<{type}, {type}, {boolType}>",
+            $"IComparisonOperators<{type}, {type}, {boolType}>",
+            $"Algebras.IVector{size}<{type}, {scalar}>",
+            $"Algebras.{AlgebraIface()}<{type}, {scalar}>",
+        };
+        if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
+        if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
+        sb.AppendLine($"public partial struct {type} :");
+        sb.AppendLine("    " + string.Join(",\n    ", ifaces));
         sb.AppendLine("{");
 
         #region Meta
@@ -682,6 +696,9 @@ public partial class VectorGenerator
             // the first two components are declared by the interface of 2 components and every longer one adds
             // its own component to it
             var components = $"IVector{(i < 2 ? 2 : i + 1)}Components<{type}, {scalar}>";
+            // the algebra library declares the components of the size of the vector on the interface of the
+            // size itself, so the same member is implemented explicitly for it as well
+            var algebra = $"Algebras.IVector{size}<{type}, {scalar}>";
             foreach (var name in new[] { comp[i], Typ.rgba[i] })
             {
                 InheritDoc();
@@ -692,6 +709,18 @@ public partial class VectorGenerator
                 sb.AppendLine($"    {attr}");
                 sb.AppendLine($"    static void {components}.set_{name}(ref {type} self, {scalar} value) => self.{name} = value;");
                 sb.AppendLine();
+                // the algebra interface only declares the spelling of the position of a component
+                if (name == comp[i])
+                {
+                    InheritDoc();
+                    sb.AppendLine($"    {attr}");
+                    sb.AppendLine($"    static {scalar} {algebra}.get_{name}(in {type} self) => self.{name};");
+                    sb.AppendLine();
+                    InheritDoc();
+                    sb.AppendLine($"    {attr}");
+                    sb.AppendLine($"    static void {algebra}.set_{name}(ref {type} self, {scalar} value) => self.{name} = value;");
+                    sb.AppendLine();
+                }
             }
         }
 

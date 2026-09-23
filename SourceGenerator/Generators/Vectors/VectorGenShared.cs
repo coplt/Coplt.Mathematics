@@ -97,6 +97,9 @@ internal static class VectorGenShared
 
         sb.AppendLine("using Coplt.Mathematics;");
         sb.AppendLine("using Coplt.Mathematics.Generics;");
+        // the algebra interfaces are spelled out through the alias, they are implemented beside the older
+        // interfaces of the generics namespace while the older ones are migrated away
+        sb.AppendLine("using Algebras = Coplt.Mathematics.Algebras;");
         if (simdHelpers) sb.AppendLine("using Coplt.Mathematics.Simd;");
         sb.AppendLine("using Coplt.Shader;");
         sb.AppendLine();
