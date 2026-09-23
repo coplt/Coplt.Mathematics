@@ -64,6 +64,38 @@ public interface IVector2<TSelf, TScalar> : IVector2<TSelf>, IVector<TSelf, TSca
     public static abstract TSelf Create(TScalar x, TScalar y);
 
     #endregion
+
+    #region Components
+
+    /// <summary>
+    /// Returns the <c>x</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>x</c> component</returns>
+    public static abstract TScalar get_x(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>x</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>x</c> component</param>
+    public static abstract void set_x(ref TSelf self, TScalar value);
+
+    /// <summary>
+    /// Returns the <c>y</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>y</c> component</returns>
+    public static abstract TScalar get_y(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>y</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>y</c> component</param>
+    public static abstract void set_y(ref TSelf self, TScalar value);
+
+    #endregion
 }
 
 #endregion
@@ -87,6 +119,52 @@ public interface IVector3<TSelf, TScalar> : IVector3<TSelf>, IVector<TSelf, TSca
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector</returns>
     public static abstract TSelf Create(TScalar x, TScalar y, TScalar z);
+
+    #endregion
+
+    #region Components
+
+    /// <summary>
+    /// Returns the <c>x</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>x</c> component</returns>
+    public static abstract TScalar get_x(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>x</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>x</c> component</param>
+    public static abstract void set_x(ref TSelf self, TScalar value);
+
+    /// <summary>
+    /// Returns the <c>y</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>y</c> component</returns>
+    public static abstract TScalar get_y(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>y</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>y</c> component</param>
+    public static abstract void set_y(ref TSelf self, TScalar value);
+
+    /// <summary>
+    /// Returns the <c>z</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>z</c> component</returns>
+    public static abstract TScalar get_z(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>z</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>z</c> component</param>
+    public static abstract void set_z(ref TSelf self, TScalar value);
 
     #endregion
 }
@@ -151,6 +229,66 @@ public interface IVector4<TSelf, TScalar> : IVector4<TSelf>, IVector<TSelf, TSca
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector</returns>
     public static abstract TSelf Create(TScalar x, TScalar y, TScalar z, TScalar w);
+
+    #endregion
+
+    #region Components
+
+    /// <summary>
+    /// Returns the <c>x</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>x</c> component</returns>
+    public static abstract TScalar get_x(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>x</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>x</c> component</param>
+    public static abstract void set_x(ref TSelf self, TScalar value);
+
+    /// <summary>
+    /// Returns the <c>y</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>y</c> component</returns>
+    public static abstract TScalar get_y(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>y</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>y</c> component</param>
+    public static abstract void set_y(ref TSelf self, TScalar value);
+
+    /// <summary>
+    /// Returns the <c>z</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>z</c> component</returns>
+    public static abstract TScalar get_z(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>z</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>z</c> component</param>
+    public static abstract void set_z(ref TSelf self, TScalar value);
+
+    /// <summary>
+    /// Returns the <c>w</c> component of <paramref name="self"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <returns>The <c>w</c> component</returns>
+    public static abstract TScalar get_w(in TSelf self);
+
+    /// <summary>
+    /// Sets the <c>w</c> component of <paramref name="self"/> to <paramref name="value"/>
+    /// </summary>
+    /// <param name="self">The vector</param>
+    /// <param name="value">The value of the <c>w</c> component</param>
+    public static abstract void set_w(ref TSelf self, TScalar value);
 
     #endregion
 }

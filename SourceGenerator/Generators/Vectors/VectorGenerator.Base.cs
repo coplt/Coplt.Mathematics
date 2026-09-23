@@ -94,8 +94,6 @@ public partial class VectorGenerator
 
         // only one of the partial declarations of a type may carry the documentation of the type, so the
         // documentation that names the interfaces of every part lives on the base members
-        var get = VectorGenShared.SwizzleTypes(typ, size, false, storeVariant);
-        var set = VectorGenShared.SwizzleTypes(typ, size, true, storeVariant);
         var type2 = VectorGenShared.VecName(typ, 2, false);
         var type3 = VectorGenShared.VecName(typ, 3, false);
         var type4 = VectorGenShared.VecName(typ, 4, false);
@@ -191,12 +189,7 @@ public partial class VectorGenerator
             parts.Add($"the arithmetic members implement {string.Join(" and ", arith)}");
         }
 
-        parts.Add("the swizzle members implement " +
-                  VectorGenShared.IfaceRef($"IVectorGetSwizzleForVec{size}", get.Params, get.Args) + " and " +
-                  VectorGenShared.IfaceRef($"IVectorSetSwizzleForVec{size}", set.Params, set.Args));
-
-        // the swizzle interfaces are referenced by the documentation and implemented by the swizzle members
-        VectorGenShared.FileHeader(sb, false, true, true);
+        VectorGenShared.FileHeader(sb, false, true);
         sb.AppendLine("/// <summary>");
         sb.AppendLine($"/// <c>{type}</c> is a vector of {size} <see cref=\"{scalar}\"/> components");
         if (pad || simd)
@@ -330,6 +323,69 @@ public partial class VectorGenerator
         }
 
         sb.AppendLine();
+        sb.AppendLine("    #endregion");
+
+        #endregion
+
+        #region matrix
+
+        // a vector is a matrix of a single column, so the view of it as a matrix is the vector itself: the
+        // members below are the ones the matrix interfaces of the vector need, the ones that take a vector
+        // reach the value it holds and the width of the matrix is a single column
+        void Prop(string decl, string expr)
+        {
+            InheritDoc();
+            sb.AppendLine($"    {decl}");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => {expr};");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        void Method(string decl, string body)
+        {
+            InheritDoc();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    {decl}");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {body}");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        void Fn(string decl, string expr)
+        {
+            InheritDoc();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    {decl} => {expr};");
+            sb.AppendLine();
+        }
+
+        // the vector itself is the value of the only column of the matrix, and a mask reaches its true and its
+        // false instead of the zero and the one of a number
+        var one = bol ? "True" : "One";
+        var two = bol ? "True" : "Two";
+
+        sb.AppendLine();
+        sb.AppendLine("    #region matrix");
+        sb.AppendLine();
+        Prop("public static int Width", "1");
+        Prop("public static int Height", $"{size}");
+        Prop($"public static {type} Identity", one);
+        Prop($"public static {type} VectorZero", "default");
+        Prop($"public static {type} VectorOne", one);
+        Prop($"public static {type} VectorTwo", two);
+        Fn($"public static {type} Vector({type} scalar)", "scalar");
+        Fn($"public static {type} Broadcast({type} scalar)", "scalar");
+        Fn($"public static {type} Load(ReadOnlySpan<{type}> span)", "span[0]");
+        Fn($"public static unsafe {type} Load({type}* ptr)", "*ptr");
+        Fn($"public static {type} get_vector(in {type} self, int index)", "self");
+        Method($"public static void set_vector(ref {type} self, int index, {type} value)", "self = value;");
+        Fn($"public static {scalar} get(in {type} self, int index)", "self[index]");
+        Method($"public static void set(ref {type} self, int index, {scalar} value)", "self[index] = value;");
+        Fn($"public static {scalar} get(in {type} self, int column, int row)", "self[row]");
+        Method($"public static void set(ref {type} self, int column, int row, {scalar} value)", "self[row] = value;");
         sb.AppendLine("    #endregion");
 
         #endregion

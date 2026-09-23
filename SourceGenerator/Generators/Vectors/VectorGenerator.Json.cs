@@ -26,7 +26,7 @@ public partial class VectorGenerator
         var getter = $"reader.Get{typ.jsonType}()";
 
         var sb = new StringBuilder();
-        VectorGenShared.FileHeader(sb, false, false, true, VectorGenerator.JsonNamespace);
+        VectorGenShared.FileHeader(sb, false, true, VectorGenerator.JsonNamespace);
         // the converter reads and writes the members of the vector, it can only run on the cpu
         sb.AppendLine("[CpuOnly]");
         sb.AppendLine($"public class {type}JsonConverter : JsonConverter<{type}>");

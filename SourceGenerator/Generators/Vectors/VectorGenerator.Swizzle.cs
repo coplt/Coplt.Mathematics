@@ -9,9 +9,8 @@ public partial class VectorGenerator
     /// <summary>
     /// Generates the swizzle members of the vector described by <paramref name="typ"/>. Every combination of the
     /// components is a member, the digits of the name are the indices of the components so <c>01</c> is <c>xy</c>,
-    /// and both spellings of a combination, <c>xyzw</c> and <c>rgba</c>, are declared on the same member. The
-    /// members implement the swizzle interfaces of <c>Coplt.Mathematics.Generics.Swizzle</c>. They are emitted
-    /// into their own file, so the base members and the arithmetic members stay separate.
+    /// and both spellings of a combination, <c>xyzw</c> and <c>rgba</c>, are declared on the same member. They
+    /// are emitted into their own file, so the base members and the arithmetic members stay separate.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -35,17 +34,7 @@ public partial class VectorGenerator
         var srcPad = v64 || srcLanes > size;
         var padIdx = v64 ? 2 : srcLanes - 1;
 
-        // the type parameters and the type arguments of the interfaces, the same sized type is the first one,
-        // a combination of another size is a vector without the storage variant
-        var get = VectorGenShared.SwizzleTypes(typ, size, false, storeVariant);
-        var set = VectorGenShared.SwizzleTypes(typ, size, true, storeVariant);
-        var getArgs = get.Args;
-        var setArgs = set.Args;
-
         var sb = new StringBuilder();
-
-        // the members inherit their documentation from the interface they implement
-        void InheritDoc() => sb.AppendLine("    /// <inheritdoc/>");
 
         // the digits of every combination of the components, the last digit is the least significant one
         List<int[]> Combinations(int count)
@@ -85,10 +74,8 @@ public partial class VectorGenerator
 
         // the documentation of the type is carried by the declaration of the base members, only one of the
         // partial declarations of a type may have it
-        VectorGenShared.FileHeader(sb, false, true);
-        sb.AppendLine($"public partial struct {type} :");
-        sb.AppendLine($"    IVectorGetSwizzleForVec{size}<{string.Join(", ", getArgs)}>,");
-        sb.AppendLine($"    IVectorSetSwizzleForVec{size}<{string.Join(", ", setArgs)}>");
+        VectorGenShared.FileHeader(sb, false);
+        sb.AppendLine($"public partial struct {type}");
         sb.AppendLine("{");
 
         for (var dst = 2; dst <= 4; dst++)
@@ -176,7 +163,7 @@ public partial class VectorGenerator
                 // permutes the vector, so a setter can assign the permuted value to the whole vector
                 var invName = VectorGenShared.Join(size, i => Typ.xyzw[inv[i]], "");
 
-                InheritDoc();
+                sb.AppendLine($"    /// <summary>The <c>{name}</c> swizzle of the vector, it is of the type <see cref=\"{ret}\"/></summary>");
                 sb.AppendLine(writable ? $"    public {ret} {name}" : $"    public readonly {ret} {name}");
                 sb.AppendLine("    {");
                 sb.AppendLine($"        {attr}");
@@ -268,8 +255,7 @@ public partial class VectorGenerator
                 sb.AppendLine("    }");
                 sb.AppendLine();
 
-                // the rgba spelling of a combination is a spelling of the member itself, it is not a part of the
-                // interface of the combination
+                // the rgba spelling of a combination is a spelling of the member itself
                 sb.AppendLine($"    /// <summary>The <c>{colorName}</c> swizzle of the vector, it is the same as <see cref=\"{name}\"/></summary>");
                 sb.AppendLine(writable
                     ? $"    public {ret} {colorName}"
@@ -285,23 +271,6 @@ public partial class VectorGenerator
 
                 sb.AppendLine("    }");
                 sb.AppendLine();
-
-                // the member of the interface of the combination forwards to the property of it. It replaces a
-                // property, so it is implemented explicitly and it does not become a part of the surface of the
-                // type itself.
-                var digitsName = VectorGenShared.Join(dst, i => ((char)('0' + digits[i])).ToString(), "");
-                var getIface = $"IVectorGetSwizzle{digitsName}<{type}, {ret}>";
-                InheritDoc();
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {ret} {getIface}.get_{name}(in {type} self) => self.{name};");
-                if (writable)
-                {
-                    var setIface = $"IVectorSetSwizzle{digitsName}<{type}, {ret}>";
-                    sb.AppendLine();
-                    InheritDoc();
-                    sb.AppendLine($"    {attr}");
-                    sb.AppendLine($"    static void {setIface}.set_{name}(ref {type} self, {ret} value) => self.{name} = value;");
-                }
 
                 sb.AppendLine();
             }
