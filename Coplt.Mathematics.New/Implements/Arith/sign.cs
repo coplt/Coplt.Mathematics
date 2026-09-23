@@ -1,4 +1,4 @@
-﻿using Coplt.Mathematics.Generics;
+﻿using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
@@ -11,25 +11,34 @@ namespace Coplt.Mathematics
         /// <param name="vector">The vector</param>
         /// <returns>The sign of every component</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T sign<T>(in T vector) where T : unmanaged, INumberVector<T>, IDynamicVector<T>
-            => T.VisitUnderlyingReturnVector<impl_sign>(vector);
+        public static T sign<T>(in T vector) where T : unmanaged, INumberAlgebraDispatch<T>
+            => T.Visit_Self<impl_sign>(vector);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.sign{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T sign<T>([In] this ref T vector) where T : unmanaged, INumberVector<T>, IDynamicVector<T>
-            => T.VisitUnderlyingReturnVector<impl_sign>(vector);
+        public static T sign<T>([In] this ref T vector) where T : unmanaged, INumberAlgebraDispatch<T>
+            => T.Visit_Self<impl_sign>(vector);
     }
 }
 
 namespace Coplt.Mathematics.Implements
 {
-    internal struct impl_sign : IVectorUnderlyingVisitorReturnVector, IVectorDimensionVisitorReturnVector
+    /// <summary>
+    /// The sign of a value: the register of a vector is handed to the helper that matches its width and the
+    /// default members of the visitor reach <see cref="Scalar.Sign{T}"/> for every component of a value that is
+    /// handed over as a vector
+    /// </summary>
+    internal struct impl_sign : INumberAlgebraVisitor_Self_Self<impl_sign>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorUnderlyingVisitorReturnVector.Accept<TVector, TScalar>(in Vector64<TScalar> vector)
+        static TScalar INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptScalar<TScalar>(TScalar value)
+            => Scalar.Sign(value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TVector INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());
@@ -41,7 +50,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorUnderlyingVisitorReturnVector.Accept<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());
@@ -53,7 +62,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorUnderlyingVisitorReturnVector.Accept<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());
@@ -62,40 +71,6 @@ namespace Coplt.Mathematics.Implements
             if (typeof(TScalar) == typeof(uint) || typeof(TScalar) == typeof(ulong))
                 return TVector.FromUnderlying(simd.SignUInt(vector).AsByte());
             throw new NotSupportedException();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorUnderlyingVisitorReturnVector.AcceptSoft<TVector, TScalar>(in TVector vector)
-            => TVector.VisitDimensionReturnVector<impl_sign>(vector);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorDimensionVisitorReturnVector.AcceptVector2<TVector, TScalar>(in TVector vector)
-        {
-            TVector r = default;
-            TVector.set_x(ref r, Scalar.Sign(TVector.get_x(vector)));
-            TVector.set_y(ref r, Scalar.Sign(TVector.get_y(vector)));
-            return r;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorDimensionVisitorReturnVector.AcceptVector3<TVector, TScalar>(in TVector vector)
-        {
-            TVector r = default;
-            TVector.set_x(ref r, Scalar.Sign(TVector.get_x(vector)));
-            TVector.set_y(ref r, Scalar.Sign(TVector.get_y(vector)));
-            TVector.set_z(ref r, Scalar.Sign(TVector.get_z(vector)));
-            return r;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorDimensionVisitorReturnVector.AcceptVector4<TVector, TScalar>(in TVector vector)
-        {
-            TVector r = default;
-            TVector.set_x(ref r, Scalar.Sign(TVector.get_x(vector)));
-            TVector.set_y(ref r, Scalar.Sign(TVector.get_y(vector)));
-            TVector.set_z(ref r, Scalar.Sign(TVector.get_z(vector)));
-            TVector.set_w(ref r, Scalar.Sign(TVector.get_w(vector)));
-            return r;
         }
     }
 }

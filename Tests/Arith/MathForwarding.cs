@@ -1,4 +1,5 @@
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
 using half = System.Half;
 
@@ -16,7 +17,7 @@ public class TestMathArithForwarding
     /// every one of them is the interface that has no component type.
     /// </summary>
     private static void Check<T>(T v)
-        where T : unmanaged, IVectorArithmetic<T>, IDynamicVector<T>
+        where T : unmanaged, IVectorArithmetic<T>, INumberAlgebraDispatch<T>
     {
         math.abs(v);
         math.sign(v);
@@ -63,6 +64,20 @@ public class TestMathArithForwarding
         _ = math.cmax_safe<T, TScalar>(v);
     }
 
+    /// <summary>
+    /// The members that only need the type of the value reach a matrix as well: the shape of a matrix is a part
+    /// of its type, so the value of it is dispatched to the member that matches the shape or to the columns of
+    /// it, and the constraint of every one of the members is the same as the one of a vector.
+    /// </summary>
+    private static void CheckMatrix<T>(T m)
+        where T : unmanaged, INumberAlgebraDispatch<T>
+    {
+        math.abs(m);
+        math.sign(m);
+        math.min(m, m);
+        math.max(m, m);
+    }
+
     [Test]
     public void Forwarding()
     {
@@ -94,6 +109,47 @@ public class TestMathArithForwarding
             Assert.That(math.unlerp(new float3(1f), default, new float3(2f)), Is.EqualTo(new float3(0.5f)));
             Assert.That(math.remap(new float3(0.5f), default, new float3(1f), default, new float3(10f)),
                 Is.EqualTo(new float3(5f)));
+        }
+    }
+
+    /// <summary>
+    /// The members that dispatch the value of a vector dispatch the value of a matrix as well: the value of
+    /// every column of it is dispatched the same way as the value of a vector, so a matrix of any shape reaches
+    /// the members and a matrix without a register reaches them through the columns of it as well.
+    /// </summary>
+    [Test]
+    public void Matrix()
+    {
+        // every shape reaches the members, with and without a register in the columns of the matrix
+        CheckMatrix(new float2x2(new float2(1f, 2f), new float2(3f, 4f)));
+        CheckMatrix(new float3x2(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f)));
+        CheckMatrix(new double2x4(new double2(1d, 2d), new double2(3d, 4d), new double2(5d, 6d),
+            new double2(7d, 8d)));
+        CheckMatrix(new int4x4(new int4(1), new int4(2), new int4(3), new int4(4)));
+        CheckMatrix(new float3x3s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f), new float3s(7f, 8f, 9f)));
+
+        using (Assert.EnterMultipleScope())
+        {
+            // a shape without a member of the visitor of its own hands the value of every column over, so the
+            // columns of the matrix are the ones that reach the member of their own kind
+            Assert.That(math.abs(new float3x2(new float3(-1f, 2f, -3f), new float3(4f, -5f, 6f))),
+                Is.EqualTo(new float3x2(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f))));
+            Assert.That(math.abs(new float2x2(new float2(-1f, 2f), new float2(3f, -4f))),
+                Is.EqualTo(new float2x2(new float2(1f, 2f), new float2(3f, 4f))));
+            Assert.That(math.sign(new int2x2(new int2(-5, 0), new int2(0, 5))),
+                Is.EqualTo(new int2x2(new int2(-1, 0), new int2(0, 1))));
+            Assert.That(math.sign(new int3x3(new int3(-2, 0, 2), new int3(3, -4, 0), new int3(0, 5, -6))),
+                Is.EqualTo(new int3x3(new int3(-1, 0, 1), new int3(1, -1, 0), new int3(0, 1, -1))));
+            var a = new float3x3s(new float3s(1f, 5f, 3f), new float3s(4f, 2f, 6f), new float3s(7f, 8f, 9f));
+            var b = new float3x3s(new float3s(9f, 2f, 1f), new float3s(4f, 8f, 6f), new float3s(1f, 2f, 3f));
+            Assert.That(math.min(a, b),
+                Is.EqualTo(new float3x3s(new float3s(1f, 2f, 1f), new float3s(4f, 2f, 6f), new float3s(1f, 2f, 3f))));
+            Assert.That(math.max(a, b),
+                Is.EqualTo(new float3x3s(new float3s(9f, 5f, 3f), new float3s(4f, 8f, 6f), new float3s(7f, 8f, 9f))));
+            var c = new float3x2(new float3(1f, 5f, 3f), new float3(4f, 2f, 6f));
+            var d = new float3x2(new float3(9f, 2f, 1f), new float3(4f, 8f, 6f));
+            Assert.That(math.min(c, d), Is.EqualTo(new float3x2(new float3(1f, 2f, 1f), new float3(4f, 2f, 6f))));
+            Assert.That(math.max(c, d), Is.EqualTo(new float3x2(new float3(9f, 5f, 3f), new float3(4f, 8f, 6f))));
         }
     }
 

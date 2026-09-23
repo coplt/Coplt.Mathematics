@@ -116,9 +116,9 @@ public partial class VectorGenerator
         // vector decides the interface of them
         var underlying = VectorGenShared.Register(typ, size, storeVariant);
         parts.Add(underlying == 0
-            ? "the value has no register, it is only marked as <see cref=\"IVectorSoftUnderlying\"/>"
+            ? "the value has no register, it is only marked as <see cref=\"Algebras.Generics.IVectorSoftUnderlying\"/>"
             : "the underlying members implement " +
-              VectorGenShared.IfaceRef($"IVector{underlying}Underlying", new List<string> { "TSelf" },
+              VectorGenShared.IfaceRef($"Algebras.Generics.IVector{underlying}Underlying", new List<string> { "TSelf" },
                   new List<string> { type }));
         // the members that create the vector out of another one implement the interfaces of the create members
         if (size == 2)

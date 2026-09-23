@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
-using Coplt.Mathematics.Generics;
+using Coplt.Mathematics.Algebras;
+using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
@@ -15,25 +16,34 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the vector</typeparam>
         /// <returns>The vector that is perpendicular to both vectors</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T cross<T>(in T a, in T b) where T : unmanaged, IVector3Arithmetic<T>, IDynamicVector<T>
-            => T.VisitUnderlyingReturnVector<impl_cross>(a, b);
+        public static T cross<T>(in T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>, IVector3<T>
+            => T.Visit_Self<impl_cross>(a, b);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.cross{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T cross<T>([In] this T a, in T b) where T : unmanaged, IVector3Arithmetic<T>, IDynamicVector<T>
-            => T.VisitUnderlyingReturnVector<impl_cross>(a, b);
+        public static T cross<T>([In] this T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>, IVector3<T>
+            => T.Visit_Self<impl_cross>(a, b);
     }
 }
 
 namespace Coplt.Mathematics.Implements
 {
-    internal struct impl_cross : IVectorUnderlyingVisitor2ReturnVector, IVectorDimensionVisitor2ReturnVector
+    /// <summary>
+    /// The cross product of two vectors of 3 components: the register of the vectors is handed to the member of
+    /// the visitor that matches its width and the product of a vector that is handed over as a vector is
+    /// reached component by component. Only the count of 3 has a product, every other one is unreachable.
+    /// </summary>
+    internal struct impl_cross : INumberAlgebraVisitor_Self_Self_Self<impl_cross>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorUnderlyingVisitor2ReturnVector.Accept<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b)
+        static TScalar INumberAlgebraVisitor_Self_Self_Self<impl_cross>.AcceptScalar<TScalar>(TScalar a, TScalar b)
+            => throw new UnreachableException();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TVector INumberAlgebraVisitor_Self_Self_Self<impl_cross>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b)
             => throw new UnreachableException();
 
         // a.yzx * b.zxy - a.zxy * b.yzx;
@@ -47,7 +57,7 @@ namespace Coplt.Mathematics.Implements
         // DirectX Math library and the standard library.
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorUnderlyingVisitor2ReturnVector.Accept<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        static TVector INumberAlgebraVisitor_Self_Self_Self<impl_cross>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
         {
             if (typeof(TScalar) == typeof(float))
             {
@@ -86,7 +96,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorUnderlyingVisitor2ReturnVector.Accept<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        static TVector INumberAlgebraVisitor_Self_Self_Self<impl_cross>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
         {
             if (typeof(TScalar) == typeof(double))
             {
@@ -125,15 +135,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorUnderlyingVisitor2ReturnVector.AcceptSoft<TVector, TScalar>(in TVector a, in TVector b)
-            => TVector.VisitDimensionReturnVector<impl_cross>(a, b);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorDimensionVisitor2ReturnVector.AcceptVector2<TVector, TScalar>(in TVector a, in TVector b)
-            => throw new UnreachableException();
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorDimensionVisitor2ReturnVector.AcceptVector3<TVector, TScalar>(in TVector a, in TVector b)
+        static TVector INumberAlgebraVisitor_Self_Self_Self<impl_cross>.AcceptVector3<TVector, TScalar>(in TVector a, in TVector b)
         {
             var a_x = TVector.get_x(a);
             var a_y = TVector.get_y(a);
@@ -154,9 +156,5 @@ namespace Coplt.Mathematics.Implements
             TVector.set_z(ref r, r_z);
             return r;
         }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IVectorDimensionVisitor2ReturnVector.AcceptVector4<TVector, TScalar>(in TVector a, in TVector b)
-            => throw new UnreachableException();
     }
 }

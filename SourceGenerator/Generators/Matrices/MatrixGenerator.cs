@@ -112,6 +112,8 @@ public class MatrixGenerator : IIncrementalGenerator
             $"Algebras.IMatrix{shape}Vector<{type}, {col}>",
             $"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>",
         };
+        // a matrix of a number dispatches the value of it to a visitor, a matrix of a mask dispatches nothing
+        if (!bol) ifaces.Add($"Algebras.Generics.INumberAlgebraDispatch<{type}>");
         VectorGenShared.FileHeader(sb, false);
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
@@ -588,6 +590,33 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine();
         sb.AppendLine("    #endregion");
         sb.AppendLine();
+
+        // the shape of a matrix is a part of its type, so the type itself reaches the member of the visitor
+        // that matches the shape. A shape the visitor has no member for is built out of its columns, every one
+        // of them dispatching the value of a column to the member of the visitor that matches it
+        if (!bol)
+        {
+            var dispatch1 = shape == "2x2"
+                ? $"V.AcceptMatrix2x2<{type}, {col}, {scalar}>(self)"
+                : $"new {type}({VectorGenShared.Join(cols, i => $"{col}.Visit_Self<V>(self.c{i})")})";
+            var dispatch2 = shape == "2x2"
+                ? $"V.AcceptMatrix2x2<{type}, {col}, {scalar}>(a, b)"
+                : $"new {type}({VectorGenShared.Join(cols, i => $"{col}.Visit_Self<V>(a.c{i}, b.c{i})")})";
+            sb.AppendLine("    #region dispatch");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} Visit_Self<V>(in {type} self)");
+            sb.AppendLine($"        where V : Algebras.Generics.INumberAlgebraVisitor_Self_Self<V> => {dispatch1};");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} Visit_Self<V>(in {type} a, in {type} b)");
+            sb.AppendLine($"        where V : Algebras.Generics.INumberAlgebraVisitor_Self_Self_Self<V> => {dispatch2};");
+            sb.AppendLine();
+            sb.AppendLine("    #endregion");
+            sb.AppendLine();
+        }
 
         sb.AppendLine("}");
         return sb.ToString();

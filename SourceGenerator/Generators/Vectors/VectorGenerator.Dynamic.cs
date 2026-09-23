@@ -5,76 +5,53 @@ namespace Coplt.Analyzers.Generators;
 public partial class VectorGenerator
 {
     /// <summary>
-    /// Generates the members that dispatch the kind of the vector to a visitor: the width of the register of a
+    /// Generates the members that dispatch the value of the vector to a visitor: the width of the register of a
     /// vector and the count of its components are a part of its type, so the type itself is the only one that
-    /// knows them and a caller that does not know the type of the vector reaches them by calling the member of
-    /// a visitor that matches them. The value of the vector is handed to the member: it receives the register of
-    /// a vector that keeps its value in one and the vector itself when it has no register, and a member that
-    /// takes two vectors hands both of them over the same way. The visitor that returns a vector builds it out
-    /// of the type of the vector, which the constraints of its members name. Every vector of a number type
-    /// implements the interface, a mask does not: the constraint of a member of a visitor names the vector
-    /// interface of a number and a mask implements the one of a bool instead.
+    /// knows them and a caller that does not know the type of the vector reaches them by calling the member of a
+    /// visitor that matches them. The value of the vector is handed to the member: a vector that keeps its value
+    /// in a register hands the register over and a vector without a register hands the vector itself over, which
+    /// the member of the visitor reaches the components of through the count of them. The member of the visitor
+    /// builds the result out of the type of the vector, which the constraints of the members of the visitor
+    /// name, so the same visitor serves a vector and a matrix. Every vector of a number type implements the
+    /// interface, a mask does not: the constraint of a member of a visitor names the vector interface of a
+    /// number and a mask implements the one of a bool instead. The members are emitted into their own file.
     /// </summary>
     /// <param name="typ">The type of the component of the vector</param>
     /// <param name="size">The number of components of the vector</param>
     /// <param name="storeVariant">True for the storage variant of the vector</param>
-    /// <returns>The members that dispatch the kind of the vector, null when the vector implements no dispatch</returns>
+    /// <returns>The members that dispatch the value of the vector, null when the vector implements no dispatch</returns>
     private static string? GenDynamic(Typ typ, int size, bool storeVariant)
     {
-        // the members of both visitors name the number vector of the type, a mask is not one of them
+        // the members of the visitors name the number vector of the type, a mask is not one of them
         if (typ.bol) return null;
 
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;
         var reg = VectorGenShared.Register(typ, size, storeVariant);
-        // a vector without a register hands the vector itself to the visitor, the other ones hand it the
-        // register they keep their value in, the members that take two vectors hand both of them over
-        var underlying = reg == 0
-            ? $"V.AcceptSoft<{type}, {scalar}>(self)"
-            : $"V.Accept<{type}, {scalar}>(self.vector)";
-        var underlying2 = reg == 0
-            ? $"V.AcceptSoft<{type}, {scalar}>(a, b)"
-            : $"V.Accept<{type}, {scalar}>(a.vector, b.vector)";
-        var dimension = $"V.AcceptVector{size}<{type}, {scalar}>(self)";
-        var dimension2 = $"V.AcceptVector{size}<{type}, {scalar}>(a, b)";
+        // the member of the visitor that matches the kind of the value: the width of the register of the vector
+        // when it keeps its value in one, the count of its components when it has no register
+        var one = reg == 0
+            ? $"V.AcceptVector{size}<{type}, {scalar}>(self)"
+            : $"V.AcceptVector<{type}, {scalar}>(self.vector)";
+        var two = reg == 0
+            ? $"V.AcceptVector{size}<{type}, {scalar}>(a, b)"
+            : $"V.AcceptVector<{type}, {scalar}>(a.vector, b.vector)";
 
         var sb = new StringBuilder();
 
         VectorGenShared.FileHeader(sb, false);
         sb.AppendLine($"public partial struct {type} :");
-        sb.AppendLine($"    IDynamicVector<{type}>");
+        sb.AppendLine($"    Algebras.Generics.INumberAlgebraDispatch<{type}>");
         sb.AppendLine("{");
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static R VisitUnderlying<V, R>(in {type} self) where V : IVectorUnderlyingVisitor<R> => " +
-                      $"{underlying};");
+        sb.AppendLine($"    public static {type} Visit_Self<V>(in {type} self)");
+        sb.AppendLine($"        where V : Algebras.Generics.INumberAlgebraVisitor_Self_Self<V> => {one};");
         sb.AppendLine();
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static R VisitDimension<V, R>(in {type} self) where V : IVectorDimensionVisitor<R> => " +
-                      $"{dimension};");
-        sb.AppendLine();
-        // a visitor that returns a vector builds the result itself, the type of the vector is reachable to it
-        // through the constraints of its own members
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {type} VisitUnderlyingReturnVector<V>(in {type} self) " +
-                      $"where V : IVectorUnderlyingVisitorReturnVector => {underlying};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {type} VisitDimensionReturnVector<V>(in {type} self) " +
-                      $"where V : IVectorDimensionVisitorReturnVector => {dimension};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {type} VisitUnderlyingReturnVector<V>(in {type} a, in {type} b) " +
-                      $"where V : IVectorUnderlyingVisitor2ReturnVector => {underlying2};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {type} VisitDimensionReturnVector<V>(in {type} a, in {type} b) " +
-                      $"where V : IVectorDimensionVisitor2ReturnVector => {dimension2};");
+        sb.AppendLine($"    public static {type} Visit_Self<V>(in {type} a, in {type} b)");
+        sb.AppendLine($"        where V : Algebras.Generics.INumberAlgebraVisitor_Self_Self_Self<V> => {two};");
         sb.AppendLine("}");
         return sb.ToString();
     }

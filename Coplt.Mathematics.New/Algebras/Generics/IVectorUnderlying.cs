@@ -1,4 +1,4 @@
-﻿namespace Coplt.Mathematics.Generics;
+﻿namespace Coplt.Mathematics.Algebras.Generics;
 
 /// <summary>
 /// A vector that has no register

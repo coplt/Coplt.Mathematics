@@ -1,6 +1,6 @@
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
-using Coplt.Mathematics.Generics;
+using Coplt.Mathematics.Algebras.Generics;
 
 namespace Tests.Core;
 
