@@ -229,6 +229,9 @@ public partial class VectorGenerator
             $"Algebras.IVector{size}<{type}, {scalar}>",
             $"Algebras.{AlgebraIface()}<{type}, {scalar}>",
         };
+        // the members that dispatch the value of the vector implement the interface of the dispatch of it, a
+        // mask does not dispatch: the members of the visitors name the number vector of a type
+        if (!bol) ifaces.Add($"Algebras.Generics.INumberAlgebraDispatch<{type}>");
         if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
         if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
         sb.AppendLine($"public partial struct {type} :");
@@ -1088,6 +1091,11 @@ public partial class VectorGenerator
         sb.AppendLine("    #endregion");
 
         #endregion
+
+        // the members that dispatch the value of the vector to a visitor, a mask has none of them and they are
+        // a part of the file of the base members of the vector
+        var dispatch = GenDispatch(typ, size, storeVariant);
+        if (dispatch != null) sb.Append(dispatch);
 
         sb.AppendLine("}");
 

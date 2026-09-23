@@ -70,11 +70,97 @@ public interface INumberAlgebraVisitor_Self_Self<V> where V : INumberAlgebraVisi
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrixMx2<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrixMx2Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => TMatrix.Create(TVector.Visit_Self<V>(TMatrix.get_c0(vector)), TVector.Visit_Self<V>(TMatrix.get_c1(vector)));
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrixMx3<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrixMx3Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => TMatrix.Create(
+            TVector.Visit_Self<V>(TMatrix.get_c0(vector)),
+            TVector.Visit_Self<V>(TMatrix.get_c1(vector)),
+            TVector.Visit_Self<V>(TMatrix.get_c2(vector))
+        );
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrixMx4<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrixMx4Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => TMatrix.Create(
+            TVector.Visit_Self<V>(TMatrix.get_c0(vector)),
+            TVector.Visit_Self<V>(TMatrix.get_c1(vector)),
+            TVector.Visit_Self<V>(TMatrix.get_c2(vector)),
+            TVector.Visit_Self<V>(TMatrix.get_c3(vector))
+        );
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static virtual TMatrix AcceptMatrix2x2<TMatrix, TVector, TScalar>(in TMatrix vector)
         where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix2x2Vector<TMatrix, TVector>, IMatrix2x2Scalar<TMatrix, TScalar>
         where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
-        => TMatrix.Create(TVector.Visit_Self<V>(TMatrix.get_c0(vector)), TVector.Visit_Self<V>(TMatrix.get_c1(vector)));
+        => V.AcceptMatrixMx2<TMatrix, TVector, TScalar>(vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix2x3<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix2x3Vector<TMatrix, TVector>, IMatrix2x3Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx3<TMatrix, TVector, TScalar>(vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix2x4<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix2x4Vector<TMatrix, TVector>, IMatrix2x4Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx4<TMatrix, TVector, TScalar>(vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix3x2<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix3x2Vector<TMatrix, TVector>, IMatrix3x2Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx2<TMatrix, TVector, TScalar>(vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix3x3<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix3x3Vector<TMatrix, TVector>, IMatrix3x3Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx3<TMatrix, TVector, TScalar>(vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix3x4<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix3x4Vector<TMatrix, TVector>, IMatrix3x4Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx4<TMatrix, TVector, TScalar>(vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix4x2<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix4x2Vector<TMatrix, TVector>, IMatrix4x2Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx2<TMatrix, TVector, TScalar>(vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix4x3<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix4x3Vector<TMatrix, TVector>, IMatrix4x3Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx3<TMatrix, TVector, TScalar>(vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix4x4<TMatrix, TVector, TScalar>(in TMatrix vector)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix4x4Vector<TMatrix, TVector>, IMatrix4x4Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx4<TMatrix, TVector, TScalar>(vector);
 }
 
 #endregion
@@ -126,14 +212,100 @@ public interface INumberAlgebraVisitor_Self_Self_Self<V> where V : INumberAlgebr
     );
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TMatrix AcceptMatrix2x2<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
-        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix2x2Vector<TMatrix, TVector>, IMatrix2x2Scalar<TMatrix, TScalar>
-        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
+    public static virtual TMatrix AcceptMatrixMx2<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrixMx2Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => TMatrix.Create(
             TVector.Visit_Self<V>(TMatrix.get_c0(a), TMatrix.get_c0(b)),
             TVector.Visit_Self<V>(TMatrix.get_c1(a), TMatrix.get_c1(b))
         );
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrixMx3<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrixMx3Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => TMatrix.Create(
+            TVector.Visit_Self<V>(TMatrix.get_c0(a), TMatrix.get_c0(b)),
+            TVector.Visit_Self<V>(TMatrix.get_c1(a), TMatrix.get_c1(b)),
+            TVector.Visit_Self<V>(TMatrix.get_c2(a), TMatrix.get_c2(b))
+        );
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrixMx4<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrixMx4Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => TMatrix.Create(
+            TVector.Visit_Self<V>(TMatrix.get_c0(a), TMatrix.get_c0(b)),
+            TVector.Visit_Self<V>(TMatrix.get_c1(a), TMatrix.get_c1(b)),
+            TVector.Visit_Self<V>(TMatrix.get_c2(a), TMatrix.get_c2(b)),
+            TVector.Visit_Self<V>(TMatrix.get_c3(a), TMatrix.get_c3(b))
+        );
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix2x2<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix2x2Vector<TMatrix, TVector>, IMatrix2x2Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx2<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix2x3<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix2x3Vector<TMatrix, TVector>, IMatrix2x3Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx3<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix2x4<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix2x4Vector<TMatrix, TVector>, IMatrix2x4Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx4<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix3x2<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix3x2Vector<TMatrix, TVector>, IMatrix3x2Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx2<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix3x3<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix3x3Vector<TMatrix, TVector>, IMatrix3x3Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx3<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix3x4<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix3x4Vector<TMatrix, TVector>, IMatrix3x4Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx4<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix4x2<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix4x2Vector<TMatrix, TVector>, IMatrix4x2Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx2<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix4x3<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix4x3Vector<TMatrix, TVector>, IMatrix4x3Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx3<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TMatrix AcceptMatrix4x4<TMatrix, TVector, TScalar>(in TMatrix a, in TMatrix b)
+        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix4x4Vector<TMatrix, TVector>, IMatrix4x4Scalar<TMatrix, TScalar>
+        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.AcceptMatrixMx4<TMatrix, TVector, TScalar>(a, b);
 }
 
 #endregion

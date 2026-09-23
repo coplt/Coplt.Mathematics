@@ -7,8 +7,8 @@ namespace Coplt.Analyzers.Generators;
 
 /// <summary>
 /// Generates the vector structs described by <see cref="Typ"/>. The base members are emitted by
-/// <c>Gen</c>, the members that reach the raw bits of the value by <c>GenUnderlying</c>, the members that
-/// dispatch the value of the vector by <c>GenDynamic</c>, the members that
+/// <c>Gen</c>, which reaches the members that dispatch the value of the vector through <c>GenDispatch</c>,
+/// the members that reach the raw bits of the value by <c>GenUnderlying</c>, the members that
 /// create a vector out of another one by <c>GenCtor</c>, the members that replace
 /// the components of the vector by <c>GenReplace</c>, the members of the legacy insert api by <c>GenInsert</c>,
 /// the members that combine two vectors by <c>GenShuffle</c> and the helper that shuffles a vector without a
@@ -56,15 +56,7 @@ public partial class VectorGenerator : IIncrementalGenerator
                             $"{VecNamespace}.{name}.underlying.g.cs",
                             SourceText.From(GenUnderlying(typ, size, storeVariant), Encoding.UTF8));
                         // the members that dispatch the value of the vector implement the
-                        // INumberAlgebraDispatch interface, they are emitted into their own file as well
-                        var dispatch = GenDynamic(typ, size, storeVariant);
-                        if (dispatch != null)
-                        {
-                            ctx.AddSource(
-                                $"{VecNamespace}.{name}.dynamic.g.cs",
-                                SourceText.From(dispatch, Encoding.UTF8));
-                        }
-
+                        // INumberAlgebraDispatch interface, they are a part of the base members of the vector
                         // the members that create the vector out of another one implement the IVectorCtor
                         // interfaces, they are emitted into their own file so they stay separate from the
                         // members of the base type

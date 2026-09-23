@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 
 namespace Coplt.Mathematics;
 
-internal static class VectorUtils
+internal static class Utils
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector128<T> Load64<T>(this in Vector64<T> place) =>

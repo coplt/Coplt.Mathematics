@@ -143,6 +143,19 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine("    #endregion");
         sb.AppendLine();
 
+        // every component of the matrix is an argument of a constructor of it and of the create member of the
+        // shape, the row of a component leads the name of the argument
+        var scalarArgs = new List<string>();
+        var scalarNames = new List<string>();
+        for (var r = 0; r < rows; r++)
+        {
+            for (var c = 0; c < cols; c++)
+            {
+                scalarArgs.Add($"{scalar} m{r}{c}");
+                scalarNames.Add($"m{r}{c}");
+            }
+        }
+
         sb.AppendLine("    #region ctors");
         sb.AppendLine();
         sb.AppendLine("    /// <summary>Creates a matrix from its columns</summary>");
@@ -151,6 +164,18 @@ public class MatrixGenerator : IIncrementalGenerator
         for (var i = 0; i < cols; i++)
         {
             sb.AppendLine($"        this.c{i} = c{i};");
+        }
+
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        sb.AppendLine("    /// <summary>Creates a matrix from its components, the row of a component leads its name</summary>");
+        sb.AppendLine($"    public {type}({string.Join(", ", scalarArgs)})");
+        sb.AppendLine("    {");
+        for (var c = 0; c < cols; c++)
+        {
+            var comps = new List<string>();
+            for (var r = 0; r < rows; r++) comps.Add($"m{r}{c}");
+            sb.AppendLine($"        c{c} = new {col}({string.Join(", ", comps)});");
         }
 
         sb.AppendLine("    }");
@@ -337,34 +362,24 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine("    }");
         sb.AppendLine();
         sb.AppendLine("    #endregion");
+        sb.AppendLine();
 
-        // the create members of the shape of the matrix, every column is a component of every row of it
-        var scalarArgs = new List<string>();
-        for (var r = 0; r < rows; r++)
-        {
-            for (var c = 0; c < cols; c++) scalarArgs.Add($"{scalar} m{r}{c}");
-        }
-
-        var scalarCols = new List<string>();
-        for (var c = 0; c < cols; c++)
-        {
-            var comps = new List<string>();
-            for (var r = 0; r < rows; r++) comps.Add($"m{r}{c}");
-            scalarCols.Add($"new {col}({string.Join(", ", comps)})");
-        }
-
+        // the create members of the shape of the matrix, every component of it is an argument of one of them
         sb.AppendLine("    #region create");
         sb.AppendLine();
+        // the members that reach the columns of the matrix are declared by the interface of the number of the
+        // columns, the shape of the matrix implements them through it
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    static {type} Algebras.IMatrix{shape}Vector<{type}, {col}>.Create(" +
+        sb.AppendLine($"    static {type} Algebras.IMatrixMx{cols}Vector<{type}, {col}>.Create(" +
                       $"{VectorGenShared.Join(cols, i => $"in {col} c{i}")}) => " +
                       $"new({VectorGenShared.Join(cols, i => $"c{i}")});");
         sb.AppendLine();
+        // the components of the matrix reach the constructor of it, which takes them in the order of a row
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    static {type} Algebras.IMatrix{shape}Scalar<{type}, {scalar}>.Create(" +
-                      $"{string.Join(", ", scalarArgs)}) => new({string.Join(", ", scalarCols)});");
+                      $"{string.Join(", ", scalarArgs)}) => new({string.Join(", ", scalarNames)});");
         sb.AppendLine();
         sb.AppendLine("    #endregion");
         sb.AppendLine();
@@ -378,12 +393,12 @@ public class MatrixGenerator : IIncrementalGenerator
             {
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {col} Algebras.IMatrix{shape}Vector<{type}, {col}>.get_c{j}(in {type} self) => " +
+                sb.AppendLine($"    static {col} Algebras.IMatrixMx{cols}Vector<{type}, {col}>.get_c{j}(in {type} self) => " +
                               $"self.c{j};");
                 sb.AppendLine();
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static void Algebras.IMatrix{shape}Vector<{type}, {col}>.set_c{j}(ref {type} self, in {col} value) => " +
+                sb.AppendLine($"    static void Algebras.IMatrixMx{cols}Vector<{type}, {col}>.set_c{j}(ref {type} self, in {col} value) => " +
                               $"self.c{j} = value;");
                 sb.AppendLine();
             }
@@ -591,28 +606,22 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine("    #endregion");
         sb.AppendLine();
 
-        // the shape of a matrix is a part of its type, so the type itself reaches the member of the visitor
-        // that matches the shape. A shape the visitor has no member for is built out of its columns, every one
-        // of them dispatching the value of a column to the member of the visitor that matches it
+        // the shape of a matrix is a part of its type, so the type itself reaches the member of the visitor that
+        // matches the shape, which the visitor reaches the columns of the matrix through. The members are
+        // implemented explicitly, so a caller reaches them through the interface of the dispatch of the type
         if (!bol)
         {
-            var dispatch1 = shape == "2x2"
-                ? $"V.AcceptMatrix2x2<{type}, {col}, {scalar}>(self)"
-                : $"new {type}({VectorGenShared.Join(cols, i => $"{col}.Visit_Self<V>(self.c{i})")})";
-            var dispatch2 = shape == "2x2"
-                ? $"V.AcceptMatrix2x2<{type}, {col}, {scalar}>(a, b)"
-                : $"new {type}({VectorGenShared.Join(cols, i => $"{col}.Visit_Self<V>(a.c{i}, b.c{i})")})";
             sb.AppendLine("    #region dispatch");
             sb.AppendLine();
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static {type} Visit_Self<V>(in {type} self)");
-            sb.AppendLine($"        where V : Algebras.Generics.INumberAlgebraVisitor_Self_Self<V> => {dispatch1};");
+            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} self)");
+            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(self);");
             sb.AppendLine();
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static {type} Visit_Self<V>(in {type} a, in {type} b)");
-            sb.AppendLine($"        where V : Algebras.Generics.INumberAlgebraVisitor_Self_Self_Self<V> => {dispatch2};");
+            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b)");
+            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
             sb.AppendLine();
             sb.AppendLine("    #endregion");
             sb.AppendLine();

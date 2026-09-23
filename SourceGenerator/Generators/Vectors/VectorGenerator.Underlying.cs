@@ -47,7 +47,9 @@ public partial class VectorGenerator
             var mask = $"{vecName}.Create(" +
                        VectorGenShared.Join(lanes, i => i < size
                            ? typ.size == 4 ? "-1" : "-1L"
-                           : typ.size == 4 ? "0" : "0L") +
+                           : typ.size == 4
+                               ? "0"
+                               : "0L") +
                        $").{AsMethod(comp)}().As<{comp}, byte>()";
             // the lanes that are beyond the value are kept at zero by the ctor of the vector, they are the
             // padding lanes of the register and the interface of the width describes them

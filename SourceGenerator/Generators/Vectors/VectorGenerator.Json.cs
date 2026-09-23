@@ -10,7 +10,7 @@ public partial class VectorGenerator
     /// other one as a number, the name of the type is not a part of the value. The converter is emitted into its
     /// own file and into <c>Coplt.Mathematics.Json</c> instead of the namespace of the vector, the declaration of
     /// the vector carries the attribute that binds it, see <c>Gen</c>. A value that is not an array and one that
-    /// does not hold the components of the vector are both rejected by <c>VectorUtils.ThrowJsonToken</c>, the
+    /// does not hold the components of the vector are both rejected by <c>Utils.ThrowJsonToken</c>, the
     /// message of the exception is not repeated in every converter.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
@@ -36,7 +36,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         // a json value that is not an array cannot hold the components of the vector
         sb.AppendLine("        if (reader.TokenType is not JsonTokenType.StartArray)");
-        sb.AppendLine("            VectorUtils.ThrowJsonToken(JsonTokenType.StartArray, reader.TokenType);");
+        sb.AppendLine("            Utils.ThrowJsonToken(JsonTokenType.StartArray, reader.TokenType);");
         for (var i = 0; i < size; i++)
         {
             sb.AppendLine("        reader.Read();");
@@ -46,7 +46,7 @@ public partial class VectorGenerator
         // reading a component leaves the reader on it, the array is closed by the token after the last component
         sb.AppendLine("        reader.Read();");
         sb.AppendLine("        if (reader.TokenType is not JsonTokenType.EndArray)");
-        sb.AppendLine("            VectorUtils.ThrowJsonToken(JsonTokenType.EndArray, reader.TokenType);");
+        sb.AppendLine("            Utils.ThrowJsonToken(JsonTokenType.EndArray, reader.TokenType);");
         sb.AppendLine($"        return new({VectorGenShared.Join(size, i => comp[i])});");
         sb.AppendLine("    }");
         sb.AppendLine();

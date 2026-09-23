@@ -12,15 +12,16 @@ public partial class VectorGenerator
     /// in a register hands the register over and a vector without a register hands the vector itself over, which
     /// the member of the visitor reaches the components of through the count of them. The member of the visitor
     /// builds the result out of the type of the vector, which the constraints of the members of the visitor
-    /// name, so the same visitor serves a vector and a matrix. Every vector of a number type implements the
+    /// name, so the same visitor serves a vector and a matrix. The members are implemented explicitly and they
+    /// are emitted into the file of the base members of the vector. Every vector of a number type implements the
     /// interface, a mask does not: the constraint of a member of a visitor names the vector interface of a
-    /// number and a mask implements the one of a bool instead. The members are emitted into their own file.
+    /// number and a mask implements the one of a bool instead.
     /// </summary>
     /// <param name="typ">The type of the component of the vector</param>
     /// <param name="size">The number of components of the vector</param>
     /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>The members that dispatch the value of the vector, null when the vector implements no dispatch</returns>
-    private static string? GenDynamic(Typ typ, int size, bool storeVariant)
+    private static string? GenDispatch(Typ typ, int size, bool storeVariant)
     {
         // the members of the visitors name the number vector of the type, a mask is not one of them
         if (typ.bol) return null;
@@ -39,20 +40,20 @@ public partial class VectorGenerator
 
         var sb = new StringBuilder();
 
-        VectorGenShared.FileHeader(sb, false);
-        sb.AppendLine($"public partial struct {type} :");
-        sb.AppendLine($"    Algebras.Generics.INumberAlgebraDispatch<{type}>");
-        sb.AppendLine("{");
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {type} Visit_Self<V>(in {type} self)");
-        sb.AppendLine($"        where V : Algebras.Generics.INumberAlgebraVisitor_Self_Self<V> => {one};");
+        sb.AppendLine("    #region dispatch");
         sb.AppendLine();
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {type} Visit_Self<V>(in {type} a, in {type} b)");
-        sb.AppendLine($"        where V : Algebras.Generics.INumberAlgebraVisitor_Self_Self_Self<V> => {two};");
-        sb.AppendLine("}");
+        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} self)");
+        sb.AppendLine($"        => {one};");
+        sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b)");
+        sb.AppendLine($"        => {two};");
+        sb.AppendLine();
+        sb.AppendLine("    #endregion");
+        sb.AppendLine();
         return sb.ToString();
     }
 }

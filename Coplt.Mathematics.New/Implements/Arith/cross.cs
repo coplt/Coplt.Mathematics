@@ -70,6 +70,7 @@ namespace Coplt.Mathematics.Implements
                     ).AsByte()
                 );
             }
+
             if (typeof(TScalar) == typeof(int))
             {
                 return TVector.UnsafeFromUnderlying(
@@ -81,6 +82,7 @@ namespace Coplt.Mathematics.Implements
                     ).AsByte()
                 );
             }
+
             if (typeof(TScalar) == typeof(uint))
             {
                 return TVector.UnsafeFromUnderlying(
@@ -92,6 +94,7 @@ namespace Coplt.Mathematics.Implements
                     ).AsByte()
                 );
             }
+
             throw new UnreachableException();
         }
 
@@ -109,6 +112,7 @@ namespace Coplt.Mathematics.Implements
                     ).AsByte()
                 );
             }
+
             if (typeof(TScalar) == typeof(long))
             {
                 return TVector.UnsafeFromUnderlying(
@@ -120,6 +124,7 @@ namespace Coplt.Mathematics.Implements
                     ).AsByte()
                 );
             }
+
             if (typeof(TScalar) == typeof(ulong))
             {
                 return TVector.UnsafeFromUnderlying(
@@ -131,6 +136,7 @@ namespace Coplt.Mathematics.Implements
                     ).AsByte()
                 );
             }
+
             throw new UnreachableException();
         }
 
