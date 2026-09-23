@@ -70,8 +70,11 @@ public interface IMatrixScalar<TSelf, TScalar> :
 public interface IBoolMatrix<TSelf> : IMatrix<TSelf>, IBoolAlgebra<TSelf>
     where TSelf : unmanaged, IBoolMatrix<TSelf>;
 
-public interface IBoolMatrix<TSelf, TScalar> : IMatrixScalar<TSelf, TScalar>, IBoolAlgebra<TSelf, TScalar>
-    where TSelf : unmanaged, IBoolMatrix<TSelf, TScalar>
+public interface IBoolMatrix<TSelf, TScalar> :
+    IBoolMatrix<TSelf>,
+    IMatrixScalar<TSelf, TScalar>,
+    IBoolAlgebra<TSelf, TScalar>
+    where TSelf : unmanaged, IBoolMatrix<TSelf>, IBoolMatrix<TSelf, TScalar>
     where TScalar : unmanaged;
 
 #endregion
@@ -81,19 +84,27 @@ public interface IBoolMatrix<TSelf, TScalar> : IMatrixScalar<TSelf, TScalar>, IB
 public interface INumberMatrix<TSelf> : IMatrix<TSelf>, INumberAlgebra<TSelf>
     where TSelf : unmanaged, INumberMatrix<TSelf>;
 
-public interface INumberMatrix<TSelf, TScalar> : IMatrixScalar<TSelf, TScalar>, INumberAlgebra<TSelf, TScalar>
-    where TSelf : unmanaged, INumberMatrix<TSelf, TScalar>
+public interface INumberMatrix<TSelf, TScalar> :
+    INumberMatrix<TSelf>,
+    IMatrixScalar<TSelf, TScalar>,
+    INumberAlgebra<TSelf, TScalar>
+    where TSelf : unmanaged, INumberMatrix<TSelf>, INumberMatrix<TSelf, TScalar>
     where TScalar : unmanaged, INumberBase<TScalar>;
 
 #endregion
 
 #region Signed
 
-public interface ISignedNumberMatrix<TSelf> : INumberMatrix<TSelf>
+public interface ISignedNumberMatrix<TSelf> :
+    INumberMatrix<TSelf>,
+    ISignedAlgebra<TSelf>
     where TSelf : unmanaged, ISignedNumberMatrix<TSelf>;
 
-public interface ISignedNumberMatrix<TSelf, TScalar> : INumberMatrix<TSelf, TScalar>
-    where TSelf : unmanaged, ISignedNumberMatrix<TSelf, TScalar>
+public interface ISignedNumberMatrix<TSelf, TScalar> :
+    ISignedNumberMatrix<TSelf>,
+    INumberMatrix<TSelf, TScalar>,
+    ISignedAlgebra<TSelf, TScalar>
+    where TSelf : unmanaged, ISignedNumberMatrix<TSelf>, ISignedNumberMatrix<TSelf, TScalar>
     where TScalar : unmanaged, INumberBase<TScalar>;
 
 #endregion

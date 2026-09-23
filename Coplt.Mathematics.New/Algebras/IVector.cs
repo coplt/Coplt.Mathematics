@@ -16,8 +16,11 @@ public interface IVector<TSelf, TScalar> : IVector<TSelf>, IMatrixScalar<TSelf, 
 public interface IBoolVector<TSelf> : IVector<TSelf>, IBoolMatrix<TSelf>
     where TSelf : unmanaged, IBoolVector<TSelf>;
 
-public interface IBoolVector<TSelf, TScalar> : IVector<TSelf, TScalar>, IBoolMatrix<TSelf, TScalar>
-    where TSelf : unmanaged, IBoolVector<TSelf, TScalar>
+public interface IBoolVector<TSelf, TScalar> :
+    IBoolVector<TSelf>,
+    IVector<TSelf, TScalar>,
+    IBoolMatrix<TSelf, TScalar>
+    where TSelf : unmanaged, IBoolVector<TSelf>, IBoolVector<TSelf, TScalar>
     where TScalar : unmanaged;
 
 #endregion
@@ -27,8 +30,11 @@ public interface IBoolVector<TSelf, TScalar> : IVector<TSelf, TScalar>, IBoolMat
 public interface INumberVector<TSelf> : IVector<TSelf>, INumberMatrix<TSelf>
     where TSelf : unmanaged, INumberVector<TSelf>;
 
-public interface INumberVector<TSelf, TScalar> : IVector<TSelf, TScalar>, INumberMatrix<TSelf, TScalar>
-    where TSelf : unmanaged, INumberVector<TSelf, TScalar>
+public interface INumberVector<TSelf, TScalar> :
+    INumberVector<TSelf>,
+    IVector<TSelf, TScalar>,
+    INumberMatrix<TSelf, TScalar>
+    where TSelf : unmanaged, INumberVector<TSelf>, INumberVector<TSelf, TScalar>
     where TScalar : unmanaged, INumberBase<TScalar>;
 
 #endregion
@@ -38,8 +44,11 @@ public interface INumberVector<TSelf, TScalar> : IVector<TSelf, TScalar>, INumbe
 public interface ISignedNumberVector<TSelf> : INumberVector<TSelf>, ISignedNumberMatrix<TSelf>
     where TSelf : unmanaged, ISignedNumberVector<TSelf>;
 
-public interface ISignedNumberVector<TSelf, TScalar> : INumberVector<TSelf, TScalar>, ISignedNumberMatrix<TSelf, TScalar>
-    where TSelf : unmanaged, ISignedNumberVector<TSelf, TScalar>
+public interface ISignedNumberVector<TSelf, TScalar> :
+    ISignedNumberVector<TSelf>,
+    INumberVector<TSelf, TScalar>,
+    ISignedNumberMatrix<TSelf, TScalar>
+    where TSelf : unmanaged, ISignedNumberVector<TSelf>, ISignedNumberVector<TSelf, TScalar>
     where TScalar : unmanaged, INumberBase<TScalar>;
 
 #endregion
