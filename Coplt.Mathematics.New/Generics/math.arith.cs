@@ -11,18 +11,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, <paramref name="t"/> is the
-    /// interpolation factor
-    /// </summary>
-    /// <param name="start">The value at t = 0</param>
-    /// <param name="end">The value at t = 1</param>
-    /// <param name="t">The interpolation factor, 0 is <paramref name="start"/> and 1 is <paramref name="end"/></param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The interpolated vector</returns>
-    [MethodImpl(256)]
-    public static T lerp<T>(in T start, in T end, in T t) where T : unmanaged, IVectorArithmetic<T> => T.lerp(start, end, t);
-
-    /// <summary>
     /// Returns where the vector is between <paramref name="start"/> and <paramref name="end"/>, it is the inverse
     /// of <see cref="lerp{T}(in T, in T, in T)"/>
     /// </summary>

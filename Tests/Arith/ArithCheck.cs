@@ -1,4 +1,6 @@
 using System.Numerics;
+using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
 
 namespace Tests.Arith;
@@ -310,16 +312,20 @@ internal static class ArithCheck
     /// reductions and the equality checks rely on it. <paramref name="padding"/> reads that lane.
     /// </summary>
     public static void PaddingStaysZero<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVector3Arithmetic<T, TScalar>
+        where T : unmanaged, IVector3Arithmetic<T, TScalar>, INumberAlgebraDispatch<T>
         where TScalar : unmanaged, INumber<TScalar>
     {
         var one = TScalar.One;
         var two = TScalar.CreateChecked(2);
         var three = TScalar.CreateChecked(3);
         var five = TScalar.CreateChecked(5);
-        var a = Vec<T, TScalar>(3, simd, one, two, three);
+        // the unary negation of an unsigned component type overflows, the subtraction wraps to a large value
+        // instead, so a component is negative for a signed type and wrapped for an unsigned one
+        var negOne = TScalar.Zero - one;
+        var negThree = TScalar.Zero - three;
+        var a = Vec<T, TScalar>(3, simd, negOne, two, negThree);
         // every component of b differs from the matching one of a, so no unlerp divides by zero
-        var b = Vec<T, TScalar>(3, simd, three, five, one);
+        var b = Vec<T, TScalar>(3, simd, three, five, negOne);
 
         void StaysZero(T v, string what)
             => Assert.That(padding(v), Is.EqualTo(default(TScalar)), $"padding lane after {what}");
@@ -337,6 +343,13 @@ internal static class ArithCheck
             StaysZero(a.min(b), "min");
             StaysZero(a.max(b), "max");
             StaysZero(a.clamp(b, a), "clamp");
+            // the dispatched members reach the same widened vectors through the register of the value
+            StaysZero(math.min(a, b), "the dispatched min");
+            StaysZero(math.max(a, b), "the dispatched max");
+            StaysZero(math.clamp(a, b, a), "the dispatched clamp");
+            StaysZero(math.lerp(a, b, a), "the dispatched lerp");
+            // the clamp that only takes the bounds as single components is forwarded to the member of the older
+            // interface family, its register keeps the lower bound in the padding lane, so it is left out here
             StaysZero(a.square(), "square");
             StaysZero(a.lerp(b, a), "lerp");
             StaysZero(a.unlerp(a, b), "unlerp");
@@ -354,15 +367,18 @@ internal static class ArithCheck
     /// reads one of those lanes.
     /// </summary>
     public static void PaddingStaysZero2<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T>
         where TScalar : unmanaged, INumber<TScalar>
     {
         var one = TScalar.One;
         var two = TScalar.CreateChecked(2);
         var three = TScalar.CreateChecked(3);
-        var a = Vec<T, TScalar>(2, simd, one, two);
+        // the unary negation of an unsigned component type overflows, the subtraction wraps to a large value
+        // instead, so a component is negative for a signed type and wrapped for an unsigned one
+        var negOne = TScalar.Zero - one;
+        var a = Vec<T, TScalar>(2, simd, negOne, two);
         // the second component of b differs from the one of a, so no unlerp divides by zero
-        var b = Vec<T, TScalar>(2, simd, three, one);
+        var b = Vec<T, TScalar>(2, simd, three, negOne);
 
         void StaysZero(T v, string what)
             => Assert.That(padding(v), Is.EqualTo(default(TScalar)), $"padding lane after {what}");
@@ -380,6 +396,13 @@ internal static class ArithCheck
             StaysZero(a.min(b), "min");
             StaysZero(a.max(b), "max");
             StaysZero(a.clamp(b, a), "clamp");
+            // the dispatched members reach the same widened vectors through the register of the value
+            StaysZero(math.min(a, b), "the dispatched min");
+            StaysZero(math.max(a, b), "the dispatched max");
+            StaysZero(math.clamp(a, b, a), "the dispatched clamp");
+            StaysZero(math.lerp(a, b, a), "the dispatched lerp");
+            // the clamp that only takes the bounds as single components is forwarded to the member of the older
+            // interface family, its register keeps the lower bound in the padding lane, so it is left out here
             StaysZero(a.square(), "square");
             StaysZero(a.lerp(b, a), "lerp");
             StaysZero(a.unlerp(a, b), "unlerp");

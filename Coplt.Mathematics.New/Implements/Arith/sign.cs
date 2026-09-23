@@ -42,11 +42,11 @@ namespace Coplt.Mathematics.Implements
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
         {
-            if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(double))
+            if (typeof(TScalar) == typeof(float))
                 return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());
-            if (typeof(TScalar) == typeof(int) || typeof(TScalar) == typeof(long))
+            if (typeof(TScalar) == typeof(int))
                 return TVector.FromUnderlying(simd.SignInt(vector).AsByte());
-            if (typeof(TScalar) == typeof(uint) || typeof(TScalar) == typeof(ulong))
+            if (typeof(TScalar) == typeof(uint))
                 return TVector.FromUnderlying(simd.SignUInt(vector).AsByte());
             throw new NotSupportedException();
         }

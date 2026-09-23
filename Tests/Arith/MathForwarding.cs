@@ -78,6 +78,7 @@ public class TestMathArithForwarding
         math.min(m, m);
         math.max(m, m);
         math.clamp(m, m, m);
+        math.lerp(m, m, m);
     }
 
     [Test]
@@ -113,6 +114,16 @@ public class TestMathArithForwarding
                 Is.EqualTo(new float3s(0f, 2f, 3f)));
             Assert.That(math.square(new int3(2, 3, 4)), Is.EqualTo(new int3(4, 9, 16)));
             Assert.That(math.lerp(default(float3), new float3(2f), new float3(0.5f)), Is.EqualTo(new float3(1f)));
+            // the factor scales the difference, so it only places a value between the two of them inside the
+            // range of zero and one, the interpolation of an integer vector has no fraction
+            Assert.That(math.lerp(new int3(1, 2, 3), new int3(5, 6, 7), new int3(0)), Is.EqualTo(new int3(1, 2, 3)));
+            Assert.That(math.lerp(new int3(1, 2, 3), new int3(5, 6, 7), new int3(1)), Is.EqualTo(new int3(5, 6, 7)));
+            Assert.That(math.lerp(new int3(0), new int3(4), new int3(2)), Is.EqualTo(new int3(8)));
+            // a vector whose register is 64 bits wide and one that has no register reach the member of their
+            // own kind
+            Assert.That(math.lerp(new int2(1, 3), new int2(3, 5), new int2(1)), Is.EqualTo(new int2(3, 5)));
+            Assert.That(math.lerp(new float3s(0f), new float3s(1f), new float3s(0.5f)),
+                Is.EqualTo(new float3s(0.5f)));
             Assert.That(math.unlerp(new float3(1f), default, new float3(2f)), Is.EqualTo(new float3(0.5f)));
             Assert.That(math.remap(new float3(0.5f), default, new float3(1f), default, new float3(10f)),
                 Is.EqualTo(new float3(5f)));
@@ -170,6 +181,11 @@ public class TestMathArithForwarding
             Assert.That(math.clamp(new int2x2(new int2(-1, 2), new int2(5, 0)), new int2x2(new int2(0), new int2(0)),
                     new int2x2(new int2(3), new int2(3))),
                 Is.EqualTo(new int2x2(new int2(0, 2), new int2(3, 0))));
+            // a member that takes three values reaches the value of every column of a matrix as well
+            Assert.That(math.lerp(new float3x2(new float3(0f), new float3(2f)),
+                    new float3x2(new float3(4f), new float3(8f)),
+                    new float3x2(new float3(0.5f), new float3(0.25f))),
+                Is.EqualTo(new float3x2(new float3(2f), new float3(3.5f))));
         }
     }
 
