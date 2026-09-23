@@ -312,8 +312,8 @@ internal static class ArithCheck
     /// reductions and the equality checks rely on it. <paramref name="padding"/> reads that lane.
     /// </summary>
     public static void PaddingStaysZero<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVector3Arithmetic<T, TScalar>, INumberAlgebraDispatch<T>
-        where TScalar : unmanaged, INumber<TScalar>
+        where T : unmanaged, IVector3Arithmetic<T, TScalar>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;
         var two = TScalar.CreateChecked(2);
@@ -348,6 +348,7 @@ internal static class ArithCheck
             StaysZero(math.max(a, b), "the dispatched max");
             StaysZero(math.clamp(a, b, a), "the dispatched clamp");
             StaysZero(math.lerp(a, b, a), "the dispatched lerp");
+            StaysZero(math.lerp(one, five, a), "the dispatched lerp with component bounds");
             // the clamp that only takes the bounds as single components is forwarded to the member of the older
             // interface family, its register keeps the lower bound in the padding lane, so it is left out here
             StaysZero(a.square(), "square");
@@ -367,8 +368,8 @@ internal static class ArithCheck
     /// reads one of those lanes.
     /// </summary>
     public static void PaddingStaysZero2<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T>
-        where TScalar : unmanaged, INumber<TScalar>
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;
         var two = TScalar.CreateChecked(2);
@@ -410,6 +411,7 @@ internal static class ArithCheck
             StaysZero(T.fma(a, b, a), "fma");
             StaysZero(T.fms(a, b, a), "fms");
             StaysZero(T.fnma(a, b, a), "fnma");
+            StaysZero(math.lerp(one, three, a), "the dispatched lerp with component bounds");
         }
     }
 

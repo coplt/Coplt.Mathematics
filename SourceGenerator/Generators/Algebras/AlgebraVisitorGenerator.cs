@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -26,6 +27,24 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     /// <summary>The greatest number of the values a visitor of an algebra takes</summary>
     public const int MaxCount = 3;
 
+    /// <summary>
+    /// The shapes of the arguments of the visitors: the value of the algebra itself first, then every argument
+    /// that follows it, a <c>false</c> for one that is a value of the same kind and a <c>true</c> for one that
+    /// is a single component of the value
+    /// </summary>
+    private static readonly bool[][] Shapes = BuildShapes();
+
+    private static bool[][] BuildShapes()
+    {
+        var shapes = new List<bool[]>(MaxCount + 2);
+        // the members of every count of the values, every one of them is a value of the same kind
+        for (var count = 1; count <= MaxCount; count++) shapes.Add(new bool[count]);
+        // the members that take the components of the value beside it
+        shapes.Add(new[] { false, true });
+        shapes.Add(new[] { false, true, true });
+        return shapes.ToArray();
+    }
+
     /// <summary>The letters that name the values of a visitor that takes more than one of them</summary>
     private static readonly string[] Letters = { "a", "b", "c" };
 
@@ -36,32 +55,40 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     {
         context.RegisterPostInitializationOutput(static ctx =>
         {
-            for (var count = 1; count <= MaxCount; count++)
+            foreach (var shape in Shapes)
             {
-                var name = VisitorName(count);
+                var name = VisitorName(shape);
                 ctx.AddSource(
                     $"{Namespace}.{name}.g.cs",
-                    SourceText.From(Gen(count, name), Encoding.UTF8));
+                    SourceText.From(Gen(shape, name), Encoding.UTF8));
             }
         });
     }
 
     /// <summary>
-    /// Returns the name of the visitor interface of <paramref name="count"/> values: every value names a
-    /// <c>Self</c> of the name, the value a member returns and the value of every argument of it, so the
-    /// interface of one value is <c>INumberAlgebraVisitor_Self_Self</c>.
+    /// Returns the name of the visitor interface of a shape: every argument of it names a <c>Self</c> or a
+    /// <c>Scalar</c> and the value a member returns names the last <c>Self</c> of the name, so the interface of
+    /// one value is <c>INumberAlgebraVisitor_Self_Self</c> and the one of a value with a component of it is
+    /// <c>INumberAlgebraVisitor_Self_Scalar_Self</c>.
     /// </summary>
-    /// <param name="count">The number of the values a member of the visitor takes</param>
+    /// <param name="shape">The shape of the arguments of the visitor</param>
     /// <returns>The name of the interface</returns>
-    public static string VisitorName(int count)
+    public static string VisitorName(bool[] shape)
     {
         var sb = new StringBuilder("INumberAlgebraVisitor");
-        for (var i = 0; i <= count; i++) sb.Append("_Self");
+        foreach (var component in shape) sb.Append(component ? "_Scalar" : "_Self");
+        sb.Append("_Self");
         return sb.ToString();
     }
 
-    private static string Gen(int count, string name)
+    private static string Gen(bool[] shape, string name)
     {
+        var count = shape.Length;
+        // the shape of an interface that takes a component of the value names the type of it, every member of
+        // the interface names the same type, so the interface declares it and its members do not
+        var component = false;
+        for (var i = 0; i < count; i++) if (shape[i]) component = true;
+
         // a visitor that takes a single value names it, one that takes more of them names them by the letters of
         // the alphabet
         var scalar = new string[count];
@@ -84,22 +111,43 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             return text.ToString();
         }
 
+        // the components of the value itself that follow the one of the argument that names it
+        var components = "";
+        for (var i = 1; i < count; i++) components += $", {scalar[i]}";
+
+        // the parameter of every argument of the shape: the one of a value is the value itself, the one of a
+        // component is the type of it
         var scalarParameters = Join(i => $"TScalar {scalar[i]}");
-        var scalarValues = Join(i => scalar[i]);
-        var vectorParameters = Join(i => $"in TVector {value[i]}");
-        var vectorValues = Join(i => value[i]);
-        var matrixParameters = Join(i => $"in TMatrix {value[i]}");
+        var vectorParameters = Join(i => shape[i] ? $"TScalar {scalar[i]}" : $"in TVector {value[i]}");
+        var matrixParameters = Join(i => shape[i] ? $"TScalar {scalar[i]}" : $"in TMatrix {value[i]}");
+        // the values of the shape, in the order of them
+        var vectorValues = Join(i => shape[i] ? scalar[i] : value[i]);
 
-        string RegisterParameters(int width) => Join(i => $"in Vector{width}<TScalar> {value[i]}");
+        // the type parameters of a member: the member of a value that is not the one of the interface declares
+        // the type of a component as well, the one of an interface that takes a component names the type the
+        // interface declares
+        var scalarTypeParameter = component ? "" : "<TScalar>";
+        var vectorTypeParameter = component ? "<TVector>" : "<TVector, TScalar>";
+        var matrixTypeParameter = component ? "<TMatrix, TVector>" : "<TMatrix, TVector, TScalar>";
+        var matrixTypeArguments = component ? "TMatrix, TVector" : "TMatrix, TVector, TScalar";
+        // the dispatch of a value that takes the type of a component names the type of it as well
+        var dispatch = component ? "INumberAlgebraDispatch<TVector, TScalar>" : "INumberAlgebraDispatch<TVector>";
+        var matrixDispatch = component ? "INumberAlgebraDispatch<TMatrix, TScalar>" : "INumberAlgebraDispatch<TMatrix>";
 
-        string ComponentValues(string component) => Join(i => $"TVector.get_{component}({value[i]})");
+        string RegisterParameters(int width) =>
+            Join(i => shape[i] ? $"TScalar {scalar[i]}" : $"in Vector{width}<TScalar> {value[i]}");
+
+        // the component of every argument of the shape: the one of the value itself and the components that
+        // follow it
+        string ComponentValues(string c) => Join(i => shape[i] ? scalar[i] : $"TVector.get_{c}({value[i]})");
 
         // the columns of a matrix are reached through the dispatch of a value of the count of this visitor
-        string ColumnValue(string column) => $"TVector.Visit_Self<V>({Join(i => $"TMatrix.get_{column}({value[i]})")})";
+        string ColumnValue(string column) => component
+            ? $"TVector.Visit_Self<V>(TMatrix.get_{column}({value[0]}){components})"
+            : $"TVector.Visit_Self<V>({Join(i => $"TMatrix.get_{column}({value[i]})")})";
 
-        // the constraint of the member of a register names the interface of the width of it, the one of a value
-        // that is handed over as a vector names the count of its components and the one of a matrix names the
-        // shape of it
+        // the constraint of the member of a component: the interface of a shape that takes a component of the
+        // value declares it, every member of an interface of values declares it itself
         const string scalarConstraint = "        where TScalar : unmanaged, IBinaryNumber<TScalar>";
 
         var sb = new StringBuilder();
@@ -109,21 +157,33 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         sb.AppendLine();
         sb.AppendLine($"namespace {AlgebraVisitorGenerator.Namespace};");
         sb.AppendLine();
-        sb.AppendLine($"public interface {name}<V> where V : {name}<V>");
+        if (component)
+        {
+            sb.AppendLine($"public interface {name}<V, TScalar>");
+            sb.AppendLine($"    where V : {name}<V, TScalar>");
+            sb.AppendLine("    where TScalar : unmanaged, IBinaryNumber<TScalar>");
+        }
+        else
+        {
+            sb.AppendLine($"public interface {name}<V> where V : {name}<V>");
+        }
+
         sb.AppendLine("{");
 
         // the member of a scalar, every member of a shape reaches it for the component of a shape that is handed
         // over as a value
-        sb.AppendLine($"    public static abstract TScalar AcceptScalar<TScalar>({scalarParameters})");
-        sb.AppendLine("        where TScalar : unmanaged, IBinaryNumber<TScalar>;");
+        sb.AppendLine(component
+            ? $"    public static abstract TScalar AcceptScalar({scalarParameters});"
+            : $"    public static abstract TScalar AcceptScalar<TScalar>({scalarParameters})");
+        if (!component) sb.AppendLine(scalarConstraint + ";");
         sb.AppendLine();
 
         // the members of a register, the width of it is a part of the type of a vector
         foreach (var width in new[] { 64, 128, 256 })
         {
-            sb.AppendLine($"    public static abstract TVector AcceptVector<TVector, TScalar>({RegisterParameters(width)})");
-            sb.AppendLine($"        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector{width}Underlying<TVector>");
-            sb.AppendLine(scalarConstraint + ";");
+            sb.AppendLine($"    public static abstract TVector AcceptVector{vectorTypeParameter}({RegisterParameters(width)})");
+            sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{width}Underlying<TVector>" + (component ? ";" : ""));
+            if (!component) sb.AppendLine(scalarConstraint + ";");
             sb.AppendLine();
         }
 
@@ -132,8 +192,8 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         for (var size = 2; size <= 4; size++)
         {
             sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-            sb.AppendLine($"    public static virtual TVector AcceptVector{size}<TVector, TScalar>({vectorParameters})");
-            sb.AppendLine($"        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector{size}<TVector, TScalar>");
+            sb.AppendLine($"    public static virtual TVector AcceptVector{size}{vectorTypeParameter}({vectorParameters})");
+            sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{size}<TVector, TScalar>");
             if (count == 1)
             {
                 sb.AppendLine(scalarConstraint);
@@ -149,7 +209,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             }
             else
             {
-                sb.AppendLine(scalarConstraint + " => TVector.Create(");
+                sb.AppendLine(component ? "        => TVector.Create(" : scalarConstraint + " => TVector.Create(");
                 for (var c = 0; c < size; c++)
                 {
                     sb.AppendLine($"        V.AcceptScalar({ComponentValues(Components[c])}){(c == size - 1 ? "" : ",")}");
@@ -166,11 +226,11 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         for (var cols = 2; cols <= 4; cols++)
         {
             sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-            sb.AppendLine($"    public static virtual TMatrix AcceptMatrixMx{cols}<TMatrix, TVector, TScalar>({matrixParameters})");
+            sb.AppendLine($"    public static virtual TMatrix AcceptMatrixMx{cols}{matrixTypeParameter}({matrixParameters})");
             sb.AppendLine(
-                $"        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrixMx{cols}Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>");
-            sb.AppendLine("        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>");
-            sb.AppendLine(scalarConstraint);
+                $"        where TMatrix : unmanaged, {matrixDispatch}, INumberMatrix<TMatrix, TScalar>, IMatrixMx{cols}Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>");
+            sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>");
+            if (!component) sb.AppendLine(scalarConstraint);
             // the columns of a matrix of a visitor that takes a single value are short enough for a single line
             if (cols == 2 && count == 1)
             {
@@ -197,12 +257,12 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             for (var cols = 2; cols <= 4; cols++)
             {
                 sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-                sb.AppendLine($"    public static virtual TMatrix AcceptMatrix{rows}x{cols}<TMatrix, TVector, TScalar>({matrixParameters})");
+                sb.AppendLine($"    public static virtual TMatrix AcceptMatrix{rows}x{cols}{matrixTypeParameter}({matrixParameters})");
                 sb.AppendLine(
-                    $"        where TMatrix : unmanaged, INumberAlgebraDispatch<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix{rows}x{cols}Vector<TMatrix, TVector>, IMatrix{rows}x{cols}Scalar<TMatrix, TScalar>");
-                sb.AppendLine($"        where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector{rows}<TVector, TScalar>");
-                sb.AppendLine(scalarConstraint);
-                sb.AppendLine($"        => V.AcceptMatrixMx{cols}<TMatrix, TVector, TScalar>({vectorValues});");
+                    $"        where TMatrix : unmanaged, {matrixDispatch}, INumberMatrix<TMatrix, TScalar>, IMatrix{rows}x{cols}Vector<TMatrix, TVector>, IMatrix{rows}x{cols}Scalar<TMatrix, TScalar>");
+                sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{rows}<TVector, TScalar>");
+                if (!component) sb.AppendLine(scalarConstraint);
+                sb.AppendLine($"        => V.AcceptMatrixMx{cols}<{matrixTypeArguments}>({vectorValues});");
                 sb.AppendLine();
             }
         }

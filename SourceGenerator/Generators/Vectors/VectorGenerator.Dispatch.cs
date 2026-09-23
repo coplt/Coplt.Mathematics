@@ -40,6 +40,14 @@ public partial class VectorGenerator
         var three = reg == 0
             ? $"V.AcceptVector{size}<{type}, {scalar}>(a, b, c)"
             : $"V.AcceptVector<{type}, {scalar}>(a.vector, b.vector, c.vector)";
+        // the interface of a member that takes a component of the value beside it names the type of the
+        // component, so the member of the visitor is not named with the type of it again
+        var oneComponent = reg == 0
+            ? $"V.AcceptVector{size}<{type}>(a, b)"
+            : $"V.AcceptVector<{type}>(a.vector, b)";
+        var twoComponents = reg == 0
+            ? $"V.AcceptVector{size}<{type}>(a, b, c)"
+            : $"V.AcceptVector<{type}>(a.vector, b, c)";
 
         var sb = new StringBuilder();
 
@@ -59,6 +67,16 @@ public partial class VectorGenerator
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
         sb.AppendLine($"        => {three};");
+        sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b)");
+        sb.AppendLine($"        => {oneComponent};");
+        sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
+        sb.AppendLine($"        => {twoComponents};");
         sb.AppendLine();
         sb.AppendLine("    #endregion");
         sb.AppendLine();

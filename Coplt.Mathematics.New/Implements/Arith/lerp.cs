@@ -1,4 +1,5 @@
-﻿using Coplt.Mathematics.Algebras.Generics;
+﻿using Coplt.Mathematics.Algebras;
+using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
@@ -25,6 +26,12 @@ namespace Coplt.Mathematics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T lerp<T>([In] this ref T t, in T start, in T end) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_lerp>(start, end, t);
+
+        /// <inheritdoc cref="math.lerp{T}"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T lerp<T, TScalar>(this TScalar t, in T start, in T end) where T : unmanaged, IAlgebra<T, TScalar>, INumberAlgebraDispatch<T>
+            where TScalar : unmanaged, IBinaryNumber<TScalar>
+            => math.lerp(start, end, T.Broadcast(t));
     }
 }
 
@@ -46,31 +53,47 @@ namespace Coplt.Mathematics.Implements
         static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
             in Vector64<TScalar> start, in Vector64<TScalar> end, in Vector64<TScalar> t)
         {
+            var offset = end - start;
+
             if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(Vector64.Lerp(start.AsSingle(), end.AsSingle(), t.AsSingle()).AsByte());
-            return TVector.FromUnderlying((start + t * (end - start)).AsByte());
+                return TVector.FromUnderlying(Vector64.FusedMultiplyAdd(
+                    t.AsSingle(), offset.AsSingle(), start.AsSingle()
+                ).AsByte());
+
+            return TVector.FromUnderlying((start + t * offset).AsByte());
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
             in Vector128<TScalar> start, in Vector128<TScalar> end, in Vector128<TScalar> t)
         {
+            var offset = end - start;
+
             if (typeof(TScalar) == typeof(float))
-                return TVector.UnsafeFromUnderlying(Vector128.Lerp(start.AsSingle(), end.AsSingle(), t.AsSingle()).AsByte());
+                return TVector.UnsafeFromUnderlying(Vector128.FusedMultiplyAdd(
+                    t.AsSingle(), offset.AsSingle(), start.AsSingle()
+                ).AsByte());
+
             if (typeof(TScalar) == typeof(double))
-                return TVector.UnsafeFromUnderlying(Vector128.Lerp(start.AsDouble(), end.AsDouble(), t.AsDouble()).AsByte());
-            return TVector.UnsafeFromUnderlying((start + t * (end - start)).AsByte());
+                return TVector.UnsafeFromUnderlying(Vector128.FusedMultiplyAdd(
+                    t.AsDouble(), offset.AsDouble(), start.AsDouble()
+                ).AsByte());
+
+            return TVector.UnsafeFromUnderlying((start + t * offset).AsByte());
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
             in Vector256<TScalar> start, in Vector256<TScalar> end, in Vector256<TScalar> t)
         {
-            if (typeof(TScalar) == typeof(float))
-                return TVector.UnsafeFromUnderlying(Vector256.Lerp(start.AsSingle(), end.AsSingle(), t.AsSingle()).AsByte());
+            var offset = end - start;
+
             if (typeof(TScalar) == typeof(double))
-                return TVector.UnsafeFromUnderlying(Vector256.Lerp(start.AsDouble(), end.AsDouble(), t.AsDouble()).AsByte());
-            return TVector.UnsafeFromUnderlying((start + t * (end - start)).AsByte());
+                return TVector.UnsafeFromUnderlying(Vector256.FusedMultiplyAdd(
+                    t.AsDouble(), offset.AsDouble(), start.AsDouble()
+                ).AsByte());
+
+            return TVector.UnsafeFromUnderlying((start + t * offset).AsByte());
         }
     }
 }

@@ -36,3 +36,14 @@ public interface INumberAlgebraDispatch<TSelf>
     public static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b, in TSelf c)
         where V : INumberAlgebraVisitor_Self_Self_Self_Self<V>;
 }
+
+public interface INumberAlgebraDispatch<TSelf, TScalar> : INumberAlgebraDispatch<TSelf>
+    where TSelf : unmanaged, INumberAlgebraDispatch<TSelf, TScalar>
+    where TScalar : unmanaged, IBinaryNumber<TScalar>
+{
+    public static abstract TSelf Visit_Self<V>(in TSelf a, TScalar b)
+        where V : INumberAlgebraVisitor_Self_Scalar_Self<V, TScalar>;
+
+    public static abstract TSelf Visit_Self<V>(in TSelf a, TScalar b, TScalar c)
+        where V : INumberAlgebraVisitor_Self_Scalar_Scalar_Self<V, TScalar>;
+}

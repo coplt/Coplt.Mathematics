@@ -134,20 +134,6 @@ public static partial class math
         where TScalar : unmanaged => T.clamp(v, min, max);
 
     /// <summary>
-    /// Interpolates between the two bounds, <paramref name="t"/> is the interpolation factor
-    /// </summary>
-    /// <param name="start">The value at t = 0</param>
-    /// <param name="end">The value at t = 1</param>
-    /// <param name="t">The interpolation factor, the vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The interpolated vector</returns>
-    [MethodImpl(256)]
-    public static T lerp<T, TScalar>(TScalar start, TScalar end, in T t)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged => T.lerp(start, end, t);
-
-    /// <summary>
     /// Interpolates between the two vectors, <paramref name="t"/> is the interpolation factor
     /// </summary>
     /// <param name="start">The value at t = 0</param>

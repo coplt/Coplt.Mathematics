@@ -113,7 +113,7 @@ public class MatrixGenerator : IIncrementalGenerator
             $"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>",
         };
         // a matrix of a number dispatches the value of it to a visitor, a matrix of a mask dispatches nothing
-        if (!bol) ifaces.Add($"Algebras.Generics.INumberAlgebraDispatch<{type}>");
+        if (!bol) ifaces.Add($"Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>");
         VectorGenShared.FileHeader(sb, false);
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
@@ -627,6 +627,16 @@ public class MatrixGenerator : IIncrementalGenerator
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
             sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b, c);");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b)");
+            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b);");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
+            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b, c);");
             sb.AppendLine();
             sb.AppendLine("    #endregion");
             sb.AppendLine();

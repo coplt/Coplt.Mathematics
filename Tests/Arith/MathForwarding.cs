@@ -1,4 +1,6 @@
+using System.Numerics;
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
 using half = System.Half;
@@ -44,8 +46,8 @@ public class TestMathArithForwarding
     /// component infers the type of it from the argument, a member that only returns one names both types.
     /// </summary>
     private static void CheckScalar<T, TScalar>(T v, TScalar s0, TScalar s1)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, IAlgebra<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         // the width of the range of the members that divide by it has to be wider than zero
         var b = v + v;
@@ -201,6 +203,16 @@ public class TestMathArithForwarding
         {
             Assert.That(math.clamp(new float3(-1f, 2f, 5f), 0f, 3f), Is.EqualTo(new float3(0f, 2f, 3f)));
             Assert.That(math.lerp(0f, 1f, new float3(0.5f)), Is.EqualTo(new float3(0.5f)));
+            // the bounds as single components reach a vector without a register, a matrix and a value whose
+            // component is not a floating point one as well
+            Assert.That(math.lerp(0f, 1f, new float3s(0.5f)), Is.EqualTo(new float3s(0.5f)));
+            Assert.That(math.lerp(0f, 2f, new float2x2(new float2(0.5f), new float2(0.25f))),
+                Is.EqualTo(new float2x2(new float2(1f), new float2(0.5f))));
+            Assert.That(math.lerp(1, 3, new int3(0)), Is.EqualTo(new int3(1)));
+            Assert.That(math.lerp(1, 3, new int3(1)), Is.EqualTo(new int3(3)));
+            Assert.That(math.lerp(1, 3, new int3(2)), Is.EqualTo(new int3(5)));
+            // the member of the value puts the factor first
+            Assert.That(new float3(0.5f).lerp(0f, 1f), Is.EqualTo(new float3(0.5f)));
             Assert.That(math.lerp(default(float3), new float3(1f), 0.5f), Is.EqualTo(new float3(0.5f)));
             Assert.That(math.unlerp(new float3(1.5f), 1f, 2f), Is.EqualTo(new float3(0.5f)));
             Assert.That(math.unlerp(1.5f, default, new float3(2f)), Is.EqualTo(new float3(0.75f)));

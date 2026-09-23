@@ -62,15 +62,18 @@ public class TestDynamicVector
         static TScalar INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptScalar<TScalar>(TScalar a, TScalar b, TScalar c) => c;
 
         /// <summary>Builds the third value out of its register of 64 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b, in Vector64<TScalar> c)
+        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b,
+            in Vector64<TScalar> c)
             => TVector.FromUnderlying(c.As<TScalar, byte>());
 
         /// <summary>Builds the third value out of its register of 128 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b, in Vector128<TScalar> c)
+        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b,
+            in Vector128<TScalar> c)
             => TVector.FromUnderlying(c.As<TScalar, byte>());
 
         /// <summary>Builds the third value out of its register of 256 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b, in Vector256<TScalar> c)
+        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b,
+            in Vector256<TScalar> c)
             => TVector.FromUnderlying(c.As<TScalar, byte>());
     }
 
@@ -164,10 +167,12 @@ public class TestDynamicVector
             Assert.That(Visit<float3x3s, AgainVisitor>(
                     new float3x3s(new float3s(1, 2, 3), new float3s(4, 5, 6), new float3s(7, 8, 9))),
                 Is.EqualTo(new float3x3s(new float3s(1, 2, 3), new float3s(4, 5, 6), new float3s(7, 8, 9))));
-            // every member of a visitor names the algebra of a number, so a mask does not dispatch at all
-            Assert.That(CountVisit<float2>(), Is.EqualTo(3));
-            Assert.That(CountVisit<float2x2>(), Is.EqualTo(3));
-            Assert.That(CountVisit<float3x2>(), Is.EqualTo(3));
+            // every member of a visitor names the algebra of a number, so a mask does not dispatch at all. A
+            // number dispatches three members that take values and two that take a component of the value
+            // beside it, a matrix reaches the two of them as well
+            Assert.That(CountVisit<float2>(), Is.EqualTo(5));
+            Assert.That(CountVisit<float2x2>(), Is.EqualTo(5));
+            Assert.That(CountVisit<float3x2>(), Is.EqualTo(5));
             Assert.That(CountVisit<b32v2>(), Is.EqualTo(0));
             Assert.That(CountVisit<b16m2x2>(), Is.EqualTo(0));
         }
