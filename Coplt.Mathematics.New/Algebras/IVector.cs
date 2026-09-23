@@ -3,14 +3,7 @@
 #region Core
 
 public interface IVector<TSelf> : IMatrixVector<TSelf, TSelf>
-    where TSelf : unmanaged, IVector<TSelf>
-{
-    #region Meta
-
-    public static abstract int Dimension { get; }
-
-    #endregion
-}
+    where TSelf : unmanaged, IVector<TSelf>;
 
 public interface IVector<TSelf, TScalar> : IVector<TSelf>, IMatrixScalar<TSelf, TScalar>
     where TSelf : unmanaged, IVector<TSelf, TScalar>

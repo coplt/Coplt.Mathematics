@@ -11,35 +11,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns <c>-1</c>, <c>0</c> or <c>1</c> for every component depending on its sign
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The sign of every component</returns>
-    [MethodImpl(256)]
-    public static T sign<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => T.sign(v);
-
-    /// <summary>
-    /// Returns the smaller of the two vectors component by component
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <param name="other">The other vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The component wise minimum</returns>
-    [MethodImpl(256)]
-    public static T min<T>(in T v, in T other) where T : unmanaged, IVectorArithmetic<T> => T.min(v, other);
-
-    /// <summary>
-    /// Returns the larger of the two vectors component by component
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <param name="other">The other vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The component wise maximum</returns>
-    [MethodImpl(256)]
-    public static T max<T>(in T v, in T other) where T : unmanaged, IVectorArithmetic<T> => T.max(v, other);
-
-    /// <summary>
     /// Clamps every component of the vector to the inclusive range of <paramref name="min"/> and
     /// <paramref name="max"/>
     /// </summary>
