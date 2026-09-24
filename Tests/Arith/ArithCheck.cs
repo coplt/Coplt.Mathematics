@@ -2,6 +2,7 @@ using System.Numerics;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
+using Algebras = Coplt.Mathematics.Algebras;
 
 namespace Tests.Arith;
 
@@ -312,7 +313,7 @@ internal static class ArithCheck
     /// reductions and the equality checks rely on it. <paramref name="padding"/> reads that lane.
     /// </summary>
     public static void PaddingStaysZero<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVector3Arithmetic<T, TScalar>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, IVector3Arithmetic<T, TScalar>, Algebras.INumberAlgebra<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;
@@ -349,6 +350,9 @@ internal static class ArithCheck
             StaysZero(math.clamp(a, b, a), "the dispatched clamp");
             StaysZero(math.lerp(a, b, a), "the dispatched lerp");
             StaysZero(math.lerp(one, five, a), "the dispatched lerp with component bounds");
+            StaysZero(math.square(a), "the dispatched square");
+            StaysZero(math.unlerp(a, b, a), "the dispatched unlerp");
+            StaysZero(math.remap(a, b, a, a, b), "the dispatched remap");
             // the clamp that only takes the bounds as single components is forwarded to the member of the older
             // interface family, its register keeps the lower bound in the padding lane, so it is left out here
             StaysZero(a.square(), "square");
@@ -368,7 +372,7 @@ internal static class ArithCheck
     /// reads one of those lanes.
     /// </summary>
     public static void PaddingStaysZero2<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, Algebras.INumberAlgebra<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;
@@ -412,6 +416,9 @@ internal static class ArithCheck
             StaysZero(T.fms(a, b, a), "fms");
             StaysZero(T.fnma(a, b, a), "fnma");
             StaysZero(math.lerp(one, three, a), "the dispatched lerp with component bounds");
+            StaysZero(math.square(a), "the dispatched square");
+            StaysZero(math.unlerp(a, b, a), "the dispatched unlerp");
+            StaysZero(math.remap(a, b, a, a, b), "the dispatched remap");
         }
     }
 

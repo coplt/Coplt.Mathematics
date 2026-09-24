@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
 
@@ -51,6 +52,55 @@ public class TestSimdPaddingLane
             "float3 loaded from a span");
         Assert.That(new int3(new[] { 1, 2, 3, 42 }).vector.GetElement(3), Is.EqualTo(0),
             "int3 loaded from a span");
+    }
+
+    /// <summary>
+    /// Builds a nan out of a value that is handed over: the division is not a constant of the compiler, so the
+    /// creation of a vector from the value it returns is the one of a value that is only known at run time
+    /// </summary>
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static float Nan(float value) => value / value;
+
+    /// <inheritdoc cref="Nan(float)"/>
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static double Nan(double value) => value / value;
+
+    [Test]
+    public void BroadcastOfComputedNan()
+    {
+        // the creation of a vector from a component broadcasts it with a shuffle of the register of the scalar,
+        // which holds the scalar in the first of its lanes and leaves the ones that follow it unset: a nan that
+        // is only known at run time tells whether the lanes of the result that are not a component stay zero
+        var nan = Nan(0f);
+        var nanD = Nan(0d);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(float.IsNaN(nan), Is.True, "the computed value is a nan");
+            Assert.That(double.IsNaN(nanD), Is.True, "the computed value is a nan");
+
+            var f2 = new float2(nan);
+            Assert.That(float.IsNaN(f2.x) && float.IsNaN(f2.y), Is.True, "float2 broadcast keeps the nan");
+            Assert.That(f2.vector.GetElement(2), Is.EqualTo(0f), "float2 broadcast padding");
+            Assert.That(f2.vector.GetElement(3), Is.EqualTo(0f), "float2 broadcast padding");
+
+            var f3 = new float3(nan);
+            Assert.That(float.IsNaN(f3.x) && float.IsNaN(f3.y) && float.IsNaN(f3.z), Is.True,
+                "float3 broadcast keeps the nan");
+            Assert.That(f3.vector.GetElement(3), Is.EqualTo(0f), "float3 broadcast padding");
+
+            var d3 = new double3(nanD);
+            Assert.That(double.IsNaN(d3.x) && double.IsNaN(d3.y) && double.IsNaN(d3.z), Is.True,
+                "double3 broadcast keeps the nan");
+            Assert.That(d3.vector.GetElement(3), Is.EqualTo(0d), "double3 broadcast padding");
+
+            // only the x component of a scalar is set, the ones after it are zero
+            var s3 = float3.Scalar(nan);
+            Assert.That(float.IsNaN(s3.x), Is.True, "float3 scalar keeps the nan");
+            Assert.That(s3.y, Is.EqualTo(0f), "float3 scalar zeroes the components after it");
+            Assert.That(s3.z, Is.EqualTo(0f), "float3 scalar zeroes the components after it");
+            Assert.That(s3.vector.GetElement(3), Is.EqualTo(0f), "float3 scalar padding");
+        }
     }
 
     [Test]

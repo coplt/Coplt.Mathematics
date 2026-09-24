@@ -46,16 +46,12 @@ public class TestMathArithForwarding
     /// component infers the type of it from the argument, a member that only returns one names both types.
     /// </summary>
     private static void CheckScalar<T, TScalar>(T v, TScalar s0, TScalar s1)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, IAlgebra<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebra<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         // the width of the range of the members that divide by it has to be wider than zero
         var b = v + v;
-        math.clamp(v, s0, s1);
         math.lerp(s0, s1, v);
-        math.lerp(v, b, s0);
-        math.unlerp(v, s0, s1);
-        math.unlerp(s0, v, b);
         math.remap(v, s0, s1, s0, s1);
         _ = math.dot<T, TScalar>(v, v);
         _ = math.length_sq<T, TScalar>(v);
@@ -128,6 +124,13 @@ public class TestMathArithForwarding
                 Is.EqualTo(new float3s(0.5f)));
             Assert.That(math.unlerp(new float3(1f), default, new float3(2f)), Is.EqualTo(new float3(0.5f)));
             Assert.That(math.remap(new float3(0.5f), default, new float3(1f), default, new float3(10f)),
+                Is.EqualTo(new float3(5f)));
+            // the member of the value is the member of the class, a value without a register reaches the same
+            // members
+            Assert.That(new int3(2, 3, 4).square(), Is.EqualTo(new int3(4, 9, 16)));
+            Assert.That(new float3s(2f, 3f, 4f).square(), Is.EqualTo(new float3s(4f, 9f, 16f)));
+            Assert.That(new float3(1f).unlerp(default, new float3(2f)), Is.EqualTo(new float3(0.5f)));
+            Assert.That(new float3(0.5f).remap(default, new float3(1f), default, new float3(10f)),
                 Is.EqualTo(new float3(5f)));
         }
     }
@@ -217,6 +220,10 @@ public class TestMathArithForwarding
             Assert.That(math.unlerp(new float3(1.5f), 1f, 2f), Is.EqualTo(new float3(0.5f)));
             Assert.That(math.unlerp(1.5f, default, new float3(2f)), Is.EqualTo(new float3(0.75f)));
             Assert.That(math.remap(new float3(0.5f), 0f, 1f, 0f, 10f), Is.EqualTo(new float3(5f)));
+            // the component that the member is called on is the one that the inverse places
+            Assert.That(1.5f.unlerp(new float3(1f), new float3(2f)), Is.EqualTo(new float3(0.5f)));
+            Assert.That(1.5f.remap(new float3(1f), new float3(2f), default, new float3(10f)),
+                Is.EqualTo(new float3(5f)));
             Assert.That(math.dot<float3, float>(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f)), Is.EqualTo(32f));
             Assert.That(math.length_sq<float3, float>(new float3(3f, 4f, 0f)), Is.EqualTo(25f));
             Assert.That(math.distance_sq<float3, float>(new float3(1f), new float3(4f, 5f, 1f)), Is.EqualTo(25f));

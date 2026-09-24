@@ -8,6 +8,7 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <RootNamespace>MathTests</RootNamespace>
+    <NoWarn>CS8981</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

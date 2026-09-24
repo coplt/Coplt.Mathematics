@@ -81,22 +81,22 @@ namespace Coplt.Mathematics.Implements
             {
                 return TVector.UnsafeFromUnderlying(Vector128.FusedMultiplyAdd(
                     t.AsSingle(),
-                    Vector128.Shuffle(Vector128.CreateScalarUnsafe(offset).AsSingle(), broadcast),
-                    Vector128.Shuffle(Vector128.CreateScalarUnsafe(start).AsSingle(), broadcast)
+                    Vector128.Shuffle(Scalar.Register128(offset).AsSingle(), broadcast),
+                    Vector128.Shuffle(Scalar.Register128(start).AsSingle(), broadcast)
                 ).AsByte());
             }
 
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(Vector128.FusedMultiplyAdd(
                     t.AsDouble(),
-                    Vector128.Shuffle(Vector128.CreateScalarUnsafe(offset).AsDouble(), default),
-                    Vector128.Shuffle(Vector128.CreateScalarUnsafe(start).AsDouble(), default)
+                    Vector128.Shuffle(Scalar.Register128(offset).AsDouble(), default),
+                    Vector128.Shuffle(Scalar.Register128(start).AsDouble(), default)
                 ).AsByte());
 
             return TVector.UnsafeFromUnderlying((
                 t *
-                Vector128.Shuffle(Vector128.CreateScalarUnsafe(offset).AsInt32(), broadcast).As<int, TScalar>() +
-                Vector128.Shuffle(Vector128.CreateScalarUnsafe(start).AsInt32(), broadcast).As<int, TScalar>()
+                Vector128.Shuffle(Scalar.Register128(offset).AsInt32(), broadcast).As<int, TScalar>() +
+                Vector128.Shuffle(Scalar.Register128(start).AsInt32(), broadcast).As<int, TScalar>()
             ).AsByte());
         }
 
@@ -112,14 +112,14 @@ namespace Coplt.Mathematics.Implements
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(Vector256.FusedMultiplyAdd(
                     t.AsDouble(),
-                    Vector256.Shuffle(Vector256.CreateScalarUnsafe(offset).AsDouble(), broadcast),
-                    Vector256.Shuffle(Vector256.CreateScalarUnsafe(start).AsDouble(), broadcast)
+                    Vector256.Shuffle(Scalar.Register256(offset).AsDouble(), broadcast),
+                    Vector256.Shuffle(Scalar.Register256(start).AsDouble(), broadcast)
                 ).AsByte());
 
             return TVector.UnsafeFromUnderlying((
                 t *
-                Vector256.Shuffle(Vector256.CreateScalarUnsafe(offset).AsInt64(), broadcast).As<long, TScalar>() +
-                Vector256.Shuffle(Vector256.CreateScalarUnsafe(start).AsInt64(), broadcast).As<long, TScalar>()
+                Vector256.Shuffle(Scalar.Register256(offset).AsInt64(), broadcast).As<long, TScalar>() +
+                Vector256.Shuffle(Scalar.Register256(start).AsInt64(), broadcast).As<long, TScalar>()
             ).AsByte());
         }
     }

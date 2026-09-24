@@ -2,6 +2,21 @@
 
 internal static class Scalar
 {
+    /// <summary>
+    /// Builds the register of a component: the lanes that follow the one of it stay zero, which only
+    /// <see cref="simd.ScalarRegisterIsZeroed"/> guarantees
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector128<T> Register128<T>(T value) where T : unmanaged => simd.ScalarRegisterIsZeroed
+        ? Vector128.CreateScalarUnsafe(value)
+        : Vector128.CreateScalar(value);
+
+    /// <inheritdoc cref="Register128{T}"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector256<T> Register256<T>(T value) where T : unmanaged => simd.ScalarRegisterIsZeroed
+        ? Vector256.CreateScalarUnsafe(value)
+        : Vector256.CreateScalar(value);
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T Sign<T>(T value)
         where T : unmanaged, IBinaryNumber<T>

@@ -60,6 +60,16 @@ public partial class VectorGenerator
             return $"{vecName}.Create({string.Join(", ", all)})";
         }
 
+        // the broadcast of a scalar into a vector whose register is wider than its value: the register of the
+        // scalar holds it in the first lane and leaves the ones that follow it at zero, so a shuffle of it
+        // reaches every component and fills the padding lanes with zero
+        string ShuffleBroadcast(string first)
+        {
+            var all = new List<string>();
+            for (var i = 0; i < lanes; i++) all.Add(i < size ? "0" : "1");
+            return $"{vecName}.Shuffle({vecName}.CreateScalarUnsafe({first}), {vecName}.Create({string.Join(", ", all)}))";
+        }
+
         // the construction of a simd result, see VectorGenShared.Vector
         string FromVector(string expr, bool masked = false) => VectorGenShared.Vector(simd, pad, expr, masked);
 
@@ -573,7 +583,14 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public {type}({scalar} value)");
         sb.AppendLine("    {");
-        if (simd) sb.AppendLine($"        vector = {Broadcast($"{cast}value")};");
+        // the broadcast of a floating point component into a vector whose register is wider than its value
+        // fills the padding lanes with a shuffle into the lane that follows the one of the register of a scalar
+        // on a platform simd.ScalarRegisterIsZeroed names, which saves the mask over the whole register that the
+        // other platforms apply
+        if (simd)
+            sb.AppendLine(pad && typ.f
+                ? $"        vector = {vecName}.IsHardwareAccelerated && simd.ScalarRegisterIsZeroed ? {ShuffleBroadcast($"{cast}value")} : {vecName}.Create({cast}value) & {mask};"
+                : $"        vector = {Broadcast($"{cast}value")};");
         else
             for (var i = 0; i < size; i++)
                 sb.AppendLine($"        {comp[i]} = value;");
@@ -587,8 +604,15 @@ public partial class VectorGenerator
         Doc($"Creates a vector with only the <c>{comp[0]}</c> component set to <paramref name=\"value\"/><para>The other components are zero</para>");
         DocParam("value", $"The value of the <c>{comp[0]}</c> component");
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} Scalar({scalar} value) => new() {{ " +
-                      (simd ? $"vector = {vecName}.CreateScalar({cast}value)" : $"{comp[0]} = value") + " };");
+        // the constructor of a padded vector masks the padding lanes, so only the lane of the scalar has to be
+        // set and the rest of the register does not have to be zeroed, which only simd.ScalarRegisterIsZeroed
+        // guarantees
+        sb.AppendLine($"    public static {type} Scalar({scalar} value) => " +
+                      (simd
+                          ? pad
+                              ? $"simd.ScalarRegisterIsZeroed ? new({vecName}.CreateScalarUnsafe({cast}value)) : new() {{ vector = {vecName}.CreateScalar({cast}value) }};"
+                              : $"new() {{ vector = {vecName}.CreateScalar({cast}value) }};"
+                          : $"new() {{ {comp[0]} = value }};"));
         sb.AppendLine();
         InheritDoc();
         sb.AppendLine($"    {attrCpu}");

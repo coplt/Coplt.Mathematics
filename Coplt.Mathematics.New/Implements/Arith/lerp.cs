@@ -51,7 +51,8 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
-            in Vector64<TScalar> start, in Vector64<TScalar> end, in Vector64<TScalar> t)
+            in Vector64<TScalar> start, in Vector64<TScalar> end, in Vector64<TScalar> t
+        )
         {
             var offset = end - start;
 
@@ -65,7 +66,8 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
-            in Vector128<TScalar> start, in Vector128<TScalar> end, in Vector128<TScalar> t)
+            in Vector128<TScalar> start, in Vector128<TScalar> end, in Vector128<TScalar> t
+        )
         {
             var offset = end - start;
 
@@ -84,7 +86,8 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
-            in Vector256<TScalar> start, in Vector256<TScalar> end, in Vector256<TScalar> t)
+            in Vector256<TScalar> start, in Vector256<TScalar> end, in Vector256<TScalar> t
+        )
         {
             var offset = end - start;
 

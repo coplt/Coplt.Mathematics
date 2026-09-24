@@ -11,42 +11,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns where the vector is between <paramref name="start"/> and <paramref name="end"/>, it is the inverse
-    /// of <see cref="lerp{T}(in T, in T, in T)"/>
-    /// </summary>
-    /// <param name="v">The vector to place</param>
-    /// <param name="start">The value at t = 0</param>
-    /// <param name="end">The value at t = 1</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The position of the vector between the two values</returns>
-    [MethodImpl(256)]
-    public static T unlerp<T>(in T v, in T start, in T end) where T : unmanaged, IVectorArithmetic<T> => T.unlerp(v, start, end);
-
-    /// <summary>
-    /// Remaps the vector from the range <paramref name="src_start"/> to <paramref name="src_end"/> into the range
-    /// <paramref name="dst_start"/> to <paramref name="dst_end"/>
-    /// </summary>
-    /// <param name="v">The vector to remap</param>
-    /// <param name="src_start">The lower bound of the source range</param>
-    /// <param name="src_end">The upper bound of the source range</param>
-    /// <param name="dst_start">The lower bound of the destination range</param>
-    /// <param name="dst_end">The upper bound of the destination range</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The remapped vector</returns>
-    [MethodImpl(256)]
-    public static T remap<T>(in T v, in T src_start, in T src_end, in T dst_start, in T dst_end)
-        where T : unmanaged, IVectorArithmetic<T> => T.remap(v, src_start, src_end, dst_start, dst_end);
-
-    /// <summary>
-    /// Returns the vector with every component squared
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The squared vector</returns>
-    [MethodImpl(256)]
-    public static T square<T>(in T v) where T : unmanaged, IVectorArithmetic<T> => T.square(v);
-
-    /// <summary>
     /// Fusion Addition and Multiplication
     /// <code>(a * b) + c</code>
     /// </summary>
@@ -133,48 +97,6 @@ public static partial class math
         where T : unmanaged, IVectorArithmetic<T, TScalar>
         where TScalar : unmanaged => T.clamp(v, min, max);
 
-    /// <summary>
-    /// Interpolates between the two vectors, <paramref name="t"/> is the interpolation factor
-    /// </summary>
-    /// <param name="start">The value at t = 0</param>
-    /// <param name="end">The value at t = 1</param>
-    /// <param name="t">The interpolation factor, 0 is <paramref name="start"/> and 1 is <paramref name="end"/></param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The interpolated vector</returns>
-    [MethodImpl(256)]
-    public static T lerp<T, TScalar>(in T start, in T end, TScalar t)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged => T.lerp(start, end, t);
-
-    /// <summary>
-    /// Returns where the vector is between <paramref name="start"/> and <paramref name="end"/>, it is the inverse
-    /// of <see cref="lerp{T,TScalar}(TScalar, TScalar, in T)"/>
-    /// </summary>
-    /// <param name="v">The vector to place</param>
-    /// <param name="start">The value at t = 0</param>
-    /// <param name="end">The value at t = 1</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The position of the vector between the two values</returns>
-    [MethodImpl(256)]
-    public static T unlerp<T, TScalar>(in T v, TScalar start, TScalar end)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged => T.unlerp(v, start, end);
-
-    /// <summary>
-    /// Returns where the scalar is between <paramref name="start"/> and <paramref name="end"/>
-    /// </summary>
-    /// <param name="v">The value to place</param>
-    /// <param name="start">The value at t = 0</param>
-    /// <param name="end">The value at t = 1</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The position of the value between the two vectors</returns>
-    [MethodImpl(256)]
-    public static T unlerp<T, TScalar>(TScalar v, in T start, in T end)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged => T.unlerp(v, start, end);
 
     /// <summary>
     /// Remaps the vector from the range <paramref name="src_start"/> to <paramref name="src_end"/> into the range

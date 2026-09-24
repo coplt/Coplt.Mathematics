@@ -6,7 +6,7 @@
 /// <c>Coplt.Analyzers.Generators.AlgebraVisitorGenerator</c>, every one of them is the interface of a count of
 /// the values that the members of it take</para>
 /// </summary>
-public interface INumberAlgebraDispatch<TSelf>
+public interface INumberAlgebraDispatch<TSelf> : INumberAlgebra<TSelf>
     where TSelf : unmanaged, INumberAlgebraDispatch<TSelf>
 {
     /// <summary>Hands the value of <paramref name="self"/> to <typeparamref name="V"/></summary>
@@ -37,7 +37,7 @@ public interface INumberAlgebraDispatch<TSelf>
         where V : INumberAlgebraVisitor_Self_Self_Self_Self<V>;
 }
 
-public interface INumberAlgebraDispatch<TSelf, TScalar> : INumberAlgebraDispatch<TSelf>
+public interface INumberAlgebraDispatch<TSelf, TScalar> : INumberAlgebraDispatch<TSelf>, INumberAlgebra<TSelf, TScalar>
     where TSelf : unmanaged, INumberAlgebraDispatch<TSelf, TScalar>
     where TScalar : unmanaged, IBinaryNumber<TScalar>
 {

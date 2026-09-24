@@ -8,6 +8,19 @@ namespace Coplt.Mathematics.Simd;
 [CpuOnly]
 public static partial class simd
 {
+    #region Scalar
+
+    /// <summary>
+    /// True when the lanes that follow the one of a scalar of the register of it stay zero
+    /// <para>It is how the hardware builds the register of a scalar rather than a special instruction: the
+    /// hardware of a platform with avx and the one of arm64 writes only the lane of the scalar and zeroes the
+    /// lanes that follow the one of it, while the hardware of a platform with sse alone leaves those lanes alone
+    /// and the value of them is not defined</para>
+    /// </summary>
+    public static bool ScalarRegisterIsZeroed => Avx.IsSupported || AdvSimd.Arm64.IsSupported;
+
+    #endregion
+
     #region Convert
 
     [MethodImpl(256 | 512)]
