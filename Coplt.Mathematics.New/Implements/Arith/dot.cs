@@ -18,10 +18,8 @@ namespace Coplt.Mathematics
         // the type of a single component is only a part of the result of the member, so the compiler cannot
         // infer it from the arguments and a call that does not name it reaches the member of the scalar type
         // of the vector instead, which the generator emits for every scalar type: the attribute marks this
-        // member for it and the priority keeps this member in front of the one of them when the caller names
-        // both types
+        // member for it
         [ScalarExtension]
-        [OverloadResolutionPriority(10000)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TScalar dot<T, TScalar>(in T a, in T b)
             where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>

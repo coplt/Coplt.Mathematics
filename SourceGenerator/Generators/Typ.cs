@@ -123,4 +123,18 @@ public record struct Typ(
         { "float", ["double"] },
         { "half", ["float", "double"] },
     };
+
+    /// <summary>
+    /// The scalar types that convert to a vector of a component type implicitly beside the type of the component
+    /// itself, the value of one of them is broadcast into every component of the vector. The type of the
+    /// component of the vector is not one of them, the conversion of it is always emitted.
+    /// <para>The compiler applies a single user defined conversion, so a scalar that converts to the type of a
+    /// component <c>float</c> needs an operator of its own as well, the two conversions of it would not chain
+    /// otherwise</para>
+    /// </summary>
+    public static Dictionary<string, string[]> ScalarConverts = new()
+    {
+        { "float", ["int", "uint"] },
+        { "double", ["long", "ulong"] },
+    };
 }

@@ -548,6 +548,23 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static implicit operator {type}({scalar} value) => new(value);");
         sb.AppendLine();
+
+        // a scalar that converts to the type of a component implicitly converts to a vector of the component as
+        // well, see Typ.ScalarConverts
+        if (Typ.ScalarConverts.TryGetValue(typ.compType, out var scalarConverts))
+        {
+            foreach (var source in scalarConverts)
+            {
+                if (source == scalar) continue;
+                Doc($"Converts a {source} scalar to a broadcast vector");
+                DocParam("value", "The value of every component");
+                sb.AppendLine("    /// <returns>The broadcast vector</returns>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    public static implicit operator {type}({source} value) => new(value);");
+                sb.AppendLine();
+            }
+        }
+
         if (storeVariant)
         {
             // the storage variant and the regular vector keep the same components in different storages, the

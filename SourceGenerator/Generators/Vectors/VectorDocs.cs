@@ -22,22 +22,6 @@ internal static class VectorDocs
     {
         #region IVectorArithmetic
 
-        {
-            "clamp",
-            ("Clamps every component into the inclusive range of <c>min</c> and <c>max</c>", "The clamped vector",
-                "a=The vector;min=The lower bound of every component;max=The upper bound of every component")
-        },
-        { "lerp", ("Interpolates between <c>start</c> and <c>end</c>", "The interpolated vector", "start=The value at t = 0;end=The value at t = 1;t=The interpolation factor") },
-        {
-            "unlerp",
-            ("Returns where the value is between <c>start</c> and <c>end</c>", "The position of the value between the two bounds",
-                "a=The value to place;start=The value at t = 0;end=The value at t = 1")
-        },
-        {
-            "remap",
-            ("Remaps the vector from the source range into the destination range", "The remapped vector",
-                "a=The vector to remap;src_start=The lower bound of the source range;src_end=The upper bound of the source range;dst_start=The lower bound of the destination range;dst_end=The upper bound of the destination range")
-        },
         { "length_sq", ("Returns the squared length of the vector, it is the same as <c>dot(self)</c> but avoids the square root", "The squared length", "a=The vector") },
         { "distance_sq", ("Returns the squared distance between the two vectors", "The squared distance", "a=The vector;b|to=The other vector") },
         { "csum", ("Returns the sum of all components", "The sum of the components", "a=The vector") },

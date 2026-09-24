@@ -167,53 +167,6 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region clamp lerp unlerp remap
-
-        sb.AppendLine("    #region clamp lerp unlerp remap");
-        sb.AppendLine();
-
-        // the bounds of this member are single components, the dispatch of an algebra does not implement it yet
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} clamp({scalar} min, {scalar} max)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector($"{vecName}.Max({vecName}.Create(min), {vecName}.Min({vecName}.Create(max), vector))")};",
-            $"return {From128($"Vector128.Max(Vector128.Create(min), Vector128.Min(Vector128.Create(max), {Load64("")}))")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "clamp", comp[n], "min", "max"))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        // the factor of this member is a single component, the dispatch of an algebra does not implement it yet
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} lerp({scalar} t, in {type} start, in {type} end)");
-        sb.AppendLine("    {");
-        EmitAccel($"return math.fma(new {type}(t), end - start, start);",
-            f
-                ? $"return {From128($"simd.Fma(Vector128.Create({cast}t), {Load64("end.")} - {Load64("start.")}, {Load64("start.")})")};"
-                : $"return {From128($"Vector128.Create({cast}t) * ({Load64("end.")} - {Load64("start.")}) + {Load64("start.")}")};",
-            $"return start + new {type}(t) * (end - start);");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        // the bounds of this member are single components, the dispatch of an algebra does not implement it yet
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} unlerp({scalar} start, {scalar} end) => (this - start) / new {type}({cast}(end - start));");
-        sb.AppendLine();
-
-        // the bounds of this member are single components, the dispatch of an algebra does not implement it yet
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} remap({scalar} src_start, {scalar} src_end, {scalar} dst_start, {scalar} dst_end) =>");
-        sb.AppendLine("        unlerp(src_start, src_end).lerp(dst_start, dst_end);");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
         #region length_sq distance_sq
 
         sb.AppendLine("    #region length_sq distance_sq");
@@ -299,6 +252,7 @@ public partial class VectorGenerator
         sb.AppendLine();
 
         #endregion
+
         sb.AppendLine("}");
         sb.AppendLine();
 

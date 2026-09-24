@@ -31,8 +31,8 @@ public class TestDot
             Assert.That(math.dot(new long3(1L, 2L, 3L), new long3(2L, 3L, 4L)), Is.EqualTo(20L), "long3");
             Assert.That(math.dot(new ulong3(1UL, 2UL, 3UL), new ulong3(2UL, 3UL, 4UL)), Is.EqualTo(20UL), "ulong3");
 
-            // the member that names the type of a component reaches the same one, the priority of it keeps it in
-            // front of the one of a component type when both of them are applicable
+            // the member that names the type of a component reaches the same value, a call of it spells the
+            // scalar type of the value out instead of reaching the member of the scalar type
             Assert.That(math.dot<float3, float>(new float3(1f, 2f, 3f), new float3(2f, 3f, 4f)), Is.EqualTo(20f),
                 "the member that names both types");
             Assert.That(math.dot<int3s, int>(new int3s(1, 2, 3), new int3s(2, 3, 4)), Is.EqualTo(20),

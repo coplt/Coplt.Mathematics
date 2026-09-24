@@ -19,22 +19,6 @@ internal static class VectorExtensions
 {
     #region IVectorArithmetic
 
-    // the members below are the variants the dispatch of an algebra does not implement yet, their factor or
-    // their bounds are single components
-    public static T clamp<T, TScalar>(this T a, TScalar min, TScalar max)
-        where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.clamp(a, min, max);
-
-    public static T unlerp<T, TScalar>(this T a, TScalar start, TScalar end)
-        where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.unlerp(a, start, end);
-
-    public static T remap<T, TScalar>(this T a, TScalar src_start, TScalar src_end, TScalar dst_start, TScalar dst_end)
-        where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged =>
-        T.remap(a, src_start, src_end, dst_start, dst_end);
-
-    public static TScalar dot<T, TScalar>(this T a, in T other)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
-        where TScalar : unmanaged, IBinaryNumber<TScalar> => math.dot<T, TScalar>(a, other);
-
     public static TScalar length_sq<T, TScalar>(this T a)
         where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.length_sq(a);
 

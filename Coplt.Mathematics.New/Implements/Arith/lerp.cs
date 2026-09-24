@@ -4,31 +4,34 @@ using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
 {
-    public static partial class math
-    {
-        /// <summary>
-        /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, <paramref name="t"/> is the
-        /// interpolation factor
-        /// </summary>
-        /// <param name="start">The value at t = 0</param>
-        /// <param name="end">The value at t = 1</param>
-        /// <param name="t">The interpolation factor, 0 is <paramref name="start"/> and 1 is <paramref name="end"/></param>
-        /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
-        /// <returns>The interpolated value</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T lerp<T>(in T start, in T end, in T t) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_lerp>(start, end, t);
-    }
-
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.lerp{T}"/>
+        extension(math)
+        {
+            /// <summary>
+            /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, <paramref name="t"/> is the
+            /// interpolation factor
+            /// </summary>
+            /// <param name="start">The value at t = 0</param>
+            /// <param name="end">The value at t = 1</param>
+            /// <param name="t">The interpolation factor, 0 is <paramref name="start"/> and 1 is <paramref name="end"/></param>
+            /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
+            /// <returns>The interpolated value</returns>
+            [OverloadResolutionPriority(-1)]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static T lerp<T>(in T start, in T end, in T t) where T : unmanaged, INumberAlgebraDispatch<T>
+                => T.Visit_Self<impl_lerp>(start, end, t);
+        }
+        
+        /// <inheritdoc cref="math_ex.lerp{T}(in T, in T, in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [OverloadResolutionPriority(-2)]
         public static T lerp<T>(this T t, in T start, in T end) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_lerp>(start, end, t);
 
-        /// <inheritdoc cref="math.lerp{T}"/>
+        /// <inheritdoc cref="math_ex.lerp{T}(in T, in T, in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [OverloadResolutionPriority(-2)]
         public static T lerp<T, TScalar>(this TScalar t, in T start, in T end) where T : unmanaged, IAlgebra<T, TScalar>, INumberAlgebraDispatch<T>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => math.lerp(start, end, T.Broadcast(t));

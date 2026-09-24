@@ -34,13 +34,6 @@ public partial class VectorGenerator
         {
             #region IVectorArithmetic
 
-            ('a', "{type} clamp(in {type} a, {scalar} min, {scalar} max) => a.clamp(min, max);"),
-            // the members below are the variants the dispatch of an algebra does not implement yet, their
-            // factor or their bounds are single components
-            ('a', "{type} lerp(in {type} start, in {type} end, {scalar} t) => {type}.lerp(t, start, end);"),
-            ('a', "{type} unlerp(in {type} a, {scalar} start, {scalar} end) => a.unlerp(start, end);"),
-            ('a', "{type} remap(in {type} a, {scalar} src_start, {scalar} src_end, {scalar} dst_start, {scalar} dst_end) => " +
-                  "a.remap(src_start, src_end, dst_start, dst_end);"),
             ('a', "{scalar} length_sq(in {type} a) => a.length_sq();"),
             ('a', "{scalar} distance_sq(in {type} a, in {type} b) => a.distance_sq(b);"),
             ('a', "{scalar} csum(in {type} a) => a.csum();"),

@@ -32,59 +32,6 @@ public interface IVectorArithmetic<Self, Scalar> :
     where Self : unmanaged, IVectorArithmetic<Self, Scalar>
     where Scalar : unmanaged
 {
-    #region Clamp Lerp Unlerp Remap
-
-    /// <summary>
-    /// Clamps every component of <paramref name="a"/> to the inclusive range of <paramref name="min"/> and
-    /// <paramref name="max"/>
-    /// <para>The bounds are the same for every component, the dispatch of an algebra does not implement this
-    /// member yet</para>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="min">The lower bound of every component</param>
-    /// <param name="max">The upper bound of every component</param>
-    /// <returns>The clamped vector</returns>
-    public static abstract Self clamp(in Self a, Scalar min, Scalar max);
-
-    /// <summary>
-    /// Interpolates between <paramref name="start"/> and <paramref name="end"/>, <paramref name="t"/> is the
-    /// interpolation factor
-    /// <para>The factor is the same for every component, the dispatch of an algebra does not implement this
-    /// member yet</para>
-    /// </summary>
-    /// <param name="start">The value at t = 0</param>
-    /// <param name="end">The value at t = 1</param>
-    /// <param name="t">The interpolation factor, 0 is <paramref name="start"/> and 1 is <paramref name="end"/></param>
-    /// <returns>The interpolated vector</returns>
-    public static abstract Self lerp(in Self start, in Self end, Scalar t);
-
-    /// <summary>
-    /// Returns where <paramref name="a"/> is between <paramref name="start"/> and <paramref name="end"/>
-    /// <para>The bounds are the same for every component, the dispatch of an algebra does not implement this
-    /// member yet</para>
-    /// </summary>
-    /// <param name="a">The value to place</param>
-    /// <param name="start">The value at t = 0</param>
-    /// <param name="end">The value at t = 1</param>
-    /// <returns>The position of <paramref name="a"/> between the two values</returns>
-    public static abstract Self unlerp(in Self a, Scalar start, Scalar end);
-
-    /// <summary>
-    /// Remaps <paramref name="a"/> from the range <paramref name="src_start"/> to <paramref name="src_end"/> into
-    /// the range <paramref name="dst_start"/> to <paramref name="dst_end"/>
-    /// <para>The bounds are the same for every component, the dispatch of an algebra does not implement this
-    /// member yet</para>
-    /// </summary>
-    /// <param name="a">The vector to remap</param>
-    /// <param name="src_start">The lower bound of the source range</param>
-    /// <param name="src_end">The upper bound of the source range</param>
-    /// <param name="dst_start">The lower bound of the destination range</param>
-    /// <param name="dst_end">The upper bound of the destination range</param>
-    /// <returns>The remapped vector</returns>
-    public static abstract Self remap(in Self a, Scalar src_start, Scalar src_end, Scalar dst_start, Scalar dst_end);
-
-    #endregion
-
     #region LengthSq DistanceSq
 
     /// <summary>

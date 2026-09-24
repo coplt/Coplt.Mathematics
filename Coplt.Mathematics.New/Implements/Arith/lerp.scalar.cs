@@ -15,7 +15,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <typeparam name="TScalar">The type of a single component</typeparam>
         /// <returns>The interpolated value</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [ScalarExtension(ThisParameter = "t")]
         public static T lerp<T, TScalar>(TScalar start, TScalar end, in T t) where T : unmanaged, INumberAlgebraDispatch<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => T.Visit_Self<impl_lerp<TScalar>>(t, start, end);
@@ -24,6 +24,7 @@ namespace Coplt.Mathematics
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.lerp{T, TScalar}(TScalar, TScalar, in T)"/>
+        [OverloadResolutionPriority(-2)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T lerp<T, TScalar>(this T t, TScalar start, TScalar end) where T : unmanaged, INumberAlgebraDispatch<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>

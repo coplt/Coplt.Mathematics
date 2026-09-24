@@ -194,6 +194,29 @@ public class TestMathArithForwarding
     }
 
     /// <summary>
+    /// A scalar that converts to the type of a component implicitly converts to a vector of the component as
+    /// well, the value of it is broadcast into every component of the vector. The bounds of the members that
+    /// take a component are the ones of a vector, so a call of them names a scalar or a vector.
+    /// </summary>
+    [Test]
+    public void ScalarConversion()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((float3)1, Is.EqualTo(new float3(1f)));
+            Assert.That((float3)(1u), Is.EqualTo(new float3(1f)));
+            Assert.That((float2s)1, Is.EqualTo(new float2s(1f)));
+            Assert.That((double3)1L, Is.EqualTo(new double3(1d)));
+            Assert.That((double3)(1UL), Is.EqualTo(new double3(1d)));
+
+            // the bounds of the clamp are single components, the conversion of them broadcasts the bounds
+            Assert.That(math.clamp(new float3(-1f, 2f, 5f), 0, 3), Is.EqualTo(new float3(0f, 2f, 3f)));
+            Assert.That(math.clamp(new double3(-1d, 2d, 5d), 0L, 3L), Is.EqualTo(new double3(0d, 2d, 3d)));
+            Assert.That(math.clamp(new float3(-1f, 2f, 5f), 0f, 3f), Is.EqualTo(new float3(0f, 2f, 3f)));
+        }
+    }
+
+    /// <summary>
     /// The members that name the type of a single component reach the ones of the vector as well. The type of a
     /// component that is an argument is inferred from it, the type that is only the result of the member is
     /// spelled out by the caller.
