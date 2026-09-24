@@ -52,13 +52,15 @@ namespace Coplt.Mathematics.Implements
             in Vector64<TScalar> t, TScalar start, TScalar end
         )
         {
+            // a 64 bit register is exactly as wide as the value of the vector it keeps, so the broadcast of a
+            // component of it has no padding lane
             var offset = end - start;
 
             if (typeof(TScalar) == typeof(float))
                 return TVector.FromUnderlying(Vector64.FusedMultiplyAdd(
                     t.AsSingle(),
-                    Vector64.Shuffle(Vector64.CreateScalarUnsafe(offset).AsSingle(), default),
-                    Vector64.Shuffle(Vector64.CreateScalarUnsafe(start).AsSingle(), default)
+                    Vector64.Create(offset).AsSingle(),
+                    Vector64.Create(start).AsSingle()
                 ).AsByte());
 
             return TVector.FromUnderlying((t * Vector64.Create(offset) + Vector64.Create(start)).AsByte());
@@ -69,35 +71,30 @@ namespace Coplt.Mathematics.Implements
             in Vector128<TScalar> t, TScalar start, TScalar end
         )
         {
-            // the value of a vector of 2 components fills the lower half of its register, so its padding
-            // lanes are the upper two, the one of a vector of 3 components fills all but the last one
-            var broadcast = TVector.HavePaddingLanes
-                ? TVector.Rows == 2 ? Vector128.Create(0, 0, 3, 3) : Vector128.Create(0, 0, 0, 3)
-                : default;
+            // the broadcast of a component builds the whole register of it and masks the padding lanes of the
+            // vector, so the lanes that follow the components of the vector stay zero: a vector whose value
+            // fills its register has none of them and skips the mask
+            var mask = TVector.PaddingLanesMask.As<byte, TScalar>();
 
             var offset = end - start;
+            var offsetReg = TVector.HavePaddingLanes ? Vector128.Create(offset) & mask : Vector128.Create(offset);
+            var startReg = TVector.HavePaddingLanes ? Vector128.Create(start) & mask : Vector128.Create(start);
 
             if (typeof(TScalar) == typeof(float))
-            {
                 return TVector.UnsafeFromUnderlying(Vector128.FusedMultiplyAdd(
                     t.AsSingle(),
-                    Vector128.Shuffle(Scalar.Register128(offset).AsSingle(), broadcast),
-                    Vector128.Shuffle(Scalar.Register128(start).AsSingle(), broadcast)
+                    offsetReg.AsSingle(),
+                    startReg.AsSingle()
                 ).AsByte());
-            }
 
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(Vector128.FusedMultiplyAdd(
                     t.AsDouble(),
-                    Vector128.Shuffle(Scalar.Register128(offset).AsDouble(), default),
-                    Vector128.Shuffle(Scalar.Register128(start).AsDouble(), default)
+                    offsetReg.AsDouble(),
+                    startReg.AsDouble()
                 ).AsByte());
 
-            return TVector.UnsafeFromUnderlying((
-                t *
-                Vector128.Shuffle(Scalar.Register128(offset).AsInt32(), broadcast).As<int, TScalar>() +
-                Vector128.Shuffle(Scalar.Register128(start).AsInt32(), broadcast).As<int, TScalar>()
-            ).AsByte());
+            return TVector.UnsafeFromUnderlying((t * offsetReg + startReg).AsByte());
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -105,22 +102,23 @@ namespace Coplt.Mathematics.Implements
             in Vector256<TScalar> t, TScalar start, TScalar end
         )
         {
-            var broadcast = TVector.HavePaddingLanes ? Vector256.Create(0, 0, 0, 3) : default;
+            // the broadcast of a component builds the whole register of it and masks the padding lanes of the
+            // vector, so the lanes that follow the components of the vector stay zero: a vector whose value
+            // fills its register has none of them and skips the mask
+            var mask = TVector.PaddingLanesMask.As<byte, TScalar>();
 
             var offset = end - start;
+            var offsetReg = TVector.HavePaddingLanes ? Vector256.Create(offset) & mask : Vector256.Create(offset);
+            var startReg = TVector.HavePaddingLanes ? Vector256.Create(start) & mask : Vector256.Create(start);
 
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(Vector256.FusedMultiplyAdd(
                     t.AsDouble(),
-                    Vector256.Shuffle(Scalar.Register256(offset).AsDouble(), broadcast),
-                    Vector256.Shuffle(Scalar.Register256(start).AsDouble(), broadcast)
+                    offsetReg.AsDouble(),
+                    startReg.AsDouble()
                 ).AsByte());
 
-            return TVector.UnsafeFromUnderlying((
-                t *
-                Vector256.Shuffle(Scalar.Register256(offset).AsInt64(), broadcast).As<long, TScalar>() +
-                Vector256.Shuffle(Scalar.Register256(start).AsInt64(), broadcast).As<long, TScalar>()
-            ).AsByte());
+            return TVector.UnsafeFromUnderlying((t * offsetReg + startReg).AsByte());
         }
     }
 }

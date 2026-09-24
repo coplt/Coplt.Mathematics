@@ -1,5 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.Arm;
+using System.Runtime.Intrinsics.X86;
 using Coplt.Mathematics;
 
 namespace Tests.Arith;
@@ -100,6 +102,63 @@ public class TestSimdPaddingLane
             Assert.That(s3.y, Is.EqualTo(0f), "float3 scalar zeroes the components after it");
             Assert.That(s3.z, Is.EqualTo(0f), "float3 scalar zeroes the components after it");
             Assert.That(s3.vector.GetElement(3), Is.EqualTo(0f), "float3 scalar padding");
+        }
+    }
+
+    /// <summary>
+    /// The platforms whose hardware zeroes the lanes that follow the one of the register of a scalar: an
+    /// avx encoded scalar instruction and the one of arm64 write only the lane of the scalar and leave the ones
+    /// that follow the one of it at zero, which is what the unsafe members are for
+    /// </summary>
+    private static bool ScalarLanesAreZeroed => Avx.IsSupported || AdvSimd.Arm64.IsSupported;
+
+    [Test]
+    public void BroadcastUnsafeOfComputedNan()
+    {
+        // the unsafe members leave the lanes that follow the one of the register of a scalar as the register of
+        // the scalar does, which only leaves them at zero on a platform whose hardware does: the check is the
+        // one the caller of an unsafe member makes
+        if (!ScalarLanesAreZeroed)
+            Assert.Ignore("the hardware of the platform does not zero the lanes that follow the one of a scalar");
+
+        var nan = Nan(0f);
+        var nanD = Nan(0d);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(float.IsNaN(nan), Is.True, "the computed value is a nan");
+            Assert.That(double.IsNaN(nanD), Is.True, "the computed value is a nan");
+
+            var f2 = float2.BroadcastUnsafe(nan);
+            Assert.That(float.IsNaN(f2.x) && float.IsNaN(f2.y), Is.True, "float2 broadcast unsafe keeps the nan");
+            Assert.That(f2.vector.GetElement(2), Is.EqualTo(0f), "float2 broadcast unsafe padding");
+            Assert.That(f2.vector.GetElement(3), Is.EqualTo(0f), "float2 broadcast unsafe padding");
+
+            var f3 = float3.BroadcastUnsafe(nan);
+            Assert.That(float.IsNaN(f3.x) && float.IsNaN(f3.y) && float.IsNaN(f3.z), Is.True,
+                "float3 broadcast unsafe keeps the nan");
+            Assert.That(f3.vector.GetElement(3), Is.EqualTo(0f), "float3 broadcast unsafe padding");
+
+            var d3 = double3.BroadcastUnsafe(nanD);
+            Assert.That(double.IsNaN(d3.x) && double.IsNaN(d3.y) && double.IsNaN(d3.z), Is.True,
+                "double3 broadcast unsafe keeps the nan");
+            Assert.That(d3.vector.GetElement(3), Is.EqualTo(0d), "double3 broadcast unsafe padding");
+
+            // the broadcast of a value is the one of the unsafe broadcast and the scalar of a value is the one
+            // of the unsafe scalar on every platform
+            Assert.That(float2.BroadcastUnsafe(2f), Is.EqualTo(float2.Broadcast(2f)), "float2 broadcast unsafe");
+            Assert.That(float3.BroadcastUnsafe(2f), Is.EqualTo(float3.Broadcast(2f)), "float3 broadcast unsafe");
+            Assert.That(double3.BroadcastUnsafe(2d), Is.EqualTo(double3.Broadcast(2d)), "double3 broadcast unsafe");
+            Assert.That(int3.BroadcastUnsafe(2), Is.EqualTo(int3.Broadcast(2)), "int3 broadcast unsafe");
+
+            var s3 = float3.ScalarUnsafe(nan);
+            Assert.That(float.IsNaN(s3.x), Is.True, "float3 scalar unsafe keeps the nan");
+            Assert.That(s3.y, Is.EqualTo(0f), "float3 scalar unsafe zeroes the components after the one");
+            Assert.That(s3.z, Is.EqualTo(0f), "float3 scalar unsafe zeroes the components after the one");
+            Assert.That(s3.vector.GetElement(3), Is.EqualTo(0f), "float3 scalar unsafe padding");
+            Assert.That(float3.ScalarUnsafe(2f), Is.EqualTo(float3.Scalar(2f)), "float3 scalar unsafe");
+            Assert.That(double3.ScalarUnsafe(2d), Is.EqualTo(double3.Scalar(2d)), "double3 scalar unsafe");
+            Assert.That(int3.ScalarUnsafe(2), Is.EqualTo(int3.Scalar(2)), "int3 scalar unsafe");
         }
     }
 

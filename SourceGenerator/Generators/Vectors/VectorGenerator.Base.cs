@@ -584,12 +584,12 @@ public partial class VectorGenerator
         sb.AppendLine($"    public {type}({scalar} value)");
         sb.AppendLine("    {");
         // the broadcast of a floating point component into a vector whose register is wider than its value
-        // fills the padding lanes with a shuffle into the lane that follows the one of the register of a scalar
-        // on a platform simd.ScalarRegisterIsZeroed names, which saves the mask over the whole register that the
-        // other platforms apply
+        // builds the whole register and masks the padding lanes of it, so it does not need the platform to
+        // leave the lanes that follow the one of the register of a scalar at zero, BroadcastUnsafe is the one
+        // that saves the mask on a platform that does
         if (simd)
             sb.AppendLine(pad && typ.f
-                ? $"        vector = {vecName}.IsHardwareAccelerated && simd.ScalarRegisterIsZeroed ? {ShuffleBroadcast($"{cast}value")} : {vecName}.Create({cast}value) & {mask};"
+                ? $"        vector = {vecName}.Create({cast}value) & {mask};"
                 : $"        vector = {Broadcast($"{cast}value")};");
         else
             for (var i = 0; i < size; i++)
@@ -601,18 +601,35 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} Broadcast({scalar} value) => new(value);");
         sb.AppendLine();
+        // the broadcast that fills the padding lanes with a shuffle into the lane that follows the one of the
+        // register of a scalar instead of masking the register it builds, so the code that knows the platform
+        // uses it instead of the broadcast
+        Doc(
+            "Creates a vector with every component set to <paramref name=\"value\"/><para>It shuffles the register of the scalar into the value, which only leaves the padding lanes of it at zero on a platform whose hardware zeroes the lanes that follow the one of the register of a scalar</para>");
+        DocParam("value", "The value of every component");
+        sb.AppendLine($"    {attr}");
+        sb.AppendLine(simd && pad && typ.f
+            ? $"    public static {type} BroadcastUnsafe({scalar} value) => new() {{ vector = {ShuffleBroadcast($"{cast}value")} }};"
+            : $"    public static {type} BroadcastUnsafe({scalar} value) => new(value);");
+        sb.AppendLine();
         Doc($"Creates a vector with only the <c>{comp[0]}</c> component set to <paramref name=\"value\"/><para>The other components are zero</para>");
         DocParam("value", $"The value of the <c>{comp[0]}</c> component");
         sb.AppendLine($"    {attr}");
-        // the constructor of a padded vector masks the padding lanes, so only the lane of the scalar has to be
-        // set and the rest of the register does not have to be zeroed, which only simd.ScalarRegisterIsZeroed
-        // guarantees
         sb.AppendLine($"    public static {type} Scalar({scalar} value) => " +
                       (simd
-                          ? pad
-                              ? $"simd.ScalarRegisterIsZeroed ? new({vecName}.CreateScalarUnsafe({cast}value)) : new() {{ vector = {vecName}.CreateScalar({cast}value) }};"
-                              : $"new() {{ vector = {vecName}.CreateScalar({cast}value) }};"
+                          ? $"new() {{ vector = {vecName}.CreateScalar({cast}value) }};"
                           : $"new() {{ {comp[0]} = value }};"));
+        sb.AppendLine();
+        // the scalar that leaves the lanes that follow the one of the register of the scalar as they are
+        // instead of building the whole register, so the code that knows the platform uses it instead of the
+        // scalar
+        Doc(
+            $"Creates a vector with only the <c>{comp[0]}</c> component set to <paramref name=\"value\"/><para>It leaves the lanes that follow the one of the register of the scalar as they are, which only leaves the padding lanes of it at zero on a platform whose hardware zeroes the lanes that follow the one of the register of a scalar</para>");
+        DocParam("value", $"The value of the <c>{comp[0]}</c> component");
+        sb.AppendLine($"    {attr}");
+        sb.AppendLine(simd && pad
+            ? $"    public static {type} ScalarUnsafe({scalar} value) => new() {{ vector = {vecName}.CreateScalarUnsafe({cast}value) }};"
+            : $"    public static {type} ScalarUnsafe({scalar} value) => Scalar(value);");
         sb.AppendLine();
         InheritDoc();
         sb.AppendLine($"    {attrCpu}");

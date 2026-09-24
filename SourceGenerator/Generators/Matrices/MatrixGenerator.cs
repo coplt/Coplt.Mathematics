@@ -289,9 +289,16 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine($"    public static {type} Broadcast({scalar} scalar) => " +
                       $"new({VectorGenShared.Join(cols, _ => $"{col}.Broadcast(scalar)")});");
         sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine($"    {attr}");
+        sb.AppendLine($"    public static {type} BroadcastUnsafe({scalar} scalar) => " +
+                      $"new({VectorGenShared.Join(cols, _ => $"{col}.BroadcastUnsafe(scalar)")});");
+        sb.AppendLine();
         var zeroMatrix = $"new {type}({VectorGenShared.Join(cols, _ => zero)})";
         Method($"public static {type} Scalar({scalar} scalar)",
             $"var r = {zeroMatrix}; r[0, 0] = scalar; return r;");
+        Method($"public static {type} ScalarUnsafe({scalar} scalar)",
+            $"return new({VectorGenShared.Join(cols, i => i == 0 ? $"{col}.ScalarUnsafe(scalar)" : zero)});");
         Method($"public static {type} Load(ReadOnlySpan<{scalar}> span)",
             $"var r = default({type}); var i = 0; " +
             $"for (var c = 0; c < {cols}; c++) for (var j = 0; j < {rows}; j++) r[j, c] = span[i++]; return r;");

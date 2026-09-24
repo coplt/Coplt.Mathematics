@@ -23,7 +23,31 @@ public interface IAlgebra<TSelf, TScalar> : IAlgebra<TSelf>
 {
     #region Ctor
 
+    /// <summary>
+    /// Creates a value with every component set to <paramref name="scalar"/>
+    /// <para>It builds the whole register of the value and masks the padding lanes of it, so it does not need
+    /// the platform to leave the lanes that follow the one of the register of a scalar at zero</para>
+    /// </summary>
     public static abstract TSelf Broadcast(TScalar scalar);
+
+    /// <summary>
+    /// Creates a value with every component set to <paramref name="scalar"/>, without building the whole
+    /// register of it
+    /// <para>It shuffles the register of the scalar into the value, which only leaves the padding lanes of it
+    /// at zero on a platform whose hardware zeroes the lanes that follow the one of the register of a scalar,
+    /// so it is the one the code that knows the platform of uses instead of <see cref="Broadcast"/></para>
+    /// </summary>
+    public static abstract TSelf BroadcastUnsafe(TScalar scalar);
+
+    /// <summary>
+    /// Creates a value with only the first component set to <paramref name="scalar"/>
+    /// <para>It leaves the lanes that follow the one of the register of the scalar as they are, which only
+    /// leaves the padding lanes of it at zero on a platform whose hardware zeroes the lanes that follow the one
+    /// of the register of a scalar, so it is the one the code that knows the platform of uses instead of
+    /// <see cref="Scalar"/></para>
+    /// </summary>
+    public static abstract TSelf ScalarUnsafe(TScalar scalar);
+
     public static abstract TSelf Scalar(TScalar scalar);
     public static abstract TSelf Load(ReadOnlySpan<TScalar> span);
     public static abstract unsafe TSelf Load(TScalar* ptr);
