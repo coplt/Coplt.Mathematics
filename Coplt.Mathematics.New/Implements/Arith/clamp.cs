@@ -23,7 +23,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.clamp{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T clamp<T>([In] this ref T value, in T min, in T max) where T : unmanaged, INumberAlgebraDispatch<T>
+        public static T clamp<T>(this T value, in T min, in T max) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_clamp>(value, min, max);
     }
 }

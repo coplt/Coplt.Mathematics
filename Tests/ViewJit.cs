@@ -2,16 +2,11 @@
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 using Coplt.Mathematics;
+using Coplt.Mathematics.Simd;
 
 namespace Tests;
 
 public static class ViewJit
 {
-    // public static float3 Some1(float3 a, float3 b, float3 c) => math.lerp(a, b, c);
-    //
-    // public static int3 Some1(int3 a, int3 b, int3 c) => math.lerp(a, b, c);
-    //
-    public static float3 Some1(float a, float b, float3 c) => math.lerp(a, b, c);
-    //
-    // public static float2 Some1(float a, float b, float2 c) => math.lerp(a, b, c);
+    public static double3 Some1(double3 a, double3 b, double3 c) => math.fms(a, b, c);
 }

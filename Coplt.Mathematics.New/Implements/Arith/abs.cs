@@ -20,7 +20,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.abs{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T abs<T>([In] this ref T value) where T : unmanaged, INumberAlgebraDispatch<T>
+        public static T abs<T>(this T value) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_abs>(value);
     }
 }

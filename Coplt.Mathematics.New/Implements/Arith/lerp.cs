@@ -24,7 +24,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.lerp{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T lerp<T>([In] this ref T t, in T start, in T end) where T : unmanaged, INumberAlgebraDispatch<T>
+        public static T lerp<T>(this T t, in T start, in T end) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_lerp>(start, end, t);
 
         /// <inheritdoc cref="math.lerp{T}"/>

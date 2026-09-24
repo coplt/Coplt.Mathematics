@@ -24,7 +24,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.cross{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T cross<T>([In] this T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>, IVector3<T>
+        public static T cross<T>(this T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>, IVector3<T>
             => T.Visit_Self<impl_cross>(a, b);
     }
 }

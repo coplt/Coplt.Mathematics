@@ -20,7 +20,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.sign{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T sign<T>([In] this ref T value) where T : unmanaged, INumberAlgebraDispatch<T>
+        public static T sign<T>(this T value) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_sign>(value);
     }
 }

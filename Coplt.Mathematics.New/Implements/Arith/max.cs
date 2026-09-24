@@ -21,7 +21,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.max{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T max<T>([In] this ref T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
+        public static T max<T>(this T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_max>(a, b);
     }
 }

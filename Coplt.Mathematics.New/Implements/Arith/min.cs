@@ -21,7 +21,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.min{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T min<T>([In] this ref T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
+        public static T min<T>(this T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
             => T.Visit_Self<impl_min>(a, b);
     }
 }

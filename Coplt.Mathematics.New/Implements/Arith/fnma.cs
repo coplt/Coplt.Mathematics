@@ -61,27 +61,16 @@ namespace Coplt.Mathematics.Implements
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TScalar INumberAlgebraVisitor_Self_Self_Self_Self<impl_fnma>.AcceptScalar<TScalar>(TScalar a, TScalar b, TScalar c)
         {
-            // a floating point value has a fused member in the hardware and the one of every other value
-            // multiplies and subtracts: the interface of a number does not name such a member, so the value of an
-            // operand goes into the lowest lane of a register and the result is read back out of it
-            if (Vector128.IsHardwareAccelerated)
+            if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
             {
                 if (typeof(TScalar) == typeof(float))
                 {
-                    return simd.Fnma(
-                        Vector128.CreateScalarUnsafe(a).AsSingle(),
-                        Vector128.CreateScalarUnsafe(b).AsSingle(),
-                        Vector128.CreateScalarUnsafe(c).AsSingle()
-                    ).As<float, TScalar>().ToScalar();
+                    return (TScalar)(object)float.FusedMultiplyAdd(-(float)(object)a, (float)(object)b, (float)(object)c);
                 }
 
                 if (typeof(TScalar) == typeof(double))
                 {
-                    return simd.Fnma(
-                        Vector128.CreateScalarUnsafe(a).AsDouble(),
-                        Vector128.CreateScalarUnsafe(b).AsDouble(),
-                        Vector128.CreateScalarUnsafe(c).AsDouble()
-                    ).As<double, TScalar>().ToScalar();
+                    return (TScalar)(object)double.FusedMultiplyAdd(-(double)(object)a, (double)(object)b, (double)(object)c);
                 }
             }
 

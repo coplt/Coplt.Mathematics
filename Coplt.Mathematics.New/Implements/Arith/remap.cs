@@ -26,7 +26,7 @@ public static partial class math_ex
 {
     /// <inheritdoc cref="math.remap{T}"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T remap<T>([In] this ref T value, in T src_start, in T src_end, in T dst_start, in T dst_end)
+    public static T remap<T>(this T value, in T src_start, in T src_end, in T dst_start, in T dst_end)
         where T : unmanaged, INumberAlgebra<T>, INumberAlgebraDispatch<T>
         => math.lerp(dst_start, dst_end, math.unlerp(value, src_start, src_end));
 
