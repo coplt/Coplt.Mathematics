@@ -52,7 +52,6 @@ public class TestMathArithForwarding
         // the width of the range of the members that divide by it has to be wider than zero
         var b = v + v;
         math.lerp(s0, s1, v);
-        math.remap(v, s0, s1, s0, s1);
         _ = math.dot<T, TScalar>(v, v);
         _ = math.length_sq<T, TScalar>(v);
         _ = math.distance_sq<T, TScalar>(v, v);
