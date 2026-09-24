@@ -485,7 +485,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {boolType} is_finite() => abs() < new {type}({scalar}.PositiveInfinity);");
+        sb.AppendLine($"    public readonly {boolType} is_finite() => math.abs(this) < new {type}({scalar}.PositiveInfinity);");
         sb.AppendLine();
 
         BoolMember("is_inf", "IsInfinity", "is_inf");

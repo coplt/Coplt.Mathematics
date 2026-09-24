@@ -44,6 +44,27 @@ internal static class ArithCheck
     private static void ScalarEqual<TScalar>(TScalar actual, TScalar expected, string what)
         => Assert.That(actual, Is.EqualTo(expected), what);
 
+    /// <summary>
+    /// Returns the value of a static member of a vector through the interface that declares it on its own. The
+    /// algebra of the dispatch has the members of the vector as well, so a check that needs both of the
+    /// interfaces cannot name the member of the vector through its type parameter.
+    /// </summary>
+    private static TSelf VecZero<TSelf>()
+        where TSelf : unmanaged, INumberVector<TSelf> => TSelf.Zero;
+
+    /// <inheritdoc cref="VecZero{TSelf}"/>
+    private static TSelf VecOne<TSelf>()
+        where TSelf : unmanaged, INumberVector<TSelf> => TSelf.One;
+
+    /// <inheritdoc cref="VecZero{TSelf}"/>
+    private static TSelf VecTwo<TSelf>()
+        where TSelf : unmanaged, INumberVector<TSelf> => TSelf.Two;
+
+    /// <inheritdoc cref="VecZero{TSelf}"/>
+    private static TSelf VecBroadcast<TSelf, TScalar>(TScalar scalar)
+        where TSelf : unmanaged, IVectorCtor<TSelf, TScalar>
+        where TScalar : unmanaged => TSelf.Broadcast(scalar);
+
     #endregion
 
     #region IVectorArithmetic
@@ -53,8 +74,8 @@ internal static class ArithCheck
     /// integer, so no result is rounded and the check works for the floating point and the integer types alike.
     /// </summary>
     public static void Arithmetic<T, TScalar>(int length, bool simd)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged, INumber<TScalar>
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
         var one = TScalar.One;
@@ -63,10 +84,12 @@ internal static class ArithCheck
         var four = TScalar.CreateChecked(4);
         var five = TScalar.CreateChecked(5);
 
-        var vZero = T.Zero;
-        var allOne = T.One;
-        var allTwo = T.Two;
-        var allFive = T.Broadcast(five);
+        // the algebra of the dispatch has the members of the vector as well, so the constants are named through
+        // the helper of the interface of the vector
+        var vZero = VecZero<T>();
+        var allOne = VecOne<T>();
+        var allTwo = VecTwo<T>();
+        var allFive = VecBroadcast<T, TScalar>(five);
         // ascending, so every component is smaller than the matching component of allFour and allFive
         var asc = Vec<T, TScalar>(length, simd, one, two, three, four);
 
@@ -82,7 +105,7 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(asc - asc, vZero, "x - x");
             AllEqual<T, TScalar>(asc - allOne, Vec<T, TScalar>(length, simd, one - one, two - one, three - one, four - one), "x - 1");
 
-            AllEqual<T, TScalar>(asc * T.One, asc, "x * 1");
+            AllEqual<T, TScalar>(asc * allOne, asc, "x * 1");
             AllEqual<T, TScalar>(asc * vZero, vZero, "x * 0");
             AllEqual<T, TScalar>(asc * allTwo, Vec<T, TScalar>(length, simd, one * two, two * two, three * two, four * two), "x * 2");
             AllEqual<T, TScalar>((asc * allTwo) / allTwo, asc, "(x * 2) / 2");
@@ -143,8 +166,8 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(asc.unlerp(asc, allFive), vZero, "unlerp at the lower bound");
             AllEqual<T, TScalar>(allFive.unlerp(asc, allFive), allOne, "unlerp at the upper bound");
             // the static unlerp places a scalar between the two vectors
-            AllEqual<T, TScalar>(T.unlerp(one, allOne, allFive), vZero, "static unlerp at the lower bound");
-            AllEqual<T, TScalar>(T.unlerp(five, allOne, allFive), allOne, "static unlerp at the upper bound");
+            AllEqual<T, TScalar>(one.unlerp(allOne, allFive), vZero, "unlerp of a component at the lower bound");
+            AllEqual<T, TScalar>(five.unlerp(allOne, allFive), allOne, "unlerp of a component at the upper bound");
             // unlerp is the inverse of lerp
             AllEqual<T, TScalar>(asc.unlerp(asc, allFive).lerp(asc, allFive), asc, "unlerp is the inverse of lerp");
 
@@ -170,12 +193,12 @@ internal static class ArithCheck
                 sum += T.get_at(asc, i);
             }
 
-            ScalarEqual(T.dot(asc, allFive), dotAscFive, "dot");
-            ScalarEqual(T.dot(asc, asc), lengthSq, "dot with itself");
+            ScalarEqual(math.dot<T, TScalar>(asc, allFive), dotAscFive, "dot");
+            ScalarEqual(math.dot<T, TScalar>(asc, asc), lengthSq, "dot with itself");
             ScalarEqual(T.length_sq(asc), lengthSq, "length_sq");
             ScalarEqual(T.distance_sq(asc, allFive), distanceSq, "distance_sq");
             ScalarEqual(T.distance_sq(asc, asc), zero, "distance_sq with itself");
-            ScalarEqual(T.dot(T.square(asc), allOne), lengthSq, "square");
+            ScalarEqual(math.dot<T, TScalar>(math.square(asc), allOne), lengthSq, "square");
 
             AllEqual<T, TScalar>(asc.square(), asc * asc, "square is x * x");
 
@@ -183,12 +206,12 @@ internal static class ArithCheck
 
             #region fma
 
-            AllEqual<T, TScalar>(T.fma(asc, allTwo, allOne), asc * allTwo + allOne, "fma");
-            AllEqual<T, TScalar>(T.fms(asc, allTwo, allOne), asc * allTwo - allOne, "fms");
-            AllEqual<T, TScalar>(T.fnma(asc, allTwo, allOne), allOne - asc * allTwo, "fnma");
-            AllEqual<T, TScalar>(T.fsm(allOne, asc, allTwo), T.fnma(asc, allTwo, allOne), "fsm");
-            AllEqual<T, TScalar>(T.fam(allOne, asc, allTwo), T.fma(asc, allTwo, allOne), "fam");
-            AllEqual<T, TScalar>(T.mad(asc, allTwo, allOne), T.fma(asc, allTwo, allOne), "mad");
+            AllEqual<T, TScalar>(math.fma(asc, allTwo, allOne), asc * allTwo + allOne, "fma");
+            AllEqual<T, TScalar>(math.fms(asc, allTwo, allOne), asc * allTwo - allOne, "fms");
+            AllEqual<T, TScalar>(math.fnma(asc, allTwo, allOne), allOne - asc * allTwo, "fnma");
+            AllEqual<T, TScalar>(math.fsm(allOne, asc, allTwo), math.fnma(asc, allTwo, allOne), "fsm");
+            AllEqual<T, TScalar>(math.fam(allOne, asc, allTwo), math.fma(asc, allTwo, allOne), "fam");
+            AllEqual<T, TScalar>(math.mad(asc, allTwo, allOne), math.fma(asc, allTwo, allOne), "mad");
 
             #endregion
 
@@ -219,13 +242,13 @@ internal static class ArithCheck
     /// Everything that is added by <see cref="ISignedVectorArithmetic{Self,Scalar}"/>.
     /// </summary>
     public static void Negation<T, TScalar>(int length, bool simd)
-        where T : unmanaged, ISignedVectorArithmetic<T, TScalar>
+        where T : unmanaged, ISignedVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T>
         where TScalar : unmanaged, ISignedNumber<TScalar>
     {
         var negOne = -TScalar.One;
-        var negAll = T.Broadcast(negOne);
-        var allOne = T.One;
-        var vZero = T.Zero;
+        var negAll = VecBroadcast<T, TScalar>(negOne);
+        var allOne = VecOne<T>();
+        var vZero = VecZero<T>();
         var negLength = -TScalar.CreateChecked(length);
 
         using (Assert.EnterMultipleScope())
@@ -257,12 +280,12 @@ internal static class ArithCheck
     /// positive on every component are checked, so the unsigned types are covered too.
     /// </summary>
     public static void Cross<T, TScalar>(bool simd)
-        where T : unmanaged, IVector3Arithmetic<T, TScalar>
-        where TScalar : unmanaged, INumber<TScalar>
+        where T : unmanaged, IVector3Arithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>, Algebras.IVector3<T>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
         var one = TScalar.One;
-        var allTwo = T.Broadcast(TScalar.CreateChecked(2));
+        var allTwo = VecBroadcast<T, TScalar>(TScalar.CreateChecked(2));
         var axisX = Vec<T, TScalar>(3, simd, one, zero, zero);
         var axisY = Vec<T, TScalar>(3, simd, zero, one, zero);
         var axisZ = Vec<T, TScalar>(3, simd, zero, zero, one);
@@ -277,9 +300,9 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(vZero.cross(axisZ), vZero, "0 cross z");
             AllEqual<T, TScalar>(axisX.cross(allTwo * axisY), allTwo * axisZ, "cross is linear");
 
-            ScalarEqual(T.dot(axisZ, T.cross(axisX, axisY)), one, "cross of the basis vectors is the third axis");
-            ScalarEqual(T.dot(axisX, T.cross(axisX, axisY)), zero, "cross is orthogonal to the left operand");
-            ScalarEqual(T.dot(axisY, T.cross(axisX, axisY)), zero, "cross is orthogonal to the right operand");
+            ScalarEqual(math.dot<T, TScalar>(axisZ, math.cross(axisX, axisY)), one, "cross of the basis vectors is the third axis");
+            ScalarEqual(math.dot<T, TScalar>(axisX, math.cross(axisX, axisY)), zero, "cross is orthogonal to the left operand");
+            ScalarEqual(math.dot<T, TScalar>(axisY, math.cross(axisX, axisY)), zero, "cross is orthogonal to the right operand");
         }
     }
 
@@ -287,7 +310,7 @@ internal static class ArithCheck
     /// The cross product of a signed 3 component vector, the parts that need a negative value.
     /// </summary>
     public static void SignedCross<T, TScalar>(bool simd)
-        where T : unmanaged, ISignedVectorArithmetic<T, TScalar>, IVector3Arithmetic<T, TScalar>
+        where T : unmanaged, ISignedVectorArithmetic<T, TScalar>, IVector3Arithmetic<T, TScalar>, Algebras.IVector3<T>, INumberAlgebraDispatch<T>
         where TScalar : unmanaged, ISignedNumber<TScalar>
     {
         var zero = TScalar.Zero;
@@ -313,7 +336,7 @@ internal static class ArithCheck
     /// reductions and the equality checks rely on it. <paramref name="padding"/> reads that lane.
     /// </summary>
     public static void PaddingStaysZero<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVector3Arithmetic<T, TScalar>, Algebras.INumberAlgebra<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, IVector3Arithmetic<T, TScalar>, Algebras.INumberAlgebra<T>, Algebras.IVector3<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;
@@ -353,15 +376,15 @@ internal static class ArithCheck
             StaysZero(math.square(a), "the dispatched square");
             StaysZero(math.unlerp(a, b, a), "the dispatched unlerp");
             StaysZero(math.remap(a, b, a, a, b), "the dispatched remap");
-            // the clamp that only takes the bounds as single components is forwarded to the member of the older
-            // interface family, its register keeps the lower bound in the padding lane, so it is left out here
+            // the clamp whose bounds are single components leaves the lower bound in the padding lane, so it is
+            // left out here
             StaysZero(a.square(), "square");
             StaysZero(a.lerp(b, a), "lerp");
             StaysZero(a.unlerp(a, b), "unlerp");
             StaysZero(a.remap(a, b, b, a), "remap");
-            StaysZero(T.fma(a, b, a), "fma");
-            StaysZero(T.fms(a, b, a), "fms");
-            StaysZero(T.fnma(a, b, a), "fnma");
+            StaysZero(math.fma(a, b, a), "fma");
+            StaysZero(math.fms(a, b, a), "fms");
+            StaysZero(math.fnma(a, b, a), "fnma");
             StaysZero(a.cross(b), "cross");
         }
     }
@@ -406,15 +429,15 @@ internal static class ArithCheck
             StaysZero(math.max(a, b), "the dispatched max");
             StaysZero(math.clamp(a, b, a), "the dispatched clamp");
             StaysZero(math.lerp(a, b, a), "the dispatched lerp");
-            // the clamp that only takes the bounds as single components is forwarded to the member of the older
-            // interface family, its register keeps the lower bound in the padding lane, so it is left out here
+            // the clamp whose bounds are single components leaves the lower bound in the padding lane, so it is
+            // left out here
             StaysZero(a.square(), "square");
             StaysZero(a.lerp(b, a), "lerp");
             StaysZero(a.unlerp(a, b), "unlerp");
             StaysZero(a.remap(a, b, b, a), "remap");
-            StaysZero(T.fma(a, b, a), "fma");
-            StaysZero(T.fms(a, b, a), "fms");
-            StaysZero(T.fnma(a, b, a), "fnma");
+            StaysZero(math.fma(a, b, a), "fma");
+            StaysZero(math.fms(a, b, a), "fms");
+            StaysZero(math.fnma(a, b, a), "fnma");
             StaysZero(math.lerp(one, three, a), "the dispatched lerp with component bounds");
             StaysZero(math.square(a), "the dispatched square");
             StaysZero(math.unlerp(a, b, a), "the dispatched unlerp");

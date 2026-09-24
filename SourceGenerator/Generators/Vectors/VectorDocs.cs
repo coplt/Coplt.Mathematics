@@ -22,10 +22,6 @@ internal static class VectorDocs
     {
         #region IVectorArithmetic
 
-        { "abs", ("Returns the absolute value of every component", "The absolute value of the vector", "a=The vector") },
-        { "sign", ("Returns <c>-1</c>, <c>0</c> or <c>1</c> for every component depending on its sign", "The sign of every component", "a=The vector") },
-        { "min", ("Returns the smaller of the two vectors component by component", "The component wise minimum", "a=The vector;b|other=The other vector") },
-        { "max", ("Returns the larger of the two vectors component by component", "The component wise maximum", "a=The vector;b|other=The other vector") },
         {
             "clamp",
             ("Clamps every component into the inclusive range of <c>min</c> and <c>max</c>", "The clamped vector",
@@ -42,15 +38,6 @@ internal static class VectorDocs
             ("Remaps the vector from the source range into the destination range", "The remapped vector",
                 "a=The vector to remap;src_start=The lower bound of the source range;src_end=The upper bound of the source range;dst_start=The lower bound of the destination range;dst_end=The upper bound of the destination range")
         },
-        { "square", ("Returns the vector with every component squared", "The squared vector", "a=The vector") },
-        { "fma", ("Fuses the multiplication and the addition of the three vectors, <c>(a * b) + c</c>", "The fused result", "a=Multiplier a;b=Multiplier b;c=Addend c") },
-        { "fms", ("Fuses the multiplication and the subtraction of the three vectors, <c>(a * b) - c</c>", "The fused result", "a=Multiplier a;b=Multiplier b;c=Subtrahend c") },
-        { "fnma", ("Fuses the multiplication and the subtraction of the three vectors, <c>c - (a * b)</c>", "The fused result", "a=Multiplier a;b=Multiplier b;c=Minuend c") },
-        { "fsm", ("Fuses the multiplication and the subtraction of the three vectors, <c>c - (a * b)</c>", "The fused result", "c=Minuend c;a=Multiplier a;b=Multiplier b") },
-        { "fam", ("Fuses the multiplication and the addition of the three vectors, <c>c + (a * b)</c>", "The fused result", "c=Addend c;a=Multiplier a;b=Multiplier b") },
-        { "mad", ("Fuses the multiplication and the addition of the three vectors, <c>(a * b) + c</c>", "The fused result", "a=Multiplier a;b=Multiplier b;c=Addend c") },
-        { "cross", ("Returns the cross product of the two vectors", "The vector that is perpendicular to both vectors", "a=The vector;b|other=The other vector") },
-        { "dot", ("Returns the dot product of the two vectors", "The sum of the products of the components", "a=The vector;b|other=The other vector") },
         { "length_sq", ("Returns the squared length of the vector, it is the same as <c>dot(self)</c> but avoids the square root", "The squared length", "a=The vector") },
         { "distance_sq", ("Returns the squared distance between the two vectors", "The squared distance", "a=The vector;b|to=The other vector") },
         { "csum", ("Returns the sum of all components", "The sum of the components", "a=The vector") },

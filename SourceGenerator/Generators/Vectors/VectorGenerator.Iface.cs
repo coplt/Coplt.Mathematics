@@ -34,25 +34,13 @@ public partial class VectorGenerator
         {
             #region IVectorArithmetic
 
-            ('a', "{type} abs(in {type} a) => a.abs();"),
-            ('a', "{type} sign(in {type} a) => a.sign();"),
-            ('a', "{type} min(in {type} a, in {type} b) => a.min(b);"),
-            ('a', "{type} max(in {type} a, in {type} b) => a.max(b);"),
-            ('a', "{type} clamp(in {type} a, in {type} min, in {type} max) => a.clamp(min, max);"),
             ('a', "{type} clamp(in {type} a, {scalar} min, {scalar} max) => a.clamp(min, max);"),
-            // the legacy form of the interpolation puts the factor last and the member of the vector is called
-            // on it, a factor that is a scalar keeps the vector as the last parameter as well
-            ('a', "{type} lerp(in {type} start, in {type} end, in {type} t) => t.lerp(start, end);"),
-            ('a', "{type} lerp({scalar} start, {scalar} end, in {type} t) => t.lerp(start, end);"),
+            // the members below are the variants the dispatch of an algebra does not implement yet, their
+            // factor or their bounds are single components
             ('a', "{type} lerp(in {type} start, in {type} end, {scalar} t) => {type}.lerp(t, start, end);"),
-            ('a', "{type} unlerp(in {type} a, in {type} start, in {type} end) => a.unlerp(start, end);"),
             ('a', "{type} unlerp(in {type} a, {scalar} start, {scalar} end) => a.unlerp(start, end);"),
-            ('a', "{type} remap(in {type} a, in {type} src_start, in {type} src_end, in {type} dst_start, in {type} dst_end) => " +
-                  "a.remap(src_start, src_end, dst_start, dst_end);"),
             ('a', "{type} remap(in {type} a, {scalar} src_start, {scalar} src_end, {scalar} dst_start, {scalar} dst_end) => " +
                   "a.remap(src_start, src_end, dst_start, dst_end);"),
-            ('a', "{type} square(in {type} a) => a.square();"),
-            ('a', "{scalar} dot(in {type} a, in {type} b) => a.dot(b);"),
             ('a', "{scalar} length_sq(in {type} a) => a.length_sq();"),
             ('a', "{scalar} distance_sq(in {type} a, in {type} b) => a.distance_sq(b);"),
             ('a', "{scalar} csum(in {type} a) => a.csum();"),
@@ -60,7 +48,6 @@ public partial class VectorGenerator
             ('a', "{scalar} cmax(in {type} a) => a.cmax();"),
             ('a', "{scalar} cmin_safe(in {type} a) => a.cmin_safe();"),
             ('a', "{scalar} cmax_safe(in {type} a) => a.cmax_safe();"),
-            ('3', "{type} cross(in {type} a, in {type} b) => a.cross(b);"),
 
             #endregion
 

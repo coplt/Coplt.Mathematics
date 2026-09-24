@@ -11,19 +11,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns the dot product of the two vectors
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <param name="other">The other vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The sum of the products of the components</returns>
-    [MethodImpl(256)]
-    public static TScalar dot<T, TScalar>(in T v, in T other)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged => T.dot(v, other);
-
-    /// <summary>
     /// Returns the squared length of the vector, it is the same as <c>dot(self)</c> but avoids the square root
     /// </summary>
     /// <param name="v">The vector</param>

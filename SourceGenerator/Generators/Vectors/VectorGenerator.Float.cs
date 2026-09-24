@@ -209,7 +209,7 @@ public partial class VectorGenerator
         // the vector is clamped into the range of zero and one, the clamp carries the simd fast path itself
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} saturate() => clamp(default, {type}.One);");
+        sb.AppendLine($"    public readonly {type} saturate() => math.clamp(this, default, {type}.One);");
         sb.AppendLine();
 
         InheritDoc();
@@ -218,7 +218,7 @@ public partial class VectorGenerator
         sb.AppendLine("    {");
         sb.AppendLine("        var t = ((this - min) / (max - min)).saturate();");
         // (3 - (2 * t)) is the hermite curve of the interpolation, it is fused by the fma helper
-        sb.AppendLine($"        return t * t * fnma(new {type}({Lit("2")}), t, new {type}({Lit("3")}));");
+        sb.AppendLine($"        return t * t * math.fnma(new {type}({Lit("2")}), t, new {type}({Lit("3")}));");
         sb.AppendLine("    }");
         sb.AppendLine();
 
@@ -227,7 +227,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    public readonly {type} reflect(in {type} n)");
         sb.AppendLine("    {");
         // this - (2 * n * dot(this, n)), the dot product is broadcast into the vector by the fma helper
-        sb.AppendLine($"        return fnma(new {type}({Lit("2")}) * n, this.dot(n), this);");
+        sb.AppendLine($"        return math.fnma(new {type}({Lit("2")}) * n, this.dot(n), this);");
         sb.AppendLine("    }");
         sb.AppendLine();
 

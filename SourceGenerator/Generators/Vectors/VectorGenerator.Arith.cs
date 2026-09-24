@@ -167,75 +167,12 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region sign
+        #region clamp lerp unlerp remap
 
-        sb.AppendLine("    #region sign");
+        sb.AppendLine("    #region clamp lerp unlerp remap");
         sb.AppendLine();
 
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} abs()");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector($"{vecName}.Abs(vector)")};",
-            $"return {From128($"Vector128.Abs({Load64("")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "abs", comp[n]))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        // unsigned components can not be negative, their sign is a mask of zero or one
-        var signOp = f ? "SignFloat" : sig ? "SignInt" : "SignUInt";
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} sign()");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector($"simd.{signOp}(vector)")};",
-            $"return {From128($"simd.{signOp}({Load64("")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "sign", comp[n]))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region min max clamp
-
-        sb.AppendLine("    #region min max clamp");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} min(in {type} other)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector($"{vecName}.Min(vector, other.vector)")};",
-            $"return {From128($"Vector128.Min({Load64("")}, {Load64("other.")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "min", comp[n], $"other.{comp[n]}"))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} max(in {type} other)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector($"{vecName}.Max(vector, other.vector)")};",
-            $"return {From128($"Vector128.Max({Load64("")}, {Load64("other.")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "max", comp[n], $"other.{comp[n]}"))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} clamp(in {type} min, in {type} max)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector($"{vecName}.Max(min.vector, {vecName}.Min(max.vector, vector))")};",
-            $"return {From128($"Vector128.Max({Load64("min.")}, Vector128.Min({Load64("max.")}, {Load64("")}))")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "clamp", comp[n], $"min.{comp[n]}", $"max.{comp[n]}"))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        // the scalar bounds are broadcast into the operands, the vector clamp is not called with two broadcast
-        // vectors, the scalar expression clamps every component on its own
+        // the bounds of this member are single components, the dispatch of an algebra does not implement it yet
         InheritDoc();
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} clamp({scalar} min, {scalar} max)");
@@ -246,35 +183,12 @@ public partial class VectorGenerator
         sb.AppendLine("    }");
         sb.AppendLine();
 
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region lerp unlerp remap
-
-        sb.AppendLine("    #region lerp unlerp remap");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} lerp(in {type} start, in {type} end)");
-        sb.AppendLine("    {");
-        EmitAccel(f
-                ? $"return {FromVector($"{vecName}.Lerp(start.vector, end.vector, vector)")};"
-                : "return fma(this, end - start, start);",
-            f
-                ? $"return {From128($"Vector128.Lerp({Load64("start.")}, {Load64("end.")}, {Load64("")})")};"
-                : $"return {From128($"{Load64("")} * ({Load64("end.")} - {Load64("start.")}) + {Load64("start.")}")};",
-            "return start + this * (end - start);");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
+        // the factor of this member is a single component, the dispatch of an algebra does not implement it yet
         InheritDoc();
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} lerp({scalar} t, in {type} start, in {type} end)");
         sb.AppendLine("    {");
-        EmitAccel($"return fma(new {type}(t), end - start, start);",
+        EmitAccel($"return math.fma(new {type}(t), end - start, start);",
             f
                 ? $"return {From128($"simd.Fma(Vector128.Create({cast}t), {Load64("end.")} - {Load64("start.")}, {Load64("start.")})")};"
                 : $"return {From128($"Vector128.Create({cast}t) * ({Load64("end.")} - {Load64("start.")}) + {Load64("start.")}")};",
@@ -282,39 +196,13 @@ public partial class VectorGenerator
         sb.AppendLine("    }");
         sb.AppendLine();
 
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} lerp({scalar} start, {scalar} end)");
-        sb.AppendLine("    {");
-        EmitAccel($"return fma(this, {cast}(end - start), new {type}(start));",
-            f
-                ? $"return {From128($"simd.Fma({Load64("")}, Vector128.Create({cast}(end - start)), Vector128.Create({cast}start))")};"
-                : $"return {From128($"{Load64("")} * Vector128.Create({cast}(end - start)) + Vector128.Create({cast}start)")};",
-            $"return new {type}(start) + this * new {type}({cast}(end - start));");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} unlerp(in {type} start, in {type} end) => (this - start) / (end - start);");
-        sb.AppendLine();
-
+        // the bounds of this member are single components, the dispatch of an algebra does not implement it yet
         InheritDoc();
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} unlerp({scalar} start, {scalar} end) => (this - start) / new {type}({cast}(end - start));");
         sb.AppendLine();
 
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} unlerp({scalar} a, in {type} start, in {type} end) => (a - start) / (end - start);");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} remap(in {type} src_start, in {type} src_end, in {type} dst_start, in {type} dst_end) =>");
-        sb.AppendLine("        unlerp(src_start, src_end).lerp(dst_start, dst_end);");
-        sb.AppendLine();
-
+        // the bounds of this member are single components, the dispatch of an algebra does not implement it yet
         InheritDoc();
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} remap({scalar} src_start, {scalar} src_end, {scalar} dst_start, {scalar} dst_end) =>");
@@ -326,22 +214,9 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region dot length_sq distance_sq square
+        #region length_sq distance_sq
 
-        sb.AppendLine("    #region dot length_sq distance_sq square");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {scalar} dot(in {type} other)");
-        sb.AppendLine("    {");
-        // the sum of the products is the component sum of the element wise product, the scalar sum and its
-        // acceleration are the ones of csum: a 64 bit vector also has the 128 bit path of it and the padding
-        // lanes the widened values are given are zero, so they do not contribute to the sum
-        EmitAccel($"return {vecName}.Dot(vector, other.vector);",
-            v64 ? $"return Vector128.Dot({Load64("")}, {Load64("other.")});" : null,
-            "return (this * other).csum();");
-        sb.AppendLine("    }");
+        sb.AppendLine("    #region length_sq distance_sq");
         sb.AppendLine();
 
         InheritDoc();
@@ -359,52 +234,6 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {scalar} distance_sq(in {type} to) => (to - this).length_sq();");
         sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} square() => this * this;");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region fma
-
-        sb.AppendLine("    #region fma");
-        sb.AppendLine();
-
-        // emits one of the fused multiply add variants
-        void EmitFma(string name, string accelerated, string? wide, string scalarName)
-        {
-            // the function of a floating point component fuses the two operations of the name into one rounding,
-            // the function of an integer component only names the order of its two operations
-            string Body(int n) => f
-                ? VectorScalar.Expr(scalar, scalarName, $"a.{comp[n]}", $"b.{comp[n]}", $"c.{comp[n]}")
-                : $"math.{name}(a.{comp[n]}, b.{comp[n]}, c.{comp[n]})";
-
-            InheritDoc();
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static {type} {name}(in {type} a, in {type} b, in {type} c)");
-            sb.AppendLine("    {");
-            EmitAccel(accelerated, wide, $"return {NewCompWise(Body)};");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-        }
-
-        EmitFma("fma",
-            f ? $"return {FromVector("simd.Fma(a.vector, b.vector, c.vector)")};" : "return (a * b) + c;",
-            f ? $"return {From128($"simd.Fma({Load64("a.")}, {Load64("b.")}, {Load64("c.")})")};" : null,
-            "fma");
-        EmitFma("fms",
-            f ? $"return {FromVector("simd.Fms(a.vector, b.vector, c.vector)")};" : "return (a * b) - c;",
-            f ? $"return {From128($"simd.Fms({Load64("a.")}, {Load64("b.")}, {Load64("c.")})")};" : null,
-            "fms");
-        EmitFma("fnma",
-            f ? $"return {FromVector("simd.Fnma(a.vector, b.vector, c.vector)")};" : "return c - (a * b);",
-            f ? $"return {From128($"simd.Fnma({Load64("a.")}, {Load64("b.")}, {Load64("c.")})")};" : null,
-            "fnma");
 
         sb.AppendLine("    #endregion");
         sb.AppendLine();
@@ -470,60 +299,6 @@ public partial class VectorGenerator
         sb.AppendLine();
 
         #endregion
-
-        if (size == 3)
-        {
-            #region cross
-
-            sb.AppendLine("    #region cross");
-            sb.AppendLine();
-
-            InheritDoc();
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public readonly {type} cross(in {type} other)");
-            sb.AppendLine("    {");
-            // the DirectX Math XMVector3Cross method, the standard library uses it too. The rotation of the
-            // result is folded into the shuffle of the operands and the components are shuffled inside the
-            // register instead of through the swizzle members, so the member does not wait for them to be
-            // inlined. The fourth lane of both products reads the first component, so their difference is zero
-            // there and the result needs no mask.
-            sb.AppendLine("        // a.yzx * b.zxy - a.zxy * b.yzx;");
-            if (simd)
-            {
-                sb.AppendLine("        // The rotation of the result is folded into the shuffles of the operands, so the four shuffles come");
-                sb.AppendLine("        // before the products and none of them depends on one, they can issue in parallel with the");
-                sb.AppendLine("        // multiplications. The rotated form, fnma(a.yzx, b, a * b.yzx).yzx, leaves a shuffle behind the");
-                sb.AppendLine("        // fused operation instead, so the same instruction count reaches the result one step later. The");
-                sb.AppendLine("        // fourth lane of both products reads the first component, their difference is zero there, so the");
-                sb.AppendLine("        // padding lane of the result stays zero and the masking constructor is not needed, like in the");
-                sb.AppendLine("        // DirectX Math library and the standard library.");
-            }
-
-            var yzx = $"{typ.shuffleCast}1, {typ.shuffleCast}2, {typ.shuffleCast}0, {typ.shuffleCast}0";
-            var zxy = $"{typ.shuffleCast}2, {typ.shuffleCast}0, {typ.shuffleCast}1, {typ.shuffleCast}0";
-            var vYzx = $"{vecName}.Shuffle(vector, {vecName}.Create({yzx}))";
-            var vZxy = $"{vecName}.Shuffle(vector, {vecName}.Create({zxy}))";
-            var oYzx = $"{vecName}.Shuffle(other.vector, {vecName}.Create({yzx}))";
-            var oZxy = $"{vecName}.Shuffle(other.vector, {vecName}.Create({zxy}))";
-            // the first product is the addend of the fused operation, so the difference costs a single
-            // instruction on the targets that have it and two on the ones that do not
-            var product = f
-                ? $"simd.Fnma({vZxy}, {oYzx}, {vYzx} * {oZxy})"
-                : $"{vYzx} * {oZxy} - {vZxy} * {oYzx}";
-            EmitAccel(
-                $"return {FromVector(product)};",
-                null,
-                $"return new({Join(n => $"({scalar})({comp[(n + 1) % 3]} * other.{comp[(n + 2) % 3]} - " +
-                                        $"{comp[(n + 2) % 3]} * other.{comp[(n + 1) % 3]})")});");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-
-            sb.AppendLine("    #endregion");
-            sb.AppendLine();
-
-            #endregion
-        }
-
         sb.AppendLine("}");
         sb.AppendLine();
 

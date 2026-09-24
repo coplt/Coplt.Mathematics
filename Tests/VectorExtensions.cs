@@ -1,50 +1,39 @@
+using System.Numerics;
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
 
 namespace Tests;
 
 /// <summary>
 /// The members of the interfaces of a vector are static, so a generic helper that only knows a type parameter
-/// calls them with the static form: <c>T.abs(v)</c>. A helper that wants the member form on the value has to
-/// take the value as the first parameter itself, which is what the members below do, they are only here because
-/// a type parameter cannot reach the member of the vector itself. The value is passed by value because the
-/// receiver of an extension method of a type parameter cannot be an <c>in</c> parameter.
+/// calls them with the static form: <c>T.length_sq(v)</c>. A helper that wants the member form on the value has
+/// to take the value as the first parameter itself, which is what the members below do, they are only here
+/// because a type parameter cannot reach the member of the vector itself. The value is passed by value because
+/// the receiver of an extension method of a type parameter cannot be an <c>in</c> parameter.
+/// <para>A member that the dispatch of an algebra implements is not helped here: it is the member of the
+/// <c>math</c> class and the extension of a value, and a type parameter that satisfies the constraint of it
+/// reaches both of them.</para>
 /// </summary>
 internal static class VectorExtensions
 {
     #region IVectorArithmetic
 
-    public static T abs<T>(this T a) where T : unmanaged, IVectorArithmetic<T> => T.abs(a);
-    public static T sign<T>(this T a) where T : unmanaged, IVectorArithmetic<T> => T.sign(a);
-    public static T min<T>(this T a, in T other) where T : unmanaged, IVectorArithmetic<T> => T.min(a, other);
-    public static T max<T>(this T a, in T other) where T : unmanaged, IVectorArithmetic<T> => T.max(a, other);
-    public static T clamp<T>(this T a, in T min, in T max) where T : unmanaged, IVectorArithmetic<T> => T.clamp(a, min, max);
-
+    // the members below are the variants the dispatch of an algebra does not implement yet, their factor or
+    // their bounds are single components
     public static T clamp<T, TScalar>(this T a, TScalar min, TScalar max)
         where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.clamp(a, min, max);
 
-    public static T lerp<T>(this T t, in T start, in T end) where T : unmanaged, IVectorArithmetic<T> => T.lerp(start, end, t);
-
-    public static T lerp<T, TScalar>(this T t, TScalar start, TScalar end)
-        where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.lerp(start, end, t);
-
-    public static T unlerp<T>(this T a, in T start, in T end) where T : unmanaged, IVectorArithmetic<T> => T.unlerp(a, start, end);
-
     public static T unlerp<T, TScalar>(this T a, TScalar start, TScalar end)
         where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.unlerp(a, start, end);
-
-    public static T remap<T>(this T a, in T src_start, in T src_end, in T dst_start, in T dst_end)
-        where T : unmanaged, IVectorArithmetic<T> => T.remap(a, src_start, src_end, dst_start, dst_end);
 
     public static T remap<T, TScalar>(this T a, TScalar src_start, TScalar src_end, TScalar dst_start, TScalar dst_end)
         where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged =>
         T.remap(a, src_start, src_end, dst_start, dst_end);
 
-    public static T square<T>(this T a) where T : unmanaged, IVectorArithmetic<T> => T.square(a);
-    public static T cross<T>(this T a, in T other) where T : unmanaged, IVector3Arithmetic<T> => T.cross(a, other);
-
     public static TScalar dot<T, TScalar>(this T a, in T other)
-        where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.dot(a, other);
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar> => math.dot<T, TScalar>(a, other);
 
     public static TScalar length_sq<T, TScalar>(this T a)
         where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.length_sq(a);
