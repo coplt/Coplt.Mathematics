@@ -46,4 +46,10 @@ public interface INumberAlgebraDispatch<TSelf, TScalar> : INumberAlgebraDispatch
 
     public static abstract TSelf Visit_Self<V>(in TSelf a, TScalar b, TScalar c)
         where V : INumberAlgebraVisitor_Self_Scalar_Scalar_Self<V, TScalar>;
+
+    public static abstract TScalar Visit_Scalar<V>(in TSelf self)
+        where V : INumberAlgebraVisitor_Self_Scalar<V>;
+
+    public static abstract TScalar Visit_Scalar<V>(in TSelf a, in TSelf b)
+        where V : INumberAlgebraVisitor_Self_Self_Scalar<V>;
 }

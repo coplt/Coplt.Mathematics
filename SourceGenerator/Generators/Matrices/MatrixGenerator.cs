@@ -645,6 +645,18 @@ public class MatrixGenerator : IIncrementalGenerator
             sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
             sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b, c);");
             sb.AppendLine();
+            // a visitor that returns a single component reaches the columns of the matrix as well: the reduction
+            // of the value of a matrix is the one of every column of it combined
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} self)");
+            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(self);");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} a, in {type} b)");
+            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
+            sb.AppendLine();
             sb.AppendLine("    #endregion");
             sb.AppendLine();
         }

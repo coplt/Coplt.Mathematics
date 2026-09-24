@@ -78,6 +78,16 @@ public partial class VectorGenerator
         sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
         sb.AppendLine($"        => {twoComponents};");
         sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} self)");
+        sb.AppendLine($"        => {one};");
+        sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} a, in {type} b)");
+        sb.AppendLine($"        => {two};");
+        sb.AppendLine();
         sb.AppendLine("    #endregion");
         sb.AppendLine();
         return sb.ToString();
