@@ -22,5 +22,7 @@ public class TestOverloadResolutionUsingStatic
         unlerp(new float3(1, 2, 3), 2, new float3(1, 2, 3));
         remap(new float3(1, 2, 3), 1, 2, 3, 4);
         remap(new float3(1, 2, 3), new float3(1, 2, 3), 2, 3, 4);
+        length_sq(new float3(1, 2, 3));
+        distance_sq(new float3(1, 2, 3), new float3(4, 5, 6));
     }
 }

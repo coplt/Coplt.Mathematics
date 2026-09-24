@@ -34,8 +34,6 @@ public partial class VectorGenerator
         {
             #region IVectorArithmetic
 
-            ('a', "{scalar} length_sq(in {type} a) => a.length_sq();"),
-            ('a', "{scalar} distance_sq(in {type} a, in {type} b) => a.distance_sq(b);"),
             ('a', "{scalar} csum(in {type} a) => a.csum();"),
             ('a', "{scalar} cmin(in {type} a) => a.cmin();"),
             ('a', "{scalar} cmax(in {type} a) => a.cmax();"),

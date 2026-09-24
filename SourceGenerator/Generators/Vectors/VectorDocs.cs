@@ -22,8 +22,6 @@ internal static class VectorDocs
     {
         #region IVectorArithmetic
 
-        { "length_sq", ("Returns the squared length of the vector, it is the same as <c>dot(self)</c> but avoids the square root", "The squared length", "a=The vector") },
-        { "distance_sq", ("Returns the squared distance between the two vectors", "The squared distance", "a=The vector;b|to=The other vector") },
         { "csum", ("Returns the sum of all components", "The sum of the components", "a=The vector") },
         { "cmin", ("Returns the smallest component", "The smallest component", "a=The vector") },
         { "cmax", ("Returns the largest component", "The largest component", "a=The vector") },

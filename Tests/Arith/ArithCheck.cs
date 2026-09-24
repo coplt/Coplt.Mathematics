@@ -192,9 +192,9 @@ internal static class ArithCheck
 
             ScalarEqual(math.dot<T, TScalar>(asc, allFive), dotAscFive, "dot");
             ScalarEqual(math.dot<T, TScalar>(asc, asc), lengthSq, "dot with itself");
-            ScalarEqual(T.length_sq(asc), lengthSq, "length_sq");
-            ScalarEqual(T.distance_sq(asc, allFive), distanceSq, "distance_sq");
-            ScalarEqual(T.distance_sq(asc, asc), zero, "distance_sq with itself");
+            ScalarEqual(math.length_sq<T, TScalar>(asc), lengthSq, "length_sq");
+            ScalarEqual(math.distance_sq<T, TScalar>(asc, allFive), distanceSq, "distance_sq");
+            ScalarEqual(math.distance_sq<T, TScalar>(asc, asc), zero, "distance_sq with itself");
             ScalarEqual(math.dot<T, TScalar>(math.square(asc), allOne), lengthSq, "square");
 
             AllEqual<T, TScalar>(asc.square(), asc * asc, "square is x * x");

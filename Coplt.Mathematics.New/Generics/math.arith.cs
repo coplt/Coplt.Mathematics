@@ -11,31 +11,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns the squared length of the vector, it is the same as <c>dot(self)</c> but avoids the square root
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The squared length</returns>
-    [MethodImpl(256)]
-    public static TScalar length_sq<T, TScalar>(in T v)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged => T.length_sq(v);
-
-    /// <summary>
-    /// Returns the squared distance between the two vectors
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <param name="other">The other vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The squared distance</returns>
-    [MethodImpl(256)]
-    public static TScalar distance_sq<T, TScalar>(in T v, in T other)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged => T.distance_sq(v, other);
-
-    /// <summary>
     /// Returns the sum of all components
     /// </summary>
     /// <param name="v">The vector</param>

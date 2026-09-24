@@ -218,7 +218,7 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {scalar} length() => {VectorScalar.Expr(scalar, "sqrt", "length_sq()")};");
+        sb.AppendLine($"    public readonly {scalar} length() => {VectorScalar.Expr(scalar, "sqrt", "this.length_sq()")};");
         sb.AppendLine();
 
         InheritDoc();
@@ -238,14 +238,14 @@ public partial class VectorGenerator
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} normalize() => this * {VectorScalar.Expr(scalar, "rsqrt", "length_sq()")};");
+        sb.AppendLine($"    public readonly {type} normalize() => this * {VectorScalar.Expr(scalar, "rsqrt", "this.length_sq()")};");
         sb.AppendLine();
 
         InheritDoc();
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} normalize_safe()");
         sb.AppendLine("    {");
-        sb.AppendLine("        var len = length_sq();");
+        sb.AppendLine("        var len = this.length_sq();");
         // the smallest normal value of the component type is the bound, a shorter vector is zero for the result
         sb.AppendLine($"        return len > {Lit("1.175494351e-38")} ? this * {VectorScalar.Expr(scalar, "rsqrt", "len")} : default;");
         sb.AppendLine("    }");

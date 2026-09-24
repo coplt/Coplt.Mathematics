@@ -249,6 +249,13 @@ public class TestMathArithForwarding
             Assert.That(math.dot<float3, float>(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f)), Is.EqualTo(32f));
             Assert.That(math.length_sq<float3, float>(new float3(3f, 4f, 0f)), Is.EqualTo(25f));
             Assert.That(math.distance_sq<float3, float>(new float3(1f), new float3(4f, 5f, 1f)), Is.EqualTo(25f));
+            // the type of a single component is only a part of the result of these members, so the compiler cannot
+            // infer it and a call that does not name it reaches the member of the scalar type of the value
+            Assert.That(math.length_sq(new float3(3f, 4f, 0f)), Is.EqualTo(25f), "the inferred square length");
+            Assert.That(math.distance_sq(new float3(1f), new float3(4f, 5f, 1f)), Is.EqualTo(25f), "the inferred square distance");
+            Assert.That(math.length_sq(new int3(3, 4, 0)), Is.EqualTo(25), "the inferred square length of an integer vector");
+            Assert.That(math.distance_sq(new double3s(1d), new double3s(4d, 5d, 1d)), Is.EqualTo(25d), "the inferred square distance of a vector without a register");
+            Assert.That(math.length_sq(new float3s(3f, 4f, 0f)), Is.EqualTo(25f), "the inferred square length of a storage variant");
             Assert.That(math.csum<float3, float>(new float3(1f, 2f, 3f)), Is.EqualTo(6f));
             // the padding component of a vector is zero, so the minimum of a vector is only the component itself
             // when every component is less than it

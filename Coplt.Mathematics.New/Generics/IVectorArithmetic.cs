@@ -32,24 +32,6 @@ public interface IVectorArithmetic<Self, Scalar> :
     where Self : unmanaged, IVectorArithmetic<Self, Scalar>
     where Scalar : unmanaged
 {
-    #region LengthSq DistanceSq
-
-    /// <summary>
-    /// Returns the squared length of the vector, it is the same as <c>dot(self)</c> but avoids the square root
-    /// </summary>
-    /// <returns>The squared length</returns>
-    public static abstract Scalar length_sq(in Self a);
-
-    /// <summary>
-    /// Returns the squared distance between the two vectors
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The other vector</param>
-    /// <returns>The squared distance</returns>
-    public static abstract Scalar distance_sq(in Self a, in Self b);
-
-    #endregion
-
     #region CSum CMin CMax
 
     /// <summary>

@@ -167,32 +167,6 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region length_sq distance_sq
-
-        sb.AppendLine("    #region length_sq distance_sq");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {scalar} length_sq()");
-        sb.AppendLine("    {");
-        // dot with itself, the 128 bit path reads the value of the vector twice
-        EmitAccel($"return {vecName}.Dot(vector, vector);",
-            v64 ? $"return Vector128.Dot({Load64("")}, {Load64("")});" : null,
-            "return (this * this).csum();");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {scalar} distance_sq(in {type} to) => (to - this).length_sq();");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
         #region csum cmin cmax
 
         sb.AppendLine("    #region csum cmin cmax");

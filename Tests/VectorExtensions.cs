@@ -7,7 +7,7 @@ namespace Tests;
 
 /// <summary>
 /// The members of the interfaces of a vector are static, so a generic helper that only knows a type parameter
-/// calls them with the static form: <c>T.length_sq(v)</c>. A helper that wants the member form on the value has
+/// calls them with the static form: <c>T.csum(v)</c>. A helper that wants the member form on the value has
 /// to take the value as the first parameter itself, which is what the members below do, they are only here
 /// because a type parameter cannot reach the member of the vector itself. The value is passed by value because
 /// the receiver of an extension method of a type parameter cannot be an <c>in</c> parameter.
@@ -18,12 +18,6 @@ namespace Tests;
 internal static class VectorExtensions
 {
     #region IVectorArithmetic
-
-    public static TScalar length_sq<T, TScalar>(this T a)
-        where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.length_sq(a);
-
-    public static TScalar distance_sq<T, TScalar>(this T a, in T to)
-        where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.distance_sq(a, to);
 
     public static TScalar csum<T, TScalar>(this T a)
         where T : unmanaged, IVectorArithmetic<T, TScalar> where TScalar : unmanaged => T.csum(a);
