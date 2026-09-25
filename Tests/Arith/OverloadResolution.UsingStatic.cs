@@ -27,6 +27,8 @@ public class TestOverloadResolutionUsingStatic
         length_sq(new float3(1, 2, 3));
         distance_sq(new float3(1, 2, 3), new float3(4, 5, 6));
         sum(new float3(1, 2, 3));
+        hmin(new float3(1, 2, 3));
+        hmax(new float3(1, 2, 3));
     }
 
     /// <summary>

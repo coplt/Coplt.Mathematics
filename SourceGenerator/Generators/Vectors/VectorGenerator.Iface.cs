@@ -32,15 +32,6 @@ public partial class VectorGenerator
         // i = the integer one, u = the integer one without a sign
         var members = new List<(char Kind, string Member)>
         {
-            #region IVectorArithmetic
-
-            ('a', "{scalar} cmin(in {type} a) => a.cmin();"),
-            ('a', "{scalar} cmax(in {type} a) => a.cmax();"),
-            ('a', "{scalar} cmin_safe(in {type} a) => a.cmin_safe();"),
-            ('a', "{scalar} cmax_safe(in {type} a) => a.cmax_safe();"),
-
-            #endregion
-
             #region IVectorFloatingPoint
 
             ('f', "{type} mod(in {type} a, in {type} b) => a.mod(b);"),

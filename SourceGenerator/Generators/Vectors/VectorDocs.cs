@@ -20,15 +20,6 @@ internal static class VectorDocs
     /// </summary>
     private static readonly Dictionary<string, (string Summary, string Returns, string Params)> Docs = new()
     {
-        #region IVectorArithmetic
-
-        { "cmin", ("Returns the smallest component", "The smallest component", "a=The vector") },
-        { "cmax", ("Returns the largest component", "The largest component", "a=The vector") },
-        { "cmin_safe", ("Returns the smallest component, it is safe when the vector has a padding component", "The smallest component", "a=The vector") },
-        { "cmax_safe", ("Returns the largest component, it is safe when the vector has a padding component", "The largest component", "a=The vector") },
-
-        #endregion
-
         #region IVectorFloatingPoint
 
         { "mod", ("Returns the component wise remainder of the division of the two vectors", "The remainder", "a=The vector;b|other=The divisor") },

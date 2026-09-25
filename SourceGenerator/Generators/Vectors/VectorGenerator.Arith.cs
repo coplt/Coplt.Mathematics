@@ -167,54 +167,6 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region cmin cmax
-
-        sb.AppendLine("    #region cmin cmax");
-        sb.AppendLine();
-
-        // emits one of the component reductions, when the vector has a padding lane the reduction has to
-        // ignore it, the safe variants only use the accelerated path when the padding lane is not a number
-        void EmitReduce(string name, string scalarName, string vecOp, bool safeOnly)
-        {
-            InheritDoc();
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public readonly {scalar} {name}()");
-            sb.AppendLine("    {");
-            // the safe variants of a floating point vector only take the accelerated path when the padding
-            // lanes of the value cannot disturb the reduction
-            if (simd && (!safeOnly || i))
-            {
-                var op = size == 3 ? vecOp + "3" : vecOp;
-                // the helper of a 64 bit vector reduces the two lanes of its own register, it reads them from
-                // a 64 bit register and from the 128 bit one when the platform has no 64 bit hardware support,
-                // so the gate accepts either register, the wider types reduce the register of the value itself
-                var gate = v64
-                    ? $"{vecName}.IsHardwareAccelerated || Vector128.IsHardwareAccelerated"
-                    : $"Vector{bitSize4}.IsHardwareAccelerated || Vector{bitSize2}.IsHardwareAccelerated";
-                // a 2 component vector whose register is widened to 128 bits keeps its padding lanes at zero,
-                // the helper of the 64 bit register reduces the two lanes of it without them
-                var operand = pad && size == 2 ? "vector.GetLower()" : "vector";
-                sb.AppendLine($"        if ({gate})");
-                sb.AppendLine($"            return simd.{op}({operand});");
-            }
-
-            var chain = comp[0];
-            for (var n = 1; n < size; n++) chain = VectorScalar.Expr(scalar, scalarName, chain, comp[n]);
-            sb.AppendLine($"        return {chain};");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-        }
-
-        EmitReduce("cmin", "min", "CMin", false);
-        EmitReduce("cmax", "max", "CMax", false);
-        EmitReduce("cmin_safe", "min", "CMin", true);
-        EmitReduce("cmax_safe", "max", "CMax", true);
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
         sb.AppendLine("}");
         sb.AppendLine();
 

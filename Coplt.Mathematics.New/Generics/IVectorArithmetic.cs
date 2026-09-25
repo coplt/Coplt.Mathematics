@@ -32,35 +32,6 @@ public interface IVectorArithmetic<Self, Scalar> :
     where Self : unmanaged, IVectorArithmetic<Self, Scalar>
     where Scalar : unmanaged
 {
-    #region CMin CMax
-
-    /// <summary>
-    /// Returns the smallest component
-    /// </summary>
-    /// <returns>The smallest component</returns>
-    public static abstract Scalar cmin(in Self a);
-
-    /// <summary>
-    /// Returns the largest component
-    /// </summary>
-    /// <returns>The largest component</returns>
-    public static abstract Scalar cmax(in Self a);
-
-    /// <summary>
-    /// Returns the smallest component
-    /// <para>It is safe when the vector has a padding component that is not part of the vector, it is slower than <see cref="cmin"/></para>
-    /// </summary>
-    /// <returns>The smallest component</returns>
-    public static abstract Scalar cmin_safe(in Self a);
-
-    /// <summary>
-    /// Returns the largest component
-    /// <para>It is safe when the vector has a padding component that is not part of the vector, it is slower than <see cref="cmax"/></para>
-    /// </summary>
-    /// <returns>The largest component</returns>
-    public static abstract Scalar cmax_safe(in Self a);
-
-    #endregion
 }
 
 /// <summary>

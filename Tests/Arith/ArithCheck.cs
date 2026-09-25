@@ -212,20 +212,16 @@ internal static class ArithCheck
 
             #endregion
 
-            #region sum cmin cmax
+            #region sum hmin hmax
 
             ScalarEqual(math.sum<T, TScalar>(asc), sum, "sum");
             ScalarEqual(math.sum<T, TScalar>(vZero), zero, "sum of zero");
             ScalarEqual(math.sum<T, TScalar>(allOne), TScalar.CreateChecked(length), "sum of a broadcast vector");
 
-            ScalarEqual(T.cmin(asc), one, "cmin");
-            ScalarEqual(T.cmax(asc), TScalar.CreateChecked(length), "cmax");
-            ScalarEqual(T.cmin_safe(asc), one, "cmin_safe");
-            ScalarEqual(T.cmax_safe(asc), TScalar.CreateChecked(length), "cmax_safe");
-            ScalarEqual(T.cmin(allFive), five, "cmin of a broadcast vector");
-            ScalarEqual(T.cmax(allFive), five, "cmax of a broadcast vector");
-            ScalarEqual(T.cmin_safe(allFive), five, "cmin_safe of a broadcast vector");
-            ScalarEqual(T.cmax_safe(allFive), five, "cmax_safe of a broadcast vector");
+            ScalarEqual(math.hmin<T, TScalar>(asc), one, "hmin");
+            ScalarEqual(math.hmax<T, TScalar>(asc), TScalar.CreateChecked(length), "hmax");
+            ScalarEqual(math.hmin<T, TScalar>(allFive), five, "hmin of a broadcast vector");
+            ScalarEqual(math.hmax<T, TScalar>(allFive), five, "hmax of a broadcast vector");
 
             #endregion
         }
@@ -260,11 +256,9 @@ internal static class ArithCheck
 
             ScalarEqual(math.sum<T, TScalar>(negAll), negLength, "sum of the negatives");
             // the padding lane of a 3 component vector is zero, a reduction that picks it up would return zero
-            // instead of the negative components, the fast and the safe variants are both checked by these
-            ScalarEqual(T.cmin(negAll), negOne, "cmin of the negatives");
-            ScalarEqual(T.cmax(negAll), negOne, "cmax of the negatives");
-            ScalarEqual(T.cmin_safe(negAll), negOne, "cmin_safe of the negatives");
-            ScalarEqual(T.cmax_safe(negAll), negOne, "cmax_safe of the negatives");
+            // instead of the negative components
+            ScalarEqual(math.hmin<T, TScalar>(negAll), negOne, "hmin of the negatives");
+            ScalarEqual(math.hmax<T, TScalar>(negAll), negOne, "hmax of the negatives");
         }
     }
 

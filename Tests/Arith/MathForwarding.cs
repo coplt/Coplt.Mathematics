@@ -56,10 +56,8 @@ public class TestMathArithForwarding
         _ = math.length_sq<T, TScalar>(v);
         _ = math.distance_sq<T, TScalar>(v, v);
         _ = math.sum<T, TScalar>(v);
-        _ = math.cmin<T, TScalar>(v);
-        _ = math.cmax<T, TScalar>(v);
-        _ = math.cmin_safe<T, TScalar>(v);
-        _ = math.cmax_safe<T, TScalar>(v);
+        _ = math.hmin<T, TScalar>(v);
+        _ = math.hmax<T, TScalar>(v);
     }
 
     /// <summary>
@@ -257,12 +255,10 @@ public class TestMathArithForwarding
             Assert.That(math.distance_sq(new double3s(1d), new double3s(4d, 5d, 1d)), Is.EqualTo(25d), "the inferred square distance of a vector without a register");
             Assert.That(math.length_sq(new float3s(3f, 4f, 0f)), Is.EqualTo(25f), "the inferred square length of a storage variant");
             Assert.That(math.sum<float3, float>(new float3(1f, 2f, 3f)), Is.EqualTo(6f));
-            // the padding component of a vector is zero, so the minimum of a vector is only the component itself
-            // when every component is less than it
-            Assert.That(math.cmin<float3, float>(new float3(-3f, -1f, -2f)), Is.EqualTo(-3f));
-            Assert.That(math.cmax<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(3f));
-            Assert.That(math.cmin_safe<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(1f));
-            Assert.That(math.cmax_safe<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(3f));
+            // the padding component of a vector is zero, so a reduction that picks it up would return zero
+            // instead of the smallest or the largest component
+            Assert.That(math.hmin<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(1f));
+            Assert.That(math.hmax<float3, float>(new float3(-3f, -1f, -2f)), Is.EqualTo(-1f));
         }
     }
 

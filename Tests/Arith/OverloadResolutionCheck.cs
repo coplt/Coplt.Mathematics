@@ -40,6 +40,8 @@ public class TestOverloadResolutionCheck
         ("math.length_sq(v)", $"{ExFloat}::length_sq<{Float3}>({Float3}&)"),
         ("math.distance_sq(v, v)", $"{ExFloat}::distance_sq<{Float3}>({Float3}&, {Float3}&)"),
         ("math.sum(v)", $"{ExFloat}::sum<{Float3}>({Float3}&)"),
+        ("math.hmin(v)", $"{ExFloat}::hmin<{Float3}>({Float3}&)"),
+        ("math.hmax(v)", $"{ExFloat}::hmax<{Float3}>({Float3}&)"),
         ("v.lerp(1, 2)", $"{MathExFloat}::lerp<{Float3}>({Float3}, {Single}, {Single})"),
         ("v.lerp(1, v)", $"{MathEx}::lerp<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
         ("v.unlerp(1, 2)", $"{MathExFloat}::unlerp<{Float3}>({Float3}, {Single}, {Single})"),
@@ -47,13 +49,15 @@ public class TestOverloadResolutionCheck
         ("v.length_sq()", $"{MathExFloat}::length_sq<{Float3}>({Float3})"),
         ("v.distance_sq(v)", $"{MathExFloat}::distance_sq<{Float3}>({Float3}, {Float3}&)"),
         ("v.sum()", $"{MathExFloat}::sum<{Float3}>({Float3})"),
+        ("v.hmin()", $"{MathExFloat}::hmin<{Float3}>({Float3})"),
+        ("v.hmax()", $"{MathExFloat}::hmax<{Float3}>({Float3})"),
     };
 
     /// <summary>
     /// The calls of <see cref="TestOverloadResolutionUsingStatic.ScalarArguments"/>, which are the ones of the
     /// member above without the ones that are called on a value.
     /// </summary>
-    private static readonly (string Call, string Member)[] UsingStaticCalls = Calls[..10];
+    private static readonly (string Call, string Member)[] UsingStaticCalls = Calls[..12];
 
     /// <summary>
     /// The calls of <see cref="TestOverloadResolution.MatrixArguments"/> in the order of its body and the member
