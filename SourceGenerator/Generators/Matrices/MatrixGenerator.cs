@@ -64,6 +64,9 @@ public class MatrixGenerator : IIncrementalGenerator
         // a column of the matrix is the vector of the number of the rows, the storage variant of the matrix
         // keeps its columns in the storage variants of the vectors
         var col = VectorGenShared.VecName(typ, rows, storeVariant);
+        // a row of the matrix is the vector of the number of the columns, it only keeps the storage variant of
+        // the matrix when the vectors of that count have one of their own
+        var row = VectorGenShared.VecName(typ, cols, storeVariant && VectorGenShared.HasStorageVariant(typ, cols));
         var scalar = typ.compType;
         var simd = VectorGenShared.Simd(typ, rows, storeVariant);
         var bol = typ.bol;
@@ -112,8 +115,14 @@ public class MatrixGenerator : IIncrementalGenerator
             $"Algebras.IMatrix{shape}Vector<{type}, {col}>",
             $"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>",
         };
-        // a matrix of a number dispatches the value of it to a visitor, a matrix of a mask dispatches nothing
-        if (!bol) ifaces.Add($"Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>");
+        // a matrix of a number dispatches the value of it to a visitor and the vectors it is made of to the
+        // visitors that reduce them to a vector, a matrix of a mask dispatches nothing
+        if (!bol)
+        {
+            ifaces.Add($"Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>");
+            ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
+            ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
+        }
         VectorGenShared.FileHeader(sb, false);
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
@@ -656,6 +665,20 @@ public class MatrixGenerator : IIncrementalGenerator
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} a, in {type} b)");
             sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
+            sb.AppendLine();
+            // the vectors a matrix is made of are the columns of it, so the member that reduces them to a
+            // single vector is the one of the count of the columns of the matrix
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static {col} Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>.Visit_Vector<V>(in {type} self)");
+            sb.AppendLine($"        => V.AcceptMatrixColumns{cols}<{col}, {scalar}>({VectorGenShared.Join(cols, j => $"self.c{j}")});");
+            sb.AppendLine();
+            // a row of the matrix has no value of its own, so the columns of it are handed over and every one
+            // of them is reduced to a component by the visitor, which builds the vector of the reductions
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static {row} Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>.Visit_Vector<V>(in {type} self)");
+            sb.AppendLine($"        => V.AcceptMatrixRow{cols}<{col}, {row}, {scalar}>({VectorGenShared.Join(cols, j => $"self.c{j}")});");
             sb.AppendLine();
             sb.AppendLine("    #endregion");
             sb.AppendLine();
