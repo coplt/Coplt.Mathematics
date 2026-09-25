@@ -16,13 +16,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
+    # the projects target net10.0, so the runtime of it is the one that runs the tests
+    - name: Setup .NET 10
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: |
-          6.0.x
-          8.0.x
-          9.0.x
+        dotnet-version: '10.0.x'
+    # the sdk of the global.json is the preview of .NET 11, it is the one that builds the projects
+    - name: Setup .NET 11
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '11.0.x'
+        dotnet-quality: 'preview'
     - name: Restore dotnet tools
       run: dotnet tool restore
     - name: Restore dependencies
