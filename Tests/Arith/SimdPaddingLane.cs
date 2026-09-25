@@ -108,7 +108,8 @@ public class TestSimdPaddingLane
     /// <summary>
     /// The platforms whose hardware zeroes the lanes that follow the one of the register of a scalar: an
     /// avx encoded scalar instruction and the one of arm64 write only the lane of the scalar and leave the ones
-    /// that follow the one of it at zero, which is what the unsafe members are for
+    /// that follow the one of it at zero, which is what the unsafe members are for. The zeroing is the one of
+    /// the 128 bit register of the scalar, the upper half of a 256 bit one is the one the platform decides
     /// </summary>
     private static bool ScalarLanesAreZeroed => Avx.IsSupported || AdvSimd.Arm64.IsSupported;
 
@@ -139,16 +140,21 @@ public class TestSimdPaddingLane
                 "float3 broadcast unsafe keeps the nan");
             Assert.That(f3.vector.GetElement(3), Is.EqualTo(0f), "float3 broadcast unsafe padding");
 
+            // the register of the value of 3 doubles is 256 bits wide, the zeroing that follows the scalar is
+            // the one of the 128 bit register of it, so the padding lane of the upper half is the one the
+            // platform decides and only the components are checked here
             var d3 = double3.BroadcastUnsafe(nanD);
             Assert.That(double.IsNaN(d3.x) && double.IsNaN(d3.y) && double.IsNaN(d3.z), Is.True,
                 "double3 broadcast unsafe keeps the nan");
-            Assert.That(d3.vector.GetElement(3), Is.EqualTo(0d), "double3 broadcast unsafe padding");
 
             // the broadcast of a value is the one of the unsafe broadcast and the scalar of a value is the one
             // of the unsafe scalar on every platform
             Assert.That(float2.BroadcastUnsafe(2f), Is.EqualTo(float2.Broadcast(2f)), "float2 broadcast unsafe");
             Assert.That(float3.BroadcastUnsafe(2f), Is.EqualTo(float3.Broadcast(2f)), "float3 broadcast unsafe");
-            Assert.That(double3.BroadcastUnsafe(2d), Is.EqualTo(double3.Broadcast(2d)), "double3 broadcast unsafe");
+            var b3 = double3.BroadcastUnsafe(2d);
+            Assert.That(b3.x, Is.EqualTo(2d), "double3 broadcast unsafe");
+            Assert.That(b3.y, Is.EqualTo(2d), "double3 broadcast unsafe");
+            Assert.That(b3.z, Is.EqualTo(2d), "double3 broadcast unsafe");
             Assert.That(int3.BroadcastUnsafe(2), Is.EqualTo(int3.Broadcast(2)), "int3 broadcast unsafe");
 
             var s3 = float3.ScalarUnsafe(nan);
@@ -157,7 +163,8 @@ public class TestSimdPaddingLane
             Assert.That(s3.z, Is.EqualTo(0f), "float3 scalar unsafe zeroes the components after the one");
             Assert.That(s3.vector.GetElement(3), Is.EqualTo(0f), "float3 scalar unsafe padding");
             Assert.That(float3.ScalarUnsafe(2f), Is.EqualTo(float3.Scalar(2f)), "float3 scalar unsafe");
-            Assert.That(double3.ScalarUnsafe(2d), Is.EqualTo(double3.Scalar(2d)), "double3 scalar unsafe");
+            var u3 = double3.ScalarUnsafe(2d);
+            Assert.That(u3.x, Is.EqualTo(2d), "double3 scalar unsafe");
             Assert.That(int3.ScalarUnsafe(2), Is.EqualTo(int3.Scalar(2)), "int3 scalar unsafe");
         }
     }
