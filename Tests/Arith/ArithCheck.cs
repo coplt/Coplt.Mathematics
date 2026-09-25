@@ -74,7 +74,7 @@ internal static class ArithCheck
     /// integer, so no result is rounded and the check works for the floating point and the integer types alike.
     /// </summary>
     public static void Arithmetic<T, TScalar>(int length, bool simd)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>, Coplt.Mathematics.Algebras.INumberVector<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
@@ -212,11 +212,11 @@ internal static class ArithCheck
 
             #endregion
 
-            #region csum cmin cmax
+            #region sum cmin cmax
 
-            ScalarEqual(T.csum(asc), sum, "csum");
-            ScalarEqual(T.csum(vZero), zero, "csum of zero");
-            ScalarEqual(T.csum(allOne), TScalar.CreateChecked(length), "csum of a broadcast vector");
+            ScalarEqual(math.sum<T, TScalar>(asc), sum, "sum");
+            ScalarEqual(math.sum<T, TScalar>(vZero), zero, "sum of zero");
+            ScalarEqual(math.sum<T, TScalar>(allOne), TScalar.CreateChecked(length), "sum of a broadcast vector");
 
             ScalarEqual(T.cmin(asc), one, "cmin");
             ScalarEqual(T.cmax(asc), TScalar.CreateChecked(length), "cmax");
@@ -239,8 +239,8 @@ internal static class ArithCheck
     /// Everything that is added by <see cref="ISignedVectorArithmetic{Self,Scalar}"/>.
     /// </summary>
     public static void Negation<T, TScalar>(int length, bool simd)
-        where T : unmanaged, ISignedVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T>
-        where TScalar : unmanaged, ISignedNumber<TScalar>
+        where T : unmanaged, ISignedVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where TScalar : unmanaged, ISignedNumber<TScalar>, IBinaryNumber<TScalar>
     {
         var negOne = -TScalar.One;
         var negAll = VecBroadcast<T, TScalar>(negOne);
@@ -258,7 +258,7 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(negAll.sign(), negAll, "sign of the negatives");
             AllEqual<T, TScalar>(negAll.square(), allOne, "square of the negatives");
 
-            ScalarEqual(T.csum(negAll), negLength, "csum of the negatives");
+            ScalarEqual(math.sum<T, TScalar>(negAll), negLength, "sum of the negatives");
             // the padding lane of a 3 component vector is zero, a reduction that picks it up would return zero
             // instead of the negative components, the fast and the safe variants are both checked by these
             ScalarEqual(T.cmin(negAll), negOne, "cmin of the negatives");
@@ -277,7 +277,7 @@ internal static class ArithCheck
     /// positive on every component are checked, so the unsigned types are covered too.
     /// </summary>
     public static void Cross<T, TScalar>(bool simd)
-        where T : unmanaged, IVector3Arithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>, Algebras.IVector3<T>
+        where T : unmanaged, IVector3Arithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>, Algebras.IVector3<T>, Algebras.INumberVector<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;

@@ -1,5 +1,5 @@
 using Coplt.Mathematics.Algebras.Generics;
-using Coplt.Mathematics.Generics;
+using Coplt.Mathematics.Algebras;
 
 namespace Coplt.Mathematics;
 

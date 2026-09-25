@@ -33,19 +33,21 @@ public class TestOverloadResolutionCheck
         ("math.remap(v, v, 2, 3, 4)", $"{MathEx}::remap<{Float3}>({Float3}&, {Float3}&, {Float3}&, {Float3}&, {Float3}&)"),
         ("math.length_sq(v)", $"{ExFloat}::length_sq<{Float3}>({Float3}&)"),
         ("math.distance_sq(v, v)", $"{ExFloat}::distance_sq<{Float3}>({Float3}&, {Float3}&)"),
+        ("math.sum(v)", $"{ExFloat}::sum<{Float3}>({Float3}&)"),
         ("v.lerp(1, 2)", $"{MathExFloat}::lerp<{Float3}>({Float3}, {Single}, {Single})"),
         ("v.lerp(1, v)", $"{MathEx}::lerp<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
         ("v.unlerp(1, 2)", $"{MathExFloat}::unlerp<{Float3}>({Float3}, {Single}, {Single})"),
         ("v.unlerp(1, v)", $"{MathEx}::unlerp<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
         ("v.length_sq()", $"{MathExFloat}::length_sq<{Float3}>({Float3})"),
         ("v.distance_sq(v)", $"{MathExFloat}::distance_sq<{Float3}>({Float3}, {Float3}&)"),
+        ("v.sum()", $"{MathExFloat}::sum<{Float3}>({Float3})"),
     };
 
     /// <summary>
     /// The calls of <see cref="TestOverloadResolutionUsingStatic.ScalarArguments"/>, which are the ones of the
     /// member above without the ones that are called on a value.
     /// </summary>
-    private static readonly (string Call, string Member)[] UsingStaticCalls = Calls[..9];
+    private static readonly (string Call, string Member)[] UsingStaticCalls = Calls[..10];
 
     [Test]
     public void ScalarArguments()

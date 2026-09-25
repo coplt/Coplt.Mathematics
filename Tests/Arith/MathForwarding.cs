@@ -46,7 +46,7 @@ public class TestMathArithForwarding
     /// component infers the type of it from the argument, a member that only returns one names both types.
     /// </summary>
     private static void CheckScalar<T, TScalar>(T v, TScalar s0, TScalar s1)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebra<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebra<T, TScalar>, Coplt.Mathematics.Algebras.INumberVector<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         // the width of the range of the members that divide by it has to be wider than zero
@@ -55,7 +55,7 @@ public class TestMathArithForwarding
         _ = math.dot<T, TScalar>(v, v);
         _ = math.length_sq<T, TScalar>(v);
         _ = math.distance_sq<T, TScalar>(v, v);
-        _ = math.csum<T, TScalar>(v);
+        _ = math.sum<T, TScalar>(v);
         _ = math.cmin<T, TScalar>(v);
         _ = math.cmax<T, TScalar>(v);
         _ = math.cmin_safe<T, TScalar>(v);
@@ -256,7 +256,7 @@ public class TestMathArithForwarding
             Assert.That(math.length_sq(new int3(3, 4, 0)), Is.EqualTo(25), "the inferred square length of an integer vector");
             Assert.That(math.distance_sq(new double3s(1d), new double3s(4d, 5d, 1d)), Is.EqualTo(25d), "the inferred square distance of a vector without a register");
             Assert.That(math.length_sq(new float3s(3f, 4f, 0f)), Is.EqualTo(25f), "the inferred square length of a storage variant");
-            Assert.That(math.csum<float3, float>(new float3(1f, 2f, 3f)), Is.EqualTo(6f));
+            Assert.That(math.sum<float3, float>(new float3(1f, 2f, 3f)), Is.EqualTo(6f));
             // the padding component of a vector is zero, so the minimum of a vector is only the component itself
             // when every component is less than it
             Assert.That(math.cmin<float3, float>(new float3(-3f, -1f, -2f)), Is.EqualTo(-3f));

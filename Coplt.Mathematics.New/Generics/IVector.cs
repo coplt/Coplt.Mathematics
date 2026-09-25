@@ -119,6 +119,7 @@ public interface INumberVector<TSelf> :
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
+[Obsolete]
 public interface INumberVector<TSelf, TScalar> :
     INumberVector<TSelf>, IVector<TSelf, TScalar>
     where TSelf : unmanaged, INumberVector<TSelf, TScalar>

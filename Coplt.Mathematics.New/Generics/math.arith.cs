@@ -11,18 +11,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns the sum of all components
-    /// </summary>
-    /// <param name="v">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The sum of the components</returns>
-    [MethodImpl(256)]
-    public static TScalar csum<T, TScalar>(in T v)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>
-        where TScalar : unmanaged => T.csum(v);
-
-    /// <summary>
     /// Returns the smallest component
     /// </summary>
     /// <param name="v">The vector</param>

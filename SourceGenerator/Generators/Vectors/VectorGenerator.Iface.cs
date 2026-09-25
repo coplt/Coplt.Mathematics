@@ -34,7 +34,6 @@ public partial class VectorGenerator
         {
             #region IVectorArithmetic
 
-            ('a', "{scalar} csum(in {type} a) => a.csum();"),
             ('a', "{scalar} cmin(in {type} a) => a.cmin();"),
             ('a', "{scalar} cmax(in {type} a) => a.cmax();"),
             ('a', "{scalar} cmin_safe(in {type} a) => a.cmin_safe();"),

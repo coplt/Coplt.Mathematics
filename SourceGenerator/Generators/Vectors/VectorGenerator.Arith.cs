@@ -167,21 +167,9 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region csum cmin cmax
+        #region cmin cmax
 
-        sb.AppendLine("    #region csum cmin cmax");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {scalar} csum()");
-        sb.AppendLine("    {");
-        // a 64 bit vector sums the two lanes of its own register and falls back to the 128 bit one, the
-        // padding lanes of the widened value are zero, so they do not change the sum
-        EmitAccel($"return {vecName}.Sum(vector);",
-            v64 ? $"return Vector128.Sum({Load64("")});" : null,
-            $"return {cast}({Join(n => comp[n], " + ")});");
-        sb.AppendLine("    }");
+        sb.AppendLine("    #region cmin cmax");
         sb.AppendLine();
 
         // emits one of the component reductions, when the vector has a padding lane the reduction has to

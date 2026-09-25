@@ -32,13 +32,7 @@ public interface IVectorArithmetic<Self, Scalar> :
     where Self : unmanaged, IVectorArithmetic<Self, Scalar>
     where Scalar : unmanaged
 {
-    #region CSum CMin CMax
-
-    /// <summary>
-    /// Returns the sum of all components
-    /// </summary>
-    /// <returns>The sum of the components</returns>
-    public static abstract Scalar csum(in Self a);
+    #region CMin CMax
 
     /// <summary>
     /// Returns the smallest component

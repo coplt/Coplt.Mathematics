@@ -50,7 +50,7 @@ public static partial class math
 
 public static partial class math_ex
 {
-    /// <inheritdoc cref="math.remap{T}"/>
+    /// <inheritdoc cref="math_ex.remap{T}(in T, in T, in T, in T, in T)"/>
     [OverloadResolutionPriority(-1)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T remap<T>(this T value, in T src_start, in T src_end, in T dst_start, in T dst_end)

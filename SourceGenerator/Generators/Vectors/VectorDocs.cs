@@ -22,7 +22,6 @@ internal static class VectorDocs
     {
         #region IVectorArithmetic
 
-        { "csum", ("Returns the sum of all components", "The sum of the components", "a=The vector") },
         { "cmin", ("Returns the smallest component", "The smallest component", "a=The vector") },
         { "cmax", ("Returns the largest component", "The largest component", "a=The vector") },
         { "cmin_safe", ("Returns the smallest component, it is safe when the vector has a padding component", "The smallest component", "a=The vector") },
