@@ -228,6 +228,11 @@ internal static class ArithCheck
             ScalarEqual(math.hmin<T, TScalar>(allFive), five, "hmin of a broadcast vector");
             ScalarEqual(math.hmax<T, TScalar>(allFive), five, "hmax of a broadcast vector");
 
+            ScalarEqual(math.hmin_native<T, TScalar>(asc), one, "hmin_native");
+            ScalarEqual(math.hmax_native<T, TScalar>(asc), TScalar.CreateChecked(length), "hmax_native");
+            ScalarEqual(math.hmin_native<T, TScalar>(allFive), five, "hmin_native of a broadcast vector");
+            ScalarEqual(math.hmax_native<T, TScalar>(allFive), five, "hmax_native of a broadcast vector");
+
             #endregion
         }
     }
@@ -264,6 +269,8 @@ internal static class ArithCheck
             // instead of the negative components
             ScalarEqual(math.hmin<T, TScalar>(negAll), negOne, "hmin of the negatives");
             ScalarEqual(math.hmax<T, TScalar>(negAll), negOne, "hmax of the negatives");
+            ScalarEqual(math.hmin_native<T, TScalar>(negAll), negOne, "hmin_native of the negatives");
+            ScalarEqual(math.hmax_native<T, TScalar>(negAll), negOne, "hmax_native of the negatives");
         }
     }
 

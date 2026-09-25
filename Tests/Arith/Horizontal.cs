@@ -149,4 +149,112 @@ public class TestHorizontal
                 Is.EqualTo(7f), "the member that names both types");
         }
     }
+
+    /// <summary>
+    /// The native members reduce the components of a value with the minimum and the maximum the platform
+    /// computes itself, which is the one of <see cref="math.hmin{T,TScalar}(in T)"/> and
+    /// <see cref="math.hmax{T,TScalar}(in T)"/> for a value that is neither a nan nor a zero of a sign of its
+    /// own, so every value that is checked here is the one of the member above it.
+    /// </summary>
+    [Test]
+    public void Native()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // every component type of a number vector, the width of the register of the value picks the member
+            // of the visitor
+            Assert.That(math.hmin_native(new float2(3f, 1f)), Is.EqualTo(math.hmin(new float2(3f, 1f))), "float2");
+            Assert.That(math.hmax_native(new float2(3f, 1f)), Is.EqualTo(math.hmax(new float2(3f, 1f))), "float2");
+            Assert.That(math.hmin_native(new float3(3f, 1f, 2f)), Is.EqualTo(math.hmin(new float3(3f, 1f, 2f))),
+                "float3");
+            Assert.That(math.hmax_native(new float3(3f, 1f, 2f)), Is.EqualTo(math.hmax(new float3(3f, 1f, 2f))),
+                "float3");
+            Assert.That(math.hmin_native(new float4(3f, 1f, 2f, 4f)), Is.EqualTo(math.hmin(new float4(3f, 1f, 2f, 4f))),
+                "float4");
+            Assert.That(math.hmax_native(new float4(3f, 1f, 2f, 4f)), Is.EqualTo(math.hmax(new float4(3f, 1f, 2f, 4f))),
+                "float4");
+            Assert.That(math.hmin_native(new double3(3d, 1d, 2d)), Is.EqualTo(math.hmin(new double3(3d, 1d, 2d))),
+                "double3");
+            Assert.That(math.hmax_native(new double4(3d, 1d, 2d, 4d)),
+                Is.EqualTo(math.hmax(new double4(3d, 1d, 2d, 4d))), "double4");
+            Assert.That(math.hmin_native(new half3((half)3f, (half)1f, (half)2f)),
+                Is.EqualTo(math.hmin(new half3((half)3f, (half)1f, (half)2f))), "half3");
+            Assert.That(math.hmax_native(new half3((half)3f, (half)1f, (half)2f)),
+                Is.EqualTo(math.hmax(new half3((half)3f, (half)1f, (half)2f))), "half3");
+            Assert.That(math.hmin_native(new short3(3, 1, 2)), Is.EqualTo(math.hmin(new short3(3, 1, 2))), "short3");
+            Assert.That(math.hmax_native(new ushort3(3, 1, 2)), Is.EqualTo(math.hmax(new ushort3(3, 1, 2))),
+                "ushort3");
+            Assert.That(math.hmin_native(new int3(3, 1, 2)), Is.EqualTo(math.hmin(new int3(3, 1, 2))), "int3");
+            Assert.That(math.hmax_native(new uint3(3u, 1u, 2u)), Is.EqualTo(math.hmax(new uint3(3u, 1u, 2u))),
+                "uint3");
+            Assert.That(math.hmin_native(new long3(3L, 1L, 2L)), Is.EqualTo(math.hmin(new long3(3L, 1L, 2L))), "long3");
+            Assert.That(math.hmax_native(new ulong3(3UL, 1UL, 2UL)), Is.EqualTo(math.hmax(new ulong3(3UL, 1UL, 2UL))),
+                "ulong3");
+
+            // a vector whose register is 64 bits wide and one that has no register reach the member of their own
+            // kind
+            Assert.That(math.hmin_native(new float2s(3f, 1f)), Is.EqualTo(math.hmin(new float2s(3f, 1f))),
+                "float2s, a 64 bit register");
+            Assert.That(math.hmax_native(new int2s(3, 1)), Is.EqualTo(math.hmax(new int2s(3, 1))),
+                "int2s, a 64 bit register");
+            Assert.That(math.hmin_native(new float3s(3f, 1f, 2f)), Is.EqualTo(math.hmin(new float3s(3f, 1f, 2f))),
+                "float3s, a value without a register");
+            Assert.That(math.hmax_native(new float3s(3f, 1f, 2f)), Is.EqualTo(math.hmax(new float3s(3f, 1f, 2f))),
+                "float3s, a value without a register");
+            Assert.That(math.hmin_native(new double3s(3d, 1d, 2d)), Is.EqualTo(math.hmin(new double3s(3d, 1d, 2d))),
+                "double3s, a value without a register");
+            Assert.That(math.hmin_native(new int3s(3, 1, 2)), Is.EqualTo(math.hmin(new int3s(3, 1, 2))),
+                "int3s, a value without a register");
+            Assert.That(math.hmax_native(new long3s(3L, 1L, 2L)), Is.EqualTo(math.hmax(new long3s(3L, 1L, 2L))),
+                "long3s, a value without a register");
+            Assert.That(math.hmin_native(new half4((half)3f, (half)1f, (half)2f, (half)4f)),
+                Is.EqualTo(math.hmin(new half4((half)3f, (half)1f, (half)2f, (half)4f))),
+                "half4, a value without a register");
+
+            // the padding lane of a value of 3 components is zero, a reduction that picks it up would return
+            // zero instead of the smallest or the largest component
+            Assert.That(math.hmin_native(new float3(3f, 1f, 2f)), Is.EqualTo(1f), "float3, a padding lane");
+            Assert.That(math.hmax_native(new float3(-3f, -1f, -2f)), Is.EqualTo(-1f), "float3, a padding lane");
+            Assert.That(math.hmin_native(new double3(3d, 1d, 2d)), Is.EqualTo(1d), "double3, a padding lane");
+            Assert.That(math.hmax_native(new double3(-3d, -1d, -2d)), Is.EqualTo(-1d), "double3, a padding lane");
+            Assert.That(math.hmin_native(new int3(3, 1, 2)), Is.EqualTo(1), "int3, a padding lane");
+            Assert.That(math.hmax_native(new int3(-3, -1, -2)), Is.EqualTo(-1), "int3, a padding lane");
+            Assert.That(math.hmin_native(new long3(3L, 1L, 2L)), Is.EqualTo(1L), "long3, a padding lane");
+            Assert.That(math.hmax_native(new long3(-3L, -1L, -2L)), Is.EqualTo(-1L), "long3, a padding lane");
+
+            // the member that names the type of a component and the member of the value itself
+            Assert.That(math.hmin_native<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(1f),
+                "the member that names both types");
+            Assert.That(math.hmax_native<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(3f),
+                "the member that names both types");
+            Assert.That(new float3(3f, 1f, 2f).hmin_native(), Is.EqualTo(1f), "the member of float3");
+            Assert.That(new float3(3f, 1f, 2f).hmax_native(), Is.EqualTo(3f), "the member of float3");
+            Assert.That(new int3(3, 1, 2).hmin_native(), Is.EqualTo(1), "the member of int3");
+            Assert.That(new float3s(3f, 1f, 2f).hmax_native(), Is.EqualTo(3f), "the member of float3s");
+
+            // the value of a matrix is the one of its columns
+            Assert.That(math.hmin_native(new float3x3(new float3(4f, 1f, 3f), new float3(2f, 6f, 5f),
+                    new float3(7f, 8f, 9f))),
+                Is.EqualTo(1f), "every component of float3x3");
+            Assert.That(math.hmax_native(new float3x3(new float3(4f, 1f, 3f), new float3(2f, 6f, 5f),
+                    new float3(7f, 8f, 9f))),
+                Is.EqualTo(9f), "every component of float3x3");
+            Assert.That(math.hmin_native(new float3x3s(new float3s(4f, 1f, 3f), new float3s(2f, 6f, 5f),
+                    new float3s(7f, 8f, 9f))),
+                Is.EqualTo(1f), "every component of float3x3s");
+            Assert.That(math.hmax_native(new float3x3s(new float3s(4f, 1f, 3f), new float3s(2f, 6f, 5f),
+                    new float3s(7f, 8f, 9f))),
+                Is.EqualTo(9f), "every component of float3x3s");
+            Assert.That(math.hmin_native(new double2x2(new double2(4d, 1d), new double2(2d, 3d))), Is.EqualTo(1d),
+                "every component of double2x2");
+            Assert.That(math.hmax_native(new double2x2(new double2(4d, 1d), new double2(2d, 3d))), Is.EqualTo(4d),
+                "every component of double2x2");
+            Assert.That(math.hmin_native(new int2x2(new int2(4, 1), new int2(2, 3))), Is.EqualTo(1),
+                "every component of int2x2");
+            Assert.That(math.hmax_native(new int2x2(new int2(4, 1), new int2(2, 3))), Is.EqualTo(4),
+                "every component of int2x2");
+            Assert.That(math.hmax_native<float3x3, float>(new float3x3(new float3(4f), new float3(2f), new float3(7f))),
+                Is.EqualTo(7f), "the member that names both types");
+        }
+    }
 }

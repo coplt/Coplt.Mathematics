@@ -29,6 +29,8 @@ public class TestOverloadResolutionUsingStatic
         sum(new float3(1, 2, 3));
         hmin(new float3(1, 2, 3));
         hmax(new float3(1, 2, 3));
+        hmin_native(new float3(1, 2, 3));
+        hmax_native(new float3(1, 2, 3));
     }
 
     /// <summary>

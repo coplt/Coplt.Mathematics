@@ -60,6 +60,8 @@ public class TestMathArithForwarding
         _ = math.sum<T, TScalar>(v);
         _ = math.hmin<T, TScalar>(v);
         _ = math.hmax<T, TScalar>(v);
+        _ = math.hmin_native<T, TScalar>(v);
+        _ = math.hmax_native<T, TScalar>(v);
     }
 
     /// <summary>
@@ -269,6 +271,8 @@ public class TestMathArithForwarding
             // instead of the smallest or the largest component
             Assert.That(math.hmin<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(1f));
             Assert.That(math.hmax<float3, float>(new float3(-3f, -1f, -2f)), Is.EqualTo(-1f));
+            Assert.That(math.hmin_native<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(1f));
+            Assert.That(math.hmax_native<float3, float>(new float3(-3f, -1f, -2f)), Is.EqualTo(-1f));
         }
     }
 

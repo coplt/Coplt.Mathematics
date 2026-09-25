@@ -42,6 +42,8 @@ public class TestOverloadResolutionCheck
         ("math.sum(v)", $"{ExFloat}::sum<{Float3}>({Float3}&)"),
         ("math.hmin(v)", $"{ExFloat}::hmin<{Float3}>({Float3}&)"),
         ("math.hmax(v)", $"{ExFloat}::hmax<{Float3}>({Float3}&)"),
+        ("math.hmin_native(v)", $"{ExFloat}::hmin_native<{Float3}>({Float3}&)"),
+        ("math.hmax_native(v)", $"{ExFloat}::hmax_native<{Float3}>({Float3}&)"),
         ("v.lerp(1, 2)", $"{MathExFloat}::lerp<{Float3}>({Float3}, {Single}, {Single})"),
         ("v.lerp(1, v)", $"{MathEx}::lerp<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
         ("v.unlerp(1, 2)", $"{MathExFloat}::unlerp<{Float3}>({Float3}, {Single}, {Single})"),
@@ -51,13 +53,15 @@ public class TestOverloadResolutionCheck
         ("v.sum()", $"{MathExFloat}::sum<{Float3}>({Float3})"),
         ("v.hmin()", $"{MathExFloat}::hmin<{Float3}>({Float3})"),
         ("v.hmax()", $"{MathExFloat}::hmax<{Float3}>({Float3})"),
+        ("v.hmin_native()", $"{MathExFloat}::hmin_native<{Float3}>({Float3})"),
+        ("v.hmax_native()", $"{MathExFloat}::hmax_native<{Float3}>({Float3})"),
     };
 
     /// <summary>
     /// The calls of <see cref="TestOverloadResolutionUsingStatic.ScalarArguments"/>, which are the ones of the
     /// member above without the ones that are called on a value.
     /// </summary>
-    private static readonly (string Call, string Member)[] UsingStaticCalls = Calls[..12];
+    private static readonly (string Call, string Member)[] UsingStaticCalls = Calls[..14];
 
     /// <summary>
     /// The calls of <see cref="TestOverloadResolution.MatrixArguments"/> in the order of its body and the member

@@ -35,6 +35,8 @@ public class TestOverloadResolution
         math.sum(new float3(1, 2, 3));
         math.hmin(new float3(1, 2, 3));
         math.hmax(new float3(1, 2, 3));
+        math.hmin_native(new float3(1, 2, 3));
+        math.hmax_native(new float3(1, 2, 3));
         new float3(1, 2, 3).lerp(1, 2);
         new float3(1, 2, 3).lerp(1, new float3(1, 2, 3));
         new float3(1, 2, 3).unlerp(1, 2);
@@ -44,6 +46,8 @@ public class TestOverloadResolution
         new float3(1, 2, 3).sum();
         new float3(1, 2, 3).hmin();
         new float3(1, 2, 3).hmax();
+        new float3(1, 2, 3).hmin_native();
+        new float3(1, 2, 3).hmax_native();
     }
 
     /// <summary>
