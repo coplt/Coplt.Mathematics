@@ -212,9 +212,10 @@ public class TestIeee754
             Assert.That(v.sqrt().x, Is.EqualTo(2f).Within(1e-6f));
             Assert.That(v.sqrt().y, Is.EqualTo(3f).Within(1e-6f));
             Assert.That(v.sqrt().z, Is.EqualTo(4f).Within(1e-6f));
-            // the reciprocal of the square root is the reciprocal of the square root, it is an estimate
-            Assert.That(v.rsqrt().x, Is.EqualTo(0.5f).Within(1e-3f));
-            Assert.That(v.rsqrt().y, Is.EqualTo(1f / 3f).Within(1e-3f));
+            // the reciprocal of the square root is the estimate of the hardware, it is not exact: the estimate
+            // of the arm platform is the loose one of the two, so the tolerance leaves room for it
+            Assert.That(v.rsqrt().x, Is.EqualTo(0.5f).Within(1e-2f));
+            Assert.That(v.rsqrt().y, Is.EqualTo(1f / 3f).Within(1e-2f));
             Assert.That(new float3(2f).pow(10f).x, Is.EqualTo(1024f).Within(1e-2f));
             Assert.That(new float3(2f).pow(0.5f).x, Is.EqualTo(MathF.Sqrt(2f)).Within(1e-5f));
             // the exponent can be a vector as well

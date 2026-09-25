@@ -12,7 +12,14 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    # the tests run on the platform of an arm as well, the members of the library that use the simd of it are
+    # only reached there
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, ubuntu-24.04-arm ]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v4

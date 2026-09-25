@@ -196,10 +196,11 @@ public class TestFloatingPoint
 
         using (Assert.EnterMultipleScope())
         {
-            // the reciprocal is the hardware estimate, it is not exact
-            Assert.That(r.x, Is.EqualTo(0.25f).Within(0.001f));
-            Assert.That(r.y, Is.EqualTo(2f).Within(0.005f));
-            Assert.That(r.z, Is.EqualTo(-0.5f).Within(0.005f));
+            // the reciprocal is the hardware estimate, it is not exact: the estimate of the arm platform is
+            // the loose one of the two, so the tolerance leaves room for it
+            Assert.That(r.x, Is.EqualTo(0.25f).Within(0.01f));
+            Assert.That(r.y, Is.EqualTo(2f).Within(0.01f));
+            Assert.That(r.z, Is.EqualTo(-0.5f).Within(0.01f));
 
             Assert.That(new float3(-1f, 0.5f, 2f).saturate(), Is.EqualTo(new float3(0f, 0.5f, 1f)));
             Assert.That(new double2(-1, 0.5).saturate(), Is.EqualTo(new double2(0, 0.5)));

@@ -139,7 +139,12 @@ public class TestMathFloatForwarding
         using (Assert.EnterMultipleScope())
         {
             Assert.That(math.sqrt(new float3(1f, 4f, 9f)), Is.EqualTo(new float3(1f, 2f, 3f)));
-            Assert.That(math.rsqrt(new float3(4f, 16f, 0.25f)), Is.EqualTo(new float3(0.5f, 0.25f, 2f)));
+            // the reciprocal of the square root is the estimate of the hardware, it is not exact: the estimate
+            // of the arm platform is the loose one of the two, so the tolerance leaves room for it
+            var rsqrt = math.rsqrt(new float3(4f, 16f, 0.25f));
+            Assert.That(rsqrt.x, Is.EqualTo(0.5f).Within(1e-2f));
+            Assert.That(rsqrt.y, Is.EqualTo(0.25f).Within(1e-2f));
+            Assert.That(rsqrt.z, Is.EqualTo(2f).Within(1e-2f));
             Assert.That(math.pow(new float3(2f, 3f, 4f), 2f), Is.EqualTo(new float3(4f, 9f, 16f)));
             Assert.That(math.sin(new float4(0f)), Is.EqualTo(new float4(0f)));
             Assert.That(math.normalize(new float3(3f, 4f, 0f)), Is.EqualTo(new float3(0.6f, 0.8f, 0f)));
