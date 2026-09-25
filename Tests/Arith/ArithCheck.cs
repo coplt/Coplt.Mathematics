@@ -139,6 +139,11 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(allFive.max(asc), allFive, "max is commutative");
             AllEqual<T, TScalar>(asc.max(asc), asc, "max with itself");
 
+            AllEqual<T, TScalar>(asc.min_native(allFive), asc, "the native min with a larger vector");
+            AllEqual<T, TScalar>(allFive.min_native(asc), asc, "the native min is commutative");
+            AllEqual<T, TScalar>(asc.max_native(allFive), allFive, "the native max with a larger vector");
+            AllEqual<T, TScalar>(allFive.max_native(asc), allFive, "the native max is commutative");
+
             AllEqual<T, TScalar>(asc.clamp(allOne, allFive), asc, "clamp keeps a value in the range");
             AllEqual<T, TScalar>(allFive.clamp(allOne, allTwo), allTwo, "clamp to the upper bound");
             AllEqual<T, TScalar>(vZero.clamp(allOne, allTwo), allOne, "clamp to the lower bound");

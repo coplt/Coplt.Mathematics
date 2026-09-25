@@ -8,5 +8,5 @@ namespace Tests;
 
 public static class ViewJit
 {
-    public static double3 Some1(double3 a, double3 b, double3 c) => math.fms(a, b, c);
+    public static double2 Some1(double2 a) => math.hmin(a);
 }

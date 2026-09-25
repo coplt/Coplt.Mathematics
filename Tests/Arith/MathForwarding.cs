@@ -26,6 +26,8 @@ public class TestMathArithForwarding
         math.sign(v);
         math.min(v, v);
         math.max(v, v);
+        math.min_native(v, v);
+        math.max_native(v, v);
         math.clamp(v, v, v);
         // the range of the interpolation members has to be wider than the value, an integer division by the
         // zero width of a degenerate range would not be defined
@@ -72,6 +74,8 @@ public class TestMathArithForwarding
         math.sign(m);
         math.min(m, m);
         math.max(m, m);
+        math.min_native(m, m);
+        math.max_native(m, m);
         math.clamp(m, m, m);
         math.lerp(m, m, m);
     }
@@ -101,6 +105,8 @@ public class TestMathArithForwarding
             Assert.That(math.sign(new int3(-5, 0, 5)), Is.EqualTo(new int3(-1, 0, 1)));
             Assert.That(math.min(new int3(1, 2, 3), new int3(3, 2, 1)), Is.EqualTo(new int3(1, 2, 1)));
             Assert.That(math.max(new int3(1, 2, 3), new int3(3, 2, 1)), Is.EqualTo(new int3(3, 2, 3)));
+            Assert.That(math.min_native(new int3(1, 2, 3), new int3(3, 2, 1)), Is.EqualTo(new int3(1, 2, 1)));
+            Assert.That(math.max_native(new int3(1, 2, 3), new int3(3, 2, 1)), Is.EqualTo(new int3(3, 2, 3)));
             Assert.That(math.clamp(new int3(-1, 2, 5), new int3(0), new int3(3)), Is.EqualTo(new int3(0, 2, 3)));
             // a vector whose register is 64 bits wide and one that has no register reach the member of their
             // own kind
@@ -170,6 +176,10 @@ public class TestMathArithForwarding
             var d = new float3x2(new float3(9f, 2f, 1f), new float3(4f, 8f, 6f));
             Assert.That(math.min(c, d), Is.EqualTo(new float3x2(new float3(1f, 2f, 1f), new float3(4f, 2f, 6f))));
             Assert.That(math.max(c, d), Is.EqualTo(new float3x2(new float3(9f, 5f, 3f), new float3(4f, 8f, 6f))));
+            Assert.That(math.min_native(c, d),
+                Is.EqualTo(new float3x2(new float3(1f, 2f, 1f), new float3(4f, 2f, 6f))));
+            Assert.That(math.max_native(c, d),
+                Is.EqualTo(new float3x2(new float3(9f, 5f, 3f), new float3(4f, 8f, 6f))));
             // a member that takes three values reaches the value of every column of a matrix as well
             Assert.That(math.clamp(c, new float3x2(new float3(1f, 2f, 2f), new float3(2f, 2f, 2f)),
                     new float3x2(new float3(8f, 8f, 8f), new float3(8f, 4f, 4f))),
