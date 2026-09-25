@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -110,7 +111,7 @@ public class MatrixGenerator : IIncrementalGenerator
             $"Algebras.IMatrix<{type}>",
             $"Algebras.IMatrixScalar<{type}, {scalar}>",
             $"Algebras.IMatrixVector<{type}, {col}>",
-            $"Algebras.{(bol ? "IBoolMatrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>",
+            $"Algebras.{(bol ? "IBoolMatrix" : typ.f ? typ.name == "half" ? "IFloatingPointMatrix" : "IFloatingPointIeee754Matrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>",
             $"Algebras.IMatrix{shape}<{type}>",
             $"Algebras.IMatrix{shape}Vector<{type}, {col}>",
             $"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>",
@@ -355,6 +356,23 @@ public class MatrixGenerator : IIncrementalGenerator
             Prop("The one of the component type of the matrix", $"public static {scalar} ScalarOne", typ.one);
             Prop("The two of the component type of the matrix", $"public static {scalar} ScalarTwo",
                 $"({scalar})({typ.two})");
+        }
+
+        // a matrix of a floating point number reaches the math constants of the algebra of its kind: every
+        // component of it is the constant, which is the one of every column of it
+        if (!bol && typ.f)
+        {
+            // the constants of the standard are the ones of a component type that names the standard itself
+            var consts = typ.name == "half"
+                ? VectorGenerator.FloatConsts.Select(c => c.Name)
+                : VectorGenerator.FloatConsts.Select(c => c.Name).Concat(VectorGenerator.IeeeConsts);
+            foreach (var name in consts)
+            {
+                Prop($"The {name} of the component type of the matrix", $"public static {scalar} Scalar{name}",
+                    $"{col}.Scalar{name}");
+                Prop($"A matrix whose every component is the {name} of the kind of it",
+                    $"public static {type} {name}", $"new({VectorGenShared.Join(cols, _ => $"{col}.{name}")})");
+            }
         }
 
         Prop("The zero of the vector of a column of the matrix", $"public static {col} VectorZero", zero);

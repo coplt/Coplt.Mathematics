@@ -2,9 +2,19 @@
 
 #region Core
 
+/// <summary>
+/// A vector of the algebra library: it is a matrix of a single column, which is the vector itself and is the
+/// only value it is made of
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
 public interface IVector<TSelf> : IMatrixVector<TSelf, TSelf>
     where TSelf : unmanaged, IVector<TSelf>;
 
+/// <summary>
+/// An <see cref="IVector{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
 public interface IVector<TSelf, TScalar> : IVector<TSelf>, IMatrixScalar<TSelf, TScalar>
     where TSelf : unmanaged, IVector<TSelf, TScalar>
     where TScalar : unmanaged;
@@ -13,9 +23,19 @@ public interface IVector<TSelf, TScalar> : IVector<TSelf>, IMatrixScalar<TSelf, 
 
 #region Bool
 
+/// <summary>
+/// An <see cref="IVector{TSelf}"/> of a mask: every component of it is a bit that says whether a condition
+/// holds
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
 public interface IBoolVector<TSelf> : IVector<TSelf>, IBoolMatrix<TSelf>
     where TSelf : unmanaged, IBoolVector<TSelf>;
 
+/// <summary>
+/// An <see cref="IBoolVector{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
 public interface IBoolVector<TSelf, TScalar> :
     IBoolVector<TSelf>,
     IVector<TSelf, TScalar>,
@@ -27,37 +47,110 @@ public interface IBoolVector<TSelf, TScalar> :
 
 #region Number
 
+/// <summary>
+/// An <see cref="IVector{TSelf}"/> of a number: it is ordered, it shifts, and it adds, subtracts, multiplies,
+/// divides and takes the remainder of two values
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
 public interface INumberVector<TSelf> : IVector<TSelf>, INumberMatrix<TSelf>
     where TSelf : unmanaged, INumberVector<TSelf>;
 
+/// <summary>
+/// An <see cref="INumberVector{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
 public interface INumberVector<TSelf, TScalar> :
     INumberVector<TSelf>,
     IVector<TSelf, TScalar>,
     INumberMatrix<TSelf, TScalar>
     where TSelf : unmanaged, INumberVector<TSelf>, INumberVector<TSelf, TScalar>
-    where TScalar : unmanaged, INumberBase<TScalar>;
+    where TScalar : unmanaged, IBinaryNumber<TScalar>;
 
 #endregion
 
 #region Signed
 
+/// <summary>
+/// An <see cref="INumberVector{TSelf}"/> of a number that has a sign, so the value of it can be negated
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
 public interface ISignedNumberVector<TSelf> : INumberVector<TSelf>, ISignedNumberMatrix<TSelf>
     where TSelf : unmanaged, ISignedNumberVector<TSelf>;
 
+/// <summary>
+/// An <see cref="ISignedNumberVector{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
 public interface ISignedNumberVector<TSelf, TScalar> :
     ISignedNumberVector<TSelf>,
     INumberVector<TSelf, TScalar>,
     ISignedNumberMatrix<TSelf, TScalar>
     where TSelf : unmanaged, ISignedNumberVector<TSelf>, ISignedNumberVector<TSelf, TScalar>
-    where TScalar : unmanaged, INumberBase<TScalar>;
+    where TScalar : unmanaged, ISignedNumber<TScalar>, IBinaryNumber<TScalar>;
+
+#endregion
+
+#region FloatingPoint
+
+/// <summary>
+/// An <see cref="ISignedNumberVector{TSelf}"/> of a floating point number: it reaches the math constants of
+/// the kind of it, which are the ones of every component of the vector
+/// </summary>
+public interface IFloatingPointVector<TSelf> : IFloatingPointMatrix<TSelf>, INumberVector<TSelf>
+    where TSelf : unmanaged, IFloatingPointVector<TSelf>;
+
+/// <summary>
+/// An <see cref="IFloatingPointVector{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IFloatingPointVector<TSelf, TScalar> :
+    IFloatingPointVector<TSelf>,
+    IFloatingPointMatrix<TSelf, TScalar>,
+    INumberVector<TSelf, TScalar>
+    where TSelf : unmanaged, IFloatingPointVector<TSelf>, IFloatingPointVector<TSelf, TScalar>
+    where TScalar : unmanaged, IFloatingPoint<TScalar>, IBinaryNumber<TScalar>;
+
+#endregion
+
+#region FloatingPoint Ieee
+
+/// <summary>
+/// An <see cref="IFloatingPointVector{TSelf}"/> of the values the ieee 754 standard names
+/// </summary>
+public interface IFloatingPointIeee754Vector<TSelf> : IFloatingPointIeee754Matrix<TSelf>, INumberVector<TSelf>
+    where TSelf : unmanaged, IFloatingPointIeee754Vector<TSelf>;
+
+/// <summary>
+/// An <see cref="IFloatingPointIeee754Vector{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IFloatingPointIeee754Vector<TSelf, TScalar> :
+    IFloatingPointIeee754Vector<TSelf>,
+    IFloatingPointIeee754Matrix<TSelf, TScalar>,
+    INumberVector<TSelf, TScalar>
+    where TSelf : unmanaged, IFloatingPointIeee754Vector<TSelf>, IFloatingPointIeee754Vector<TSelf, TScalar>
+    where TScalar : unmanaged, IFloatingPointIeee754<TScalar>, IBinaryNumber<TScalar>;
 
 #endregion
 
 #region Vector2
 
+/// <summary>
+/// A vector of two components
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
 public interface IVector2<TSelf> : IVector<TSelf>
     where TSelf : unmanaged, IVector2<TSelf>;
 
+/// <summary>
+/// An <see cref="IVector2{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
 public interface IVector2<TSelf, TScalar> : IVector2<TSelf>, IVector<TSelf, TScalar>
     where TSelf : unmanaged, IVector2<TSelf, TScalar>
     where TScalar : unmanaged
@@ -111,9 +204,18 @@ public interface IVector2<TSelf, TScalar> : IVector2<TSelf>, IVector<TSelf, TSca
 
 #region Vector3
 
+/// <summary>
+/// A vector of three components
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
 public interface IVector3<TSelf> : IVector<TSelf>
     where TSelf : unmanaged, IVector3<TSelf>;
 
+/// <summary>
+/// An <see cref="IVector3{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
 public interface IVector3<TSelf, TScalar> : IVector3<TSelf>, IVector<TSelf, TScalar>
     where TSelf : unmanaged, IVector3<TSelf, TScalar>
     where TScalar : unmanaged
@@ -220,9 +322,18 @@ public interface IVector3CtorFromVector2<TSelf, TScalar, TVector2> : IVector3<TS
 
 #region Vector4
 
+/// <summary>
+/// A vector of four components
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
 public interface IVector4<TSelf> : IVector<TSelf>
     where TSelf : unmanaged, IVector4<TSelf>;
 
+/// <summary>
+/// An <see cref="IVector4{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
 public interface IVector4<TSelf, TScalar> : IVector4<TSelf>, IVector<TSelf, TScalar>
     where TSelf : unmanaged, IVector4<TSelf, TScalar>
     where TScalar : unmanaged

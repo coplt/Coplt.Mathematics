@@ -6,6 +6,19 @@ namespace Coplt.Analyzers.Generators;
 public partial class VectorGenerator
 {
     /// <summary>
+    /// The name of every constant of the ieee 754 standard, the value of one of them is the one of the scalar
+    /// type of the component of a vector.
+    /// </summary>
+    internal static readonly string[] IeeeConsts =
+    {
+        "Epsilon",
+        "NaN",
+        "NegativeInfinity",
+        "NegativeZero",
+        "PositiveInfinity",
+    };
+
+    /// <summary>
     /// Generates the ieee 754 members of the vector described by <paramref name="typ"/>, they implement
     /// <c>IVectorFloatingPointIeee754BoolOps</c>: the logarithm, the exponential, the power, the square root and
     /// its reciprocal, the length and the distance, the normalization, the step and the refraction, the safe
@@ -133,6 +146,36 @@ public partial class VectorGenerator
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine($"    IVectorFloatingPointIeee754BoolOps<{type}, {scalar}, {boolType}>");
         sb.AppendLine("{");
+
+        #region constants
+
+        sb.AppendLine();
+        sb.AppendLine("    #region constants");
+        sb.AppendLine();
+
+        // every component of the value is the constant of the component type, the one of the standard itself
+        foreach (var name in IeeeConsts)
+        {
+            InheritDoc();
+            sb.AppendLine($"    public static {scalar} Scalar{name}");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => {scalar}.{name};");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            InheritDoc();
+            sb.AppendLine($"    public static {type} {name}");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => new({scalar}.{name});");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        sb.AppendLine("    #endregion");
+        sb.AppendLine();
+
+        #endregion
 
         #region log
 

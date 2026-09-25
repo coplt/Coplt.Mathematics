@@ -102,12 +102,15 @@ public partial class VectorGenerator
         // the members that implement one of the vector interfaces inherit the documentation from it
         void InheritDoc() => sb.AppendLine("    /// <inheritdoc/>");
 
-        // the name of the interface of the kind of the vector in the algebra library
+        // the name of the interface of the kind of the vector in the algebra library, the one of the ieee 754
+        // standard is the one of a floating point number whose type names the standard itself
         string AlgebraIface() => bol
             ? "IBoolVector"
-            : typ.sig
-                ? "ISignedNumberVector"
-                : "INumberVector";
+            : typ.f
+                ? typ.name == "half" ? "IFloatingPointVector" : "IFloatingPointIeee754Vector"
+                : typ.sig
+                    ? "ISignedNumberVector"
+                    : "INumberVector";
 
         // only one of the partial declarations of a type may carry the documentation of the type, so the
         // documentation that names the interfaces of every part lives on the base members

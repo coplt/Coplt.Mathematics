@@ -9,4 +9,5 @@ namespace Tests;
 public static class ViewJit
 {
     public static double2 Some1(double2 a) => math.hmin(a);
+    public static double2 Some2(double2 a) => math.hmin_native(a);
 }

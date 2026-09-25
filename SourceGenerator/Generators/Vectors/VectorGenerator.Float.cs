@@ -7,17 +7,18 @@ public partial class VectorGenerator
 {
     /// <summary>
     /// The name and the value of every math constant of <c>IVectorFloatingPoint</c>, the value is the literal of
-    /// a double, the literal of the component type of a vector is built from it.
+    /// a double, the literal of the component type of a vector is built from it. The values are the ones of
+    /// <see cref="SourceGenerator.MathConstants"/>.
     /// </summary>
-    private static readonly (string Name, string Value)[] FloatConsts =
+    internal static readonly (string Name, string Value)[] FloatConsts =
     {
-        ("E", "2.7182818284590452353602874713526624977572470936999595749669676277"),
-        ("Log2", "0.6931471805599453094172321214581765680755001343602552541206800094"),
-        ("Log10", "2.3025850929940456840179914546843642076011014886287729760333279009"),
-        ("PI", "3.1415926535897932384626433832795028841971693993751058209749445923"),
-        ("Tau", "6.2831853071795864769252867665590057683943387987502116419498891846"),
-        ("RadToDeg", "57.295779513082320876798154814105170332405472466564321549160243861"),
-        ("DegToRad", "0.0174532925199432957692369076848861271344287188854172545609719144"),
+        ("E", SourceGenerator.MathConstants.E),
+        ("Log2", SourceGenerator.MathConstants.Log2),
+        ("Log10", SourceGenerator.MathConstants.Log10),
+        ("PI", SourceGenerator.MathConstants.Pi),
+        ("Tau", SourceGenerator.MathConstants.Tau),
+        ("RadToDeg", SourceGenerator.MathConstants.RadToDeg),
+        ("DegToRad", SourceGenerator.MathConstants.DegToRad),
     };
 
     /// <summary>
@@ -107,6 +108,13 @@ public partial class VectorGenerator
 
         foreach (var (name, value) in FloatConsts)
         {
+            InheritDoc();
+            sb.AppendLine($"    public static {scalar} Scalar{name}");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => {Lit(value)};");
+            sb.AppendLine("    }");
+            sb.AppendLine();
             InheritDoc();
             sb.AppendLine($"    public static {type} {name}");
             sb.AppendLine("    {");
