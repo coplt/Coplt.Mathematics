@@ -36,9 +36,11 @@ jobs:
         dotnet-quality: 'preview'
     - name: Restore dotnet tools
       run: dotnet tool restore
+    # the projects of the migration are the ones that are built and tested, the old projects of the solution
+    # are left out of the build of the ci: the test project reaches the library and the generator of it
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore Tests/Tests.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build Tests/Tests.csproj --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test Tests/Tests.csproj --no-build --verbosity normal
