@@ -12,6 +12,10 @@ namespace Tests.Arith;
 /// <para>A call that has a value as one of its arguments as well does not fit those members, it reaches the
 /// member that only takes values of the same kind, the arguments of a single component are converted to it and
 /// broadcast into every component of the value.</para>
+/// <para>The type of a vector a matrix is made of is not a part of the type of the value either, so a call of the
+/// member that reduces the vectors of a matrix to a vector reaches the member of the vector type of the value
+/// when it does not name it: the calls of <see cref="MatrixArguments"/> pin the member every one of them
+/// reaches.</para>
 /// <para>The member a call is bound to is not visible in the source, <see cref="TestOverloadResolutionCheck"/> reads
 /// the calls below from the assembly of the tests and asserts the member every one of them reaches.</para>
 /// </summary>
@@ -36,5 +40,23 @@ public class TestOverloadResolution
         new float3(1, 2, 3).length_sq();
         new float3(1, 2, 3).distance_sq(new float3(4, 5, 6));
         new float3(1, 2, 3).sum();
+    }
+
+    /// <summary>
+    /// The sum of the columns of a matrix is the member of the type of a column of it and the sum of the rows of
+    /// a row of it, so a call that does not name that type reaches the member of the vector type of the value,
+    /// which the ex_ classes add to the math class and which the math_ex_ classes add to the value itself. The
+    /// first two calls are the ones the using static form of them pins as well, see
+    /// <see cref="TestOverloadResolutionUsingStatic.MatrixArguments"/>.
+    /// </summary>
+    public void MatrixArguments()
+    {
+        var m = new float3x2(new float3(1, 2, 3), new float3(4, 5, 6));
+        math.csum(m);
+        math.rsum(m);
+        math.csum<float3x2, float3>(m);
+        math.rsum<float3x2, float2>(m);
+        m.csum();
+        m.rsum();
     }
 }

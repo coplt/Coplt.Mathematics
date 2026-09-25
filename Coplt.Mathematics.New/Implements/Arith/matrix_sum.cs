@@ -20,7 +20,9 @@ namespace Coplt.Mathematics
         /// <returns>The sum of the columns of the value, which is the vector of the count of the rows of it</returns>
         // the type of a column of the matrix is not a part of the type of the value, so the compiler cannot
         // infer it from the arguments and a call of the member names it, see the interface of the dispatch of
-        // the columns of a matrix
+        // the columns of a matrix. A call that does not name it reaches the member of the vector type of the
+        // value instead, which the attribute marks this member for
+        [VectorExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TVector csum<T, TVector>(in T value)
             where T : unmanaged, INumberMatrixColumnDispatch<T, TVector>
@@ -39,8 +41,10 @@ namespace Coplt.Mathematics
         /// <typeparam name="TVector">The type of a row of the matrix</typeparam>
         /// <returns>The sum of the rows of the value, which is the vector of the count of the columns of it</returns>
         // the type of a row of the matrix is not a part of the type of the value either, so a call of the member
-        // names it as well. A row of a matrix has no value of its own, so the reduction of the rows is the one of
-        // every column of it: the visitor reduces every column with the sum and builds the row vector of them
+        // names it as well, a call that does not name it reaches the member of the vector type of the value. A
+        // row of a matrix has no value of its own, so the reduction of the rows is the one of every column of it:
+        // the visitor reduces every column with the sum and builds the row vector of them
+        [VectorExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TVector rsum<T, TVector>(in T value)
             where T : unmanaged, INumberMatrixRowDispatch<T, TVector>

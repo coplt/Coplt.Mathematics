@@ -11,11 +11,17 @@ namespace Tests.Arith;
 /// </summary>
 public class TestOverloadResolutionCheck
 {
+    private const string Float2 = "Coplt.Mathematics.float2";
     private const string Float3 = "Coplt.Mathematics.float3";
+    private const string Float3x2 = "Coplt.Mathematics.float3x2";
     private const string Math = "Coplt.Mathematics.math";
     private const string MathEx = "Coplt.Mathematics.math_ex";
     private const string MathExFloat = "Coplt.Mathematics.math_ex_float";
+    private const string MathExFloat2 = "Coplt.Mathematics.math_ex_float2";
+    private const string MathExFloat3 = "Coplt.Mathematics.math_ex_float3";
     private const string ExFloat = "Coplt.Mathematics.ex_float";
+    private const string ExFloat2 = "Coplt.Mathematics.ex_float2";
+    private const string ExFloat3 = "Coplt.Mathematics.ex_float3";
     private const string Single = "System.Single";
 
     /// <summary>
@@ -49,6 +55,28 @@ public class TestOverloadResolutionCheck
     /// </summary>
     private static readonly (string Call, string Member)[] UsingStaticCalls = Calls[..10];
 
+    /// <summary>
+    /// The calls of <see cref="TestOverloadResolution.MatrixArguments"/> in the order of its body and the member
+    /// that every one of them is bound to. The type of a column of the matrix is the one of a value of 3
+    /// components and the type of a row of it is the one of a value of 2 components, so the member of every one of
+    /// the two axis is the one of a type of its own.
+    /// </summary>
+    private static readonly (string Call, string Member)[] MatrixCalls =
+    {
+        ("math.csum(m)", $"{ExFloat3}::csum<{Float3x2}>({Float3x2}&)"),
+        ("math.rsum(m)", $"{ExFloat2}::rsum<{Float3x2}>({Float3x2}&)"),
+        ("math.csum<float3x2, float3>(m)", $"{Math}::csum<{Float3x2}, {Float3}>({Float3x2}&)"),
+        ("math.rsum<float3x2, float2>(m)", $"{Math}::rsum<{Float3x2}, {Float2}>({Float3x2}&)"),
+        ("m.csum()", $"{MathExFloat3}::csum<{Float3x2}>({Float3x2})"),
+        ("m.rsum()", $"{MathExFloat2}::rsum<{Float3x2}>({Float3x2})"),
+    };
+
+    /// <summary>
+    /// The calls of <see cref="TestOverloadResolutionUsingStatic.MatrixArguments"/>, which are the ones of the
+    /// member above that the math class carries.
+    /// </summary>
+    private static readonly (string Call, string Member)[] MatrixUsingStaticCalls = MatrixCalls[..2];
+
     [Test]
     public void ScalarArguments()
         => AssertCalls(typeof(TestOverloadResolution), nameof(TestOverloadResolution.ScalarArguments), Calls);
@@ -56,6 +84,14 @@ public class TestOverloadResolutionCheck
     [Test]
     public void ScalarArgumentsUsingStatic()
         => AssertCalls(typeof(TestOverloadResolutionUsingStatic), nameof(TestOverloadResolutionUsingStatic.ScalarArguments), UsingStaticCalls);
+
+    [Test]
+    public void MatrixArguments()
+        => AssertCalls(typeof(TestOverloadResolution), nameof(TestOverloadResolution.MatrixArguments), MatrixCalls);
+
+    [Test]
+    public void MatrixArgumentsUsingStatic()
+        => AssertCalls(typeof(TestOverloadResolutionUsingStatic), nameof(TestOverloadResolutionUsingStatic.MatrixArguments), MatrixUsingStaticCalls);
 
     /// <summary>
     /// Asserts that every call of the body of <paramref name="method"/> of <paramref name="type"/> is bound to

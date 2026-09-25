@@ -2,6 +2,8 @@
 using static Coplt.Mathematics.math;
 using static Coplt.Mathematics.math_ex;
 using static Coplt.Mathematics.ex_float;
+using static Coplt.Mathematics.ex_float3;
+using static Coplt.Mathematics.ex_float2;
 
 namespace Tests.Arith;
 
@@ -25,5 +27,17 @@ public class TestOverloadResolutionUsingStatic
         length_sq(new float3(1, 2, 3));
         distance_sq(new float3(1, 2, 3), new float3(4, 5, 6));
         sum(new float3(1, 2, 3));
+    }
+
+    /// <summary>
+    /// The same calls as <see cref="TestOverloadResolution.MatrixArguments"/> that the math class carries, the
+    /// member of the type of a column of the value and the one of the type of a row of it are imported with
+    /// <c>using static</c> as well, so a name of its own reaches the one of them that fits the value.
+    /// </summary>
+    public void MatrixArguments()
+    {
+        var m = new float3x2(new float3(1, 2, 3), new float3(4, 5, 6));
+        csum(m);
+        rsum(m);
     }
 }

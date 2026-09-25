@@ -5,10 +5,11 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The sum of the columns and the sum of the rows of a matrix: the type of a column of a matrix and the type of a
-/// row of it are not a part of the type of the value, so the compiler cannot infer them from the value and a call
-/// of the member names the type of the vector it reduces. The sum of the columns of a value is the sum of every
-/// row of it and the sum of the rows of it is the sum of every column of it, so the two members are the same
-/// reduction of the two axes of the value.
+/// row of it are not a part of the type of the value, so the compiler cannot infer them from the value. A call of
+/// the member that does not name the type of the vector it reduces reaches the member of the vector type of the
+/// value, which the ex_ classes add to the math class and which the math_ex_ classes add to the value itself, and
+/// the sum of the columns of a value is the sum of every row of it while the sum of the rows of it is the sum of
+/// every column of it.
 /// </summary>
 public class TestMatrixSum
 {
@@ -80,6 +81,47 @@ public class TestMatrixSum
             Assert.That(math.rsum<float3x4s, float4>(new float3x4s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f),
                     new float3s(7f, 8f, 9f), new float3s(10f, 11f, 12f))),
                 Is.EqualTo(new float4(6f, 15f, 24f, 33f)), "float4, the vectors of 4 components have no storage variant");
+        }
+    }
+
+    /// <summary>
+    /// The type of a column of a matrix is not a part of the type of a column of it either, so a call that does
+    /// not name it reaches the member of the vector type of the value: the sum of the columns of the value
+    /// reaches the member of the type of a column of it and the sum of the rows of it reaches the member of the
+    /// type of a row of it.
+    /// </summary>
+    [Test]
+    public void ReachedByTheVectorTypeOfTheValue()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the columns of a matrix of 3 rows are vectors of 3 components, which the member of the math class
+            // and the member of the value itself name as well
+            var a = new float3x2(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f));
+            Assert.That(math.csum(a), Is.EqualTo(new float3(5f, 7f, 9f)), "math.csum of a value");
+            Assert.That(a.csum(), Is.EqualTo(new float3(5f, 7f, 9f)), "the member of the value");
+
+            // the rows of a matrix of 2 columns are vectors of 2 components
+            Assert.That(math.rsum(a), Is.EqualTo(new float2(6f, 15f)), "math.rsum of a value");
+            Assert.That(a.rsum(), Is.EqualTo(new float2(6f, 15f)), "the member of the value");
+
+            // the vectors of every other kind and count reach the member of their own type
+            Assert.That(math.csum(new float3x4(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f),
+                    new float3(7f, 8f, 9f), new float3(10f, 11f, 12f))),
+                Is.EqualTo(new float3(22f, 26f, 30f)), "4 columns");
+            Assert.That(math.rsum(new float3x4(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f),
+                    new float3(7f, 8f, 9f), new float3(10f, 11f, 12f))),
+                Is.EqualTo(new float4(6f, 15f, 24f, 33f)), "4 components of a row");
+            Assert.That(math.csum(new int2x2(new int2(1, 2), new int2(3, 4))), Is.EqualTo(new int2(4, 6)),
+                "int2");
+            Assert.That(math.rsum(new half3x2(new half3((half)1f, (half)2f, (half)3f),
+                    new half3((half)4f, (half)5f, (half)6f))),
+                Is.EqualTo(new half2((half)6f, (half)15f)), "half2, a value without a register");
+
+            // a storage variant reaches the member of the vector type of its own storage
+            var b = new float3x2s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f));
+            Assert.That(math.csum(b), Is.EqualTo(new float3s(5f, 7f, 9f)), "float3s");
+            Assert.That(b.rsum(), Is.EqualTo(new float2s(6f, 15f)), "float2s");
         }
     }
 }
