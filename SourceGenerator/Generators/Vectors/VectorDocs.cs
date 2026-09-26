@@ -23,11 +23,6 @@ internal static class VectorDocs
         #region IVectorFloatingPoint
 
         {
-            "smoothstep",
-            ("Interpolates smoothly between <c>min</c> and <c>max</c>, the result is 0 below the minimum, 1 above the maximum and a smooth hermite curve in between",
-                "The interpolated vector", "min=The value at 0;max=The value at 1;a=The value to place between the two bounds")
-        },
-        {
             "reflect",
             ("Returns the vector reflected around the normal <c>n</c>, it has to be normalized", "The reflected vector",
                 "a=The vector to reflect;n=The normalized normal of the surface")

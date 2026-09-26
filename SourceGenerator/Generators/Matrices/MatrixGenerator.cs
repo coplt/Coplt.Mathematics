@@ -72,8 +72,6 @@ public class MatrixGenerator : IIncrementalGenerator
         var simd = VectorGenShared.Simd(typ, rows, storeVariant);
         var bol = typ.bol;
         var zero = bol ? $"{col}.False" : $"{col}.Zero";
-        var one = bol ? $"{col}.True" : $"{col}.One";
-        var two = bol ? $"{col}.True" : $"{col}.Two";
         var sizeByte = VectorGenShared.ByteSize(typ, rows, storeVariant) * cols;
         var attr = "[MethodImpl(256)]";
 
@@ -125,6 +123,9 @@ public class MatrixGenerator : IIncrementalGenerator
             ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
             ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
         }
+
+        // a signed matrix reaches the negative of every whole number of the vector a column of it is as well
+        if (!bol && typ.sig) ifaces.Add($"Algebras.ISignedNumberMatrixVector<{type}, {col}>");
 
         VectorGenShared.FileHeader(sb, false);
         sb.AppendLine($"public partial struct {type} :");
@@ -348,16 +349,31 @@ public class MatrixGenerator : IIncrementalGenerator
         }
         else
         {
-            Prop("A matrix whose columns are the vector of the zero of its component type",
-                "public static " + type + " Zero", $"new({VectorGenShared.Join(cols, _ => $"{col}.Zero")})");
-            Prop("A matrix whose columns are the vector of the one of its component type",
-                "public static " + type + " One", $"new({VectorGenShared.Join(cols, _ => $"{col}.One")})");
-            Prop("A matrix whose columns are the vector of the two of its component type",
-                "public static " + type + " Two", $"new({VectorGenShared.Join(cols, _ => $"{col}.Two")})");
-            Prop("The zero of the component type of the matrix", $"public static {scalar} ScalarZero", "default");
-            Prop("The one of the component type of the matrix", $"public static {scalar} ScalarOne", typ.one);
-            Prop("The two of the component type of the matrix", $"public static {scalar} ScalarTwo",
-                $"({scalar})({typ.two})");
+            // every whole number the algebra reaches is a constant of the matrix, which is the value of every
+            // column of it, beside the one of a single component of it
+            for (var i = 0; i < VectorGenShared.NumberNames.Length; i++)
+            {
+                var name = VectorGenShared.NumberNames[i];
+                Prop($"A matrix whose columns are the vector of the {name.ToLowerInvariant()} of its component type",
+                    "public static " + type + " " + name,
+                    $"new({VectorGenShared.Join(cols, _ => $"{col}.{name}")})");
+                Prop($"The {name.ToLowerInvariant()} of the component type of the matrix",
+                    $"public static {scalar} Scalar{name}", VectorGenShared.NumberValue(scalar, i));
+            }
+
+            // a signed matrix reaches the negative of every whole number beside the zero as well
+            if (typ.sig)
+            {
+                for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
+                {
+                    var name = $"Negative{VectorGenShared.NumberNames[i]}";
+                    Prop($"A matrix whose columns are the vector of the {name.ToLowerInvariant()} of its component type",
+                        "public static " + type + " " + name,
+                        $"new({VectorGenShared.Join(cols, _ => $"{col}.{name}")})");
+                    Prop($"The {name.ToLowerInvariant()} of the component type of the matrix",
+                        $"public static {scalar} Scalar{name}", VectorGenShared.NegativeValue(scalar, i));
+                }
+            }
         }
 
         // a matrix of a floating point number reaches the math constants of the algebra of its kind: every
@@ -376,9 +392,27 @@ public class MatrixGenerator : IIncrementalGenerator
             }
         }
 
-        Prop("The zero of the vector of a column of the matrix", $"public static {col} VectorZero", zero);
-        Prop("The one of the vector of a column of the matrix", $"public static {col} VectorOne", one);
-        Prop("The two of the vector of a column of the matrix", $"public static {col} VectorTwo", two);
+        // a matrix reaches the whole numbers of the vector a column of it is as well, a mask reaches its true
+        // and its false instead of the number of a value
+        for (var i = 0; i < VectorGenShared.NumberNames.Length; i++)
+        {
+            var name = VectorGenShared.NumberNames[i];
+            Prop($"The {name.ToLowerInvariant()} of the vector of a column of the matrix",
+                $"public static {col} Vector{name}",
+                bol ? (i == 0 ? $"{col}.False" : $"{col}.True") : $"{col}.{name}");
+        }
+
+        // a signed matrix reaches the negative of every one of them as well
+        if (typ.sig)
+        {
+            for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
+            {
+                var name = VectorGenShared.NumberNames[i];
+                Prop($"The minus {name.ToLowerInvariant()} of the vector of a column of the matrix",
+                    $"public static {col} VectorNegative{name}", $"{col}.Negative{name}");
+            }
+        }
+
         sb.AppendLine("    /// <summary>The identity of the matrix, it is the value that keeps a matrix unchanged</summary>");
         sb.AppendLine($"    public static {type} Identity");
         sb.AppendLine("    {");

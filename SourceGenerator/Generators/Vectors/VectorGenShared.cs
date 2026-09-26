@@ -140,6 +140,36 @@ internal static class VectorGenShared
         storeVariant ? $"{typ.name}{size}s" : $"{typ.name}{size}";
 
     /// <summary>
+    /// The name of every whole number the algebra of a value reaches: the value of the constant of a name is the
+    /// number of the position of it in the list, so the zero of the kind of a value is the first of them and the
+    /// ten of it is the last one.
+    /// </summary>
+    public static readonly string[] NumberNames =
+        { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" };
+
+    /// <summary>
+    /// Returns the literal of the whole number at a position of <see cref="NumberNames"/>, which is the value of
+    /// the constant of the name of it: the zero of a type is the default of it and holds no literal of its own.
+    /// </summary>
+    /// <param name="scalar">The type of the component of the value</param>
+    /// <param name="position">The position of the number</param>
+    /// <returns>The literal of the number</returns>
+    public static string NumberValue(string scalar, int position) =>
+        position == 0 ? "default" : ScalarOps.Number(scalar, position.ToString());
+
+    /// <summary>
+    /// Returns the literal of the negative of the whole number at a position of <see cref="NumberNames"/>, which
+    /// is the value of the constant the name of it is written with <c>Negative</c> in front of it. A half encloses
+    /// the number of it in the parentheses of the cast, which a cast of a negative value needs.
+    /// </summary>
+    /// <param name="scalar">The type of the component of the value</param>
+    /// <param name="position">The position of the number</param>
+    /// <returns>The literal of the negative of the number</returns>
+    public static string NegativeValue(string scalar, int position) => scalar == "half"
+        ? $"(half)(-{position}f)"
+        : $"-{ScalarOps.Number(scalar, position.ToString())}";
+
+    /// <summary>
     /// Returns the names of the interfaces of the dispatch of the kind of a value in the algebra library: the one
     /// of a number beside the one of the floating point kind, which every floating point type of the library
     /// names, a half as well.

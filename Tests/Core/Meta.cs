@@ -71,25 +71,112 @@ public class TestVectorMeta
             Assert.That((float3.Zero.x, float3.Zero.y, float3.Zero.z), Is.EqualTo((0f, 0f, 0f)));
             Assert.That((float3.One.x, float3.One.y, float3.One.z), Is.EqualTo((1f, 1f, 1f)));
             Assert.That((float3.Two.x, float3.Two.y, float3.Two.z), Is.EqualTo((2f, 2f, 2f)));
-            Assert.That((double4.One.w, double4.Two.w), Is.EqualTo((1d, 2d)));
-            Assert.That((int2.One.y, int2.Two.y), Is.EqualTo((1, 2)));
-            Assert.That((uint4.One.w, uint4.Two.w), Is.EqualTo((1u, 2u)));
-            Assert.That((long3.One.z, long3.Two.z), Is.EqualTo((1L, 2L)));
-            Assert.That((ulong2.One.x, ulong2.Two.x), Is.EqualTo((1UL, 2UL)));
-            Assert.That(((float)half2.One.y, (float)half2.Two.y), Is.EqualTo((1f, 2f)));
+            Assert.That((float3.Three.x, float3.Three.y, float3.Three.z), Is.EqualTo((3f, 3f, 3f)));
+            Assert.That((double4.One.w, double4.Two.w, double4.Three.w), Is.EqualTo((1d, 2d, 3d)));
+            Assert.That((int2.One.y, int2.Two.y, int2.Three.y), Is.EqualTo((1, 2, 3)));
+            Assert.That((uint4.One.w, uint4.Two.w, uint4.Three.w), Is.EqualTo((1u, 2u, 3u)));
+            Assert.That((long3.One.z, long3.Two.z, long3.Three.z), Is.EqualTo((1L, 2L, 3L)));
+            Assert.That((ulong2.One.x, ulong2.Two.x, ulong2.Three.x), Is.EqualTo((1UL, 2UL, 3UL)));
+            Assert.That(((float)half2.One.y, (float)half2.Two.y, (float)half2.Three.y), Is.EqualTo((1f, 2f, 3f)));
             Assert.That((bool)b32v2.True.y, Is.True);
 
             // the scalar constants are plain scalars, they are not vectors
-            Assert.That((float2.ScalarZero, float2.ScalarOne, float2.ScalarTwo), Is.EqualTo((0f, 1f, 2f)));
-            Assert.That((double3.ScalarZero, double3.ScalarOne, double3.ScalarTwo), Is.EqualTo((0d, 1d, 2d)));
-            Assert.That((int4.ScalarZero, int4.ScalarOne, int4.ScalarTwo), Is.EqualTo((0, 1, 2)));
-            Assert.That((uint2.ScalarZero, uint2.ScalarOne, uint2.ScalarTwo), Is.EqualTo((0u, 1u, 2u)));
-            Assert.That((long2.ScalarZero, long2.ScalarOne, long2.ScalarTwo), Is.EqualTo((0L, 1L, 2L)));
-            Assert.That((ulong3.ScalarZero, ulong3.ScalarOne, ulong3.ScalarTwo), Is.EqualTo((0UL, 1UL, 2UL)));
-            Assert.That((short2.ScalarZero, short2.ScalarOne, short2.ScalarTwo), Is.EqualTo(((short)0, (short)1, (short)2)));
-            Assert.That((ushort4.ScalarZero, ushort4.ScalarOne, ushort4.ScalarTwo), Is.EqualTo(((ushort)0, (ushort)1, (ushort)2)));
-            Assert.That((half2.ScalarZero, half2.ScalarOne, half2.ScalarTwo), Is.EqualTo(((Half)0, (Half)1, (Half)2)));
-            Assert.That((float4.ScalarZero, float4.ScalarOne, float4.ScalarTwo), Is.EqualTo((0f, 1f, 2f)));
+            Assert.That((float2.ScalarZero, float2.ScalarOne, float2.ScalarTwo, float2.ScalarThree),
+                Is.EqualTo((0f, 1f, 2f, 3f)));
+            Assert.That((double3.ScalarZero, double3.ScalarOne, double3.ScalarTwo, double3.ScalarThree),
+                Is.EqualTo((0d, 1d, 2d, 3d)));
+            Assert.That((int4.ScalarZero, int4.ScalarOne, int4.ScalarTwo, int4.ScalarThree), Is.EqualTo((0, 1, 2, 3)));
+            Assert.That((uint2.ScalarZero, uint2.ScalarOne, uint2.ScalarTwo, uint2.ScalarThree),
+                Is.EqualTo((0u, 1u, 2u, 3u)));
+            Assert.That((long2.ScalarZero, long2.ScalarOne, long2.ScalarTwo, long2.ScalarThree),
+                Is.EqualTo((0L, 1L, 2L, 3L)));
+            Assert.That((ulong3.ScalarZero, ulong3.ScalarOne, ulong3.ScalarTwo, ulong3.ScalarThree),
+                Is.EqualTo((0UL, 1UL, 2UL, 3UL)));
+            Assert.That((short2.ScalarZero, short2.ScalarOne, short2.ScalarTwo, short2.ScalarThree),
+                Is.EqualTo(((short)0, (short)1, (short)2, (short)3)));
+            Assert.That((ushort4.ScalarZero, ushort4.ScalarOne, ushort4.ScalarTwo, ushort4.ScalarThree),
+                Is.EqualTo(((ushort)0, (ushort)1, (ushort)2, (ushort)3)));
+            Assert.That((half2.ScalarZero, half2.ScalarOne, half2.ScalarTwo, half2.ScalarThree),
+                Is.EqualTo(((Half)0, (Half)1, (Half)2, (Half)3)));
+            Assert.That((float4.ScalarZero, float4.ScalarOne, float4.ScalarTwo, float4.ScalarThree),
+                Is.EqualTo((0f, 1f, 2f, 3f)));
+
+            // every whole number up to ten is a constant of the value beside the one of a single component of it
+            Assert.That((float3.Four.x, float3.Five.y, float3.Six.z, float3.Ten.x), Is.EqualTo((4f, 5f, 6f, 10f)));
+            Assert.That((double2.Seven.x, double2.Eight.y, double2.Nine.x, double2.Ten.y),
+                Is.EqualTo((7d, 8d, 9d, 10d)));
+            Assert.That((int4.Four.w, int4.Ten.w), Is.EqualTo((4, 10)));
+            Assert.That((uint2.Five.x, uint2.Ten.x), Is.EqualTo((5u, 10u)));
+            Assert.That((long3.Six.z, long3.Ten.z), Is.EqualTo((6L, 10L)));
+            Assert.That((ulong2.Seven.x, ulong2.Ten.x), Is.EqualTo((7UL, 10UL)));
+            Assert.That(((float)half2.Eight.y, (float)half2.Ten.y), Is.EqualTo((8f, 10f)));
+            Assert.That((short2.Nine.x, short2.Ten.x), Is.EqualTo(((short)9, (short)10)));
+            Assert.That((ushort4.Four.x, ushort4.Ten.x), Is.EqualTo(((ushort)4, (ushort)10)));
+
+            Assert.That((float2.ScalarFour, float2.ScalarTen), Is.EqualTo((4f, 10f)));
+            Assert.That((double3.ScalarFive, double3.ScalarTen), Is.EqualTo((5d, 10d)));
+            Assert.That((int4.ScalarSix, int4.ScalarTen), Is.EqualTo((6, 10)));
+            Assert.That((uint2.ScalarSeven, uint2.ScalarTen), Is.EqualTo((7u, 10u)));
+            Assert.That((long2.ScalarEight, long2.ScalarTen), Is.EqualTo((8L, 10L)));
+            Assert.That((ulong3.ScalarNine, ulong3.ScalarTen), Is.EqualTo((9UL, 10UL)));
+            Assert.That((short2.ScalarNine, short2.ScalarTen), Is.EqualTo(((short)9, (short)10)));
+            Assert.That((half2.ScalarEight, half2.ScalarTen), Is.EqualTo(((Half)8, (Half)10)));
+
+            // a signed value reaches the negative of every whole number beside the zero as well
+            Assert.That((float3.NegativeOne.x, float3.NegativeTwo.y, float3.NegativeTen.z),
+                Is.EqualTo((-1f, -2f, -10f)));
+            Assert.That((double2.NegativeThree.x, double2.NegativeTen.y), Is.EqualTo((-3d, -10d)));
+            Assert.That((int4.NegativeFour.w, int4.NegativeTen.w), Is.EqualTo((-4, -10)));
+            Assert.That((long3.NegativeFive.z, long3.NegativeTen.z), Is.EqualTo((-5L, -10L)));
+            Assert.That(((float)half2.NegativeSix.y, (float)half2.NegativeTen.y), Is.EqualTo((-6f, -10f)));
+            Assert.That((short2.NegativeSeven.x, short2.NegativeTen.x), Is.EqualTo(((short)(-7), (short)(-10))));
+
+            Assert.That((float4.ScalarNegativeOne, float4.ScalarNegativeTen), Is.EqualTo((-1f, -10f)));
+            Assert.That((double3.ScalarNegativeTwo, double3.ScalarNegativeTen), Is.EqualTo((-2d, -10d)));
+            Assert.That((int2.ScalarNegativeThree, int2.ScalarNegativeTen), Is.EqualTo((-3, -10)));
+            Assert.That((long2.ScalarNegativeFour, long2.ScalarNegativeTen), Is.EqualTo((-4L, -10L)));
+            Assert.That((half2.ScalarNegativeFive, half2.ScalarNegativeTen),
+                Is.EqualTo(((Half)(-5), (Half)(-10))));
+            Assert.That((short2.ScalarNegativeSix, short2.ScalarNegativeTen),
+                Is.EqualTo(((short)(-6), (short)(-10))));
+        }
+    }
+
+    /// <summary>
+    /// A matrix reaches the whole numbers of the algebra like a vector does, beside the ones of the vector a
+    /// column of it is.
+    /// </summary>
+    [Test]
+    public void MatrixConstants()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((float3x2.Four.c0.x, float3x2.Ten.c1.z), Is.EqualTo((4f, 10f)));
+            Assert.That((float3x2.ScalarFour, float3x2.ScalarTen), Is.EqualTo((4f, 10f)));
+            Assert.That((double2x2.Three.c1.y, double2x2.ScalarTen), Is.EqualTo((3d, 10d)));
+            Assert.That((int3x3.Five.c2.z, int3x3.ScalarTen), Is.EqualTo((5, 10)));
+            Assert.That((half2x2.Six.c0.x, half2x2.ScalarTen), Is.EqualTo(((Half)6, (Half)10)));
+
+            // a signed matrix reaches the negative of every whole number beside the zero as well
+            Assert.That((float3x2.NegativeThree.c0.x, float3x2.NegativeTen.c1.z), Is.EqualTo((-3f, -10f)));
+            Assert.That((float3x2.ScalarNegativeFour, float3x2.ScalarNegativeTen), Is.EqualTo((-4f, -10f)));
+            Assert.That((double2x2.NegativeOne.c0.x, double2x2.ScalarNegativeTen), Is.EqualTo((-1d, -10d)));
+            Assert.That((int3x3.NegativeSeven.c0.x, int3x3.ScalarNegativeTen), Is.EqualTo((-7, -10)));
+
+            // every whole number of the vector a column of a matrix is
+            Assert.That(float3x2.VectorZero, Is.EqualTo(default(float3)));
+            Assert.That(float3x2.VectorOne, Is.EqualTo(new float3(1f)));
+            Assert.That(float3x2.VectorTen, Is.EqualTo(new float3(10f)));
+            Assert.That(double4.VectorSix, Is.EqualTo(new double4(6d)));
+            Assert.That(int2s.VectorNine, Is.EqualTo(new int2s(9, 9)));
+
+            // a signed value reaches the negative of every one of them as well
+            Assert.That(float3x2.VectorNegativeThree, Is.EqualTo(new float3(-3f)));
+            Assert.That(float3x2.VectorNegativeTen, Is.EqualTo(new float3(-10f)));
+            Assert.That(half2x2.VectorNegativeSix, Is.EqualTo(new half2((Half)(-6), (Half)(-6))));
+            Assert.That(int3x3.VectorNegativeTen, Is.EqualTo(new int3(-10, -10, -10)));
+            Assert.That(float3.VectorNegativeTen, Is.EqualTo(new float3(-10f)));
+            Assert.That(double2.VectorNegativeTwo, Is.EqualTo(new double2(-2d, -2d)));
         }
     }
 

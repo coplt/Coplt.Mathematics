@@ -107,7 +107,7 @@ public class VectorExtensionGenerator : IIncrementalGenerator
         sb.AppendLine("/// priority of the same name, <see cref=\"NoPriority\"/> leaves it off.</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("[global::System.AttributeUsage(global::System.AttributeTargets.Method)]");
-        sb.AppendLine($"public sealed class {Attribute} : global::System.Attribute");
+        sb.AppendLine($"internal sealed class {Attribute} : global::System.Attribute");
         sb.AppendLine("{");
         sb.AppendLine("    /// <summary>The value of <see cref=\"OverloadResolutionPriority\"/> that emits no attribute</summary>");
         sb.AppendLine("    public const int NoPriority = int.MinValue;");

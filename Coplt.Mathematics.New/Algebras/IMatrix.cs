@@ -37,9 +37,38 @@ public interface IMatrixVector<TSelf, TVector> :
 {
     #region Constants
 
+    /// <summary>The zero of the vector a column of the matrix is</summary>
     public static abstract TVector VectorZero { get; }
+
+    /// <summary>The one of the vector a column of the matrix is</summary>
     public static abstract TVector VectorOne { get; }
+
+    /// <summary>The two of the vector a column of the matrix is</summary>
     public static abstract TVector VectorTwo { get; }
+
+    /// <summary>The three of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorThree { get; }
+
+    /// <summary>The four of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorFour { get; }
+
+    /// <summary>The five of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorFive { get; }
+
+    /// <summary>The six of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorSix { get; }
+
+    /// <summary>The seven of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorSeven { get; }
+
+    /// <summary>The eight of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorEight { get; }
+
+    /// <summary>The nine of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNine { get; }
+
+    /// <summary>The ten of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorTen { get; }
 
     #endregion
 
@@ -150,6 +179,53 @@ public interface ISignedNumberMatrix<TSelf, TScalar> :
     ISignedAlgebra<TSelf, TScalar>
     where TSelf : unmanaged, ISignedNumberMatrix<TSelf>, ISignedNumberMatrix<TSelf, TScalar>
     where TScalar : unmanaged, IBinaryNumber<TScalar>, ISignedNumber<TScalar>;
+
+/// <summary>
+/// An <see cref="ISignedNumberMatrix{TSelf}"/> that names the type of a column of it: it reaches the negative of
+/// every whole number of the vector a column of it is
+/// </summary>
+/// <typeparam name="TSelf">The type of the matrix itself</typeparam>
+/// <typeparam name="TVector">The type of a column of the matrix</typeparam>
+public interface ISignedNumberMatrixVector<TSelf, TVector> :
+    IMatrixVector<TSelf, TVector>,
+    ISignedNumberMatrix<TSelf>
+    where TSelf : unmanaged, ISignedNumberMatrixVector<TSelf, TVector>
+    where TVector : unmanaged, IVector<TVector>
+{
+    #region Constants
+
+    /// <summary>The minus one of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeOne { get; }
+
+    /// <summary>The minus two of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeTwo { get; }
+
+    /// <summary>The minus three of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeThree { get; }
+
+    /// <summary>The minus four of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeFour { get; }
+
+    /// <summary>The minus five of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeFive { get; }
+
+    /// <summary>The minus six of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeSix { get; }
+
+    /// <summary>The minus seven of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeSeven { get; }
+
+    /// <summary>The minus eight of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeEight { get; }
+
+    /// <summary>The minus nine of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeNine { get; }
+
+    /// <summary>The minus ten of the vector a column of the matrix is</summary>
+    public static abstract TVector VectorNegativeTen { get; }
+
+    #endregion
+}
 
 #endregion
 

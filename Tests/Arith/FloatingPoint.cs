@@ -7,9 +7,8 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The floating point members of a vector implement <c>IVectorFloatingPoint</c>: the constants of the component
-/// type, the split of a value into its integral and its fractional part, the reciprocal, the saturation, the
-/// smooth interpolation between two bounds, the reflection around a normal, the projections, the angle
-/// conversions and the two sided wrap. The members of a simd vector keep the padding lanes of it at zero.
+/// type, the reflection around a normal, the projections, the angle conversions and the two sided wrap. The
+/// members of a simd vector keep the padding lanes of it at zero.
 /// </summary>
 public class TestFloatingPoint
 {
@@ -21,7 +20,6 @@ public class TestFloatingPoint
         where T : unmanaged, IVectorFloatingPoint<T, TScalar>
         where TScalar : unmanaged
     {
-        v.smoothstep(v, v);
         v.reflect(v);
         v.project(v);
         v.project_on_plane(v);
@@ -109,23 +107,6 @@ public class TestFloatingPoint
 
             Assert.That((float)half3.E.x, Is.EqualTo((float)(half)Coplt.Mathematics.math.F_E));
             Assert.That((float)half3.PI.x, Is.EqualTo((float)(half)Coplt.Mathematics.math.F_PI));
-        }
-    }
-
-    [Test]
-    public void Smoothstep()
-    {
-        var t = new float3(0f, 0.5f, 1f);
-        var s = t.smoothstep(default, new float3(1f));
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(s, Is.EqualTo(new float3(0f, 0.5f, 1f)));
-            // a value outside of the bounds is clamped to the nearest one
-            Assert.That(new float3(-1f, 1f, 3f).smoothstep(new float3(1f), new float3(3f)),
-                Is.EqualTo(new float3(0f, 0f, 1f)));
-            // the interpolation is symmetric around the middle of the range
-            Assert.That(new float3(1.5f).smoothstep(new float3(1f), new float3(2f)).x, Is.EqualTo(0.5f));
         }
     }
 

@@ -4,28 +4,13 @@ namespace Coplt.Mathematics;
 
 // The floating point members of the vectors are members of the vector itself, a member of the math class reaches
 // them as well. The parameters of every member below are the ones of the interface of its operation in the same
-// order, which is the order of the hlsl counterpart of the operation as well: math.smoothstep(min, max, v) names
-// the bounds before the value, which is the order of its hlsl counterpart. None of the members below needs the
+// order, which is the order of the hlsl counterpart of the operation as well. None of the members below needs the
 // type of a single component, so they do not have to name it: the compiler infers the vector type from the
 // argument.
 // The constants of the vector (E, PI, Tau, ...) are not forwarded, a property cannot be a member of the math
 // class: float3.PI reaches the one of a known type and T.PI the one of a generic type.
 public static partial class math
 {
-    /// <summary>
-    /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, <paramref name="a"/> is
-    /// the value
-    /// <para>The result is 0 when the value is below the minimum, 1 when it is above the maximum and a smooth
-    /// hermite curve in between</para>
-    /// </summary>
-    /// <param name="min">The value at 0</param>
-    /// <param name="max">The value at 1</param>
-    /// <param name="a">The value to place between the two bounds</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The interpolated vector</returns>
-    [MethodImpl(256)]
-    public static T smoothstep<T>(in T min, in T max, in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.smoothstep(min, max, a);
-
     /// <summary>
     /// Returns <paramref name="a"/> reflected around the normal <paramref name="n"/>
     /// <para><paramref name="n"/> <b>has to be</b> normalized</para>

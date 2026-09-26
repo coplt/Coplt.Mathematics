@@ -9,7 +9,7 @@ namespace Tests.Arith;
 /// The floating point and the ieee 754 members of a vector are members of the vector itself and the members of
 /// the math class reach them as well. The parameters of a forwarded member are the ones of the interface of its
 /// operation in the same order, which is the order of the hlsl counterpart of the operation as well, so
-/// <c>math.smoothstep(min, max, v)</c> reaches what <c>v.smoothstep(min, max)</c> does.
+/// <c>math.wrap(v, min, max)</c> reaches what <c>v.wrap(min, max)</c> does.
 /// </summary>
 public class TestMathFloatForwarding
 {
@@ -20,7 +20,6 @@ public class TestMathFloatForwarding
     private static void Check<T>(T v)
         where T : unmanaged, IVectorFloatingPoint<T>
     {
-        math.smoothstep(v, v, v);
         math.reflect(v, v);
         math.project(v, v);
         math.project_on_plane(v, v);
@@ -113,8 +112,6 @@ public class TestMathFloatForwarding
             Assert.That(math.wrap(new float3(1.5f), new float3(0f), new float3(1f)), Is.EqualTo(new float3(0.5f)));
             // the bounds of the wrap that are the same for every component infer their type from the argument
             Assert.That(math.wrap(new float3(1.5f), 0f, 1f), Is.EqualTo(new float3(0.5f)));
-            // the vector of the smoothstep is the value, the bounds come before it
-            Assert.That(math.smoothstep(default(float3), new float3(1f), new float3(0.5f)), Is.EqualTo(new float3(0.5f)));
         }
     }
 

@@ -19,9 +19,6 @@ internal static class VectorExtensions
 {
     #region IVectorFloatingPoint
 
-    public static T smoothstep<T>(this T a, in T min, in T max) where T : unmanaged, IVectorFloatingPoint<T> =>
-        T.smoothstep(min, max, a);
-
     public static T reflect<T>(this T a, in T n) where T : unmanaged, IVectorFloatingPoint<T> => T.reflect(a, n);
     public static T project<T>(this T a, in T onto) where T : unmanaged, IVectorFloatingPoint<T> => T.project(a, onto);
 

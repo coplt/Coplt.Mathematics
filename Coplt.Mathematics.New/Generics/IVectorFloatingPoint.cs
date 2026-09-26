@@ -44,19 +44,7 @@ public interface IVectorFloatingPoint<Self> :
 
     #endregion
 
-    #region SmoothStep Reflect
-
-    /// <summary>
-    /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, <paramref name="a"/> is
-    /// the value
-    /// <para>The result is 0 when the value is below the minimum, 1 when it is above the maximum and a smooth
-    /// hermite curve in between</para>
-    /// </summary>
-    /// <param name="min">The value at 0</param>
-    /// <param name="max">The value at 1</param>
-    /// <param name="a">The value to place between the two bounds</param>
-    /// <returns>The interpolated vector</returns>
-    public static abstract Self smoothstep(in Self min, in Self max, in Self a);
+    #region Reflect
 
     /// <summary>
     /// Returns <paramref name="a"/> reflected around the normal <paramref name="n"/>

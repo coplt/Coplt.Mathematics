@@ -156,6 +156,30 @@ public interface INumberAlgebra<TSelf> : IAlgebra<TSelf>,
     /// <summary>A value whose every component is two</summary>
     public static abstract TSelf Two { get; }
 
+    /// <summary>A value whose every component is three</summary>
+    public static abstract TSelf Three { get; }
+
+    /// <summary>A value whose every component is four</summary>
+    public static abstract TSelf Four { get; }
+
+    /// <summary>A value whose every component is five</summary>
+    public static abstract TSelf Five { get; }
+
+    /// <summary>A value whose every component is six</summary>
+    public static abstract TSelf Six { get; }
+
+    /// <summary>A value whose every component is seven</summary>
+    public static abstract TSelf Seven { get; }
+
+    /// <summary>A value whose every component is eight</summary>
+    public static abstract TSelf Eight { get; }
+
+    /// <summary>A value whose every component is nine</summary>
+    public static abstract TSelf Nine { get; }
+
+    /// <summary>A value whose every component is ten</summary>
+    public static abstract TSelf Ten { get; }
+
     #endregion
 }
 
@@ -181,6 +205,30 @@ public interface INumberAlgebra<TSelf, TScalar> :
     /// <summary>The two of a single component</summary>
     public static abstract TScalar ScalarTwo { get; }
 
+    /// <summary>The three of a single component</summary>
+    public static abstract TScalar ScalarThree { get; }
+
+    /// <summary>The four of a single component</summary>
+    public static abstract TScalar ScalarFour { get; }
+
+    /// <summary>The five of a single component</summary>
+    public static abstract TScalar ScalarFive { get; }
+
+    /// <summary>The six of a single component</summary>
+    public static abstract TScalar ScalarSix { get; }
+
+    /// <summary>The seven of a single component</summary>
+    public static abstract TScalar ScalarSeven { get; }
+
+    /// <summary>The eight of a single component</summary>
+    public static abstract TScalar ScalarEight { get; }
+
+    /// <summary>The nine of a single component</summary>
+    public static abstract TScalar ScalarNine { get; }
+
+    /// <summary>The ten of a single component</summary>
+    public static abstract TScalar ScalarTen { get; }
+
     #endregion
 }
 
@@ -195,7 +243,42 @@ public interface INumberAlgebra<TSelf, TScalar> :
 public interface ISignedAlgebra<TSelf> :
     INumberAlgebra<TSelf>,
     IUnaryNegationOperators<TSelf, TSelf>
-    where TSelf : unmanaged, ISignedAlgebra<TSelf>;
+    where TSelf : unmanaged, ISignedAlgebra<TSelf>
+{
+    #region Constants
+
+    /// <summary>A value whose every component is minus one</summary>
+    public static abstract TSelf NegativeOne { get; }
+
+    /// <summary>A value whose every component is minus two</summary>
+    public static abstract TSelf NegativeTwo { get; }
+
+    /// <summary>A value whose every component is minus three</summary>
+    public static abstract TSelf NegativeThree { get; }
+
+    /// <summary>A value whose every component is minus four</summary>
+    public static abstract TSelf NegativeFour { get; }
+
+    /// <summary>A value whose every component is minus five</summary>
+    public static abstract TSelf NegativeFive { get; }
+
+    /// <summary>A value whose every component is minus six</summary>
+    public static abstract TSelf NegativeSix { get; }
+
+    /// <summary>A value whose every component is minus seven</summary>
+    public static abstract TSelf NegativeSeven { get; }
+
+    /// <summary>A value whose every component is minus eight</summary>
+    public static abstract TSelf NegativeEight { get; }
+
+    /// <summary>A value whose every component is minus nine</summary>
+    public static abstract TSelf NegativeNine { get; }
+
+    /// <summary>A value whose every component is minus ten</summary>
+    public static abstract TSelf NegativeTen { get; }
+
+    #endregion
+}
 
 /// <summary>
 /// An <see cref="ISignedAlgebra{TSelf}"/> that also names the type of a single component
@@ -206,7 +289,42 @@ public interface ISignedAlgebra<TSelf, TScalar> :
     INumberAlgebra<TSelf, TScalar>,
     ISignedAlgebra<TSelf>
     where TSelf : unmanaged, ISignedAlgebra<TSelf, TScalar>
-    where TScalar : unmanaged, IBinaryNumber<TScalar>, ISignedNumber<TScalar>;
+    where TScalar : unmanaged, IBinaryNumber<TScalar>, ISignedNumber<TScalar>
+{
+    #region Constants
+
+    /// <summary>The minus one of a single component</summary>
+    public static abstract TScalar ScalarNegativeOne { get; }
+
+    /// <summary>The minus two of a single component</summary>
+    public static abstract TScalar ScalarNegativeTwo { get; }
+
+    /// <summary>The minus three of a single component</summary>
+    public static abstract TScalar ScalarNegativeThree { get; }
+
+    /// <summary>The minus four of a single component</summary>
+    public static abstract TScalar ScalarNegativeFour { get; }
+
+    /// <summary>The minus five of a single component</summary>
+    public static abstract TScalar ScalarNegativeFive { get; }
+
+    /// <summary>The minus six of a single component</summary>
+    public static abstract TScalar ScalarNegativeSix { get; }
+
+    /// <summary>The minus seven of a single component</summary>
+    public static abstract TScalar ScalarNegativeSeven { get; }
+
+    /// <summary>The minus eight of a single component</summary>
+    public static abstract TScalar ScalarNegativeEight { get; }
+
+    /// <summary>The minus nine of a single component</summary>
+    public static abstract TScalar ScalarNegativeNine { get; }
+
+    /// <summary>The minus ten of a single component</summary>
+    public static abstract TScalar ScalarNegativeTen { get; }
+
+    #endregion
+}
 
 #endregion
 

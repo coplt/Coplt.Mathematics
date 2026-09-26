@@ -34,8 +34,6 @@ public partial class VectorGenerator
         {
             #region IVectorFloatingPoint
 
-            // the legacy form of the interpolation between the two bounds puts the value last
-            ('f', "{type} smoothstep(in {type} min, in {type} max, in {type} a) => a.smoothstep(min, max);"),
             ('f', "{type} reflect(in {type} a, in {type} n) => a.reflect(n);"),
             ('f', "{type} project(in {type} a, in {type} onto) => a.project(onto);"),
             ('f', "{type} project_on_plane(in {type} a, in {type} plane_normal) => a.project_on_plane(plane_normal);"),

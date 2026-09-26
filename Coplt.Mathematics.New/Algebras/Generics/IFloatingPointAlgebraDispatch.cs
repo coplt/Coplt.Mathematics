@@ -11,6 +11,7 @@ namespace Coplt.Mathematics.Algebras.Generics;
 /// </summary>
 /// <typeparam name="TSelf">The type of the value itself</typeparam>
 public interface IFloatingPointAlgebraDispatch<TSelf> :
+    INumberAlgebraDispatch<TSelf>,
     IFloatingPointAlgebra<TSelf>
     where TSelf : unmanaged, IFloatingPointAlgebraDispatch<TSelf>
 {

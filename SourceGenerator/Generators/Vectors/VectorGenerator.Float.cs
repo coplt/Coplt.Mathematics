@@ -23,11 +23,10 @@ public partial class VectorGenerator
 
     /// <summary>
     /// Generates the floating point members of the vector described by <paramref name="typ"/>, they implement
-    /// <c>IVectorFloatingPoint</c>: the math constants, the rounding, the split of a value into its integral and
-    /// its fractional part, the reciprocal, the saturation, the smooth interpolation between two bounds, the
-    /// reflection around a normal, the projections, the angle conversions and the two sided wrap. The members of
-    /// the group of a floating point vector are the same functions, they are emitted into their own file so they
-    /// stay separate from the base members and the plain arithmetic.
+    /// <c>IVectorFloatingPoint</c>: the math constants, the reflection around a normal, the projections, the
+    /// angle conversions and the two sided wrap. The members of the group of a floating point vector are the
+    /// same functions, they are emitted into their own file so they stay separate from the base members and the
+    /// plain arithmetic.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -129,20 +128,9 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region smoothstep reflect
+        #region reflect
 
-        sb.AppendLine("    #region smoothstep reflect");
-        sb.AppendLine();
-
-        // the vector is clamped into the range of zero and one, the clamp carries the simd fast path itself
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} smoothstep(in {type} min, in {type} max)");
-        sb.AppendLine("    {");
-        sb.AppendLine("        var t = math.saturate((this - min) / (max - min));");
-        // (3 - (2 * t)) is the hermite curve of the interpolation, it is fused by the fma helper
-        sb.AppendLine($"        return t * t * math.fnma(new {type}({Lit("2")}), t, new {type}({Lit("3")}));");
-        sb.AppendLine("    }");
+        sb.AppendLine("    #region reflect");
         sb.AppendLine();
 
         InheritDoc();

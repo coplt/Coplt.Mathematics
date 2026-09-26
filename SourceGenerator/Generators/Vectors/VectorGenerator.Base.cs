@@ -251,6 +251,9 @@ public partial class VectorGenerator
                 ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
         if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
         if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
+        // a signed vector reaches the negative of every whole number of the vector a column of its matrix view
+        // is as well
+        if (typ.sig) ifaces.Add($"Algebras.ISignedNumberMatrixVector<{type}, {type}>");
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
         sb.AppendLine("{");
@@ -315,47 +318,28 @@ public partial class VectorGenerator
         }
         else
         {
-            InheritDoc();
-            sb.AppendLine($"    public static {type} Zero");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine("        get => default;");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-            InheritDoc();
-            sb.AppendLine($"    public static {type} One");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => new({typ.one});");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-            InheritDoc();
-            sb.AppendLine($"    public static {type} Two");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => new(({scalar})({typ.two}));");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-            InheritDoc();
-            sb.AppendLine($"    public static {scalar} ScalarTwo");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => ({scalar})({typ.two});");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-            InheritDoc();
-            sb.AppendLine($"    public static {scalar} ScalarZero");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine("        get => default;");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-            InheritDoc();
-            sb.AppendLine($"    public static {scalar} ScalarOne");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => {typ.one};");
-            sb.AppendLine("    }");
+            // every whole number the algebra reaches is a constant of the value beside the one of a single
+            // component of it, the zero of a type is the default of it and the one of every other one is the
+            // literal of the number of the component type
+            for (var i = 0; i < VectorGenShared.NumberNames.Length; i++)
+            {
+                var name = VectorGenShared.NumberNames[i];
+                var value = VectorGenShared.NumberValue(scalar, i);
+                Prop($"public static {type} {name}", value == "default" ? "default" : $"new({value})");
+                Prop($"public static {scalar} Scalar{name}", value);
+            }
+
+            // a signed value reaches the negative of every whole number beside the zero as well
+            if (typ.sig)
+            {
+                for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
+                {
+                    var name = $"Negative{VectorGenShared.NumberNames[i]}";
+                    var value = VectorGenShared.NegativeValue(scalar, i);
+                    Prop($"public static {type} {name}", $"new({value})");
+                    Prop($"public static {scalar} Scalar{name}", value);
+                }
+            }
         }
 
         sb.AppendLine();
@@ -401,7 +385,6 @@ public partial class VectorGenerator
         // the vector itself is the value of the only column of the matrix, and a mask reaches its true and its
         // false instead of the zero and the one of a number
         var one = bol ? "True" : "One";
-        var two = bol ? "True" : "Two";
 
         sb.AppendLine();
         sb.AppendLine("    #region matrix");
@@ -409,9 +392,25 @@ public partial class VectorGenerator
         Prop("public static int Columns", "1");
         Prop("public static int Rows", $"{size}");
         Prop($"public static {type} Identity", one);
-        Prop($"public static {type} VectorZero", "default");
-        Prop($"public static {type} VectorOne", one);
-        Prop($"public static {type} VectorTwo", two);
+        // every whole number the matrix of a single column reaches is the one of the vector itself, which is
+        // the zero of it for the first one of them
+        for (var i = 0; i < VectorGenShared.NumberNames.Length; i++)
+        {
+            var name = VectorGenShared.NumberNames[i];
+            var value = bol ? (i == 0 ? "False" : "True") : name;
+            Prop($"public static {type} Vector{name}", $"{type}.{value}");
+        }
+
+        // a signed vector reaches the negative of every whole number beside the zero as well
+        if (typ.sig)
+        {
+            for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
+            {
+                var name = VectorGenShared.NumberNames[i];
+                Prop($"public static {type} VectorNegative{name}", $"{type}.Negative{name}");
+            }
+        }
+
         Fn($"public static {type} Vector(in {type} scalar)", "scalar");
         Fn($"public static {type} Broadcast(in {type} scalar)", "scalar");
         Fn($"public static {type} Load(ReadOnlySpan<{type}> span)", "span[0]");
