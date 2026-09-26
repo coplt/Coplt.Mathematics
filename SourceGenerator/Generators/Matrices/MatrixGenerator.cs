@@ -111,7 +111,7 @@ public class MatrixGenerator : IIncrementalGenerator
             $"Algebras.IMatrix<{type}>",
             $"Algebras.IMatrixScalar<{type}, {scalar}>",
             $"Algebras.IMatrixVector<{type}, {col}>",
-            $"Algebras.{(bol ? "IBoolMatrix" : typ.f ? "IFloatingPointIeee754Matrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>",
+            $"Algebras.{(bol ? "IBoolMatrix" : typ.f ? "IFloatingPointMatrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>",
             $"Algebras.IMatrix{shape}<{type}>",
             $"Algebras.IMatrix{shape}Vector<{type}, {col}>",
             $"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>",

@@ -9,10 +9,11 @@ namespace Tests.Core;
 /// <summary>
 /// The kind of the algebra of a value is only known from its type: the type of a component decides the kind of
 /// the value, so every value of the library names the kind of it. A half, a float and a double are floating point
-/// numbers of the ieee 754 standard and the type of every one of them names the kind of the standard, the members
-/// of it are implemented explicitly, so they are not members that the type spells out.
-/// <para>The library names the kind of the standard for the value of a half component as well, so the value of a
-/// half names the two kinds of it like the one of a float does</para>
+/// numbers of the ieee 754 standard and the floating point kind of the library is the one of the standard, so the
+/// type of every one of them names it, the members of it are implemented explicitly, so they are not members that
+/// the type spells out.
+/// <para>The library names the floating point kind for the value of a half component as well, so the value of a
+/// half names it like the one of a float does</para>
 /// </summary>
 public class TestAlgebraKind
 {
@@ -47,17 +48,14 @@ public class TestAlgebraKind
     {
         using (Assert.EnterMultipleScope())
         {
-            // a value names the kind of the standard when the type of its component names it, which the type
-            // of a half names as well
-            Assert.That(Implements(typeof(float3), typeof(IFloatingPointIeee754Vector<>)), Is.True);
-            Assert.That(Implements(typeof(half3), typeof(IFloatingPointIeee754Vector<>)), Is.True);
-            Assert.That(Implements(typeof(half3), typeof(IFloatingPointVector<>)), Is.False);
+            // a value names the floating point kind of the library when the type of its component is a floating
+            // point number, which the type of a half is as well
+            Assert.That(Implements(typeof(float3), typeof(IFloatingPointVector<>)), Is.True);
+            Assert.That(Implements(typeof(half3), typeof(IFloatingPointVector<>)), Is.True);
 
             // the dispatch of a value is the one of every kind of the component of it
             Assert.That(Implements(typeof(float3), typeof(IFloatingPointAlgebraDispatch<>)), Is.True);
-            Assert.That(Implements(typeof(float3), typeof(IFloatingPointIeee754AlgebraDispatch<>)), Is.True);
             Assert.That(Implements(typeof(half3), typeof(IFloatingPointAlgebraDispatch<>)), Is.True);
-            Assert.That(Implements(typeof(half3), typeof(IFloatingPointIeee754AlgebraDispatch<>)), Is.True);
         }
     }
 }

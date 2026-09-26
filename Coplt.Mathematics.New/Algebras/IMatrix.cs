@@ -156,8 +156,9 @@ public interface ISignedNumberMatrix<TSelf, TScalar> :
 #region FloatingPoint
 
 /// <summary>
-/// An <see cref="ISignedNumberMatrix{TSelf}"/> of a floating point number: it reaches the math constants of
-/// the kind of it, which are the ones of every component of the matrix
+/// An <see cref="ISignedNumberMatrix{TSelf}"/> of a floating point number: it reaches the math constants of the
+/// kind of it, which are the ones of every component of the matrix, and the ones of the ieee 754 standard,
+/// which every floating point type of the library names
 /// </summary>
 public interface IFloatingPointMatrix<TSelf> :
     ISignedNumberMatrix<TSelf>,
@@ -174,31 +175,7 @@ public interface IFloatingPointMatrix<TSelf, TScalar> :
     ISignedNumberMatrix<TSelf, TScalar>,
     IFloatingPointAlgebra<TSelf, TScalar>
     where TSelf : unmanaged, IFloatingPointMatrix<TSelf>, IFloatingPointMatrix<TSelf, TScalar>
-    where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPoint<TScalar>;
-
-#endregion
-
-#region FloatingPoint Ieee
-
-/// <summary>
-/// An <see cref="IFloatingPointMatrix{TSelf}"/> of the values the ieee 754 standard names
-/// </summary>
-public interface IFloatingPointIeee754Matrix<TSelf> :
-    IFloatingPointMatrix<TSelf>,
-    IFloatingPointIeee754Algebra<TSelf>
-    where TSelf : unmanaged, IFloatingPointIeee754Matrix<TSelf>;
-
-/// <summary>
-/// An <see cref="IFloatingPointIeee754Matrix{TSelf}"/> that also names the type of a single component
-/// </summary>
-/// <typeparam name="TSelf">The type of the matrix itself</typeparam>
-/// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IFloatingPointIeee754Matrix<TSelf, TScalar> :
-    IFloatingPointIeee754Matrix<TSelf>,
-    IFloatingPointMatrix<TSelf, TScalar>,
-    IFloatingPointIeee754Algebra<TSelf, TScalar>
-    where TSelf : unmanaged, IFloatingPointIeee754Matrix<TSelf>, IFloatingPointIeee754Matrix<TSelf, TScalar>
-    where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPointIeee754<TScalar>;
+    where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>;
 
 #endregion
 

@@ -173,16 +173,16 @@ public class TestDynamicVector
                 Is.EqualTo(new float3x3s(new float3s(1, 2, 3), new float3s(4, 5, 6), new float3s(7, 8, 9))));
             // every member of a visitor names the algebra of a kind of the value and every kind of it the
             // value has dispatches to the members of it: a number dispatches three members that take values
-            // and two that take a component of the value beside it. A floating point number dispatches the
-            // three members of the floating point kind of it and, when the type of it names the standard, the
-            // three of the kind the standard names as well, which take the values of the kind alone. A matrix
-            // reaches the members of the same kinds and a mask does not dispatch at all.
-            Assert.That(CountVisit<float2>(), Is.EqualTo(11));
-            Assert.That(CountVisit<double2x4>(), Is.EqualTo(11));
-            Assert.That(CountVisit<float2x2>(), Is.EqualTo(11));
-            Assert.That(CountVisit<float3x2>(), Is.EqualTo(11));
-            Assert.That(CountVisit<half2>(), Is.EqualTo(11));
-            Assert.That(CountVisit<half2x2>(), Is.EqualTo(11));
+            // and two that take a component of the value beside it, which every value has, and a floating
+            // point number dispatches the three members of the floating point kind of it as well, which take
+            // the values of the kind alone. A matrix reaches the members of the same kinds and a mask does not
+            // dispatch at all.
+            Assert.That(CountVisit<float2>(), Is.EqualTo(8));
+            Assert.That(CountVisit<double2x4>(), Is.EqualTo(8));
+            Assert.That(CountVisit<float2x2>(), Is.EqualTo(8));
+            Assert.That(CountVisit<float3x2>(), Is.EqualTo(8));
+            Assert.That(CountVisit<half2>(), Is.EqualTo(8));
+            Assert.That(CountVisit<half2x2>(), Is.EqualTo(8));
             Assert.That(CountVisit<int2>(), Is.EqualTo(5));
             Assert.That(CountVisit<b32v2>(), Is.EqualTo(0));
             Assert.That(CountVisit<b16m2x2>(), Is.EqualTo(0));

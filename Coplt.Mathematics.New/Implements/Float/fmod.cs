@@ -17,7 +17,7 @@ namespace Coplt.Mathematics
         /// the one of the divisor</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T fmod<T>(in T a, in T b)
-            where T : unmanaged, IFloatingPointIeee754AlgebraDispatch<T>
+            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
             => T.Visit_Self<impl_fmod>(a, b);
     }
 
@@ -26,7 +26,7 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math.fmod{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T fmod<T>(this T a, in T b)
-            where T : unmanaged, IFloatingPointIeee754AlgebraDispatch<T>
+            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
             => T.Visit_Self<impl_fmod>(a, b);
     }
 }
@@ -45,14 +45,14 @@ namespace Coplt.Mathematics.Implements
     /// not a number, so the register of the value is built from the mask of the padding lanes of it, which keeps
     /// them at zero</para>
     /// </summary>
-    internal struct impl_fmod : IFloatingPointIeee754AlgebraVisitor_Self_Self_Self<impl_fmod>
+    internal struct impl_fmod : IFloatingPointAlgebraVisitor_Self_Self_Self<impl_fmod>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IFloatingPointIeee754AlgebraVisitor_Self_Self_Self<impl_fmod>.AcceptScalar<TScalar>(TScalar a, TScalar b)
+        static TScalar IFloatingPointAlgebraVisitor_Self_Self_Self<impl_fmod>.AcceptScalar<TScalar>(TScalar a, TScalar b)
             => TScalar.FusedMultiplyAdd(-b, TScalar.Floor(a / b), a);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointIeee754AlgebraVisitor_Self_Self_Self<impl_fmod>.AcceptVector<TVector, TScalar>(
+        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_fmod>.AcceptVector<TVector, TScalar>(
             in Vector64<TScalar> a, in Vector64<TScalar> b
         )
         {
@@ -65,7 +65,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointIeee754AlgebraVisitor_Self_Self_Self<impl_fmod>.AcceptVector<TVector, TScalar>(
+        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_fmod>.AcceptVector<TVector, TScalar>(
             in Vector128<TScalar> a, in Vector128<TScalar> b
         )
         {
@@ -83,7 +83,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointIeee754AlgebraVisitor_Self_Self_Self<impl_fmod>.AcceptVector<TVector, TScalar>(
+        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_fmod>.AcceptVector<TVector, TScalar>(
             in Vector256<TScalar> a, in Vector256<TScalar> b
         )
         {

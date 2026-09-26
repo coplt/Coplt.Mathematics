@@ -22,11 +22,11 @@ namespace Coplt.Analyzers.Generators;
 /// of a visitor that reduces its single value to a single component is
 /// <c>INumberAlgebraVisitor_Self_Scalar&lt;V&gt;</c>. The interface of the dispatch of an algebra is written by
 /// hand, the interfaces of the visitors are emitted into one file per shape.
-/// <para>The visitors of a kind of a floating point number reach the values of the kind alone: the members of a
-/// visitor of the kind of a number reach the members of the kind of a floating point number of a component of a
-/// value as well, so the shapes that take a component of a value, the ones that reduce a value to a component
-/// of it and the ones that reduce the vectors a matrix is made of are the shapes of the kind of a number, and
-/// every kind of a floating point number has the three shapes that take the values of the kind alone.</para>
+/// <para>The visitors of the floating point kind reach the values of the kind alone: the members of a visitor of
+/// the kind of a number reach the members of the floating point kind of a component of a value as well, so the
+/// shapes that take a component of a value, the ones that reduce a value to a component of it and the ones that
+/// reduce the vectors a matrix is made of are the shapes of the kind of a number, and the floating point kind
+/// has the three shapes that take the values of the kind alone.</para>
 /// <para>The result of a visitor is a value of the same kind as the one of its arguments, a single component of
 /// a value or a vector of the algebra. Every visitor of a vector names the kind of it, so the visitors of a
 /// vector are the one of the columns of a matrix, which is the vector a column of it is, and the one of the rows
@@ -61,10 +61,11 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     }
 
     /// <summary>
-    /// The kind of the algebra a visitor is emitted for: the number of the library, the floating point number of
-    /// it and the one the ieee 754 standard names. The kind decides the name of the interface and the constraint
-    /// of the type of a single component, which is the one of the kind of it, so the members of a visitor of a
-    /// floating point number reach the members of the floating point kind of the scalar.
+    /// The kind of the algebra a visitor is emitted for: the number of the library and the floating point
+    /// number, which is the kind of the standard every floating point type of it names. The kind decides the
+    /// name of the interface and the constraint of the type of a single component, which is the one of the kind
+    /// of it, so the members of a visitor of a floating point number reach the members of the floating point
+    /// kind of the scalar.
     /// </summary>
     public enum VisitorKind
     {
@@ -73,9 +74,6 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
 
         /// <summary>A floating point number</summary>
         FloatingPoint,
-
-        /// <summary>The floating point number the ieee 754 standard names</summary>
-        Ieee754,
     }
 
     /// <summary>The kinds of every visitor family, the one of a number is the first of them</summary>
@@ -83,7 +81,6 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     {
         VisitorKind.Number,
         VisitorKind.FloatingPoint,
-        VisitorKind.Ieee754,
     };
 
     /// <summary>
@@ -95,7 +92,6 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     public static string VisitorFamily(VisitorKind kind) => kind switch
     {
         VisitorKind.FloatingPoint => "IFloatingPointAlgebraVisitor",
-        VisitorKind.Ieee754 => "IFloatingPointIeee754AlgebraVisitor",
         _ => "INumberAlgebraVisitor",
     };
 
@@ -108,23 +104,20 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     public static string VisitorDispatch(VisitorKind kind) => kind switch
     {
         VisitorKind.FloatingPoint => "IFloatingPointAlgebraDispatch",
-        VisitorKind.Ieee754 => "IFloatingPointIeee754AlgebraDispatch",
         _ => "INumberAlgebraDispatch",
     };
 
     /// <summary>
-    /// Returns the constraints the type of a single component of the visitors of a kind carries beside the one of
-    /// a binary number, which is empty for a number of the library and the one of the kind of it for a floating
-    /// point number.
+    /// Returns the constraint of the type of a single component of the visitors of a kind: the one of the binary
+    /// number of the library for the kind of a number and the one of the binary floating point number that names
+    /// the ieee 754 standard for the floating point kind, which every floating point type of the library names.
     /// </summary>
     /// <param name="kind">The kind of the algebra</param>
-    /// <returns>The constraints behind the one of the binary number</returns>
-    public static string ScalarConstraints(VisitorKind kind) => kind switch
-    {
-        VisitorKind.FloatingPoint => ", IFloatingPoint<TScalar>",
-        VisitorKind.Ieee754 => ", IFloatingPointIeee754<TScalar>",
-        _ => "",
-    };
+    /// <param name="indent">The indentation of the line</param>
+    /// <returns>The line of the constraint</returns>
+    public static string ScalarConstraint(VisitorKind kind, string indent) => kind == VisitorKind.Number
+        ? $"{indent}where TScalar : unmanaged, IBinaryNumber<TScalar>"
+        : $"{indent}where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>";
 
     /// <summary>
     /// The shapes of the visitors: the kind of every argument of one of them, a <c>false</c> for an argument
@@ -337,7 +330,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
 
         // the constraint of the member of a component: the interface of a shape that takes a component of the
         // value declares it, every member of an interface of values declares it itself
-        var scalarConstraint = "        where TScalar : unmanaged, IBinaryNumber<TScalar>" + ScalarConstraints(kind);
+        var scalarConstraint = ScalarConstraint(kind, "        ");
 
         var sb = new StringBuilder();
 
@@ -372,7 +365,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         {
             sb.AppendLine($"public interface {name}<V, TScalar>");
             sb.AppendLine($"    where V : {name}<V, TScalar>");
-            sb.AppendLine("    where TScalar : unmanaged, IBinaryNumber<TScalar>" + ScalarConstraints(kind));
+            sb.AppendLine(ScalarConstraint(kind, "    "));
         }
         else
         {

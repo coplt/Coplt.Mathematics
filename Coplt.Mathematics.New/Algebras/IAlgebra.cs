@@ -213,8 +213,10 @@ public interface ISignedAlgebra<TSelf, TScalar> :
 #region FloatingPoint
 
 /// <summary>
-/// An <see cref="ISignedAlgebra{TSelf}"/> of a floating point number: it reaches the math constants of the
-/// kind of it
+/// An <see cref="ISignedAlgebra{TSelf}"/> of a floating point number: it reaches the math constants of the kind
+/// of it beside the ones of the ieee 754 standard, which are the smallest positive value, the value that is not
+/// a number and the ones of the infinities, and every floating point type of the library is a number the
+/// standard names
 /// </summary>
 public interface IFloatingPointAlgebra<TSelf> :
     ISignedAlgebra<TSelf>
@@ -252,6 +254,35 @@ public interface IFloatingPointAlgebra<TSelf> :
     public static abstract TSelf DegToRad { get; }
 
     #endregion
+
+    #region Ieee 754 Constants
+
+    /// <summary>
+    /// <code>Epsilon</code>, the smallest positive value of the component type of the value
+    /// </summary>
+    public static abstract TSelf Epsilon { get; }
+
+    /// <summary>
+    /// <code>NaN</code>, the value that is not a number
+    /// </summary>
+    public static abstract TSelf NaN { get; }
+
+    /// <summary>
+    /// <code>-Infinity</code>, the value below every number
+    /// </summary>
+    public static abstract TSelf NegativeInfinity { get; }
+
+    /// <summary>
+    /// <code>-0</code>, the zero of the negative sign
+    /// </summary>
+    public static abstract TSelf NegativeZero { get; }
+
+    /// <summary>
+    /// <code>Infinity</code>, the value above every number
+    /// </summary>
+    public static abstract TSelf PositiveInfinity { get; }
+
+    #endregion
 }
 
 /// <summary>
@@ -263,7 +294,7 @@ public interface IFloatingPointAlgebra<TSelf, TScalar> :
     IFloatingPointAlgebra<TSelf>,
     ISignedAlgebra<TSelf, TScalar>
     where TSelf : unmanaged, IFloatingPointAlgebra<TSelf, TScalar>
-    where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPoint<TScalar>
+    where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
 {
     #region Math Constants
 
@@ -297,62 +328,8 @@ public interface IFloatingPointAlgebra<TSelf, TScalar> :
     public static abstract TScalar ScalarDegToRad { get; }
 
     #endregion
-}
 
-#endregion
-
-#region FloatingPoint Ieee
-
-/// <summary>
-/// An <see cref="IFloatingPointAlgebra{TSelf}"/> of the values the ieee 754 standard names: the smallest
-/// positive value, the value that is not a number and the ones of the infinities
-/// </summary>
-public interface IFloatingPointIeee754Algebra<TSelf> :
-    IFloatingPointAlgebra<TSelf>
-    where TSelf : unmanaged, IFloatingPointIeee754Algebra<TSelf>
-{
-    #region Math Constants
-
-    /// <summary>
-    /// <code>Epsilon</code>, the smallest positive value of the component type of the value
-    /// </summary>
-    public static abstract TSelf Epsilon { get; }
-
-    /// <summary>
-    /// <code>NaN</code>, the value that is not a number
-    /// </summary>
-    public static abstract TSelf NaN { get; }
-
-    /// <summary>
-    /// <code>-Infinity</code>, the value below every number
-    /// </summary>
-    public static abstract TSelf NegativeInfinity { get; }
-
-    /// <summary>
-    /// <code>-0</code>, the zero of the negative sign
-    /// </summary>
-    public static abstract TSelf NegativeZero { get; }
-
-    /// <summary>
-    /// <code>Infinity</code>, the value above every number
-    /// </summary>
-    public static abstract TSelf PositiveInfinity { get; }
-
-    #endregion
-}
-
-/// <summary>
-/// An <see cref="IFloatingPointIeee754Algebra{TSelf}"/> that also names the type of a single component
-/// </summary>
-/// <typeparam name="TSelf">The type of the value itself</typeparam>
-/// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IFloatingPointIeee754Algebra<TSelf, TScalar> :
-    IFloatingPointIeee754Algebra<TSelf>,
-    IFloatingPointAlgebra<TSelf, TScalar>
-    where TSelf : unmanaged, IFloatingPointIeee754Algebra<TSelf, TScalar>
-    where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPointIeee754<TScalar>
-{
-    #region Math Constants
+    #region Ieee 754 Constants
 
     /// <summary>
     /// <code>Epsilon</code>, the smallest positive value of a single component

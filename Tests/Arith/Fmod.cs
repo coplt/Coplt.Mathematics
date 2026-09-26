@@ -22,7 +22,7 @@ public class TestFmod
     /// reaches it, which is the form the members of the library use.
     /// </summary>
     private static void Check<T>(T a, T b)
-        where T : unmanaged, IFloatingPointIeee754AlgebraDispatch<T>
+        where T : unmanaged, IFloatingPointAlgebraDispatch<T>
     {
         var r = math.fmod(a, b);
         Assert.That(a.fmod(b), Is.EqualTo(r));

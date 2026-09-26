@@ -8,18 +8,18 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The algebra of a floating point value: a vector and a matrix of a floating point number reach the math
-/// constants of the kind of them and the ones of the standard the component type names, which are the ones of
-/// every component of the value.
+/// constants of the kind of them and the ones of the ieee 754 standard, which are the ones of every component
+/// of the value.
 /// </summary>
 public class TestFloatingPointAlgebra
 {
     /// <summary>
-    /// The constants of a value that names the ieee 754 standard are reachable through the interface of it,
-    /// which a type parameter that only knows the interface uses.
+    /// The constants of a floating point value are reachable through the interface of it, which a type
+    /// parameter that only knows the interface uses.
     /// </summary>
-    private static void CheckIeee754Vector<T, TScalar>(T v)
-        where T : unmanaged, IFloatingPointIeee754Vector<T, TScalar>, IFloatingPointIeee754AlgebraDispatch<T>
-        where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPointIeee754<TScalar>
+    private static void CheckVector<T, TScalar>(T v)
+        where T : unmanaged, IFloatingPointVector<T, TScalar>, IFloatingPointAlgebraDispatch<T>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
     {
         _ = T.E / T.PI;
         _ = T.Log2 + T.Log10 + T.Tau + T.RadToDeg + T.DegToRad;
@@ -32,10 +32,10 @@ public class TestFloatingPointAlgebra
         _ = T.Broadcast(T.ScalarPI);
     }
 
-    /// <inheritdoc cref="CheckIeee754Vector{T,TScalar}(T)"/>
-    private static void CheckIeee754Matrix<T, TScalar>(T m)
-        where T : unmanaged, IFloatingPointIeee754Matrix<T, TScalar>, IFloatingPointIeee754AlgebraDispatch<T>
-        where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPointIeee754<TScalar>
+    /// <inheritdoc cref="CheckVector{T,TScalar}(T)"/>
+    private static void CheckMatrix<T, TScalar>(T m)
+        where T : unmanaged, IFloatingPointMatrix<T, TScalar>, IFloatingPointAlgebraDispatch<T>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
     {
         _ = T.E / T.PI;
         _ = T.Log2 + T.Log10 + T.Tau + T.RadToDeg + T.DegToRad;
@@ -51,19 +51,19 @@ public class TestFloatingPointAlgebra
     [Test]
     public void Interfaces()
     {
-        CheckIeee754Vector<float3, float>(new float3(1f, 2f, 3f));
-        CheckIeee754Vector<float3s, float>(new float3s(1f, 2f, 3f));
-        CheckIeee754Vector<double4, double>(new double4(1d, 2d, 3d, 4d));
-        CheckIeee754Matrix<float3x2, float>(new float3x2(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f)));
-        CheckIeee754Matrix<float2x2s, float>(new float2x2s(new float2s(1f, 2f), new float2s(3f, 4f)));
-        CheckIeee754Matrix<double2x2, double>(new double2x2(new double2(1d, 2d), new double2(3d, 4d)));
+        CheckVector<float3, float>(new float3(1f, 2f, 3f));
+        CheckVector<float3s, float>(new float3s(1f, 2f, 3f));
+        CheckVector<double4, double>(new double4(1d, 2d, 3d, 4d));
+        CheckMatrix<float3x2, float>(new float3x2(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f)));
+        CheckMatrix<float2x2s, float>(new float2x2s(new float2s(1f, 2f), new float2s(3f, 4f)));
+        CheckMatrix<double2x2, double>(new double2x2(new double2(1d, 2d), new double2(3d, 4d)));
         // a half is a floating point number the ieee 754 standard names as well, so a value of half components
-        // names the kind of the standard beside the one of a floating point number
-        CheckIeee754Vector<half3, Half>(new half3((half)1f, (half)2f, (half)3f));
-        CheckIeee754Vector<half4, Half>(new half4((half)1f, (half)2f, (half)3f, (half)4f));
-        CheckIeee754Matrix<half2x2, Half>(new half2x2(new half2((half)1f, (half)2f),
+        // names the floating point kind of the library like the one of a float does
+        CheckVector<half3, Half>(new half3((half)1f, (half)2f, (half)3f));
+        CheckVector<half4, Half>(new half4((half)1f, (half)2f, (half)3f, (half)4f));
+        CheckMatrix<half2x2, Half>(new half2x2(new half2((half)1f, (half)2f),
             new half2((half)3f, (half)4f)));
-        CheckIeee754Matrix<half3x3, Half>(new half3x3(new half3((half)1f, (half)2f, (half)3f),
+        CheckMatrix<half3x3, Half>(new half3x3(new half3((half)1f, (half)2f, (half)3f),
             new half3((half)4f, (half)5f, (half)6f), new half3((half)7f, (half)8f, (half)9f)));
     }
 
