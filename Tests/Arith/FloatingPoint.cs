@@ -7,8 +7,8 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The floating point members of a vector implement <c>IVectorFloatingPoint</c>: the constants of the component
-/// type, the projections, the angle conversions and the two sided wrap. The members of a simd vector keep the
-/// padding lanes of it at zero.
+/// type, the projections and the two sided wrap. The members of a simd vector keep the padding lanes of it at
+/// zero.
 /// </summary>
 public class TestFloatingPoint
 {
@@ -24,8 +24,6 @@ public class TestFloatingPoint
         v.project_on_plane(v);
         v.project_normalized(v);
         v.project_on_plane_normalized(v);
-        v.radians();
-        v.degrees();
         v.wrap(v, v);
         v.wrap(default(TScalar), default(TScalar));
 
@@ -124,20 +122,6 @@ public class TestFloatingPoint
             // the projection of a vector onto itself is the vector
             Assert.That(a.project(a), Is.EqualTo(a));
             Assert.That(a.project_on_plane(a), Is.EqualTo(default(float3)));
-        }
-    }
-
-    [Test]
-    public void Angles()
-    {
-        var v = new float3(180f, 90f, 0f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(v.radians().x, Is.EqualTo(MathF.PI).Within(1e-5f));
-            Assert.That(v.radians().y, Is.EqualTo(MathF.PI / 2f).Within(1e-6f));
-            Assert.That(v.radians().degrees().x, Is.EqualTo(180f).Within(1e-3f));
-            Assert.That(new double2(360, 0).radians().degrees().x, Is.EqualTo(360).Within(1e-9));
         }
     }
 

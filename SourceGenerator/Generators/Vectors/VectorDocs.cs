@@ -41,8 +41,6 @@ internal static class VectorDocs
             ("Returns the projection of the vector onto the plane that has the normalized <c>plane_normal</c> as its normal", "The projected vector",
                 "a=The vector to project;plane_normal=The normalized normal of the plane")
         },
-        { "radians", ("Converts every component from degrees to radians", "The vector in radians", "a=The vector in degrees") },
-        { "degrees", ("Converts every component from radians to degrees", "The vector in degrees", "a=The vector in radians") },
         {
             "wrap",
             ("Wraps every component into the range of <c>min</c> and <c>max</c>", "The wrapped vector",

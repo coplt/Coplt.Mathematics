@@ -62,24 +62,6 @@ public static partial class math
         T.project_on_plane_normalized(a, plane_normal);
 
     /// <summary>
-    /// Degrees -> Radians
-    /// </summary>
-    /// <param name="a">The vector in degrees</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The vector in radians</returns>
-    [MethodImpl(256)]
-    public static T radians<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.radians(a);
-
-    /// <summary>
-    /// Radians -> Degrees
-    /// </summary>
-    /// <param name="a">The vector in radians</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The vector in degrees</returns>
-    [MethodImpl(256)]
-    public static T degrees<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.degrees(a);
-
-    /// <summary>
     /// Wraps every component into the range of <paramref name="min"/> and <paramref name="max"/>
     /// </summary>
     /// <param name="a">The vector</param>

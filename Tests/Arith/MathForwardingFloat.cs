@@ -24,8 +24,6 @@ public class TestMathFloatForwarding
         math.project_on_plane(v, v);
         math.project_normalized(v, v);
         math.project_on_plane_normalized(v, v);
-        math.radians(v);
-        math.degrees(v);
         math.wrap(v, v, v);
     }
 

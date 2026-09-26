@@ -87,20 +87,6 @@ public interface IVectorFloatingPoint<Self> :
 
     #endregion
 
-    #region Radians Degrees
-
-    /// <summary>
-    /// Degrees -> Radians
-    /// </summary>
-    public static abstract Self radians(in Self a);
-
-    /// <summary>
-    /// Radians -> Degrees
-    /// </summary>
-    public static abstract Self degrees(in Self a);
-
-    #endregion
-
     #region Wrap
 
     /// <summary>

@@ -23,9 +23,9 @@ public partial class VectorGenerator
 
     /// <summary>
     /// Generates the floating point members of the vector described by <paramref name="typ"/>, they implement
-    /// <c>IVectorFloatingPoint</c>: the math constants, the projections, the angle conversions and the two sided
-    /// wrap. The members of the group of a floating point vector are the same functions, they are emitted into
-    /// their own file so they stay separate from the base members and the plain arithmetic.
+    /// <c>IVectorFloatingPoint</c>: the math constants, the projections and the two sided wrap. The members of
+    /// the group of a floating point vector are the same functions, they are emitted into their own file so they
+    /// stay separate from the base members and the plain arithmetic.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -150,26 +150,6 @@ public partial class VectorGenerator
         InheritDoc();
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} project_on_plane_normalized(in {type} plane_normal) => this - this.project_normalized(plane_normal);");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region radians degrees
-
-        sb.AppendLine("    #region radians degrees");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} radians() => this * {type}.DegToRad;");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} degrees() => this * {type}.RadToDeg;");
         sb.AppendLine();
 
         sb.AppendLine("    #endregion");

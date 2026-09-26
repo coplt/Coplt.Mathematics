@@ -7,8 +7,8 @@ namespace Tests;
 
 /// <summary>
 /// The members of the interfaces of a vector are static, so a generic helper that only knows a type parameter
-/// calls them with the static form: <c>T.radians(a)</c>. A helper that wants the member form on the value has
-/// to take the value as the first parameter itself, which is what the members below do, they are only here
+/// calls them with the static form: <c>T.project(a, onto)</c>. A helper that wants the member form on the value
+/// has to take the value as the first parameter itself, which is what the members below do, they are only here
 /// because a type parameter cannot reach the member of the vector itself. The value is passed by value because
 /// the receiver of an extension method of a type parameter cannot be an <c>in</c> parameter.
 /// <para>A member that the dispatch of an algebra implements is not helped here: it is the member of the
@@ -29,9 +29,6 @@ internal static class VectorExtensions
 
     public static T project_on_plane_normalized<T>(this T a, in T plane_normal)
         where T : unmanaged, IVectorFloatingPoint<T> => T.project_on_plane_normalized(a, plane_normal);
-
-    public static T radians<T>(this T a) where T : unmanaged, IVectorFloatingPoint<T> => T.radians(a);
-    public static T degrees<T>(this T a) where T : unmanaged, IVectorFloatingPoint<T> => T.degrees(a);
 
     public static T wrap<T>(this T a, in T min, in T max) where T : unmanaged, IVectorFloatingPoint<T> =>
         T.wrap(a, min, max);

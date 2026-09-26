@@ -38,8 +38,6 @@ public partial class VectorGenerator
             ('f', "{type} project_on_plane(in {type} a, in {type} plane_normal) => a.project_on_plane(plane_normal);"),
             ('f', "{type} project_normalized(in {type} a, in {type} onto) => a.project_normalized(onto);"),
             ('f', "{type} project_on_plane_normalized(in {type} a, in {type} plane_normal) => a.project_on_plane_normalized(plane_normal);"),
-            ('f', "{type} radians(in {type} a) => a.radians();"),
-            ('f', "{type} degrees(in {type} a) => a.degrees();"),
             ('f', "{type} wrap(in {type} a, in {type} min, in {type} max) => a.wrap(min, max);"),
             ('f', "{type} wrap(in {type} a, {scalar} min, {scalar} max) => a.wrap(min, max);"),
 
