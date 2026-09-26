@@ -138,6 +138,7 @@ internal static class VectorGenShared
     /// <returns>The name of the vector</returns>
     public static string VecName(Typ typ, int size, bool storeVariant) =>
         storeVariant ? $"{typ.name}{size}s" : $"{typ.name}{size}";
+
     /// <summary>
     /// Returns the names of the interfaces of the dispatch of the kind of a value in the algebra library: the one
     /// of a number beside the ones of the floating point kinds of it, which are the ones of the standard the
@@ -153,6 +154,7 @@ internal static class VectorGenShared
                 "INumberAlgebraDispatch", "IFloatingPointAlgebraDispatch", "IFloatingPointIeee754AlgebraDispatch",
             }
         : new[] { "INumberAlgebraDispatch" };
+
     /// <summary>
     /// Returns the bit size of the register that keeps the value of a vector, 0 when the vector has no register.
     /// A 3 or 4 component vector is padded to 4 lanes, the 2 component ones keep the exact width of their value

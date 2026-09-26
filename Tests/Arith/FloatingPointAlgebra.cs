@@ -1,6 +1,7 @@
 using System.Numerics;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
+using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
 
 namespace Tests.Arith;
@@ -17,7 +18,7 @@ public class TestFloatingPointAlgebra
     /// which a type parameter that only knows the interface uses.
     /// </summary>
     private static void CheckIeee754Vector<T, TScalar>(T v)
-        where T : unmanaged, IFloatingPointIeee754Vector<T, TScalar>
+        where T : unmanaged, IFloatingPointIeee754Vector<T, TScalar>, IFloatingPointIeee754AlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPointIeee754<TScalar>
     {
         _ = T.E / T.PI;
@@ -33,7 +34,7 @@ public class TestFloatingPointAlgebra
 
     /// <inheritdoc cref="CheckIeee754Vector{T,TScalar}(T)"/>
     private static void CheckIeee754Matrix<T, TScalar>(T m)
-        where T : unmanaged, IFloatingPointIeee754Matrix<T, TScalar>
+        where T : unmanaged, IFloatingPointIeee754Matrix<T, TScalar>, IFloatingPointIeee754AlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPointIeee754<TScalar>
     {
         _ = T.E / T.PI;
@@ -52,7 +53,7 @@ public class TestFloatingPointAlgebra
     /// so it reaches the ones of the kind of it alone.
     /// </summary>
     private static void CheckFloatingPointVector<T, TScalar>(T v)
-        where T : unmanaged, IFloatingPointVector<T, TScalar>
+        where T : unmanaged, IFloatingPointVector<T, TScalar>, IFloatingPointAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPoint<TScalar>
     {
         _ = T.E / T.PI;
@@ -65,7 +66,7 @@ public class TestFloatingPointAlgebra
 
     /// <inheritdoc cref="CheckFloatingPointVector{T,TScalar}(T)"/>
     private static void CheckFloatingPointMatrix<T, TScalar>(T m)
-        where T : unmanaged, IFloatingPointMatrix<T, TScalar>
+        where T : unmanaged, IFloatingPointMatrix<T, TScalar>, IFloatingPointAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPoint<TScalar>
     {
         _ = T.E / T.PI;

@@ -127,6 +127,7 @@ public class MatrixGenerator : IIncrementalGenerator
             ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
             ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
         }
+
         VectorGenShared.FileHeader(sb, false);
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
@@ -700,6 +701,7 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
                 sb.AppendLine();
             }
+
             // the vectors a matrix is made of are the columns of it, so the member that reduces them to a
             // single vector is the one of the count of the columns of the matrix
             sb.AppendLine("    /// <inheritdoc/>");
