@@ -156,6 +156,20 @@ internal static class VectorGenShared
         : new[] { "INumberAlgebraDispatch" };
 
     /// <summary>
+    /// Returns the name of the interface of the dispatch of a kind of a value as the type of the value names it:
+    /// the dispatch of the kind of a number reaches the values of the kind of it and the ones that take a
+    /// component of the value beside it, so it names the type of a component as well, and the one of the kind of
+    /// a floating point number reaches the values of the kind of it alone, so it names the type of the value.
+    /// </summary>
+    /// <param name="family">The name of the family of the dispatch</param>
+    /// <param name="type">The name of the type of the value</param>
+    /// <param name="item">The name of the type of a single component</param>
+    /// <returns>The name of the interface of the dispatch</returns>
+    public static string DispatchIface(string family, string type, string item) => family == "INumberAlgebraDispatch"
+        ? $"Algebras.Generics.{family}<{type}, {item}>"
+        : $"Algebras.Generics.{family}<{type}>";
+
+    /// <summary>
     /// Returns the bit size of the register that keeps the value of a vector, 0 when the vector has no register.
     /// A 3 or 4 component vector is padded to 4 lanes, the 2 component ones keep the exact width of their value
     /// beside the storage variant of a 4 byte component vector, whose value is widened to 128 bits because the

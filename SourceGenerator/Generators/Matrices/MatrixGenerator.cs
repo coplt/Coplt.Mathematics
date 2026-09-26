@@ -120,10 +120,8 @@ public class MatrixGenerator : IIncrementalGenerator
         // visitors that reduce them to a vector, a matrix of a mask dispatches nothing
         if (!bol)
         {
-            ifaces.Add($"Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>");
-            ifaces.AddRange(VectorGenShared.DispatchIfaces(typ)
-                .Where(n => n != "INumberAlgebraDispatch")
-                .Select(n => $"Algebras.Generics.{n}<{type}, {scalar}>"));
+            foreach (var family in VectorGenShared.DispatchIfaces(typ))
+                ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
             ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
             ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
         }
@@ -657,11 +655,9 @@ public class MatrixGenerator : IIncrementalGenerator
             // the same one
             foreach (var family in VectorGenShared.DispatchIfaces(typ))
             {
-                // the interface of a value of the kind that takes the components of it
-                var withScalar = $"Algebras.Generics.{family}<{type}, {scalar}>";
-                // the one of the value of a number of the kind has a member that takes no component of it, the
-                // one of a floating point number does not have it
-                var self = family == "INumberAlgebraDispatch" ? $"Algebras.Generics.{family}<{type}>" : withScalar;
+                // the dispatch of a value takes the values of the kind of it, so the members that take a value
+                // alone are the members of the interface that names the type of the value itself
+                var self = $"Algebras.Generics.{family}<{type}>";
 
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
@@ -678,6 +674,13 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
                 sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b, c);");
                 sb.AppendLine();
+
+                // the dispatch of the kind of a number reaches the values that take a component of the value
+                // beside them as well, so it has the members that take a component and the ones that reduce a
+                // value to a single component of it, which the one of a floating point kind does not have
+                if (family != "INumberAlgebraDispatch") continue;
+                var withScalar = $"Algebras.Generics.{family}<{type}, {scalar}>";
+
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
                 sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b)");

@@ -22,6 +22,11 @@ namespace Coplt.Analyzers.Generators;
 /// of a visitor that reduces its single value to a single component is
 /// <c>INumberAlgebraVisitor_Self_Scalar&lt;V&gt;</c>. The interface of the dispatch of an algebra is written by
 /// hand, the interfaces of the visitors are emitted into one file per shape.
+/// <para>The visitors of a kind of a floating point number reach the values of the kind alone: the members of a
+/// visitor of the kind of a number reach the members of the kind of a floating point number of a component of a
+/// value as well, so the shapes that take a component of a value, the ones that reduce a value to a component
+/// of it and the ones that reduce the vectors a matrix is made of are the shapes of the kind of a number, and
+/// every kind of a floating point number has the three shapes that take the values of the kind alone.</para>
 /// <para>The result of a visitor is a value of the same kind as the one of its arguments, a single component of
 /// a value or a vector of the algebra. Every visitor of a vector names the kind of it, so the visitors of a
 /// vector are the one of the columns of a matrix, which is the vector a column of it is, and the one of the rows
@@ -131,6 +136,24 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     /// </summary>
     private static readonly (bool[] Args, VisitorResult Result)[] Shapes = BuildShapes();
 
+    /// <summary>
+    /// Tells whether the shape of a visitor takes the values of the kind of it alone: the shapes that take a
+    /// component of a value beside it, the ones that reduce a value to a single component of it and the ones
+    /// that reduce the vectors a matrix is made of are the shapes of the dispatch of the kind of a number, which
+    /// reaches the members of the kind of a floating point number of a component of a value as well, so the
+    /// dispatch of a floating point kind does not have them.
+    /// </summary>
+    /// <param name="shape">The shape of the visitor</param>
+    /// <returns>True when the shape takes the values of the kind of it alone</returns>
+    public static bool ReachesSelfOnly((bool[] Args, VisitorResult Result) shape)
+    {
+        if (shape.Result != VisitorResult.Self) return false;
+        foreach (var component in shape.Args)
+            if (component)
+                return false;
+        return true;
+    }
+
     private static (bool[] Args, VisitorResult Result)[] BuildShapes()
     {
         var shapes = new List<(bool[], VisitorResult)>(MaxCount + 7);
@@ -164,6 +187,9 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             {
                 foreach (var shape in Shapes)
                 {
+                    // the dispatch of a floating point kind reaches the values of the kind of it alone, so the
+                    // shapes of the visitors of it are the ones that take the values of the kind of it alone
+                    if (kind != VisitorKind.Number && !ReachesSelfOnly(shape)) continue;
                     var name = VisitorName(shape.Args, shape.Result, kind);
                     ctx.AddSource(
                         $"{Namespace}.{name}.g.cs",
@@ -270,13 +296,13 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         var matrixTypeParameter = component ? "<TMatrix, TVector>" : "<TMatrix, TVector, TScalar>";
         var matrixTypeArguments = component ? "TMatrix, TVector" : "TMatrix, TVector, TScalar";
         var visitorDispatch = VisitorDispatch(kind);
-        // the shape of a member that names a component of the value reaches the value of the kind of it again,
-        // so it names the type of a component as well, and a floating point number names the dispatch of the
-        // kind of it in every shape: the one of the number of the kind is not the one of the kind of it, which
-        // reaches the members of the kind of a component
-        var namesScalar = component || kind != VisitorKind.Number;
-        var dispatch = namesScalar ? $"{visitorDispatch}<TVector, TScalar>" : "INumberAlgebraDispatch<TVector>";
-        var matrixDispatch = namesScalar ? $"{visitorDispatch}<TMatrix, TScalar>" : "INumberAlgebraDispatch<TMatrix>";
+        // the dispatch of the kind of a number reaches the values of the kind of it and the ones that take a
+        // component of the value beside it, so it names the type of a component as well, and the one of the kind
+        // of a floating point number reaches the values of the kind of it alone, so the shape of a member that
+        // names a component of the value is the shape of the kind of a number
+        var namesScalar = component && kind == VisitorKind.Number;
+        var dispatch = namesScalar ? $"{visitorDispatch}<TVector, TScalar>" : $"{visitorDispatch}<TVector>";
+        var matrixDispatch = namesScalar ? $"{visitorDispatch}<TMatrix, TScalar>" : $"{visitorDispatch}<TMatrix>";
         // the members of a visitor that reduces the values of its arguments return a single component of the
         // value instead of a value of the same kind
         var result = reduce ? "TScalar" : "TVector";
@@ -341,6 +367,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             sb.AppendLine("/// components of the vector it builds</para>");
             sb.AppendLine("/// </summary>");
         }
+
         if (component)
         {
             sb.AppendLine($"public interface {name}<V, TScalar>");

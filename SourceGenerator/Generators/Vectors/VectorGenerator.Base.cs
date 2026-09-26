@@ -243,12 +243,12 @@ public partial class VectorGenerator
             $"Algebras.{AlgebraIface()}<{type}, {scalar}>",
         };
         // the members that dispatch the value of the vector implement the interface of the dispatch of it, a
-        // mask does not dispatch: the members of the visitors name the number vector of a type. The dispatch
-        // that takes a component of the value beside it names the type of the component as well, a value of a
-        // number has one, so a mask stays on the interface without it
+        // mask does not dispatch: the members of the visitors name the number vector of a type. The dispatch of
+        // the kind of a number names the type of a component of the value beside it, the one of a floating
+        // point kind reaches the values of the kind of it alone, so it names the type of the value
         if (!bol)
             foreach (var family in VectorGenShared.DispatchIfaces(typ))
-                ifaces.Add($"Algebras.Generics.{family}<{type}, {scalar}>");
+                ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
         if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
         if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
         sb.AppendLine($"public partial struct {type} :");

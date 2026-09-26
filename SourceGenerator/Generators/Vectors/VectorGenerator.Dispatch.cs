@@ -59,11 +59,9 @@ public partial class VectorGenerator
         // type of a component of it again, so the value of a member of every kind is the same one
         foreach (var family in VectorGenShared.DispatchIfaces(typ))
         {
-            // the interface of a value of the kind that takes the components of it
-            var withScalar = $"Algebras.Generics.{family}<{type}, {scalar}>";
-            // the one of the value of a number of the kind has a member that takes no component of it, the one
-            // of a floating point number does not have it
-            var self = family == "INumberAlgebraDispatch" ? $"Algebras.Generics.{family}<{type}>" : withScalar;
+            // the dispatch of a value takes the values of the kind of it, so the members that take a value alone
+            // are the members of the interface that names the type of the value itself
+            var self = $"Algebras.Generics.{family}<{type}>";
 
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine("    [MethodImpl(256)]");
@@ -80,6 +78,13 @@ public partial class VectorGenerator
             sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
             sb.AppendLine($"        => {three};");
             sb.AppendLine();
+
+            // the dispatch of the kind of a number reaches the values that take a component of the value beside
+            // them as well, so it has the members that take a component and the ones that reduce a value to a
+            // single component of it, which the one of a floating point kind does not have
+            if (family != "INumberAlgebraDispatch") continue;
+            var withScalar = $"Algebras.Generics.{family}<{type}, {scalar}>";
+
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine("    [MethodImpl(256)]");
             sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b)");
