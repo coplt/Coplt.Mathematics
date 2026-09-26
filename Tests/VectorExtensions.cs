@@ -7,7 +7,7 @@ namespace Tests;
 
 /// <summary>
 /// The members of the interfaces of a vector are static, so a generic helper that only knows a type parameter
-/// calls them with the static form: <c>T.ceil(v)</c>. A helper that wants the member form on the value has
+/// calls them with the static form: <c>T.floor(v)</c>. A helper that wants the member form on the value has
 /// to take the value as the first parameter itself, which is what the members below do, they are only here
 /// because a type parameter cannot reach the member of the vector itself. The value is passed by value because
 /// the receiver of an extension method of a type parameter cannot be an <c>in</c> parameter.
@@ -21,7 +21,6 @@ internal static class VectorExtensions
 
     public static T mod<T>(this T a, in T other) where T : unmanaged, IVectorFloatingPoint<T> => T.mod(a, other);
     public static T modf<T>(this T a, out T i) where T : unmanaged, IVectorFloatingPoint<T> => T.modf(a, out i);
-    public static T ceil<T>(this T a) where T : unmanaged, IVectorFloatingPoint<T> => T.ceil(a);
     public static T floor<T>(this T a) where T : unmanaged, IVectorFloatingPoint<T> => T.floor(a);
     public static T round<T>(this T a) where T : unmanaged, IVectorFloatingPoint<T> => T.round(a);
     public static T trunc<T>(this T a) where T : unmanaged, IVectorFloatingPoint<T> => T.trunc(a);

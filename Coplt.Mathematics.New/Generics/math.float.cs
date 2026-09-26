@@ -4,7 +4,7 @@ namespace Coplt.Mathematics;
 
 // The floating point members of the vectors are members of the vector itself, a member of the math class reaches
 // them as well. The parameters of every member below are the ones of the interface of its operation in the same
-// order, which is the order of the hlsl counterpart of the operation as well: math.ceil(v) and
+// order, which is the order of the hlsl counterpart of the operation as well: math.floor(v) and
 // math.smoothstep(min, max, v). None of the members below needs the type of a single component, so they do not
 // have to name it: the compiler infers the vector type from the argument.
 // The constants of the vector (E, PI, Tau, ...) are not forwarded, a property cannot be a member of the math
@@ -31,15 +31,6 @@ public static partial class math
     /// <returns>The fractional part</returns>
     [MethodImpl(256)]
     public static T modf<T>(in T a, out T i) where T : unmanaged, IVectorFloatingPoint<T> => T.modf(a, out i);
-
-    /// <summary>
-    /// Rounds every component up to the smallest integral value that is not less than it
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The rounded vector</returns>
-    [MethodImpl(256)]
-    public static T ceil<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.ceil(a);
 
     /// <summary>
     /// Rounds every component down to the largest integral value that is not greater than it

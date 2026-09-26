@@ -36,7 +36,6 @@ public partial class VectorGenerator
 
             ('f', "{type} mod(in {type} a, in {type} b) => a.mod(b);"),
             ('f', "{type} modf(in {type} a, out {type} i) => a.modf(out i);"),
-            ('f', "{type} ceil(in {type} a) => a.ceil();"),
             ('f', "{type} floor(in {type} a) => a.floor();"),
             ('f', "{type} round(in {type} a) => a.round();"),
             ('f', "{type} trunc(in {type} a) => a.trunc();"),

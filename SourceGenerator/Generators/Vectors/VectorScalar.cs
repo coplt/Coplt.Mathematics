@@ -26,7 +26,6 @@ internal static class VectorScalar
         { "saturate", "math.saturate({0})" },
         { "mod", "math.mod({0}, {1})" },
         { "frac", "math.frac({0})" },
-        { "ceil", "math.ceil({0})" },
         { "floor", "math.floor({0})" },
         { "round", "math.round({0})" },
         { "trunc", "math.trunc({0})" },

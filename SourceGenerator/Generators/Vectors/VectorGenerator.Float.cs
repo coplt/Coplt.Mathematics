@@ -162,7 +162,7 @@ public partial class VectorGenerator
 
         #region ceil floor round trunc frac
 
-        sb.AppendLine("    #region ceil floor round trunc frac");
+        sb.AppendLine("    #region floor round trunc frac");
         sb.AppendLine();
 
         void Rounding(string name, string op)
@@ -178,7 +178,6 @@ public partial class VectorGenerator
             sb.AppendLine();
         }
 
-        Rounding("ceil", "Ceiling");
         Rounding("floor", "Floor");
         Rounding("round", "Round");
         Rounding("trunc", "Truncate");

@@ -23,7 +23,6 @@ public class TestFloatingPoint
     {
         v.mod(v);
         var r = v.modf(out var i);
-        v.ceil();
         v.floor();
         v.round();
         v.trunc();
@@ -132,7 +131,6 @@ public class TestFloatingPoint
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(v.ceil(), Is.EqualTo(new float3(2f, -1f, 3f)));
             Assert.That(v.floor(), Is.EqualTo(new float3(1f, -2f, 2f)));
             // the rounding goes to the even neighbor of a value that is exactly between two integers
             Assert.That(v.round(), Is.EqualTo(new float3(1f, -2f, 3f)));
@@ -143,7 +141,6 @@ public class TestFloatingPoint
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(d.ceil(), Is.EqualTo(new double2(2d, -1d)));
             Assert.That(d.round(), Is.EqualTo(new double2(1d, -2d)));
             Assert.That(d.trunc(), Is.EqualTo(new double2(1d, -1d)));
         }
@@ -152,7 +149,6 @@ public class TestFloatingPoint
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((float)h.ceil().x, Is.EqualTo(2f));
             Assert.That((float)h.floor().y, Is.EqualTo(-2f));
             Assert.That((float)h.round().z, Is.EqualTo(2f));
             Assert.That((float)h.trunc().y, Is.EqualTo(-1f));

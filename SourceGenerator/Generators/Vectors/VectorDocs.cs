@@ -24,7 +24,6 @@ internal static class VectorDocs
 
         { "mod", ("Returns the component wise remainder of the division of the two vectors", "The remainder", "a=The vector;b|other=The divisor") },
         { "modf", ("Splits the vector into its integral and its fractional part", "The fractional part", "a=The vector;i=Receives the integral part") },
-        { "ceil", ("Returns the smallest integer that is not less than every component", "The rounded up vector", "a=The vector") },
         { "floor", ("Returns the largest integer that is not greater than every component", "The rounded down vector", "a=The vector") },
         { "round", ("Rounds every component to the nearest integer, a value that is exactly between two of them goes to the even one", "The rounded vector", "a=The vector") },
         { "trunc", ("Returns the integral part of every component", "The truncated vector", "a=The vector") },

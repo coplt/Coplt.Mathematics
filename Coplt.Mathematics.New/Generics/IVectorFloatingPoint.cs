@@ -65,13 +65,7 @@ public interface IVectorFloatingPoint<Self> :
 
     #endregion
 
-    #region Ceil Floor Round Trunc Frac
-
-    /// <summary>
-    /// Rounds every component up to the smallest integral value that is not less than it
-    /// </summary>
-    /// <returns>The rounded vector</returns>
-    public static abstract Self ceil(in Self a);
+    #region Floor Round Trunc Frac
 
     /// <summary>
     /// Rounds every component down to the largest integral value that is not greater than it

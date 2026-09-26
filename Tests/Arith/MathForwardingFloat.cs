@@ -22,7 +22,6 @@ public class TestMathFloatForwarding
     {
         math.mod(v, v);
         math.modf(v, out var i);
-        math.ceil(v);
         math.floor(v);
         math.round(v);
         math.trunc(v);
@@ -119,7 +118,6 @@ public class TestMathFloatForwarding
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(math.ceil(new float3(1.2f, -1.2f, 2.5f)), Is.EqualTo(new float3(2f, -1f, 3f)));
             Assert.That(math.floor(new float3(1.2f, -1.2f, 2.5f)), Is.EqualTo(new float3(1f, -2f, 2f)));
             Assert.That(math.trunc(new float3(1.8f, -1.8f, 0.5f)), Is.EqualTo(new float3(1f, -1f, 0f)));
             // the fractional part is the value minus its floor, so it is never negative
