@@ -12,22 +12,35 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    # the tests run on the platform of an arm as well, the members of the library that use the simd of it are
+    # only reached there
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, ubuntu-24.04-arm ]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
+    # the projects target net10.0, so the runtime of it is the one that runs the tests
+    - name: Setup .NET 10
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: |
-          6.0.x
-          8.0.x
-          9.0.x
+        dotnet-version: '10.0.x'
+    # the sdk of the global.json is the preview of .NET 11, it is the one that builds the projects
+    - name: Setup .NET 11
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '11.0.x'
+        dotnet-quality: 'preview'
     - name: Restore dotnet tools
       run: dotnet tool restore
+    # the projects of the migration are the ones that are built and tested, the old projects of the solution
+    # are left out of the build of the ci: the test project reaches the library and the generator of it
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore Tests/Tests.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build Tests/Tests.csproj --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test Tests/Tests.csproj --no-build --verbosity normal
