@@ -65,47 +65,13 @@ public interface IVectorFloatingPoint<Self> :
 
     #endregion
 
-    #region Floor Round Trunc Frac
-
-    /// <summary>
-    /// Rounds every component down to the largest integral value that is not greater than it
-    /// </summary>
-    /// <returns>The rounded vector</returns>
-    public static abstract Self floor(in Self a);
-
-    /// <summary>
-    /// Rounds every component to the nearest integral value
-    /// </summary>
-    /// <returns>The rounded vector</returns>
-    public static abstract Self round(in Self a);
-
-    /// <summary>
-    /// Rounds every component towards zero
-    /// </summary>
-    /// <returns>The rounded vector</returns>
-    public static abstract Self trunc(in Self a);
-
-    /// <summary>
-    /// Returns the fractional part of every component, it is the same as <c>mod(1)</c>
-    /// </summary>
-    /// <returns>The fractional part</returns>
-    public static abstract Self frac(in Self a);
-
-    #endregion
-
-    #region Rcp Saturate SmoothStep Reflect
+    #region Rcp SmoothStep Reflect
 
     /// <summary>
     /// Returns the reciprocal of every component, it is the same as <c>1 / self</c>
     /// </summary>
     /// <returns>The reciprocal</returns>
     public static abstract Self rcp(in Self a);
-
-    /// <summary>
-    /// Clamps every component to the range 0 to 1
-    /// </summary>
-    /// <returns>The clamped vector</returns>
-    public static abstract Self saturate(in Self a);
 
     /// <summary>
     /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, <paramref name="a"/> is

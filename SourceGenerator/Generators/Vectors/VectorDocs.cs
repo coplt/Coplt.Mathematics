@@ -24,12 +24,7 @@ internal static class VectorDocs
 
         { "mod", ("Returns the component wise remainder of the division of the two vectors", "The remainder", "a=The vector;b|other=The divisor") },
         { "modf", ("Splits the vector into its integral and its fractional part", "The fractional part", "a=The vector;i=Receives the integral part") },
-        { "floor", ("Returns the largest integer that is not greater than every component", "The rounded down vector", "a=The vector") },
-        { "round", ("Rounds every component to the nearest integer, a value that is exactly between two of them goes to the even one", "The rounded vector", "a=The vector") },
-        { "trunc", ("Returns the integral part of every component", "The truncated vector", "a=The vector") },
-        { "frac", ("Returns the fractional part of every component", "The fractional part of the vector", "a=The vector") },
         { "rcp", ("Returns the reciprocal of every component", "The reciprocal of the vector", "a=The vector") },
-        { "saturate", ("Clamps every component into the range of zero and one", "The saturated vector", "a=The vector") },
         {
             "smoothstep",
             ("Interpolates smoothly between <c>min</c> and <c>max</c>, the result is 0 below the minimum, 1 above the maximum and a smooth hermite curve in between",

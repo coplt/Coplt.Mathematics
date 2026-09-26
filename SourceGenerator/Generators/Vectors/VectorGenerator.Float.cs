@@ -150,7 +150,7 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} modf(out {type} i)");
         sb.AppendLine("    {");
-        sb.AppendLine("        i = trunc();");
+        sb.AppendLine("        i = math.trunc(this);");
         sb.AppendLine("        return this - i;");
         sb.AppendLine("    }");
         sb.AppendLine();
@@ -160,46 +160,9 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region ceil floor round trunc frac
+        #region rcp smoothstep reflect
 
-        sb.AppendLine("    #region floor round trunc frac");
-        sb.AppendLine();
-
-        void Rounding(string name, string op)
-        {
-            InheritDoc();
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public readonly {type} {name}()");
-            sb.AppendLine("    {");
-            EmitAccel($"return {FromVector($"{vecName}.{op}(vector)")};",
-                $"return {From128($"Vector128.{op}({Load64("")})")};",
-                $"return {NewCompWise(n => VectorScalar.Expr(scalar, name, comp[n]))};");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-        }
-
-        Rounding("floor", "Floor");
-        Rounding("round", "Round");
-        Rounding("trunc", "Truncate");
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} frac()");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector($"vector - {vecName}.Floor(vector)")};",
-            $"return {From128($"{Load64("")} - Vector128.Floor({Load64("")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "frac", comp[n]))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region rcp saturate smoothstep reflect
-
-        sb.AppendLine("    #region rcp saturate smoothstep reflect");
+        sb.AppendLine("    #region rcp smoothstep reflect");
         sb.AppendLine();
 
         InheritDoc();
@@ -216,14 +179,9 @@ public partial class VectorGenerator
         // the vector is clamped into the range of zero and one, the clamp carries the simd fast path itself
         InheritDoc();
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} saturate() => math.clamp(this, default, {type}.One);");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} smoothstep(in {type} min, in {type} max)");
         sb.AppendLine("    {");
-        sb.AppendLine("        var t = ((this - min) / (max - min)).saturate();");
+        sb.AppendLine("        var t = math.saturate((this - min) / (max - min));");
         // (3 - (2 * t)) is the hermite curve of the interpolation, it is fused by the fma helper
         sb.AppendLine($"        return t * t * math.fnma(new {type}({Lit("2")}), t, new {type}({Lit("3")}));");
         sb.AppendLine("    }");

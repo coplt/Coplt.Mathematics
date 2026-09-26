@@ -22,12 +22,7 @@ public class TestMathFloatForwarding
     {
         math.mod(v, v);
         math.modf(v, out var i);
-        math.floor(v);
-        math.round(v);
-        math.trunc(v);
-        math.frac(v);
         math.rcp(v);
-        math.saturate(v);
         math.smoothstep(v, v, v);
         math.reflect(v, v);
         math.project(v, v);
@@ -118,11 +113,6 @@ public class TestMathFloatForwarding
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(math.floor(new float3(1.2f, -1.2f, 2.5f)), Is.EqualTo(new float3(1f, -2f, 2f)));
-            Assert.That(math.trunc(new float3(1.8f, -1.8f, 0.5f)), Is.EqualTo(new float3(1f, -1f, 0f)));
-            // the fractional part is the value minus its floor, so it is never negative
-            Assert.That(math.frac(new float3(1.25f, -1.25f, 0.5f)), Is.EqualTo(new float3(0.25f, 0.75f, 0.5f)));
-            Assert.That(math.saturate(new float3(-1f, 0.5f, 2f)), Is.EqualTo(new float3(0f, 0.5f, 1f)));
             Assert.That(math.wrap(new float3(1.5f), new float3(0f), new float3(1f)), Is.EqualTo(new float3(0.5f)));
             // the bounds of the wrap that are the same for every component infer their type from the argument
             Assert.That(math.wrap(new float3(1.5f), 0f, 1f), Is.EqualTo(new float3(0.5f)));

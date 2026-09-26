@@ -36,12 +36,7 @@ public partial class VectorGenerator
 
             ('f', "{type} mod(in {type} a, in {type} b) => a.mod(b);"),
             ('f', "{type} modf(in {type} a, out {type} i) => a.modf(out i);"),
-            ('f', "{type} floor(in {type} a) => a.floor();"),
-            ('f', "{type} round(in {type} a) => a.round();"),
-            ('f', "{type} trunc(in {type} a) => a.trunc();"),
-            ('f', "{type} frac(in {type} a) => a.frac();"),
             ('f', "{type} rcp(in {type} a) => a.rcp();"),
-            ('f', "{type} saturate(in {type} a) => a.saturate();"),
             // the legacy form of the interpolation between the two bounds puts the value last
             ('f', "{type} smoothstep(in {type} min, in {type} max, in {type} a) => a.smoothstep(min, max);"),
             ('f', "{type} reflect(in {type} a, in {type} n) => a.reflect(n);"),

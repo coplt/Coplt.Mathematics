@@ -7,9 +7,9 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The floating point members of a vector implement <c>IVectorFloatingPoint</c>: the constants of the component
-/// type, the rounding, the split of a value into its integral and its fractional part, the reciprocal, the
-/// saturation, the smooth interpolation between two bounds, the reflection around a normal, the projections, the
-/// angle conversions and the two sided wrap. The members of a simd vector keep the padding lanes of it at zero.
+/// type, the split of a value into its integral and its fractional part, the reciprocal, the saturation, the
+/// smooth interpolation between two bounds, the reflection around a normal, the projections, the angle
+/// conversions and the two sided wrap. The members of a simd vector keep the padding lanes of it at zero.
 /// </summary>
 public class TestFloatingPoint
 {
@@ -23,12 +23,7 @@ public class TestFloatingPoint
     {
         v.mod(v);
         var r = v.modf(out var i);
-        v.floor();
-        v.round();
-        v.trunc();
-        v.frac();
         v.rcp();
-        v.saturate();
         v.smoothstep(v, v);
         v.reflect(v);
         v.project(v);
@@ -48,8 +43,7 @@ public class TestFloatingPoint
         _ = T.RadToDeg;
         _ = T.DegToRad;
 
-        // the integral part of a value is its truncation and the fraction is what is left of it
-        Assert.That(i, Is.EqualTo(v.trunc()));
+        // the fraction of a value and the integral part of it add up to the value
         Assert.That(r + i, Is.EqualTo(v));
     }
 
@@ -125,49 +119,17 @@ public class TestFloatingPoint
     }
 
     [Test]
-    public void Rounding()
-    {
-        var v = new float3(1.4f, -1.5f, 2.6f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(v.floor(), Is.EqualTo(new float3(1f, -2f, 2f)));
-            // the rounding goes to the even neighbor of a value that is exactly between two integers
-            Assert.That(v.round(), Is.EqualTo(new float3(1f, -2f, 3f)));
-            Assert.That(v.trunc(), Is.EqualTo(new float3(1f, -1f, 2f)));
-        }
-
-        var d = new double2(1.4, -1.5);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(d.round(), Is.EqualTo(new double2(1d, -2d)));
-            Assert.That(d.trunc(), Is.EqualTo(new double2(1d, -1d)));
-        }
-
-        var h = new half3((half)1.5f, (half)(-1.5f), (half)2.5f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((float)h.floor().y, Is.EqualTo(-2f));
-            Assert.That((float)h.round().z, Is.EqualTo(2f));
-            Assert.That((float)h.trunc().y, Is.EqualTo(-1f));
-        }
-    }
-
-    [Test]
-    public void FracModModf()
+    public void ModModf()
     {
         var v = new float3(1.25f, -1.25f, 2f);
 
         using (Assert.EnterMultipleScope())
         {
-            // every member of the group is kept, the fraction of a value is the value above its floor
-            Assert.That(v.frac(), Is.EqualTo(new float3(0.25f, 0.75f, 0f)));
+            // the remainder of a value by one is the value of it above its floor, so it is the fraction of it
             Assert.That(v.mod(new float3(1f, 1f, 1f)), Is.EqualTo(new float3(0.25f, 0.75f, 0f)));
             Assert.That(v.mod(new float3(0.5f, 0.5f, 0.5f)), Is.EqualTo(new float3(0.25f, 0.25f, 0f)));
 
-            // the integral part of a value is its truncation, the fraction is the value above it
+            // the integral part of a value is its truncation
             var r = v.modf(out var i);
             Assert.That(r, Is.EqualTo(new float3(0.25f, -0.25f, 0f)));
             Assert.That(i, Is.EqualTo(new float3(1f, -1f, 2f)));
@@ -177,7 +139,6 @@ public class TestFloatingPoint
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(d.frac(), Is.EqualTo(new double2(0.75, 0.25)));
             var r = d.modf(out var i);
             Assert.That(r, Is.EqualTo(new double2(0.75, -0.75)));
             Assert.That(i, Is.EqualTo(new double2(2, -2)));
@@ -185,7 +146,7 @@ public class TestFloatingPoint
     }
 
     [Test]
-    public void RcpSaturate()
+    public void Rcp()
     {
         var v = new float3(4f, 0.5f, -2f);
         var r = v.rcp();
@@ -197,9 +158,6 @@ public class TestFloatingPoint
             Assert.That(r.x, Is.EqualTo(0.25f).Within(0.01f));
             Assert.That(r.y, Is.EqualTo(2f).Within(0.01f));
             Assert.That(r.z, Is.EqualTo(-0.5f).Within(0.01f));
-
-            Assert.That(new float3(-1f, 0.5f, 2f).saturate(), Is.EqualTo(new float3(0f, 0.5f, 1f)));
-            Assert.That(new double2(-1, 0.5).saturate(), Is.EqualTo(new double2(0, 0.5)));
         }
     }
 

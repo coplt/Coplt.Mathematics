@@ -4,7 +4,7 @@ namespace Coplt.Mathematics;
 
 // The floating point members of the vectors are members of the vector itself, a member of the math class reaches
 // them as well. The parameters of every member below are the ones of the interface of its operation in the same
-// order, which is the order of the hlsl counterpart of the operation as well: math.floor(v) and
+// order, which is the order of the hlsl counterpart of the operation as well: math.rcp(v) and
 // math.smoothstep(min, max, v). None of the members below needs the type of a single component, so they do not
 // have to name it: the compiler infers the vector type from the argument.
 // The constants of the vector (E, PI, Tau, ...) are not forwarded, a property cannot be a member of the math
@@ -33,42 +33,6 @@ public static partial class math
     public static T modf<T>(in T a, out T i) where T : unmanaged, IVectorFloatingPoint<T> => T.modf(a, out i);
 
     /// <summary>
-    /// Rounds every component down to the largest integral value that is not greater than it
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The rounded vector</returns>
-    [MethodImpl(256)]
-    public static T floor<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.floor(a);
-
-    /// <summary>
-    /// Rounds every component to the nearest integral value
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The rounded vector</returns>
-    [MethodImpl(256)]
-    public static T round<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.round(a);
-
-    /// <summary>
-    /// Rounds every component towards zero
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The rounded vector</returns>
-    [MethodImpl(256)]
-    public static T trunc<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.trunc(a);
-
-    /// <summary>
-    /// Returns the fractional part of every component, it is the same as <c>mod(1)</c>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The fractional part</returns>
-    [MethodImpl(256)]
-    public static T frac<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.frac(a);
-
-    /// <summary>
     /// Returns the reciprocal of every component, it is the same as <c>1 / self</c>
     /// </summary>
     /// <param name="a">The vector</param>
@@ -76,16 +40,7 @@ public static partial class math
     /// <returns>The reciprocal</returns>
     [MethodImpl(256)]
     public static T rcp<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.rcp(a);
-
-    /// <summary>
-    /// Clamps every component to the range 0 to 1
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The clamped vector</returns>
-    [MethodImpl(256)]
-    public static T saturate<T>(in T a) where T : unmanaged, IVectorFloatingPoint<T> => T.saturate(a);
-
+    
     /// <summary>
     /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, <paramref name="a"/> is
     /// the value
