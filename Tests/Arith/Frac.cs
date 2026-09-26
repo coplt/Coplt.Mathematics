@@ -87,7 +87,7 @@ public class TestFrac
             // the fraction of a value is the value of it above its floor, so it is the remainder of the division
             // of the value by one as well
             var v = new float3(1.25f, -1.25f, 2.5f);
-            Assert.That(math.frac(v), Is.EqualTo(math.mod(v, new float3(1f))));
+            Assert.That(math.frac(v), Is.EqualTo(math.fmod(v, new float3(1f))));
             // the fraction of a component that is negative is the value of it above the floor, so it is never
             // negative
             Assert.That(math.frac(new float3(-1.25f, -0.5f, -2f)).z, Is.EqualTo(0f));

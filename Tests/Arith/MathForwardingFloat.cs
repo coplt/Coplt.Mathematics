@@ -20,8 +20,6 @@ public class TestMathFloatForwarding
     private static void Check<T>(T v)
         where T : unmanaged, IVectorFloatingPoint<T>
     {
-        math.mod(v, v);
-        math.modf(v, out var i);
         math.smoothstep(v, v, v);
         math.reflect(v, v);
         math.project(v, v);

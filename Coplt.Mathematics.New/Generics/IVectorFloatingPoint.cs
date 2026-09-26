@@ -44,27 +44,6 @@ public interface IVectorFloatingPoint<Self> :
 
     #endregion
 
-    #region Mod Modf
-
-    /// <summary>
-    /// Returns the component wise remainder of the division of the two vectors
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The divisor</param>
-    /// <returns>The remainder</returns>
-    public static abstract Self mod(in Self a, in Self b);
-
-    /// <summary>
-    /// Splits the vector into its integral and its fractional part
-    /// <para>It returns the fractional part and stores the integral part into <paramref name="i"/></para>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="i">Receives the integral part</param>
-    /// <returns>The fractional part</returns>
-    public static abstract Self modf(in Self a, out Self i);
-
-    #endregion
-
     #region SmoothStep Reflect
 
     /// <summary>

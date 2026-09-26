@@ -141,18 +141,17 @@ internal static class VectorGenShared
 
     /// <summary>
     /// Returns the names of the interfaces of the dispatch of the kind of a value in the algebra library: the one
-    /// of a number beside the ones of the floating point kinds of it, which are the ones of the standard the
-    /// component type names and the one of a floating point number that does not name it.
+    /// of a number beside the ones of the two floating point kinds of it, which are the one of a floating point
+    /// number and the one of the kind the ieee 754 standard names, which every floating point type of the
+    /// library names, a half as well.
     /// </summary>
     /// <param name="typ">The type of the component of the value</param>
     /// <returns>The names of the interfaces of the dispatch</returns>
     public static string[] DispatchIfaces(Typ typ) => typ.f
-        ? typ.name == "half"
-            ? new[] { "INumberAlgebraDispatch", "IFloatingPointAlgebraDispatch" }
-            : new[]
-            {
-                "INumberAlgebraDispatch", "IFloatingPointAlgebraDispatch", "IFloatingPointIeee754AlgebraDispatch",
-            }
+        ? new[]
+        {
+            "INumberAlgebraDispatch", "IFloatingPointAlgebraDispatch", "IFloatingPointIeee754AlgebraDispatch",
+        }
         : new[] { "INumberAlgebraDispatch" };
 
     /// <summary>

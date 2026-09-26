@@ -111,7 +111,7 @@ public class MatrixGenerator : IIncrementalGenerator
             $"Algebras.IMatrix<{type}>",
             $"Algebras.IMatrixScalar<{type}, {scalar}>",
             $"Algebras.IMatrixVector<{type}, {col}>",
-            $"Algebras.{(bol ? "IBoolMatrix" : typ.f ? typ.name == "half" ? "IFloatingPointMatrix" : "IFloatingPointIeee754Matrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>",
+            $"Algebras.{(bol ? "IBoolMatrix" : typ.f ? "IFloatingPointIeee754Matrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>",
             $"Algebras.IMatrix{shape}<{type}>",
             $"Algebras.IMatrix{shape}Vector<{type}, {col}>",
             $"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>",
@@ -364,10 +364,9 @@ public class MatrixGenerator : IIncrementalGenerator
         // component of it is the constant, which is the one of every column of it
         if (!bol && typ.f)
         {
-            // the constants of the standard are the ones of a component type that names the standard itself
-            var consts = typ.name == "half"
-                ? VectorGenerator.FloatConsts.Select(c => c.Name)
-                : VectorGenerator.FloatConsts.Select(c => c.Name).Concat(VectorGenerator.IeeeConsts);
+            // the constants of the kind of a floating point number and the ones of the kind the ieee 754
+            // standard names, which every floating point type of the library names
+            var consts = VectorGenerator.FloatConsts.Select(c => c.Name).Concat(VectorGenerator.IeeeConsts);
             foreach (var name in consts)
             {
                 Prop($"The {name} of the component type of the matrix", $"public static {scalar} Scalar{name}",

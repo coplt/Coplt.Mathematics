@@ -22,8 +22,6 @@ internal static class VectorDocs
     {
         #region IVectorFloatingPoint
 
-        { "mod", ("Returns the component wise remainder of the division of the two vectors", "The remainder", "a=The vector;b|other=The divisor") },
-        { "modf", ("Splits the vector into its integral and its fractional part", "The fractional part", "a=The vector;i=Receives the integral part") },
         {
             "smoothstep",
             ("Interpolates smoothly between <c>min</c> and <c>max</c>, the result is 0 below the minimum, 1 above the maximum and a smooth hermite curve in between",

@@ -48,35 +48,6 @@ public class TestFloatingPointAlgebra
         _ = T.Broadcast(T.ScalarPI);
     }
 
-    /// <summary>
-    /// The constants of a half are the ones of a floating point number that does not name the standard itself,
-    /// so it reaches the ones of the kind of it alone.
-    /// </summary>
-    private static void CheckFloatingPointVector<T, TScalar>(T v)
-        where T : unmanaged, IFloatingPointVector<T, TScalar>, IFloatingPointAlgebraDispatch<T>
-        where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPoint<TScalar>
-    {
-        _ = T.E / T.PI;
-        _ = T.Log2 + T.Log10 + T.Tau + T.RadToDeg + T.DegToRad;
-        _ = T.ScalarE / T.ScalarPI;
-        _ = T.ScalarLog2 + T.ScalarLog10 + T.ScalarTau + T.ScalarRadToDeg + T.ScalarDegToRad;
-        _ = v + T.PI;
-        _ = T.Broadcast(T.ScalarE);
-    }
-
-    /// <inheritdoc cref="CheckFloatingPointVector{T,TScalar}(T)"/>
-    private static void CheckFloatingPointMatrix<T, TScalar>(T m)
-        where T : unmanaged, IFloatingPointMatrix<T, TScalar>, IFloatingPointAlgebraDispatch<T>
-        where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPoint<TScalar>
-    {
-        _ = T.E / T.PI;
-        _ = T.Log2 + T.Log10 + T.Tau + T.RadToDeg + T.DegToRad;
-        _ = T.ScalarE / T.ScalarPI;
-        _ = T.ScalarLog2 + T.ScalarLog10 + T.ScalarTau + T.ScalarRadToDeg + T.ScalarDegToRad;
-        _ = m + T.PI;
-        _ = T.Broadcast(T.ScalarE);
-    }
-
     [Test]
     public void Interfaces()
     {
@@ -86,11 +57,13 @@ public class TestFloatingPointAlgebra
         CheckIeee754Matrix<float3x2, float>(new float3x2(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f)));
         CheckIeee754Matrix<float2x2s, float>(new float2x2s(new float2s(1f, 2f), new float2s(3f, 4f)));
         CheckIeee754Matrix<double2x2, double>(new double2x2(new double2(1d, 2d), new double2(3d, 4d)));
-        CheckFloatingPointVector<half3, Half>(new half3((half)1f, (half)2f, (half)3f));
-        CheckFloatingPointVector<half4, Half>(new half4((half)1f, (half)2f, (half)3f, (half)4f));
-        CheckFloatingPointMatrix<half2x2, Half>(new half2x2(new half2((half)1f, (half)2f),
+        // a half is a floating point number the ieee 754 standard names as well, so a value of half components
+        // names the kind of the standard beside the one of a floating point number
+        CheckIeee754Vector<half3, Half>(new half3((half)1f, (half)2f, (half)3f));
+        CheckIeee754Vector<half4, Half>(new half4((half)1f, (half)2f, (half)3f, (half)4f));
+        CheckIeee754Matrix<half2x2, Half>(new half2x2(new half2((half)1f, (half)2f),
             new half2((half)3f, (half)4f)));
-        CheckFloatingPointMatrix<half3x3, Half>(new half3x3(new half3((half)1f, (half)2f, (half)3f),
+        CheckIeee754Matrix<half3x3, Half>(new half3x3(new half3((half)1f, (half)2f, (half)3f),
             new half3((half)4f, (half)5f, (half)6f), new half3((half)7f, (half)8f, (half)9f)));
     }
 

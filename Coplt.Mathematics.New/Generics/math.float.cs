@@ -13,27 +13,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns the component wise remainder of the division of the two vectors
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The divisor</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The remainder</returns>
-    [MethodImpl(256)]
-    public static T mod<T>(in T a, in T b) where T : unmanaged, IVectorFloatingPoint<T> => T.mod(a, b);
-
-    /// <summary>
-    /// Splits the vector into its integral and its fractional part
-    /// <para>It returns the fractional part and stores the integral part into <paramref name="i"/></para>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="i">Receives the integral part</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The fractional part</returns>
-    [MethodImpl(256)]
-    public static T modf<T>(in T a, out T i) where T : unmanaged, IVectorFloatingPoint<T> => T.modf(a, out i);
-    
-    /// <summary>
     /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, <paramref name="a"/> is
     /// the value
     /// <para>The result is 0 when the value is below the minimum, 1 when it is above the maximum and a smooth

@@ -181,8 +181,8 @@ public class TestDynamicVector
             Assert.That(CountVisit<double2x4>(), Is.EqualTo(11));
             Assert.That(CountVisit<float2x2>(), Is.EqualTo(11));
             Assert.That(CountVisit<float3x2>(), Is.EqualTo(11));
-            Assert.That(CountVisit<half2>(), Is.EqualTo(8));
-            Assert.That(CountVisit<half2x2>(), Is.EqualTo(8));
+            Assert.That(CountVisit<half2>(), Is.EqualTo(11));
+            Assert.That(CountVisit<half2x2>(), Is.EqualTo(11));
             Assert.That(CountVisit<int2>(), Is.EqualTo(5));
             Assert.That(CountVisit<b32v2>(), Is.EqualTo(0));
             Assert.That(CountVisit<b16m2x2>(), Is.EqualTo(0));

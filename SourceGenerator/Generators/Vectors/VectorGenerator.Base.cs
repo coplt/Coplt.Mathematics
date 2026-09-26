@@ -103,11 +103,11 @@ public partial class VectorGenerator
         void InheritDoc() => sb.AppendLine("    /// <inheritdoc/>");
 
         // the name of the interface of the kind of the vector in the algebra library, the one of the ieee 754
-        // standard is the one of a floating point number whose type names the standard itself
+        // standard is the one of every floating point type of the library, a half as well
         string AlgebraIface() => bol
             ? "IBoolVector"
             : typ.f
-                ? typ.name == "half" ? "IFloatingPointVector" : "IFloatingPointIeee754Vector"
+                ? "IFloatingPointIeee754Vector"
                 : typ.sig
                     ? "ISignedNumberVector"
                     : "INumberVector";

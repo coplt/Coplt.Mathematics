@@ -21,8 +21,6 @@ public class TestFloatingPoint
         where T : unmanaged, IVectorFloatingPoint<T, TScalar>
         where TScalar : unmanaged
     {
-        v.mod(v);
-        var r = v.modf(out var i);
         v.smoothstep(v, v);
         v.reflect(v);
         v.project(v);
@@ -41,9 +39,6 @@ public class TestFloatingPoint
         _ = T.Tau;
         _ = T.RadToDeg;
         _ = T.DegToRad;
-
-        // the fraction of a value and the integral part of it add up to the value
-        Assert.That(r + i, Is.EqualTo(v));
     }
 
     [Test]
@@ -114,33 +109,6 @@ public class TestFloatingPoint
 
             Assert.That((float)half3.E.x, Is.EqualTo((float)(half)Coplt.Mathematics.math.F_E));
             Assert.That((float)half3.PI.x, Is.EqualTo((float)(half)Coplt.Mathematics.math.F_PI));
-        }
-    }
-
-    [Test]
-    public void ModModf()
-    {
-        var v = new float3(1.25f, -1.25f, 2f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            // the remainder of a value by one is the value of it above its floor, so it is the fraction of it
-            Assert.That(v.mod(new float3(1f, 1f, 1f)), Is.EqualTo(new float3(0.25f, 0.75f, 0f)));
-            Assert.That(v.mod(new float3(0.5f, 0.5f, 0.5f)), Is.EqualTo(new float3(0.25f, 0.25f, 0f)));
-
-            // the integral part of a value is its truncation
-            var r = v.modf(out var i);
-            Assert.That(r, Is.EqualTo(new float3(0.25f, -0.25f, 0f)));
-            Assert.That(i, Is.EqualTo(new float3(1f, -1f, 2f)));
-        }
-
-        var d = new double2(2.75, -2.75);
-
-        using (Assert.EnterMultipleScope())
-        {
-            var r = d.modf(out var i);
-            Assert.That(r, Is.EqualTo(new double2(0.75, -0.75)));
-            Assert.That(i, Is.EqualTo(new double2(2, -2)));
         }
     }
 
@@ -235,7 +203,7 @@ public class TestFloatingPoint
             Assert.That(v.ceil(), Is.EqualTo(new float3s(2f, -1f, 3f)));
             Assert.That(v.trunc(), Is.EqualTo(new float3s(1f, -1f, 2f)));
             Assert.That(v.frac().y, Is.EqualTo(0.5f));
-            Assert.That(v.mod(new float3s(1f, 1f, 1f)).z, Is.EqualTo(0.6f).Within(1e-6f));
+            Assert.That(math.fmod(v, new float3s(1f, 1f, 1f)).z, Is.EqualTo(0.6f).Within(1e-6f));
             Assert.That(v.wrap(0f, 1f).x, Is.EqualTo(0.4f).Within(1e-6f));
         }
 
@@ -275,7 +243,7 @@ public class TestFloatingPoint
             Assert.That(v.round().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.trunc().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.frac().vector.GetElement(3), Is.EqualTo(0f));
-            Assert.That(v.mod(v).vector.GetElement(3), Is.EqualTo(0f));
+            Assert.That(math.fmod(v, v).vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.rcp().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.saturate().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.wrap(v, v).vector.GetElement(3), Is.EqualTo(0f));
@@ -288,7 +256,7 @@ public class TestFloatingPoint
         {
             Assert.That(n.ceil().vector.GetElement(2), Is.EqualTo(0f));
             Assert.That(n.ceil().vector.GetElement(3), Is.EqualTo(0f));
-            Assert.That(n.mod(n).vector.GetElement(2), Is.EqualTo(0f));
+            Assert.That(math.fmod(n, n).vector.GetElement(2), Is.EqualTo(0f));
             Assert.That(n.rcp().vector.GetElement(2), Is.EqualTo(0f));
             Assert.That(n.rcp().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(n.wrap(n, n).vector.GetElement(2), Is.EqualTo(0f));

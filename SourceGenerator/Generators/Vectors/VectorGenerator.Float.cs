@@ -129,37 +129,6 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region mod modf
-
-        sb.AppendLine("    #region mod modf");
-        sb.AppendLine();
-
-        // the modulo of the library truncates the quotient towards zero on both the simd path and the scalar one
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} mod(in {type} other)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector("simd.Mod(vector, other.vector)", true)};",
-            $"return {From128($"simd.Mod({Load64("")}, {Load64("other.")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "mod", comp[n], $"other.{comp[n]}"))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        // the integral part of a value is its truncation, the fractional part is what is left of it
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} modf(out {type} i)");
-        sb.AppendLine("    {");
-        sb.AppendLine("        i = math.trunc(this);");
-        sb.AppendLine("        return this - i;");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
         #region smoothstep reflect
 
         sb.AppendLine("    #region smoothstep reflect");

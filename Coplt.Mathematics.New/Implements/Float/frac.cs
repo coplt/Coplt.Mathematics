@@ -5,7 +5,8 @@ namespace Coplt.Mathematics
     public static partial class math
     {
         /// <summary>
-        /// Returns the fractional part of every component, it is the same as <c>mod(1)</c>
+        /// Returns the fractional part of every component, it is the same as the remainder of the division of the
+        /// component by one
         /// </summary>
         /// <param name="value">The value</param>
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>

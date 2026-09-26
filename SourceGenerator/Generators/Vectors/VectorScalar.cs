@@ -23,7 +23,6 @@ internal static class VectorScalar
         { "min", "math.min({0}, {1})" },
         { "max", "math.max({0}, {1})" },
         { "clamp", "math.clamp({0}, {1}, {2})" },
-        { "mod", "math.mod({0}, {1})" },
         { "sqrt", "math.sqrt({0})" },
         { "rsqrt", "math.rsqrt({0})" },
         { "log", "math.log({0})" },
