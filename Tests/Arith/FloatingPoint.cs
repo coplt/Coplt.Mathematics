@@ -23,7 +23,6 @@ public class TestFloatingPoint
     {
         v.mod(v);
         var r = v.modf(out var i);
-        v.rcp();
         v.smoothstep(v, v);
         v.reflect(v);
         v.project(v);
@@ -142,22 +141,6 @@ public class TestFloatingPoint
             var r = d.modf(out var i);
             Assert.That(r, Is.EqualTo(new double2(0.75, -0.75)));
             Assert.That(i, Is.EqualTo(new double2(2, -2)));
-        }
-    }
-
-    [Test]
-    public void Rcp()
-    {
-        var v = new float3(4f, 0.5f, -2f);
-        var r = v.rcp();
-
-        using (Assert.EnterMultipleScope())
-        {
-            // the reciprocal is the hardware estimate, it is not exact: the estimate of the arm platform is
-            // the loose one of the two, so the tolerance leaves room for it
-            Assert.That(r.x, Is.EqualTo(0.25f).Within(0.01f));
-            Assert.That(r.y, Is.EqualTo(2f).Within(0.01f));
-            Assert.That(r.z, Is.EqualTo(-0.5f).Within(0.01f));
         }
     }
 

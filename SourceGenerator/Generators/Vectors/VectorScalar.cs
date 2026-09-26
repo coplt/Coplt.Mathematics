@@ -24,7 +24,6 @@ internal static class VectorScalar
         { "max", "math.max({0}, {1})" },
         { "clamp", "math.clamp({0}, {1}, {2})" },
         { "mod", "math.mod({0}, {1})" },
-        { "rcp", "math.rcp({0})" },
         { "sqrt", "math.sqrt({0})" },
         { "rsqrt", "math.rsqrt({0})" },
         { "log", "math.log({0})" },

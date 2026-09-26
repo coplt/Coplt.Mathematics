@@ -36,7 +36,6 @@ public partial class VectorGenerator
 
             ('f', "{type} mod(in {type} a, in {type} b) => a.mod(b);"),
             ('f', "{type} modf(in {type} a, out {type} i) => a.modf(out i);"),
-            ('f', "{type} rcp(in {type} a) => a.rcp();"),
             // the legacy form of the interpolation between the two bounds puts the value last
             ('f', "{type} smoothstep(in {type} min, in {type} max, in {type} a) => a.smoothstep(min, max);"),
             ('f', "{type} reflect(in {type} a, in {type} n) => a.reflect(n);"),

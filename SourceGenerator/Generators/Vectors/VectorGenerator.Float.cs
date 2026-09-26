@@ -160,20 +160,9 @@ public partial class VectorGenerator
 
         #endregion
 
-        #region rcp smoothstep reflect
+        #region smoothstep reflect
 
-        sb.AppendLine("    #region rcp smoothstep reflect");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} rcp()");
-        sb.AppendLine("    {");
-        // the reciprocal of the zero padding lane is an infinity, the mask keeps it at zero
-        EmitAccel($"return {FromVector("simd.Rcp(vector)", true)};",
-            $"return {From128($"simd.Rcp({Load64("")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "rcp", comp[n]))};");
-        sb.AppendLine("    }");
+        sb.AppendLine("    #region smoothstep reflect");
         sb.AppendLine();
 
         // the vector is clamped into the range of zero and one, the clamp carries the simd fast path itself

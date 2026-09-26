@@ -65,13 +65,7 @@ public interface IVectorFloatingPoint<Self> :
 
     #endregion
 
-    #region Rcp SmoothStep Reflect
-
-    /// <summary>
-    /// Returns the reciprocal of every component, it is the same as <c>1 / self</c>
-    /// </summary>
-    /// <returns>The reciprocal</returns>
-    public static abstract Self rcp(in Self a);
+    #region SmoothStep Reflect
 
     /// <summary>
     /// Interpolates smoothly between <paramref name="min"/> and <paramref name="max"/>, <paramref name="a"/> is

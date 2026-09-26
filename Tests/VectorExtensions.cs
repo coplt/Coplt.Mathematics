@@ -21,7 +21,6 @@ internal static class VectorExtensions
 
     public static T mod<T>(this T a, in T other) where T : unmanaged, IVectorFloatingPoint<T> => T.mod(a, other);
     public static T modf<T>(this T a, out T i) where T : unmanaged, IVectorFloatingPoint<T> => T.modf(a, out i);
-    public static T rcp<T>(this T a) where T : unmanaged, IVectorFloatingPoint<T> => T.rcp(a);
 
     public static T smoothstep<T>(this T a, in T min, in T max) where T : unmanaged, IVectorFloatingPoint<T> =>
         T.smoothstep(min, max, a);

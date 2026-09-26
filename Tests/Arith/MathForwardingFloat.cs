@@ -22,7 +22,6 @@ public class TestMathFloatForwarding
     {
         math.mod(v, v);
         math.modf(v, out var i);
-        math.rcp(v);
         math.smoothstep(v, v, v);
         math.reflect(v, v);
         math.project(v, v);
