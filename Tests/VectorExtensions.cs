@@ -19,7 +19,6 @@ internal static class VectorExtensions
 {
     #region IVectorFloatingPoint
 
-    public static T reflect<T>(this T a, in T n) where T : unmanaged, IVectorFloatingPoint<T> => T.reflect(a, n);
     public static T project<T>(this T a, in T onto) where T : unmanaged, IVectorFloatingPoint<T> => T.project(a, onto);
 
     public static T project_on_plane<T>(this T a, in T plane_normal) where T : unmanaged, IVectorFloatingPoint<T> =>

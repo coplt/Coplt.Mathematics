@@ -44,19 +44,6 @@ public interface IVectorFloatingPoint<Self> :
 
     #endregion
 
-    #region Reflect
-
-    /// <summary>
-    /// Returns <paramref name="a"/> reflected around the normal <paramref name="n"/>
-    /// <para><paramref name="n"/> <b>has to be</b> normalized</para>
-    /// </summary>
-    /// <param name="a">The vector to reflect</param>
-    /// <param name="n">The normalized normal of the surface</param>
-    /// <returns>The reflected vector</returns>
-    public static abstract Self reflect(in Self a, in Self n);
-
-    #endregion
-
     #region Project
 
     /// <summary>

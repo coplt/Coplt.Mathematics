@@ -7,8 +7,8 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The floating point members of a vector implement <c>IVectorFloatingPoint</c>: the constants of the component
-/// type, the reflection around a normal, the projections, the angle conversions and the two sided wrap. The
-/// members of a simd vector keep the padding lanes of it at zero.
+/// type, the projections, the angle conversions and the two sided wrap. The members of a simd vector keep the
+/// padding lanes of it at zero.
 /// </summary>
 public class TestFloatingPoint
 {
@@ -20,7 +20,6 @@ public class TestFloatingPoint
         where T : unmanaged, IVectorFloatingPoint<T, TScalar>
         where TScalar : unmanaged
     {
-        v.reflect(v);
         v.project(v);
         v.project_on_plane(v);
         v.project_normalized(v);
@@ -111,17 +110,8 @@ public class TestFloatingPoint
     }
 
     [Test]
-    public void ReflectProject()
+    public void Project()
     {
-        var v = new float3(1f, -2f, 0f);
-        var n = new float3(0f, 1f, 0f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(v.reflect(n), Is.EqualTo(new float3(1f, 2f, 0f)));
-            Assert.That(v.reflect(n).reflect(n), Is.EqualTo(v));
-        }
-
         var a = new float3(1f, 2f, 3f);
         var onto = new float3(2f, 0f, 0f);
 

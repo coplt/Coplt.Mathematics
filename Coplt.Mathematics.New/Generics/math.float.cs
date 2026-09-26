@@ -12,17 +12,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns <paramref name="a"/> reflected around the normal <paramref name="n"/>
-    /// <para><paramref name="n"/> <b>has to be</b> normalized</para>
-    /// </summary>
-    /// <param name="a">The vector to reflect</param>
-    /// <param name="n">The normalized normal of the surface</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The reflected vector</returns>
-    [MethodImpl(256)]
-    public static T reflect<T>(in T a, in T n) where T : unmanaged, IVectorFloatingPoint<T> => T.reflect(a, n);
-
-    /// <summary>
     /// Returns the projection of <paramref name="a"/> onto <paramref name="onto"/>
     /// <para>It is the component of <paramref name="a"/> that is parallel to <paramref name="onto"/></para>
     /// </summary>

@@ -23,10 +23,9 @@ public partial class VectorGenerator
 
     /// <summary>
     /// Generates the floating point members of the vector described by <paramref name="typ"/>, they implement
-    /// <c>IVectorFloatingPoint</c>: the math constants, the reflection around a normal, the projections, the
-    /// angle conversions and the two sided wrap. The members of the group of a floating point vector are the
-    /// same functions, they are emitted into their own file so they stay separate from the base members and the
-    /// plain arithmetic.
+    /// <c>IVectorFloatingPoint</c>: the math constants, the projections, the angle conversions and the two sided
+    /// wrap. The members of the group of a floating point vector are the same functions, they are emitted into
+    /// their own file so they stay separate from the base members and the plain arithmetic.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -122,25 +121,6 @@ public partial class VectorGenerator
             sb.AppendLine("    }");
             sb.AppendLine();
         }
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region reflect
-
-        sb.AppendLine("    #region reflect");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} reflect(in {type} n)");
-        sb.AppendLine("    {");
-        // this - (2 * n * dot(this, n)), the dot product is broadcast into the vector by the fma helper
-        sb.AppendLine($"        return math.fnma(new {type}({Lit("2")}) * n, this.dot(n), this);");
-        sb.AppendLine("    }");
-        sb.AppendLine();
 
         sb.AppendLine("    #endregion");
         sb.AppendLine();

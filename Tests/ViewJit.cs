@@ -8,6 +8,6 @@ namespace Tests;
 
 public static class ViewJit
 {
-    public static double2 Some1(double2 a) => math.hmin(a);
-    public static double2 Some2(double2 a) => math.hmin_native(a);
+    public static float3 Some1(in float3 a, in float3 b) => math.reflect(a, b);
+    public static float4 Some1(in float4 a, in float4 b) => math.reflect(a, b);
 }

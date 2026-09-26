@@ -34,7 +34,6 @@ public partial class VectorGenerator
         {
             #region IVectorFloatingPoint
 
-            ('f', "{type} reflect(in {type} a, in {type} n) => a.reflect(n);"),
             ('f', "{type} project(in {type} a, in {type} onto) => a.project(onto);"),
             ('f', "{type} project_on_plane(in {type} a, in {type} plane_normal) => a.project_on_plane(plane_normal);"),
             ('f', "{type} project_normalized(in {type} a, in {type} onto) => a.project_normalized(onto);"),

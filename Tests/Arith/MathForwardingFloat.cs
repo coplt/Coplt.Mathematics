@@ -20,7 +20,6 @@ public class TestMathFloatForwarding
     private static void Check<T>(T v)
         where T : unmanaged, IVectorFloatingPoint<T>
     {
-        math.reflect(v, v);
         math.project(v, v);
         math.project_on_plane(v, v);
         math.project_normalized(v, v);

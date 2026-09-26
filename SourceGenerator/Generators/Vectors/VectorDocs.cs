@@ -23,11 +23,6 @@ internal static class VectorDocs
         #region IVectorFloatingPoint
 
         {
-            "reflect",
-            ("Returns the vector reflected around the normal <c>n</c>, it has to be normalized", "The reflected vector",
-                "a=The vector to reflect;n=The normalized normal of the surface")
-        },
-        {
             "project",
             ("Returns the projection of the vector onto <c>onto</c>, it is the component that is parallel to it", "The projected vector",
                 "a=The vector to project;onto=The vector to project onto, it does not have to be normalized")
