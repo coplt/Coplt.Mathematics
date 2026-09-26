@@ -17,7 +17,9 @@ public class TestRcp
 {
     /// <summary>
     /// The estimate of the hardware is not exact, the one of the arm platform is the loose one of the three, so
-    /// the tolerance leaves room for it.
+    /// the tolerance leaves room for it. The estimate of a platform is exact for a value its table holds an
+    /// entry for, which the one of another platform is not, so the value of a register is always asserted
+    /// within it.
     /// </summary>
     private const float Tolerance = 0.01f;
 
@@ -97,8 +99,13 @@ public class TestRcp
             Assert.That(m.c0.y, Is.EqualTo(0.5f).Within(Tolerance));
             Assert.That(m.c1.x, Is.EqualTo(0.25f).Within(Tolerance));
             Assert.That(m.c1.y, Is.EqualTo(0.125f).Within(Tolerance));
-            Assert.That(math.rcp(new float2x2s(new float2s(1f, 2f), new float2s(4f, 8f))),
-                Is.EqualTo(new float2x2s(new float2s(1f, 0.5f), new float2s(0.25f, 0.125f))));
+            // the columns of the storage variant of a matrix of two components keep their value in a 64 bit
+            // register as well, so the estimate of the hardware reaches the value of them
+            var m2s = math.rcp(new float2x2s(new float2s(1f, 2f), new float2s(4f, 8f)));
+            Assert.That(m2s.c0.x, Is.EqualTo(1f).Within(Tolerance));
+            Assert.That(m2s.c0.y, Is.EqualTo(0.5f).Within(Tolerance));
+            Assert.That(m2s.c1.x, Is.EqualTo(0.25f).Within(Tolerance));
+            Assert.That(m2s.c1.y, Is.EqualTo(0.125f).Within(Tolerance));
             Assert.That(math.rcp(new half3x3(new half3((half)1f, (half)2f, (half)4f),
                     new half3((half)0.5f, (half)0.25f, (half)8f), new half3((half)1f, (half)(-2f), (half)(-0.5f)))),
                 Is.EqualTo(new half3x3(new half3((half)1f, (half)0.5f, (half)0.25f),
