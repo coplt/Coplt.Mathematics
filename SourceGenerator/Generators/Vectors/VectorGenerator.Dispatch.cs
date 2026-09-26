@@ -53,41 +53,55 @@ public partial class VectorGenerator
 
         sb.AppendLine("    #region dispatch");
         sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} self)");
-        sb.AppendLine($"        => {one};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b)");
-        sb.AppendLine($"        => {two};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
-        sb.AppendLine($"        => {three};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b)");
-        sb.AppendLine($"        => {oneComponent};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
-        sb.AppendLine($"        => {twoComponents};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} self)");
-        sb.AppendLine($"        => {one};");
-        sb.AppendLine();
-        sb.AppendLine("    /// <inheritdoc/>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} a, in {type} b)");
-        sb.AppendLine($"        => {two};");
-        sb.AppendLine();
+
+        // the members of the dispatch of every kind of the value are the ones of the same shape: the interface is
+        // the one of the kind, and a member that is implemented explicitly does not name the constraints of the
+        // type of a component of it again, so the value of a member of every kind is the same one
+        foreach (var family in VectorGenShared.DispatchIfaces(typ))
+        {
+            // the interface of a value of the kind that takes the components of it
+            var withScalar = $"Algebras.Generics.{family}<{type}, {scalar}>";
+            // the one of the value of a number of the kind has a member that takes no component of it, the one
+            // of a floating point number does not have it
+            var self = family == "INumberAlgebraDispatch" ? $"Algebras.Generics.{family}<{type}>" : withScalar;
+
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} self)");
+            sb.AppendLine($"        => {one};");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b)");
+            sb.AppendLine($"        => {two};");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
+            sb.AppendLine($"        => {three};");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b)");
+            sb.AppendLine($"        => {oneComponent};");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
+            sb.AppendLine($"        => {twoComponents};");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    static {scalar} {withScalar}.Visit_Scalar<V>(in {type} self)");
+            sb.AppendLine($"        => {one};");
+            sb.AppendLine();
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    static {scalar} {withScalar}.Visit_Scalar<V>(in {type} a, in {type} b)");
+            sb.AppendLine($"        => {two};");
+            sb.AppendLine();
+        }
+
         sb.AppendLine("    #endregion");
         sb.AppendLine();
         return sb.ToString();

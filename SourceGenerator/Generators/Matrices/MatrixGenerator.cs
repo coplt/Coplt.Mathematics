@@ -121,6 +121,9 @@ public class MatrixGenerator : IIncrementalGenerator
         if (!bol)
         {
             ifaces.Add($"Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>");
+            ifaces.AddRange(VectorGenShared.DispatchIfaces(typ)
+                .Where(n => n != "INumberAlgebraDispatch")
+                .Select(n => $"Algebras.Generics.{n}<{type}, {scalar}>"));
             ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
             ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
         }
@@ -647,43 +650,56 @@ public class MatrixGenerator : IIncrementalGenerator
         {
             sb.AppendLine("    #region dispatch");
             sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} self)");
-            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(self);");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b)");
-            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}>.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
-            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b, c);");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b)");
-            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b);");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {type} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
-            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b, c);");
-            sb.AppendLine();
-            // a visitor that returns a single component reaches the columns of the matrix as well: the reduction
-            // of the value of a matrix is the one of every column of it combined
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} self)");
-            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(self);");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {scalar} Algebras.Generics.INumberAlgebraDispatch<{type}, {scalar}>.Visit_Scalar<V>(in {type} a, in {type} b)");
-            sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
-            sb.AppendLine();
+            // the members of the dispatch of every kind of the value are the ones of the same shape: the
+            // interface is the one of the kind, and a member that is implemented explicitly does not name the
+            // constraints of the type of a component of it again, so the value of a member of every kind is
+            // the same one
+            foreach (var family in VectorGenShared.DispatchIfaces(typ))
+            {
+                // the interface of a value of the kind that takes the components of it
+                var withScalar = $"Algebras.Generics.{family}<{type}, {scalar}>";
+                // the one of the value of a number of the kind has a member that takes no component of it, the
+                // one of a floating point number does not have it
+                var self = family == "INumberAlgebraDispatch" ? $"Algebras.Generics.{family}<{type}>" : withScalar;
+
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} self)");
+                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(self);");
+                sb.AppendLine();
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b)");
+                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
+                sb.AppendLine();
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
+                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b, c);");
+                sb.AppendLine();
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b)");
+                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b);");
+                sb.AppendLine();
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
+                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b, c);");
+                sb.AppendLine();
+                // a visitor that returns a single component reaches the columns of the matrix as well: the
+                // reduction of the value of a matrix is the one of every column of it combined
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {scalar} {withScalar}.Visit_Scalar<V>(in {type} self)");
+                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(self);");
+                sb.AppendLine();
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine($"    {attr}");
+                sb.AppendLine($"    static {scalar} {withScalar}.Visit_Scalar<V>(in {type} a, in {type} b)");
+                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
+                sb.AppendLine();
+            }
             // the vectors a matrix is made of are the columns of it, so the member that reduces them to a
             // single vector is the one of the count of the columns of the matrix
             sb.AppendLine("    /// <inheritdoc/>");

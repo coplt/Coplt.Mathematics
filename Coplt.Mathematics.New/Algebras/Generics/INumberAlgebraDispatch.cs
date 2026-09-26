@@ -53,3 +53,116 @@ public interface INumberAlgebraDispatch<TSelf, TScalar> : INumberAlgebraDispatch
     public static abstract TScalar Visit_Scalar<V>(in TSelf a, in TSelf b)
         where V : INumberAlgebraVisitor_Self_Self_Scalar<V>;
 }
+
+/// <summary>
+/// The dispatch of the value of an algebra of a floating point number to the visitor that reaches it
+/// <para>It is the dispatch of a number whose visitors are the ones of a floating point kind, so a member of it
+/// reaches the members a floating point number has of its own as well. It is the dispatch of its own beside the
+/// one of the number of the kind of it: the visitor of a member of a floating point value is one of the kind of
+/// it, which the members of the number do not take</para>
+/// </summary>
+/// <typeparam name="TSelf">The type of the value itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IFloatingPointAlgebraDispatch<TSelf, TScalar> :
+    IFloatingPointAlgebra<TSelf, TScalar>
+    where TSelf : unmanaged, IFloatingPointAlgebraDispatch<TSelf, TScalar>
+    where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPoint<TScalar>
+{
+    /// <summary>Hands the value of <paramref name="self"/> to <typeparamref name="V"/></summary>
+    /// <typeparam name="V">The type of the visitor that reaches the value</typeparam>
+    /// <param name="self">The value to hand over</param>
+    /// <returns>The value the visitor built</returns>
+    public static abstract TSelf Visit_Self<V>(in TSelf self)
+        where V : IFloatingPointAlgebraVisitor_Self_Self<V>;
+
+    /// <summary>Hands the value of <paramref name="a"/> and <paramref name="b"/> to <typeparamref name="V"/></summary>
+    /// <typeparam name="V">The type of the visitor that reaches the values</typeparam>
+    /// <param name="a">The first value to hand over</param>
+    /// <param name="b">The second value to hand over</param>
+    /// <returns>The value the visitor built</returns>
+    public static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b)
+        where V : IFloatingPointAlgebraVisitor_Self_Self_Self<V>;
+
+    /// <summary>Hands the value of <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/> to <typeparamref name="V"/></summary>
+    /// <typeparam name="V">The type of the visitor that reaches the values</typeparam>
+    /// <param name="a">The first value to hand over</param>
+    /// <param name="b">The second value to hand over</param>
+    /// <param name="c">The third value to hand over</param>
+    /// <returns>The value the visitor built</returns>
+    public static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b, in TSelf c)
+        where V : IFloatingPointAlgebraVisitor_Self_Self_Self_Self<V>;
+
+    /// <summary>Hands the value of <paramref name="a"/> and the component of <paramref name="b"/> to <typeparamref name="V"/></summary>
+    /// <typeparam name="V">The type of the visitor that reaches the values</typeparam>
+    /// <param name="a">The value to hand over</param>
+    /// <param name="b">The component to hand over</param>
+    /// <returns>The value the visitor built</returns>
+    public static abstract TSelf Visit_Self<V>(in TSelf a, TScalar b)
+        where V : IFloatingPointAlgebraVisitor_Self_Scalar_Self<V, TScalar>;
+
+    /// <summary>Hands the value of <paramref name="a"/> and the components of <paramref name="b"/> and <paramref name="c"/> to <typeparamref name="V"/></summary>
+    /// <typeparam name="V">The type of the visitor that reaches the values</typeparam>
+    /// <param name="a">The value to hand over</param>
+    /// <param name="b">The first component to hand over</param>
+    /// <param name="c">The second component to hand over</param>
+    /// <returns>The value the visitor built</returns>
+    public static abstract TSelf Visit_Self<V>(in TSelf a, TScalar b, TScalar c)
+        where V : IFloatingPointAlgebraVisitor_Self_Scalar_Scalar_Self<V, TScalar>;
+
+    /// <summary>Hands the value of <paramref name="self"/> to <typeparamref name="V"/>, which reduces it to a single component</summary>
+    /// <typeparam name="V">The type of the visitor that reaches the value</typeparam>
+    /// <param name="self">The value to hand over</param>
+    /// <returns>The component the visitor built</returns>
+    public static abstract TScalar Visit_Scalar<V>(in TSelf self)
+        where V : IFloatingPointAlgebraVisitor_Self_Scalar<V>;
+
+    /// <summary>Hands the value of <paramref name="a"/> and <paramref name="b"/> to <typeparamref name="V"/>, which reduces them to a single component</summary>
+    /// <typeparam name="V">The type of the visitor that reaches the values</typeparam>
+    /// <param name="a">The first value to hand over</param>
+    /// <param name="b">The second value to hand over</param>
+    /// <returns>The component the visitor built</returns>
+    public static abstract TScalar Visit_Scalar<V>(in TSelf a, in TSelf b)
+        where V : IFloatingPointAlgebraVisitor_Self_Self_Scalar<V>;
+}
+
+/// <summary>
+/// The dispatch of the value of an algebra of a floating point number that names the ieee 754 standard to the
+/// visitor that reaches it
+/// <para>It is the dispatch of a floating point number whose visitors are the ones of the kind of it, which
+/// reach the members the standard names of a component as well, so it is the dispatch of its own as well</para>
+/// </summary>
+/// <typeparam name="TSelf">The type of the value itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IFloatingPointIeee754AlgebraDispatch<TSelf, TScalar> :
+    IFloatingPointIeee754Algebra<TSelf, TScalar>
+    where TSelf : unmanaged, IFloatingPointIeee754AlgebraDispatch<TSelf, TScalar>
+    where TScalar : unmanaged, IBinaryNumber<TScalar>, IFloatingPointIeee754<TScalar>
+{
+    /// <inheritdoc cref="IFloatingPointAlgebraDispatch{TSelf,TScalar}.Visit_Self{V}(in TSelf)"/>
+    public static abstract TSelf Visit_Self<V>(in TSelf self)
+        where V : IFloatingPointIeee754AlgebraVisitor_Self_Self<V>;
+
+    /// <inheritdoc cref="IFloatingPointAlgebraDispatch{TSelf,TScalar}.Visit_Self{V}(in TSelf, in TSelf)"/>
+    public static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b)
+        where V : IFloatingPointIeee754AlgebraVisitor_Self_Self_Self<V>;
+
+    /// <inheritdoc cref="IFloatingPointAlgebraDispatch{TSelf,TScalar}.Visit_Self{V}(in TSelf, in TSelf, in TSelf)"/>
+    public static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b, in TSelf c)
+        where V : IFloatingPointIeee754AlgebraVisitor_Self_Self_Self_Self<V>;
+
+    /// <inheritdoc cref="IFloatingPointAlgebraDispatch{TSelf,TScalar}.Visit_Self{V}(in TSelf, TScalar)"/>
+    public static abstract TSelf Visit_Self<V>(in TSelf a, TScalar b)
+        where V : IFloatingPointIeee754AlgebraVisitor_Self_Scalar_Self<V, TScalar>;
+
+    /// <inheritdoc cref="IFloatingPointAlgebraDispatch{TSelf,TScalar}.Visit_Self{V}(in TSelf, TScalar, TScalar)"/>
+    public static abstract TSelf Visit_Self<V>(in TSelf a, TScalar b, TScalar c)
+        where V : IFloatingPointIeee754AlgebraVisitor_Self_Scalar_Scalar_Self<V, TScalar>;
+
+    /// <inheritdoc cref="IFloatingPointAlgebraDispatch{TSelf,TScalar}.Visit_Scalar{V}(in TSelf)"/>
+    public static abstract TScalar Visit_Scalar<V>(in TSelf self)
+        where V : IFloatingPointIeee754AlgebraVisitor_Self_Scalar<V>;
+
+    /// <inheritdoc cref="IFloatingPointAlgebraDispatch{TSelf,TScalar}.Visit_Scalar{V}(in TSelf, in TSelf)"/>
+    public static abstract TScalar Visit_Scalar<V>(in TSelf a, in TSelf b)
+        where V : IFloatingPointIeee754AlgebraVisitor_Self_Self_Scalar<V>;
+}

@@ -56,6 +56,72 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     }
 
     /// <summary>
+    /// The kind of the algebra a visitor is emitted for: the number of the library, the floating point number of
+    /// it and the one the ieee 754 standard names. The kind decides the name of the interface and the constraint
+    /// of the type of a single component, which is the one of the kind of it, so the members of a visitor of a
+    /// floating point number reach the members of the floating point kind of the scalar.
+    /// </summary>
+    public enum VisitorKind
+    {
+        /// <summary>The number of the algebra library</summary>
+        Number,
+
+        /// <summary>A floating point number</summary>
+        FloatingPoint,
+
+        /// <summary>The floating point number the ieee 754 standard names</summary>
+        Ieee754,
+    }
+
+    /// <summary>The kinds of every visitor family, the one of a number is the first of them</summary>
+    public static readonly VisitorKind[] Kinds =
+    {
+        VisitorKind.Number,
+        VisitorKind.FloatingPoint,
+        VisitorKind.Ieee754,
+    };
+
+    /// <summary>
+    /// Returns the name of the family of the visitor interfaces of a kind, the name of the interface of a shape
+    /// is the one of it with the name of the shape behind it.
+    /// </summary>
+    /// <param name="kind">The kind of the algebra</param>
+    /// <returns>The name of the family</returns>
+    public static string VisitorFamily(VisitorKind kind) => kind switch
+    {
+        VisitorKind.FloatingPoint => "IFloatingPointAlgebraVisitor",
+        VisitorKind.Ieee754 => "IFloatingPointIeee754AlgebraVisitor",
+        _ => "INumberAlgebraVisitor",
+    };
+
+    /// <summary>
+    /// Returns the name of the interface of the dispatch of a kind, which the members of the visitors of it name
+    /// as the constraint of the values they reach.
+    /// </summary>
+    /// <param name="kind">The kind of the algebra</param>
+    /// <returns>The name of the interface of the dispatch</returns>
+    public static string VisitorDispatch(VisitorKind kind) => kind switch
+    {
+        VisitorKind.FloatingPoint => "IFloatingPointAlgebraDispatch",
+        VisitorKind.Ieee754 => "IFloatingPointIeee754AlgebraDispatch",
+        _ => "INumberAlgebraDispatch",
+    };
+
+    /// <summary>
+    /// Returns the constraints the type of a single component of the visitors of a kind carries beside the one of
+    /// a binary number, which is empty for a number of the library and the one of the kind of it for a floating
+    /// point number.
+    /// </summary>
+    /// <param name="kind">The kind of the algebra</param>
+    /// <returns>The constraints behind the one of the binary number</returns>
+    public static string ScalarConstraints(VisitorKind kind) => kind switch
+    {
+        VisitorKind.FloatingPoint => ", IFloatingPoint<TScalar>",
+        VisitorKind.Ieee754 => ", IFloatingPointIeee754<TScalar>",
+        _ => "",
+    };
+
+    /// <summary>
     /// The shapes of the visitors: the kind of every argument of one of them, a <c>false</c> for an argument
     /// that is a value of the same kind and a <c>true</c> for one that is a single component of the value, and
     /// the kind of the result of the members of it, which is a value of the same kind when the result is a
@@ -94,12 +160,15 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     {
         context.RegisterPostInitializationOutput(static ctx =>
         {
-            foreach (var shape in Shapes)
+            foreach (var kind in Kinds)
             {
-                var name = VisitorName(shape.Args, shape.Result);
-                ctx.AddSource(
-                    $"{Namespace}.{name}.g.cs",
-                    SourceText.From(Gen(shape.Args, shape.Result, name), Encoding.UTF8));
+                foreach (var shape in Shapes)
+                {
+                    var name = VisitorName(shape.Args, shape.Result, kind);
+                    ctx.AddSource(
+                        $"{Namespace}.{name}.g.cs",
+                        SourceText.From(Gen(kind, shape.Args, shape.Result, name), Encoding.UTF8));
+                }
             }
         });
     }
@@ -116,10 +185,11 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     /// </summary>
     /// <param name="shape">The kind of every argument of the visitor</param>
     /// <param name="result">The kind of the value a member of the visitor returns</param>
+    /// <param name="kind">The kind of the algebra the visitor is emitted for</param>
     /// <returns>The name of the interface</returns>
-    public static string VisitorName(bool[] shape, VisitorResult result)
+    public static string VisitorName(bool[] shape, VisitorResult result, VisitorKind kind = VisitorKind.Number)
     {
-        var sb = new StringBuilder("INumberAlgebraVisitor");
+        var sb = new StringBuilder(VisitorFamily(kind));
         foreach (var component in shape) sb.Append(component ? "_Scalar" : "_Self");
         sb.Append(result switch
         {
@@ -131,7 +201,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         return sb.ToString();
     }
 
-    private static string Gen(bool[] shape, VisitorResult visitorResult, string name)
+    private static string Gen(VisitorKind kind, bool[] shape, VisitorResult visitorResult, string name)
     {
         var reduce = visitorResult == VisitorResult.Scalar;
         var columnVector = visitorResult == VisitorResult.ColumnVector;
@@ -199,9 +269,14 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         var vectorTypeParameter = component ? "<TVector>" : "<TVector, TScalar>";
         var matrixTypeParameter = component ? "<TMatrix, TVector>" : "<TMatrix, TVector, TScalar>";
         var matrixTypeArguments = component ? "TMatrix, TVector" : "TMatrix, TVector, TScalar";
-        // the dispatch of a value that takes the type of a component names the type of it as well
-        var dispatch = component ? "INumberAlgebraDispatch<TVector, TScalar>" : "INumberAlgebraDispatch<TVector>";
-        var matrixDispatch = component ? "INumberAlgebraDispatch<TMatrix, TScalar>" : "INumberAlgebraDispatch<TMatrix>";
+        var visitorDispatch = VisitorDispatch(kind);
+        // the shape of a member that names a component of the value reaches the value of the kind of it again,
+        // so it names the type of a component as well, and a floating point number names the dispatch of the
+        // kind of it in every shape: the one of the number of the kind is not the one of the kind of it, which
+        // reaches the members of the kind of a component
+        var namesScalar = component || kind != VisitorKind.Number;
+        var dispatch = namesScalar ? $"{visitorDispatch}<TVector, TScalar>" : "INumberAlgebraDispatch<TVector>";
+        var matrixDispatch = namesScalar ? $"{visitorDispatch}<TMatrix, TScalar>" : "INumberAlgebraDispatch<TMatrix>";
         // the members of a visitor that reduces the values of its arguments return a single component of the
         // value instead of a value of the same kind
         var result = reduce ? "TScalar" : "TVector";
@@ -214,13 +289,13 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
 
         // a reduction of a column of a matrix hands the register of the column over, so the vector of the
         // member names the type of a component of the value as well
-        var matrixVectorDispatch = reduce ? "INumberAlgebraDispatch<TVector, TScalar>" : dispatch;
+        var matrixVectorDispatch = reduce ? $"{visitorDispatch}<TVector, TScalar>" : dispatch;
 
         // a visitor of the columns of a matrix and the one of the rows of it name the type of a component of the
         // value as well, which is the type of a component of every vector the matrix is made of
-        const string doubleDispatch = "INumberAlgebraDispatch<TVector, TScalar>";
+        var doubleDispatch = $"{visitorDispatch}<TVector, TScalar>";
         // a visitor of the rows takes the columns of the matrix, so it names the type of a column of it
-        const string columnDispatch = "INumberAlgebraDispatch<TColumn, TScalar>";
+        var columnDispatch = $"{visitorDispatch}<TColumn, TScalar>";
 
         string RegisterParameters(int width) =>
             Join(i => shape[i] ? $"TScalar {scalar[i]}" : $"in Vector{width}<TScalar> {value[i]}");
@@ -236,7 +311,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
 
         // the constraint of the member of a component: the interface of a shape that takes a component of the
         // value declares it, every member of an interface of values declares it itself
-        const string scalarConstraint = "        where TScalar : unmanaged, IBinaryNumber<TScalar>";
+        var scalarConstraint = "        where TScalar : unmanaged, IBinaryNumber<TScalar>" + ScalarConstraints(kind);
 
         var sb = new StringBuilder();
 
@@ -270,7 +345,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         {
             sb.AppendLine($"public interface {name}<V, TScalar>");
             sb.AppendLine($"    where V : {name}<V, TScalar>");
-            sb.AppendLine("    where TScalar : unmanaged, IBinaryNumber<TScalar>");
+            sb.AppendLine("    where TScalar : unmanaged, IBinaryNumber<TScalar>" + ScalarConstraints(kind));
         }
         else
         {
