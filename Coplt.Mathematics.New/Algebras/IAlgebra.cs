@@ -373,6 +373,19 @@ public interface IFloatingPointAlgebra<TSelf> :
 
     #endregion
 
+    #region Denom Epsilon
+
+    /// <summary>
+    /// The smallest value that a denominator of a quotient of the kind of the value may be: a divisor below it is
+    /// the zero of the kind of it for the quotient
+    /// <para>The library picks the value for every kind of a floating point number, it is not a constant of a
+    /// mathematical kind, it is <code>1e-3</code> for a half, <code>1e-8</code> for a float and <code>1e-16</code>
+    /// for a double</para>
+    /// </summary>
+    public static abstract TSelf DenomEpsilon { get; }
+
+    #endregion
+
     #region Ieee 754 Constants
 
     /// <summary>
@@ -444,6 +457,19 @@ public interface IFloatingPointAlgebra<TSelf, TScalar> :
     /// <code>τ / 360</code>, the factor that turns a degree into a radian
     /// </summary>
     public static abstract TScalar ScalarDegToRad { get; }
+
+    #endregion
+
+    #region Denom Epsilon
+
+    /// <summary>
+    /// The smallest value that a denominator of a quotient of a single component may be: a divisor below it is
+    /// the zero of the kind of it for the quotient
+    /// <para>The library picks the value for every kind of a floating point number, it is not a constant of a
+    /// mathematical kind, it is <code>1e-3</code> for a half, <code>1e-8</code> for a float and <code>1e-16</code>
+    /// for a double</para>
+    /// </summary>
+    public static abstract TScalar ScalarDenomEpsilon { get; }
 
     #endregion
 

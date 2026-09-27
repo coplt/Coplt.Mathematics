@@ -380,9 +380,12 @@ public class MatrixGenerator : IIncrementalGenerator
         // component of it is the constant, which is the one of every column of it
         if (!bol && typ.f)
         {
-            // the constants of the kind of a floating point number and the ones of the kind the ieee 754
-            // standard names, which every floating point type of the library names
-            var consts = VectorGenerator.FloatConsts.Select(c => c.Name).Concat(VectorGenerator.IeeeConsts);
+            // the constants of the kind of a floating point number, the constant of the denominator of a quotient
+            // of the kind of it and the ones of the kind the ieee 754 standard names, which every floating point
+            // type of the library names
+            var consts = VectorGenerator.FloatConsts.Select(c => c.Name)
+                .Append(VectorGenerator.DenomEpsilonName)
+                .Concat(VectorGenerator.IeeeConsts);
             foreach (var name in consts)
             {
                 Prop($"The {name} of the component type of the matrix", $"public static {scalar} Scalar{name}",

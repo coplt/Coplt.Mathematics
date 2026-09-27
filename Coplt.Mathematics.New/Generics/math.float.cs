@@ -12,56 +12,6 @@ namespace Coplt.Mathematics;
 public static partial class math
 {
     /// <summary>
-    /// Returns the projection of <paramref name="a"/> onto <paramref name="onto"/>
-    /// <para>It is the component of <paramref name="a"/> that is parallel to <paramref name="onto"/></para>
-    /// </summary>
-    /// <param name="a">The vector to project</param>
-    /// <param name="onto">The vector to project onto, it does <b>not</b> have to be normalized</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The projected vector</returns>
-    [MethodImpl(256)]
-    public static T project<T>(in T a, in T onto) where T : unmanaged, IVectorFloatingPoint<T> => T.project(a, onto);
-
-    /// <summary>
-    /// Returns the projection of <paramref name="a"/> onto the plane that has <paramref name="plane_normal"/>
-    /// as its normal
-    /// <para>It is the component of <paramref name="a"/> that is inside the plane</para>
-    /// </summary>
-    /// <param name="a">The vector to project</param>
-    /// <param name="plane_normal">The normal of the plane, it does <b>not</b> have to be normalized</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The projected vector</returns>
-    [MethodImpl(256)]
-    public static T project_on_plane<T>(in T a, in T plane_normal) where T : unmanaged, IVectorFloatingPoint<T> =>
-        T.project_on_plane(a, plane_normal);
-
-    /// <summary>
-    /// Returns the projection of <paramref name="a"/> onto <paramref name="onto"/>
-    /// <para>It is the same as <see cref="project{T}(in T, in T)"/> but <paramref name="onto"/> is assumed to
-    /// be normalized</para>
-    /// </summary>
-    /// <param name="a">The vector to project</param>
-    /// <param name="onto">The normalized vector to project onto</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The projected vector</returns>
-    [MethodImpl(256)]
-    public static T project_normalized<T>(in T a, in T onto) where T : unmanaged, IVectorFloatingPoint<T> =>
-        T.project_normalized(a, onto);
-
-    /// <summary>
-    /// Returns the projection of <paramref name="a"/> onto the plane that has <paramref name="plane_normal"/>
-    /// as its normal, it is the same as <see cref="project_on_plane{T}(in T, in T)"/> but
-    /// <paramref name="plane_normal"/> is assumed to be normalized
-    /// </summary>
-    /// <param name="a">The vector to project</param>
-    /// <param name="plane_normal">The normalized normal of the plane</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The projected vector</returns>
-    [MethodImpl(256)]
-    public static T project_on_plane_normalized<T>(in T a, in T plane_normal) where T : unmanaged, IVectorFloatingPoint<T> =>
-        T.project_on_plane_normalized(a, plane_normal);
-
-    /// <summary>
     /// Wraps every component into the range of <paramref name="min"/> and <paramref name="max"/>
     /// </summary>
     /// <param name="a">The vector</param>

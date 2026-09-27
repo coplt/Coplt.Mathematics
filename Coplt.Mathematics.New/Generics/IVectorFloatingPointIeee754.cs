@@ -177,20 +177,6 @@ public interface IVectorFloatingPointIeee754<Self> :
 
     #endregion
 
-    #region ProjectSafe
-
-    /// <summary>
-    /// Returns the projection of <paramref name="a"/> onto <paramref name="onto"/>, it returns
-    /// <paramref name="default_value"/> when the projection is not finite
-    /// </summary>
-    /// <param name="a">The vector to project</param>
-    /// <param name="onto">The vector to project onto</param>
-    /// <param name="default_value">The value that is returned when the projection is not finite</param>
-    /// <returns>The projected vector</returns>
-    public static abstract Self project_safe(in Self a, in Self onto, in Self default_value = default);
-
-    #endregion
-
     #region FaceForward
 
     /// <summary>

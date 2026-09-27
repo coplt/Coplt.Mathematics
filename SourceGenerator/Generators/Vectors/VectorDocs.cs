@@ -23,25 +23,6 @@ internal static class VectorDocs
         #region IVectorFloatingPoint
 
         {
-            "project",
-            ("Returns the projection of the vector onto <c>onto</c>, it is the component that is parallel to it", "The projected vector",
-                "a=The vector to project;onto=The vector to project onto, it does not have to be normalized")
-        },
-        {
-            "project_on_plane",
-            ("Returns the projection of the vector onto the plane that has <c>plane_normal</c> as its normal, it is the component that is inside the plane", "The projected vector",
-                "a=The vector to project;plane_normal=The normal of the plane, it does not have to be normalized")
-        },
-        {
-            "project_normalized",
-            ("Returns the projection of the vector onto the normalized <c>onto</c>", "The projected vector", "a=The vector to project;onto=The normalized vector to project onto")
-        },
-        {
-            "project_on_plane_normalized",
-            ("Returns the projection of the vector onto the plane that has the normalized <c>plane_normal</c> as its normal", "The projected vector",
-                "a=The vector to project;plane_normal=The normalized normal of the plane")
-        },
-        {
             "wrap",
             ("Wraps every component into the range of <c>min</c> and <c>max</c>", "The wrapped vector",
                 "a=The vector;min=The lower bound of every component;max=The upper bound of every component")
@@ -75,11 +56,6 @@ internal static class VectorDocs
             "step",
             ("Returns 1 where the component is not less than the matching component of the <c>threshold</c> and 0 where it is less", "The step vector",
                 "threshold=The threshold;a=The vector")
-        },
-        {
-            "project_safe",
-            ("Returns the projection of the vector onto <c>onto</c>, it returns <c>default_value</c> when the projection is not finite", "The projected vector",
-                "a=The vector to project;onto=The vector to project onto;default_value=The value that is returned when the projection is not finite")
         },
         {
             "face_forward",

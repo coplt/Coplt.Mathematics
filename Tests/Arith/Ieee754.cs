@@ -10,8 +10,8 @@ namespace Tests.Arith;
 /// <summary>
 /// The ieee 754 members of a vector implement <c>IVectorFloatingPointIeee754</c> and
 /// <c>IVectorFloatingPointIeee754BoolOps</c>: the logarithms, the exponentials, the power, the square root and
-/// its reciprocal, the length and the distance, the normalization, the step and the refraction, the safe
-/// projection, the face forward, the trigonometry, the hyperbolics, the change of the sign and the checks of the
+/// its reciprocal, the length and the distance, the normalization, the step and the refraction, the face
+/// forward, the trigonometry, the hyperbolics, the change of the sign and the checks of the
 /// special floating point values that produce a bool vector of the same shape. The members of a simd vector keep
 /// the padding lanes of it at zero, the members of a vector without a register work on the components.
 /// </summary>
@@ -43,8 +43,6 @@ public class TestIeee754
         v.normalize_safe();
         v.step(v);
         T.refract(v, v, default);
-        v.project_safe(v);
-        v.project_safe(v, v);
         v.face_forward(v, v);
         v.sin();
         v.cos();
@@ -293,22 +291,6 @@ public class TestIeee754
             Assert.That(r.x, Is.EqualTo(d.x).Within(1e-5f));
             Assert.That(r.y, Is.EqualTo(d.y).Within(1e-5f));
             Assert.That(r.z, Is.EqualTo(-d.z).Within(1e-5f));
-        }
-    }
-
-    [Test]
-    public void ProjectSafe()
-    {
-        var v = new float3(1f, 2f, 3f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(v.project_safe(new float3(2f, 0f, 0f)), Is.EqualTo(new float3(1f, 0f, 0f)));
-            // the projection of a zero vector is not finite, so the default is returned
-            Assert.That(v.project_safe(default), Is.EqualTo(default(float3)));
-            Assert.That(v.project_safe(default, v), Is.EqualTo(v));
-            Assert.That(new double3(1, 2, 3).project_safe(new double3(1, 1, 1)),
-                Is.EqualTo(new double3(2, 2, 2)));
         }
     }
 

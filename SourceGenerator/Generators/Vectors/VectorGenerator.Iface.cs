@@ -34,10 +34,6 @@ public partial class VectorGenerator
         {
             #region IVectorFloatingPoint
 
-            ('f', "{type} project(in {type} a, in {type} onto) => a.project(onto);"),
-            ('f', "{type} project_on_plane(in {type} a, in {type} plane_normal) => a.project_on_plane(plane_normal);"),
-            ('f', "{type} project_normalized(in {type} a, in {type} onto) => a.project_normalized(onto);"),
-            ('f', "{type} project_on_plane_normalized(in {type} a, in {type} plane_normal) => a.project_on_plane_normalized(plane_normal);"),
             ('f', "{type} wrap(in {type} a, in {type} min, in {type} max) => a.wrap(min, max);"),
             ('f', "{type} wrap(in {type} a, {scalar} min, {scalar} max) => a.wrap(min, max);"),
 
@@ -68,7 +64,6 @@ public partial class VectorGenerator
             ('f', "{type} step(in {type} threshold, in {type} a) => a.step(threshold);"),
             // the legacy form of the safe projection carries the default as an optional parameter, which the
             // caller of a type parameter can drop, so there is a single member for the two cases of it
-            ('f', "{type} project_safe(in {type} a, in {type} onto, in {type} default_value = default) => a.project_safe(onto, default_value);"),
             ('f', "{type} face_forward(in {type} a, in {type} i, in {type} ng) => a.face_forward(i, ng);"),
             ('f', "{type} sin(in {type} a) => a.sin();"),
             ('f', "{type} cos(in {type} a) => a.cos();"),

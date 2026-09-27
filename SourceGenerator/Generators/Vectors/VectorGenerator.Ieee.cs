@@ -21,8 +21,8 @@ public partial class VectorGenerator
     /// <summary>
     /// Generates the ieee 754 members of the vector described by <paramref name="typ"/>, they implement
     /// <c>IVectorFloatingPointIeee754BoolOps</c>: the logarithm, the exponential, the power, the square root and
-    /// its reciprocal, the length and the distance, the normalization, the step and the refraction, the safe
-    /// projection, the face forward, the trigonometry, the hyperbolics and the change of the sign, and the checks
+    /// its reciprocal, the length and the distance, the normalization, the step and the refraction, the face
+    /// forward, the trigonometry, the hyperbolics and the change of the sign, and the checks
     /// of the special floating point values that produce a bool vector. They are emitted into their own file, so
     /// they stay separate from the floating point members and the plain arithmetic.
     /// </summary>
@@ -337,31 +337,6 @@ public partial class VectorGenerator
         sb.AppendLine($"        return k >= {VectorScalar.Zero(scalar)}");
         sb.AppendLine("            ? index_of_refraction * i - (index_of_refraction * ni + " + VectorScalar.Expr(scalar, "sqrt", "k") + ") * n");
         sb.AppendLine("            : default;");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region project safe
-
-        sb.AppendLine("    #region project safe");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} project_safe(in {type} onto) => project_safe(onto, default);");
-        sb.AppendLine();
-
-        // the projection of a degenerate vector is an infinity or a nan, the default is returned for it
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} project_safe(in {type} onto, in {type} default_value)");
-        sb.AppendLine("    {");
-        sb.AppendLine("        var proj = this.project(onto);");
-        sb.AppendLine($"        return {Join(i => $"math.is_finite(proj.{comp[i]})", " && ")} ? proj : default_value;");
         sb.AppendLine("    }");
         sb.AppendLine();
 

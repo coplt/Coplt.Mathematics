@@ -180,6 +180,34 @@ public class TestVectorMeta
         }
     }
 
+    /// <summary>
+    /// The denominator epsilon of a floating point value is the smallest value that a divisor of a quotient of the
+    /// kind of it may be: the library picks the value of every kind of a floating point number, it is not a
+    /// constant of the ieee 754 standard, and a matrix reaches the one of the column of it like it reaches the
+    /// other constants of the kind.
+    /// </summary>
+    [Test]
+    public void DenomEpsilonConstants()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(float3.ScalarDenomEpsilon, Is.EqualTo(1e-8f));
+            Assert.That(double3.ScalarDenomEpsilon, Is.EqualTo(1e-16));
+            Assert.That((float)half3.ScalarDenomEpsilon, Is.EqualTo(1e-3f).Within(1e-4f));
+
+            // the value of a vector is the one of the kind of its component for every component of it
+            Assert.That(float3.DenomEpsilon, Is.EqualTo(new float3(1e-8f)));
+            Assert.That(double2.DenomEpsilon, Is.EqualTo(new double2(1e-16)));
+            Assert.That((float)half4.DenomEpsilon.w, Is.EqualTo(1e-3f).Within(1e-4f));
+
+            // a matrix reaches the constant of the vector a column of it is
+            Assert.That(float3x2.ScalarDenomEpsilon, Is.EqualTo(1e-8f));
+            Assert.That(double2x2.ScalarDenomEpsilon, Is.EqualTo(1e-16));
+            Assert.That(float3x2.DenomEpsilon.c1.z, Is.EqualTo(1e-8f));
+            Assert.That(double2x2.DenomEpsilon.c0.x, Is.EqualTo(1e-16));
+        }
+    }
+
     [Test]
     public void BoolConstants()
     {

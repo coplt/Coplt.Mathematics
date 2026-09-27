@@ -7,8 +7,7 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The floating point members of a vector implement <c>IVectorFloatingPoint</c>: the constants of the component
-/// type, the projections and the two sided wrap. The members of a simd vector keep the padding lanes of it at
-/// zero.
+/// type and the two sided wrap. The members of a simd vector keep the padding lanes of it at zero.
 /// </summary>
 public class TestFloatingPoint
 {
@@ -20,10 +19,6 @@ public class TestFloatingPoint
         where T : unmanaged, IVectorFloatingPoint<T, TScalar>
         where TScalar : unmanaged
     {
-        v.project(v);
-        v.project_on_plane(v);
-        v.project_normalized(v);
-        v.project_on_plane_normalized(v);
         v.wrap(v, v);
         v.wrap(default(TScalar), default(TScalar));
 
@@ -104,24 +99,6 @@ public class TestFloatingPoint
 
             Assert.That((float)half3.E.x, Is.EqualTo((float)(half)Coplt.Mathematics.math.F_E));
             Assert.That((float)half3.PI.x, Is.EqualTo((float)(half)Coplt.Mathematics.math.F_PI));
-        }
-    }
-
-    [Test]
-    public void Project()
-    {
-        var a = new float3(1f, 2f, 3f);
-        var onto = new float3(2f, 0f, 0f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(a.project(onto), Is.EqualTo(new float3(1f, 0f, 0f)));
-            Assert.That(a.project_normalized(new float3(1f, 0f, 0f)), Is.EqualTo(new float3(1f, 0f, 0f)));
-            Assert.That(a.project_on_plane(onto), Is.EqualTo(new float3(0f, 2f, 3f)));
-            Assert.That(a.project_on_plane_normalized(new float3(1f, 0f, 0f)), Is.EqualTo(new float3(0f, 2f, 3f)));
-            // the projection of a vector onto itself is the vector
-            Assert.That(a.project(a), Is.EqualTo(a));
-            Assert.That(a.project_on_plane(a), Is.EqualTo(default(float3)));
         }
     }
 

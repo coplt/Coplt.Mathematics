@@ -20,10 +20,6 @@ public class TestMathFloatForwarding
     private static void Check<T>(T v)
         where T : unmanaged, IVectorFloatingPoint<T>
     {
-        math.project(v, v);
-        math.project_on_plane(v, v);
-        math.project_normalized(v, v);
-        math.project_on_plane_normalized(v, v);
         math.wrap(v, v, v);
     }
 
@@ -46,8 +42,6 @@ public class TestMathFloatForwarding
         math.normalize(v);
         math.normalize_safe(v);
         math.step(v, v);
-        math.project_safe(v, v);
-        math.project_safe(v, v, v);
         math.face_forward(v, v, v);
         math.sin(v);
         math.cos(v);

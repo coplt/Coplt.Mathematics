@@ -133,19 +133,6 @@ public static partial class math
     public static T step<T>(in T threshold, in T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.step(threshold, a);
 
     /// <summary>
-    /// Returns the projection of <paramref name="a"/> onto <paramref name="onto"/>, it returns
-    /// <paramref name="default_value"/> when the projection is not finite
-    /// </summary>
-    /// <param name="a">The vector to project</param>
-    /// <param name="onto">The vector to project onto</param>
-    /// <param name="default_value">The value that is returned when the projection is not finite</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The projected vector</returns>
-    [MethodImpl(256)]
-    public static T project_safe<T>(in T a, in T onto, in T default_value = default)
-        where T : unmanaged, IVectorFloatingPointIeee754<T> => T.project_safe(a, onto, default_value);
-
-    /// <summary>
     /// Returns <paramref name="a"/> with the sign chosen so that it faces away from the incident vector
     /// <paramref name="i"/>, it is the same as flipping the sign when the dot product of
     /// <paramref name="ng"/> and <paramref name="i"/> is not negative

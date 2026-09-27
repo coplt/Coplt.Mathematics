@@ -296,6 +296,12 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         var namesScalar = component && kind == VisitorKind.Number;
         var dispatch = namesScalar ? $"{visitorDispatch}<TVector, TScalar>" : $"{visitorDispatch}<TVector>";
         var matrixDispatch = namesScalar ? $"{visitorDispatch}<TMatrix, TScalar>" : $"{visitorDispatch}<TMatrix>";
+        // the dispatch of the floating point kind names the value itself alone, it does not name the type of a
+        // component of it, so a member of a visitor of the kind reaches no constant of the kind of the value: the
+        // interface of the value that names the type of a component of it reaches them, so every member of a
+        // visitor of the kind of a floating point number names it as well
+        var floatVector = kind == VisitorKind.FloatingPoint ? ", IFloatingPointVector<TVector, TScalar>" : "";
+        var floatMatrix = kind == VisitorKind.FloatingPoint ? ", IFloatingPointMatrix<TMatrix, TScalar>" : "";
         // the members of a visitor that reduces the values of its arguments return a single component of the
         // value instead of a value of the same kind
         var result = reduce ? "TScalar" : "TVector";
@@ -454,7 +460,8 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         foreach (var width in new[] { 64, 128, 256 })
         {
             sb.AppendLine($"    public static abstract {result} AcceptVector{vectorTypeParameter}({RegisterParameters(width)})");
-            sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{width}Underlying<TVector>" + (component ? ";" : ""));
+            sb.AppendLine(
+                $"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{width}Underlying<TVector>{floatVector}" + (component ? ";" : ""));
             if (!component) sb.AppendLine(scalarConstraint + ";");
             sb.AppendLine();
         }
@@ -468,7 +475,8 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
                 // the values of the components of a vector that has no register are reduced by the operation of
                 // the visitor itself, the way the results of them combine is the one of it
                 sb.AppendLine($"    public static abstract TScalar AcceptVector{size}{vectorTypeParameter}({vectorParameters})");
-                sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{size}<TVector, TScalar>" + (component ? ";" : ""));
+                sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{size}<TVector, TScalar>{floatVector}" +
+                              (component ? ";" : ""));
                 if (!component) sb.AppendLine(scalarConstraint + ";");
                 sb.AppendLine();
                 continue;
@@ -476,7 +484,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
 
             sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
             sb.AppendLine($"    public static virtual TVector AcceptVector{size}{vectorTypeParameter}({vectorParameters})");
-            sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{size}<TVector, TScalar>");
+            sb.AppendLine($"        where TVector : unmanaged, {dispatch}, INumberVector<TVector, TScalar>, IVector{size}<TVector, TScalar>{floatVector}");
             if (count == 1)
             {
                 sb.AppendLine(scalarConstraint);
@@ -511,8 +519,8 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
             sb.AppendLine($"    public static virtual {matrixResult} AcceptMatrixMx{cols}{matrixTypeParameter}({matrixParameters})");
             sb.AppendLine(
-                $"        where TMatrix : unmanaged, {matrixDispatch}, INumberMatrix<TMatrix, TScalar>, IMatrixMx{cols}Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>");
-            sb.AppendLine($"        where TVector : unmanaged, {matrixVectorDispatch}, INumberVector<TVector, TScalar>");
+                $"        where TMatrix : unmanaged, {matrixDispatch}, INumberMatrix<TMatrix, TScalar>, IMatrixMx{cols}Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>{floatMatrix}");
+            sb.AppendLine($"        where TVector : unmanaged, {matrixVectorDispatch}, INumberVector<TVector, TScalar>{floatVector}");
             if (!component) sb.AppendLine(scalarConstraint);
             // the reduction of a matrix is the one of every column of it combined with the one of the next column
             if (reduce)
@@ -555,8 +563,8 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
                 sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
                 sb.AppendLine($"    public static virtual {matrixResult} AcceptMatrix{rows}x{cols}{matrixTypeParameter}({matrixParameters})");
                 sb.AppendLine(
-                    $"        where TMatrix : unmanaged, {matrixDispatch}, INumberMatrix<TMatrix, TScalar>, IMatrix{rows}x{cols}Vector<TMatrix, TVector>, IMatrix{rows}x{cols}Scalar<TMatrix, TScalar>");
-                sb.AppendLine($"        where TVector : unmanaged, {matrixVectorDispatch}, INumberVector<TVector, TScalar>, IVector{rows}<TVector, TScalar>");
+                    $"        where TMatrix : unmanaged, {matrixDispatch}, INumberMatrix<TMatrix, TScalar>, IMatrix{rows}x{cols}Vector<TMatrix, TVector>, IMatrix{rows}x{cols}Scalar<TMatrix, TScalar>{floatMatrix}");
+                sb.AppendLine($"        where TVector : unmanaged, {matrixVectorDispatch}, INumberVector<TVector, TScalar>, IVector{rows}<TVector, TScalar>{floatVector}");
                 if (!component) sb.AppendLine(scalarConstraint);
                 sb.AppendLine($"        => V.AcceptMatrixMx{cols}<{matrixTypeArguments}>({vectorValues});");
                 sb.AppendLine();

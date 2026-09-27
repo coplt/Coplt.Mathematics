@@ -170,6 +170,21 @@ internal static class VectorGenShared
         : $"-{ScalarOps.Number(scalar, position.ToString())}";
 
     /// <summary>
+    /// Returns the literal of the constant of the denominator of a quotient of the kind of
+    /// <paramref name="scalar"/>, which is the smallest value that a divisor of a quotient of the kind of it may
+    /// be. The value is not a constant of the ieee 754 standard, the library picks one for every kind: the value
+    /// of a kind is a power of ten that is large enough to keep the quotient of two values of it meaningful.
+    /// </summary>
+    /// <param name="scalar">The type of the component of the value</param>
+    /// <returns>The literal of the constant</returns>
+    public static string DenomEpsilonValue(string scalar) => scalar switch
+    {
+        "float" => "1e-8f",
+        "double" => "1e-16",
+        _ => "(half)1e-3f",
+    };
+
+    /// <summary>
     /// Returns the names of the interfaces of the dispatch of the kind of a value in the algebra library: the one
     /// of a number beside the one of the floating point kind, which every floating point type of the library
     /// names, a half as well.

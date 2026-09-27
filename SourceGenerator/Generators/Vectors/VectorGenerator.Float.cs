@@ -22,8 +22,16 @@ public partial class VectorGenerator
     };
 
     /// <summary>
+    /// The name of the constant of the denominator of a quotient of the kind of a floating point value. Its value
+    /// is not a constant of the ieee 754 standard and it is not the same for every kind of it, so it is not one of
+    /// the values of <see cref="FloatConsts"/>, the literal of it comes from
+    /// <see cref="VectorGenShared.DenomEpsilonValue"/>.
+    /// </summary>
+    internal const string DenomEpsilonName = "DenomEpsilon";
+
+    /// <summary>
     /// Generates the floating point members of the vector described by <paramref name="typ"/>, they implement
-    /// <c>IVectorFloatingPoint</c>: the math constants, the projections and the two sided wrap. The members of
+    /// <c>IVectorFloatingPoint</c>: the math constants and the two sided wrap. The members of
     /// the group of a floating point vector are the same functions, they are emitted into their own file so they
     /// stay separate from the base members and the plain arithmetic.
     /// </summary>
@@ -122,35 +130,25 @@ public partial class VectorGenerator
             sb.AppendLine();
         }
 
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region project
-
-        sb.AppendLine("    #region project");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} project(in {type} onto) => this.dot(onto) / onto.dot(onto) * onto;");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} project_normalized(in {type} onto) => this.dot(onto) * onto;");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} project_on_plane(in {type} plane_normal) => this - this.project(plane_normal);");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} project_on_plane_normalized(in {type} plane_normal) => this - this.project_normalized(plane_normal);");
-        sb.AppendLine();
+        // the constant of the denominator of a quotient of the kind of the value, the value of it is the one of
+        // the kind of the component and not one of the values of the table above
+        {
+            var denom = VectorGenShared.DenomEpsilonValue(scalar);
+            InheritDoc();
+            sb.AppendLine($"    public static {scalar} ScalarDenomEpsilon");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => {denom};");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            InheritDoc();
+            sb.AppendLine($"    public static {type} DenomEpsilon");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => new({denom});");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
 
         sb.AppendLine("    #endregion");
         sb.AppendLine();
