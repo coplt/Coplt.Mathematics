@@ -90,7 +90,7 @@ public partial class VectorGenerator
     /// member of such a vector is only known at run time, so the helper cannot be compiled to a single
     /// instruction and it dispatches the pattern with a switch: it reads the components the pattern names and
     /// writes them into the result, which is the same code for every vector type because a vector of 4
-    /// components reaches every one of them by name through <c>IVector4Components</c>. The helper is emitted
+    /// components reaches every one of them by name through <c>Algebras.IVector4</c>. The helper is emitted
     /// once for all of the vectors.
     /// </summary>
     /// <returns>The helper</returns>
@@ -106,7 +106,7 @@ public partial class VectorGenerator
         sb.AppendLine("/// The shuffle of a vector that has no register to shuffle");
         sb.AppendLine("/// <para>A vector without a register keeps its components in fields, so a shuffle of it reads the");
         sb.AppendLine("/// components the pattern names and writes them into the result. A vector of 4 components reaches");
-        sb.AppendLine("/// every one of them by name through <see cref=\"IVector4Components{TSelf,TScalar}\"/>, so the helper");
+        sb.AppendLine("/// every one of them by name through <see cref=\"Algebras.IVector4{TSelf,TScalar}\"/>, so the helper");
         sb.AppendLine("/// is the same for every vector type and it is not a part of the surface of the library</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("internal static class shuffle_soft");
@@ -124,7 +124,7 @@ public partial class VectorGenerator
         sb.AppendLine("    /// <returns>The vector that the pattern <paramref name=\"lh\"/> names</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine("    public static T shuffle<T, S>(in T a, in T b, Shuffle42 lh)");
-        sb.AppendLine("        where T : unmanaged, IVector4Components<T, S>");
+        sb.AppendLine("        where T : unmanaged, Algebras.IVector4<T, S>");
         sb.AppendLine("        where S : unmanaged");
         sb.AppendLine("    {");
         sb.AppendLine("        T r = default;");

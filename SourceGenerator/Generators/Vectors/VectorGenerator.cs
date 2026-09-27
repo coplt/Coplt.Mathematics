@@ -57,9 +57,9 @@ public partial class VectorGenerator : IIncrementalGenerator
                             SourceText.From(GenUnderlying(typ, size, storeVariant), Encoding.UTF8));
                         // the members that dispatch the value of the vector implement the
                         // INumberAlgebraDispatch interface, they are a part of the base members of the vector
-                        // the members that create the vector out of another one implement the IVectorCtor
-                        // interfaces, they are emitted into their own file so they stay separate from the
-                        // members of the base type
+                        // the members that create the vector out of another one implement the create members of
+                        // the interfaces of the algebra library, they are emitted into their own file so they
+                        // stay separate from the members of the base type
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.ctor.g.cs",
                             SourceText.From(GenCtor(typ, size, storeVariant), Encoding.UTF8));

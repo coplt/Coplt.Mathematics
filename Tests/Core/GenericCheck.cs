@@ -1,4 +1,5 @@
 using System.Numerics;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Generics;
 
 namespace Tests.Core;
@@ -30,28 +31,28 @@ internal static class GenericCheck
         var firstOnly = T.Scalar(one);
         for (var i = 0; i < length; i++)
         {
-            Assert.That(T.get_at(broadcast, i), Is.EqualTo(one), $"Broadcast component {i}");
-            Assert.That(T.get_at(firstOnly, i), Is.EqualTo(i == 0 ? one : zero), $"Scalar component {i}");
+            Assert.That(T.get(broadcast, i), Is.EqualTo(one), $"Broadcast component {i}");
+            Assert.That(T.get(firstOnly, i), Is.EqualTo(i == 0 ? one : zero), $"Scalar component {i}");
         }
 
         // Index
         var v = T.Broadcast(one);
         for (var i = 0; i < length; i++)
         {
-            Assert.That(T.get_at(v, i), Is.EqualTo(one), $"index get {i}");
-            T.set_at(ref v, i, two);
-            Assert.That(T.get_at(v, i), Is.EqualTo(two), $"index set {i}");
+            Assert.That(T.get(v, i), Is.EqualTo(one), $"index get {i}");
+            T.set(ref v, i, two);
+            Assert.That(T.get(v, i), Is.EqualTo(two), $"index set {i}");
         }
 
-        Assert.Throws<IndexOutOfRangeException>(() => _ = T.get_at(v, length), "index get out of range");
-        Assert.Throws<IndexOutOfRangeException>(() => T.set_at(ref v, length, one), "index set out of range");
+        Assert.Throws<IndexOutOfRangeException>(() => _ = T.get(v, length), "index get out of range");
+        Assert.Throws<IndexOutOfRangeException>(() => T.set(ref v, length, one), "index set out of range");
 
         // Load, the padding elements of a 3 component vector are not part of the vector
         var loadCount = simd && length == 3 ? 4 : length;
         var data = new TScalar[loadCount];
         for (var i = 0; i < loadCount; i++) data[i] = i < length ? one : two;
         var loaded = T.Load(data);
-        for (var i = 0; i < length; i++) Assert.That(T.get_at(loaded, i), Is.EqualTo(one), $"Load component {i}");
+        for (var i = 0; i < length; i++) Assert.That(T.get(loaded, i), Is.EqualTo(one), $"Load component {i}");
 
         // IEquatable
         Assert.That(loaded.Equals(broadcast), Is.True);
@@ -80,7 +81,7 @@ internal static class GenericCheck
     /// </summary>
     public static void Number<T, TScalar>(int length, int sizeByte, bool simd, TScalar one, TScalar two)
         where T : unmanaged, INumberVector<T, TScalar>
-        where TScalar : unmanaged
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         Vector<T, TScalar>(length, sizeByte, simd, one, two);
 
@@ -88,9 +89,9 @@ internal static class GenericCheck
         var zero = T.Zero;
         for (var i = 0; i < length; i++)
         {
-            Assert.That(T.get_at(zero, i), Is.EqualTo(default(TScalar)), $"Zero component {i}");
-            Assert.That(T.get_at(T.One, i), Is.EqualTo(one), $"One component {i}");
-            Assert.That(T.get_at(T.Two, i), Is.EqualTo(two), $"Two component {i}");
+            Assert.That(T.get(zero, i), Is.EqualTo(default(TScalar)), $"Zero component {i}");
+            Assert.That(T.get(T.One, i), Is.EqualTo(one), $"One component {i}");
+            Assert.That(T.get(T.Two, i), Is.EqualTo(two), $"Two component {i}");
         }
 
         Assert.That(T.ScalarZero, Is.EqualTo(default(TScalar)), "ScalarZero");
@@ -144,8 +145,8 @@ internal static class GenericCheck
         var allFalse = T.False;
         for (var i = 0; i < length; i++)
         {
-            Assert.That(T.get_at(allTrue, i), Is.EqualTo(one), $"True component {i}");
-            Assert.That(T.get_at(allFalse, i), Is.EqualTo(default(TScalar)), $"False component {i}");
+            Assert.That(T.get(allTrue, i), Is.EqualTo(one), $"True component {i}");
+            Assert.That(T.get(allFalse, i), Is.EqualTo(default(TScalar)), $"False component {i}");
         }
 
         Assert.That(allFalse.Equals(default(T)), Is.True);
@@ -176,13 +177,13 @@ internal static class GenericCheck
 
         for (var i = 0; i < TBool.Length; i++)
         {
-            Assert.That(TBool.get_at((x < y), i), Is.EqualTo(TBool.get_at(allTrue, i)), $"< component {i}");
-            Assert.That(TBool.get_at((x > y), i), Is.EqualTo(TBool.get_at(allFalse, i)), $"> component {i}");
-            Assert.That(TBool.get_at((x <= y), i), Is.EqualTo(TBool.get_at(allTrue, i)), $"<= component {i}");
-            Assert.That(TBool.get_at((x >= y), i), Is.EqualTo(TBool.get_at(allFalse, i)), $">= component {i}");
-            Assert.That(TBool.get_at((x == same), i), Is.EqualTo(TBool.get_at(allTrue, i)), $"== component {i} of itself");
-            Assert.That(TBool.get_at((x == y), i), Is.EqualTo(TBool.get_at(allFalse, i)), $"== component {i}");
-            Assert.That(TBool.get_at((x != y), i), Is.EqualTo(TBool.get_at(allTrue, i)), $"!= component {i}");
+            Assert.That(TBool.get((x < y), i), Is.EqualTo(TBool.get(allTrue, i)), $"< component {i}");
+            Assert.That(TBool.get((x > y), i), Is.EqualTo(TBool.get(allFalse, i)), $"> component {i}");
+            Assert.That(TBool.get((x <= y), i), Is.EqualTo(TBool.get(allTrue, i)), $"<= component {i}");
+            Assert.That(TBool.get((x >= y), i), Is.EqualTo(TBool.get(allFalse, i)), $">= component {i}");
+            Assert.That(TBool.get((x == same), i), Is.EqualTo(TBool.get(allTrue, i)), $"== component {i} of itself");
+            Assert.That(TBool.get((x == y), i), Is.EqualTo(TBool.get(allFalse, i)), $"== component {i}");
+            Assert.That(TBool.get((x != y), i), Is.EqualTo(TBool.get(allTrue, i)), $"!= component {i}");
         }
     }
 
@@ -203,10 +204,10 @@ internal static class GenericCheck
 
         for (var i = 0; i < TBool.Length; i++)
         {
-            Assert.That(TBool.get_at((allFalse < allTrue), i), Is.EqualTo(TBool.get_at(allTrue, i)), $"< component {i}");
-            Assert.That(TBool.get_at((allTrue < allFalse), i), Is.EqualTo(TBool.get_at(allFalse, i)), $"< component {i}");
-            Assert.That(TBool.get_at((allFalse <= allTrue), i), Is.EqualTo(TBool.get_at(allTrue, i)), $"<= component {i}");
-            Assert.That(TBool.get_at((allTrue >= allFalse), i), Is.EqualTo(TBool.get_at(allTrue, i)), $">= component {i}");
+            Assert.That(TBool.get((allFalse < allTrue), i), Is.EqualTo(TBool.get(allTrue, i)), $"< component {i}");
+            Assert.That(TBool.get((allTrue < allFalse), i), Is.EqualTo(TBool.get(allFalse, i)), $"< component {i}");
+            Assert.That(TBool.get((allFalse <= allTrue), i), Is.EqualTo(TBool.get(allTrue, i)), $"<= component {i}");
+            Assert.That(TBool.get((allTrue >= allFalse), i), Is.EqualTo(TBool.get(allTrue, i)), $">= component {i}");
         }
     }
 }

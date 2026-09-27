@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text;
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Generics;
 using B16 = Coplt.Mathematics.b16;
 using B32 = Coplt.Mathematics.b32;

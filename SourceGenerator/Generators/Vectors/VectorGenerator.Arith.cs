@@ -7,9 +7,9 @@ namespace Coplt.Analyzers.Generators;
 public partial class VectorGenerator
 {
     /// <summary>
-    /// Generates the arithmetic members of the vector described by <paramref name="typ"/>, they implement one of
-    /// the <c>IVectorArithmetic</c> interfaces. They are emitted into their own file, so the base members and the
-    /// arithmetic members stay separate.
+    /// Generates the arithmetic members of the vector described by <paramref name="typ"/>, which are the ones the
+    /// algebra of the kind of the vector declares. They are emitted into their own file, so the base members and
+    /// the arithmetic members stay separate.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -37,9 +37,6 @@ public partial class VectorGenerator
         var attr = "[MethodImpl(256)]";
 
         var comp = VectorGenShared.Components(size);
-
-        // a signed vector also has the negation operator, a 3 component vector also has the cross product
-        var ifaces = VectorGenShared.ArithInterfaces(typ, size, storeVariant);
 
         var sb = new StringBuilder();
 
@@ -85,12 +82,7 @@ public partial class VectorGenerator
         // the documentation of the type is carried by the declaration of the base members, only one of the
         // partial declarations of a type may have it
         VectorGenShared.FileHeader(sb, true);
-        sb.AppendLine($"public partial struct {type} :");
-        for (var n = 0; n < ifaces.Count; n++)
-        {
-            sb.AppendLine($"    {ifaces[n].Name}<{string.Join(", ", ifaces[n].Args)}>" + (n == ifaces.Count - 1 ? "" : ","));
-        }
-
+        sb.AppendLine($"public partial struct {type}");
         sb.AppendLine("{");
 
         #region operators

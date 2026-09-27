@@ -97,6 +97,6 @@ namespace Coplt.Mathematics
         public static T wrap<T, TScalar>(this T value, TScalar min, TScalar max)
             where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointAlgebra<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
-            => math.wrap<T, TScalar>(value, min, max);
+            => math.wrap(value, min, max);
     }
 }

@@ -30,7 +30,8 @@ public partial class VectorGenerator
 
     /// <summary>
     /// Generates the members that create the vector described by <paramref name="typ"/> out of another one, they
-    /// implement the <c>IVectorCtor</c> interfaces: a vector of 2 components is created from its two components,
+    /// implement the create members of the interfaces of the algebra library: a vector of 2 components is created
+    /// from its two components,
     /// a longer one is created from its own components as well, a vector of 3 or 4 components is created by
     /// merging a pair of components of a shorter vector and a vector of 4 components is also created by merging
     /// a triple. The name of a member is the name of the components it takes from its arguments: the pair of
@@ -87,21 +88,19 @@ public partial class VectorGenerator
         }
 
         // the interfaces the members implement, they are declared by the part that holds the members instead of
-        // the base part because the base part has no member of them
+        // the base part because the base part has no member of them. The interface of a vector of 2 components
+        // declares the create of it itself, so this part carries no interface of its own for it
         var ifaces = size switch
         {
-            2 => new List<string>
-            {
-                $"IVector2Ctor<{type}, {scalar}>",
-            },
+            2 => new List<string>(),
             3 => new List<string>
             {
-                $"IVector3CtorFromVector2<{type}, {scalar}, {type2}>",
+                $"Algebras.IVector3CtorFromVector2<{type}, {scalar}, {type2}>",
             },
             _ => new List<string>
             {
-                $"IVector4CtorFromVector2<{type}, {scalar}, {type2}>",
-                $"IVector4CtorFromVector3<{type}, {scalar}, {type3}>",
+                $"Algebras.IVector4CtorFromVector2<{type}, {scalar}, {type2}>",
+                $"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>",
             },
         };
 
@@ -189,7 +188,7 @@ public partial class VectorGenerator
         var sb = new StringBuilder();
 
         VectorGenShared.FileHeader(sb, false);
-        sb.AppendLine($"public partial struct {type} :");
+        sb.AppendLine(ifaces.Count == 0 ? $"public partial struct {type}" : $"public partial struct {type} :");
         for (var i = 0; i < ifaces.Count; i++)
         {
             sb.AppendLine($"    {ifaces[i]}" + (i == ifaces.Count - 1 ? "" : ","));

@@ -10,25 +10,6 @@ namespace Coplt.Analyzers.Generators;
 internal static class VectorGenShared
 {
     /// <summary>
-    /// Returns the arithmetic interfaces the vector described by <paramref name="typ"/> implements: a signed
-    /// vector has the signed arithmetic, the other ones the plain arithmetic, and a 3 component vector also has
-    /// the cross product on top of it.
-    /// </summary>
-    /// <param name="typ">The type of the vector</param>
-    /// <param name="size">The number of components of the vector</param>
-    /// <param name="storeVariant">True for the storage variant of the vector</param>
-    /// <returns>The name and the type arguments of every interface</returns>
-    public static List<(string Name, List<string> Args)> ArithInterfaces(Typ typ, int size, bool storeVariant)
-    {
-        var args = new List<string> { VecName(typ, size, storeVariant), typ.compType };
-        var ifaces = new List<(string Name, List<string> Args)>();
-        if (typ.sig) ifaces.Add(("ISignedVectorArithmetic", args));
-        else if (size != 3) ifaces.Add(("IVectorArithmetic", args));
-        if (size == 3) ifaces.Add(("IVector3Arithmetic", args));
-        return ifaces;
-    }
-
-    /// <summary>
     /// Makes the reference to a generic interface. A reference cannot carry the type arguments of a constructed
     /// interface, so the reference names the interface with the type parameters it declares and its text shows
     /// the constructed interface.
@@ -97,8 +78,8 @@ internal static class VectorGenShared
 
         sb.AppendLine("using Coplt.Mathematics;");
         sb.AppendLine("using Coplt.Mathematics.Generics;");
-        // the algebra interfaces are spelled out through the alias, they are implemented beside the older
-        // interfaces of the generics namespace while the older ones are migrated away
+        // the algebra library is reached through an alias, its interfaces are the ones the members of a vector
+        // implement: the generics namespace still carries the families that are migrated beside them
         sb.AppendLine("using Algebras = Coplt.Mathematics.Algebras;");
         if (simdHelpers) sb.AppendLine("using Coplt.Mathematics.Simd;");
         sb.AppendLine("using Coplt.Shader;");

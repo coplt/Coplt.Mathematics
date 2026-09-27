@@ -1,23 +1,24 @@
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Generics;
 
 namespace Tests.Core;
 
 /// <summary>
 /// A vector implements the interface of its size, which names the size of the vector, the members every vector
-/// has and the components it reaches by name: the component interfaces declare the <c>xyzw</c> spelling of a
-/// component and the <c>rgba</c> one, and the two of them reach the same component. The size is a type of its
-/// own as well, so generic code can constrain the shape of a vector without naming its components, and every
-/// member of the interfaces is static, so generic code reaches the components with the static form.
+/// has and the components it reaches by name: the interface of a size declares the <c>xyzw</c> spelling of a
+/// component and every member of the interfaces is static, so generic code reaches the components with the
+/// static form. The size is a type of its own as well, so generic code can constrain the shape of a vector
+/// without naming its components.
 /// </summary>
 public class TestVectorComponentInterfaces
 {
     /// <summary>
     /// Writes every component of <paramref name="start"/> through the interface of the components and reads
-    /// them back: the <c>rgba</c> spelling of a component is written and the <c>xyzw</c> one is read.
+    /// them back.
     /// </summary>
     private static (S x, S y, S z, S w) RoundTrip4<T, S>(T start, S x, S y, S z, S w)
-        where T : unmanaged, IVector4Components<T, S>
+        where T : unmanaged, IVector4<T, S>
         where S : unmanaged
     {
         var v = start;
@@ -25,45 +26,35 @@ public class TestVectorComponentInterfaces
         T.set_y(ref v, y);
         T.set_z(ref v, z);
         T.set_w(ref v, w);
-        // the rgba spelling of a component reaches the same one
-        T.set_a(ref v, T.get_w(v));
-        T.set_b(ref v, T.get_z(v));
-        T.set_g(ref v, T.get_y(v));
-        T.set_r(ref v, T.get_x(v));
         return (T.get_x(v), T.get_y(v), T.get_z(v), T.get_w(v));
     }
 
     /// <summary>
     /// Writes every component of <paramref name="start"/> through the interface of the components and reads
-    /// them back: the <c>rgba</c> spelling of a component is written and the <c>xyzw</c> one is read.
+    /// them back.
     /// </summary>
     private static (S x, S y, S z) RoundTrip3<T, S>(T start, S x, S y, S z)
-        where T : unmanaged, IVector3Components<T, S>
+        where T : unmanaged, IVector3<T, S>
         where S : unmanaged
     {
         var v = start;
         T.set_x(ref v, x);
         T.set_y(ref v, y);
         T.set_z(ref v, z);
-        T.set_b(ref v, T.get_z(v));
-        T.set_g(ref v, T.get_y(v));
-        T.set_r(ref v, T.get_x(v));
         return (T.get_x(v), T.get_y(v), T.get_z(v));
     }
 
     /// <summary>
     /// Writes every component of <paramref name="start"/> through the interface of the components and reads
-    /// them back: the <c>rgba</c> spelling of a component is written and the <c>xyzw</c> one is read.
+    /// them back.
     /// </summary>
     private static (S x, S y) RoundTrip2<T, S>(T start, S x, S y)
-        where T : unmanaged, IVector2Components<T, S>
+        where T : unmanaged, IVector2<T, S>
         where S : unmanaged
     {
         var v = start;
         T.set_x(ref v, x);
         T.set_y(ref v, y);
-        T.set_g(ref v, T.get_y(v));
-        T.set_r(ref v, T.get_x(v));
         return (T.get_x(v), T.get_y(v));
     }
 

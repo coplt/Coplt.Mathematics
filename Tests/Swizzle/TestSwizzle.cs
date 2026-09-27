@@ -1,5 +1,6 @@
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Generics;
 using half = System.Half;
 
@@ -27,7 +28,7 @@ public class TestSwizzle
         {
             for (var i = 0; i < T.Length; i++)
             {
-                Assert.That(T.get_at((T)actual, i), Is.EqualTo(T.get_at((T)expected, i)), $"{what}, component {i}");
+                Assert.That(T.get((T)actual, i), Is.EqualTo(T.get((T)expected, i)), $"{what}, component {i}");
             }
         }
     }

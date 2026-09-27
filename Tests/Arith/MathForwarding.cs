@@ -20,7 +20,7 @@ public class TestMathArithForwarding
     /// every one of them is the interface that has no component type.
     /// </summary>
     private static void Check<T>(T v)
-        where T : unmanaged, IVectorArithmetic<T>, INumberAlgebraDispatch<T>
+        where T : unmanaged, INumberAlgebraDispatch<T>
     {
         math.abs(v);
         math.sign(v);
@@ -48,7 +48,7 @@ public class TestMathArithForwarding
     /// component infers the type of it from the argument, a member that only returns one names both types.
     /// </summary>
     private static void CheckScalar<T, TScalar>(T v, TScalar s0, TScalar s1)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebra<T, TScalar>, Coplt.Mathematics.Algebras.INumberVector<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, INumberAlgebra<T, TScalar>, Coplt.Mathematics.Algebras.INumberVector<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         // the width of the range of the members that divide by it has to be wider than zero

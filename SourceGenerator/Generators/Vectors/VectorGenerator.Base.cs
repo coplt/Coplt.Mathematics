@@ -9,7 +9,7 @@ public partial class VectorGenerator
     /// <summary>
     /// Generates the base members of the vector described by <paramref name="typ"/>: the meta data, the
     /// constants, the fields, the constructors, the deconstruction, the indexer and the operators. They implement
-    /// <c>IVector</c> and the operators of <c>INumberVector</c> / <c>IBoolVector</c>.
+    /// the interfaces of the algebra of the kind of the vector and the operators of the kind of it.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -21,7 +21,6 @@ public partial class VectorGenerator
         var byteSize = typ.size * (size == 3 ? 4 : size);
         var bitSize = 8 * byteSize;
         var bol = typ.bol;
-        var iface = bol ? "IBoolVector" : "INumberVector";
         var boolType = $"b{typ.size * 8}v{size}";
         var simd = VectorGenShared.Simd(typ, size, storeVariant);
         // the value of a 64 bit vector is kept in a raw ulong field, the other simd vectors keep the register
@@ -120,9 +119,10 @@ public partial class VectorGenerator
         var parts = new List<string>
         {
             "The base members implement " +
-            VectorGenShared.IfaceRef($"IVector{size}", new List<string> { "TSelf", "TScalar" },
+            VectorGenShared.IfaceRef($"Algebras.IVector{size}", new List<string> { "TSelf", "TScalar" },
                 new List<string> { type, scalar }) + " and " +
-            VectorGenShared.IfaceRef(iface, new List<string> { "TSelf", "TScalar" }, new List<string> { type, scalar }),
+            VectorGenShared.IfaceRef($"Algebras.{AlgebraIface()}", new List<string> { "TSelf", "TScalar" },
+                new List<string> { type, scalar }),
         };
 
         // the bits of the value are reachable as a raw vector of bytes, the width of the register of the
@@ -133,25 +133,23 @@ public partial class VectorGenerator
             : "the underlying members implement " +
               VectorGenShared.IfaceRef($"Algebras.Generics.IVector{underlying}Underlying", new List<string> { "TSelf" },
                   new List<string> { type }));
-        // the members that create the vector out of another one implement the interfaces of the create members
-        if (size == 2)
+        // the members that create the vector out of another one implement the interfaces of the create members.
+        // The interface of a vector of 2 components declares its create itself, which the first sentence names
+        if (size == 3)
         {
             parts.Add("the create members implement " +
-                      VectorGenShared.IfaceRef("IVector2Ctor", new List<string> { "TSelf", "TScalar" },
-                          new List<string> { type, scalar }));
-        }
-        else if (size == 3)
-        {
-            parts.Add("the create members implement " +
-                      VectorGenShared.IfaceRef("IVector3CtorFromVector2", new List<string> { "TSelf", "TScalar", "TVector2" },
+                      VectorGenShared.IfaceRef("Algebras.IVector3CtorFromVector2",
+                          new List<string> { "TSelf", "TScalar", "TVector2" },
                           new List<string> { type, scalar, type2 }));
         }
-        else
+        else if (size == 4)
         {
             parts.Add("the create members implement " +
-                      VectorGenShared.IfaceRef("IVector4CtorFromVector2", new List<string> { "TSelf", "TScalar", "TVector2" },
+                      VectorGenShared.IfaceRef("Algebras.IVector4CtorFromVector2",
+                          new List<string> { "TSelf", "TScalar", "TVector2" },
                           new List<string> { type, scalar, type2 }) + " and " +
-                      VectorGenShared.IfaceRef("IVector4CtorFromVector3", new List<string> { "TSelf", "TScalar", "TVector3" },
+                      VectorGenShared.IfaceRef("Algebras.IVector4CtorFromVector3",
+                          new List<string> { "TSelf", "TScalar", "TVector3" },
                           new List<string> { type, scalar, type3 }));
         }
 
@@ -198,17 +196,6 @@ public partial class VectorGenerator
                           new List<string> { type }));
         }
 
-        if (typ.arith)
-        {
-            var arith = new List<string>();
-            foreach (var i in VectorGenShared.ArithInterfaces(typ, size, storeVariant))
-            {
-                arith.Add(VectorGenShared.IfaceRef(i.Name, new List<string> { "Self", "Scalar" }, i.Args));
-            }
-
-            parts.Add($"the arithmetic members implement {string.Join(" and ", arith)}");
-        }
-
         VectorGenShared.FileHeader(sb, false, true);
         sb.AppendLine("/// <summary>");
         sb.AppendLine($"/// <c>{type}</c> is a vector of {size} <see cref=\"{scalar}\"/> components");
@@ -231,12 +218,9 @@ public partial class VectorGenerator
         // and the attribute names it in full
         sb.AppendLine($"[JsonConverter(typeof({VectorGenerator.JsonNamespace}.{type}JsonConverter))]");
         // the interface of the size of the vector names the size and the components of the vector beside the
-        // members of the kind of the vector, the algebra interfaces are implemented beside the older ones and
-        // the two families stay beside each other until the older one is migrated away
+        // members of the kind of the vector, which the algebra library declares
         var ifaces = new List<string>
         {
-            $"IVector{size}<{type}, {scalar}>",
-            $"{iface}<{type}, {scalar}>",
             $"IEqualityOperators<{type}, {type}, {boolType}>",
             $"IComparisonOperators<{type}, {type}, {boolType}>",
             $"Algebras.IVector{size}<{type}, {scalar}>",
@@ -711,7 +695,8 @@ public partial class VectorGenerator
         sb.AppendLine();
         sb.AppendLine("    #region index");
         sb.AppendLine();
-        InheritDoc();
+        Doc("Returns or sets the component at the position of <paramref name=\"i\"/>");
+        DocParam("i", "The position of the component");
         sb.AppendLine($"    public {scalar} this[int i]");
         sb.AppendLine("    {");
         sb.AppendLine($"        {attr}");
@@ -748,52 +733,24 @@ public partial class VectorGenerator
         sb.AppendLine("    #region components");
         sb.AppendLine();
 
-        // the components are reached through the static members of the interface of them, the fields and the
-        // properties of the type stay beside them for the code that names the type of the vector. The members
-        // replace a property of the interface, so they are implemented explicitly and they do not become a part
-        // of the surface of the type itself.
+        // the components are reached through the static members of the interface of the algebra of the vector,
+        // the fields and the properties of the type stay beside them for the code that names the type of the
+        // vector. The members replace a property of the interface, so they are implemented explicitly and they
+        // do not become a part of the surface of the type itself.
         for (var i = 0; i < size; i++)
         {
-            // the first two components are declared by the interface of 2 components and every longer one adds
-            // its own component to it
-            var components = $"IVector{(i < 2 ? 2 : i + 1)}Components<{type}, {scalar}>";
-            // the algebra library declares the components of the size of the vector on the interface of the
-            // size itself, so the same member is implemented explicitly for it as well
+            // the interface of the size of the vector declares the component of the position of it
             var algebra = $"Algebras.IVector{size}<{type}, {scalar}>";
-            foreach (var name in new[] { comp[i], Typ.rgba[i] })
-            {
-                InheritDoc();
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {scalar} {components}.get_{name}(in {type} self) => self.{name};");
-                sb.AppendLine();
-                InheritDoc();
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static void {components}.set_{name}(ref {type} self, {scalar} value) => self.{name} = value;");
-                sb.AppendLine();
-                // the algebra interface only declares the spelling of the position of a component
-                if (name == comp[i])
-                {
-                    InheritDoc();
-                    sb.AppendLine($"    {attr}");
-                    sb.AppendLine($"    static {scalar} {algebra}.get_{name}(in {type} self) => self.{name};");
-                    sb.AppendLine();
-                    InheritDoc();
-                    sb.AppendLine($"    {attr}");
-                    sb.AppendLine($"    static void {algebra}.set_{name}(ref {type} self, {scalar} value) => self.{name} = value;");
-                    sb.AppendLine();
-                }
-            }
+            InheritDoc();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static {scalar} {algebra}.get_{comp[i]}(in {type} self) => self.{comp[i]};");
+            sb.AppendLine();
+            InheritDoc();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    static void {algebra}.set_{comp[i]}(ref {type} self, {scalar} value) => self.{comp[i]} = value;");
+            sb.AppendLine();
         }
 
-        // the index of a component replaced the indexer of the interface
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    static {scalar} IVector<{type}, {scalar}>.get_at(in {type} self, int i) => self[i];");
-        sb.AppendLine();
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    static void IVector<{type}, {scalar}>.set_at(ref {type} self, int i, {scalar} value) => self[i] = value;");
-        sb.AppendLine();
         sb.AppendLine("    #endregion");
 
         #endregion

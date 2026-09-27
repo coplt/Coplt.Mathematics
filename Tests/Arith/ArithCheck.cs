@@ -7,8 +7,8 @@ using Algebras = Coplt.Mathematics.Algebras;
 namespace Tests.Arith;
 
 /// <summary>
-/// The arithmetic checks that only use the members declared on the <c>IVectorArithmetic</c> family of
-/// interfaces, so every generated number vector is checked through the same code. The accelerated simd path and
+/// The arithmetic checks that only use the members declared on the interfaces of the algebra library, so every
+/// generated number vector is checked through the same code. The accelerated simd path and
 /// the scalar fallback are not selected here, both have to pass the checks below, the fallback is covered by the
 /// element types that are not simd backed (half, short, ushort).
 /// </summary>
@@ -22,7 +22,7 @@ internal static class ArithCheck
     /// and its padding lanes are not part of the vector.
     /// </summary>
     private static T Vec<T, TScalar>(int length, bool simd, params TScalar[] values)
-        where T : unmanaged, IVector<T, TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>
         where TScalar : unmanaged
     {
         var data = new TScalar[simd ? 4 : length];
@@ -34,11 +34,11 @@ internal static class ArithCheck
     /// Checks every component of the vector, the padding lane of a 3 component vector is not part of the vector.
     /// </summary>
     private static void AllEqual<T, TScalar>(T actual, T expected, string what)
-        where T : unmanaged, IVector<T, TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>
         where TScalar : unmanaged
     {
         for (var i = 0; i < T.Length; i++)
-            Assert.That(T.get_at(actual, i), Is.EqualTo(T.get_at(expected, i)), $"{what}, component {i}");
+            Assert.That(T.get(actual, i), Is.EqualTo(T.get(expected, i)), $"{what}, component {i}");
     }
 
     private static void ScalarEqual<TScalar>(TScalar actual, TScalar expected, string what)
@@ -50,31 +50,32 @@ internal static class ArithCheck
     /// interfaces cannot name the member of the vector through its type parameter.
     /// </summary>
     private static TSelf VecZero<TSelf>()
-        where TSelf : unmanaged, INumberVector<TSelf> => TSelf.Zero;
+        where TSelf : unmanaged, Algebras.INumberVector<TSelf> => TSelf.Zero;
 
     /// <inheritdoc cref="VecZero{TSelf}"/>
     private static TSelf VecOne<TSelf>()
-        where TSelf : unmanaged, INumberVector<TSelf> => TSelf.One;
+        where TSelf : unmanaged, Algebras.INumberVector<TSelf> => TSelf.One;
 
     /// <inheritdoc cref="VecZero{TSelf}"/>
     private static TSelf VecTwo<TSelf>()
-        where TSelf : unmanaged, INumberVector<TSelf> => TSelf.Two;
+        where TSelf : unmanaged, Algebras.INumberVector<TSelf> => TSelf.Two;
 
     /// <inheritdoc cref="VecZero{TSelf}"/>
     private static TSelf VecBroadcast<TSelf, TScalar>(TScalar scalar)
-        where TSelf : unmanaged, IVectorCtor<TSelf, TScalar>
+        where TSelf : unmanaged, Algebras.IAlgebra<TSelf, TScalar>
         where TScalar : unmanaged => TSelf.Broadcast(scalar);
 
     #endregion
 
-    #region IVectorArithmetic
+    #region operators
 
     /// <summary>
-    /// Everything that is declared on <see cref="IVectorArithmetic{Self,Scalar}"/>. Every value is a small
-    /// integer, so no result is rounded and the check works for the floating point and the integer types alike.
+    /// Everything that the operators of <see cref="Algebras.INumberVector{TSelf,TScalar}"/> add. Every value
+    /// is a small integer, so no result is rounded and the check works for the floating point and the integer
+    /// types alike.
     /// </summary>
     public static void Arithmetic<T, TScalar>(int length, bool simd)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>, Coplt.Mathematics.Algebras.INumberVector<T, TScalar>
+        where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, Algebras.INumberVector<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
@@ -189,10 +190,10 @@ internal static class ArithCheck
             var sum = zero;
             for (var i = 0; i < length; i++)
             {
-                dotAscFive += T.get_at(asc, i) * T.get_at(allFive, i);
-                lengthSq += T.get_at(asc, i) * T.get_at(asc, i);
-                distanceSq += (five - T.get_at(asc, i)) * (five - T.get_at(asc, i));
-                sum += T.get_at(asc, i);
+                dotAscFive += T.get(asc, i) * T.get(allFive, i);
+                lengthSq += T.get(asc, i) * T.get(asc, i);
+                distanceSq += (five - T.get(asc, i)) * (five - T.get(asc, i));
+                sum += T.get(asc, i);
             }
 
             ScalarEqual(math.dot<T, TScalar>(asc, allFive), dotAscFive, "dot");
@@ -239,13 +240,14 @@ internal static class ArithCheck
 
     #endregion
 
-    #region ISignedVectorArithmetic
+    #region negation
 
     /// <summary>
-    /// Everything that is added by <see cref="ISignedVectorArithmetic{Self,Scalar}"/>.
+    /// Everything that the signed kind of <see cref="Algebras.INumberVector{TSelf,TScalar}"/> adds. The
+    /// floating point kind is a signed one as well, so the check reaches both of them.
     /// </summary>
     public static void Negation<T, TScalar>(int length, bool simd)
-        where T : unmanaged, ISignedVectorArithmetic<T, TScalar>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, Algebras.ISignedNumberVector<T, TScalar>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, ISignedNumber<TScalar>, IBinaryNumber<TScalar>
     {
         var negOne = -TScalar.One;
@@ -276,14 +278,14 @@ internal static class ArithCheck
 
     #endregion
 
-    #region IVector3Arithmetic
+    #region cross
 
     /// <summary>
-    /// Everything that is added by <see cref="IVector3Arithmetic{Self,Scalar}"/>. Only the products that stay
-    /// positive on every component are checked, so the unsigned types are covered too.
+    /// Everything that the cross product of a 3 component vector adds. Only the products that stay positive on
+    /// every component are checked, so the unsigned types are covered too.
     /// </summary>
     public static void Cross<T, TScalar>(bool simd)
-        where T : unmanaged, IVector3Arithmetic<T, TScalar>, INumberAlgebraDispatch<T, TScalar>, Algebras.IVector3<T>, Algebras.INumberVector<T, TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>, INumberAlgebraDispatch<T, TScalar>, Algebras.IVector3<T>, Algebras.INumberVector<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
@@ -313,8 +315,8 @@ internal static class ArithCheck
     /// The cross product of a signed 3 component vector, the parts that need a negative value.
     /// </summary>
     public static void SignedCross<T, TScalar>(bool simd)
-        where T : unmanaged, ISignedVectorArithmetic<T, TScalar>, IVector3Arithmetic<T, TScalar>, Algebras.IVector3<T>, INumberAlgebraDispatch<T>
-        where TScalar : unmanaged, ISignedNumber<TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.ISignedNumberVector<T, TScalar>, Algebras.IVector3<T>, INumberAlgebraDispatch<T>
+        where TScalar : unmanaged, ISignedNumber<TScalar>, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
         var one = TScalar.One;
@@ -339,7 +341,7 @@ internal static class ArithCheck
     /// reductions and the equality checks rely on it. <paramref name="padding"/> reads that lane.
     /// </summary>
     public static void PaddingStaysZero<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVector3Arithmetic<T, TScalar>, Algebras.INumberAlgebra<T>, Algebras.IVector3<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.INumberAlgebra<T>, Algebras.IVector3<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;
@@ -398,7 +400,7 @@ internal static class ArithCheck
     /// reads one of those lanes.
     /// </summary>
     public static void PaddingStaysZero2<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, IVectorArithmetic<T, TScalar>, Algebras.INumberAlgebra<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.INumberAlgebra<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;

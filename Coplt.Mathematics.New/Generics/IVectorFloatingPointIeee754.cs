@@ -61,7 +61,7 @@ public interface IVectorFloatingPointIeee754BoolOps<Self, Scalar, out BoolVector
     where Scalar : unmanaged, INumberBase<Scalar>;
 
 /// <summary>
-/// A <see cref="ISignedVectorArithmetic{Self}"/> of floating point components with the ieee 754 math functions
+/// A vector of floating point components with the ieee 754 math functions
 /// <para>It does not name the type of a single component because none of these members needs it, <see
 /// cref="IVectorFloatingPointIeee754{Self,Scalar}"/> adds the members that do</para>
 /// </summary>

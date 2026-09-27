@@ -99,7 +99,7 @@ public interface ISignedNumberVector<TSelf, TScalar> :
 /// kind of it, which are the ones of every component of the vector, and the ones of the ieee 754 standard,
 /// which every floating point type of the library names
 /// </summary>
-public interface IFloatingPointVector<TSelf> : IFloatingPointMatrix<TSelf>, INumberVector<TSelf>
+public interface IFloatingPointVector<TSelf> : IFloatingPointMatrix<TSelf>, ISignedNumberVector<TSelf>
     where TSelf : unmanaged, IFloatingPointVector<TSelf>;
 
 /// <summary>
@@ -110,7 +110,7 @@ public interface IFloatingPointVector<TSelf> : IFloatingPointMatrix<TSelf>, INum
 public interface IFloatingPointVector<TSelf, TScalar> :
     IFloatingPointVector<TSelf>,
     IFloatingPointMatrix<TSelf, TScalar>,
-    INumberVector<TSelf, TScalar>
+    ISignedNumberVector<TSelf, TScalar>
     where TSelf : unmanaged, IFloatingPointVector<TSelf>, IFloatingPointVector<TSelf, TScalar>
     where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>;
 

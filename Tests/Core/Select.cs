@@ -1,5 +1,6 @@
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Generics;
 using static Coplt.Mathematics.math;
 

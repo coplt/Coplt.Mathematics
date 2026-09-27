@@ -8,8 +8,7 @@
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 /// <typeparam name="BoolVector">The bool vector type that has the same shape as this vector</typeparam>
-public interface IVectorSelect<Self, BoolVector> :
-    IVector<Self>
+public interface IVectorSelect<Self, BoolVector>
     where Self : unmanaged, IVectorSelect<Self, BoolVector>
 {
     #region Select
