@@ -20,16 +20,6 @@ internal static class VectorDocs
     /// </summary>
     private static readonly Dictionary<string, (string Summary, string Returns, string Params)> Docs = new()
     {
-        #region IVectorFloatingPoint
-
-        {
-            "wrap",
-            ("Wraps every component into the range of <c>min</c> and <c>max</c>", "The wrapped vector",
-                "a=The vector;min=The lower bound of every component;max=The upper bound of every component")
-        },
-
-        #endregion
-
         #region IVectorFloatingPointIeee754
 
         { "is_NaN", ("Returns a mask that is true where the component is NaN", "The mask", "a=The vector") },

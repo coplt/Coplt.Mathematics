@@ -1,27 +1,26 @@
+using System.Numerics;
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
-using Coplt.Mathematics.Generics;
+using Coplt.Mathematics.Algebras;
 using half = System.Half;
 
 namespace Tests.Arith;
 
 /// <summary>
-/// The floating point members of a vector implement <c>IVectorFloatingPoint</c>: the constants of the component
-/// type and the two sided wrap. The members of a simd vector keep the padding lanes of it at zero.
+/// The floating point members of a vector are the constants of the kind of its component type, which the algebra
+/// of the kind of it reaches: they are the ones of the kind of the component and the ones of the kind the ieee 754
+/// standard names. The members of a simd vector keep the padding lanes of it at zero.
 /// </summary>
 public class TestFloatingPoint
 {
     /// <summary>
-    /// Every floating point vector implements the interface, so every member below is reachable through it and
-    /// the constants of the component type are a vector of it.
+    /// Every floating point vector implements the algebra of the kind of it, so every constant below is reachable
+    /// through it.
     /// </summary>
     private static void Check<T, TScalar>(T v)
-        where T : unmanaged, IVectorFloatingPoint<T, TScalar>
-        where TScalar : unmanaged
+        where T : unmanaged, IFloatingPointAlgebra<T, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
     {
-        v.wrap(v, v);
-        v.wrap(default(TScalar), default(TScalar));
-
         _ = T.E;
         _ = T.Log2;
         _ = T.Log10;
@@ -103,29 +102,6 @@ public class TestFloatingPoint
     }
 
     [Test]
-    public void Wrap()
-    {
-        var v = new float3(2.5f, -1.5f, 0.25f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            // a value that is not negative is wrapped above the lower bound, a negative one below the upper one
-            Assert.That(v.wrap(default, new float3(1f)), Is.EqualTo(new float3(0.5f, 0.5f, 0.25f)));
-            Assert.That(v.wrap(0f, 1f), Is.EqualTo(new float3(0.5f, 0.5f, 0.25f)));
-            Assert.That(new float3(2.5f, -0.5f, 0f).wrap(0f, 2f), Is.EqualTo(new float3(0.5f, 1.5f, 0f)));
-            Assert.That(new double2(2.5, -0.5).wrap(0d, 2d), Is.EqualTo(new double2(0.5, 1.5)));
-        }
-
-        var h = new half2((half)2.5f, (half)(-0.5f));
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((float)h.wrap((half)0f, (half)2f).x, Is.EqualTo(0.5f));
-            Assert.That((float)h.wrap((half)0f, (half)2f).y, Is.EqualTo(1.5f));
-        }
-    }
-
-    [Test]
     public void StorageVariant()
     {
         var v = new float3s(1.4f, -1.5f, 2.6f);
@@ -136,7 +112,6 @@ public class TestFloatingPoint
             Assert.That(v.trunc(), Is.EqualTo(new float3s(1f, -1f, 2f)));
             Assert.That(v.frac().y, Is.EqualTo(0.5f));
             Assert.That(math.fmod(v, new float3s(1f, 1f, 1f)).z, Is.EqualTo(0.6f).Within(1e-6f));
-            Assert.That(v.wrap(0f, 1f).x, Is.EqualTo(0.4f).Within(1e-6f));
         }
 
         var n = new float2s(1.4f, 2.6f);
@@ -178,7 +153,6 @@ public class TestFloatingPoint
             Assert.That(math.fmod(v, v).vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.rcp().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.saturate().vector.GetElement(3), Is.EqualTo(0f));
-            Assert.That(v.wrap(v, v).vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.radians().vector.GetElement(3), Is.EqualTo(0f));
         }
 
@@ -191,7 +165,6 @@ public class TestFloatingPoint
             Assert.That(math.fmod(n, n).vector.GetElement(2), Is.EqualTo(0f));
             Assert.That(n.rcp().vector.GetElement(2), Is.EqualTo(0f));
             Assert.That(n.rcp().vector.GetElement(3), Is.EqualTo(0f));
-            Assert.That(n.wrap(n, n).vector.GetElement(2), Is.EqualTo(0f));
         }
     }
 }

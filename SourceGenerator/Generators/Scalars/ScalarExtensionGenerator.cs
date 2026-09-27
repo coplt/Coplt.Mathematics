@@ -150,6 +150,10 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
         var component = method.TypeParameters.FirstOrDefault(p => p.Name == scalarTypeParameter);
         if (component is null) return;
 
+        // the marked member decides which types of a single component reach it: the type parameter of the kind of
+        // a floating point number is only reached by the floating point types
+        var floating = Floating(component);
+
         // the type of a single component is spelled out by the generated member, the rest of the type parameters
         // are kept and inferred as they are
         var typeParameters = method.TypeParameters.Where(p => !SymbolEqualityComparer.Default.Equals(p, component)).ToArray();
@@ -158,8 +162,10 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
 
         foreach (var typ in Typ.Typs)
         {
-            // only a number type has arithmetic, a bool vector has no dot product at all
+            // only a number type has arithmetic, a bool vector has no dot product at all, and a member of the
+            // floating point kind only reaches the floating point types of a vector
             if (!typ.arith || typ.bol) continue;
+            if (floating && !typ.f) continue;
             context.AddSource(
                 $"{Namespace}.{method.Name}.{typ.name}.g.cs",
                 SourceText.From(Gen(typ.name, method, scalarTypeParameter, typeParameters, priority, receiver), Encoding.UTF8));
@@ -183,6 +189,17 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
 
         return DefaultScalarTypeParameter;
     }
+
+    /// <summary>
+    /// Returns whether the type of a single component of a marked member is only reached by the floating point
+    /// types of a vector, which the constraint of the type parameter of it says: the constraint of the kind of a
+    /// number reaches every number type of a vector and the one of the kind of a floating point number only reaches
+    /// the floating point ones.
+    /// </summary>
+    /// <param name="component">The type parameter of a marked member that names the type of a single component</param>
+    /// <returns>True for a member that only the floating point types of a vector reach</returns>
+    private static bool Floating(ITypeParameterSymbol component) =>
+        component.ConstraintTypes.Any(static c => c.Name is "IBinaryFloatingPointIeee754");
 
     /// <summary>
     /// Returns the value of the named argument <paramref name="name"/> of the attribute of a marked member, which

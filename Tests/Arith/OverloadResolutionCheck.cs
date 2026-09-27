@@ -13,6 +13,10 @@ public class TestOverloadResolutionCheck
 {
     private const string Float2 = "Coplt.Mathematics.float2";
     private const string Float3 = "Coplt.Mathematics.float3";
+    private const string Double2 = "Coplt.Mathematics.double2";
+    private const string Double = "System.Double";
+    private const string Half = "System.Half";
+    private const string Half3 = "Coplt.Mathematics.half3";
     private const string Float3x2 = "Coplt.Mathematics.float3x2";
     private const string Math = "Coplt.Mathematics.math";
     private const string MathEx = "Coplt.Mathematics.math_ex";
@@ -22,6 +26,8 @@ public class TestOverloadResolutionCheck
     private const string ExFloat = "Coplt.Mathematics.ex_float";
     private const string ExFloat2 = "Coplt.Mathematics.ex_float2";
     private const string ExFloat3 = "Coplt.Mathematics.ex_float3";
+    private const string ExDouble = "Coplt.Mathematics.ex_double";
+    private const string ExHalf = "Coplt.Mathematics.ex_half";
     private const string Single = "System.Single";
 
     /// <summary>
@@ -44,6 +50,13 @@ public class TestOverloadResolutionCheck
         ("math.hmax(v)", $"{ExFloat}::hmax<{Float3}>({Float3}&)"),
         ("math.hmin_native(v)", $"{ExFloat}::hmin_native<{Float3}>({Float3}&)"),
         ("math.hmax_native(v)", $"{ExFloat}::hmax_native<{Float3}>({Float3}&)"),
+        ("math.wrap(v, v, v)", $"{MathEx}::wrap<{Float3}>({Float3}&, {Float3}&, {Float3}&)"),
+        ("math.wrap<float3, float>(v, 0f, 1f)", $"{Math}::wrap<{Float3}, {Single}>({Float3}&, {Single}, {Single})"),
+        ("math.wrap(v, 0f, 1f)", $"{Math}::wrap<{Float3}, {Single}>({Float3}&, {Single}, {Single})"),
+        ("math.wrap(v, 0, 1)", $"{ExFloat}::wrap<{Float3}>({Float3}&, {Single}, {Single})"),
+        ("math.wrap(v2, 0, 1)", $"{ExFloat}::wrap<{Float2}>({Float2}&, {Single}, {Single})"),
+        ("math.wrap(d2, 0, 1)", $"{ExDouble}::wrap<{Double2}>({Double2}&, {Double}, {Double})"),
+        ("math.wrap(h3, (Half)0, (Half)1)", $"{Math}::wrap<{Half3}, {Half}>({Half3}&, {Half}, {Half})"),
         ("v.lerp(1, 2)", $"{MathExFloat}::lerp<{Float3}>({Float3}, {Single}, {Single})"),
         ("v.lerp(1, v)", $"{MathEx}::lerp<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
         ("v.unlerp(1, 2)", $"{MathExFloat}::unlerp<{Float3}>({Float3}, {Single}, {Single})"),
@@ -55,13 +68,25 @@ public class TestOverloadResolutionCheck
         ("v.hmax()", $"{MathExFloat}::hmax<{Float3}>({Float3})"),
         ("v.hmin_native()", $"{MathExFloat}::hmin_native<{Float3}>({Float3})"),
         ("v.hmax_native()", $"{MathExFloat}::hmax_native<{Float3}>({Float3})"),
+        ("v.wrap(v, v)", $"{MathEx}::wrap<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
+        ("v.wrap(0f, 1f)", $"{MathExFloat}::wrap<{Float3}>({Float3}, {Single}, {Single})"),
     };
 
     /// <summary>
-    /// The calls of <see cref="TestOverloadResolutionUsingStatic.ScalarArguments"/>, which are the ones of the
-    /// member above without the ones that are called on a value.
+    /// The calls of <see cref="TestOverloadResolutionUsingStatic.ScalarArguments"/>: the ones of the member above
+    /// that every one of them reaches the same member with a name of its own, beside the ones whose bound is of
+    /// the type of a single component, which reach the member the generator emits for the scalar type of the value
+    /// when the class of it is imported as well.
     /// </summary>
-    private static readonly (string Call, string Member)[] UsingStaticCalls = Calls[..14];
+    private static readonly (string Call, string Member)[] UsingStaticCalls =
+    [
+        .. Calls[..16],
+        ("wrap(v, 0f, 1f)", $"{ExFloat}::wrap<{Float3}>({Float3}&, {Single}, {Single})"),
+        ("wrap(v, 0, 1)", $"{ExFloat}::wrap<{Float3}>({Float3}&, {Single}, {Single})"),
+        ("wrap(v2, 0, 1)", $"{ExFloat}::wrap<{Float2}>({Float2}&, {Single}, {Single})"),
+        ("wrap(d2, 0, 1)", $"{ExDouble}::wrap<{Double2}>({Double2}&, {Double}, {Double})"),
+        ("wrap(h3, (Half)0, (Half)1)", $"{ExHalf}::wrap<{Half3}>({Half3}&, {Half}, {Half})"),
+    ];
 
     /// <summary>
     /// The calls of <see cref="TestOverloadResolution.MatrixArguments"/> in the order of its body and the member
@@ -73,17 +98,24 @@ public class TestOverloadResolutionCheck
     {
         ("math.csum(m)", $"{ExFloat3}::csum<{Float3x2}>({Float3x2}&)"),
         ("math.rsum(m)", $"{ExFloat2}::rsum<{Float3x2}>({Float3x2}&)"),
+        ("math.wrap(m, 0f, 1f)", $"{Math}::wrap<{Float3x2}, {Single}>({Float3x2}&, {Single}, {Single})"),
         ("math.csum<float3x2, float3>(m)", $"{Math}::csum<{Float3x2}, {Float3}>({Float3x2}&)"),
         ("math.rsum<float3x2, float2>(m)", $"{Math}::rsum<{Float3x2}, {Float2}>({Float3x2}&)"),
         ("m.csum()", $"{MathExFloat3}::csum<{Float3x2}>({Float3x2})"),
         ("m.rsum()", $"{MathExFloat2}::rsum<{Float3x2}>({Float3x2})"),
+        ("m.wrap(0f, 1f)", $"{MathExFloat}::wrap<{Float3x2}>({Float3x2}, {Single}, {Single})"),
     };
 
     /// <summary>
-    /// The calls of <see cref="TestOverloadResolutionUsingStatic.MatrixArguments"/>, which are the ones of the
-    /// member above that the math class carries.
+    /// The calls of <see cref="TestOverloadResolutionUsingStatic.MatrixArguments"/>: the ones of the member above
+    /// that every one of them reaches the same member with a name of its own, beside the one whose bound is of the
+    /// type of a single component.
     /// </summary>
-    private static readonly (string Call, string Member)[] MatrixUsingStaticCalls = MatrixCalls[..2];
+    private static readonly (string Call, string Member)[] MatrixUsingStaticCalls =
+    [
+        .. MatrixCalls[..2],
+        ("wrap(m, 0f, 1f)", $"{ExFloat}::wrap<{Float3x2}>({Float3x2}&, {Single}, {Single})"),
+    ];
 
     [Test]
     public void ScalarArguments()

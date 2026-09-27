@@ -9,20 +9,10 @@ namespace Tests.Arith;
 /// The floating point and the ieee 754 members of a vector are members of the vector itself and the members of
 /// the math class reach them as well. The parameters of a forwarded member are the ones of the interface of its
 /// operation in the same order, which is the order of the hlsl counterpart of the operation as well, so
-/// <c>math.wrap(v, min, max)</c> reaches what <c>v.wrap(min, max)</c> does.
+/// <c>math.step(threshold, v)</c> reaches what <c>v.step(threshold)</c> does.
 /// </summary>
 public class TestMathFloatForwarding
 {
-    /// <summary>
-    /// The floating point members only need the vector type, so the constraint of every one of them is the
-    /// interface that has no component type.
-    /// </summary>
-    private static void Check<T>(T v)
-        where T : unmanaged, IVectorFloatingPoint<T>
-    {
-        math.wrap(v, v, v);
-    }
-
     /// <summary>
     /// The ieee 754 members only need the vector type as well.
     /// </summary>
@@ -70,7 +60,6 @@ public class TestMathFloatForwarding
         where TScalar : unmanaged, INumberBase<TScalar>
     {
         math.pow(v, default(TScalar));
-        math.wrap(v, default(TScalar), default(TScalar));
         math.refract(v, v, default(TScalar));
         _ = math.length<T, TScalar>(v);
         _ = math.distance<T, TScalar>(v, v);
@@ -85,25 +74,12 @@ public class TestMathFloatForwarding
     public void Forwarding()
     {
         // the members of the math class reach the ones of the vector, the call is the same as the member
-        Check(new float2(1, 2));
-        Check(new float3(1, 2, 3));
-        Check(new double2(1, 2));
-        Check(new half3((Half)1f, (Half)2f, (Half)3f));
-        Check(new float2s(1, 2));
-        Check(new double3s(1, 2, 3));
         CheckIeee(new float3(1, 2, 3));
         CheckIeee(new double4(1, 2, 3, 4));
         CheckIeee(new half2((Half)1f, (Half)2f));
         CheckIeee(new float3s(1, 2, 3));
         CheckExtra<float3, float, b32v3>(new float3(1, 2, 3));
         CheckExtra<double3s, double, b64v3>(new double3s(1, 2, 3));
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(math.wrap(new float3(1.5f), new float3(0f), new float3(1f)), Is.EqualTo(new float3(0.5f)));
-            // the bounds of the wrap that are the same for every component infer their type from the argument
-            Assert.That(math.wrap(new float3(1.5f), 0f, 1f), Is.EqualTo(new float3(0.5f)));
-        }
     }
 
     [Test]

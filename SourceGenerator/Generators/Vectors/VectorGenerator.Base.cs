@@ -553,21 +553,9 @@ public partial class VectorGenerator
         sb.AppendLine($"    public static implicit operator {type}({scalar} value) => new(value);");
         sb.AppendLine();
 
-        // a scalar that converts to the type of a component implicitly converts to a vector of the component as
-        // well, see Typ.ScalarConverts
-        if (Typ.ScalarConverts.TryGetValue(typ.compType, out var scalarConverts))
-        {
-            foreach (var source in scalarConverts)
-            {
-                if (source == scalar) continue;
-                Doc($"Converts a {source} scalar to a broadcast vector");
-                DocParam("value", "The value of every component");
-                sb.AppendLine("    /// <returns>The broadcast vector</returns>");
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    public static implicit operator {type}({source} value) => new(value);");
-                sb.AppendLine();
-            }
-        }
+        // the only scalar conversion of a vector is the one of the type of its component: the conversion of a
+        // scalar that reaches the type of a component through a standard conversion is the one of that type, and
+        // an operator of its own would make the conversion of an integer that two of them reach ambiguous
 
         if (storeVariant)
         {

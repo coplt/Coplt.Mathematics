@@ -120,8 +120,8 @@ public partial class VectorGenerator : IIncrementalGenerator
                                 SourceText.From(GenIface(typ, size, storeVariant), Encoding.UTF8));
                         }
 
-                        // the floating point members implement the IVectorFloatingPoint interface, they are
-                        // emitted into their own file as well
+                        // the floating point members are the math constants of the kind of a floating point
+                        // number, they are emitted into their own file as well
                         if (typ.arith && typ.f)
                         {
                             ctx.AddSource(

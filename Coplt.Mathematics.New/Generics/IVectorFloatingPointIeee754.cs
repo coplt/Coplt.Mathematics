@@ -61,13 +61,12 @@ public interface IVectorFloatingPointIeee754BoolOps<Self, Scalar, out BoolVector
     where Scalar : unmanaged, INumberBase<Scalar>;
 
 /// <summary>
-/// A <see cref="IVectorFloatingPoint{Self}"/> with the ieee 754 math functions
+/// A <see cref="ISignedVectorArithmetic{Self}"/> of floating point components with the ieee 754 math functions
 /// <para>It does not name the type of a single component because none of these members needs it, <see
 /// cref="IVectorFloatingPointIeee754{Self,Scalar}"/> adds the members that do</para>
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
-public interface IVectorFloatingPointIeee754<Self> :
-    IVectorFloatingPoint<Self>
+public interface IVectorFloatingPointIeee754<Self>
     where Self : unmanaged, IVectorFloatingPointIeee754<Self>
 {
     #region Log
@@ -317,13 +316,12 @@ public interface IVectorFloatingPointIeee754<Self> :
 }
 
 /// <summary>
-/// A <see cref="IVectorFloatingPoint{Self,Scalar}"/> with the ieee 754 math functions
+/// A <see cref="IVectorFloatingPointIeee754{Self}"/> that also names the type of a single component
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 /// <typeparam name="Scalar">The type of a single component</typeparam>
 public interface IVectorFloatingPointIeee754<Self, Scalar> :
-    IVectorFloatingPointIeee754<Self>,
-    IVectorFloatingPoint<Self, Scalar>
+    IVectorFloatingPointIeee754<Self>
     where Self : unmanaged, IVectorFloatingPointIeee754<Self, Scalar>
     where Scalar : unmanaged
 {

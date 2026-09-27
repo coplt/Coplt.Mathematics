@@ -37,6 +37,17 @@ public class TestOverloadResolution
         math.hmax(new float3(1, 2, 3));
         math.hmin_native(new float3(1, 2, 3));
         math.hmax_native(new float3(1, 2, 3));
+        // the two bounds of the value itself reach the member that only takes values of the same kind, and a bound
+        // of a single component is converted to the kind of the value and reaches the same member, see the
+        // documentation of the class. The member of the math class that names the type of a component is the one a
+        // call that names it reaches.
+        math.wrap(new float3(1, 2, 3), new float3(0, 0, 0), new float3(1, 1, 1));
+        math.wrap<float3, float>(new float3(1, 2, 3), 0f, 1f);
+        math.wrap(new float3(1, 2, 3), 0f, 1f);
+        math.wrap(new float3(1, 2, 3), 0, 1);
+        math.wrap(new float2(1, 2), 0, 1);
+        math.wrap(new double2(1, 2), 0, 1);
+        math.wrap(new half3((Half)1, (Half)2, (Half)3), (Half)0, (Half)1);
         new float3(1, 2, 3).lerp(1, 2);
         new float3(1, 2, 3).lerp(1, new float3(1, 2, 3));
         new float3(1, 2, 3).unlerp(1, 2);
@@ -48,6 +59,8 @@ public class TestOverloadResolution
         new float3(1, 2, 3).hmax();
         new float3(1, 2, 3).hmin_native();
         new float3(1, 2, 3).hmax_native();
+        new float3(1, 2, 3).wrap(new float3(0, 0, 0), new float3(1, 1, 1));
+        new float3(1, 2, 3).wrap(0f, 1f);
     }
 
     /// <summary>
@@ -62,9 +75,11 @@ public class TestOverloadResolution
         var m = new float3x2(new float3(1, 2, 3), new float3(4, 5, 6));
         math.csum(m);
         math.rsum(m);
+        math.wrap(m, 0f, 1f);
         math.csum<float3x2, float3>(m);
         math.rsum<float3x2, float2>(m);
         m.csum();
         m.rsum();
+        m.wrap(0f, 1f);
     }
 }

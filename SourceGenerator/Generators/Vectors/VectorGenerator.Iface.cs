@@ -32,13 +32,6 @@ public partial class VectorGenerator
         // i = the integer one, u = the integer one without a sign
         var members = new List<(char Kind, string Member)>
         {
-            #region IVectorFloatingPoint
-
-            ('f', "{type} wrap(in {type} a, in {type} min, in {type} max) => a.wrap(min, max);"),
-            ('f', "{type} wrap(in {type} a, {scalar} min, {scalar} max) => a.wrap(min, max);"),
-
-            #endregion
-
             #region IVectorFloatingPointIeee754
 
             ('f', "{bool} is_NaN(in {type} a) => a.is_NaN();"),
