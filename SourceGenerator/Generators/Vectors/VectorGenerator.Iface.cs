@@ -45,14 +45,6 @@ public partial class VectorGenerator
             ('f', "{type} exp(in {type} a) => a.exp();"),
             ('f', "{type} exp2(in {type} a) => a.exp2();"),
             ('f', "{type} exp10(in {type} a) => a.exp10();"),
-            ('f', "{type} pow(in {type} a, in {type} b) => a.pow(b);"),
-            ('f', "{type} pow(in {type} a, {scalar} b) => a.pow(b);"),
-            ('f', "{type} sqrt(in {type} a) => a.sqrt();"),
-            ('f', "{type} rsqrt(in {type} a) => a.rsqrt();"),
-            ('f', "{scalar} length(in {type} a) => a.length();"),
-            ('f', "{scalar} distance(in {type} a, in {type} b) => a.distance(b);"),
-            ('f', "{type} normalize(in {type} a) => a.normalize();"),
-            ('f', "{type} normalize_safe(in {type} a) => a.normalize_safe();"),
             // the legacy form of the step puts the threshold first and the value last
             ('f', "{type} step(in {type} threshold, in {type} a) => a.step(threshold);"),
             // the legacy form of the safe projection carries the default as an optional parameter, which the

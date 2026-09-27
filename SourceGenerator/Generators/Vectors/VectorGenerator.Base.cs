@@ -233,6 +233,9 @@ public partial class VectorGenerator
         if (!bol)
             foreach (var family in VectorGenShared.DispatchIfaces(typ))
                 ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
+        // a vector of a floating point kind reaches the map of a value as well, which the dispatch of a vector
+        // declares beside the one of the value
+        if (!bol && typ.f) ifaces.Add($"Algebras.Generics.IFloatingPointVectorDispatch<{type}>");
         if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
         if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
         // a signed vector reaches the negative of every whole number of the vector a column of its matrix view

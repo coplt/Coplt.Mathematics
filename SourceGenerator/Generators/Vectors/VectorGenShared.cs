@@ -166,6 +166,21 @@ internal static class VectorGenShared
     };
 
     /// <summary>
+    /// Returns the literal of the smallest positive normal value of the kind of <paramref name="scalar"/>, which
+    /// is the smallest value of the kind of it that the ieee 754 standard calls a normal number. The component
+    /// type of a vector does not carry the constant the way it carries the other ones of the standard, so the
+    /// value of the kind of it is written out.
+    /// </summary>
+    /// <param name="scalar">The type of the component of the value</param>
+    /// <returns>The literal of the constant</returns>
+    public static string MinNormalValue(string scalar) => scalar switch
+    {
+        "float" => "1.175494351e-38f",
+        "double" => "2.2250738585072014e-308",
+        _ => "(half)6.103515625e-5f",
+    };
+
+    /// <summary>
     /// Returns the names of the interfaces of the dispatch of the kind of a value in the algebra library: the one
     /// of a number beside the one of the floating point kind, which every floating point type of the library
     /// names, a half as well.

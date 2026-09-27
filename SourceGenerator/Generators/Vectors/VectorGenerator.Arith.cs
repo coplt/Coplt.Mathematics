@@ -130,6 +130,33 @@ public partial class VectorGenerator
         EmitBinOp("*", $"return {FromVector("a.vector * b.vector")};",
             $"return {From128($"{Load64("a.")} * {Load64("b.")}")};",
             NewCompWise(n => $"a.{comp[n]} * b.{comp[n]}"));
+
+        // the algebra of a kind that names the type of a single component multiplies a value by the value of a
+        // single component and the value of a single component by a value, so a vector of a number reaches both
+        // of them. The operator of the register of the vector has an overload beside the one that takes two
+        // registers that takes a single component, either one of the operands, so the value of the component does
+        // not have to be broadcast by hand. The padding lanes of a register that is wider than the vector hold
+        // zero, the multiplication keeps them there unless the component is not a number, so the result is taken
+        // through the constructor that masks them away.
+        void EmitScalarMul(string signature, string accel, string wide, string fallback)
+        {
+            InheritDoc();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} operator *({signature})");
+            sb.AppendLine("    {");
+            EmitAccel(accel, wide, fallback);
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        EmitScalarMul($"in {type} a, {scalar} b",
+            $"return {FromVector("a.vector * b", true)};",
+            $"return {From128($"{Load64("a.")} * b")};",
+            $"return {NewCompWise(n => $"a.{comp[n]} * b")};");
+        EmitScalarMul($"{scalar} b, in {type} a",
+            $"return {FromVector("b * a.vector", true)};",
+            $"return {From128($"b * {Load64("a.")}")};",
+            $"return {NewCompWise(n => $"b * a.{comp[n]}")};");
         // the padding lanes of the register are zero, an integer division by them would throw, so the
         // denominator is patched to one there
         var padOne = "";

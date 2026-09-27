@@ -7,7 +7,7 @@ namespace Tests;
 
 /// <summary>
 /// The members of the interfaces of a vector are static, so a generic helper that only knows a type parameter
-/// calls them with the static form: <c>T.normalize(a)</c>. A helper that wants the member form on the value
+/// calls them with the static form: <c>T.log(a)</c>. A helper that wants the member form on the value
 /// has to take the value as the first parameter itself, which is what the members below do, they are only here
 /// because a type parameter cannot reach the member of the vector itself. The value is passed by value because
 /// the receiver of an extension method of a type parameter cannot be an <c>in</c> parameter.
@@ -29,22 +29,12 @@ internal static class VectorExtensions
     public static T exp<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.exp(a);
     public static T exp2<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.exp2(a);
     public static T exp10<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.exp10(a);
-    public static T pow<T>(this T a, in T v) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.pow(a, v);
 
-    public static T pow<T, TScalar>(this T a, TScalar v)
-        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar> where TScalar : unmanaged => T.pow(a, v);
+    // the power, the square root and its reciprocal and the normalization are not forwarded: they are the
+    // members of the algebra of the kind of the value, which a type parameter reaches with the members of the
+    // math class and of the extension of a value
 
-    public static T sqrt<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.sqrt(a);
-    public static T rsqrt<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.rsqrt(a);
-
-    public static TScalar length<T, TScalar>(this T a)
-        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar> where TScalar : unmanaged => T.length(a);
-
-    public static TScalar distance<T, TScalar>(this T a, in T to)
-        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar> where TScalar : unmanaged => T.distance(a, to);
-
-    public static T normalize<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.normalize(a);
-    public static T normalize_safe<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.normalize_safe(a);
+    // the length and the distance of two vectors are the members of the algebra as well now
 
     public static T step<T>(this T a, in T threshold) where T : unmanaged, IVectorFloatingPointIeee754<T> =>
         T.step(threshold, a);

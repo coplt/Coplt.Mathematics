@@ -8,6 +8,8 @@ namespace Coplt.Mathematics.Algebras.Generics;
 /// <para>The dispatch of the floating point kind reaches the values of the kind of it alone, so it is named
 /// with the type of the value and not with the type of a component of it, which every member of it reaches the
 /// type of through the visitor of it</para>
+/// <para>The map of a value is the member of <see cref="IFloatingPointVectorDispatch{TSelf}"/>, which a vector
+/// implements beside the dispatch of the value</para>
 /// </summary>
 /// <typeparam name="TSelf">The type of the value itself</typeparam>
 public interface IFloatingPointAlgebraDispatch<TSelf> :
@@ -19,7 +21,7 @@ public interface IFloatingPointAlgebraDispatch<TSelf> :
     /// <typeparam name="V">The type of the visitor that reaches the value</typeparam>
     /// <param name="self">The value to hand over</param>
     /// <returns>The value the visitor built</returns>
-    public static abstract TSelf Visit_Self<V>(in TSelf self)
+    public new static abstract TSelf Visit_Self<V>(in TSelf self)
         where V : IFloatingPointAlgebraVisitor_Self_Self<V>;
 
     /// <summary>Hands the value of <paramref name="a"/> and <paramref name="b"/> to <typeparamref name="V"/></summary>
@@ -27,7 +29,7 @@ public interface IFloatingPointAlgebraDispatch<TSelf> :
     /// <param name="a">The first value to hand over</param>
     /// <param name="b">The second value to hand over</param>
     /// <returns>The value the visitor built</returns>
-    public static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b)
+    public new static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b)
         where V : IFloatingPointAlgebraVisitor_Self_Self_Self<V>;
 
     /// <summary>Hands the value of <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/> to <typeparamref name="V"/></summary>
@@ -36,6 +38,6 @@ public interface IFloatingPointAlgebraDispatch<TSelf> :
     /// <param name="b">The second value to hand over</param>
     /// <param name="c">The third value to hand over</param>
     /// <returns>The value the visitor built</returns>
-    public static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b, in TSelf c)
+    public new static abstract TSelf Visit_Self<V>(in TSelf a, in TSelf b, in TSelf c)
         where V : IFloatingPointAlgebraVisitor_Self_Self_Self_Self<V>;
 }

@@ -121,48 +121,6 @@ public interface IVectorFloatingPointIeee754<Self>
 
     #endregion
 
-    #region Pow Sqrt RSqrt
-
-    /// <summary>
-    /// Returns every component raised to the power of the matching component of <paramref name="b"/>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The exponent of every component</param>
-    /// <returns>The power</returns>
-    public static abstract Self pow(in Self a, in Self b);
-
-    /// <summary>
-    /// Returns the square root of every component
-    /// </summary>
-    /// <returns>The square root</returns>
-    public static abstract Self sqrt(in Self a);
-
-    /// <summary>
-    /// Returns the reciprocal of the square root of every component, it is the same as <c>rcp(sqrt())</c>
-    /// </summary>
-    /// <returns>The reciprocal of the square root</returns>
-    public static abstract Self rsqrt(in Self a);
-
-    #endregion
-
-    #region Normalize
-
-    /// <summary>
-    /// Returns <paramref name="a"/> scaled to a length of 1, the result is a NaN vector when the length is zero
-    /// </summary>
-    /// <param name="a">The vector to normalize</param>
-    /// <returns>The normalized vector</returns>
-    public static abstract Self normalize(in Self a);
-
-    /// <summary>
-    /// Returns <paramref name="a"/> scaled to a length of 1, it returns a zero vector when the length is zero
-    /// </summary>
-    /// <param name="a">The vector to normalize</param>
-    /// <returns>The normalized vector</returns>
-    public static abstract Self normalize_safe(in Self a);
-
-    #endregion
-
     #region Step Refract
 
     /// <summary>
@@ -325,36 +283,6 @@ public interface IVectorFloatingPointIeee754<Self, Scalar> :
     where Self : unmanaged, IVectorFloatingPointIeee754<Self, Scalar>
     where Scalar : unmanaged
 {
-    #region Pow
-
-    /// <summary>
-    /// Returns every component raised to the power of <paramref name="b"/>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The exponent</param>
-    /// <returns>The power</returns>
-    public static abstract Self pow(in Self a, Scalar b);
-
-    #endregion
-
-    #region Length Distance
-
-    /// <summary>
-    /// Returns the length of the vector, it is the same as <c>sqrt(length_sq())</c>
-    /// </summary>
-    /// <returns>The length of the vector</returns>
-    public static abstract Scalar length(in Self a);
-
-    /// <summary>
-    /// Returns the distance between the two vectors, it is the same as the length of the difference
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The other vector</param>
-    /// <returns>The distance</returns>
-    public static abstract Scalar distance(in Self a, in Self b);
-
-    #endregion
-
     #region Refract
 
     /// <summary>

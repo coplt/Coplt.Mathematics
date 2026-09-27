@@ -22,6 +22,14 @@ namespace Coplt.Analyzers.Generators;
 /// of a visitor that reduces its single value to a single component is
 /// <c>INumberAlgebraVisitor_Self_Scalar&lt;V&gt;</c>. The interface of the dispatch of an algebra is written by
 /// hand, the interfaces of the visitors are emitted into one file per shape.
+/// <para>The visitors of the floating point kind have a family of their own for the shapes that take the values
+/// of the kind alone and return a value of the same kind, which a member of the dispatch of the kind that is
+/// named <c>Map_Self</c> reaches: the name of the interface of such a shape is the one of the family with a
+/// <c>Map</c> between it and the values, so the interface of one value is
+/// <c>IFloatingPointAlgebraVisitor_Map_Self_Self</c> and the one of two values is
+/// <c>IFloatingPointAlgebraVisitor_Map_Self_Self_Self</c>. The visitor of the map of a value is the value
+/// itself: it declares the single member that reaches the type of the value and the type of a single component
+/// of it, so the shape of the value is not a part of it.</para>
 /// <para>The visitors of the floating point kind reach the values of the kind alone: the members of a visitor of
 /// the kind of a number reach the members of the floating point kind of a component of a value as well, so the
 /// shapes that take a component of a value, the ones that reduce a value to a component of it and the ones that
@@ -130,6 +138,21 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     private static readonly (bool[] Args, VisitorResult Result)[] Shapes = BuildShapes();
 
     /// <summary>
+    /// The shapes of the family of the visitors of the floating point kind that a member of the dispatch named
+    /// <c>Map_Self</c> reaches: every one of them takes the values of the kind alone and returns a value of the
+    /// same kind, and the name of the interface of one of them carries a <c>Map</c> beside the name of the shape,
+    /// so the interface of one value is <c>IFloatingPointAlgebraVisitor_Map_Self_Self</c> and the one of two
+    /// values is <c>IFloatingPointAlgebraVisitor_Map_Self_Self_Self</c>. The member of the interface of a map
+    /// reaches the type of the value and the type of a single component of it, so the shape decides the count of
+    /// the values the member takes alone.
+    /// </summary>
+    private static readonly (bool[] Args, VisitorResult Result)[] MapShapes =
+    {
+        (new[] { false }, VisitorResult.Self),
+        (new[] { false, false }, VisitorResult.Self),
+    };
+
+    /// <summary>
     /// Tells whether the shape of a visitor takes the values of the kind of it alone: the shapes that take a
     /// component of a value beside it, the ones that reduce a value to a single component of it and the ones
     /// that reduce the vectors a matrix is made of are the shapes of the dispatch of the kind of a number, which
@@ -188,6 +211,18 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
                         $"{Namespace}.{name}.g.cs",
                         SourceText.From(Gen(kind, shape.Args, shape.Result, name), Encoding.UTF8));
                 }
+
+                // the family of the shapes that a member of the dispatch named Map_Self reaches is the one of the
+                // floating point kind: the dispatch of the kind reaches the members of the kind of a component of
+                // the value through the visitors of the family and the ones of its own through the others
+                if (kind != VisitorKind.FloatingPoint) continue;
+                foreach (var shape in MapShapes)
+                {
+                    var name = VisitorName(shape.Args, shape.Result, kind, map: true);
+                    ctx.AddSource(
+                        $"{Namespace}.{name}.g.cs",
+                        SourceText.From(Gen(kind, shape.Args, shape.Result, name, map: true), Encoding.UTF8));
+                }
             }
         });
     }
@@ -205,10 +240,16 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     /// <param name="shape">The kind of every argument of the visitor</param>
     /// <param name="result">The kind of the value a member of the visitor returns</param>
     /// <param name="kind">The kind of the algebra the visitor is emitted for</param>
+    /// <param name="map">
+    /// True for the shape of the family of the floating point kind that a member of the dispatch named
+    /// <c>Map_Self</c> reaches, the name of which carries a <c>Map</c> beside the name of the shape
+    /// </param>
     /// <returns>The name of the interface</returns>
-    public static string VisitorName(bool[] shape, VisitorResult result, VisitorKind kind = VisitorKind.Number)
+    public static string VisitorName(
+        bool[] shape, VisitorResult result, VisitorKind kind = VisitorKind.Number, bool map = false)
     {
         var sb = new StringBuilder(VisitorFamily(kind));
+        if (map) sb.Append("_Map");
         foreach (var component in shape) sb.Append(component ? "_Scalar" : "_Self");
         sb.Append(result switch
         {
@@ -220,7 +261,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         return sb.ToString();
     }
 
-    private static string Gen(VisitorKind kind, bool[] shape, VisitorResult visitorResult, string name)
+    private static string Gen(VisitorKind kind, bool[] shape, VisitorResult visitorResult, string name, bool map = false)
     {
         var reduce = visitorResult == VisitorResult.Scalar;
         var columnVector = visitorResult == VisitorResult.ColumnVector;
@@ -345,6 +386,34 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         sb.AppendLine();
         sb.AppendLine($"namespace {AlgebraVisitorGenerator.Namespace};");
         sb.AppendLine();
+        // the visitor of the map of a value is the value itself: it declares the member that reaches the type of
+        // the value and the type of a single component of it, so the shape of the value is not a part of it and
+        // every shape hands the value over in the same way
+        if (map)
+        {
+            // the map of a value with the members of the kind of a component of it is the map of a number, which
+            // the caller reaches from the dispatch of the kind of the value. The constraints of the member are the
+            // ones of the members a visitor of the kind reaches: the value is a vector of the kind of it, so the
+            // member reaches the members that name a vector and the type of a component of it, which is the
+            // dispatch of the kind of a number beside the one of the kind of the value
+            var mapAlgebra = kind == VisitorKind.FloatingPoint ? "IFloatingPointAlgebra" : "INumberAlgebra";
+            var mapDispatch = "INumberAlgebraDispatch<TSelf, TScalar>";
+            sb.AppendLine("/// <summary>");
+            sb.AppendLine($"/// The visitor that maps the {(count == 1 ? "value of its argument" : "values of its arguments")}");
+            sb.AppendLine("/// <para>It reaches the type of the value and the type of a single component of it, so the");
+            sb.AppendLine("/// shape of the value is not a part of it and the visitor does not have to name the");
+            sb.AppendLine("/// members of a register or of a column of a matrix</para>");
+            sb.AppendLine("/// </summary>");
+            sb.AppendLine($"public interface {name}<V> where V : {name}<V>");
+            sb.AppendLine("{");
+            sb.AppendLine($"    public static abstract TSelf Map<TSelf, TScalar>({Join(i => $"in TSelf {value[i]}")})");
+            sb.AppendLine(
+                $"        where TSelf : unmanaged, {VisitorDispatch(kind)}<TSelf>, {mapDispatch}, {mapAlgebra}<TSelf, TScalar>, INumberVector<TSelf, TScalar>");
+            sb.AppendLine(ScalarConstraint(kind, "        ") + ";");
+            sb.AppendLine("}");
+            return sb.ToString();
+        }
+
         // a visitor of the columns of a matrix and the one of the rows of it are the only ones whose result is
         // not a value of the same kind as the one of their arguments and not a component of it either
         if (columnVector)

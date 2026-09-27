@@ -9,11 +9,10 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The ieee 754 members of a vector implement <c>IVectorFloatingPointIeee754</c> and
-/// <c>IVectorFloatingPointIeee754BoolOps</c>: the logarithms, the exponentials, the power, the square root and
-/// its reciprocal, the length and the distance, the normalization, the step and the refraction, the face
-/// forward, the trigonometry, the hyperbolics, the change of the sign and the checks of the
-/// special floating point values that produce a bool vector of the same shape. The members of a simd vector keep
-/// the padding lanes of it at zero, the members of a vector without a register work on the components.
+/// <c>IVectorFloatingPointIeee754BoolOps</c>: the logarithms, the exponentials, the step and the refraction, the
+/// face forward, the trigonometry, the hyperbolics, the change of the sign and the checks of the special
+/// floating point values that produce a bool vector of the same shape. The members of a simd vector keep the
+/// padding lanes of it at zero, the members of a vector without a register work on the components.
 /// </summary>
 public class TestIeee754
 {
@@ -33,14 +32,9 @@ public class TestIeee754
         v.exp();
         v.exp2();
         v.exp10();
-        v.pow(default);
-        v.pow(v);
-        v.sqrt();
-        v.rsqrt();
-        _ = T.length(v);
-        _ = T.distance(v, v);
-        v.normalize();
-        v.normalize_safe();
+        // the power, the square root and its reciprocal, the normalization and the length and the distance of two
+        // vectors are not members of the ieee 754 interface: they are the members of the algebra of the kind of
+        // the value, which a caller reaches with the members of the math class and of the extension of a value
         v.step(v);
         T.refract(v, v, default);
         v.face_forward(v, v);
@@ -200,42 +194,12 @@ public class TestIeee754
         }
     }
 
+    /// <summary>
+    /// The length and the distance of a vector are the members of the algebra of the kind of the value now, so
+    /// the call on the value reaches the generated member of the scalar type of it.
+    /// </summary>
     [Test]
-    public void PowSqrtRSqrt()
-    {
-        var v = new float3(4f, 9f, 16f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(v.sqrt().x, Is.EqualTo(2f).Within(1e-6f));
-            Assert.That(v.sqrt().y, Is.EqualTo(3f).Within(1e-6f));
-            Assert.That(v.sqrt().z, Is.EqualTo(4f).Within(1e-6f));
-            // the reciprocal of the square root is the estimate of the hardware, it is not exact: the estimate
-            // of the arm platform is the loose one of the two, so the tolerance leaves room for it
-            Assert.That(v.rsqrt().x, Is.EqualTo(0.5f).Within(1e-2f));
-            Assert.That(v.rsqrt().y, Is.EqualTo(1f / 3f).Within(1e-2f));
-            Assert.That(new float3(2f).pow(10f).x, Is.EqualTo(1024f).Within(1e-2f));
-            Assert.That(new float3(2f).pow(0.5f).x, Is.EqualTo(MathF.Sqrt(2f)).Within(1e-5f));
-            // the exponent can be a vector as well
-            Assert.That(new float3(2f).pow(new float3(3f)).x, Is.EqualTo(8f).Within(1e-3f));
-            Assert.That(new double3(2, 3, 4).pow(new double3(2, 2, 2)).z, Is.EqualTo(16d).Within(1e-9));
-            Assert.That(new float2s(3f, 4f).pow(new float2s(2f, 2f)), Is.EqualTo(new float2s(9f, 16f)));
-            Assert.That(new double3(9, 16, 25).sqrt().z, Is.EqualTo(5d).Within(1e-12));
-        }
-
-        // the element wise power of a value that has a reference
-        var nv = new float3(2f, 3f, 4f).pow(new float3(0.5f, 2f, 3f));
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(nv.x, Is.EqualTo(1.4142135f).Within(1e-6f));
-            Assert.That(nv.y, Is.EqualTo(9f).Within(1e-6f));
-            Assert.That(nv.z, Is.EqualTo(64f).Within(1e-6f));
-        }
-    }
-
-    [Test]
-    public void LengthDistanceNormalize()
+    public void LengthDistance()
     {
         var v = new float3(3f, 4f, 0f);
 
@@ -243,13 +207,6 @@ public class TestIeee754
         {
             Assert.That(v.length(), Is.EqualTo(5f).Within(1e-5f));
             Assert.That(v.distance(new float3(3f, 0f, 0f)), Is.EqualTo(4f).Within(1e-5f));
-            Assert.That(v.normalize().x, Is.EqualTo(0.6f).Within(1e-5f));
-            Assert.That(v.normalize().y, Is.EqualTo(0.8f).Within(1e-5f));
-            Assert.That(v.normalize().z, Is.EqualTo(0f).Within(1e-6f));
-            // the safe normalization of a vector that has no direction is the zero vector
-            Assert.That(new float3(0f).normalize_safe(), Is.EqualTo(default(float3)));
-            Assert.That(new double3(0, 0, 0).normalize_safe(), Is.EqualTo(default(double3)));
-            Assert.That(new float3(0f).normalize().x, Is.EqualTo(float.NaN));
             Assert.That(new half2((half)3f, (half)4f).length(), Is.EqualTo((half)5f));
         }
     }
@@ -286,7 +243,7 @@ public class TestIeee754
             Assert.That(float3.refract(g, new float3(0f, 1f, 0f), 1.5f), Is.EqualTo(default(float3)));
             // both sides are the same material, the normal points the same way as the incident direction, so the
             // normal component of the direction is flipped and the other two are kept
-            var d = float3.normalize(new float3(0.3f, -0.4f, 0.5f));
+            var d = math.normalize(new float3(0.3f, -0.4f, 0.5f));
             var r = float3.refract(d, new float3(0f, 0f, 1f), 1f);
             Assert.That(r.x, Is.EqualTo(d.x).Within(1e-5f));
             Assert.That(r.y, Is.EqualTo(d.y).Within(1e-5f));
@@ -428,9 +385,8 @@ public class TestIeee754
             Assert.That(v.exp().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.exp2().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.exp10().vector.GetElement(3), Is.EqualTo(0f));
-            // the reciprocal of the square root of the zero padding lane is an infinity
-            Assert.That(v.rsqrt().vector.GetElement(3), Is.EqualTo(0f));
-            Assert.That(v.sqrt().vector.GetElement(3), Is.EqualTo(0f));
+            // the reciprocal of the square root of a value of a component that the padding lane holds is an
+            // infinity, the value of the member of the vector keeps the padding lanes at zero
             Assert.That(v.saturate().vector.GetElement(3), Is.EqualTo(0f));
             // the cosine and the hyperbolic cosine of the zero padding lane are one
             Assert.That(v.cos().vector.GetElement(3), Is.EqualTo(0f));
@@ -445,8 +401,6 @@ public class TestIeee754
             Assert.That(v.sinh().vector.GetElement(3), Is.EqualTo(0f));
             // the step of the zero padding lane is one, the threshold of it is zero as well
             Assert.That(v.step(new float3(1f)).vector.GetElement(3), Is.EqualTo(0f));
-            Assert.That(v.pow(2f).vector.GetElement(3), Is.EqualTo(0f));
-            Assert.That(v.normalize().vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(v.chg_sign(v).vector.GetElement(3), Is.EqualTo(0f));
         }
 
@@ -470,7 +424,6 @@ public class TestIeee754
             Assert.That(d.log().vector.GetElement(3), Is.EqualTo(0d));
             Assert.That(d.exp().vector.GetElement(3), Is.EqualTo(0d));
             Assert.That(d.cos().vector.GetElement(3), Is.EqualTo(0d));
-            Assert.That(d.rsqrt().vector.GetElement(3), Is.EqualTo(0d));
         }
     }
 
@@ -485,19 +438,15 @@ public class TestIeee754
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(v.sqrt(), Is.EqualTo(new float3s(1f, 2f, 3f)));
             Assert.That(v.log2().y, Is.EqualTo(2f).Within(1e-5f));
             Assert.That(v.exp().z, Is.EqualTo(MathF.Exp(9f)).Within(1e-2f));
             Assert.That(v.length(), Is.EqualTo(MathF.Sqrt(98f)).Within(1e-4f));
-            Assert.That(v.normalize_safe().length(), Is.EqualTo(1f).Within(1e-4f));
         }
 
         var n = new float2s(4f, 16f);
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(n.sqrt().x, Is.EqualTo(2f).Within(1e-6f));
-            Assert.That(n.sqrt().y, Is.EqualTo(4f).Within(1e-6f));
             Assert.That(n.log2().y, Is.EqualTo(4f).Within(1e-4f));
             Assert.That(n.exp2().x, Is.EqualTo(16f).Within(1e-3f));
             Assert.That((bool)n.is_finite().x, Is.True);
@@ -509,7 +458,6 @@ public class TestIeee754
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(d.sqrt().z, Is.EqualTo(9d).Within(1e-9));
             Assert.That(d.log2().x, Is.EqualTo(2d).Within(1e-9));
             Assert.That((bool)new double3s(1, double.NaN, 3).is_NaN().y, Is.True);
         }
@@ -518,7 +466,6 @@ public class TestIeee754
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(h.sqrt().x, Is.EqualTo((half)2f));
             Assert.That(h.log2().y, Is.EqualTo((half)4f));
         }
     }

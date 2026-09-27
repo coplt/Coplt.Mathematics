@@ -48,6 +48,10 @@ public partial class VectorGenerator
         var twoComponents = reg == 0
             ? $"V.AcceptVector{size}<{type}>(a, b, c)"
             : $"V.AcceptVector<{type}>(a.vector, b, c)";
+        // the member of the visitor that maps a value names the type of the value and the type of a single
+        // component of it, so the value of every shape is handed over the same way
+        var mapOne = $"V.Map<{type}, {scalar}>(self)";
+        var mapTwo = $"V.Map<{type}, {scalar}>(a, b)";
 
         var sb = new StringBuilder();
 
@@ -78,6 +82,24 @@ public partial class VectorGenerator
             sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
             sb.AppendLine($"        => {three};");
             sb.AppendLine();
+
+            // the dispatch of the floating point kind reaches the members of the kind of it alone, so the member
+            // that reaches the members of the kind of a component of the value is the one of the map of a value,
+            // which the dispatch of a vector declares and every value of the kind of it inherits
+            if (family == "IFloatingPointAlgebraDispatch")
+            {
+                var vectorDispatch = $"Algebras.Generics.IFloatingPointVectorDispatch<{type}>";
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine("    [MethodImpl(256)]");
+                sb.AppendLine($"    static {type} {vectorDispatch}.Map_Self<V>(in {type} self)");
+                sb.AppendLine($"        => {mapOne};");
+                sb.AppendLine();
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine("    [MethodImpl(256)]");
+                sb.AppendLine($"    static {type} {vectorDispatch}.Map_Self<V>(in {type} a, in {type} b)");
+                sb.AppendLine($"        => {mapTwo};");
+                sb.AppendLine();
+            }
 
             // the dispatch of the kind of a number reaches the values that take a component of the value beside
             // them as well, so it has the members that take a component and the ones that reduce a value to a

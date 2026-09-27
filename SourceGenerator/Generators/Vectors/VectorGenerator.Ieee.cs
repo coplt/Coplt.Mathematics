@@ -6,12 +6,20 @@ namespace Coplt.Analyzers.Generators;
 public partial class VectorGenerator
 {
     /// <summary>
-    /// The name of every constant of the ieee 754 standard, the value of one of them is the one of the scalar
-    /// type of the component of a vector.
+    /// The name of the constant of the smallest positive normal value of the ieee 754 standard. The component type
+    /// of a vector does not carry it, its value is written out, see <see cref="VectorGenShared.MinNormalValue"/>.
+    /// </summary>
+    internal const string MinNormalName = "MinNormal";
+
+    /// <summary>
+    /// The name of every constant of the ieee 754 standard, the value of one of them is the member of the scalar
+    /// type of the component of a vector of the same name. The smallest positive normal value is the only one of
+    /// them whose value is not held by a member of the kind of it.
     /// </summary>
     internal static readonly string[] IeeeConsts =
     {
         "Epsilon",
+        MinNormalName,
         "NaN",
         "NegativeInfinity",
         "NegativeZero",
@@ -20,11 +28,13 @@ public partial class VectorGenerator
 
     /// <summary>
     /// Generates the ieee 754 members of the vector described by <paramref name="typ"/>, they implement
-    /// <c>IVectorFloatingPointIeee754BoolOps</c>: the logarithm, the exponential, the power, the square root and
-    /// its reciprocal, the length and the distance, the normalization, the step and the refraction, the face
-    /// forward, the trigonometry, the hyperbolics and the change of the sign, and the checks
-    /// of the special floating point values that produce a bool vector. They are emitted into their own file, so
-    /// they stay separate from the floating point members and the plain arithmetic.
+    /// <c>IVectorFloatingPointIeee754</c>: the logarithm, the exponential, the step and the refraction, the face
+    /// forward, the trigonometry, the hyperbolics and the change of the sign, and the checks of the special
+    /// floating point values that produce a bool vector. They are emitted into their own file, so they stay
+    /// separate from the floating point members and the plain arithmetic. The members whose op is reached through
+    /// the algebra of the kind of the value do not live here: the power, the square root and its reciprocal, the
+    /// normalization and the length and the distance of two vectors are the ones of the <c>math</c> class and of
+    /// the extension of a value.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -153,21 +163,24 @@ public partial class VectorGenerator
         sb.AppendLine("    #region constants");
         sb.AppendLine();
 
-        // every component of the value is the constant of the component type, the one of the standard itself
+        // every component of the value is the constant of the component type, the one of the standard itself. The
+        // smallest positive normal value of the kind of the component is not held by a member of it, so the value
+        // of that constant is written out beside the name of the member the other ones come from
         foreach (var name in IeeeConsts)
         {
+            var value = name == MinNormalName ? VectorGenShared.MinNormalValue(scalar) : $"{scalar}.{name}";
             InheritDoc();
             sb.AppendLine($"    public static {scalar} Scalar{name}");
             sb.AppendLine("    {");
             sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => {scalar}.{name};");
+            sb.AppendLine($"        get => {value};");
             sb.AppendLine("    }");
             sb.AppendLine();
             InheritDoc();
             sb.AppendLine($"    public static {type} {name}");
             sb.AppendLine("    {");
             sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => new({scalar}.{name});");
+            sb.AppendLine($"        get => new({value});");
             sb.AppendLine("    }");
             sb.AppendLine();
         }
@@ -215,84 +228,6 @@ public partial class VectorGenerator
         Unary("exp", "Exp", "exp");
         Unary("exp2", "Exp2", "exp2");
         Unary("exp10", "Exp10", "exp10");
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region pow sqrt rsqrt
-
-        sb.AppendLine("    #region pow sqrt rsqrt");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} pow({type} other)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector("simd.Pow(vector, other.vector)")};",
-            $"return {From128($"simd.Pow({Load64("")}, {Load64("other.")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "pow", comp[n], $"other.{comp[n]}"))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} pow({scalar} v)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector($"simd.Pow(vector, {vecName}.Create(v))")};",
-            $"return {From128($"simd.Pow({Load64("")}, Vector128.Create(v))")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "pow", comp[n], "v"))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        Unary("sqrt", "Sqrt", "sqrt", bcl: true);
-        Unary("rsqrt", "RSqrt", "rsqrt");
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region length distance
-
-        sb.AppendLine("    #region length distance");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {scalar} length() => {VectorScalar.Expr(scalar, "sqrt", "this.length_sq()")};");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {scalar} distance(in {type} to) => (to - this).length();");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region normalize
-
-        sb.AppendLine("    #region normalize");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} normalize() => this * {VectorScalar.Expr(scalar, "rsqrt", "this.length_sq()")};");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} normalize_safe()");
-        sb.AppendLine("    {");
-        sb.AppendLine("        var len = this.length_sq();");
-        // the smallest normal value of the component type is the bound, a shorter vector is zero for the result
-        sb.AppendLine($"        return len > {Lit("1.175494351e-38")} ? this * {VectorScalar.Expr(scalar, "rsqrt", "len")} : default;");
-        sb.AppendLine("    }");
-        sb.AppendLine();
 
         sb.AppendLine("    #endregion");
         sb.AppendLine();

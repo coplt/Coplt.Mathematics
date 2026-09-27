@@ -76,52 +76,6 @@ public static partial class math
     public static T exp10<T>(in T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.exp10(a);
 
     /// <summary>
-    /// Returns every component raised to the power of the matching component of <paramref name="b"/>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The exponent of every component</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The power</returns>
-    [MethodImpl(256)]
-    public static T pow<T>(in T a, in T b) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.pow(a, b);
-
-    /// <summary>
-    /// Returns the square root of every component
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The square root</returns>
-    [MethodImpl(256)]
-    public static T sqrt<T>(in T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.sqrt(a);
-
-    /// <summary>
-    /// Returns the reciprocal of the square root of every component, it is the same as <c>rcp(sqrt())</c>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The reciprocal of the square root</returns>
-    [MethodImpl(256)]
-    public static T rsqrt<T>(in T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.rsqrt(a);
-
-    /// <summary>
-    /// Returns <paramref name="a"/> scaled to a length of 1, the result is a NaN vector when the length is zero
-    /// </summary>
-    /// <param name="a">The vector to normalize</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The normalized vector</returns>
-    [MethodImpl(256)]
-    public static T normalize<T>(in T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.normalize(a);
-
-    /// <summary>
-    /// Returns <paramref name="a"/> scaled to a length of 1, it returns a zero vector when the length is zero
-    /// </summary>
-    /// <param name="a">The vector to normalize</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <returns>The normalized vector</returns>
-    [MethodImpl(256)]
-    public static T normalize_safe<T>(in T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.normalize_safe(a);
-
-    /// <summary>
     /// Returns 1 where the component of <paramref name="a"/> is not less than the matching component of
     /// <paramref name="threshold"/> and 0 where it is less
     /// </summary>
@@ -294,44 +248,6 @@ public static partial class math
     /// <returns>The vector with the changed sign</returns>
     [MethodImpl(256)]
     public static T chg_sign<T>(in T a, in T sign) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.chg_sign(a, sign);
-
-    /// <summary>
-    /// Returns every component raised to the power of <paramref name="b"/>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The exponent</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The power</returns>
-    [MethodImpl(256)]
-    public static T pow<T, TScalar>(in T a, TScalar b)
-        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar>
-        where TScalar : unmanaged => T.pow(a, b);
-
-    /// <summary>
-    /// Returns the length of the vector, it is the same as <c>sqrt(length_sq())</c>
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The length of the vector</returns>
-    [MethodImpl(256)]
-    public static TScalar length<T, TScalar>(in T a)
-        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar>
-        where TScalar : unmanaged => T.length(a);
-
-    /// <summary>
-    /// Returns the distance between the two vectors, it is the same as the length of the difference
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The other vector</param>
-    /// <typeparam name="T">The type of the vector</typeparam>
-    /// <typeparam name="TScalar">The type of a single component</typeparam>
-    /// <returns>The distance</returns>
-    [MethodImpl(256)]
-    public static TScalar distance<T, TScalar>(in T a, in T b)
-        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar>
-        where TScalar : unmanaged => T.distance(a, b);
 
     /// <summary>
     /// Returns the refraction direction, <paramref name="i"/> has to be normalized and

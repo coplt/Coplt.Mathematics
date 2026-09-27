@@ -26,6 +26,16 @@ namespace Coplt.Mathematics
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => T.Visit_Scalar<impl_dot>(a, b);
     }
+
+    public static partial class math_ex
+    {
+        /// <inheritdoc cref="math.dot{T, TScalar}"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TScalar dot<T, TScalar>(this T a, in T b)
+            where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
+            where TScalar : unmanaged, IBinaryNumber<TScalar>
+            => math.dot<T, TScalar>(a, b);
+    }
 }
 
 namespace Coplt.Mathematics.Implements

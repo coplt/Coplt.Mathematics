@@ -23,11 +23,11 @@ public class TestFloatingPointAlgebra
     {
         _ = T.E / T.PI;
         _ = T.Log2 + T.Log10 + T.Tau + T.RadToDeg + T.DegToRad;
-        _ = T.Epsilon * T.NaN * T.NegativeInfinity * T.NegativeZero * T.PositiveInfinity;
+        _ = T.MinNormal * T.Epsilon * T.NaN * T.NegativeInfinity * T.NegativeZero * T.PositiveInfinity;
         _ = T.ScalarE / T.ScalarPI;
         _ = T.ScalarLog2 + T.ScalarLog10 + T.ScalarTau + T.ScalarRadToDeg + T.ScalarDegToRad;
-        _ = T.ScalarEpsilon * T.ScalarNaN * T.ScalarNegativeInfinity * T.ScalarNegativeZero *
-            T.ScalarPositiveInfinity;
+        _ = T.ScalarEpsilon * T.ScalarMinNormal * T.ScalarNaN * T.ScalarNegativeInfinity *
+            T.ScalarNegativeZero * T.ScalarPositiveInfinity;
         _ = v + T.PI;
         _ = T.Broadcast(T.ScalarPI);
     }
@@ -39,11 +39,11 @@ public class TestFloatingPointAlgebra
     {
         _ = T.E / T.PI;
         _ = T.Log2 + T.Log10 + T.Tau + T.RadToDeg + T.DegToRad;
-        _ = T.Epsilon * T.NaN * T.NegativeInfinity * T.NegativeZero * T.PositiveInfinity;
+        _ = T.MinNormal * T.Epsilon * T.NaN * T.NegativeInfinity * T.NegativeZero * T.PositiveInfinity;
         _ = T.ScalarE / T.ScalarPI;
         _ = T.ScalarLog2 + T.ScalarLog10 + T.ScalarTau + T.ScalarRadToDeg + T.ScalarDegToRad;
-        _ = T.ScalarEpsilon * T.ScalarNaN * T.ScalarNegativeInfinity * T.ScalarNegativeZero *
-            T.ScalarPositiveInfinity;
+        _ = T.ScalarEpsilon * T.ScalarMinNormal * T.ScalarNaN * T.ScalarNegativeInfinity *
+            T.ScalarNegativeZero * T.ScalarPositiveInfinity;
         _ = m + T.PI;
         _ = T.Broadcast(T.ScalarPI);
     }
@@ -85,6 +85,17 @@ public class TestFloatingPointAlgebra
             Assert.That(double2.NegativeInfinity, Is.EqualTo(new double2(double.NegativeInfinity)),
                 "the negative infinity of a vector");
             Assert.That(float.IsNaN(float3.NaN.x), Is.True, "the nan of a vector");
+            // the smallest normal value of the kind of the component is normal itself and its half is not, which
+            // is what says that it is the smallest one
+            Assert.That(float3.MinNormal, Is.EqualTo(new float3(1.175494351e-38f)),
+                "the smallest normal value of a vector");
+            Assert.That(float.IsNormal(float3.MinNormal.x), Is.True, "the smallest normal value is normal");
+            Assert.That(float.IsNormal(float3.MinNormal.x / 2f), Is.False,
+                "the half of the smallest normal value is not normal");
+            Assert.That(double2.MinNormal.y, Is.EqualTo(2.2250738585072014e-308),
+                "the smallest normal value of a vector of doubles");
+            Assert.That((float)half3.MinNormal.z, Is.EqualTo(6.103515625e-5f),
+                "the smallest normal value of a vector of halves");
 
             Assert.That(float3x2.PI, Is.EqualTo(new float3x2(new float3(MathF.PI), new float3(MathF.PI))),
                 "the pi of a matrix");
@@ -93,6 +104,9 @@ public class TestFloatingPointAlgebra
             Assert.That(double2x2.Epsilon, Is.EqualTo(new double2x2(new double2(double.Epsilon),
                 new double2(double.Epsilon))), "the epsilon of a matrix");
             Assert.That(double.IsNaN(float2x4.NaN.c0.x), Is.True, "the nan of a matrix");
+            // a matrix reaches the smallest normal value of the kind of its component like the other constants
+            Assert.That(float3x2.MinNormal.c1.x, Is.EqualTo(1.175494351e-38f),
+                "the smallest normal value of a matrix");
 
             Assert.That(float3.ScalarPI, Is.EqualTo(MathF.PI), "the pi of a component");
             Assert.That(float3.ScalarLog2, Is.EqualTo(0.6931471805599453f), "the log2 of a component");
@@ -100,6 +114,10 @@ public class TestFloatingPointAlgebra
             Assert.That(float3x2.ScalarTau, Is.EqualTo(MathF.Tau), "the tau of a component of a matrix");
             Assert.That(float3.ScalarEpsilon, Is.EqualTo(float.Epsilon), "the epsilon of a component");
             Assert.That(float.IsNaN(float3.ScalarNaN), Is.True, "the nan of a component");
+            Assert.That(float3.ScalarMinNormal, Is.EqualTo(1.175494351e-38f),
+                "the smallest normal value of a component");
+            Assert.That(double2x2.ScalarMinNormal, Is.EqualTo(2.2250738585072014e-308),
+                "the smallest normal value of a component of a matrix");
             Assert.That(double2x2.ScalarNegativeInfinity, Is.EqualTo(double.NegativeInfinity),
                 "the negative infinity of a component of a matrix");
         }

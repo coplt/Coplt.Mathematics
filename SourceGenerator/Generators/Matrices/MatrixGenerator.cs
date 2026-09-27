@@ -584,6 +584,21 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine();
             }
 
+            // the algebra of a kind that names the type of a single component multiplies a value by the value of a
+            // single component and the value of a single component by a value, so a matrix of a number reaches
+            // both of them, every column of the matrix multiplies the value of the component
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} operator *(in {type} value, {scalar} scalar) => " +
+                          $"new({VectorGenShared.Join(cols, i => $"value.c{i} * scalar")});");
+            sb.AppendLine();
+
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} operator *({scalar} scalar, in {type} value) => " +
+                          $"new({VectorGenShared.Join(cols, i => $"scalar * value.c{i}")});");
+            sb.AppendLine();
+
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public static {type} operator +({type} value) => " +

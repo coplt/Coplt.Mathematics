@@ -230,6 +230,15 @@ public interface INumberAlgebra<TSelf, TScalar> :
     public static abstract TScalar ScalarTen { get; }
 
     #endregion
+
+    #region Operators
+
+    static abstract TSelf operator *(in TSelf self, TScalar scalar);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static virtual TSelf operator *(TScalar scalar, in TSelf self) => self * scalar;
+
+    #endregion
 }
 
 #endregion
@@ -394,6 +403,11 @@ public interface IFloatingPointAlgebra<TSelf> :
     public static abstract TSelf Epsilon { get; }
 
     /// <summary>
+    /// <code>MinNormal</code>, the smallest positive normal value of the component type of the value
+    /// </summary>
+    public static abstract TSelf MinNormal { get; }
+
+    /// <summary>
     /// <code>NaN</code>, the value that is not a number
     /// </summary>
     public static abstract TSelf NaN { get; }
@@ -479,6 +493,11 @@ public interface IFloatingPointAlgebra<TSelf, TScalar> :
     /// <code>Epsilon</code>, the smallest positive value of a single component
     /// </summary>
     public static abstract TScalar ScalarEpsilon { get; }
+
+    /// <summary>
+    /// <code>MinNormal</code>, the smallest positive normal value of a single component
+    /// </summary>
+    public static abstract TScalar ScalarMinNormal { get; }
 
     /// <summary>
     /// <code>NaN</code>, the value that is not a number
