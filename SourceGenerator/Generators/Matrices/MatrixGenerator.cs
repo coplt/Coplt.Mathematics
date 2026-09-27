@@ -59,9 +59,21 @@ public class MatrixGenerator : IIncrementalGenerator
             ? $"{typ.name.Replace("v", "m")}{rows}x{cols}"
             : $"{typ.name}{rows}x{cols}{(storeVariant ? "s" : "")}";
 
+    /// <summary>
+    /// Returns the name of the type of the bool value that has the same shape as a matrix of a kind: the letter
+    /// of the kind of the bool value of a component of it, the width of a component of it and its shape.
+    /// </summary>
+    /// <param name="typ">The type of the component of the matrix</param>
+    /// <param name="rows">The number of rows of the matrix</param>
+    /// <param name="cols">The number of columns of the matrix</param>
+    /// <returns>The name of the type of the bool value</returns>
+    public static string BoolName(Typ typ, int rows, int cols) => $"b{typ.size * 8}m{rows}x{cols}";
+
     private static string Gen(Typ typ, int rows, int cols, bool storeVariant)
     {
         var type = Name(typ, rows, cols, storeVariant);
+        // the type of the bool value of the matrix, which has the same shape as it
+        var boolType = BoolName(typ, rows, cols);
         // a column of the matrix is the vector of the number of the rows, the storage variant of the matrix
         // keeps its columns in the storage variants of the vectors
         var col = VectorGenShared.VecName(typ, rows, storeVariant);
@@ -120,6 +132,9 @@ public class MatrixGenerator : IIncrementalGenerator
         {
             foreach (var family in VectorGenShared.DispatchIfaces(typ))
                 ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
+            // the bool value of a matrix has a shape of its own, which the dispatch of the kind of the value does
+            // not name, so a matrix of a floating point kind reaches the dispatch of the bool value of it as well
+            if (typ.f) ifaces.Add(VectorGenShared.DispatchBoolIface(type, boolType));
             ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
             ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
         }
@@ -725,6 +740,18 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
                 sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b, c);");
                 sb.AppendLine();
+
+                // the bool value of the matrix has the same shape as it, and the dispatch of it is the one that
+                // names the type of the bool value, which the dispatch of the value does not
+                if (family == "IFloatingPointAlgebraDispatch")
+                {
+                    sb.AppendLine("    /// <inheritdoc/>");
+                    sb.AppendLine($"    {attr}");
+                    sb.AppendLine($"    static {boolType} {VectorGenShared.DispatchBoolIface(type, boolType)}.Visit_Self_Bool<V>(in {type} self)");
+                    sb.AppendLine(
+                        $"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}, {boolType}, {VectorGenShared.BoolName(typ, rows)}, {VectorGenShared.BoolScalarName(typ)}>(self);");
+                    sb.AppendLine();
+                }
 
                 // the dispatch of the kind of a number reaches the values that take a component of the value
                 // beside them as well, so it has the members that take a component and the ones that reduce a

@@ -7,6 +7,7 @@ namespace Coplt.Mathematics;
 public readonly partial record struct b16 : IEquatable<bool>, IFormattable
     , ISpanFormattable, IUtf8SpanFormattable
     , IEqualityOperators<b16, b16, bool>
+    , IMask<b16>
 {
     [MethodImpl(256)]
     internal b16(ushort value) => this.value = value;
@@ -14,6 +15,12 @@ public readonly partial record struct b16 : IEquatable<bool>, IFormattable
 
     public static readonly b16 True = new(ushort.MaxValue);
     public static readonly b16 False = new(0);
+
+    /// <inheritdoc/>
+    static b16 IMask<b16>.True => True;
+
+    /// <inheritdoc/>
+    static b16 IMask<b16>.False => False;
 
     public readonly bool Equals(bool other) => other == (bool)this;
 
@@ -121,6 +128,7 @@ public readonly partial record struct b16 : IEquatable<bool>, IFormattable
 public readonly partial record struct b32 : IEquatable<bool>, IFormattable
     , ISpanFormattable, IUtf8SpanFormattable
     , IEqualityOperators<b32, b32, bool>
+    , IMask<b32>
 {
     [MethodImpl(256)]
     internal b32(uint value) => this.value = value;
@@ -128,6 +136,12 @@ public readonly partial record struct b32 : IEquatable<bool>, IFormattable
 
     public static readonly b32 True = new(uint.MaxValue);
     public static readonly b32 False = new(0);
+
+    /// <inheritdoc/>
+    static b32 IMask<b32>.True => True;
+
+    /// <inheritdoc/>
+    static b32 IMask<b32>.False => False;
 
     public readonly bool Equals(bool other) => other == (bool)this;
 
@@ -235,6 +249,7 @@ public readonly partial record struct b32 : IEquatable<bool>, IFormattable
 public readonly partial record struct b64 : IEquatable<bool>, IFormattable
     , ISpanFormattable, IUtf8SpanFormattable
     , IEqualityOperators<b64, b64, bool>
+    , IMask<b64>
 {
     [MethodImpl(256)]
     internal b64(ulong value) => this.value = value;
@@ -242,6 +257,12 @@ public readonly partial record struct b64 : IEquatable<bool>, IFormattable
 
     public static readonly b64 True = new(ulong.MaxValue);
     public static readonly b64 False = new(0);
+
+    /// <inheritdoc/>
+    static b64 IMask<b64>.True => True;
+
+    /// <inheritdoc/>
+    static b64 IMask<b64>.False => False;
 
     public readonly bool Equals(bool other) => other == (bool)this;
 

@@ -30,6 +30,14 @@ namespace Coplt.Analyzers.Generators;
 /// <c>IFloatingPointAlgebraVisitor_Map_Self_Self_Self</c>. The visitor of the map of a value is the value
 /// itself: it declares the single member that reaches the type of the value and the type of a single component
 /// of it, so the shape of the value is not a part of it.</para>
+/// <para>The visitors of the floating point kind have a family that builds the bool value that has the same
+/// shape as the value of its argument beside the two families above, which a member of the dispatch of the
+/// kind that is named <c>Visit_Self_Bool</c> reaches: the name of the interface of it is the one of the family
+/// with a <c>Bool</c> behind the value, so the interface of one value is
+/// <c>IFloatingPointAlgebraVisitor_Self_Bool</c>. The mask of a value is a value of the same shape whose every
+/// component says whether a condition holds of the matching component of the value, so a member of a shape of
+/// it names the type of the value, the type of a single component of it, the type of the mask of it and the
+/// type of a single component of the mask.</para>
 /// <para>The visitors of the floating point kind reach the values of the kind alone: the members of a visitor of
 /// the kind of a number reach the members of the floating point kind of a component of a value as well, so the
 /// shapes that take a component of a value, the ones that reduce a value to a component of it and the ones that
@@ -66,6 +74,9 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
 
         /// <summary>A vector of the algebra that a row of a matrix is, which is a <c>RowVector</c> of the name of the interface</summary>
         RowVector,
+
+        /// <summary>A mask that has the same shape as the value of the arguments of the member, which is a <c>Bool</c> of the name of the interface</summary>
+        Bool,
     }
 
     /// <summary>
@@ -153,6 +164,17 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
     };
 
     /// <summary>
+    /// The shapes of the family of the visitors of the floating point kind that a member of the dispatch named
+    /// <c>Visit_Self_Bool</c> reaches: it takes the value of the kind alone and returns the bool value that has
+    /// the same shape, so the name of the interface of it is
+    /// <c>IFloatingPointAlgebraVisitor_Self_Bool</c> and the shape of the value is not a part of it.
+    /// </summary>
+    private static readonly (bool[] Args, VisitorResult Result)[] BoolShapes =
+    {
+        (new[] { false }, VisitorResult.Bool),
+    };
+
+    /// <summary>
     /// Tells whether the shape of a visitor takes the values of the kind of it alone: the shapes that take a
     /// component of a value beside it, the ones that reduce a value to a single component of it and the ones
     /// that reduce the vectors a matrix is made of are the shapes of the dispatch of the kind of a number, which
@@ -223,6 +245,15 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
                         $"{Namespace}.{name}.g.cs",
                         SourceText.From(Gen(kind, shape.Args, shape.Result, name, map: true), Encoding.UTF8));
                 }
+
+                // the family that builds the mask of a value reaches the shapes of the kind of it alone as well
+                foreach (var shape in BoolShapes)
+                {
+                    var name = VisitorName(shape.Args, shape.Result, kind);
+                    ctx.AddSource(
+                        $"{Namespace}.{name}.g.cs",
+                        SourceText.From(GenBool(name), Encoding.UTF8));
+                }
             }
         });
     }
@@ -256,8 +287,184 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             VisitorResult.Scalar => "_Scalar",
             VisitorResult.ColumnVector => "_ColumnVector",
             VisitorResult.RowVector => "_RowVector",
+            VisitorResult.Bool => "_Bool",
             _ => "_Self",
         });
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Generates the interface of the visitor that builds the bool value that has the same shape as the value
+    /// of its argument, which a member of the dispatch of the floating point kind named <c>Visit_Self_Bool</c>
+    /// reaches. The mask of a value is a value of the same shape whose every component is the mask of the
+    /// matching component of the value, so the member of a shape builds the mask of a register, of a value that
+    /// has no register and of a matrix out of the components of it, which the member of a scalar reaches, and
+    /// the shape of the value is not a part of the interface.
+    /// </summary>
+    /// <param name="name">The name of the interface of the visitor</param>
+    /// <returns>The file of the interface</returns>
+    private static string GenBool(string name)
+    {
+        const VisitorKind kind = VisitorKind.FloatingPoint;
+
+        var sb = new StringBuilder();
+
+        sb.AppendLine("// <auto-generated/>");
+        sb.AppendLine("#nullable enable");
+        sb.AppendLine();
+        sb.AppendLine($"namespace {Namespace};");
+        sb.AppendLine();
+        sb.AppendLine("/// <summary>");
+        sb.AppendLine("/// The visitor that builds the bool value that has the same shape as the value of its argument");
+        sb.AppendLine("/// <para>The mask of a value is a value of the same shape whose every component is the mask");
+        sb.AppendLine("/// of the matching component of the value, so a member of a shape reaches the member of a scalar");
+        sb.AppendLine("/// for every component of the shape that is handed over as a value, and the register of a mask is");
+        sb.AppendLine("/// the mask of a register, which the member of a register builds out of the components of it</para>");
+        sb.AppendLine("/// <para>The shape of a value is not a part of the interface: every member of it names the type of");
+        sb.AppendLine("/// the value, the type of a single component of it, the type of the mask of it and the type of a");
+        sb.AppendLine("/// single component of the mask</para>");
+        sb.AppendLine("/// </summary>");
+        sb.AppendLine($"public interface {name}<V> where V : {name}<V>");
+        sb.AppendLine("{");
+
+        // the member of a scalar, every member of a shape reaches it for the component of the shape that is
+        // handed over as a value
+        sb.AppendLine("    /// <summary>Returns the mask of <paramref name=\"value\"/></summary>");
+        sb.AppendLine("    /// <typeparam name=\"TScalar\">The type of a single component of the value</typeparam>");
+        sb.AppendLine("    /// <typeparam name=\"TBoolScalar\">The type of a single component of the mask</typeparam>");
+        sb.AppendLine("    /// <param name=\"value\">The component of the value</param>");
+        sb.AppendLine("    /// <returns>The mask of the component</returns>");
+        sb.AppendLine("    public static abstract TBoolScalar AcceptScalar<TScalar, TBoolScalar>(TScalar value)");
+        sb.AppendLine(ScalarConstraint(kind, "        "));
+        sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>;");
+        sb.AppendLine();
+
+        // the members of a register: the visitor builds the mask of the register out of its components, which
+        // is the only way a member that does not name the shape of the value reaches it
+        foreach (var width in new[] { 64, 128, 256 })
+        {
+            sb.AppendLine("    /// <summary>Returns the mask of the value of <paramref name=\"vector\"/></summary>");
+            sb.AppendLine("    /// <typeparam name=\"TVector\">The type of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TScalar\">The type of a single component of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TBool\">The type of the mask of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TBoolScalar\">The type of a single component of the mask</typeparam>");
+            sb.AppendLine("    /// <param name=\"vector\">The register of the value</param>");
+            sb.AppendLine("    /// <returns>The mask of the value</returns>");
+            sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
+            sb.AppendLine($"    public static virtual TBool AcceptVector<TVector, TScalar, TBool, TBoolScalar>(in Vector{width}<TScalar> vector)");
+            sb.AppendLine(
+                $"        where TVector : unmanaged, {VisitorDispatch(kind)}<TVector>, INumberVector<TVector, TScalar>, IVector{width}Underlying<TVector>, IFloatingPointVector<TVector, TScalar>");
+            sb.AppendLine(ScalarConstraint(kind, "        "));
+            sb.AppendLine("        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>");
+            sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>");
+            sb.AppendLine("    {");
+            sb.AppendLine("        TBool r = default;");
+            sb.AppendLine("        for (var i = 0; i < TBool.Length; i++)");
+            sb.AppendLine("        {");
+            sb.AppendLine("            TBool.set(ref r, i, V.AcceptScalar<TScalar, TBoolScalar>(vector.GetElement(i)));");
+            sb.AppendLine("        }");
+            sb.AppendLine("        return r;");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        // the members of every count of a component: the value of a vector that has no register is the one of
+        // its components, so the mask of it is the one of every component of it
+        for (var size = 2; size <= 4; size++)
+        {
+            sb.AppendLine("    /// <summary>Returns the mask of the value of <paramref name=\"vector\"/></summary>");
+            sb.AppendLine("    /// <typeparam name=\"TVector\">The type of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TScalar\">The type of a single component of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TBool\">The type of the mask of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TBoolScalar\">The type of a single component of the mask</typeparam>");
+            sb.AppendLine("    /// <param name=\"vector\">The value</param>");
+            sb.AppendLine("    /// <returns>The mask of the value</returns>");
+            sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
+            sb.AppendLine($"    public static virtual TBool AcceptVector{size}<TVector, TScalar, TBool, TBoolScalar>(in TVector vector)");
+            sb.AppendLine(
+                $"        where TVector : unmanaged, {VisitorDispatch(kind)}<TVector>, INumberVector<TVector, TScalar>, IVector{size}<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>");
+            sb.AppendLine(ScalarConstraint(kind, "        "));
+            sb.AppendLine("        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>");
+            sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>");
+            sb.AppendLine("    {");
+            sb.AppendLine("        TBool r = default;");
+            sb.AppendLine($"        for (var i = 0; i < {size}; i++)");
+            sb.AppendLine("        {");
+            sb.AppendLine("            TBool.set(ref r, i, V.AcceptScalar<TScalar, TBoolScalar>(TVector.get(vector, i)));");
+            sb.AppendLine("        }");
+            sb.AppendLine("        return r;");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        // the members of every count of the columns of a matrix: the columns of it are the vectors it is made
+        // of, so every one of them reaches the member of the count of this visitor and the mask of the matrix is
+        // the mask of every column of it
+        for (var cols = 2; cols <= 4; cols++)
+        {
+            sb.AppendLine("    /// <summary>Returns the mask of the value of <paramref name=\"vector\"/></summary>");
+            sb.AppendLine("    /// <typeparam name=\"TMatrix\">The type of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TVector\">The type of a column of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TScalar\">The type of a single component of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TBool\">The type of the mask of the value</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TBoolVector\">The type of a column of the mask</typeparam>");
+            sb.AppendLine("    /// <typeparam name=\"TBoolScalar\">The type of a single component of the mask</typeparam>");
+            sb.AppendLine("    /// <param name=\"vector\">The value</param>");
+            sb.AppendLine("    /// <returns>The mask of the value</returns>");
+            sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
+            sb.AppendLine($"    public static virtual TBool AcceptMatrixMx{cols}<TMatrix, TVector, TScalar, TBool, TBoolVector, TBoolScalar>(in TMatrix vector)");
+            sb.AppendLine(
+                $"        where TMatrix : unmanaged, {VisitorDispatch(kind)}<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrixMx{cols}Vector<TMatrix, TVector>, IMatrixScalar<TMatrix, TScalar>, IFloatingPointMatrix<TMatrix, TScalar>");
+            sb.AppendLine(
+                $"        where TVector : unmanaged, IFloatingPointAlgebraBoolDispatch<TVector, TBoolVector>, INumberVector<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>");
+            sb.AppendLine(ScalarConstraint(kind, "        "));
+            sb.AppendLine("        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>, IMatrixVector<TBool, TBoolVector>");
+            sb.AppendLine("        where TBoolVector : unmanaged, IBoolVector<TBoolVector, TBoolScalar>");
+            sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>");
+            sb.AppendLine("    {");
+            sb.AppendLine("        TBool r = default;");
+            for (var column = 0; column < cols; column++)
+            {
+                sb.AppendLine($"        TBool.set_vector(ref r, {column}, TVector.Visit_Self_Bool<V>(TMatrix.get_c{column}(vector)));");
+            }
+
+            sb.AppendLine("        return r;");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        // the members of every shape, the number of the columns of the matrix decides the member of the count
+        // that reaches the columns of it
+        for (var rows = 2; rows <= 4; rows++)
+        {
+            for (var cols = 2; cols <= 4; cols++)
+            {
+                sb.AppendLine("    /// <summary>Returns the mask of the value of <paramref name=\"vector\"/></summary>");
+                sb.AppendLine("    /// <typeparam name=\"TMatrix\">The type of the value</typeparam>");
+                sb.AppendLine("    /// <typeparam name=\"TVector\">The type of a column of the value</typeparam>");
+                sb.AppendLine("    /// <typeparam name=\"TScalar\">The type of a single component of the value</typeparam>");
+                sb.AppendLine("    /// <typeparam name=\"TBool\">The type of the mask of the value</typeparam>");
+                sb.AppendLine("    /// <typeparam name=\"TBoolVector\">The type of a column of the mask</typeparam>");
+                sb.AppendLine("    /// <typeparam name=\"TBoolScalar\">The type of a single component of the mask</typeparam>");
+                sb.AppendLine("    /// <param name=\"vector\">The value</param>");
+                sb.AppendLine("    /// <returns>The mask of the value</returns>");
+                sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
+                sb.AppendLine($"    public static virtual TBool AcceptMatrix{rows}x{cols}<TMatrix, TVector, TScalar, TBool, TBoolVector, TBoolScalar>(in TMatrix vector)");
+                sb.AppendLine(
+                    $"        where TMatrix : unmanaged, {VisitorDispatch(kind)}<TMatrix>, INumberMatrix<TMatrix, TScalar>, IMatrix{rows}x{cols}Vector<TMatrix, TVector>, IMatrix{rows}x{cols}Scalar<TMatrix, TScalar>, IFloatingPointMatrix<TMatrix, TScalar>");
+                sb.AppendLine(
+                    $"        where TVector : unmanaged, IFloatingPointAlgebraBoolDispatch<TVector, TBoolVector>, INumberVector<TVector, TScalar>, IVector{rows}<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>");
+                sb.AppendLine(ScalarConstraint(kind, "        "));
+                sb.AppendLine("        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>, IMatrixVector<TBool, TBoolVector>");
+                sb.AppendLine("        where TBoolVector : unmanaged, IBoolVector<TBoolVector, TBoolScalar>");
+                sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>");
+                sb.AppendLine($"        => V.AcceptMatrixMx{cols}<TMatrix, TVector, TScalar, TBool, TBoolVector, TBoolScalar>(vector);");
+                sb.AppendLine();
+            }
+        }
+
+        sb.AppendLine("}");
+
         return sb.ToString();
     }
 

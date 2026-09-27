@@ -52,6 +52,16 @@ public partial class VectorGenerator
         // component of it, so the value of every shape is handed over the same way
         var mapOne = $"V.Map<{type}, {scalar}>(self)";
         var mapTwo = $"V.Map<{type}, {scalar}>(a, b)";
+        // the member of the visitor that builds the mask of a value reaches the mask of the shape of the value
+        // through the register of it or through the components of it, so it names the type of the value and the
+        // type of a single component of it, which the dispatch of the bool value of the value names the mask of
+        // it and the type of a single component of the mask of it beside
+        var boolType = VectorGenShared.BoolName(typ, size);
+        var boolScalar = VectorGenShared.BoolScalarName(typ);
+        var boolOne = reg == 0
+            ? $"V.AcceptVector{size}<{type}, {scalar}, {boolType}, {boolScalar}>(self)"
+            : $"V.AcceptVector<{type}, {scalar}, {boolType}, {boolScalar}>(self.vector)";
+        var boolDispatch = VectorGenShared.DispatchBoolIface(type, boolType);
 
         var sb = new StringBuilder();
 
@@ -98,6 +108,14 @@ public partial class VectorGenerator
                 sb.AppendLine("    [MethodImpl(256)]");
                 sb.AppendLine($"    static {type} {vectorDispatch}.Map_Self<V>(in {type} a, in {type} b)");
                 sb.AppendLine($"        => {mapTwo};");
+                sb.AppendLine();
+
+                // the bool value of the vector has the same shape as it, and the dispatch of it is the one that
+                // names the type of the bool value, which the dispatch of the value does not
+                sb.AppendLine("    /// <inheritdoc/>");
+                sb.AppendLine("    [MethodImpl(256)]");
+                sb.AppendLine($"    static {boolType} {boolDispatch}.Visit_Self_Bool<V>(in {type} self)");
+                sb.AppendLine($"        => {boolOne};");
                 sb.AppendLine();
             }
 

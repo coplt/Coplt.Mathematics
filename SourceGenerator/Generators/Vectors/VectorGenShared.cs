@@ -209,6 +209,34 @@ internal static class VectorGenShared
         : $"Algebras.Generics.{family}<{type}>";
 
     /// <summary>
+    /// Returns the name of the type of the bool value that has the same shape as a vector of a kind, which is
+    /// the letter of the kind of it, the width of a single component of it and the count of its components.
+    /// </summary>
+    /// <param name="typ">The type of the component of the value</param>
+    /// <param name="size">The number of the components of the vector</param>
+    /// <returns>The name of the type of the bool value</returns>
+    public static string BoolName(Typ typ, int size) => $"b{typ.size * 8}v{size}";
+
+    /// <summary>
+    /// Returns the name of the type of a single component of the bool value of a kind, which is the letter of
+    /// the kind of it and the width of a single component of it.
+    /// </summary>
+    /// <param name="typ">The type of the component of the value</param>
+    /// <returns>The name of the type of a single component of the bool value</returns>
+    public static string BoolScalarName(Typ typ) => $"b{typ.size * 8}";
+
+    /// <summary>
+    /// Returns the name of the interface of the dispatch of the bool value of a floating point value: the bool
+    /// value of a value has a shape of its own, which the type of the value does not name, so the dispatch of it
+    /// names the type of the bool value beside the type of the value.
+    /// </summary>
+    /// <param name="type">The name of the type of the value</param>
+    /// <param name="boolType">The name of the type of the bool value</param>
+    /// <returns>The name of the interface of the dispatch</returns>
+    public static string DispatchBoolIface(string type, string boolType) =>
+        $"Algebras.Generics.IFloatingPointAlgebraBoolDispatch<{type}, {boolType}>";
+
+    /// <summary>
     /// Returns the bit size of the register that keeps the value of a vector, 0 when the vector has no register.
     /// A 3 or 4 component vector is padded to 4 lanes, the 2 component ones keep the exact width of their value
     /// beside the storage variant of a 4 byte component vector, whose value is widened to 128 bits because the

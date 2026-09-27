@@ -236,6 +236,10 @@ public partial class VectorGenerator
         // a vector of a floating point kind reaches the map of a value as well, which the dispatch of a vector
         // declares beside the one of the value
         if (!bol && typ.f) ifaces.Add($"Algebras.Generics.IFloatingPointVectorDispatch<{type}>");
+        // the bool value of a value has a shape of its own, which the dispatch of the kind of the value does not
+        // name, so a vector of a floating point kind reaches the dispatch of the bool value of it as well
+        if (!bol && typ.f)
+            ifaces.Add(VectorGenShared.DispatchBoolIface(type, boolType));
         if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
         if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
         // a signed vector reaches the negative of every whole number of the vector a column of its matrix view
