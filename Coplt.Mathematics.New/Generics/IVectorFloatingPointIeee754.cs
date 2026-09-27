@@ -1,66 +1,6 @@
 ﻿namespace Coplt.Mathematics.Generics;
 
 /// <summary>
-/// An <see cref="IVectorFloatingPointIeee754{Self}"/> that can also produce a bool vector, it adds the checks
-/// for the special floating point values
-/// <para>It does not name the type of a single component because none of these members needs it, <see
-/// cref="IVectorFloatingPointIeee754BoolOps{Self,Scalar,BoolVector}"/> adds the members that do</para>
-/// </summary>
-/// <typeparam name="Self">The vector type itself</typeparam>
-/// <typeparam name="BoolVector">The bool vector type that has the same shape as this vector</typeparam>
-public interface IVectorFloatingPointIeee754BoolOps<Self, out BoolVector> :
-    IVectorFloatingPointIeee754<Self>
-    where Self : unmanaged, IVectorFloatingPointIeee754BoolOps<Self, BoolVector>
-{
-    #region IsNaN IsFinite IsInfinity IsPositiveInfinity
-
-    /// <summary>
-    /// Returns a mask that is true where the component is NaN
-    /// </summary>
-    /// <returns>The mask</returns>
-    public static abstract BoolVector is_NaN(in Self a);
-
-    /// <summary>
-    /// Returns a mask that is true where the component is finite, so it is neither NaN nor an infinity
-    /// </summary>
-    /// <returns>The mask</returns>
-    public static abstract BoolVector is_finite(in Self a);
-
-    /// <summary>
-    /// Returns a mask that is true where the component is a positive or a negative infinity
-    /// </summary>
-    /// <returns>The mask</returns>
-    public static abstract BoolVector is_inf(in Self a);
-
-    /// <summary>
-    /// Returns a mask that is true where the component is a positive infinity
-    /// </summary>
-    /// <returns>The mask</returns>
-    public static abstract BoolVector is_pos_inf(in Self a);
-
-    /// <summary>
-    /// Returns a mask that is true where the component is a negative infinity
-    /// </summary>
-    /// <returns>The mask</returns>
-    public static abstract BoolVector is_neg_inf(in Self a);
-
-    #endregion
-}
-
-/// <summary>
-/// A <see cref="IVectorFloatingPointIeee754{Self,Scalar}"/> that can also produce a bool vector, it adds the
-/// checks for the special floating point values
-/// </summary>
-/// <typeparam name="Self">The vector type itself</typeparam>
-/// <typeparam name="Scalar">The type of a single component</typeparam>
-/// <typeparam name="BoolVector">The bool vector type that has the same shape as this vector</typeparam>
-public interface IVectorFloatingPointIeee754BoolOps<Self, Scalar, out BoolVector> :
-    IVectorFloatingPointIeee754BoolOps<Self, BoolVector>,
-    IVectorFloatingPointIeee754<Self, Scalar>
-    where Self : unmanaged, IVectorFloatingPointIeee754BoolOps<Self, Scalar, BoolVector>
-    where Scalar : unmanaged, INumberBase<Scalar>;
-
-/// <summary>
 /// A vector of floating point components with the ieee 754 math functions
 /// <para>It does not name the type of a single component because none of these members needs it, <see
 /// cref="IVectorFloatingPointIeee754{Self,Scalar}"/> adds the members that do</para>

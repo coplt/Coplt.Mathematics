@@ -121,40 +121,9 @@ public partial class VectorGenerator
             sb.AppendLine();
         }
 
-        // emits the check of a special value, a register has the mask of the BCL and a type without a register
-        // checks every component on its own
-        void BoolMember(string name, string fn, string scalarName)
-        {
-            InheritDoc();
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public readonly {boolType} {name}()");
-            sb.AppendLine("    {");
-            if (simd)
-            {
-                // the mask of a 64 bit vector is widened to the register of the bool vector, the register of a
-                // bool of 4 byte components is 128 bits wide
-                if (v64)
-                {
-                    sb.AppendLine("        if (Vector64.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return new(Vector128.Create(Vector64.{fn}(vector).{boolAs}()));");
-                    sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return new(Vector128.{fn}({Load64("")}).{boolAs}());");
-                }
-                else
-                {
-                    sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return new {boolType}({boolRegName}.{fn}(vector).{boolAs}());");
-                }
-            }
-
-            sb.AppendLine($"        return new({Join(n => VectorScalar.Expr(scalar, scalarName, comp[n]))});");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-        }
-
         VectorGenShared.FileHeader(sb, true);
         sb.AppendLine($"public partial struct {type} :");
-        sb.AppendLine($"    IVectorFloatingPointIeee754BoolOps<{type}, {scalar}, {boolType}>");
+        sb.AppendLine($"    IVectorFloatingPointIeee754<{type}, {scalar}>");
         sb.AppendLine("{");
 
         #region constants
@@ -419,33 +388,6 @@ public partial class VectorGenerator
 
         sb.AppendLine("    #endregion");
         sb.AppendLine();
-
-        #endregion
-
-        #region is_NaN is_finite is_inf is_pos_inf is_neg_inf
-
-        sb.AppendLine("    #region is_NaN is_finite is_inf is_pos_inf is_neg_inf");
-        sb.AppendLine();
-
-        // a value is not equal to itself only when it is a nan
-        sb.AppendLine("    #pragma warning disable CS1718");
-        sb.AppendLine("    // ReSharper disable once EqualExpressionComparison");
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {boolType} is_NaN() => this != this;");
-        sb.AppendLine("    #pragma warning restore CS1718");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {boolType} is_finite() => math.abs(this) < new {type}({scalar}.PositiveInfinity);");
-        sb.AppendLine();
-
-        BoolMember("is_inf", "IsInfinity", "is_inf");
-        BoolMember("is_pos_inf", "IsPositiveInfinity", "is_pos_inf");
-        BoolMember("is_neg_inf", "IsNegativeInfinity", "is_neg_inf");
-
-        sb.AppendLine("    #endregion");
 
         #endregion
 

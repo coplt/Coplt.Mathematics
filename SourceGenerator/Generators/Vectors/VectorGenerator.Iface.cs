@@ -34,11 +34,6 @@ public partial class VectorGenerator
         {
             #region IVectorFloatingPointIeee754
 
-            ('f', "{bool} is_NaN(in {type} a) => a.is_NaN();"),
-            ('f', "{bool} is_finite(in {type} a) => a.is_finite();"),
-            ('f', "{bool} is_inf(in {type} a) => a.is_inf();"),
-            ('f', "{bool} is_pos_inf(in {type} a) => a.is_pos_inf();"),
-            ('f', "{bool} is_neg_inf(in {type} a) => a.is_neg_inf();"),
             ('f', "{type} log(in {type} a) => a.log();"),
             ('f', "{type} log2(in {type} a) => a.log2();"),
             ('f', "{type} log10(in {type} a) => a.log10();"),

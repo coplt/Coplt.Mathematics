@@ -339,37 +339,29 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
         sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>;");
         sb.AppendLine();
 
-        // the members of a register: the visitor builds the mask of the register out of its components, which
-        // is the only way a member that does not name the shape of the value reaches it
+        // the members of a register: the register of a value holds its components, so the visitor builds the
+        // mask of it out of them, which is the way the simd of the platform reaches the mask of a value, and a
+        // visitor reaches the register of the mask itself as well
         foreach (var width in new[] { 64, 128, 256 })
         {
-            sb.AppendLine("    /// <summary>Returns the mask of the value of <paramref name=\"vector\"/></summary>");
+            sb.AppendLine("    /// <summary>Returns the mask of the value whose register is <paramref name=\"vector\"/></summary>");
             sb.AppendLine("    /// <typeparam name=\"TVector\">The type of the value</typeparam>");
             sb.AppendLine("    /// <typeparam name=\"TScalar\">The type of a single component of the value</typeparam>");
             sb.AppendLine("    /// <typeparam name=\"TBool\">The type of the mask of the value</typeparam>");
             sb.AppendLine("    /// <typeparam name=\"TBoolScalar\">The type of a single component of the mask</typeparam>");
             sb.AppendLine("    /// <param name=\"vector\">The register of the value</param>");
             sb.AppendLine("    /// <returns>The mask of the value</returns>");
-            sb.AppendLine("    [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-            sb.AppendLine($"    public static virtual TBool AcceptVector<TVector, TScalar, TBool, TBoolScalar>(in Vector{width}<TScalar> vector)");
+            sb.AppendLine($"    public static abstract TBool AcceptVector<TVector, TScalar, TBool, TBoolScalar>(in Vector{width}<TScalar> vector)");
             sb.AppendLine(
                 $"        where TVector : unmanaged, {VisitorDispatch(kind)}<TVector>, INumberVector<TVector, TScalar>, IVector{width}Underlying<TVector>, IFloatingPointVector<TVector, TScalar>");
             sb.AppendLine(ScalarConstraint(kind, "        "));
-            sb.AppendLine("        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>");
-            sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>");
-            sb.AppendLine("    {");
-            sb.AppendLine("        TBool r = default;");
-            sb.AppendLine("        for (var i = 0; i < TBool.Length; i++)");
-            sb.AppendLine("        {");
-            sb.AppendLine("            TBool.set(ref r, i, V.AcceptScalar<TScalar, TBoolScalar>(vector.GetElement(i)));");
-            sb.AppendLine("        }");
-            sb.AppendLine("        return r;");
-            sb.AppendLine("    }");
+            sb.AppendLine($"        where TBool : unmanaged, IBoolVector<TBool, TBoolScalar>, IVector{width}Underlying<TBool>");
+            sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>;");
             sb.AppendLine();
         }
 
         // the members of every count of a component: the value of a vector that has no register is the one of
-        // its components, so the mask of it is the one of every component of it
+        // its components, so the mask of it is the one of every component of it, which every one of them reaches
         for (var size = 2; size <= 4; size++)
         {
             sb.AppendLine("    /// <summary>Returns the mask of the value of <paramref name=\"vector\"/></summary>");
@@ -384,14 +376,16 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             sb.AppendLine(
                 $"        where TVector : unmanaged, {VisitorDispatch(kind)}<TVector>, INumberVector<TVector, TScalar>, IVector{size}<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>");
             sb.AppendLine(ScalarConstraint(kind, "        "));
-            sb.AppendLine("        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>");
+            sb.AppendLine($"        where TBool : unmanaged, IBoolVector<TBool, TBoolScalar>, IVector{size}<TBool, TBoolScalar>");
             sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>");
             sb.AppendLine("    {");
             sb.AppendLine("        TBool r = default;");
-            sb.AppendLine($"        for (var i = 0; i < {size}; i++)");
-            sb.AppendLine("        {");
-            sb.AppendLine("            TBool.set(ref r, i, V.AcceptScalar<TScalar, TBoolScalar>(TVector.get(vector, i)));");
-            sb.AppendLine("        }");
+            for (var c = 0; c < size; c++)
+            {
+                sb.AppendLine(
+                    $"        TBool.set_{Components[c]}(ref r, V.AcceptScalar<TScalar, TBoolScalar>(TVector.get_{Components[c]}(vector)));");
+            }
+
             sb.AppendLine("        return r;");
             sb.AppendLine("    }");
             sb.AppendLine();
@@ -418,14 +412,14 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
             sb.AppendLine(
                 $"        where TVector : unmanaged, IFloatingPointAlgebraBoolDispatch<TVector, TBoolVector>, INumberVector<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>");
             sb.AppendLine(ScalarConstraint(kind, "        "));
-            sb.AppendLine("        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>, IMatrixVector<TBool, TBoolVector>");
+            sb.AppendLine($"        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>, IMatrixMx{cols}Vector<TBool, TBoolVector>");
             sb.AppendLine("        where TBoolVector : unmanaged, IBoolVector<TBoolVector, TBoolScalar>");
             sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>");
             sb.AppendLine("    {");
             sb.AppendLine("        TBool r = default;");
             for (var column = 0; column < cols; column++)
             {
-                sb.AppendLine($"        TBool.set_vector(ref r, {column}, TVector.Visit_Self_Bool<V>(TMatrix.get_c{column}(vector)));");
+                sb.AppendLine($"        TBool.set_c{column}(ref r, TVector.Visit_Self_Bool<V>(TMatrix.get_c{column}(vector)));");
             }
 
             sb.AppendLine("        return r;");
@@ -455,7 +449,7 @@ public class AlgebraVisitorGenerator : IIncrementalGenerator
                 sb.AppendLine(
                     $"        where TVector : unmanaged, IFloatingPointAlgebraBoolDispatch<TVector, TBoolVector>, INumberVector<TVector, TScalar>, IVector{rows}<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>");
                 sb.AppendLine(ScalarConstraint(kind, "        "));
-                sb.AppendLine("        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>, IMatrixVector<TBool, TBoolVector>");
+                sb.AppendLine($"        where TBool : unmanaged, IBoolMatrix<TBool, TBoolScalar>, IMatrix{rows}x{cols}Vector<TBool, TBoolVector>");
                 sb.AppendLine("        where TBoolVector : unmanaged, IBoolVector<TBoolVector, TBoolScalar>");
                 sb.AppendLine("        where TBoolScalar : unmanaged, IMask<TBoolScalar>");
                 sb.AppendLine($"        => V.AcceptMatrixMx{cols}<TMatrix, TVector, TScalar, TBool, TBoolVector, TBoolScalar>(vector);");

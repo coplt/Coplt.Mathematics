@@ -58,7 +58,11 @@ public partial class VectorGenerator
         // it and the type of a single component of the mask of it beside
         var boolType = VectorGenShared.BoolName(typ, size);
         var boolScalar = VectorGenShared.BoolScalarName(typ);
-        var boolOne = reg == 0
+        // the member of the visitor that takes the register of a value names the width of it as well, so the
+        // mask of the value reaches the components of it instead when the register of the mask is not the one of
+        // the value, which the storage variant of a 4 byte component vector narrows to 64 bits
+        var boolReg = VectorGenShared.Register(typ, size, false);
+        var boolOne = reg == 0 || reg != boolReg
             ? $"V.AcceptVector{size}<{type}, {scalar}, {boolType}, {boolScalar}>(self)"
             : $"V.AcceptVector<{type}, {scalar}, {boolType}, {boolScalar}>(self.vector)";
         var boolDispatch = VectorGenShared.DispatchBoolIface(type, boolType);

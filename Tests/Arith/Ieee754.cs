@@ -8,20 +8,21 @@ using half = System.Half;
 namespace Tests.Arith;
 
 /// <summary>
-/// The ieee 754 members of a vector implement <c>IVectorFloatingPointIeee754</c> and
-/// <c>IVectorFloatingPointIeee754BoolOps</c>: the logarithms, the exponentials, the step and the refraction, the
-/// face forward, the trigonometry, the hyperbolics, the change of the sign and the checks of the special
-/// floating point values that produce a bool vector of the same shape. The members of a simd vector keep the
-/// padding lanes of it at zero, the members of a vector without a register work on the components.
+/// The ieee 754 members of a vector implement <c>IVectorFloatingPointIeee754</c>: the logarithms, the
+/// exponentials, the step and the refraction, the face forward, the trigonometry, the hyperbolics and the
+/// change of the sign. The members of a simd vector keep the padding lanes of it at zero, the members of a
+/// vector without a register work on the components. The checks of the special floating point values are not
+/// members of the interface any more, they are the members of the dispatch of the bool value of a value, which
+/// the members of the <c>math</c> class from <c>is_NaN</c> on reach.
 /// </summary>
 public class TestIeee754
 {
     /// <summary>
-    /// Every ieee 754 vector implements the interface, so every member below is reachable through it. The mask of
-    /// the checks is the bool vector of the same shape and the refraction is a static member of the interface.
+    /// Every ieee 754 vector implements the interface, so every member below is reachable through it. The mask
+    /// of a vector is the bool vector of the same shape and the refraction is a static member of the interface.
     /// </summary>
     private static void Check<T, TScalar, TBool>(T v)
-        where T : unmanaged, IVectorFloatingPointIeee754BoolOps<T, TScalar, TBool>
+        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar>
         where TScalar : unmanaged, INumberBase<TScalar>
         where TBool : unmanaged
     {
@@ -54,21 +55,15 @@ public class TestIeee754
         v.acosh();
         v.atanh();
         v.chg_sign(v);
-        T.is_NaN(v);
-        T.is_finite(v);
-        T.is_inf(v);
-        T.is_pos_inf(v);
-        T.is_neg_inf(v);
 
         using (Assert.EnterMultipleScope())
         {
-            // the single and the pair form of the sine and the cosine agree and the mask of a vector is the one
-            // of its own shape, so it is equal to itself
+            // the single and the pair form of the sine and the cosine agree and the mask of a vector is a
+            // value of the same shape
             Assert.That(v.sin().Equals(sin), Is.True);
             Assert.That(v.cos().Equals(cos), Is.True);
             Assert.That(sin.Equals(s), Is.True);
             Assert.That(cos.Equals(c), Is.True);
-            Assert.That(T.is_NaN(v).Equals(T.is_NaN(v)), Is.True);
             Assert.That(Unsafe.SizeOf<TBool>(), Is.GreaterThan(0));
         }
     }

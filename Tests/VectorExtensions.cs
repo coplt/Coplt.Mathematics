@@ -20,8 +20,9 @@ internal static class VectorExtensions
     #region IVectorFloatingPointIeee754
 
     // the checks of the special values and the check of a power of two are not forwarded: the type of the mask
-    // only appears in the constraint, so the compiler cannot infer it from the arguments and a caller has to use
-    // the static member of the interface: T.is_NaN(v)
+    // of a value only appears in the constraint of the member of the dispatch of its bool value, so the
+    // compiler cannot infer it from the arguments and a caller has to name it or reach the member of the
+    // type of the mask of its value: math.is_NaN<T, TBool>(v) or v.is_NaN()
     public static T log<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.log(a);
     public static T log2<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.log2(a);
     public static T log<T>(this T a, in T other) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.log(a, other);
