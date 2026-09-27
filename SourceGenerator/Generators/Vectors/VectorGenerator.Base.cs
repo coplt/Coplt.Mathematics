@@ -214,9 +214,11 @@ public partial class VectorGenerator
         sb.AppendLine($"/// <para>{string.Join(", ", parts)}</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("[Serializable]");
-        // the converter of the vector is generated beside it, it lives in the namespace the converters share
-        // and the attribute names it in full
-        sb.AppendLine($"[JsonConverter(typeof({VectorGenerator.JsonNamespace}.{type}JsonConverter))]");
+        // the converter of a vector is shared by every vector of the count of its components, it names the type
+        // of the vector and the type of a single component of it, and it reads and writes a component with the
+        // converter the options name for the type of it
+        sb.AppendLine(
+            $"[JsonConverter(typeof({VectorGenerator.JsonNamespace}.Vector{size}JsonConverter<{type}, {scalar}>))]");
         // the interface of the size of the vector names the size and the components of the vector beside the
         // members of the kind of the vector, which the algebra library declares
         var ifaces = new List<string>

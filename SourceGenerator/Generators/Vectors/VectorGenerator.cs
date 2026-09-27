@@ -17,10 +17,11 @@ namespace Coplt.Analyzers.Generators;
 /// integer members by <c>GenInt</c>, the floating point members by <c>GenFloat</c>, the ieee 754 members by
 /// <c>GenIeee</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
-/// <c>GenConv</c>, the json converters by <c>GenJson</c>, the as members of the math class by <c>GenMathAs</c> and
-/// the select members by <c>GenSelect</c>, every part lives in its own file. The json converters are the only
-/// members that are not declared in <c>Coplt.Mathematics</c> itself, they are emitted into
-/// <c>Coplt.Mathematics.Json</c> so that a project that does not use them does not carry their types.
+/// <c>GenConv</c>, the as members of the math class by <c>GenMathAs</c> and
+/// the select members by <c>GenSelect</c>, every part lives in its own file. The converter of a vector is not
+/// generated: every vector of a count of components carries the same generic converter, which names the type
+/// of the vector and the type of a single component of it. The converters live in <c>Coplt.Mathematics.Json</c>
+/// so that the types of <c>System.Text.Json</c> are not a part of the surface of <c>Coplt.Mathematics</c>.
 /// </summary>
 [Generator]
 public partial class VectorGenerator : IIncrementalGenerator
@@ -165,13 +166,6 @@ public partial class VectorGenerator : IIncrementalGenerator
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.select.g.cs",
                             SourceText.From(GenSelect(typ, size, storeVariant), Encoding.UTF8));
-
-                        // the converter that reads and writes the vector as json is emitted into its own file
-                        // as well, it is the only part that is not declared in the namespace of the vector
-                        // itself but in the one the converters share
-                        ctx.AddSource(
-                            $"{JsonNamespace}.{name}.json.g.cs",
-                            SourceText.From(GenJson(typ, size, storeVariant), Encoding.UTF8));
                     }
                 }
             }

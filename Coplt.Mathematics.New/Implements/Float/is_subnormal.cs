@@ -41,7 +41,7 @@ namespace Coplt.Mathematics.Implements
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TBoolScalar IFloatingPointAlgebraVisitor_Self_Bool<impl_is_subnormal>.AcceptScalar<TScalar, TBoolScalar>(TScalar value)
-            => TScalar.IsSubnormal(value) ? TBoolScalar.True : TBoolScalar.False;
+            => TScalar.IsSubnormal(value);
 
         // the member of the simd library of the kind of the component finds the subnormal ones, the zero of a
         // padding lane is not subnormal, so the mask of the register does not have to leave the padding lanes

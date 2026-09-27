@@ -111,6 +111,13 @@ public interface IBoolAlgebra<TSelf> : IAlgebra<TSelf>
     public static abstract TSelf False { get; }
 
     #endregion
+
+    #region Operators
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual TSelf operator !(TSelf value) => ~value;
+
+    #endregion
 }
 
 /// <summary>

@@ -9,20 +9,33 @@ public readonly partial record struct b16 : IEquatable<bool>, IFormattable
     , IEqualityOperators<b16, b16, bool>
     , IMask<b16>
 {
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal b16(ushort value) => this.value = value;
     internal readonly ushort value;
 
-    public static readonly b16 True = new(ushort.MaxValue);
-    public static readonly b16 False = new(0);
+    #region Constants
 
     /// <inheritdoc/>
-    static b16 IMask<b16>.True => True;
+    public static b16 True
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => new(ushort.MaxValue);
+    }
 
     /// <inheritdoc/>
-    static b16 IMask<b16>.False => False;
+    public static b16 False
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => new(0);
+    }
+
+    #endregion
+
+    #region Eq
 
     public readonly bool Equals(bool other) => other == (bool)this;
+
+    #endregion
 
     #region ToString
 
@@ -46,76 +59,76 @@ public readonly partial record struct b16 : IEquatable<bool>, IFormattable
 
     #region operators
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b16 operator !(b16 v) => new((ushort)~v.value);
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b16 operator ~(b16 v) => new((ushort)~v.value);
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b16 operator |(b16 a, b16 b) => new((ushort)(a.value | b.value));
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b16 operator &(b16 a, b16 b) => new((ushort)(a.value & b.value));
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b16 operator ^(b16 a, b16 b) => new((ushort)(a.value ^ b.value));
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator bool(b16 v) => v.value != 0;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator b16(bool v) => v ? True : False;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator true(b16 v) => v.value != 0;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator false(b16 v) => v.value == 0;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator byte(b16 v) => (byte)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator sbyte(b16 v) => (sbyte)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ushort(b16 v) => (ushort)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator short(b16 v) => (short)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator uint(b16 v) => (uint)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator int(b16 v) => (int)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator ulong(b16 v) => (ulong)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator long(b16 v) => (long)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator half(b16 v) => (Half)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator float(b16 v) => (float)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator double(b16 v) => (double)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator decimal(b16 v) => (decimal)v.value;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(sbyte v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(byte v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator b16(ushort v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(short v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(uint v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(int v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(ulong v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(long v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(half v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(float v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(double v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b16(decimal v) => v.Equals(default) ? False : True;
 
     #endregion
@@ -130,20 +143,33 @@ public readonly partial record struct b32 : IEquatable<bool>, IFormattable
     , IEqualityOperators<b32, b32, bool>
     , IMask<b32>
 {
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal b32(uint value) => this.value = value;
     internal readonly uint value;
 
-    public static readonly b32 True = new(uint.MaxValue);
-    public static readonly b32 False = new(0);
+    #region Constants
 
     /// <inheritdoc/>
-    static b32 IMask<b32>.True => True;
+    public static b32 True
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => new(uint.MaxValue);
+    }
 
     /// <inheritdoc/>
-    static b32 IMask<b32>.False => False;
+    public static b32 False
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => new(0);
+    }
+
+    #endregion
+
+    #region Eq
 
     public readonly bool Equals(bool other) => other == (bool)this;
+
+    #endregion
 
     #region ToString
 
@@ -167,76 +193,76 @@ public readonly partial record struct b32 : IEquatable<bool>, IFormattable
 
     #region operators
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b32 operator !(b32 v) => new((uint)~v.value);
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b32 operator ~(b32 v) => new((uint)~v.value);
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b32 operator |(b32 a, b32 b) => new((uint)(a.value | b.value));
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b32 operator &(b32 a, b32 b) => new((uint)(a.value & b.value));
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b32 operator ^(b32 a, b32 b) => new((uint)(a.value ^ b.value));
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator bool(b32 v) => v.value != 0;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator b32(bool v) => v ? True : False;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator true(b32 v) => v.value != 0;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator false(b32 v) => v.value == 0;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator byte(b32 v) => (byte)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator sbyte(b32 v) => (sbyte)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator ushort(b32 v) => (ushort)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator short(b32 v) => (short)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator uint(b32 v) => (uint)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator int(b32 v) => (int)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator ulong(b32 v) => (ulong)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator long(b32 v) => (long)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator half(b32 v) => (Half)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator float(b32 v) => (float)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator double(b32 v) => (double)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator decimal(b32 v) => (decimal)v.value;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(sbyte v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(byte v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(ushort v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(short v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator b32(uint v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(int v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(ulong v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(long v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(half v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(float v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(double v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b32(decimal v) => v.Equals(default) ? False : True;
 
     #endregion
@@ -251,20 +277,33 @@ public readonly partial record struct b64 : IEquatable<bool>, IFormattable
     , IEqualityOperators<b64, b64, bool>
     , IMask<b64>
 {
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal b64(ulong value) => this.value = value;
     internal readonly ulong value;
 
-    public static readonly b64 True = new(ulong.MaxValue);
-    public static readonly b64 False = new(0);
+    #region Constants
 
     /// <inheritdoc/>
-    static b64 IMask<b64>.True => True;
+    public static b64 True
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => new(ulong.MaxValue);
+    }
 
     /// <inheritdoc/>
-    static b64 IMask<b64>.False => False;
+    public static b64 False
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => new(0);
+    }
+
+    #endregion
+
+    #region Eq
 
     public readonly bool Equals(bool other) => other == (bool)this;
+
+    #endregion
 
     #region ToString
 
@@ -288,76 +327,76 @@ public readonly partial record struct b64 : IEquatable<bool>, IFormattable
 
     #region operators
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b64 operator !(b64 v) => new((ulong)~v.value);
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b64 operator ~(b64 v) => new((ulong)~v.value);
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b64 operator |(b64 a, b64 b) => new((ulong)(a.value | b.value));
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b64 operator &(b64 a, b64 b) => new((ulong)(a.value & b.value));
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static b64 operator ^(b64 a, b64 b) => new((ulong)(a.value ^ b.value));
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator bool(b64 v) => v.value != 0;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator b64(bool v) => v ? True : False;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator true(b64 v) => v.value != 0;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator false(b64 v) => v.value == 0;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator byte(b64 v) => (byte)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator sbyte(b64 v) => (sbyte)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator ushort(b64 v) => (ushort)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator short(b64 v) => (short)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator uint(b64 v) => (uint)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator int(b64 v) => (int)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ulong(b64 v) => (ulong)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator long(b64 v) => (long)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator half(b64 v) => (Half)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator float(b64 v) => (float)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator double(b64 v) => (double)v.value;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator decimal(b64 v) => (decimal)v.value;
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(sbyte v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(byte v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(ushort v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(short v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(uint v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(int v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator b64(ulong v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(long v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(half v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(float v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(double v) => v.Equals(default) ? False : True;
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static explicit operator b64(decimal v) => v.Equals(default) ? False : True;
 
     #endregion

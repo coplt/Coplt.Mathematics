@@ -39,7 +39,7 @@ namespace Coplt.Mathematics.Implements
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TBoolScalar IFloatingPointAlgebraVisitor_Self_Bool<impl_is_pos_inf>.AcceptScalar<TScalar, TBoolScalar>(TScalar value)
-            => TScalar.IsPositiveInfinity(value) ? TBoolScalar.True : TBoolScalar.False;
+            => TScalar.IsPositiveInfinity(value);
 
         // the member of the simd library of the kind of the component finds the positive infinite ones, the zero
         // of a padding lane is not one, so the mask of the register does not have to leave the padding lanes out,

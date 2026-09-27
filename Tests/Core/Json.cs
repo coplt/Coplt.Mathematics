@@ -9,9 +9,10 @@ using B64 = Coplt.Mathematics.b64;
 namespace Tests.Core;
 
 /// <summary>
-/// Checks the json converters of the generated vectors. A vector is written as an array of its components in
-/// order, a component of a bool vector is a json bool and every other one a json number, the name of the type is
-/// not a part of the value.
+/// Checks the json converters of the generated vectors and matrices. A vector is written as an array of its
+/// components in order and a matrix as an array of the arrays of the components of its columns, a component of a
+/// bool vector is a json bool and every other one a json number, and the name of the type is not a part of the
+/// value.
 /// </summary>
 public class TestVectorJson
 {
@@ -104,6 +105,46 @@ public class TestVectorJson
         Check<b16v2, B16>(new b16v2(B16.True, B16.False), "[true,false]");
         Check<b32v4, B32>(new b32v4(B32.True, B32.False, B32.True, B32.False), "[true,false,true,false]");
         Check<b64v2, B64>(new b64v2(B64.True, B64.False), "[true,false]");
+    }
+
+    [Test]
+    public void Matrix()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the value of a matrix is an array of the arrays of the components of its columns
+            Assert.That(
+                JsonSerializer.Serialize(new float3x3(new float3(1, 2, 3), new float3(4, 5, 6), new float3(7, 8, 9)), Options),
+                Is.EqualTo("[[1,2,3],[4,5,6],[7,8,9]]"));
+            Assert.That(
+                JsonSerializer.Serialize(new float2x2(new float2(1, 2), new float2(3, 4)), Options),
+                Is.EqualTo("[[1,2],[3,4]]"));
+            // a matrix of 2 rows and 4 columns has 4 columns of 2 components
+            Assert.That(
+                JsonSerializer.Serialize(
+                    new float2x4(new float2(1, 2), new float2(3, 4), new float2(5, 6), new float2(7, 8)), Options),
+                Is.EqualTo("[[1,2],[3,4],[5,6],[7,8]]"));
+            // a column of a matrix of a mask is a bool vector of it
+            Assert.That(
+                JsonSerializer.Serialize(
+                    new b32m2x2(new b32v2(B32.True, B32.False), new b32v2(B32.False, B32.True)), Options),
+                Is.EqualTo("[[true,false],[false,true]]"));
+            // the storage variant of a matrix has the json shape of the regular matrix
+            Assert.That(
+                JsonSerializer.Serialize(new float2x2s(new float2s(1, 2), new float2s(3, 4)), Options),
+                Is.EqualTo("[[1,2],[3,4]]"));
+        }
+
+        var m = JsonSerializer.Deserialize<float3x3>("[[1,2,3],[4,5,6],[7,8,9]]", Options);
+        var d = JsonSerializer.Deserialize<double2x2>("[[1,2],[3,4]]", Options);
+        var ms = JsonSerializer.Deserialize<float2x2s>("[[1,2],[3,4]]", Options);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((m.c0.x, m.c0.y, m.c0.z), Is.EqualTo((1f, 2f, 3f)));
+            Assert.That((m.c2.x, m.c2.y, m.c2.z), Is.EqualTo((7f, 8f, 9f)));
+            Assert.That((d.c1.x, d.c1.y), Is.EqualTo((3d, 4d)));
+            Assert.That((ms.c1.x, ms.c1.y), Is.EqualTo((3f, 4f)));
+        }
     }
 
     /// <summary>

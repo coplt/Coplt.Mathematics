@@ -143,6 +143,10 @@ public class MatrixGenerator : IIncrementalGenerator
         if (!bol && typ.sig) ifaces.Add($"Algebras.ISignedNumberMatrixVector<{type}, {col}>");
 
         VectorGenShared.FileHeader(sb, false);
+        // the converter of a matrix is shared by every matrix of the count of its columns: it names the type of
+        // the matrix and the type of a column of it, and it reads and writes a column with the converter of the
+        // vector itself, so the value is an array of the arrays of the components of its columns
+        sb.AppendLine($"[JsonConverter(typeof(Json.MatrixMx{cols}JsonConverter<{type}, {col}>))]");
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
         sb.AppendLine("{");
