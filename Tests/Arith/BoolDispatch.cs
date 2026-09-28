@@ -111,18 +111,6 @@ public class TestBoolDispatch
             Assert.That((bool)h3.x, Is.True);
             Assert.That((bool)h3.y, Is.False);
             Assert.That((bool)h3.z, Is.False);
-
-            // the value of a storage variant is kept in fields, the mask of it is the one of the vector
-            var f3s = BoolOf<float3s, b32v3>(new float3s(1f, -2f, 0f));
-            Assert.That((bool)f3s.x, Is.True);
-            Assert.That((bool)f3s.y, Is.False);
-            Assert.That((bool)f3s.z, Is.False);
-
-            // the register of the storage variant of a 4 byte component vector is 64 bits wide while the one of
-            // its mask is 128 bits wide, so the value is widened before it reaches the member of the register
-            var f2s = BoolOf<float2s, b32v2>(new float2s(-1f, 2f));
-            Assert.That((bool)f2s.x, Is.False);
-            Assert.That((bool)f2s.y, Is.True);
         }
     }
 
@@ -197,12 +185,9 @@ public class TestBoolDispatch
         Check<half2, b16v2>(new half2((half)1f, (half)2f));
         Check<half3, b16v3>(new half3((half)1f, (half)2f, (half)3f));
         Check<half4, b16v4>(new half4((half)1f, (half)2f, (half)3f, (half)4f));
-        Check<float3s, b32v3>(new float3s(1f, 2f, 3f));
-        Check<double3s, b64v3>(new double3s(1d, 2d, 3d));
         Check<float2x2, b32m2x2>(new float2x2(new float2(1f, 2f), new float2(3f, 4f)));
         Check<float3x3, b32m3x3>(new float3x3(new float3(1f), new float3(2f), new float3(3f)));
         Check<half2x2, b16m2x2>(new half2x2(new half2((half)1f), new half2((half)2f)));
-        Check<float2x2s, b32m2x2>(new float2x2s(new float2s(1f, 2f), new float2s(3f, 4f)));
     }
 
     /// <summary>

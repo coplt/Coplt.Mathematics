@@ -14,10 +14,6 @@ namespace Tests.Core;
 /// </summary>
 public class TestVectorUnderlying
 {
-    /// <summary>Reads the bits of a vector of a 64 bit register and builds the same vector from them</summary>
-    private static T Again64<T>(T v) where T : unmanaged, IVector64Underlying<T> =>
-        T.FromUnderlying(T.GetUnderlying(v));
-
     /// <summary>Reads the bits of a vector of a 128 bit register and builds the same vector from them</summary>
     private static T Again128<T>(T v) where T : unmanaged, IVector128Underlying<T> =>
         T.FromUnderlying(T.GetUnderlying(v));
@@ -33,10 +29,6 @@ public class TestVectorUnderlying
         var q = Again256(new b64v4(true, false, true, false));
         using (Assert.EnterMultipleScope())
         {
-            // a vector of 2 32 bit components keeps its value in a 64 bit register, it is the storage variant
-            // of the regular vector of 2 components
-            Assert.That(Again64(new float2s(1, 2)), Is.EqualTo(new float2s(1, 2)));
-            Assert.That(Again64(new int2s(1, 2)), Is.EqualTo(new int2s(1, 2)));
             // the register of a vector of 4 32 bit components is 128 bits wide
             Assert.That(Again128(new float2(1, 2)), Is.EqualTo(new float2(1, 2)));
             Assert.That(Again128(new float3(1, 2, 3)), Is.EqualTo(new float3(1, 2, 3)));
@@ -112,8 +104,6 @@ public class TestVectorUnderlying
             // the value of a vector of 4 32 bit components fills its register, so it has no padding lane
             Assert.That(float4.HavePaddingLanes, Is.False);
             Assert.That(b32v4.HavePaddingLanes, Is.False);
-            // a register of 64 bits is exactly as wide as the value it keeps
-            Assert.That(float2s.HavePaddingLanes, Is.False);
             // the register of a vector of 3 components is as wide as the one of a vector of 4 components
             Assert.That(float3.HavePaddingLanes, Is.True);
             Assert.That(double3.HavePaddingLanes, Is.True);
@@ -139,13 +129,10 @@ public class TestVectorUnderlying
         {
             // a vector without a register has no bits to reach, it is only marked
             Assert.That(typeof(IVectorSoftUnderlying).IsAssignableFrom(typeof(half4)), Is.True);
-            Assert.That(typeof(IVectorSoftUnderlying).IsAssignableFrom(typeof(double3s)), Is.True);
             Assert.That(typeof(IVectorSoftUnderlying).IsAssignableFrom(typeof(b16v4)), Is.True);
             // the other ones carry the underlying members of the width of their register
-            Assert.That(typeof(IVectorSoftUnderlying).IsAssignableFrom(typeof(float2s)), Is.False);
             Assert.That(typeof(IVectorSoftUnderlying).IsAssignableFrom(typeof(float4)), Is.False);
             Assert.That(typeof(IVector256Underlying<double4>).IsAssignableFrom(typeof(double4)), Is.True);
-            Assert.That(typeof(IVector64Underlying<float2s>).IsAssignableFrom(typeof(float2s)), Is.True);
         }
     }
 }

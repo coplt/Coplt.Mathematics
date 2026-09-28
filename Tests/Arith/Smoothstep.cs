@@ -44,15 +44,10 @@ public class TestSmoothstep
         Check(new half2((half)0f, (half)0f), new half2((half)1f, (half)3f), new half2((half)0.5f, (half)1.5f));
         Check(new half3((half)0f, (half)0f, (half)0f), new half3((half)1f, (half)3f, (half)6f),
             new half3((half)0.5f, (half)1.5f, (half)3f));
-        Check(new float2s(0f, 0f), new float2s(1f, 3f), new float2s(0.5f, 1.5f));
-        Check(new float3s(0f, 0f, 0f), new float3s(1f, 3f, 6f), new float3s(0.5f, 1.5f, 3f));
-        Check(new double3s(0, 0, 0), new double3s(1, 3, 6), new double3s(0.5, 1.5, 3));
         // a matrix hands the value of every one of its columns over, so it reaches the member of the register or
         // the one of the scalar through the column
         Check(new float2x2(new float2(0f), new float2(0f)), new float2x2(new float2(1f), new float2(3f)),
             new float2x2(new float2(0.5f), new float2(1.5f)));
-        Check(new float2x2s(new float2s(0f), new float2s(0f)), new float2x2s(new float2s(1f), new float2s(3f)),
-            new float2x2s(new float2s(0.5f), new float2s(1.5f)));
         Check(new double2x2(new double2(0), new double2(0)), new double2x2(new double2(1), new double2(3)),
             new double2x2(new double2(0.5), new double2(1.5)));
         Check(new half3x3(new half3((half)0f), new half3((half)0f), new half3((half)0f)),
@@ -78,28 +73,15 @@ public class TestSmoothstep
             Assert.That(math.smoothstep(new float2(1f), new float2(0f), new float2(0.25f, 0.75f)),
                 Is.EqualTo(new float2(0.84375f, 0.15625f)));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.smoothstep(new float2s(0f), new float2s(1f), new float2s(0.5f)),
-                Is.EqualTo(new float2s(0.5f)));
-
             // a vector without a register reaches the member of the component type for every component
-            Assert.That(math.smoothstep(new float3s(0f), new float3s(1f), new float3s(0.5f)),
-                Is.EqualTo(new float3s(0.5f)));
             Assert.That(math.smoothstep(new half3((half)0f), new half3((half)1f), new half3((half)0.5f)),
                 Is.EqualTo(new half3((half)0.5f)));
-            Assert.That(math.smoothstep(new double3s(0), new double3s(1), new double3s(0.5)),
-                Is.EqualTo(new double3s(0.5d)));
 
             // the value of a matrix is interpolated through the value of every one of its columns
             Assert.That(math.smoothstep(new float2x2(new float2(0f), new float2(0f)),
                     new float2x2(new float2(1f), new float2(3f)),
                     new float2x2(new float2(0.5f), new float2(1.5f))),
                 Is.EqualTo(new float2x2(new float2(0.5f), new float2(0.5f))));
-            Assert.That(math.smoothstep(new float2x2s(new float2s(0f), new float2s(0f)),
-                    new float2x2s(new float2s(1f), new float2s(3f)),
-                    new float2x2s(new float2s(0.5f), new float2s(1.5f))),
-                Is.EqualTo(new float2x2s(new float2s(0.5f), new float2s(0.5f))));
             Assert.That(math.smoothstep(new double2x2(new double2(0), new double2(0)),
                     new double2x2(new double2(1), new double2(3)),
                     new double2x2(new double2(0.5), new double2(1.5))),

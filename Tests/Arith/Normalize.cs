@@ -49,9 +49,6 @@ public class TestNormalize
         // a vector without a register reaches the members of the component type
         Check(new half2((half)3f, (half)4f));
         Check(new half3((half)3f, (half)4f, (half)0f));
-        Check(new float2s(3f, 4f));
-        Check(new float3s(3f, 4f, 0f));
-        Check(new double3s(3, 4, 0));
     }
 
     [Test]
@@ -74,12 +71,7 @@ public class TestNormalize
             Assert.That(d3.y, Is.EqualTo(0.8d).Within(1e-15));
             Assert.That(d3.z, Is.EqualTo(0d));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.normalize(new float2s(0f, 2f)).y, Is.EqualTo(1f).Within(1e-6f));
-
             // a vector without a register reaches the member of the component type for every component
-            Assert.That(math.normalize(new float3s(0f, 0f, 2f)), Is.EqualTo(new float3s(0f, 0f, 1f)));
             Assert.That(math.normalize(new half3((half)2f, (half)0f, (half)0f)),
                 Is.EqualTo(new half3((half)1f, (half)0f, (half)0f)));
             Assert.That((float)math.normalize(new half3((half)3f, (half)4f, (half)0f)).x,
@@ -92,7 +84,6 @@ public class TestNormalize
             Assert.That(math.normalize_a(new float3(3f, 4f, 0f)).x, Is.EqualTo(0.6f).Within(Tolerance));
             Assert.That(math.normalize_a(new float3(3f, 4f, 0f)).y, Is.EqualTo(0.8f).Within(Tolerance));
             Assert.That(math.normalize_a(new double3(3, 4, 0)).x, Is.EqualTo(0.6d).Within(DoubleTolerance));
-            Assert.That(math.normalize_a(new float3s(3f, 4f, 0f)).y, Is.EqualTo(0.8f).Within(Tolerance));
             Assert.That(math.normalize_a(new float3(3f, 4f, 0f)).vector.GetElement(3), Is.EqualTo(0f));
         }
     }
@@ -111,11 +102,9 @@ public class TestNormalize
             Assert.That(math.normalize_safe(new float3(3f, 4f, 0f)), Is.EqualTo(math.normalize(new float3(3f, 4f, 0f))));
             Assert.That(math.normalize_safe(new float3(0f)), Is.EqualTo(default(float3)));
             Assert.That(math.normalize_safe(new double3(0, 0, 0)), Is.EqualTo(default(double3)));
-            Assert.That(math.normalize_safe(new float3s(0f, 0f, 0f)), Is.EqualTo(default(float3s)));
             Assert.That(math.normalize_safe(new half3((half)0f)), Is.EqualTo(default(half3)));
             Assert.That(math.normalize_safe_a(new float3(0f)), Is.EqualTo(default(float3)));
             Assert.That(math.normalize_safe_a(new double3(0, 0, 0)), Is.EqualTo(default(double3)));
-            Assert.That(math.normalize_safe_a(new float3s(0f, 0f, 0f)), Is.EqualTo(default(float3s)));
 
             // a value that is too short to be scaled is the zero of the kind of the value: the squared length
             // of it is not above the smallest positive normal value of the kind of a component

@@ -37,14 +37,6 @@ public class TestMatrixSum
             Assert.That(math.csum<half3x2, half3>(new half3x2(new half3((half)1f, (half)2f, (half)3f),
                     new half3((half)4f, (half)5f, (half)6f))),
                 Is.EqualTo(new half3((half)5f, (half)7f, (half)9f)), "half3, a value without a register");
-
-            // the storage variants of a matrix keep the columns in a narrower storage
-            Assert.That(math.csum<double3x3s, double3s>(new double3x3s(new double3s(1d, 2d, 3d),
-                    new double3s(4d, 5d, 6d), new double3s(7d, 8d, 9d))),
-                Is.EqualTo(new double3s(12d, 15d, 18d)), "double3s, a value without a register");
-            Assert.That(math.csum<float3x4s, float3s>(new float3x4s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f),
-                    new float3s(7f, 8f, 9f), new float3s(10f, 11f, 12f))),
-                Is.EqualTo(new float3s(22f, 26f, 30f)), "float3s, a value without a register");
         }
     }
 
@@ -72,15 +64,6 @@ public class TestMatrixSum
             Assert.That(math.rsum<half3x2, half2>(new half3x2(new half3((half)1f, (half)2f, (half)3f),
                     new half3((half)4f, (half)5f, (half)6f))),
                 Is.EqualTo(new half2((half)6f, (half)15f)), "half2, a value without a register");
-
-            // a row of a matrix keeps the storage variant of its own kind, which the vectors of a count of 4 have
-            // none of
-            Assert.That(math.rsum<double3x3s, double3s>(new double3x3s(new double3s(1d, 2d, 3d),
-                    new double3s(4d, 5d, 6d), new double3s(7d, 8d, 9d))),
-                Is.EqualTo(new double3s(6d, 15d, 24d)), "double3s, a value without a register");
-            Assert.That(math.rsum<float3x4s, float4>(new float3x4s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f),
-                    new float3s(7f, 8f, 9f), new float3s(10f, 11f, 12f))),
-                Is.EqualTo(new float4(6f, 15f, 24f, 33f)), "float4, the vectors of 4 components have no storage variant");
         }
     }
 
@@ -117,11 +100,6 @@ public class TestMatrixSum
             Assert.That(math.rsum(new half3x2(new half3((half)1f, (half)2f, (half)3f),
                     new half3((half)4f, (half)5f, (half)6f))),
                 Is.EqualTo(new half2((half)6f, (half)15f)), "half2, a value without a register");
-
-            // a storage variant reaches the member of the vector type of its own storage
-            var b = new float3x2s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f));
-            Assert.That(math.csum(b), Is.EqualTo(new float3s(5f, 7f, 9f)), "float3s");
-            Assert.That(b.rsum(), Is.EqualTo(new float2s(6f, 15f)), "float2s");
         }
     }
 }

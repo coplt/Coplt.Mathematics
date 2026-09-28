@@ -40,9 +40,6 @@ public class TestLengthDistance
         // a vector without a register works on the components
         Check<half2, Half>(new half2((half)3f, (half)4f));
         Check<half3, Half>(new half3((half)3f, (half)4f, (half)0f));
-        Check<float2s, float>(new float2s(3f, 4f));
-        Check<float3s, float>(new float3s(3f, 4f, 0f));
-        Check<double3s, double>(new double3s(3, 4, 0));
     }
 
     [Test]
@@ -62,32 +59,22 @@ public class TestLengthDistance
             Assert.That(math.distance<float3, float>(new float3(1f, 1f, 1f), new float3(4f, 5f, 1f)),
                 Is.EqualTo(5f));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.length(new float2s(3f, 4f)), Is.EqualTo(5f));
-
             // a vector without a register works on the components
-            Assert.That(math.length(new float3s(3f, 4f, 0f)), Is.EqualTo(5f));
             Assert.That((float)math.length(new half2((half)3f, (half)4f)), Is.EqualTo(5f));
             Assert.That((float)math.length(new half3((half)1f, (half)2f, (half)2f)), Is.EqualTo(3f));
-            Assert.That(math.length(new double3s(3, 4, 0)), Is.EqualTo(5d));
 
             // the length of the zero vector is zero
             Assert.That(math.length(default(float3)), Is.EqualTo(0f));
             Assert.That(math.length(default(double2)), Is.EqualTo(0d));
-            Assert.That(math.length(default(float3s)), Is.EqualTo(0f));
             Assert.That((float)math.length(default(half3)), Is.EqualTo(0f));
 
             // the distance between the two vectors is the length of the difference of them
             Assert.That(math.distance(new float3(1f, 1f, 1f), new float3(4f, 5f, 1f)), Is.EqualTo(5f));
             Assert.That(math.distance(new double2(0, 0), new double2(1, 1)), Is.EqualTo(Math.Sqrt(2d)));
-            Assert.That(math.distance(new float2s(1f, 1f), new float2s(4f, 5f)), Is.EqualTo(5f));
-            Assert.That(math.distance(new float3s(1f, 1f, 1f), new float3s(4f, 5f, 1f)), Is.EqualTo(5f));
             Assert.That((float)math.distance(new half2((half)0f, (half)0f), new half2((half)3f, (half)4f)),
                 Is.EqualTo(5f));
             // the distance of a vector and itself is zero
             Assert.That(math.distance(new float3(1f, 2f, 3f), new float3(1f, 2f, 3f)), Is.EqualTo(0f));
-            Assert.That(math.distance(new double3s(1, 2, 3), new double3s(1, 2, 3)), Is.EqualTo(0d));
         }
     }
 }

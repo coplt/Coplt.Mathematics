@@ -272,9 +272,10 @@ internal static class VectorGenShared
 
     /// <summary>
     /// Returns the bit size of the register that keeps the value of a vector, 0 when the vector has no register.
-    /// A 3 or 4 component vector is padded to 4 lanes, the 2 component ones keep the exact width of their value
-    /// beside the storage variant of a 4 byte component vector, whose value is widened to 128 bits because the
-    /// 64 bit register of it is not accelerated on every platform.
+    /// A 3 or 4 component vector is padded to 4 lanes and the 2 component ones keep the exact width of their
+    /// value beside the storage variant of a 4 byte component vector, whose value is widened to 128 bits because
+    /// the 64 bit register of it is not accelerated on every platform. The storage variant of a vector keeps its
+    /// components in fields, it has no register at all.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -282,28 +283,28 @@ internal static class VectorGenShared
     /// <returns>The bit size of the register</returns>
     public static int Register(Typ typ, int size, bool storeVariant)
     {
+        if (storeVariant) return 0;
         if (!typ.simd) return 0;
         if (size == 2)
         {
             var exact = 8 * typ.size * 2;
-            if (storeVariant) return exact;
             return exact == 64 ? 128 : exact;
         }
 
-        // the storage variant of a 3 component vector has no register, it keeps its components in fields
-        if (size == 3 && storeVariant) return 0;
         return 8 * typ.size * 4;
     }
 
     /// <summary>
     /// True when the value of the vector is kept in a 64 bit register behind a raw <c>ulong</c> field instead of
-    /// a <c>Vector64</c> field, the property of the vector reinterprets the bits of it.
+    /// a <c>Vector64</c> field, the property of the vector reinterprets the bits of it. No vector keeps its value
+    /// that way: the storage variant of a 2 component vector keeps its components in fields beside the storage
+    /// variant of a 3 component one.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
     /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>True when the value is kept in a raw ulong field</returns>
-    public static bool Uses64(Typ typ, int size, bool storeVariant) => storeVariant && size == 2 && typ.simd;
+    public static bool Uses64(Typ typ, int size, bool storeVariant) => Register(typ, size, storeVariant) == 64;
 
     /// <summary>
     /// True when the vector is backed by a hardware accelerated register.
@@ -328,14 +329,18 @@ internal static class VectorGenShared
             : typ.size * (size == 3 ? 4 : size);
 
     /// <summary>
-    /// Returns the number of lanes of the register of a vector.
+    /// Returns the number of lanes of the register of a vector, which is the count of the components of it when
+    /// the value is kept in fields instead of a register.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
     /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>The number of lanes of the register</returns>
-    public static int Lanes(Typ typ, int size, bool storeVariant) =>
-        Register(typ, size, storeVariant) / (8 * typ.size);
+    public static int Lanes(Typ typ, int size, bool storeVariant)
+    {
+        var reg = Register(typ, size, storeVariant);
+        return reg == 0 ? size : reg / (8 * typ.size);
+    }
 
     /// <summary>
     /// Returns the number of lanes of the register of a vector that are padding, 0 when the register is exactly

@@ -40,13 +40,9 @@ public class TestFrac
         // a vector without a register reaches the member of the scalar, which is the one of the component type
         Check(new half2((half)1.25f, (half)(-1.25f)));
         Check(new half3((half)1.25f, (half)(-1.25f), (half)2.5f));
-        Check(new float2s(1.25f, -1.25f));
-        Check(new float3s(1.25f, -1.25f, 2.5f));
-        Check(new double3s(1.25, -1.25, 2.5));
         // a matrix hands the value of every one of its columns over, so it reaches the member of the register or
         // the one of the scalar through the column
         Check(new float2x2(new float2(1.25f, -1.25f), new float2(2.75f, -2.75f)));
-        Check(new float2x2s(new float2s(1.25f, -1.25f), new float2s(2.75f, -2.75f)));
         Check(new float2x3(new float2(1.25f, -1.25f), new float2(2.75f, -2.75f), new float2(0.5f, 4f)));
         Check(new double2x2(new double2(1.25, -1.25), new double2(2.75, -2.75)));
         Check(new half3x3(new half3((half)1.25f, (half)(-1.25f), (half)2.5f),
@@ -70,15 +66,9 @@ public class TestFrac
             Assert.That(math.frac(new double4(2.75, -2.75, 1.5, -1.5)),
                 Is.EqualTo(new double4(0.75, 0.25, 0.5, 0.5)));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.frac(new float2s(1.25f, -1.25f)), Is.EqualTo(new float2s(0.25f, 0.75f)));
-
             // a vector without a register reaches the member of the component type for every component
-            Assert.That(math.frac(new float3s(1.25f, -1.25f, 2.5f)), Is.EqualTo(new float3s(0.25f, 0.75f, 0.5f)));
             Assert.That(math.frac(new half3((half)1.25f, (half)(-1.25f), (half)2.5f)),
                 Is.EqualTo(new half3((half)0.25f, (half)0.75f, (half)0.5f)));
-            Assert.That(math.frac(new double3s(2.75, -2.75, 1.5)), Is.EqualTo(new double3s(0.75, 0.25, 0.5)));
 
             // the fraction of a value that is integral is zero
             Assert.That(math.frac(new float3(1f, -2f, 3f)), Is.EqualTo(new float3(0f, 0f, 0f)));
@@ -102,20 +92,12 @@ public class TestFrac
 
     /// <summary>
     /// The rounding of a register and the one of a single component are the same operation, so the value of a
-    /// vector that keeps it in a register is the value a vector of the same components without a register has.
+    /// vector that keeps it in a register is the one the member of the component type builds for every component
+    /// of it.
     /// </summary>
     [Test]
     public void AgreesWithTheComponentType()
     {
-        var soft = math.frac(new float3s(1.25f, -1.25f, 2.75f));
-        var hardware = math.frac(new float3(1.25f, -1.25f, 2.75f));
-        Assert.That(hardware, Is.EqualTo(new float3(soft.x, soft.y, soft.z)));
-
-        var softDouble = math.frac(new double3s(1.25, -1.25, 2.75));
-        var hardwareDouble = math.frac(new double4(1.25, -1.25, 2.75, -2.75));
-        Assert.That(new double3(hardwareDouble.x, hardwareDouble.y, hardwareDouble.z),
-            Is.EqualTo(new double3(softDouble.x, softDouble.y, softDouble.z)));
-
         // the member of the scalar is the one of the component type, which rounds the value through the floor of
         // the kind of it
         var v = new float4(1.25f, -1.25f, 2.75f, -2.75f);

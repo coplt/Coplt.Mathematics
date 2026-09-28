@@ -76,30 +76,6 @@ public class TestMinMaxNative
             Assert.That(math.max_native(new long3(-4L, 1L, -3L), new long3(-2L, 5L, -1L)),
                 Is.EqualTo(new long3(-2L, 5L, -1L)), "long3 of negative components");
 
-            // a vector whose register is 64 bits wide and one that has no register reach the member of their own
-            // kind
-            Assert.That(math.min_native(new float2s(4f, 1f), new float2s(2f, 5f)), Is.EqualTo(new float2s(2f, 1f)),
-                "float2s, a 64 bit register");
-            Assert.That(math.max_native(new float2s(4f, 1f), new float2s(2f, 5f)), Is.EqualTo(new float2s(4f, 5f)),
-                "float2s, a 64 bit register");
-            Assert.That(math.min_native(new int2s(4, 1), new int2s(2, 5)), Is.EqualTo(new int2s(2, 1)),
-                "int2s, a 64 bit register");
-            Assert.That(math.max_native(new int2s(4, 1), new int2s(2, 5)), Is.EqualTo(new int2s(4, 5)),
-                "int2s, a 64 bit register");
-            Assert.That(math.min_native(new float3s(4f, 1f, 3f), new float3s(2f, 5f, 0f)),
-                Is.EqualTo(new float3s(2f, 1f, 0f)), "float3s, a value without a register");
-            Assert.That(math.max_native(new float3s(4f, 1f, 3f), new float3s(2f, 5f, 0f)),
-                Is.EqualTo(new float3s(4f, 5f, 3f)), "float3s, a value without a register");
-            Assert.That(math.min_native(new double3s(4d, 1d, 3d), new double3s(2d, 5d, 0d)),
-                Is.EqualTo(new double3s(2d, 1d, 0d)), "double3s, a value without a register");
-            Assert.That(math.max_native(new double3s(4d, 1d, 3d), new double3s(2d, 5d, 0d)),
-                Is.EqualTo(new double3s(4d, 5d, 3d)), "double3s, a value without a register");
-            Assert.That(math.min_native(new int3s(-4, 1, -3), new int3s(-2, 5, -1)),
-                Is.EqualTo(new int3s(-4, 1, -3)), "int3s, a value without a register");
-            Assert.That(math.max_native(new int3s(-4, 1, -3), new int3s(-2, 5, -1)),
-                Is.EqualTo(new int3s(-2, 5, -1)), "int3s, a value without a register");
-            Assert.That(math.min_native(new long3s(4L, 1L, 3L), new long3s(2L, 5L, 0L)),
-                Is.EqualTo(new long3s(2L, 1L, 0L)), "long3s, a value without a register");
             Assert.That(math.min_native(new half4((half)4f, (half)1f, (half)3f, (half)2f),
                     new half4((half)2f, (half)5f, (half)0f, (half)1f)),
                 Is.EqualTo(new half4((half)2f, (half)1f, (half)0f, (half)1f)), "half4, a value without a register");
@@ -134,15 +110,6 @@ public class TestMinMaxNative
             Assert.That(math.max_native(new float3x2(new float3(4f, 1f, 3f), new float3(2f, 5f, 0f)),
                     new float3x2(new float3(1f, 6f, 2f), new float3(5f, 4f, 7f))),
                 Is.EqualTo(new float3x2(new float3(4f, 6f, 3f), new float3(5f, 5f, 7f))), "the columns of float3x2");
-            // the columns of a matrix without a register are the ones that reach the member of a scalar
-            var a = new float3x3s(new float3s(4f, 1f, 3f), new float3s(2f, 5f, 0f), new float3s(6f, 7f, 8f));
-            var b = new float3x3s(new float3s(1f, 6f, 2f), new float3s(5f, 4f, 7f), new float3s(3f, 2f, 9f));
-            Assert.That(math.min_native(a, b),
-                Is.EqualTo(new float3x3s(new float3s(1f, 1f, 2f), new float3s(2f, 4f, 0f),
-                    new float3s(3f, 2f, 8f))), "the columns of float3x3s");
-            Assert.That(math.max_native(a, b),
-                Is.EqualTo(new float3x3s(new float3s(4f, 6f, 3f), new float3s(5f, 5f, 7f),
-                    new float3s(6f, 7f, 9f))), "the columns of float3x3s");
             Assert.That(math.min_native(new int2x2(new int2(-4, 1), new int2(3, -2)),
                     new int2x2(new int2(-2, 5), new int2(-3, 2))),
                 Is.EqualTo(new int2x2(new int2(-4, 1), new int2(-3, -2))), "the columns of int2x2");
@@ -166,8 +133,6 @@ public class TestMinMaxNative
                 Is.EqualTo(new float3(4f, 5f, 3f)), "the member of float3");
             Assert.That(new int3(-4, 1, -3).min_native(new int3(-2, 5, -1)), Is.EqualTo(new int3(-4, 1, -3)),
                 "the member of int3");
-            Assert.That(new float3s(4f, 1f, 3f).max_native(new float3s(2f, 5f, 0f)),
-                Is.EqualTo(new float3s(4f, 5f, 3f)), "the member of float3s");
             Assert.That(new float3x2(new float3(4f, 1f, 3f), new float3(2f, 5f, 0f)).min_native(
                     new float3x2(new float3(1f, 6f, 2f), new float3(5f, 4f, 7f))),
                 Is.EqualTo(new float3x2(new float3(1f, 1f, 2f), new float3(2f, 4f, 0f))),

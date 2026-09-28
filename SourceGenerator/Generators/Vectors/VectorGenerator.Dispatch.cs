@@ -25,6 +25,9 @@ public partial class VectorGenerator
     {
         // the members of the visitors name the number vector of the type, a mask is not one of them
         if (typ.bol) return null;
+        // the storage variant of a vector holds the components of a value of the kind of it, it does not reach
+        // the algebra of it and the members of it do not dispatch
+        if (storeVariant) return null;
 
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;

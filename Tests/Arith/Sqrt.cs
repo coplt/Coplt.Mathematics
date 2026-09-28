@@ -49,13 +49,9 @@ public class TestSqrt
         // a vector without a register reaches the member of the scalar, which is the one of the component type
         Check(new half2((half)4f, (half)9f));
         Check(new half3((half)4f, (half)9f, (half)16f));
-        Check(new float2s(4f, 9f));
-        Check(new float3s(4f, 9f, 16f));
-        Check(new double3s(4, 9, 16));
         // a matrix hands the value of every one of its columns over, so it reaches the member of the register or
         // the one of the scalar through the column
         Check(new float2x2(new float2(4f, 9f), new float2(16f, 25f)));
-        Check(new float2x2s(new float2s(4f, 9f), new float2s(16f, 25f)));
         Check(new float2x3(new float2(4f, 9f), new float2(16f, 25f), new float2(36f, 49f)));
         Check(new double2x2(new double2(4, 9), new double2(16, 25)));
         Check(new half3x3(new half3((half)4f, (half)9f, (half)16f),
@@ -81,15 +77,9 @@ public class TestSqrt
             // padding lane of the register of the result is zero as well
             Assert.That(math.sqrt(new float3(4f, 9f, 16f)).vector.GetElement(3), Is.EqualTo(0f));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.sqrt(new float2s(4f, 9f)), Is.EqualTo(new float2s(2f, 3f)));
-
             // a vector without a register reaches the member of the component type for every component
-            Assert.That(math.sqrt(new float3s(4f, 9f, 16f)), Is.EqualTo(new float3s(2f, 3f, 4f)));
             Assert.That(math.sqrt(new half3((half)4f, (half)9f, (half)16f)),
                 Is.EqualTo(new half3((half)2f, (half)3f, (half)4f)));
-            Assert.That(math.sqrt(new double3s(4, 9, 16)), Is.EqualTo(new double3s(2d, 3d, 4d)));
 
             // the square root of a component below zero is not a number
             Assert.That(float.IsNaN(math.sqrt(new float3(-1f, 4f, 9f)).x), Is.True);
@@ -98,8 +88,6 @@ public class TestSqrt
             // the value of a matrix is reached through the value of every one of its columns
             Assert.That(math.sqrt(new float2x2(new float2(4f, 9f), new float2(16f, 25f))),
                 Is.EqualTo(new float2x2(new float2(2f, 3f), new float2(4f, 5f))));
-            Assert.That(math.sqrt(new float2x2s(new float2s(4f, 9f), new float2s(16f, 25f))),
-                Is.EqualTo(new float2x2s(new float2s(2f, 3f), new float2s(4f, 5f))));
             Assert.That(math.sqrt(new double2x2(new double2(4, 9), new double2(16, 25))),
                 Is.EqualTo(new double2x2(new double2(2d, 3d), new double2(4d, 5d))));
         }
@@ -114,9 +102,7 @@ public class TestSqrt
             // it, so it is the exact result
             Assert.That(math.rsqrt(new float3(0.25f, 1f, 4f)), Is.EqualTo(new float3(2f, 1f, 0.5f)));
             Assert.That(math.rsqrt(new double2(0.25, 1)), Is.EqualTo(new double2(2d, 1d)));
-            Assert.That(math.rsqrt(new float2s(0.25f, 4f)), Is.EqualTo(new float2s(2f, 0.5f)));
             Assert.That(math.rsqrt(new half2((half)0.25f, (half)1f)), Is.EqualTo(new half2((half)2f, (half)1f)));
-            Assert.That(math.rsqrt(new double3s(0.25, 1, 4)), Is.EqualTo(new double3s(2d, 1d, 0.5d)));
 
             // the reciprocal of the square root of a value that is not a number is one as well, the one of the
             // zero of the kind of a component is an infinity
@@ -132,7 +118,6 @@ public class TestSqrt
             // hardware of the platform as well
             Assert.That((float)math.rsqrt_a(new half3((half)0.25f, (half)1f, (half)4f)).y,
                 Is.EqualTo(1f).Within(Tolerance));
-            Assert.That(math.rsqrt_a(new float3s(0.25f, 1f, 4f)).x, Is.EqualTo(2f).Within(Tolerance));
 
             // the reciprocal of the square root of a padding lane is an infinity, so the register of the result
             // is built from the mask of the padding lanes of the value

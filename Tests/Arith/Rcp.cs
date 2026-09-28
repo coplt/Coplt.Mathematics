@@ -49,13 +49,9 @@ public class TestRcp
         // a vector without a register reaches the member of the scalar, which is the one of the component type
         Check(new half2((half)1f, (half)2f));
         Check(new half3((half)1f, (half)2f, (half)4f));
-        Check(new float2s(1f, 2f));
-        Check(new float3s(1f, 2f, 4f));
-        Check(new double3s(1, 2, 4));
         // a matrix hands the value of every one of its columns over, so it reaches the member of the register or
         // the one of the scalar through the column
         Check(new float2x2(new float2(1f, 2f), new float2(4f, 8f)));
-        Check(new float2x2s(new float2s(1f, 2f), new float2s(4f, 8f)));
         Check(new float2x3(new float2(1f, 2f), new float2(4f, 8f), new float2(0.5f, 0.25f)));
         Check(new double2x2(new double2(1, 2), new double2(4, 8)));
         Check(new half3x3(new half3((half)1f, (half)2f, (half)4f),
@@ -80,18 +76,10 @@ public class TestRcp
             Assert.That(d3.y, Is.EqualTo(0.5d).Within(DoubleTolerance));
             Assert.That(d3.z, Is.EqualTo(0.25d).Within(DoubleTolerance));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            var f2s = math.rcp(new float2s(1f, 2f));
-            Assert.That(f2s.x, Is.EqualTo(1f).Within(Tolerance));
-            Assert.That(f2s.y, Is.EqualTo(0.5f).Within(Tolerance));
-
             // a vector without a register reaches the member of the component type for every component, which is
             // the exact reciprocal of the component
-            Assert.That(math.rcp(new float3s(1f, 2f, 4f)), Is.EqualTo(new float3s(1f, 0.5f, 0.25f)));
             Assert.That(math.rcp(new half3((half)1f, (half)2f, (half)4f)),
                 Is.EqualTo(new half3((half)1f, (half)0.5f, (half)0.25f)));
-            Assert.That(math.rcp(new double3s(1, 2, 4)), Is.EqualTo(new double3s(1d, 0.5d, 0.25d)));
 
             // the value of a matrix is reached through the value of every one of its columns
             var m = math.rcp(new float2x2(new float2(1f, 2f), new float2(4f, 8f)));
@@ -99,13 +87,6 @@ public class TestRcp
             Assert.That(m.c0.y, Is.EqualTo(0.5f).Within(Tolerance));
             Assert.That(m.c1.x, Is.EqualTo(0.25f).Within(Tolerance));
             Assert.That(m.c1.y, Is.EqualTo(0.125f).Within(Tolerance));
-            // the columns of the storage variant of a matrix of two components keep their value in a 64 bit
-            // register as well, so the estimate of the hardware reaches the value of them
-            var m2s = math.rcp(new float2x2s(new float2s(1f, 2f), new float2s(4f, 8f)));
-            Assert.That(m2s.c0.x, Is.EqualTo(1f).Within(Tolerance));
-            Assert.That(m2s.c0.y, Is.EqualTo(0.5f).Within(Tolerance));
-            Assert.That(m2s.c1.x, Is.EqualTo(0.25f).Within(Tolerance));
-            Assert.That(m2s.c1.y, Is.EqualTo(0.125f).Within(Tolerance));
             Assert.That(math.rcp(new half3x3(new half3((half)1f, (half)2f, (half)4f),
                     new half3((half)0.5f, (half)0.25f, (half)8f), new half3((half)1f, (half)(-2f), (half)(-0.5f)))),
                 Is.EqualTo(new half3x3(new half3((half)1f, (half)0.5f, (half)0.25f),
@@ -114,10 +95,7 @@ public class TestRcp
     }
 
     /// <summary>
-    /// The estimate of the hardware is not exact, the member of the scalar is the division of the one of the kind
-    /// of the component by it: the value of a vector without a register is the exact reciprocal and the one of a
-    /// vector that keeps its value in a register is near it, so the product of a value and its reciprocal is near
-    /// one.
+    /// The estimate of the hardware is not exact, so the product of a value and its reciprocal is near one.
     /// </summary>
     [Test]
     public void Estimate()
@@ -131,13 +109,6 @@ public class TestRcp
             Assert.That(v.y * r.y, Is.EqualTo(1f).Within(2 * Tolerance));
             Assert.That(v.z * r.z, Is.EqualTo(1f).Within(2 * Tolerance));
             Assert.That(v.w * r.w, Is.EqualTo(1f).Within(2 * Tolerance));
-
-            // the value of a vector without a register is the exact reciprocal of every component of it
-            var s = new float3s(1f, 3f, 7f);
-            var exact = math.rcp(s);
-            Assert.That(exact.x, Is.EqualTo(1f / 1f));
-            Assert.That(exact.y, Is.EqualTo(1f / 3f));
-            Assert.That(exact.z, Is.EqualTo(1f / 7f));
         }
     }
 

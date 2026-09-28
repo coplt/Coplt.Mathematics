@@ -134,18 +134,15 @@ public class TestScalarDispatch
     {
         using (Assert.EnterMultipleScope())
         {
-            // a vector that fills its register, one that has padding lanes and one whose register is 64 bits wide
+            // a vector that fills its register and one that has padding lanes
             Assert.That(Sum<float4, float>(new float4(1f, 2f, 3f, 4f)), Is.EqualTo(10f), "float4");
             Assert.That(Sum<float3, float>(new float3(1f, 2f, 3f)), Is.EqualTo(6f), "float3");
             Assert.That(Sum<float2, float>(new float2(1f, 2f)), Is.EqualTo(3f), "float2");
             Assert.That(Sum<double3, double>(new double3(1d, 2d, 3d)), Is.EqualTo(6d), "double3");
             Assert.That(Sum<double2, double>(new double2(1d, 2d)), Is.EqualTo(3d), "double2");
             Assert.That(Sum<int3, int>(new int3(1, 2, 3)), Is.EqualTo(6), "int3");
-            Assert.That(Sum<float2s, float>(new float2s(1f, 2f)), Is.EqualTo(3f), "float2s, a 64 bit register");
 
             // a vector without a register reaches the member of the count of its components
-            Assert.That(Sum<float3s, float>(new float3s(1f, 2f, 3f)), Is.EqualTo(6f), "float3s");
-            Assert.That(Sum<double3s, double>(new double3s(1d, 2d, 3d)), Is.EqualTo(6d), "double3s");
             Assert.That(Sum<half4, Half>(new half4((Half)1f, (Half)2f, (Half)3f, (Half)4f)), Is.EqualTo((Half)10f),
                 "half4, a value without a register");
         }
@@ -162,8 +159,6 @@ public class TestScalarDispatch
             Assert.That(Dot<int3, int>(new int3(1, 2, 3), new int3(2, 3, 4)), Is.EqualTo(20), "int3");
             Assert.That(Dot<double3, double>(new double3(1d, 2d, 3d), new double3(2d, 3d, 4d)), Is.EqualTo(20d),
                 "double3");
-            Assert.That(Dot<float3s, float>(new float3s(1f, 2f, 3f), new float3s(2f, 3f, 4f)), Is.EqualTo(20f),
-                "float3s");
         }
     }
 

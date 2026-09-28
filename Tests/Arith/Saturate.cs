@@ -42,13 +42,9 @@ public class TestSaturate
         // a vector without a register reaches the member of the scalar, which is the one of the component type
         Check(new half2((half)(-1f), (half)0.5f));
         Check(new half3((half)(-1f), (half)0.5f, (half)2f));
-        Check(new float2s(-1f, 0.5f));
-        Check(new float3s(-1f, 0.5f, 2f));
-        Check(new double3s(-1, 0.5, 2));
         // a matrix hands the value of every one of its columns over, so it reaches the member of the register or
         // the one of the scalar through the column
         Check(new float2x2(new float2(-1f, 0.5f), new float2(2f, 0f)));
-        Check(new float2x2s(new float2s(-1f, 0.5f), new float2s(2f, 0f)));
         Check(new float2x3(new float2(-1f, 0.5f), new float2(2f, 0f), new float2(1f, -2f)));
         Check(new double2x2(new double2(-1, 0.5), new double2(2, 0)));
         Check(new half3x3(new half3((half)(-1f), (half)0.5f, (half)2f),
@@ -75,21 +71,13 @@ public class TestSaturate
             Assert.That(math.saturate(new float3(float.NegativeInfinity, float.PositiveInfinity, -0.5f)),
                 Is.EqualTo(new float3(0f, 1f, 0f)));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.saturate(new float2s(-1f, 0.5f)), Is.EqualTo(new float2s(0f, 0.5f)));
-
             // a vector without a register reaches the member of the component type for every component
-            Assert.That(math.saturate(new float3s(-1f, 0.5f, 2f)), Is.EqualTo(new float3s(0f, 0.5f, 1f)));
             Assert.That(math.saturate(new half3((half)(-1f), (half)0.5f, (half)2f)),
                 Is.EqualTo(new half3((half)0f, (half)0.5f, (half)1f)));
-            Assert.That(math.saturate(new double3s(-1, 0.5, 2)), Is.EqualTo(new double3s(0d, 0.5d, 1d)));
 
             // the value of a matrix is clamped through the value of every one of its columns
             Assert.That(math.saturate(new float2x2(new float2(-1f, 0.5f), new float2(2f, 0f))),
                 Is.EqualTo(new float2x2(new float2(0f, 0.5f), new float2(1f, 0f))));
-            Assert.That(math.saturate(new float2x2s(new float2s(-1f, 0.5f), new float2s(2f, 0f))),
-                Is.EqualTo(new float2x2s(new float2s(0f, 0.5f), new float2s(1f, 0f))));
             Assert.That(math.saturate(new double2x2(new double2(-1, 0.5), new double2(2, 0))),
                 Is.EqualTo(new double2x2(new double2(0d, 0.5d), new double2(1d, 0d))));
         }

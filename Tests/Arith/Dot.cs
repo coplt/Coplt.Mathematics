@@ -35,8 +35,6 @@ public class TestDot
             // scalar type of the value out instead of reaching the member of the scalar type
             Assert.That(math.dot<float3, float>(new float3(1f, 2f, 3f), new float3(2f, 3f, 4f)), Is.EqualTo(20f),
                 "the member that names both types");
-            Assert.That(math.dot<int3s, int>(new int3s(1, 2, 3), new int3s(2, 3, 4)), Is.EqualTo(20),
-                "the member that names both types");
             Assert.That(math.dot<float3, float>(new float3(1f, 2f, 3f), new float3(2f, 3f, 4f)),
                 Is.EqualTo(math.dot(new float3(1f, 2f, 3f), new float3(2f, 3f, 4f))), "both of them are the same");
 
@@ -58,11 +56,8 @@ public class TestDot
     {
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(math.dot(new float3s(1f, 2f, 3f), new float3s(2f, 3f, 4f)), Is.EqualTo(20f), "float3s");
-            Assert.That(math.dot(new double3s(1d, 2d, 3d), new double3s(2d, 3d, 4d)), Is.EqualTo(20d), "double3s");
             Assert.That(math.dot(new half3((half)1f, (half)2f, (half)3f), new half3((half)2f, (half)3f, (half)4f)),
                 Is.EqualTo((half)20f), "half3, a value without a register");
-            Assert.That(math.dot(new float2s(1f, 2f), new float2s(2f, 3f)), Is.EqualTo(8f), "float2s, a 64 bit register");
             Assert.That(math.dot(new int3(1, 2, 3), new int3(2, 3, 4)), Is.EqualTo(20), "int3, a padding lane");
         }
     }

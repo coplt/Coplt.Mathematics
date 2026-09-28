@@ -203,7 +203,7 @@ public class TestVectorCtorFromVectors
     /// <summary>
     /// Covers the merge of a pair and a value of every kind of a 3 component vector: a component of 4 bytes
     /// whose vector is backed by a 128 bit register, one of 8 bytes whose vector is backed by a 256 bit one,
-    /// one of 2 bytes whose vector has no register at all, a bool vector and the storage variant of a vector.
+    /// one of 2 bytes whose vector has no register at all and a bool vector.
     /// </summary>
     [Test]
     public void Merge3()
@@ -220,13 +220,6 @@ public class TestVectorCtorFromVectors
         Check3<b32v3, b32, b32v2>(new(B32.True, B32.False), new(B32.False, B32.True), new(B32.True, B32.True), B32.False);
         Check3<b64v3, b64, b64v2>(new(B64.True, B64.False), new(B64.False, B64.True), new(B64.True, B64.True), B64.False);
         Check3<b16v3, b16, b16v2>(new(B16.True, B16.False), new(B16.False, B16.True), new(B16.True, B16.True), B16.False);
-        // the storage variant of a vector keeps its components in fields, it has no register to fill
-        Check3<float3s, float, float2>(new(1, 2), new(3, 4), new(5, 6), 7);
-        Check3<double3s, double, double2>(new(1, 2), new(3, 4), new(5, 6), 7);
-        Check3<int3s, int, int2>(new(1, 2), new(3, 4), new(5, 6), 7);
-        Check3<uint3s, uint, uint2>(new(1, 2), new(3, 4), new(5, 6), 7);
-        Check3<long3s, long, long2>(new(1, 2), new(3, 4), new(5, 6), 7);
-        Check3<ulong3s, ulong, ulong2>(new(1, 2), new(3, 4), new(5, 6), 7);
     }
 
     /// <summary>

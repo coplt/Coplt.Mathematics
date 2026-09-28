@@ -156,8 +156,6 @@ public class TestDynamicVector
             // the visitor for every one of its components
             Assert.That(Visit<half2, AgainVisitor>(new half2((Half)1, (Half)2)),
                 Is.EqualTo(new half2((Half)1, (Half)2)));
-            Assert.That(Visit<float3s, AgainVisitor>(new float3s(1, 2, 3)), Is.EqualTo(new float3s(1, 2, 3)));
-            Assert.That(Visit<int2s, AgainVisitor>(new int2s(1, 2)), Is.EqualTo(new int2s(1, 2)));
             // a matrix reaches the member of its shape, which hands the value of every column of it over
             Assert.That(Visit<float2x2, AgainVisitor>(new float2x2(new float2(1, 2), new float2(3, 4))),
                 Is.EqualTo(new float2x2(new float2(1, 2), new float2(3, 4))));
@@ -167,10 +165,6 @@ public class TestDynamicVector
             Assert.That(Visit<double2x4, AgainVisitor>(
                     new double2x4(new double2(1, 2), new double2(3, 4), new double2(5, 6), new double2(7, 8))),
                 Is.EqualTo(new double2x4(new double2(1, 2), new double2(3, 4), new double2(5, 6), new double2(7, 8))));
-            // a matrix without a register hands the value of every one of its columns over the same way
-            Assert.That(Visit<float3x3s, AgainVisitor>(
-                    new float3x3s(new float3s(1, 2, 3), new float3s(4, 5, 6), new float3s(7, 8, 9))),
-                Is.EqualTo(new float3x3s(new float3s(1, 2, 3), new float3s(4, 5, 6), new float3s(7, 8, 9))));
             // every member of a visitor names the algebra of a kind of the value and every kind of it the
             // value has dispatches to the members of it: a number dispatches three members that take values
             // and two that take a component of the value beside it, which every value has, and a floating
@@ -203,10 +197,6 @@ public class TestDynamicVector
                 Is.EqualTo(new double4(5, 6, 7, 8)));
             Assert.That(Visit<half2, SecondVisitor>(new half2((Half)1, (Half)2), new half2((Half)3, (Half)4)),
                 Is.EqualTo(new half2((Half)3, (Half)4)));
-            Assert.That(Visit<float3s, SecondVisitor>(new float3s(1, 2, 3), new float3s(4, 5, 6)),
-                Is.EqualTo(new float3s(4, 5, 6)));
-            Assert.That(Visit<int2s, SecondVisitor>(new int2s(1, 2), new int2s(3, 4)),
-                Is.EqualTo(new int2s(3, 4)));
             // every column of a matrix is handed over the same way
             var a = new float3x2(new float3(1, 2, 3), new float3(4, 5, 6));
             var b = new float3x2(new float3(7, 8, 9), new float3(10, 11, 12));
@@ -228,11 +218,7 @@ public class TestDynamicVector
             Assert.That(Visit<float4, WhichVisitor>(new float4(1, 2, 3, 4)), Is.EqualTo(new float4(1, 1, 1, 1)));
             Assert.That(Visit<int3, WhichVisitor>(new int3(4, 5, 6)), Is.EqualTo(new int3(1, 1, 1)));
             // a vector without a register hands the vector itself over, so the member of the scalar is reached
-            // for every component of it. A storage variant of a vector of 2 components keeps its value in a
-            // register of 64 bits, so it reaches the member of the register like the other ones
-            Assert.That(Visit<float2s, WhichVisitor>(new float2s(1, 2)), Is.EqualTo(new float2s(1, 1)));
-            Assert.That(Visit<float3s, WhichVisitor>(new float3s(1, 2, 3)), Is.EqualTo(new float3s(2, 3, 4)));
-            Assert.That(Visit<double3s, WhichVisitor>(new double3s(1, 2, 3)), Is.EqualTo(new double3s(2, 3, 4)));
+            // for every component of it
             Assert.That(Visit<half2, WhichVisitor>(new half2((Half)1, (Half)2)),
                 Is.EqualTo(new half2((Half)2, (Half)3)));
             // a matrix of a number dispatches the value of its columns, every one of them reaching the member
@@ -255,11 +241,6 @@ public class TestDynamicVector
             Assert.That(Visit<double4, ThirdVisitor>(new double4(1, 2, 3, 4), new double4(5, 6, 7, 8),
                     new double4(9, 10, 11, 12)),
                 Is.EqualTo(new double4(9, 10, 11, 12)));
-            Assert.That(Visit<int2s, ThirdVisitor>(new int2s(1, 2), new int2s(3, 4), new int2s(5, 6)),
-                Is.EqualTo(new int2s(5, 6)));
-            Assert.That(Visit<float3s, ThirdVisitor>(new float3s(1, 2, 3), new float3s(4, 5, 6),
-                    new float3s(7, 8, 9)),
-                Is.EqualTo(new float3s(7, 8, 9)));
             Assert.That(Visit<half2, ThirdVisitor>(new half2((Half)1, (Half)2), new half2((Half)3, (Half)4),
                     new half2((Half)5, (Half)6)),
                 Is.EqualTo(new half2((Half)5, (Half)6)));

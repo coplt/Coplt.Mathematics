@@ -144,14 +144,6 @@ public class TestVectorDispatch
             Assert.That(SumColumns<half3x3, half3>(new half3x3(new half3((half)1f, (half)2f, (half)3f),
                     new half3((half)4f, (half)5f, (half)6f), new half3((half)7f, (half)8f, (half)9f))),
                 Is.EqualTo(new half3((half)12f, (half)15f, (half)18f)), "half3, a value without a register");
-
-            // the storage variants of a matrix keep the columns in a narrower storage
-            Assert.That(SumColumns<float3x3s, float3s>(new float3x3s(new float3s(1f, 2f, 3f),
-                    new float3s(4f, 5f, 6f), new float3s(7f, 8f, 9f))),
-                Is.EqualTo(new float3s(12f, 15f, 18f)), "float3s, a value without a register");
-            Assert.That(SumColumns<double3x3s, double3s>(new double3x3s(new double3s(1d, 2d, 3d),
-                    new double3s(4d, 5d, 6d), new double3s(7d, 8d, 9d))),
-                Is.EqualTo(new double3s(12d, 15d, 18d)), "double3s, a value without a register");
         }
     }
 
@@ -180,15 +172,6 @@ public class TestVectorDispatch
             Assert.That(SumRows<half3x2, half2>(new half3x2(new half3((half)1f, (half)2f, (half)3f),
                     new half3((half)4f, (half)5f, (half)6f))),
                 Is.EqualTo(new half2((half)6f, (half)15f)), "half2, a value without a register");
-
-            // a row of a matrix keeps the storage variant of its own kind, which the vectors of a count of 4 have
-            // none of
-            Assert.That(SumRows<float3x2s, float2s>(new float3x2s(new float3s(1f, 2f, 3f),
-                    new float3s(4f, 5f, 6f))),
-                Is.EqualTo(new float2s(6f, 15f)), "float2s, a value without a register");
-            Assert.That(SumRows<float3x4s, float4>(new float3x4s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f),
-                    new float3s(7f, 8f, 9f), new float3s(10f, 11f, 12f))),
-                Is.EqualTo(new float4(6f, 15f, 24f, 33f)), "float4, the vectors of 4 components have no storage variant");
         }
     }
 
@@ -213,9 +196,6 @@ public class TestVectorDispatch
             Assert.That(SumSqColumns<int3x3, int3>(new int3x3(new int3(1, 2, 3), new int3(4, 5, 6),
                     new int3(7, 8, 9))),
                 Is.EqualTo(new int3(66, 93, 126)), "the sum of the squares of an integer matrix");
-            Assert.That(SumSqColumns<double3x3s, double3s>(new double3x3s(new double3s(1d, 2d, 3d),
-                    new double3s(4d, 5d, 6d), new double3s(7d, 8d, 9d))),
-                Is.EqualTo(new double3s(66d, 93d, 126d)), "the sum of the squares of a matrix without a register");
         }
     }
 }

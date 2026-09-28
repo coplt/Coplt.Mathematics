@@ -19,7 +19,6 @@ public class TestVectorReplace
         var i = new int2(1, 2);
         var s = new short2(1, 2);
         var t = new b32v2(true, false);
-        var st = new float2s(1, 2);
 
         using (Assert.EnterMultipleScope())
         {
@@ -29,7 +28,6 @@ public class TestVectorReplace
             Assert.That((int2.Ry(i, 3).x, int2.Ry(i, 3).y), Is.EqualTo((1, 3)));
             Assert.That((short2.Rx(s, 3).x, short2.Rx(s, 3).y), Is.EqualTo(((short)3, (short)2)));
             Assert.That(((bool)b32v2.Rx(t, false).x, (bool)b32v2.Rx(t, false).y), Is.EqualTo((false, false)));
-            Assert.That(float2s.Rx(st, 3), Is.EqualTo(new float2s(3, 2)));
         }
     }
 
@@ -41,7 +39,6 @@ public class TestVectorReplace
         var u = new uint3(1, 2, 3);
         var h = new half3((Half)1, (Half)2, (Half)3);
         var t = new b32v3(true, false, true);
-        var st = new float3s(1, 2, 3);
 
         using (Assert.EnterMultipleScope())
         {
@@ -56,7 +53,6 @@ public class TestVectorReplace
             Assert.That(half3.Rz(h, (Half)4), Is.EqualTo(new half3((Half)1, (Half)2, (Half)4)));
             Assert.That(((bool)b32v3.Rz(t, false).z, (bool)b32v3.Rxy(t, new b32v2(false, true)).x),
                 Is.EqualTo((false, false)));
-            Assert.That(float3s.Ryz(st, new float2(4, 5)), Is.EqualTo(new float3s(1, 4, 5)));
         }
     }
 
@@ -106,7 +102,6 @@ public class TestVectorReplace
         var f4 = new float4(1, 2, 3, 4);
         var d3 = new double3(1, 2, 3);
         var t2 = new b32v2(true, false);
-        var st = new float3s(1, 2, 3);
 
         using (Assert.EnterMultipleScope())
         {
@@ -117,7 +112,6 @@ public class TestVectorReplace
             Assert.That(f3.Rxy(new float2(4, 5)), Is.EqualTo(new float3(4, 5, 3)));
             Assert.That(d3.Rxz(new double2(4, 5)), Is.EqualTo(new double3(4, 2, 5)));
             Assert.That(t2.Ry(false), Is.EqualTo(new b32v2(true, false)));
-            Assert.That(st.Ryz(new float2(4, 5)), Is.EqualTo(new float3s(1, 4, 5)));
             Assert.That(f4.Rw(5), Is.EqualTo(new float4(1, 2, 3, 5)));
             Assert.That(f4.Rxyz(new float3(5, 6, 7)), Is.EqualTo(new float4(5, 6, 7, 4)));
             Assert.That(f4.Ryzw(new float3(5, 6, 7)), Is.EqualTo(new float4(1, 5, 6, 7)));

@@ -66,14 +66,6 @@ public class TestInteger
         CheckUnsigned<ulong2, b64v2>(new ulong2(1, 2));
         CheckUnsigned<ulong3, b64v3>(new ulong3(1, 2, 3));
         CheckUnsigned<ulong4, b64v4>(new ulong4(1, 2, 3, 4));
-
-        // the storage variant of a vector implements the same interface as the regular one
-        Check<int2s, b32v2>(new int2s(1, 2));
-        Check<int3s, b32v3>(new int3s(1, 2, 3));
-        Check<long3s, b64v3>(new long3s(1, 2, 3));
-        CheckUnsigned<uint2s, b32v2>(new uint2s(1, 2));
-        CheckUnsigned<uint3s, b32v3>(new uint3s(1, 2, 3));
-        CheckUnsigned<ulong3s, b64v3>(new ulong3s(1, 2, 3));
     }
 
     [Test]
@@ -117,8 +109,6 @@ public class TestInteger
             Assert.That((bool)new short3(1, 2, 4).is_pow2().z, Is.True);
             Assert.That((bool)new short3(0, 3, -1).is_pow2().z, Is.False);
             Assert.That((bool)new long3(1L, 0x4000_0000_0000_0000L, 6L).is_pow2().y, Is.True);
-            Assert.That((bool)new int2s(3, 4).is_pow2().y, Is.True);
-            Assert.That((bool)new ulong3s(3UL, 8UL, ulong.MaxValue).is_pow2().y, Is.True);
         }
     }
 
@@ -139,15 +129,6 @@ public class TestInteger
             // a value above the highest power of two wraps around to zero
             Assert.That(new uint3(uint.MaxValue).up2pow2(), Is.EqualTo(new uint3(0u)));
             Assert.That(new ulong3(ulong.MaxValue).up2pow2(), Is.EqualTo(new ulong3(0UL)));
-        }
-
-        var v = new uint2s(3u, 5u);
-        var d = new ulong3s(3UL, 5UL, 17UL);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(v.up2pow2(), Is.EqualTo(new uint2s(4u, 8u)));
-            Assert.That(d.up2pow2(), Is.EqualTo(new ulong3s(4UL, 8UL, 32UL)));
         }
     }
 

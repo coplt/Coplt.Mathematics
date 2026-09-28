@@ -38,9 +38,6 @@ public class TestReflect
         // a vector without a register reaches the member of the components of it
         Check(new half2((half)1f, (half)(-2f)), new half2((half)0f, (half)1f));
         Check(new half3((half)1f, (half)(-2f), (half)3f), new half3((half)0f, (half)1f, (half)0f));
-        Check(new float2s(1f, -2f), new float2s(0f, 1f));
-        Check(new float3s(1f, -2f, 3f), new float3s(0f, 1f, 0f));
-        Check(new double3s(1, -2, 3), new double3s(0, 1, 0));
     }
 
     [Test]
@@ -59,19 +56,13 @@ public class TestReflect
                 Is.EqualTo(new float4(1f, 2f, 3f, -4f)));
             Assert.That(math.reflect(new double2(1, -2), new double2(0, 1)), Is.EqualTo(new double2(1d, 2d)));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
+            // the register of a vector of two components without a value of its own is widened to 128 bits
             Assert.That(math.reflect(new float2(1f, -2f), new float2(0f, 1f)), Is.EqualTo(new float2(1f, 2f)));
-            Assert.That(math.reflect(new float2s(1f, -2f), new float2s(0f, 1f)), Is.EqualTo(new float2s(1f, 2f)));
 
             // a vector without a register reaches the member of the component type for every component
-            Assert.That(math.reflect(new float3s(1f, -2f, 3f), new float3s(0f, 1f, 0f)),
-                Is.EqualTo(new float3s(1f, 2f, 3f)));
             Assert.That(math.reflect(new half3((half)1f, (half)(-2f), (half)3f),
                     new half3((half)0f, (half)1f, (half)0f)),
                 Is.EqualTo(new half3((half)1f, (half)2f, (half)3f)));
-            Assert.That(math.reflect(new double3s(1, -2, 3), new double3s(0, 1, 0)),
-                Is.EqualTo(new double3s(1d, 2d, 3d)));
         }
     }
 
@@ -99,14 +90,6 @@ public class TestReflect
             var h3 = new half3((half)1f, (half)(-2f), (half)3f);
             var hn3 = new half3((half)0f, (half)1f, (half)0f);
             Assert.That(math.reflect(math.reflect(h3, hn3), hn3), Is.EqualTo(h3));
-
-            var f2s = new float2s(1f, -2f);
-            var n2s = new float2s(0f, 1f);
-            Assert.That(math.reflect(math.reflect(f2s, n2s), n2s), Is.EqualTo(f2s));
-
-            var f3s = new float3s(1f, -2f, 3f);
-            var n3s = new float3s(0f, 1f, 0f);
-            Assert.That(math.reflect(math.reflect(f3s, n3s), n3s), Is.EqualTo(f3s));
         }
     }
 

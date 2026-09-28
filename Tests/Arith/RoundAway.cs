@@ -39,13 +39,9 @@ public class TestRoundAway
         // a vector without a register reaches the member of the scalar, which is the one of the component type
         Check(new half2((half)1.4f, (half)(-1.5f)));
         Check(new half3((half)1.4f, (half)(-1.5f), (half)2.5f));
-        Check(new float2s(1.4f, -1.5f));
-        Check(new float3s(1.4f, -1.5f, 2.5f));
-        Check(new double3s(1.4, -1.5, 2.5));
         // a matrix hands the value of every one of its columns over, so it reaches the member of the register or
         // the one of the scalar through the column
         Check(new float2x2(new float2(1.4f, -1.5f), new float2(2.5f, -2.5f)));
-        Check(new float2x2s(new float2s(1.4f, -1.5f), new float2s(2.5f, -2.5f)));
         Check(new float2x3(new float2(1.4f, -1.5f), new float2(2.5f, -2.5f), new float2(0.4f, 3.5f)));
         Check(new double2x2(new double2(1.4, -1.5), new double2(2.5, -2.5)));
         Check(new half3x3(new half3((half)1.4f, (half)(-1.5f), (half)2.5f),
@@ -79,18 +75,9 @@ public class TestRoundAway
                 math.round_away(new double3(double.BitDecrement(0.5), double.BitIncrement(0.5), double.BitDecrement(-0.5))),
                 Is.EqualTo(new double3(0d, 1d, -1d)));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.round_away(new float2s(1.4f, -1.5f)), Is.EqualTo(new float2s(1f, -2f)));
-
             // a vector without a register reaches the member of the component type for every component
-            Assert.That(math.round_away(new float3s(1.4f, -1.5f, 2.5f)), Is.EqualTo(new float3s(1f, -2f, 3f)));
-            Assert.That(
-                math.round_away(new float3s(float.BitDecrement(0.5f), float.BitIncrement(0.5f), float.BitDecrement(-0.5f))),
-                Is.EqualTo(new float3s(0f, 1f, -1f)));
             Assert.That(math.round_away(new half3((half)1.5f, (half)(-1.5f), (half)2.4f)),
                 Is.EqualTo(new half3((half)2f, (half)(-2f), (half)2f)));
-            Assert.That(math.round_away(new double3s(1.4, -1.5, 2.5)), Is.EqualTo(new double3s(1d, -2d, 3d)));
 
             // a rounding of a value that is already integral is the value itself
             Assert.That(math.round_away(new float3(1f, -2f, 3f)), Is.EqualTo(new float3(1f, -2f, 3f)));
@@ -98,8 +85,6 @@ public class TestRoundAway
             // the value of a matrix is rounded through the value of every one of its columns
             Assert.That(math.round_away(new float2x2(new float2(1.4f, -1.5f), new float2(2.5f, -2.5f))),
                 Is.EqualTo(new float2x2(new float2(1f, -2f), new float2(3f, -3f))));
-            Assert.That(math.round_away(new float2x2s(new float2s(1.4f, -1.5f), new float2s(2.5f, -2.5f))),
-                Is.EqualTo(new float2x2s(new float2s(1f, -2f), new float2s(3f, -3f))));
             Assert.That(math.round_away(new double2x2(new double2(1.4, -1.5), new double2(2.5, -2.5))),
                 Is.EqualTo(new double2x2(new double2(1d, -2d), new double2(3d, -3d))));
         }

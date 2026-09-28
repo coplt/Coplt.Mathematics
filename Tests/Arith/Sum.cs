@@ -35,7 +35,6 @@ public class TestSum
             // scalar type of the value out instead of reaching the member of the scalar type
             Assert.That(math.sum<float3, float>(new float3(1f, 2f, 3f)), Is.EqualTo(6f),
                 "the member that names both types");
-            Assert.That(math.sum<int3s, int>(new int3s(1, 2, 3)), Is.EqualTo(6), "the member that names both types");
             Assert.That(math.sum<float3, float>(new float3(1f, 2f, 3f)), Is.EqualTo(math.sum(new float3(1f, 2f, 3f))),
                 "both of them are the same");
 
@@ -57,13 +56,8 @@ public class TestSum
     {
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(math.sum(new float3s(1f, 2f, 3f)), Is.EqualTo(6f), "float3s, a value without a register");
-            Assert.That(math.sum(new double3s(1d, 2d, 3d)), Is.EqualTo(6d), "double3s, a value without a register");
-            Assert.That(math.sum(new int3s(1, 2, 3)), Is.EqualTo(6), "int3s, a value without a register");
             Assert.That(math.sum(new half4((half)1f, (half)2f, (half)3f, (half)4f)), Is.EqualTo((half)10f),
                 "half4, a value without a register");
-            Assert.That(math.sum(new float2s(1f, 2f)), Is.EqualTo(3f), "float2s, a 64 bit register");
-            Assert.That(math.sum(new int2s(1, 2)), Is.EqualTo(3), "int2s, a 64 bit register");
 
             // the padding lane of a 3 component vector is zero, so the sum of a vector whose every component is
             // negative is the sum of the components instead of zero
@@ -86,9 +80,6 @@ public class TestSum
             Assert.That(math.sum(new float3x3(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f),
                     new float3(7f, 8f, 9f))),
                 Is.EqualTo(45f), "every component of float3x3");
-            Assert.That(math.sum(new float3x3s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f),
-                    new float3s(7f, 8f, 9f))),
-                Is.EqualTo(45f), "every component of float3x3s");
             Assert.That(math.sum(new double2x2(new double2(1d, 2d), new double2(3d, 4d))), Is.EqualTo(10d),
                 "every component of double2x2");
             Assert.That(math.sum(new int2x2(new int2(1, 2), new int2(3, 4))), Is.EqualTo(10),

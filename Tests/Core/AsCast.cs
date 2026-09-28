@@ -8,9 +8,9 @@ namespace Tests.Core;
 /// The as members of a vector reinterpret the bits of it as the vector of another component type of the same
 /// width: the members of a group cover the bits of every member of it, so a round trip through any of them keeps
 /// every component. A 16 bit group has <c>asf</c> / <c>as_half</c> beside <c>asi</c> / <c>as_short</c>, the
-/// regular vectors of a size reach the other regular ones and a storage variant the other storage variants,
-/// every member implements the interface of its own kind. The regular vector and its storage variant convert
-/// into each other with <c>to_storage</c> and <c>to_compute</c> and keep the components of the value.
+/// regular vectors of a size reach the other regular ones and every member implements the interface of its own
+/// kind. The regular vector and its storage variant convert into each other with <c>to_storage</c> and
+/// <c>to_compute</c> and keep the components of the value.
 /// </summary>
 public class TestAsCast
 {
@@ -43,20 +43,6 @@ public class TestAsCast
         CheckAs<float2, float2, int2, uint2, b32v2>(new float2(1, 2));
         CheckAs<short2, half2, short2, ushort2, b16v2>(new short2(-1, 2));
         CheckAs<double2, double2, long2, ulong2, b64v2>(new double2(1, 2));
-        CheckAs<double3s, double3s, long3s, ulong3s, b64v3>(new double3s(1, 2, 3));
-
-        // a 2 component storage variant has no bool member, no bool vector of its own 8 bytes exists
-        var v = new float2s(1, 2);
-        IVectorAsF<float2s, float2s> f = v;
-        IVectorAsI<float2s, int2s> i = v;
-        IVectorAsU<float2s, uint2s> u = v;
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((float2s.asf(v).x, float2s.asf(v).y), Is.EqualTo((1f, 2f)));
-            Assert.That((float2s.asi(v).x, float2s.asi(v).y), Is.EqualTo((0x3F800000, 0x40000000)));
-            Assert.That((float2s.asu(v).x, float2s.asu(v).y), Is.EqualTo((0x3F800000u, 0x40000000u)));
-        }
     }
 
     [Test]
@@ -69,7 +55,6 @@ public class TestAsCast
         var i = math.asi(new float2(1, 2));
         var u = math.asu(new float2(1, 2));
         var b = math.asb(new short2(-1, 2));
-        var s = math.asf(new float2s(1, 2));
 
         using (Assert.EnterMultipleScope())
         {
@@ -79,7 +64,6 @@ public class TestAsCast
             Assert.That((u.x, u.y), Is.EqualTo((0x3F800000u, 0x40000000u)));
             Assert.That((bool)b.x, Is.True);
             Assert.That((bool)b.y, Is.True);
-            Assert.That((s.x, s.y), Is.EqualTo((1f, 2f)));
         }
     }
 
@@ -90,17 +74,13 @@ public class TestAsCast
         // source vector by the compiler of today, so it has to be spelled out
         var f = math.asf<int2, float2>(new int2(0x3F800000, 0x40000000));
         var h = math.asf<short2, half2>(new short2(0x3C00, 0x4000));
-        var i = math.asi<float2s, int2s>(new float2s(1, 2));
         var u = math.asu<float3, uint3>(new float3(1, 2, 3));
-        var b = math.asb<double3s, b64v3>(new double3s(1, 2, 3));
 
         using (Assert.EnterMultipleScope())
         {
             Assert.That((f.x, f.y), Is.EqualTo((1f, 2f)));
             Assert.That(((float)h.x, (float)h.y), Is.EqualTo((1f, 2f)));
-            Assert.That((i.x, i.y), Is.EqualTo((0x3F800000, 0x40000000)));
             Assert.That((u.x, u.y, u.z), Is.EqualTo((0x3F800000u, 0x40000000u, 0x40400000u)));
-            Assert.That((bool)b.x, Is.True);
         }
     }
 
@@ -160,48 +140,6 @@ public class TestAsCast
     }
 
     [Test]
-    public void StorageFloat2()
-    {
-        var v = new float2s(1, 2);
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((v.asf().x, v.asf().y), Is.EqualTo((1f, 2f)));
-            Assert.That((v.asu().x, v.asu().y), Is.EqualTo((0x3F800000u, 0x40000000u)));
-            Assert.That(Unsafe.SizeOf<int2s>(), Is.EqualTo(Unsafe.SizeOf<float2s>()));
-            Assert.That((v.asi().as_float().x, v.asi().as_float().y), Is.EqualTo((1f, 2f)));
-            Assert.That((v.as_uint().asf().x, v.as_uint().asf().y), Is.EqualTo((1f, 2f)));
-        }
-    }
-
-    [Test]
-    public void StorageFloat3()
-    {
-        var v = new float3s(1, 2, 3);
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((v.asi().x, v.asi().y, v.asi().z), Is.EqualTo((0x3F800000, 0x40000000, 0x40400000)));
-            Assert.That(Unsafe.SizeOf<uint3s>(), Is.EqualTo(Unsafe.SizeOf<float3s>()));
-            Assert.That((v.as_int().asf().x, v.as_int().asf().y, v.as_int().asf().z), Is.EqualTo((1f, 2f, 3f)));
-            // the bool vector has no storage variant, the storage variant reaches the regular one
-            Assert.That((v.asb().asf().x, v.asb().asf().y, v.asb().asf().z), Is.EqualTo((1f, 2f, 3f)));
-            Assert.That(Unsafe.SizeOf<b32v3>(), Is.EqualTo(Unsafe.SizeOf<float3s>()));
-        }
-    }
-
-    [Test]
-    public void StorageDouble3()
-    {
-        var v = new double3s(1, 2, 3);
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((v.asu().x, v.asu().y, v.asu().z), Is.EqualTo((
-                0x3FF0000000000000UL, 0x4000000000000000UL, 0x4008000000000000UL)));
-            Assert.That(Unsafe.SizeOf<long3s>(), Is.EqualTo(Unsafe.SizeOf<double3s>()));
-            Assert.That((v.as_ulong().as_double().x, v.as_ulong().as_double().y), Is.EqualTo((1d, 2d)));
-        }
-    }
-
-    [Test]
     public void ToStorage()
     {
         var v = new float3(1, 2, 3);
@@ -237,8 +175,7 @@ public class TestAsCast
     /// A vector of 3 components and one of 4 components convert into each other with <c>as3</c> and <c>as4</c>
     /// and into the 2 component one with <c>as2</c>: the two of them keep their components in a register of the
     /// same width as the one of the 2 component vector, so the components that the target vector does not hold
-    /// are zero. A vector that has no register converts with the components of the other one and the same
-    /// components are zero as well.
+    /// are zero.
     /// </summary>
     [Test]
     public void SizeConversion()
@@ -249,7 +186,6 @@ public class TestAsCast
         var s3 = new short3(1, 2, 3);
         var h3 = new half3((Half)1, (Half)2, (Half)3);
         var t3 = new b32v3(true, false, true);
-        var f3s = new float3s(1, 2, 3);
 
         using (Assert.EnterMultipleScope())
         {
@@ -262,8 +198,6 @@ public class TestAsCast
             Assert.That(long3.as2(l3), Is.EqualTo(new long2(1, 2)));
             Assert.That(short3.as2(s3), Is.EqualTo(new short2(1, 2)));
             Assert.That(half3.as2(h3), Is.EqualTo(new half2((Half)1, (Half)2)));
-            Assert.That(float3s.as2(f3s), Is.EqualTo(new float2(1, 2)));
-            Assert.That(double3s.as2(d3.to_storage()), Is.EqualTo(new double2(1, 2)));
             Assert.That((bool)b32v4.as2(b32v3.as4(t3)).x, Is.True);
             Assert.That((bool)b64v3.as2(new b64v3(true, false, true)).y, Is.False);
             // the 4 component vector that a 3 component one converts into has a w component of zero
@@ -276,8 +210,6 @@ public class TestAsCast
             Assert.That((half3.as4(h3).z, half3.as4(h3).w), Is.EqualTo(((Half)3, (Half)0)));
             Assert.That(half3.as4(h3), Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)0)));
             Assert.That((bool)b32v3.as4(t3).w, Is.False);
-            // the storage variant of a 3 component vector has no register, it converts component by component
-            Assert.That(float3s.as4(f3s), Is.EqualTo(f4));
             // the component that the 3 component vector cannot hold is dropped
             Assert.That(float4.as3(f4), Is.EqualTo(f3));
             Assert.That(float4.as3(new float4(1, 2, 3, 4)), Is.EqualTo(f3));
@@ -286,7 +218,6 @@ public class TestAsCast
             Assert.That(short4.as3(short3.as4(s3)), Is.EqualTo(s3));
             Assert.That(half4.as3(half3.as4(h3)), Is.EqualTo(h3));
             Assert.That(b32v4.as3(b32v3.as4(t3)), Is.EqualTo(t3));
-            Assert.That(float4.as3(float3s.as4(f3s)), Is.EqualTo(f3));
         }
     }
 

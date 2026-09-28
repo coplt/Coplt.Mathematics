@@ -47,13 +47,9 @@ public class TestPow
         // a vector without a register reaches the member of the scalar, which is the one of the component type
         Check(new half2((half)2f, (half)3f));
         Check(new half3((half)2f, (half)3f, (half)4f));
-        Check(new float2s(2f, 3f));
-        Check(new float3s(2f, 3f, 4f));
-        Check(new double3s(2, 3, 4));
         // a matrix hands the value of every one of its columns over, so it reaches the member of the register or
         // the one of the scalar through the column
         Check(new float2x2(new float2(2f, 3f), new float2(4f, 5f)));
-        Check(new float2x2s(new float2s(2f, 3f), new float2s(4f, 5f)));
         Check(new double2x2(new double2(2, 3), new double2(4, 5)));
         Check(new half3x3(new half3((half)2f, (half)3f, (half)4f),
             new half3((half)5f, (half)6f, (half)7f), new half3((half)8f, (half)9f, (half)10f)));
@@ -88,19 +84,11 @@ public class TestPow
             Assert.That(math.pow(new float3(4f, 4f, 4f), new float3(0.5f, -1f, -0.5f)).z,
                 Is.EqualTo(0.5f).Within(Tolerance));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.pow(new float2s(2f, 3f), new float2s(3f, 2f)).x, Is.EqualTo(8f).Within(Tolerance));
-
             // a vector without a register reaches the member of the component type for every component, which is
             // the exact power of the component type
-            Assert.That(math.pow(new float3s(2f, 3f, 4f), new float3s(3f, 2f, 2f)),
-                Is.EqualTo(new float3s(8f, 9f, 16f)));
             Assert.That(math.pow(new half3((half)2f, (half)3f, (half)4f),
                     new half3((half)3f, (half)2f, (half)2f)),
                 Is.EqualTo(new half3((half)8f, (half)9f, (half)16f)));
-            Assert.That(math.pow(new double3s(2, 3, 4), new double3s(3, 2, 2)),
-                Is.EqualTo(new double3s(8d, 9d, 16d)));
 
             // the power of the zero of a padding lane is the one of the kind of the component, so the register
             // of the result is masked

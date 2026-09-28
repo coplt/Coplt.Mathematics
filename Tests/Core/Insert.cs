@@ -45,8 +45,6 @@ public class TestVectorInsert
             Assert.That(uint2.Iy(new uint2(1, 3), 2), Is.EqualTo(new uint3(1, 2, 3)));
             Assert.That(half2.Ix(h2, (Half)1), Is.EqualTo(new half3((Half)1, (Half)2, (Half)3)));
             Assert.That((bool)b32v2.Iz(t2, true).z, Is.True);
-            // the storage variant of a 2 component vector has the member as well
-            Assert.That(float2s.Iz(new float2s(1, 2), 3), Is.EqualTo(new float3(1, 2, 3)));
             // the member of the interface is reached through the type parameter of the generic member
             Assert.That(CallIx<float2, float, float3, float4>(new float2(2, 3), 1), Is.EqualTo(new float3(1, 2, 3)));
         }
@@ -78,8 +76,6 @@ public class TestVectorInsert
             Assert.That(float2.Ixw(new float2(2, 3), 1, 4), Is.EqualTo(float4.Create(1, new float2(2, 3), 4)));
             Assert.That(double2.Ixz(new double2(2, 4), new double2(1, 3)), Is.EqualTo(new double4(1, 2, 3, 4)));
             Assert.That((bool)b64v2.Ixy(new b64v2(true, false), true, false).x, Is.True);
-            // the storage variant of a 2 component vector has the member as well
-            Assert.That(float2s.Izw(new float2s(1, 2), new float2s(3, 4)), Is.EqualTo(new float4(1, 2, 3, 4)));
         }
     }
 
@@ -105,12 +101,10 @@ public class TestVectorInsert
             Assert.That(p.Ixz(new float2(3, 4)), Is.EqualTo(new float4(3, 1, 4, 2)));
             Assert.That(p.Iyw(3, 4), Is.EqualTo(float2.Iyw(p, 3, 4)));
             Assert.That(d.Ixz(new double2(3, 4)), Is.EqualTo(double2.Ixz(d, new double2(3, 4))));
-            Assert.That(new float2s(1, 2).Iz(3), Is.EqualTo(new float3(1, 2, 3)));
             Assert.That(t.Ix(4), Is.EqualTo(new float4(4, 1, 2, 3)));
             Assert.That(t.Iw(4), Is.EqualTo(new float4(1, 2, 3, 4)));
             Assert.That(new float3(1, 3, 4).Iy(2), Is.EqualTo(new float4(1, 2, 3, 4)));
             Assert.That(new float3(1, 2, 4).Iz(3), Is.EqualTo(float3.Iz(new float3(1, 2, 4), 3)));
-            Assert.That(new float3s(1, 3, 4).Iy(2), Is.EqualTo(new float4(1, 2, 3, 4)));
             Assert.That(new b32v2(true, false).Iz(true), Is.EqualTo(b32v2.Iz(new b32v2(true, false), true)));
         }
     }
@@ -129,8 +123,6 @@ public class TestVectorInsert
             Assert.That(double3.Iw(new double3(1, 2, 3), 4), Is.EqualTo(new double4(1, 2, 3, 4)));
             Assert.That(half3.Ix(new half3((Half)2, (Half)3, (Half)4), (Half)1),
                 Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)4)));
-            // the storage variant of a 3 component vector has the member as well
-            Assert.That(float3s.Iy(new float3s(1, 3, 4), 2), Is.EqualTo(new float4(1, 2, 3, 4)));
         }
     }
 }

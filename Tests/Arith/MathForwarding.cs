@@ -92,14 +92,12 @@ public class TestMathArithForwarding
         Check(new int2(1, 2));
         Check(new uint3(1, 2, 3));
         Check(new long4(1, 2, 3, 4));
-        Check(new int3s(1, 2, 3));
         Check(new half2((half)1f, (half)2f));
         CheckScalar(new float3(1, 2, 3), 1f, 2f);
         CheckScalar(new double2(1, 2), 1d, 2d);
         CheckScalar(new half3((half)1f, (half)2f, (half)3f), (half)1f, (half)2f);
         CheckScalar(new int3(1, 2, 3), 1, 2);
         CheckScalar(new uint2(1, 2), 1u, 2u);
-        CheckScalar(new long3s(1, 2, 3), 1L, 2L);
 
         using (Assert.EnterMultipleScope())
         {
@@ -113,8 +111,6 @@ public class TestMathArithForwarding
             // a vector whose register is 64 bits wide and one that has no register reach the member of their
             // own kind
             Assert.That(math.clamp(new int2(-1, 2), new int2(0), new int2(1)), Is.EqualTo(new int2(0, 1)));
-            Assert.That(math.clamp(new float3s(-1f, 2f, 5f), new float3s(0f, 0f, 0f), new float3s(3f, 3f, 3f)),
-                Is.EqualTo(new float3s(0f, 2f, 3f)));
             Assert.That(math.square(new int3(2, 3, 4)), Is.EqualTo(new int3(4, 9, 16)));
             Assert.That(math.lerp(default(float3), new float3(2f), new float3(0.5f)), Is.EqualTo(new float3(1f)));
             // the factor scales the difference, so it only places a value between the two of them inside the
@@ -122,18 +118,13 @@ public class TestMathArithForwarding
             Assert.That(math.lerp(new int3(1, 2, 3), new int3(5, 6, 7), new int3(0)), Is.EqualTo(new int3(1, 2, 3)));
             Assert.That(math.lerp(new int3(1, 2, 3), new int3(5, 6, 7), new int3(1)), Is.EqualTo(new int3(5, 6, 7)));
             Assert.That(math.lerp(new int3(0), new int3(4), new int3(2)), Is.EqualTo(new int3(8)));
-            // a vector whose register is 64 bits wide and one that has no register reach the member of their
-            // own kind
             Assert.That(math.lerp(new int2(1, 3), new int2(3, 5), new int2(1)), Is.EqualTo(new int2(3, 5)));
-            Assert.That(math.lerp(new float3s(0f), new float3s(1f), new float3s(0.5f)),
-                Is.EqualTo(new float3s(0.5f)));
             Assert.That(math.unlerp(new float3(1f), default, new float3(2f)), Is.EqualTo(new float3(0.5f)));
             Assert.That(math.remap(new float3(0.5f), default, new float3(1f), default, new float3(10f)),
                 Is.EqualTo(new float3(5f)));
             // the member of the value is the member of the class, a value without a register reaches the same
             // members
             Assert.That(new int3(2, 3, 4).square(), Is.EqualTo(new int3(4, 9, 16)));
-            Assert.That(new float3s(2f, 3f, 4f).square(), Is.EqualTo(new float3s(4f, 9f, 16f)));
             Assert.That(new float3(1f).unlerp(default, new float3(2f)), Is.EqualTo(new float3(0.5f)));
             Assert.That(new float3(0.5f).remap(default, new float3(1f), default, new float3(10f)),
                 Is.EqualTo(new float3(5f)));
@@ -143,18 +134,17 @@ public class TestMathArithForwarding
     /// <summary>
     /// The members that dispatch the value of a vector dispatch the value of a matrix as well: the value of
     /// every column of it is dispatched the same way as the value of a vector, so a matrix of any shape reaches
-    /// the members and a matrix without a register reaches them through the columns of it as well.
+    /// the members.
     /// </summary>
     [Test]
     public void Matrix()
     {
-        // every shape reaches the members, with and without a register in the columns of the matrix
+        // every shape reaches the members
         CheckMatrix(new float2x2(new float2(1f, 2f), new float2(3f, 4f)));
         CheckMatrix(new float3x2(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f)));
         CheckMatrix(new double2x4(new double2(1d, 2d), new double2(3d, 4d), new double2(5d, 6d),
             new double2(7d, 8d)));
         CheckMatrix(new int4x4(new int4(1), new int4(2), new int4(3), new int4(4)));
-        CheckMatrix(new float3x3s(new float3s(1f, 2f, 3f), new float3s(4f, 5f, 6f), new float3s(7f, 8f, 9f)));
 
         using (Assert.EnterMultipleScope())
         {
@@ -168,12 +158,6 @@ public class TestMathArithForwarding
                 Is.EqualTo(new int2x2(new int2(-1, 0), new int2(0, 1))));
             Assert.That(math.sign(new int3x3(new int3(-2, 0, 2), new int3(3, -4, 0), new int3(0, 5, -6))),
                 Is.EqualTo(new int3x3(new int3(-1, 0, 1), new int3(1, -1, 0), new int3(0, 1, -1))));
-            var a = new float3x3s(new float3s(1f, 5f, 3f), new float3s(4f, 2f, 6f), new float3s(7f, 8f, 9f));
-            var b = new float3x3s(new float3s(9f, 2f, 1f), new float3s(4f, 8f, 6f), new float3s(1f, 2f, 3f));
-            Assert.That(math.min(a, b),
-                Is.EqualTo(new float3x3s(new float3s(1f, 2f, 1f), new float3s(4f, 2f, 6f), new float3s(1f, 2f, 3f))));
-            Assert.That(math.max(a, b),
-                Is.EqualTo(new float3x3s(new float3s(9f, 5f, 3f), new float3s(4f, 8f, 6f), new float3s(7f, 8f, 9f))));
             var c = new float3x2(new float3(1f, 5f, 3f), new float3(4f, 2f, 6f));
             var d = new float3x2(new float3(9f, 2f, 1f), new float3(4f, 8f, 6f));
             Assert.That(math.min(c, d), Is.EqualTo(new float3x2(new float3(1f, 2f, 1f), new float3(4f, 2f, 6f))));
@@ -186,12 +170,6 @@ public class TestMathArithForwarding
             Assert.That(math.clamp(c, new float3x2(new float3(1f, 2f, 2f), new float3(2f, 2f, 2f)),
                     new float3x2(new float3(8f, 8f, 8f), new float3(8f, 4f, 4f))),
                 Is.EqualTo(new float3x2(new float3(1f, 5f, 3f), new float3(4f, 2f, 4f))));
-            var e = new float3x3s(new float3s(1f, 5f, 3f), new float3s(4f, 2f, 6f), new float3s(7f, 8f, 9f));
-            Assert.That(math.clamp(e, new float3x3s(new float3s(2f, 2f, 2f), new float3s(2f, 2f, 2f),
-                    new float3s(2f, 2f, 2f)), new float3x3s(new float3s(6f, 6f, 6f), new float3s(6f, 6f, 6f),
-                    new float3s(6f, 6f, 6f))),
-                Is.EqualTo(new float3x3s(new float3s(2f, 5f, 3f), new float3s(4f, 2f, 6f),
-                    new float3s(6f, 6f, 6f))));
             Assert.That(math.clamp(new int2x2(new int2(-1, 2), new int2(5, 0)), new int2x2(new int2(0), new int2(0)),
                     new int2x2(new int2(3), new int2(3))),
                 Is.EqualTo(new int2x2(new int2(0, 2), new int2(3, 0))));
@@ -238,9 +216,8 @@ public class TestMathArithForwarding
         {
             Assert.That(math.clamp(new float3(-1f, 2f, 5f), 0f, 3f), Is.EqualTo(new float3(0f, 2f, 3f)));
             Assert.That(math.lerp(0f, 1f, new float3(0.5f)), Is.EqualTo(new float3(0.5f)));
-            // the bounds as single components reach a vector without a register, a matrix and a value whose
-            // component is not a floating point one as well
-            Assert.That(math.lerp(0f, 1f, new float3s(0.5f)), Is.EqualTo(new float3s(0.5f)));
+            // the bounds as single components reach a matrix and a value whose component is not a floating point
+            // one as well
             Assert.That(math.lerp(0f, 2f, new float2x2(new float2(0.5f), new float2(0.25f))),
                 Is.EqualTo(new float2x2(new float2(1f), new float2(0.5f))));
             Assert.That(math.lerp(1, 3, new int3(0)), Is.EqualTo(new int3(1)));
@@ -264,8 +241,6 @@ public class TestMathArithForwarding
             Assert.That(math.length_sq(new float3(3f, 4f, 0f)), Is.EqualTo(25f), "the inferred square length");
             Assert.That(math.distance_sq(new float3(1f), new float3(4f, 5f, 1f)), Is.EqualTo(25f), "the inferred square distance");
             Assert.That(math.length_sq(new int3(3, 4, 0)), Is.EqualTo(25), "the inferred square length of an integer vector");
-            Assert.That(math.distance_sq(new double3s(1d), new double3s(4d, 5d, 1d)), Is.EqualTo(25d), "the inferred square distance of a vector without a register");
-            Assert.That(math.length_sq(new float3s(3f, 4f, 0f)), Is.EqualTo(25f), "the inferred square length of a storage variant");
             Assert.That(math.sum<float3, float>(new float3(1f, 2f, 3f)), Is.EqualTo(6f));
             // the padding component of a vector is zero, so a reduction that picks it up would return zero
             // instead of the smallest or the largest component
@@ -287,7 +262,6 @@ public class TestMathArithForwarding
         {
             Assert.That(math.cross(new int3(1, 0, 0), new int3(0, 1, 0)), Is.EqualTo(new int3(0, 0, 1)));
             Assert.That(math.cross(new float3(1f, 0f, 0f), new float3(0f, 1f, 0f)), Is.EqualTo(new float3(0f, 0f, 1f)));
-            Assert.That(math.cross(new double3s(1, 0, 0), new double3s(0, 1, 0)), Is.EqualTo(new double3s(0, 0, 1)));
         }
     }
 

@@ -37,12 +37,8 @@ public class TestRadiansDegrees
         // a vector without a register reaches the member of the component type for every component
         Check(new half2((half)180f, (half)90f));
         Check(new half3((half)180f, (half)90f, (half)45f));
-        Check(new float2s(180f, 90f));
-        Check(new float3s(180f, 90f, 45f));
-        Check(new double3s(180, 90, 45));
         // a matrix reaches the member of the kind of it through the value of every one of its columns
         Check(new float2x2(new float2(180f, 90f), new float2(45f, 0f)));
-        Check(new float2x2s(new float2s(180f, 90f), new float2s(45f, 0f)));
         Check(new double2x2(new double2(180, 90), new double2(45, 0)));
         Check(new half3x3(new half3((half)180f, (half)90f, (half)45f), new half3((half)0f, (half)1f, (half)2f),
             new half3((half)3f, (half)4f, (half)5f)));
@@ -67,20 +63,11 @@ public class TestRadiansDegrees
             Assert.That(new float3(180f, 90f, 45f).radians().degrees().x, Is.EqualTo(180f).Within(1e-3f));
             Assert.That(new double2(360, 0).radians().degrees().x, Is.EqualTo(360d).Within(1e-9));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            Assert.That(math.radians(new float2s(180f, 90f)).x, Is.EqualTo(MathF.PI).Within(1e-5f));
-            Assert.That(math.degrees(new float2s(MathF.PI, MathF.PI / 2f)).x, Is.EqualTo(180f).Within(1e-3f));
-
             // a vector without a register reaches the member of the component type for every component
             Assert.That((float)math.radians(new half2((half)180f, (half)90f)).x, Is.EqualTo(MathF.PI).Within(1e-2f));
-            Assert.That(math.radians(new float3s(180f, 90f, 45f)).x, Is.EqualTo(MathF.PI).Within(1e-5f));
-            Assert.That(math.radians(new double3s(180, 90, 45)).x, Is.EqualTo(Math.PI).Within(1e-12));
 
             // the value of a matrix is converted through the value of every one of its columns
             Assert.That(math.radians(new float2x2(new float2(180f, 90f), new float2(0f, 0f))).c0.x,
-                Is.EqualTo(MathF.PI).Within(1e-5f));
-            Assert.That(math.radians(new float2x2s(new float2s(180f, 90f), new float2s(0f, 0f))).c0.x,
                 Is.EqualTo(MathF.PI).Within(1e-5f));
         }
     }

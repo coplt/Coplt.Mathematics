@@ -116,84 +116,92 @@ public partial class VectorGenerator
         var type2 = VectorGenShared.VecName(typ, 2, false);
         var type3 = VectorGenShared.VecName(typ, 3, false);
         var type4 = VectorGenShared.VecName(typ, 4, false);
-        var parts = new List<string>
-        {
-            "The base members implement " +
-            VectorGenShared.IfaceRef($"Algebras.IVector{size}", new List<string> { "TSelf", "TScalar" },
-                new List<string> { type, scalar }) + " and " +
-            VectorGenShared.IfaceRef($"Algebras.{AlgebraIface()}", new List<string> { "TSelf", "TScalar" },
-                new List<string> { type, scalar }),
-        };
-
         // the bits of the value are reachable as a raw vector of bytes, the width of the register of the
         // vector decides the interface of them
         var underlying = VectorGenShared.Register(typ, size, storeVariant);
-        parts.Add(underlying == 0
-            ? "the value has no register, it is only marked as <see cref=\"Algebras.Generics.IVectorSoftUnderlying\"/>"
-            : "the underlying members implement " +
-              VectorGenShared.IfaceRef($"Algebras.Generics.IVector{underlying}Underlying", new List<string> { "TSelf" },
-                  new List<string> { type }));
-        // the members that create the vector out of another one implement the interfaces of the create members.
-        // The interface of a vector of 2 components declares its create itself, which the first sentence names
-        if (size == 3)
+        var parts = new List<string>
         {
-            parts.Add("the create members implement " +
-                      VectorGenShared.IfaceRef("Algebras.IVector3CtorFromVector2",
-                          new List<string> { "TSelf", "TScalar", "TVector2" },
-                          new List<string> { type, scalar, type2 }));
-        }
-        else if (size == 4)
-        {
-            parts.Add("the create members implement " +
-                      VectorGenShared.IfaceRef("Algebras.IVector4CtorFromVector2",
-                          new List<string> { "TSelf", "TScalar", "TVector2" },
-                          new List<string> { type, scalar, type2 }) + " and " +
-                      VectorGenShared.IfaceRef("Algebras.IVector4CtorFromVector3",
-                          new List<string> { "TSelf", "TScalar", "TVector3" },
-                          new List<string> { type, scalar, type3 }));
-        }
+            "The members implement " +
+            VectorGenShared.IfaceRef($"Algebras.IVector{size}", new List<string> { "TSelf", "TScalar" },
+                new List<string> { type, scalar }) +
+            (storeVariant
+                ? ""
+                : " and " +
+                  VectorGenShared.IfaceRef($"Algebras.{AlgebraIface()}", new List<string> { "TSelf", "TScalar" },
+                      new List<string> { type, scalar })),
+        };
 
-        // the members that replace the components of the vector implement the interfaces of the replace members
-        if (size == 2)
+        // the storage variant of a vector holds the components of a value of the kind of it, so it keeps the
+        // members the interfaces above declare alone and the ones that create it and convert it
+        if (!storeVariant)
         {
-            parts.Add("the replace members implement " +
-                      VectorGenShared.IfaceRef("IVectorReplace", new List<string> { "TSelf", "TScalar" },
-                          new List<string> { type, scalar }));
-        }
-        else if (size == 3)
-        {
-            parts.Add("the replace members implement " +
-                      VectorGenShared.IfaceRef("IVector3Replace", new List<string> { "TSelf", "TScalar", "TVector2" },
-                          new List<string> { type, scalar, type2 }));
-        }
-        else
-        {
-            parts.Add("the replace members implement " +
-                      VectorGenShared.IfaceRef("IVector4Replace", new List<string> { "TSelf", "TScalar", "TVector2", "TVector3" },
-                          new List<string> { type, scalar, type2, type3 }));
-        }
+            parts.Add(underlying == 0
+                ? "the value has no register, it is only marked as <see cref=\"Algebras.Generics.IVectorSoftUnderlying\"/>"
+                : "the underlying members implement " +
+                  VectorGenShared.IfaceRef($"Algebras.Generics.IVector{underlying}Underlying", new List<string> { "TSelf" },
+                      new List<string> { type }));
+            // the members that create the vector out of another one implement the interfaces of the create members.
+            // The interface of a vector of 2 components declares its create itself, which the first sentence names
+            if (size == 3)
+            {
+                parts.Add("the create members implement " +
+                          VectorGenShared.IfaceRef("Algebras.IVector3CtorFromVector2",
+                              new List<string> { "TSelf", "TScalar", "TVector2" },
+                              new List<string> { type, scalar, type2 }));
+            }
+            else if (size == 4)
+            {
+                parts.Add("the create members implement " +
+                          VectorGenShared.IfaceRef("Algebras.IVector4CtorFromVector2",
+                              new List<string> { "TSelf", "TScalar", "TVector2" },
+                              new List<string> { type, scalar, type2 }) + " and " +
+                          VectorGenShared.IfaceRef("Algebras.IVector4CtorFromVector3",
+                              new List<string> { "TSelf", "TScalar", "TVector3" },
+                              new List<string> { type, scalar, type3 }));
+            }
 
-        // the members of the legacy insert api implement the interfaces of the insert as well, they are the
-        // legacy spelling of the members of the create of the longer vectors and forward to them
-        if (size == 2)
-        {
-            parts.Add("the insert members implement " +
-                      VectorGenShared.IfaceRef("IVector2Insert", new List<string> { "TSelf", "TScalar", "TVector3", "TVector4" },
-                          new List<string> { type, scalar, type3, type4 }));
-        }
-        else if (size == 3)
-        {
-            parts.Add("the insert members implement " +
-                      VectorGenShared.IfaceRef("IVector3Insert", new List<string> { "TSelf", "TScalar", "TVector4" },
-                          new List<string> { type, scalar, type4 }));
-        }
+            // the members that replace the components of the vector implement the interfaces of the replace members
+            if (size == 2)
+            {
+                parts.Add("the replace members implement " +
+                          VectorGenShared.IfaceRef("IVectorReplace", new List<string> { "TSelf", "TScalar" },
+                              new List<string> { type, scalar }));
+            }
+            else if (size == 3)
+            {
+                parts.Add("the replace members implement " +
+                          VectorGenShared.IfaceRef("IVector3Replace", new List<string> { "TSelf", "TScalar", "TVector2" },
+                              new List<string> { type, scalar, type2 }));
+            }
+            else
+            {
+                parts.Add("the replace members implement " +
+                          VectorGenShared.IfaceRef("IVector4Replace", new List<string> { "TSelf", "TScalar", "TVector2", "TVector3" },
+                              new List<string> { type, scalar, type2, type3 }));
+            }
 
-        // a shuffle combines two vectors of the same type, only a vector of 4 components has its members
-        if (size == 4)
-        {
-            parts.Add("the shuffle members implement " +
-                      VectorGenShared.IfaceRef("IVectorShuffle", new List<string> { "TSelf" },
-                          new List<string> { type }));
+            // the members of the legacy insert api implement the interfaces of the insert as well, they are the
+            // legacy spelling of the members of the create of the longer vectors and forward to them
+            if (size == 2)
+            {
+                parts.Add("the insert members implement " +
+                          VectorGenShared.IfaceRef("IVector2Insert", new List<string> { "TSelf", "TScalar", "TVector3", "TVector4" },
+                              new List<string> { type, scalar, type3, type4 }));
+            }
+            else if (size == 3)
+            {
+                parts.Add("the insert members implement " +
+                          VectorGenShared.IfaceRef("IVector3Insert", new List<string> { "TSelf", "TScalar", "TVector4" },
+                              new List<string> { type, scalar, type4 }));
+            }
+
+            // a shuffle combines two vectors of the same type, only a vector of 4 components has its members
+            if (size == 4)
+            {
+                parts.Add("the shuffle members implement " +
+                          VectorGenShared.IfaceRef("IVectorShuffle", new List<string> { "TSelf" },
+                              new List<string> { type }));
+            }
         }
 
         VectorGenShared.FileHeader(sb, true, true);
@@ -226,46 +234,58 @@ public partial class VectorGenerator
             $"IEqualityOperators<{type}, {type}, {boolType}>",
             $"IComparisonOperators<{type}, {type}, {boolType}>",
             $"Algebras.IVector{size}<{type}, {scalar}>",
-            $"Algebras.{AlgebraIface()}<{type}, {scalar}>",
         };
-        // the members that dispatch the value of the vector implement the interface of the dispatch of it, a
-        // mask does not dispatch: the members of the visitors name the number vector of a type. The dispatch of
-        // the kind of a number names the type of a component of the value beside it, the one of a floating
-        // point kind reaches the values of the kind of it alone, so it names the type of the value
-        if (!bol)
-            foreach (var family in VectorGenShared.DispatchIfaces(typ))
-                ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
-        // a vector of a floating point kind reaches the map of a value as well, which the dispatch of a vector
-        // declares beside the one of the value
-        if (!bol && typ.f) ifaces.Add($"Algebras.Generics.IFloatingPointVectorDispatch<{type}>");
-        // the bool value of a value has a shape of its own, which the dispatch of the kind of the value does not
-        // name, so a vector of a floating point kind reaches the dispatch of the bool value of it as well
-        if (!bol && typ.f)
-            ifaces.Add(VectorGenShared.DispatchBoolIface(type, boolType));
-        if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
-        if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
-        // a signed vector reaches the negative of every whole number of the vector a column of its matrix view
-        // is as well
-        if (typ.sig) ifaces.Add($"Algebras.ISignedNumberMatrixVector<{type}, {type}>");
+        // the storage variant of a vector holds the components of a value of the kind of it, it reaches the
+        // equality, the comparison and the members the json converter of it needs and nothing else: the algebra
+        // of the kind of the vector, the members that dispatch the value of it, the ones that create it out of
+        // another vector and the ones that reduce it are the members of the regular vector of it alone
+        if (!storeVariant)
+        {
+            ifaces.Add($"Algebras.{AlgebraIface()}<{type}, {scalar}>");
+            // the members that dispatch the value of the vector implement the interface of the dispatch of it, a
+            // mask does not dispatch: the members of the visitors name the number vector of a type. The dispatch
+            // of the kind of a number names the type of a component of the value beside it, the one of a floating
+            // point kind reaches the values of the kind of it alone, so it names the type of the value
+            if (!bol)
+                foreach (var family in VectorGenShared.DispatchIfaces(typ))
+                    ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
+            // a vector of a floating point kind reaches the map of a value as well, which the dispatch of a vector
+            // declares beside the one of the value
+            if (!bol && typ.f) ifaces.Add($"Algebras.Generics.IFloatingPointVectorDispatch<{type}>");
+            // the bool value of a value has a shape of its own, which the dispatch of the kind of the value does
+            // not name, so a vector of a floating point kind reaches the dispatch of the bool value of it as well
+            if (!bol && typ.f)
+                ifaces.Add(VectorGenShared.DispatchBoolIface(type, boolType));
+            if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
+            if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
+            // a signed vector reaches the negative of every whole number of the vector a column of its matrix
+            // view is as well
+            if (typ.sig) ifaces.Add($"Algebras.ISignedNumberMatrixVector<{type}, {type}>");
+        }
 
         // the members of the parts that are a part of the value itself are emitted into the declaration of the
         // value as well, so every one of them is asked for its members and the interfaces it implements, its
-        // members are appended into the declaration below
-        var underlyingMembers = GenUnderlying(typ, size, storeVariant);
-        ifaces.Add(underlying == 0
-            ? "Algebras.Generics.IVectorSoftUnderlying"
-            : $"Algebras.Generics.IVector{underlying}Underlying<{type}>");
-        var ctorMembers = GenCtor(typ, size, storeVariant, ifaces);
-        var arithMembers = typ.arith ? GenArith(typ, size, storeVariant) : null;
-        var intMembers = typ.arith && typ.i ? GenInt(typ, size, storeVariant) : null;
+        // members are appended into the declaration below. The storage variant of a vector keeps the members that
+        // create it, the conversions of it and the ones that reach the components of it alone
+        var underlyingMembers = storeVariant ? null : GenUnderlying(typ, size, storeVariant);
+        if (!storeVariant)
+        {
+            ifaces.Add(underlying == 0
+                ? "Algebras.Generics.IVectorSoftUnderlying"
+                : $"Algebras.Generics.IVector{underlying}Underlying<{type}>");
+        }
+
+        var ctorMembers = GenCtor(typ, size, storeVariant);
+        var arithMembers = !storeVariant && typ.arith ? GenArith(typ, size, storeVariant) : null;
+        var intMembers = !storeVariant && typ.arith && typ.i ? GenInt(typ, size, storeVariant) : null;
         if (intMembers != null) ifaces.Add(typ.sig ? $"IVectorInteger<{type}, {boolType}>" : $"IVectorUnsignedInteger<{type}, {boolType}>");
-        var floatMembers = typ.arith && typ.f ? GenFloat(typ, size, storeVariant) : null;
-        var ieeeConstsMembers = typ.arith && typ.f ? GenIeeeConsts(typ, size, storeVariant) : null;
+        var floatMembers = !storeVariant && typ.arith && typ.f ? GenFloat(typ, size, storeVariant) : null;
+        var ieeeConstsMembers = !storeVariant && typ.arith && typ.f ? GenIeeeConsts(typ, size, storeVariant) : null;
         if (ieeeConstsMembers != null) ifaces.Add($"IVectorFloatingPointIeee754<{type}, {scalar}>");
         var asMembers = GenAs(typ, size, storeVariant, ifaces);
         var convMembers = GenConv(typ, size, storeVariant);
-        var selectMembers = GenSelect(typ, size, storeVariant);
-        ifaces.Add($"IVectorSelect<{type}, {boolType}>");
+        var selectMembers = storeVariant ? null : GenSelect(typ, size, storeVariant);
+        if (!storeVariant) ifaces.Add($"IVectorSelect<{type}, {boolType}>");
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
         sb.AppendLine("{");
@@ -338,11 +358,13 @@ public partial class VectorGenerator
                 var name = VectorGenShared.NumberNames[i];
                 var value = VectorGenShared.NumberValue(scalar, i);
                 Prop($"public static {type} {name}", value == "default" ? "default" : $"new({value})");
-                Prop($"public static {scalar} Scalar{name}", value);
+                // the whole number of a single component is a member of the algebra of the kind of the vector,
+                // so the storage variant of a vector keeps the value of the number alone
+                if (!storeVariant) Prop($"public static {scalar} Scalar{name}", value);
             }
 
             // a signed value reaches the negative of every whole number beside the zero as well
-            if (typ.sig)
+            if (typ.sig && !storeVariant)
             {
                 for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
                 {
@@ -413,8 +435,9 @@ public partial class VectorGenerator
             Prop($"public static {type} Vector{name}", $"{type}.{value}");
         }
 
-        // a signed vector reaches the negative of every whole number beside the zero as well
-        if (typ.sig)
+        // a signed vector reaches the negative of every whole number beside the zero as well, the storage variant
+        // of a vector does not reach the algebra of its kind, so it holds the whole numbers alone
+        if (typ.sig && !storeVariant)
         {
             for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
             {
@@ -977,12 +1000,19 @@ public partial class VectorGenerator
         sb.AppendLine();
         if (!bol)
         {
-            EmitBoolOp("<", "LessThanAll", "<");
-            EmitBoolOp(">", "GreaterThanAll", ">");
-            EmitBoolOp("<=", "LessThanOrEqualAll", "<=");
-            EmitBoolOp(">=", "GreaterThanOrEqualAll", ">=");
+            // the comparison of two values is a member of the algebra of the kind of a number, which the storage
+            // variant of a vector does not reach, so it holds the mask of the comparison alone
+            if (!storeVariant)
+            {
+                EmitBoolOp("<", "LessThanAll", "<");
+                EmitBoolOp(">", "GreaterThanAll", ">");
+                EmitBoolOp("<=", "LessThanOrEqualAll", "<=");
+                EmitBoolOp(">=", "GreaterThanOrEqualAll", ">=");
+            }
         }
 
+        // a bitwise operator is a member of every value of the algebra library, so the storage variant of a vector
+        // reaches it as well
         // emits a bitwise operator, the scalar expression is only used when no vector is accelerated
         void EmitBitOp(string op, string rhs, string vecRhs, string wideRhs, string scalarExpr)
         {

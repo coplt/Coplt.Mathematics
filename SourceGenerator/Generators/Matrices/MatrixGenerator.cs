@@ -116,31 +116,41 @@ public class MatrixGenerator : IIncrementalGenerator
         var shape = $"{rows}x{cols}";
         // a matrix of a number reaches the arithmetic of its kind, a matrix of a mask reaches its true and its
         // false instead, and every shape has the members of its own beside the ones every matrix has
-        var ifaces = new List<string>
+        var ifaces = new List<string>();
+        // the storage variant of a matrix holds the columns of a value of the kind of it, it reaches the interface
+        // the json converter of it needs and nothing else: the algebra of the kind of the matrix, the members
+        // that dispatch the value of it and the ones that reach a single component of it are the members of the
+        // regular matrix of it alone
+        if (storeVariant)
         {
-            $"Algebras.IMatrix<{type}>",
-            $"Algebras.IMatrixScalar<{type}, {scalar}>",
-            $"Algebras.IMatrixVector<{type}, {col}>",
-            $"Algebras.{(bol ? "IBoolMatrix" : typ.f ? "IFloatingPointMatrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>",
-            $"Algebras.IMatrix{shape}<{type}>",
-            $"Algebras.IMatrix{shape}Vector<{type}, {col}>",
-            $"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>",
-        };
-        // a matrix of a number dispatches the value of it to a visitor and the vectors it is made of to the
-        // visitors that reduce them to a vector, a matrix of a mask dispatches nothing
-        if (!bol)
-        {
-            foreach (var family in VectorGenShared.DispatchIfaces(typ))
-                ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
-            // the bool value of a matrix has a shape of its own, which the dispatch of the kind of the value does
-            // not name, so a matrix of a floating point kind reaches the dispatch of the bool value of it as well
-            if (typ.f) ifaces.Add(VectorGenShared.DispatchBoolIface(type, boolType));
-            ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
-            ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
+            ifaces.Add($"Algebras.IMatrixMx{cols}Vector<{type}, {col}>");
         }
+        else
+        {
+            ifaces.Add($"Algebras.IMatrix<{type}>");
+            ifaces.Add($"Algebras.IMatrixScalar<{type}, {scalar}>");
+            ifaces.Add($"Algebras.IMatrixVector<{type}, {col}>");
+            ifaces.Add($"Algebras.{(bol ? "IBoolMatrix" : typ.f ? "IFloatingPointMatrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>");
+            ifaces.Add($"Algebras.IMatrix{shape}<{type}>");
+            ifaces.Add($"Algebras.IMatrix{shape}Vector<{type}, {col}>");
+            ifaces.Add($"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>");
+            // a matrix of a number dispatches the value of it to a visitor and the vectors it is made of to the
+            // visitors that reduce them to a vector, a matrix of a mask dispatches nothing
+            if (!bol)
+            {
+                foreach (var family in VectorGenShared.DispatchIfaces(typ))
+                    ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
+                // the bool value of a matrix has a shape of its own, which the dispatch of the kind of the value
+                // does not name, so a matrix of a floating point kind reaches the dispatch of the bool value of it
+                // as well
+                if (typ.f) ifaces.Add(VectorGenShared.DispatchBoolIface(type, boolType));
+                ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
+                ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
+            }
 
-        // a signed matrix reaches the negative of every whole number of the vector a column of it is as well
-        if (!bol && typ.sig) ifaces.Add($"Algebras.ISignedNumberMatrixVector<{type}, {col}>");
+            // a signed matrix reaches the negative of every whole number of the vector a column of it is as well
+            if (typ.sig) ifaces.Add($"Algebras.ISignedNumberMatrixVector<{type}, {col}>");
+        }
 
         VectorGenShared.FileHeader(sb, false);
         // the converter of a matrix is shared by every matrix of the count of its columns: it names the type of
@@ -289,6 +299,9 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine($"    static void Algebras.IMatrixVector<{type}, {col}>.set_vector(ref {type} self, int column, in {col} value) => " +
                       "self[column] = value;");
         sb.AppendLine();
+        // the storage variant of a matrix reaches a component of it through the members of the column of it
+        if (!storeVariant)
+        {
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    static {scalar} Algebras.IMatrixScalar<{type}, {scalar}>.get(in {type} self, int row, int column) => " +
@@ -309,6 +322,7 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine($"    static void Algebras.IAlgebra<{type}, {scalar}>.set(ref {type} self, int index, {scalar} value) => " +
                       $"self[index / {rows}, index % {rows}] = value;");
         sb.AppendLine();
+        }
         sb.AppendLine("    #endregion");
         sb.AppendLine();
 
@@ -316,6 +330,11 @@ public class MatrixGenerator : IIncrementalGenerator
         // a vector fills every column with the value it holds
         sb.AppendLine("    #region view");
         sb.AppendLine();
+        var zeroMatrix = $"new {type}({VectorGenShared.Join(cols, _ => zero)})";
+        // the storage variant of a matrix holds the columns of a value of the kind of it and does not reach the
+        // algebra of the kind of a single component, so it keeps the members that reach a column of it alone
+        if (!storeVariant)
+        {
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} Broadcast({scalar} scalar) => " +
@@ -326,7 +345,6 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine($"    public static {type} BroadcastUnsafe({scalar} scalar) => " +
                       $"new({VectorGenShared.Join(cols, _ => $"{col}.BroadcastUnsafe(scalar)")});");
         sb.AppendLine();
-        var zeroMatrix = $"new {type}({VectorGenShared.Join(cols, _ => zero)})";
         Method($"public static {type} Scalar({scalar} scalar)",
             $"var r = {zeroMatrix}; r[0, 0] = scalar; return r;");
         Method($"public static {type} ScalarUnsafe({scalar} scalar)",
@@ -337,6 +355,7 @@ public class MatrixGenerator : IIncrementalGenerator
         Method($"public static unsafe {type} Load({scalar}* ptr)",
             $"var r = default({type}); var i = 0; " +
             $"for (var c = 0; c < {cols}; c++) for (var j = 0; j < {rows}; j++) r[j, c] = ptr[i++]; return r;");
+        }
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} Broadcast(in {col} scalar) => " +
@@ -380,8 +399,9 @@ public class MatrixGenerator : IIncrementalGenerator
                     $"public static {scalar} Scalar{name}", VectorGenShared.NumberValue(scalar, i));
             }
 
-            // a signed matrix reaches the negative of every whole number beside the zero as well
-            if (typ.sig)
+            // a signed matrix reaches the negative of every whole number beside the zero as well, the storage
+            // variant of a matrix holds the columns of a value and does not reach the algebra of its kind
+            if (typ.sig && !storeVariant)
             {
                 for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
                 {
@@ -396,8 +416,9 @@ public class MatrixGenerator : IIncrementalGenerator
         }
 
         // a matrix of a floating point number reaches the math constants of the algebra of its kind: every
-        // component of it is the constant, which is the one of every column of it
-        if (!bol && typ.f)
+        // component of it is the constant, which is the one of every column of it. The storage variant of a
+        // matrix reaches the columns of a value and not the algebra of its kind, so it holds no constant of it
+        if (!bol && typ.f && !storeVariant)
         {
             // the constants of the kind of a floating point number, the constant of the denominator of a quotient
             // of the kind of it and the ones of the kind the ieee 754 standard names, which every floating point
@@ -425,7 +446,7 @@ public class MatrixGenerator : IIncrementalGenerator
         }
 
         // a signed matrix reaches the negative of every one of them as well
-        if (typ.sig)
+        if (typ.sig && !storeVariant)
         {
             for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
             {
@@ -466,12 +487,17 @@ public class MatrixGenerator : IIncrementalGenerator
                       $"{VectorGenShared.Join(cols, i => $"in {col} c{i}")}) => " +
                       $"new({VectorGenShared.Join(cols, i => $"c{i}")});");
         sb.AppendLine();
-        // the components of the matrix reach the constructor of it, which takes them in the order of a row
+        // the components of the matrix reach the constructor of it, which takes them in the order of a row. The
+        // storage variant of a matrix holds the columns of a value of the kind of it alone, so it names no member
+        // of the shape that reaches a single component
+        if (!storeVariant)
+        {
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    static {type} Algebras.IMatrix{shape}Scalar<{type}, {scalar}>.Create(" +
                       $"{string.Join(", ", scalarArgs)}) => new({string.Join(", ", scalarNames)});");
         sb.AppendLine();
+        }
         sb.AppendLine("    #endregion");
         sb.AppendLine();
 
@@ -494,6 +520,9 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine();
             }
 
+            // a component of the matrix reaches the column of it, the interface of the shape of the matrix names
+            // the component and the storage variant of the matrix names the column of it alone
+            if (!storeVariant)
             for (var r = 0; r < rows; r++)
             {
                 for (var c = 0; c < cols; c++)
@@ -539,6 +568,8 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static bool operator !=({type} left, {type} right) => !left.Equals(right);");
         sb.AppendLine();
+        // a bitwise operator is a member of every value of the algebra library, so the storage variant of a matrix
+        // reaches it as well
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} operator &({type} left, {type} right) => " +
@@ -576,12 +607,17 @@ public class MatrixGenerator : IIncrementalGenerator
             sb.AppendLine("        return 0;");
             sb.AppendLine("    }");
             sb.AppendLine();
+            // the whole number of a matrix is a member of the algebra of the kind of it, the storage variant of a
+            // matrix holds the columns of a value of the kind of it and does not reach it
+            if (!storeVariant)
+            {
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    int IComparable.CompareTo(object? obj) => obj is {type} other");
             sb.AppendLine($"        ? CompareTo(other)");
             sb.AppendLine($"        : throw new ArgumentException(null, nameof(obj));");
             sb.AppendLine();
+            }
             foreach (var (name, op) in new[] { ("<", "<"), ("<=", "<="), (">", ">"), (">=", ">=") })
             {
                 sb.AppendLine("    /// <inheritdoc/>");
@@ -591,6 +627,10 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine();
             }
 
+            // the arithmetic of a matrix is the arithmetic of its columns, the storage variant of a matrix holds
+            // the columns of a value of the kind of it and does not reach it
+            if (!storeVariant)
+            {
             foreach (var (name, op) in new[]
                      {
                          ("+", "+"), ("-", "-"), ("*", "*"), ("/", "/"), ("%", "%")
@@ -639,6 +679,7 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine($"    public static {type} operator {name}({type} left, int right) => " +
                               $"new({VectorGenShared.Join(cols, i => $"left.c{i} {name} right")});");
                 sb.AppendLine();
+            }
             }
         }
 
@@ -714,8 +755,9 @@ public class MatrixGenerator : IIncrementalGenerator
 
         // the shape of a matrix is a part of its type, so the type itself reaches the member of the visitor that
         // matches the shape, which the visitor reaches the columns of the matrix through. The members are
-        // implemented explicitly, so a caller reaches them through the interface of the dispatch of the type
-        if (!bol)
+        // implemented explicitly, so a caller reaches them through the interface of the dispatch of the type. The
+        // storage variant of a matrix holds the columns of a value of the kind of it, it does not dispatch
+        if (!bol && !storeVariant)
         {
             sb.AppendLine("    #region dispatch");
             sb.AppendLine();

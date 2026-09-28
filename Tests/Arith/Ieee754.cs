@@ -76,12 +76,9 @@ public class TestIeee754
         Check<float2, float, b32v2>(new float2(1, 2));
         Check<float3, float, b32v3>(new float3(1, 2, 3));
         Check<float4, float, b32v4>(new float4(1, 2, 3, 4));
-        Check<float2s, float, b32v2>(new float2s(1, 2));
-        Check<float3s, float, b32v3>(new float3s(1, 2, 3));
         Check<double2, double, b64v2>(new double2(1, 2));
         Check<double3, double, b64v3>(new double3(1, 2, 3));
         Check<double4, double, b64v4>(new double4(1, 2, 3, 4));
-        Check<double3s, double, b64v3>(new double3s(1, 2, 3));
         Check<half2, half, b16v2>(new half2((half)1f, (half)2f));
         Check<half3, half, b16v3>(new half3((half)1f, (half)2f, (half)3f));
         Check<half4, half, b16v4>(new half4((half)1f, (half)2f, (half)3f, (half)4f));
@@ -122,16 +119,6 @@ public class TestIeee754
             // a zero is finite, the sign of it does not matter
             Assert.That((bool)n.is_finite().y, Is.True);
             Assert.That((bool)n.is_finite().z, Is.True);
-        }
-
-        var s = new float2s(float.NaN, float.PositiveInfinity);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((bool)s.is_NaN().x, Is.True);
-            Assert.That((bool)s.is_inf().y, Is.True);
-            Assert.That((bool)s.is_finite().x, Is.False);
-            Assert.That((bool)s.is_finite().y, Is.False);
         }
 
         // the mask of a bool of 8 byte components is a 64 bit one
@@ -216,7 +203,6 @@ public class TestIeee754
             Assert.That(v.step(new float3(1f)), Is.EqualTo(new float3(0f, 1f, 1f)));
             Assert.That(new float3(1f, 0f, 0f).step(new float3(1f)), Is.EqualTo(new float3(1f, 0f, 0f)));
             Assert.That(new double3(0, 2, 0).step(new double3(1)), Is.EqualTo(new double3(0, 1, 0)));
-            Assert.That(new float2s(0f, 2f).step(new float2s(1f)), Is.EqualTo(new float2s(0f, 1f)));
         }
     }
 
@@ -356,7 +342,6 @@ public class TestIeee754
             // a positive magnitude keeps the sign of the other one
             Assert.That(v.chg_sign(new float3(-1f, -1f, -1f)), Is.EqualTo(new float3(-1f, -2f, -3f)));
             Assert.That(new double2(1, 2).chg_sign(new double2(-1, 1)), Is.EqualTo(new double2(-1, 2)));
-            Assert.That(new float2s(1f, 2f).chg_sign(new float2s(-1f, 1f)), Is.EqualTo(new float2s(-1f, 2f)));
         }
     }
 
@@ -423,40 +408,11 @@ public class TestIeee754
     }
 
     /// <summary>
-    /// The storage variant of a vector keeps the value in an exact register or in fields, its members work the
-    /// same way as the ones of the regular vector.
+    /// A vector without a register works on the components of it.
     /// </summary>
     [Test]
-    public void StorageVariant()
+    public void WithoutRegister()
     {
-        var v = new float3s(1f, 4f, 9f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(v.log2().y, Is.EqualTo(2f).Within(1e-5f));
-            Assert.That(v.exp().z, Is.EqualTo(MathF.Exp(9f)).Within(1e-2f));
-            Assert.That(v.length(), Is.EqualTo(MathF.Sqrt(98f)).Within(1e-4f));
-        }
-
-        var n = new float2s(4f, 16f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(n.log2().y, Is.EqualTo(4f).Within(1e-4f));
-            Assert.That(n.exp2().x, Is.EqualTo(16f).Within(1e-3f));
-            Assert.That((bool)n.is_finite().x, Is.True);
-            Assert.That((bool)new float2s(float.NaN, 1f).is_NaN().x, Is.True);
-            Assert.That(n.chg_sign(new float2s(-1f, 1f)), Is.EqualTo(new float2s(-4f, 16f)));
-        }
-
-        var d = new double3s(4, 16, 81);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(d.log2().x, Is.EqualTo(2d).Within(1e-9));
-            Assert.That((bool)new double3s(1, double.NaN, 3).is_NaN().y, Is.True);
-        }
-
         var h = new half2((half)4f, (half)16f);
 
         using (Assert.EnterMultipleScope())

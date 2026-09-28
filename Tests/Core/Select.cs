@@ -54,20 +54,6 @@ public class TestSelect
     }
 
     /// <summary>
-    /// The value of a 64 bit vector is widened to the 128 bit register of its mask, the storage variant keeps
-    /// only the lower half of the selected register.
-    /// </summary>
-    [Test]
-    public void StorageVariant()
-    {
-        Check<float2s, b32v2, float>(new(1, 2), new(3, 4), new b32v2(true, false), new(1, 4));
-        Check<int2s, b32v2, int>(new(1, 2), new(3, 4), new b32v2(false, true), new(3, 2));
-        Check<uint2s, b32v2, uint>(new(1, 2), new(3, 4), new b32v2(false, false), new(3u, 4u));
-        Check<float3s, b32v3, float>(new(1, 2, 3), new(4, 5, 6), new b32v3(true, false, true), new(1, 5, 3));
-        Check<double3s, b64v3, double>(new(1, 2, 3), new(4, 5, 6), new b64v3(true, false, false), new(1, 5, 6));
-    }
-
-    /// <summary>
     /// A vector that has no register and a bool vector select their components one by one, a bool vector is
     /// selected with a mask of its own type.
     /// </summary>
@@ -77,7 +63,6 @@ public class TestSelect
         Check<half2, b16v2, Half>(new((Half)1, (Half)2), new((Half)3, (Half)4), new b16v2(true, false), new((Half)1, (Half)4));
         Check<short3, b16v3, short>(new(1, 2, 3), new(4, 5, 6), new b16v3(false, true, false), new(4, 2, 6));
         Check<ushort2, b16v2, ushort>(new(1, 2), new(3, 4), new b16v2(true, true), new(1, 2));
-        Check<int3s, b32v3, int>(new(1, 2, 3), new(4, 5, 6), new b32v3(true, false, true), new(1, 5, 3));
         Check<b32v3, b32v3, b32>(
             new b32v3(true, false, true), new b32v3(false, true, false), new b32v3(true, true, false),
             new b32v3(true, false, false));
@@ -94,8 +79,5 @@ public class TestSelect
         var selected = new float2(1, 2).select(new b32v2(true, false), new float2(3, 4));
         Assert.That(selected.vector.GetElement(2), Is.EqualTo(0f));
         Assert.That(selected.vector.GetElement(3), Is.EqualTo(0f));
-        var widened = new float2s(1, 2).select(new b32v2(false, true), new float2s(3, 4));
-        Assert.That(widened.x, Is.EqualTo(3f));
-        Assert.That(widened.y, Is.EqualTo(2f));
     }
 }

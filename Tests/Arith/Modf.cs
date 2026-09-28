@@ -48,13 +48,9 @@ public class TestModf
         // a vector without a register reaches the member of the scalar, which is the one of the component type
         Check(new half2((half)1.25f, (half)(-1.25f)));
         Check(new half3((half)1.25f, (half)(-1.25f), (half)2f));
-        Check(new float2s(1.25f, -1.25f));
-        Check(new float3s(1.25f, -1.25f, 2f));
-        Check(new double3s(1.25, -1.25, 2));
         // a matrix hands the value of every one of its columns over, so it reaches the member of the register or
         // the one of the scalar through the column
         Check(new float2x2(new float2(1.25f, -1.25f), new float2(2.75f, -2.75f)));
-        Check(new float2x2s(new float2s(1.25f, -1.25f), new float2s(2.75f, -2.75f)));
         Check(new float2x3(new float2(1.25f, -1.25f), new float2(2.75f, -2.75f), new float2(0.5f, 4f)));
         Check(new double2x2(new double2(1.25, -1.25), new double2(2.75, -2.75)));
         Check(new half3x3(new half3((half)1.25f, (half)(-1.25f), (half)2f),
@@ -83,19 +79,10 @@ public class TestModf
             Assert.That(d, Is.EqualTo(new double4(0.25, -0.25, 0, -0.75)));
             Assert.That(di, Is.EqualTo(new double4(1, -1, 2, -2)));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
-            var s = math.modf(new float2s(1.25f, -1.25f), out var si);
-            Assert.That(s, Is.EqualTo(new float2s(0.25f, -0.25f)));
-            Assert.That(si, Is.EqualTo(new float2s(1f, -1f)));
-
             // a vector without a register reaches the member of the component type for every component
             var h = math.modf(new half3((half)1.25f, (half)(-1.25f), (half)2f), out var hi);
             Assert.That(h, Is.EqualTo(new half3((half)0.25f, (half)(-0.25f), (half)0f)));
             Assert.That(hi, Is.EqualTo(new half3((half)1f, (half)(-1f), (half)2f)));
-            var ds = math.modf(new double3s(1.25, -1.25, 2), out var dsi);
-            Assert.That(ds, Is.EqualTo(new double3s(0.25, -0.25, 0)));
-            Assert.That(dsi, Is.EqualTo(new double3s(1, -1, 2)));
 
             // the split of a value that is integral is the value itself and the zero of the fractional part
             var integralValue = math.modf(new float3(1f, -2f, 3f), out var integralValuePortion);
@@ -106,9 +93,6 @@ public class TestModf
             var m = math.modf(new float2x2(new float2(1.25f, -1.25f), new float2(2.75f, -2.75f)), out var mi);
             Assert.That(m, Is.EqualTo(new float2x2(new float2(0.25f, -0.25f), new float2(0.75f, -0.75f))));
             Assert.That(mi, Is.EqualTo(new float2x2(new float2(1f, -1f), new float2(2f, -2f))));
-            var ms = math.modf(new float2x2s(new float2s(1.25f, -1.25f), new float2s(2.75f, -2.75f)), out var msi);
-            Assert.That(ms, Is.EqualTo(new float2x2s(new float2s(0.25f, -0.25f), new float2s(0.75f, -0.75f))));
-            Assert.That(msi, Is.EqualTo(new float2x2s(new float2s(1f, -1f), new float2s(2f, -2f))));
         }
     }
 

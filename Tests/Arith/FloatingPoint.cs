@@ -41,9 +41,6 @@ public class TestFloatingPoint
         Check<double3, double>(new double3(1, 2, 3));
         Check<half2, half>(default);
         Check<half4, half>(default);
-        Check<float2s, float>(default);
-        Check<float3s, float>(default);
-        Check<double3s, double>(default);
     }
 
     [Test]
@@ -98,39 +95,6 @@ public class TestFloatingPoint
 
             Assert.That((float)half3.E.x, Is.EqualTo((float)(half)Coplt.Mathematics.math.F_E));
             Assert.That((float)half3.PI.x, Is.EqualTo((float)(half)Coplt.Mathematics.math.F_PI));
-        }
-    }
-
-    [Test]
-    public void StorageVariant()
-    {
-        var v = new float3s(1.4f, -1.5f, 2.6f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(v.ceil(), Is.EqualTo(new float3s(2f, -1f, 3f)));
-            Assert.That(v.trunc(), Is.EqualTo(new float3s(1f, -1f, 2f)));
-            Assert.That(v.frac().y, Is.EqualTo(0.5f));
-            Assert.That(math.fmod(v, new float3s(1f, 1f, 1f)).z, Is.EqualTo(0.6f).Within(1e-6f));
-        }
-
-        var n = new float2s(1.4f, 2.6f);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(n.ceil(), Is.EqualTo(new float2s(2f, 3f)));
-            Assert.That(n.floor(), Is.EqualTo(new float2s(1f, 2f)));
-            // the fraction of a value keeps the rounding of the value, it is not exact
-            Assert.That(n.frac().x, Is.EqualTo(0.4f).Within(1e-6f));
-            Assert.That(n.frac().y, Is.EqualTo(0.6f).Within(1e-6f));
-        }
-
-        var d = new double3s(1.4, -1.5, 2.6);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(d.ceil(), Is.EqualTo(new double3s(2d, -1d, 3d)));
-            Assert.That(d.trunc(), Is.EqualTo(new double3s(1d, -1d, 2d)));
         }
     }
 

@@ -39,9 +39,6 @@ public class TestWrap
         // a vector without a register reaches the member of the components of it
         Check(new half2((Half)2.5f, (Half)(-0.5f)), new half2(Half.Zero, Half.Zero), new half2((Half)2f, (Half)2f));
         Check(new half3((Half)2.5f, (Half)(-0.5f), (Half)0.25f), new half3(Half.Zero), new half3(Half.One));
-        Check(new float2s(2.5f, -0.5f), new float2s(0f, 0f), new float2s(2f, 2f));
-        Check(new float3s(2.5f, -1.5f, 0.25f), new float3s(0f), new float3s(1f));
-        Check(new double3s(2.5, -0.5, 4.5), new double3s(0), new double3s(4));
         // the member of the value reaches every kind of a value, a matrix as well
         Check(new float2x2(new float2(2.5f, 1.25f), new float2(-0.5f, -1.5f)),
             new float2x2(new float2(0f), new float2(0f)), new float2x2(new float2(2f), new float2(2f)));
@@ -75,12 +72,6 @@ public class TestWrap
             // with a bound that is not of the type of a single component
             Assert.That(math.wrap(new float3(1.5f), 0, 1), Is.EqualTo(new float3(0.5f)));
             Assert.That(new float3(1.5f).wrap(0, 1), Is.EqualTo(new float3(0.5f)));
-
-            // a vector without a register reaches the member of the component type for every component
-            var f3s = math.wrap(new float3s(1.4f, -1.5f, 2.6f), 0f, 1f);
-            Assert.That(f3s.x, Is.EqualTo(0.4f).Within(1e-6f));
-            Assert.That(f3s.y, Is.EqualTo(0.5f).Within(1e-6f));
-            Assert.That(f3s.z, Is.EqualTo(0.6f).Within(1e-6f));
 
             // every component of every column of a matrix is wrapped
             var m = math.wrap(new float2x2(new float2(2.5f, 1.25f), new float2(-0.5f, -1.5f)),

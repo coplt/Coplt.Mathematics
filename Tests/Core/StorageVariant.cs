@@ -28,7 +28,6 @@ public class TestStorageVariant
             // the variant keeps the exact 64 bits of its value
             Assert.That(Unsafe.SizeOf<float2s>(), Is.EqualTo(8));
             Assert.That(Unsafe.SizeOf<float2>(), Is.EqualTo(16));
-            Assert.That(v.vector, Is.EqualTo(regular.vector.GetLower()));
         }
     }
 

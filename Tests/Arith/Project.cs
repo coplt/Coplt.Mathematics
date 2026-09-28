@@ -44,9 +44,6 @@ public class TestProject
         // a vector without a register reaches the member of the components of it
         Check(new half2((Half)1f, (Half)2f), new half2((Half)2f, (Half)0f));
         Check(new half3((Half)1f, (Half)2f, (Half)3f), new half3((Half)2f, (Half)0f, (Half)0f));
-        Check(new float2s(1f, 2f), new float2s(2f, 0f));
-        Check(new float3s(1f, 2f, 3f), new float3s(2f, 0f, 0f));
-        Check(new double3s(1, 2, 3), new double3s(2, 0, 0));
     }
 
     [Test]
@@ -79,25 +76,16 @@ public class TestProject
             Assert.That(math.project_unit(value, default), Is.EqualTo(default(float3)));
             Assert.That(math.project_on_plane_unit(value, default), Is.EqualTo(value));
 
-            // the register of a vector of two components without a value of its own is widened to 128 bits and
-            // the value of the storage variant of one of them is exactly 64 bits wide
             Assert.That(math.project(new float2(1f, 2f), new float2(2f, 0f)), Is.EqualTo(new float2(1f, 0f)));
-            Assert.That(math.project(new float2s(1f, 2f), new float2s(2f, 0f)), Is.EqualTo(new float2s(1f, 0f)));
             Assert.That(math.project(new float4(1f, 2f, 3f, 4f), new float4(0f, 2f, 0f, 0f)),
                 Is.EqualTo(new float4(0f, 2f, 0f, 0f)));
             Assert.That(math.project(new double2(1, 2), new double2(2, 0)), Is.EqualTo(new double2(1d, 0d)));
 
             // a vector without a register reaches the member of the component type for every component
-            Assert.That(math.project(new float3s(1f, 2f, 3f), new float3s(2f, 0f, 0f)),
-                Is.EqualTo(new float3s(1f, 0f, 0f)));
-            Assert.That(math.project(new double3s(1, 2, 3), new double3s(2, 0, 0)),
-                Is.EqualTo(new double3s(1d, 0d, 0d)));
             Assert.That(math.project(new half3((Half)1f, (Half)2f, (Half)3f), new half3((Half)2f, (Half)0f, (Half)0f)),
                 Is.EqualTo(new half3((Half)1f, (Half)0f, (Half)0f)));
             Assert.That(math.project_on_plane_unit(new double3(1, 2, 3), new double3(0, 1, 0)),
                 Is.EqualTo(new double3(1d, 0d, 3d)));
-            Assert.That(math.project_on_plane(new float3s(1f, 2f, 3f), new float3s(2f, 0f, 0f)),
-                Is.EqualTo(new float3s(0f, 2f, 3f)));
         }
     }
 
@@ -159,8 +147,6 @@ public class TestProject
             // the two members agree on a vector whose dot product with itself is not below the constant
             Assert.That(math.project_unsafe(value, axis), Is.EqualTo(math.project(value, axis)));
             Assert.That(math.project_unsafe(value, value), Is.EqualTo(math.project(value, value)));
-            Assert.That(math.project_unsafe(new float3s(1f, 2f, 3f), new float3s(2f, 0f, 0f)),
-                Is.EqualTo(math.project(new float3s(1f, 2f, 3f), new float3s(2f, 0f, 0f))));
 
             // the dot product of the zero vector with itself is zero, which is below the constant of the kind of
             // it: the checked projection returns the zero of it and the unchecked one takes the quotient of zero
@@ -177,10 +163,6 @@ public class TestProject
             Assert.That(math.project_unsafe(value, tiny).x, Is.EqualTo(1f).Within(1e-4f));
 
             // the member of the components of a vector without a register checks the same constant
-            var tiny3s = new float3s(1e-5f, 0f, 0f);
-            Assert.That(math.project(new float3s(1f, 2f, 3f), tiny3s), Is.EqualTo(default(float3s)));
-            Assert.That(math.project_unsafe(new float3s(1f, 2f, 3f), tiny3s).x, Is.EqualTo(1f).Within(1e-3f));
-
             // the constant of a half is 1e-3, which is far above the one of a float
             Assert.That(math.project(new half3((Half)1f, (Half)2f, (Half)3f),
                     new half3((Half)0.01f, (Half)0f, (Half)0f)),

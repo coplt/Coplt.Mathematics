@@ -51,6 +51,18 @@ public partial class VectorGenerator : IIncrementalGenerator
                     {
                         var storeVariant = variant == 1;
                         var name = VectorGenShared.VecName(typ, size, storeVariant);
+                        // the storage variant of a vector is a plain holder of the components of it: it keeps the
+                        // fields of them, the constructors, the conversions, the equality and the comparison, the
+                        // format of the value and the interfaces the json converter of it is constrained by, every
+                        // other member of the kind of the vector lives on the regular vector of it alone
+                        if (storeVariant)
+                        {
+                            ctx.AddSource(
+                                $"{VecNamespace}.{name}.g.cs",
+                                SourceText.From(Gen(typ, size, storeVariant), Encoding.UTF8));
+                            continue;
+                        }
+
                         // the members of the type that are a part of the value itself are emitted into one file,
                         // which is the file of the type, see Gen
                         ctx.AddSource(

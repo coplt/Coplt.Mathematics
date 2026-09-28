@@ -49,7 +49,7 @@ public partial class VectorGenerator
     /// <param name="size">The number of components of the vector</param>
     /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>The file</returns>
-    private static string GenCtor(Typ typ, int size, bool storeVariant, List<string> ifaces)
+    private static string GenCtor(Typ typ, int size, bool storeVariant)
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;
@@ -86,23 +86,6 @@ public partial class VectorGenerator
 
             return $"{vecName}.Create({index})";
         }
-
-        // the interfaces the members implement, they are declared by the part that holds the members instead of
-        // the base part because the base part has no member of them. The interface of a vector of 2 components
-        // declares the create of it itself, so this part carries no interface of its own for it
-        var ctorIfaces = size switch
-        {
-            2 => new List<string>(),
-            3 => new List<string>
-            {
-                $"Algebras.IVector3CtorFromVector2<{type}, {scalar}, {type2}>",
-            },
-            _ => new List<string>
-            {
-                $"Algebras.IVector4CtorFromVector2<{type}, {scalar}, {type2}>",
-                $"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>",
-            },
-        };
 
         // the members of the vector: the signature of every create member, the documentation of the constructor
         // that stands behind it, the parameters and the mark of that constructor, the raw simd expression of the

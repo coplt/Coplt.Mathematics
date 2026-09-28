@@ -91,7 +91,9 @@ public partial class VectorGenerator
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         // the register of the vector, a vector without one keeps its components in fields
         var simd = VectorGenShared.Simd(typ, size, storeVariant);
-        var targets = AsTargets(typ, size, storeVariant);
+        // the storage variant of a vector holds the components of a value of the kind of it and nothing else, the
+        // only as member it keeps is the conversion to the regular vector
+        var targets = storeVariant ? new List<Typ>() : AsTargets(typ, size, storeVariant);
         // a regular vector that has a storage variant also converts to it, the as members of a storage variant
         // always exist and the conversion of it always exists as well
         var store = storeVariant ? null : VectorGenShared.HasStorageVariant(typ, size) ? VectorGenShared.VecName(typ, size, true) : null;
@@ -133,9 +135,12 @@ public partial class VectorGenerator
         }
 
         // the member that converts the vector into the one of the other size implements the interface of its own
-        if (size == 3 || size == 4) ifaces.Add($"IVectorAs2<{type}, {type2}>");
-        if (size == 3) ifaces.Add($"IVectorAs4<{type}, {type4}>");
-        else if (size == 4) ifaces.Add($"IVectorAs3<{type}, {type3}>");
+        if (!storeVariant)
+        {
+            if (size == 3 || size == 4) ifaces.Add($"IVectorAs2<{type}, {type2}>");
+            if (size == 3) ifaces.Add($"IVectorAs4<{type}, {type4}>");
+            else if (size == 4) ifaces.Add($"IVectorAs3<{type}, {type3}>");
+        }
 
 
         // the as members reinterpret the bits of the vector as another vector of the same group, the name of
@@ -162,46 +167,49 @@ public partial class VectorGenerator
         // vector without a copy of the components when the vector is simd backed: the register of a vector of
         // 4 byte components is as wide as the one of its 2 component vector and twice as wide when a component
         // is 8 bytes wide, so only the lower half of it reaches the second component of the 2 component vector
-        if (size == 3 || size == 4)
+        if (!storeVariant)
         {
-            var wide = !simd
-                ? ""
-                : VectorGenShared.Register(typ, size, storeVariant) > VectorGenShared.Register(typ, 2, false)
-                    ? ".GetLower()"
-                    : "";
-            Member(
-                $"Reinterprets the bits of <paramref name=\"source\"/> as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
-                $"The 2 component vector that has the bits of <paramref name=\"source\"/>", simd
-                    ? $"public static {type2} as2(in {type} source) => new(source.vector{wide});"
-                    : $"public static {type2} as2(in {type} source) => new(source.x, source.y);");
-            Member($"Reinterprets the bits of the vector as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
-                $"The 2 component vector that has the bits of the vector", simd
-                    ? $"public readonly {type2} as2() => new(vector{wide});"
-                    : $"public readonly {type2} as2() => new(x, y);");
-        }
+            if (size == 3 || size == 4)
+            {
+                var wide = !simd
+                    ? ""
+                    : VectorGenShared.Register(typ, size, storeVariant) > VectorGenShared.Register(typ, 2, false)
+                        ? ".GetLower()"
+                        : "";
+                Member(
+                    $"Reinterprets the bits of <paramref name=\"source\"/> as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
+                    $"The 2 component vector that has the bits of <paramref name=\"source\"/>", simd
+                        ? $"public static {type2} as2(in {type} source) => new(source.vector{wide});"
+                        : $"public static {type2} as2(in {type} source) => new(source.x, source.y);");
+                Member($"Reinterprets the bits of the vector as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
+                    $"The 2 component vector that has the bits of the vector", simd
+                        ? $"public readonly {type2} as2() => new(vector{wide});"
+                        : $"public readonly {type2} as2() => new(x, y);");
+            }
 
-        if (size == 4)
-        {
-            Member(
-                $"Reinterprets the bits of <paramref name=\"source\"/> as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the source has to be zero</para>",
-                $"The 3 component vector that has the bits of <paramref name=\"source\"/>", simd
-                    ? $"public static {type3} as3(in {type} source) => new(source.vector);"
-                    : $"public static {type3} as3(in {type} source) => source.xyz;");
-            Member($"Reinterprets the bits of the vector as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the vector has to be zero</para>",
-                $"The 3 component vector that has the bits of the vector", simd
-                    ? $"public readonly {type3} as3() => new(vector);"
-                    : $"public readonly {type3} as3() => xyz;");
-        }
-        else if (size == 3)
-        {
-            Member($"Reinterprets the bits of <paramref name=\"source\"/> as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
-                $"The 4 component vector that has the bits of <paramref name=\"source\"/>", simd
-                    ? $"public static {type4} as4(in {type} source) => new() {{ vector = source.vector }};"
-                    : $"public static {type4} as4(in {type} source) => new(source.x, source.y, source.z, default);");
-            Member($"Reinterprets the bits of the vector as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
-                $"The 4 component vector that has the bits of the vector", simd
-                    ? $"public readonly {type4} as4() => new() {{ vector = vector }};"
-                    : $"public readonly {type4} as4() => new(x, y, z, default);");
+            if (size == 4)
+            {
+                Member(
+                    $"Reinterprets the bits of <paramref name=\"source\"/> as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the source has to be zero</para>",
+                    $"The 3 component vector that has the bits of <paramref name=\"source\"/>", simd
+                        ? $"public static {type3} as3(in {type} source) => new(source.vector);"
+                        : $"public static {type3} as3(in {type} source) => source.xyz;");
+                Member($"Reinterprets the bits of the vector as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the vector has to be zero</para>",
+                    $"The 3 component vector that has the bits of the vector", simd
+                        ? $"public readonly {type3} as3() => new(vector);"
+                        : $"public readonly {type3} as3() => xyz;");
+            }
+            else if (size == 3)
+            {
+                Member($"Reinterprets the bits of <paramref name=\"source\"/> as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
+                    $"The 4 component vector that has the bits of <paramref name=\"source\"/>", simd
+                        ? $"public static {type4} as4(in {type} source) => new() {{ vector = source.vector }};"
+                        : $"public static {type4} as4(in {type} source) => new(source.x, source.y, source.z, default);");
+                Member($"Reinterprets the bits of the vector as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
+                    $"The 4 component vector that has the bits of the vector", simd
+                        ? $"public readonly {type4} as4() => new() {{ vector = vector }};"
+                        : $"public readonly {type4} as4() => new(x, y, z, default);");
+            }
         }
 
         if (store != null)

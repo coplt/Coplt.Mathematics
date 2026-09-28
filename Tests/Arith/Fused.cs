@@ -53,10 +53,6 @@ public class TestFused
         Check(new uint3(2u, 3u, 4u), new uint3(5u, 6u, 7u), new uint3(10u, 20u, 30u));
         Check(new half3((half)2f, (half)3f, (half)4f), new half3((half)5f, (half)6f, (half)7f),
             new half3((half)10f, (half)20f, (half)30f));
-        // a value that has no register reaches the member of the scalar for every component of it, the one of a
-        // floating point component goes through the lowest lane of a register
-        Check(new float3s(2f, 3f, 4f), new float3s(5f, 6f, 7f), new float3s(10f, 20f, 30f));
-        Check(new double3s(2d, 3d, 4d), new double3s(5d, 6d, 7d), new double3s(10d, 20d, 30d));
     }
 
     /// <summary>

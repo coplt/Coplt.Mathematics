@@ -161,16 +161,12 @@ public class VectorExtensionGenerator : IIncrementalGenerator
             if (!typ.arith || typ.bol) continue;
             for (var size = 2; size <= 4; size++)
             {
-                // only a vector whose register is wider than its value has a storage variant
-                var variants = VectorGenShared.HasStorageVariant(typ, size) ? 2 : 1;
-                for (var variant = 0; variant < variants; variant++)
-                {
-                    var storeVariant = variant == 1;
-                    var name = VectorGenShared.VecName(typ, size, storeVariant);
-                    context.AddSource(
-                        $"{Namespace}.{method.Name}.{name}.g.cs",
-                        SourceText.From(Gen(name, method, vectorTypeParameter, typeParameters, priority, receiver), Encoding.UTF8));
-                }
+                // a member is emitted for a regular vector alone: it works on the value of the vector through the
+                // algebra of the kind of it, which the storage variant of a vector does not reach
+                var name = VectorGenShared.VecName(typ, size, false);
+                context.AddSource(
+                    $"{Namespace}.{method.Name}.{name}.g.cs",
+                    SourceText.From(Gen(name, method, vectorTypeParameter, typeParameters, priority, receiver), Encoding.UTF8));
             }
         }
     }

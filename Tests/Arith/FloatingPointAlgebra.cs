@@ -52,10 +52,8 @@ public class TestFloatingPointAlgebra
     public void Interfaces()
     {
         CheckVector<float3, float>(new float3(1f, 2f, 3f));
-        CheckVector<float3s, float>(new float3s(1f, 2f, 3f));
         CheckVector<double4, double>(new double4(1d, 2d, 3d, 4d));
         CheckMatrix<float3x2, float>(new float3x2(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f)));
-        CheckMatrix<float2x2s, float>(new float2x2s(new float2s(1f, 2f), new float2s(3f, 4f)));
         CheckMatrix<double2x2, double>(new double2x2(new double2(1d, 2d), new double2(3d, 4d)));
         // a half is a floating point number the ieee 754 standard names as well, so a value of half components
         // names the floating point kind of the library like the one of a float does

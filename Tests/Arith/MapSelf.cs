@@ -60,10 +60,8 @@ public class TestMapSelf
             Assert.That(Twice(new float3(1f, 2f, 3f)), Is.EqualTo(new float3(2f, 4f, 6f)), "float3, a padded register");
             Assert.That(Twice(new double4(1d, 2d, 3d, 4d)), Is.EqualTo(new double4(2d, 4d, 6d, 8d)), "double4, a register of 256 bits");
             Assert.That(Twice(new double3(1d, 2d, 3d)), Is.EqualTo(new double3(2d, 4d, 6d)), "double3");
-            Assert.That(Twice(new float2s(1f, 2f)), Is.EqualTo(new float2s(2f, 4f)), "float2s, a register of 64 bits");
 
             // a value without a register reaches the member of the count of its components
-            Assert.That(Twice(new float3s(1f, 2f, 3f)), Is.EqualTo(new float3s(2f, 4f, 6f)), "float3s");
             Assert.That(Twice(new half4((Half)1f, (Half)2f, (Half)3f, (Half)4f)),
                 Is.EqualTo(new half4((Half)2f, (Half)4f, (Half)6f, (Half)8f)), "half4, a value without a register");
         }
@@ -79,8 +77,6 @@ public class TestMapSelf
             Assert.That(Add(new float2(1f, 2f), new float2(3f, 5f)), Is.EqualTo(new float2(4f, 7f)), "float2");
             Assert.That(Add(new double3(1d, 2d, 3d), new double3(3d, 2d, 1d)),
                 Is.EqualTo(new double3(4d, 4d, 4d)), "double3");
-            Assert.That(Add(new float3s(1f, 2f, 3f), new float3s(3f, 2f, 1f)),
-                Is.EqualTo(new float3s(4f, 4f, 4f)), "float3s");
         }
     }
 }

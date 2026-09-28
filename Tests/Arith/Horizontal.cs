@@ -50,19 +50,6 @@ public class TestHorizontal
             Assert.That(math.hmin(new int3(-3, -1, -2)), Is.EqualTo(-3), "int3 of negative components");
             Assert.That(math.hmax(new int3(-3, -1, -2)), Is.EqualTo(-1), "int3 of negative components");
 
-            // a vector whose register is 64 bits wide and one that has no register reach the member of their own
-            // kind
-            Assert.That(math.hmin(new float2s(3f, 1f)), Is.EqualTo(1f), "float2s, a 64 bit register");
-            Assert.That(math.hmax(new float2s(3f, 1f)), Is.EqualTo(3f), "float2s, a 64 bit register");
-            Assert.That(math.hmin(new int2s(3, 1)), Is.EqualTo(1), "int2s, a 64 bit register");
-            Assert.That(math.hmax(new int2s(3, 1)), Is.EqualTo(3), "int2s, a 64 bit register");
-            Assert.That(math.hmin(new float3s(3f, 1f, 2f)), Is.EqualTo(1f), "float3s, a value without a register");
-            Assert.That(math.hmax(new float3s(3f, 1f, 2f)), Is.EqualTo(3f), "float3s, a value without a register");
-            Assert.That(math.hmin(new double3s(3d, 1d, 2d)), Is.EqualTo(1d), "double3s, a value without a register");
-            Assert.That(math.hmax(new double3s(3d, 1d, 2d)), Is.EqualTo(3d), "double3s, a value without a register");
-            Assert.That(math.hmin(new int3s(3, 1, 2)), Is.EqualTo(1), "int3s, a value without a register");
-            Assert.That(math.hmax(new int3s(3, 1, 2)), Is.EqualTo(3), "int3s, a value without a register");
-            Assert.That(math.hmin(new long3s(3L, 1L, 2L)), Is.EqualTo(1L), "long3s, a value without a register");
             Assert.That(math.hmin(new half4((half)3f, (half)1f, (half)2f, (half)4f)), Is.EqualTo((half)1f),
                 "half4, a value without a register");
             Assert.That(math.hmax(new half4((half)3f, (half)1f, (half)2f, (half)4f)), Is.EqualTo((half)4f),
@@ -74,7 +61,6 @@ public class TestHorizontal
                 "the member that names both types");
             Assert.That(math.hmax<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(3f),
                 "the member that names both types");
-            Assert.That(math.hmin<int3s, int>(new int3s(3, 1, 2)), Is.EqualTo(1), "the member that names both types");
             Assert.That(math.hmin<float3, float>(new float3(3f, 1f, 2f)), Is.EqualTo(math.hmin(new float3(3f, 1f, 2f))),
                 "both of them are the same");
 
@@ -109,9 +95,6 @@ public class TestHorizontal
             Assert.That(math.hmax(new int3(-3, -1, -2)), Is.EqualTo(-1), "int3, a padding lane");
             Assert.That(math.hmin(new long3(3L, 1L, 2L)), Is.EqualTo(1L), "long3, a padding lane");
             Assert.That(math.hmax(new long3(-3L, -1L, -2L)), Is.EqualTo(-1L), "long3, a padding lane");
-            // a value without a register has no padding lane at all
-            Assert.That(math.hmin(new float3s(3f, 1f, 2f)), Is.EqualTo(1f), "float3s, no padding lane");
-            Assert.That(math.hmax(new float3s(-3f, -1f, -2f)), Is.EqualTo(-1f), "float3s, no padding lane");
         }
     }
 
@@ -130,9 +113,6 @@ public class TestHorizontal
             Assert.That(math.hmax(new float3x3(new float3(4f, 1f, 3f), new float3(2f, 6f, 5f),
                     new float3(7f, 8f, 9f))),
                 Is.EqualTo(9f), "every component of float3x3");
-            Assert.That(math.hmin(new float3x3s(new float3s(4f, 1f, 3f), new float3s(2f, 6f, 5f),
-                    new float3s(7f, 8f, 9f))),
-                Is.EqualTo(1f), "every component of float3x3s");
             Assert.That(math.hmin(new double2x2(new double2(4d, 1d), new double2(2d, 3d))), Is.EqualTo(1d),
                 "every component of double2x2");
             Assert.That(math.hmax(new double2x2(new double2(4d, 1d), new double2(2d, 3d))), Is.EqualTo(4d),
@@ -191,22 +171,6 @@ public class TestHorizontal
             Assert.That(math.hmax_native(new ulong3(3UL, 1UL, 2UL)), Is.EqualTo(math.hmax(new ulong3(3UL, 1UL, 2UL))),
                 "ulong3");
 
-            // a vector whose register is 64 bits wide and one that has no register reach the member of their own
-            // kind
-            Assert.That(math.hmin_native(new float2s(3f, 1f)), Is.EqualTo(math.hmin(new float2s(3f, 1f))),
-                "float2s, a 64 bit register");
-            Assert.That(math.hmax_native(new int2s(3, 1)), Is.EqualTo(math.hmax(new int2s(3, 1))),
-                "int2s, a 64 bit register");
-            Assert.That(math.hmin_native(new float3s(3f, 1f, 2f)), Is.EqualTo(math.hmin(new float3s(3f, 1f, 2f))),
-                "float3s, a value without a register");
-            Assert.That(math.hmax_native(new float3s(3f, 1f, 2f)), Is.EqualTo(math.hmax(new float3s(3f, 1f, 2f))),
-                "float3s, a value without a register");
-            Assert.That(math.hmin_native(new double3s(3d, 1d, 2d)), Is.EqualTo(math.hmin(new double3s(3d, 1d, 2d))),
-                "double3s, a value without a register");
-            Assert.That(math.hmin_native(new int3s(3, 1, 2)), Is.EqualTo(math.hmin(new int3s(3, 1, 2))),
-                "int3s, a value without a register");
-            Assert.That(math.hmax_native(new long3s(3L, 1L, 2L)), Is.EqualTo(math.hmax(new long3s(3L, 1L, 2L))),
-                "long3s, a value without a register");
             Assert.That(math.hmin_native(new half4((half)3f, (half)1f, (half)2f, (half)4f)),
                 Is.EqualTo(math.hmin(new half4((half)3f, (half)1f, (half)2f, (half)4f))),
                 "half4, a value without a register");
@@ -230,7 +194,6 @@ public class TestHorizontal
             Assert.That(new float3(3f, 1f, 2f).hmin_native(), Is.EqualTo(1f), "the member of float3");
             Assert.That(new float3(3f, 1f, 2f).hmax_native(), Is.EqualTo(3f), "the member of float3");
             Assert.That(new int3(3, 1, 2).hmin_native(), Is.EqualTo(1), "the member of int3");
-            Assert.That(new float3s(3f, 1f, 2f).hmax_native(), Is.EqualTo(3f), "the member of float3s");
 
             // the value of a matrix is the one of its columns
             Assert.That(math.hmin_native(new float3x3(new float3(4f, 1f, 3f), new float3(2f, 6f, 5f),
@@ -239,12 +202,6 @@ public class TestHorizontal
             Assert.That(math.hmax_native(new float3x3(new float3(4f, 1f, 3f), new float3(2f, 6f, 5f),
                     new float3(7f, 8f, 9f))),
                 Is.EqualTo(9f), "every component of float3x3");
-            Assert.That(math.hmin_native(new float3x3s(new float3s(4f, 1f, 3f), new float3s(2f, 6f, 5f),
-                    new float3s(7f, 8f, 9f))),
-                Is.EqualTo(1f), "every component of float3x3s");
-            Assert.That(math.hmax_native(new float3x3s(new float3s(4f, 1f, 3f), new float3s(2f, 6f, 5f),
-                    new float3s(7f, 8f, 9f))),
-                Is.EqualTo(9f), "every component of float3x3s");
             Assert.That(math.hmin_native(new double2x2(new double2(4d, 1d), new double2(2d, 3d))), Is.EqualTo(1d),
                 "every component of double2x2");
             Assert.That(math.hmax_native(new double2x2(new double2(4d, 1d), new double2(2d, 3d))), Is.EqualTo(4d),
