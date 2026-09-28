@@ -1,9 +1,7 @@
-﻿using Coplt.Mathematics.Algebras;
-
-namespace Coplt.Mathematics;
+﻿namespace Coplt.Mathematics;
 
 public struct MatC2<TVector, TScalar>
-    where TVector : unmanaged, IVector<TVector, TScalar>
+    where TVector : unmanaged
     where TScalar : unmanaged
 {
     #region Fields
@@ -15,7 +13,7 @@ public struct MatC2<TVector, TScalar>
 }
 
 public struct MatC3<TVector, TScalar>
-    where TVector : unmanaged, IVector<TVector, TScalar>
+    where TVector : unmanaged
     where TScalar : unmanaged
 {
     #region Fields
@@ -28,7 +26,7 @@ public struct MatC3<TVector, TScalar>
 }
 
 public struct MatC4<TVector, TScalar>
-    where TVector : unmanaged, IVector<TVector, TScalar>
+    where TVector : unmanaged
     where TScalar : unmanaged
 {
     #region Fields

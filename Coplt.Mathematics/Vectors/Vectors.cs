@@ -101,18 +101,31 @@ public struct Vec4<TScalar>
 public struct Vec32x2<TScalar>
     where TScalar : unmanaged
 {
-    #region Static
-
-    static Vec32x2()
-    {
-        if (sizeof(TScalar) != 4) throw new NotSupportedException($"{typeof(TScalar)} is not 32 bits");
-    }
-
-    #endregion
-
     #region Fields
 
     public Vector128<TScalar> simd;
+
+    #endregion
+
+    #region Ctor
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x2(Vector128<TScalar> simd)
+    {
+        this.simd = (simd.AsInt32() & Vector128.Create(-1, -1, 0, 0)).As<int, TScalar>();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x2(TScalar x, TScalar y)
+    {
+        simd = Vector128.CreateScalar(x).WithElement(1, y);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x2(TScalar broadcast) : this(Vector128.Create(broadcast)) { }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static implicit operator Vec32x2<TScalar>(TScalar broadcast) => new(broadcast);
 
     #endregion
 }
@@ -120,18 +133,31 @@ public struct Vec32x2<TScalar>
 public struct Vec32x3<TScalar>
     where TScalar : unmanaged
 {
-    #region Static
-
-    static Vec32x3()
-    {
-        if (sizeof(TScalar) != 4) throw new NotSupportedException($"{typeof(TScalar)} is not 32 bits");
-    }
-
-    #endregion
-
     #region Fields
 
     public Vector128<TScalar> simd;
+
+    #endregion
+
+    #region Ctor
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x3(Vector128<TScalar> simd)
+    {
+        this.simd = (simd.AsInt32() & Vector128.Create(-1, -1, -1, 0)).As<int, TScalar>();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x3(TScalar x, TScalar y, TScalar z)
+    {
+        simd = Vector128.CreateScalar(x).WithElement(1, y).WithElement(2, z);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x3(TScalar broadcast) : this(Vector128.Create(broadcast)) { }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static implicit operator Vec32x3<TScalar>(TScalar broadcast) => new(broadcast);
 
     #endregion
 }
@@ -139,18 +165,31 @@ public struct Vec32x3<TScalar>
 public struct Vec32x4<TScalar>
     where TScalar : unmanaged
 {
-    #region Static
-
-    static Vec32x4()
-    {
-        if (sizeof(TScalar) != 4) throw new NotSupportedException($"{typeof(TScalar)} is not 32 bits");
-    }
-
-    #endregion
-
     #region Fields
 
     public Vector128<TScalar> simd;
+
+    #endregion
+
+    #region Ctor
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x4(Vector128<TScalar> simd)
+    {
+        this.simd = simd;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x4(TScalar x, TScalar y, TScalar z, TScalar w)
+    {
+        simd = Vector128.CreateScalar(x).WithElement(1, y).WithElement(2, z).WithElement(3, w);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Vec32x4(TScalar broadcast) : this(Vector128.Create(broadcast)) { }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static implicit operator Vec32x4<TScalar>(TScalar broadcast) => new(broadcast);
 
     #endregion
 }
@@ -162,15 +201,6 @@ public struct Vec32x4<TScalar>
 public struct Vec64x2<TScalar>
     where TScalar : unmanaged
 {
-    #region Static
-
-    static Vec64x2()
-    {
-        if (sizeof(TScalar) != 8) throw new NotSupportedException($"{typeof(TScalar)} is not 32 bits");
-    }
-
-    #endregion
-
     #region Fields
 
     public Vector128<TScalar> simd;
@@ -181,15 +211,6 @@ public struct Vec64x2<TScalar>
 public struct Vec64x3<TScalar>
     where TScalar : unmanaged
 {
-    #region Static
-
-    static Vec64x3()
-    {
-        if (sizeof(TScalar) != 8) throw new NotSupportedException($"{typeof(TScalar)} is not 32 bits");
-    }
-
-    #endregion
-
     #region Fields
 
     public Vector256<TScalar> simd;
@@ -200,15 +221,6 @@ public struct Vec64x3<TScalar>
 public struct Vec64x4<TScalar>
     where TScalar : unmanaged
 {
-    #region Static
-
-    static Vec64x4()
-    {
-        if (sizeof(TScalar) != 8) throw new NotSupportedException($"{typeof(TScalar)} is not 32 bits");
-    }
-
-    #endregion
-
     #region Fields
 
     public Vector256<TScalar> simd;
