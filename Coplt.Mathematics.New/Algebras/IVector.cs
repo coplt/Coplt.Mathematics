@@ -41,7 +41,7 @@ public interface IBoolVector<TSelf, TScalar> :
     IVector<TSelf, TScalar>,
     IBoolMatrix<TSelf, TScalar>
     where TSelf : unmanaged, IBoolVector<TSelf>, IBoolVector<TSelf, TScalar>
-    where TScalar : unmanaged;
+    where TScalar : unmanaged, IMask<TScalar>;
 
 #endregion
 

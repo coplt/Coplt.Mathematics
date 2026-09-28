@@ -129,7 +129,7 @@ public interface IBoolMatrix<TSelf, TScalar> :
     IMatrixScalar<TSelf, TScalar>,
     IBoolAlgebra<TSelf, TScalar>
     where TSelf : unmanaged, IBoolMatrix<TSelf>, IBoolMatrix<TSelf, TScalar>
-    where TScalar : unmanaged;
+    where TScalar : unmanaged, IMask<TScalar>;
 
 #endregion
 

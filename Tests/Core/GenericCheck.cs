@@ -1,4 +1,5 @@
 using System.Numerics;
+using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Generics;
 
@@ -137,7 +138,7 @@ internal static class GenericCheck
     /// </summary>
     public static void Bool<T, TScalar>(int length, int sizeByte, bool simd, TScalar one, TScalar two)
         where T : unmanaged, IBoolVector<T, TScalar>
-        where TScalar : unmanaged
+        where TScalar : unmanaged, IMask<TScalar>
     {
         Vector<T, TScalar>(length, sizeByte, simd, one, two);
 
@@ -162,7 +163,7 @@ internal static class GenericCheck
     public static void Mask<T, TBool, TBoolScalar>(T x, T y)
         where T : unmanaged, IComparisonOperators<T, T, TBool>
         where TBool : unmanaged, IBoolVector<TBool, TBoolScalar>
-        where TBoolScalar : unmanaged
+        where TBoolScalar : unmanaged, IMask<TBoolScalar>
     {
         var allTrue = TBool.True;
         var allFalse = TBool.False;
@@ -194,7 +195,7 @@ internal static class GenericCheck
     /// </summary>
     public static void BoolMask<TBool, TBoolScalar>()
         where TBool : unmanaged, IBoolVector<TBool, TBoolScalar>, IComparisonOperators<TBool, TBool, TBool>
-        where TBoolScalar : unmanaged
+        where TBoolScalar : unmanaged, IMask<TBoolScalar>
     {
         var allTrue = TBool.True;
         var allFalse = TBool.False;
