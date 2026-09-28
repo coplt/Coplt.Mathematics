@@ -748,8 +748,10 @@ public partial class VectorGenerator
         // do not become a part of the surface of the type itself.
         for (var i = 0; i < size; i++)
         {
-            // the interface of the size of the vector declares the component of the position of it
-            var algebra = $"Algebras.IVector{size}<{type}, {scalar}>";
+            // the interface of the count of the components declares the component of the position of it, the
+            // interface of a longer vector inherits the component and does not declare it again, so the member
+            // reaches the interface of the shortest vector that declares it
+            var algebra = $"Algebras.IVector{Math.Max(2, i + 1)}Components<{type}, {scalar}>";
             InheritDoc();
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    static {scalar} {algebra}.get_{comp[i]}(in {type} self) => self.{comp[i]};");

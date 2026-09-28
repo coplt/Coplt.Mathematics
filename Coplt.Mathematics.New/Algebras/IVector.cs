@@ -130,9 +130,11 @@ public interface IVector2<TSelf> : IVector<TSelf>
 /// </summary>
 /// <typeparam name="TSelf">The type of the vector itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IVector2<TSelf, TScalar> : IVector2<TSelf>, IVector<TSelf, TScalar>
+public interface IVector2<TSelf, TScalar> : IVector2<TSelf>, IVector<TSelf, TScalar>, IVector2Core<TSelf, TScalar>
     where TSelf : unmanaged, IVector2<TSelf, TScalar>
-    where TScalar : unmanaged
+    where TScalar : unmanaged;
+
+public interface IVector2Core<TSelf, TScalar> : IVector2Components<TSelf, TScalar>
 {
     #region Create
 
@@ -145,7 +147,10 @@ public interface IVector2<TSelf, TScalar> : IVector2<TSelf>, IVector<TSelf, TSca
     public static abstract TSelf Create(TScalar x, TScalar y);
 
     #endregion
+}
 
+public interface IVector2Components<TSelf, TScalar>
+{
     #region Components
 
     /// <summary>
@@ -195,9 +200,11 @@ public interface IVector3<TSelf> : IVector<TSelf>
 /// </summary>
 /// <typeparam name="TSelf">The type of the vector itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IVector3<TSelf, TScalar> : IVector3<TSelf>, IVector<TSelf, TScalar>
+public interface IVector3<TSelf, TScalar> : IVector3<TSelf>, IVector<TSelf, TScalar>, IVector3Core<TSelf, TScalar>
     where TSelf : unmanaged, IVector3<TSelf, TScalar>
-    where TScalar : unmanaged
+    where TScalar : unmanaged;
+
+public interface IVector3Core<TSelf, TScalar> : IVector3Components<TSelf, TScalar>
 {
     #region Create
 
@@ -211,36 +218,11 @@ public interface IVector3<TSelf, TScalar> : IVector3<TSelf>, IVector<TSelf, TSca
     public static abstract TSelf Create(TScalar x, TScalar y, TScalar z);
 
     #endregion
+}
 
+public interface IVector3Components<TSelf, TScalar> : IVector2Components<TSelf, TScalar>
+{
     #region Components
-
-    /// <summary>
-    /// Returns the <c>x</c> component of <paramref name="self"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <returns>The <c>x</c> component</returns>
-    public static abstract TScalar get_x(in TSelf self);
-
-    /// <summary>
-    /// Sets the <c>x</c> component of <paramref name="self"/> to <paramref name="value"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <param name="value">The value of the <c>x</c> component</param>
-    public static abstract void set_x(ref TSelf self, TScalar value);
-
-    /// <summary>
-    /// Returns the <c>y</c> component of <paramref name="self"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <returns>The <c>y</c> component</returns>
-    public static abstract TScalar get_y(in TSelf self);
-
-    /// <summary>
-    /// Sets the <c>y</c> component of <paramref name="self"/> to <paramref name="value"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <param name="value">The value of the <c>y</c> component</param>
-    public static abstract void set_y(ref TSelf self, TScalar value);
 
     /// <summary>
     /// Returns the <c>z</c> component of <paramref name="self"/>
@@ -313,9 +295,11 @@ public interface IVector4<TSelf> : IVector<TSelf>
 /// </summary>
 /// <typeparam name="TSelf">The type of the vector itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IVector4<TSelf, TScalar> : IVector4<TSelf>, IVector<TSelf, TScalar>
+public interface IVector4<TSelf, TScalar> : IVector4<TSelf>, IVector<TSelf, TScalar>, IVector4Core<TSelf, TScalar>
     where TSelf : unmanaged, IVector4<TSelf, TScalar>
-    where TScalar : unmanaged
+    where TScalar : unmanaged;
+
+public interface IVector4Core<TSelf, TScalar> : IVector4Components<TSelf, TScalar>
 {
     #region Create
 
@@ -330,50 +314,11 @@ public interface IVector4<TSelf, TScalar> : IVector4<TSelf>, IVector<TSelf, TSca
     public static abstract TSelf Create(TScalar x, TScalar y, TScalar z, TScalar w);
 
     #endregion
+}
 
+public interface IVector4Components<TSelf, TScalar> : IVector3Components<TSelf, TScalar>
+{
     #region Components
-
-    /// <summary>
-    /// Returns the <c>x</c> component of <paramref name="self"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <returns>The <c>x</c> component</returns>
-    public static abstract TScalar get_x(in TSelf self);
-
-    /// <summary>
-    /// Sets the <c>x</c> component of <paramref name="self"/> to <paramref name="value"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <param name="value">The value of the <c>x</c> component</param>
-    public static abstract void set_x(ref TSelf self, TScalar value);
-
-    /// <summary>
-    /// Returns the <c>y</c> component of <paramref name="self"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <returns>The <c>y</c> component</returns>
-    public static abstract TScalar get_y(in TSelf self);
-
-    /// <summary>
-    /// Sets the <c>y</c> component of <paramref name="self"/> to <paramref name="value"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <param name="value">The value of the <c>y</c> component</param>
-    public static abstract void set_y(ref TSelf self, TScalar value);
-
-    /// <summary>
-    /// Returns the <c>z</c> component of <paramref name="self"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <returns>The <c>z</c> component</returns>
-    public static abstract TScalar get_z(in TSelf self);
-
-    /// <summary>
-    /// Sets the <c>z</c> component of <paramref name="self"/> to <paramref name="value"/>
-    /// </summary>
-    /// <param name="self">The vector</param>
-    /// <param name="value">The value of the <c>z</c> component</param>
-    public static abstract void set_z(ref TSelf self, TScalar value);
 
     /// <summary>
     /// Returns the <c>w</c> component of <paramref name="self"/>
