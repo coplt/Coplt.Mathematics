@@ -32,11 +32,6 @@ public partial class VectorGenerator
 
         var sb = new StringBuilder();
 
-        VectorGenShared.FileHeader(sb, false);
-        sb.AppendLine($"public partial struct {type} :");
-        // a vector without a register has no bits to reach, its interface only declares that
-        sb.AppendLine(reg == 0 ? "    Algebras.Generics.IVectorSoftUnderlying" : $"    Algebras.Generics.IVector{reg}Underlying<{type}>");
-        sb.AppendLine("{");
 
         if (reg != 0)
         {
@@ -91,7 +86,6 @@ public partial class VectorGenerator
             }
         }
 
-        sb.AppendLine("}");
         return sb.ToString();
     }
 }

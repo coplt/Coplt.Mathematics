@@ -86,7 +86,7 @@ public partial class VectorGenerator
     /// <param name="size">The number of components of the vector</param>
     /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>The file, null when the vector has no member at all</returns>
-    private static string? GenAs(Typ typ, int size, bool storeVariant)
+    private static string? GenAs(Typ typ, int size, bool storeVariant, List<string> ifaces)
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         // the register of the vector, a vector without one keeps its components in fields
@@ -107,7 +107,6 @@ public partial class VectorGenerator
 
         var sb = new StringBuilder();
         var first = true;
-        var ifaces = new List<string>();
 
         // a bool vector has no storage variant, the name of it is always the regular one
         string TargetName(Typ target) => VectorGenShared.VecName(target, size, storeVariant && !target.bol);
@@ -124,7 +123,6 @@ public partial class VectorGenerator
             sb.AppendLine($"    {signature}");
         }
 
-        VectorGenShared.FileHeader(sb, false);
         // the members of the group implement the interfaces of the vector, every member of the group has one of
         // them, the short name of a member is the name its interface declares
         foreach (var target in targets)
@@ -139,9 +137,6 @@ public partial class VectorGenerator
         if (size == 3) ifaces.Add($"IVectorAs4<{type}, {type4}>");
         else if (size == 4) ifaces.Add($"IVectorAs3<{type}, {type3}>");
 
-        sb.AppendLine($"public partial struct {type} :");
-        sb.AppendLine($"    {string.Join(",\n    ", ifaces)}");
-        sb.AppendLine("{");
 
         // the as members reinterpret the bits of the vector as another vector of the same group, the name of
         // every member is built from the components of the target. The vector keeps the member of every target on
@@ -223,7 +218,6 @@ public partial class VectorGenerator
                 $"public readonly {regular} to_compute() => ({regular})this;");
         }
 
-        sb.AppendLine("}");
         return sb.ToString();
     }
 
@@ -240,9 +234,16 @@ public partial class VectorGenerator
     /// <param name="size">The number of components of the vector</param>
     /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>The file</returns>
-    private static string GenMathAs(Typ typ, int size, bool storeVariant)
+    private static string? GenMathAs(Typ typ, int size, bool storeVariant)
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
+        // the as member of the math class is emitted beside the one of the vector alone, a vector that has no
+        // member of the group has neither of them
+        var targets = AsTargets(typ, size, storeVariant);
+        var store = storeVariant ? null : VectorGenShared.HasStorageVariant(typ, size) ? VectorGenShared.VecName(typ, size, true) : null;
+        var regular = storeVariant ? VectorGenShared.VecName(typ, size, false) : null;
+        if (targets.Count == 0 && store == null && regular == null) return null;
+
         var (name, _, kind) = AsNames[typ.name];
         var iface = AsInterfaces[kind];
 

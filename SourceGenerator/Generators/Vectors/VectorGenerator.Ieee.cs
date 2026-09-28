@@ -27,14 +27,17 @@ public partial class VectorGenerator
     };
 
     /// <summary>
-    /// Generates the ieee 754 members of the vector described by <paramref name="typ"/>, they implement
-    /// <c>IVectorFloatingPointIeee754</c>: the logarithm, the exponential, the step and the refraction, the face
-    /// forward, the trigonometry, the hyperbolics and the change of the sign, and the checks of the special
-    /// floating point values that produce a bool vector. They are emitted into their own file, so they stay
-    /// separate from the floating point members and the plain arithmetic. The members whose op is reached through
-    /// the algebra of the kind of the value do not live here: the power, the square root and its reciprocal, the
-    /// normalization and the length and the distance of two vectors are the ones of the <c>math</c> class and of
-    /// the extension of a value.
+    /// Generates the members of the legacy <c>IVectorFloatingPointIeee754</c> interface of the vector described
+    /// by <paramref name="typ"/>: the logarithm, the exponential, the step and the refraction, the face forward,
+    /// the trigonometry, the hyperbolics and the change of the sign. The part is the one the migration removes
+    /// once the family of the interface is gone, so it is emitted into the file of the value itself under the
+    /// region of the interface it implements.
+    /// <para>The constants of the kind of a component are the only members of the part that do not belong to the
+    /// interface and stay, they are emitted into a region of their own, which the plain floating point members
+    /// carry as well: they name the representation of the kind and not an operation of it.</para>
+    /// <para>The members whose op is reached through the algebra of the kind of the value do not live here: the
+    /// power, the square root and its reciprocal, the normalization and the length and the distance of two
+    /// vectors are the ones of the <c>math</c> class and of the extension of a value.</para>
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -121,43 +124,11 @@ public partial class VectorGenerator
             sb.AppendLine();
         }
 
-        VectorGenShared.FileHeader(sb, true);
-        sb.AppendLine($"public partial struct {type} :");
-        sb.AppendLine($"    IVectorFloatingPointIeee754<{type}, {scalar}>");
-        sb.AppendLine("{");
 
-        #region constants
-
+        // the members of the legacy ieee 754 interface of the kind of the value, the constants of the kind are
+        // emitted beside the value itself, see GenIeeeConsts
         sb.AppendLine();
-        sb.AppendLine("    #region constants");
-        sb.AppendLine();
-
-        // every component of the value is the constant of the component type, the one of the standard itself. The
-        // smallest positive normal value of the kind of the component is not held by a member of it, so the value
-        // of that constant is written out beside the name of the member the other ones come from
-        foreach (var name in IeeeConsts)
-        {
-            var value = name == MinNormalName ? VectorGenShared.MinNormalValue(scalar) : $"{scalar}.{name}";
-            InheritDoc();
-            sb.AppendLine($"    public static {scalar} Scalar{name}");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => {value};");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-            InheritDoc();
-            sb.AppendLine($"    public static {type} {name}");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => new({value});");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-        }
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
+        sb.AppendLine("    #region IVectorFloatingPointIeee754");
 
         #region log
 
@@ -391,7 +362,94 @@ public partial class VectorGenerator
 
         #endregion
 
-        sb.AppendLine("}");
+        sb.AppendLine("    #endregion");
+
         return VectorDocs.Apply(sb.ToString());
+    }
+
+    /// <summary>
+    /// Generates the file of the members of the legacy interfaces of the vector described by
+    /// <paramref name="typ"/>: the forwarding of the families of the interfaces of the value and the members of
+    /// the legacy ieee 754 interface of it. They are emitted into a file of their own, which the migration
+    /// removes as a whole once the families of the interfaces are gone. The constants of the kind of a component
+    /// are not a part of it, they are the representation of the kind and are emitted beside the value itself.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The file</returns>
+    private static string GenLegacy(Typ typ, int size, bool storeVariant)
+    {
+        var type = VectorGenShared.VecName(typ, size, storeVariant);
+
+        var sb = new StringBuilder();
+
+        VectorGenShared.FileHeader(sb, true);
+        sb.AppendLine($"public partial struct {type}");
+        sb.AppendLine("{");
+        sb.Append(GenIface(typ, size, storeVariant).Trim('\r', '\n'));
+        // the ieee 754 interface is the one of a floating point kind of a number alone
+        if (typ.f)
+        {
+            sb.AppendLine();
+            sb.Append(GenIeee(typ, size, storeVariant).Trim('\r', '\n'));
+        }
+
+        sb.AppendLine();
+        sb.AppendLine("}");
+
+        return VectorDocs.Apply(VectorGenShared.Normalize(sb.ToString()));
+    }
+
+    /// <summary>
+    /// Generates the constants of the ieee 754 standard of the vector described by <paramref name="typ"/>: the
+    /// smallest positive value, the smallest positive normal value, the nan, the two infinities and the negative
+    /// zero of the kind of a component. They are the representation of the kind and not a member of the legacy
+    /// interface of it, so they are emitted beside the value itself.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The constants</returns>
+    private static string GenIeeeConsts(Typ typ, int size, bool storeVariant)
+    {
+        var type = VectorGenShared.VecName(typ, size, storeVariant);
+        var scalar = typ.compType;
+        var attr = "[MethodImpl(256)]";
+
+        var sb = new StringBuilder();
+
+        // the members inherit their documentation from the constants of the kind of a component
+        void InheritDoc() => sb.AppendLine("    /// <inheritdoc/>");
+
+        sb.AppendLine();
+        sb.AppendLine("    #region constants");
+        sb.AppendLine();
+
+        // every component of the value is the constant of the component type, the one of the standard itself. The
+        // smallest positive normal value of the kind of the component is not held by a member of it, so the value
+        // of that constant is written out beside the name of the member the other ones come from
+        foreach (var name in IeeeConsts)
+        {
+            var value = name == MinNormalName ? VectorGenShared.MinNormalValue(scalar) : $"{scalar}.{name}";
+            InheritDoc();
+            sb.AppendLine($"    public static {scalar} Scalar{name}");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => {value};");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+            InheritDoc();
+            sb.AppendLine($"    public static {type} {name}");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        {attr}");
+            sb.AppendLine($"        get => new({value});");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        sb.AppendLine("    #endregion");
+
+        return sb.ToString();
     }
 }

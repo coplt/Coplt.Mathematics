@@ -21,13 +21,6 @@ public partial class VectorGenerator
         var boolType = $"b{typ.size * 8}v{size}";
 
         var sb = new StringBuilder();
-        VectorGenShared.FileHeader(sb, false);
-        sb.AppendLine($"public partial struct {type} :");
-        // the rounding up to the next power of two is only meaningful for a vector that has no sign
-        sb.AppendLine(typ.sig
-            ? $"    IVectorInteger<{type}, {boolType}>"
-            : $"    IVectorUnsignedInteger<{type}, {boolType}>");
-        sb.AppendLine("{");
 
         #region is_pow2
 
@@ -72,7 +65,6 @@ public partial class VectorGenerator
             #endregion
         }
 
-        sb.AppendLine("}");
         return VectorDocs.Apply(sb.ToString());
     }
 }

@@ -81,9 +81,6 @@ public partial class VectorGenerator
 
         // the documentation of the type is carried by the declaration of the base members, only one of the
         // partial declarations of a type may have it
-        VectorGenShared.FileHeader(sb, true);
-        sb.AppendLine($"public partial struct {type}");
-        sb.AppendLine("{");
 
         #region operators
 
@@ -186,7 +183,6 @@ public partial class VectorGenerator
 
         #endregion
 
-        sb.AppendLine("}");
         sb.AppendLine();
 
         return VectorDocs.Apply(sb.ToString());

@@ -196,7 +196,7 @@ public partial class VectorGenerator
                           new List<string> { type }));
         }
 
-        VectorGenShared.FileHeader(sb, false, true);
+        VectorGenShared.FileHeader(sb, true, true);
         sb.AppendLine("/// <summary>");
         sb.AppendLine($"/// <c>{type}</c> is a vector of {size} <see cref=\"{scalar}\"/> components");
         if (pad || simd)
@@ -247,6 +247,25 @@ public partial class VectorGenerator
         // a signed vector reaches the negative of every whole number of the vector a column of its matrix view
         // is as well
         if (typ.sig) ifaces.Add($"Algebras.ISignedNumberMatrixVector<{type}, {type}>");
+
+        // the members of the parts that are a part of the value itself are emitted into the declaration of the
+        // value as well, so every one of them is asked for its members and the interfaces it implements, its
+        // members are appended into the declaration below
+        var underlyingMembers = GenUnderlying(typ, size, storeVariant);
+        ifaces.Add(underlying == 0
+            ? "Algebras.Generics.IVectorSoftUnderlying"
+            : $"Algebras.Generics.IVector{underlying}Underlying<{type}>");
+        var ctorMembers = GenCtor(typ, size, storeVariant, ifaces);
+        var arithMembers = typ.arith ? GenArith(typ, size, storeVariant) : null;
+        var intMembers = typ.arith && typ.i ? GenInt(typ, size, storeVariant) : null;
+        if (intMembers != null) ifaces.Add(typ.sig ? $"IVectorInteger<{type}, {boolType}>" : $"IVectorUnsignedInteger<{type}, {boolType}>");
+        var floatMembers = typ.arith && typ.f ? GenFloat(typ, size, storeVariant) : null;
+        var ieeeConstsMembers = typ.arith && typ.f ? GenIeeeConsts(typ, size, storeVariant) : null;
+        if (ieeeConstsMembers != null) ifaces.Add($"IVectorFloatingPointIeee754<{type}, {scalar}>");
+        var asMembers = GenAs(typ, size, storeVariant, ifaces);
+        var convMembers = GenConv(typ, size, storeVariant);
+        var selectMembers = GenSelect(typ, size, storeVariant);
+        ifaces.Add($"IVectorSelect<{type}, {boolType}>");
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
         sb.AppendLine("{");
@@ -1114,11 +1133,48 @@ public partial class VectorGenerator
 
         // the members that dispatch the value of the vector to a visitor, a mask has none of them and they are
         // a part of the file of the base members of the vector
+        // every part that is emitted into the declaration of the value is separated from the part before it by
+        // an empty line and it is named by a region of its own, so the members of the value stay readable
+        void Part(string? members, string name)
+        {
+            if (members == null) return;
+            // a part is separated from the one before it by an empty line, the region of it holds an empty line
+            // after the name of it and the line of the last member of the part is closed at its end as well
+            sb.AppendLine();
+            sb.AppendLine($"    #region {name}");
+            sb.AppendLine();
+            sb.Append(members.Trim('\r', '\n'));
+            sb.AppendLine();
+            sb.AppendLine("    #endregion");
+            sb.AppendLine();
+        }
+
+        // the region of the dispatch is emitted by the part itself, it is separated from the one before it here
+        sb.AppendLine();
         var dispatch = GenDispatch(typ, size, storeVariant);
-        if (dispatch != null) sb.Append(dispatch);
+        if (dispatch != null)
+        {
+            sb.Append(dispatch.Trim('\r', '\n'));
+            sb.AppendLine();
+        }
+
+        // the members of the parts above are a part of the value itself, so they are appended into its
+        // declaration as well. The forwarding of the legacy families and the members of the legacy ieee 754
+        // interface are emitted into a file of their own, see Initialize, the value itself does not carry them
+        Part(underlyingMembers, "underlying");
+        Part(ctorMembers, "ctor");
+        Part(arithMembers, "arith");
+        Part(intMembers, "int");
+        Part(floatMembers, "float");
+        // the constants of the ieee 754 standard are the representation of the kind of a component and not a
+        // member of the legacy interface, so they stay beside the value itself
+        Part(ieeeConstsMembers, "constants");
+        Part(asMembers, "as");
+        Part(convMembers, "conv");
+        Part(selectMembers, "select");
 
         sb.AppendLine("}");
 
-        return VectorDocs.Apply(sb.ToString());
+        return VectorDocs.Apply(VectorGenShared.Normalize(sb.ToString()));
     }
 }

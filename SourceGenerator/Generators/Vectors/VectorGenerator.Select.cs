@@ -53,10 +53,6 @@ public partial class VectorGenerator
         var other = v64 ? VectorGenShared.Load64("f.", typ.simdComp) : "f.vector";
         var selected = FromMask($"{maskVecName}.ConditionalSelect({mask}, {ToMask(self)}, {ToMask(other)})");
 
-        VectorGenShared.FileHeader(sb, false);
-        sb.AppendLine($"public partial struct {type} :");
-        sb.AppendLine($"    IVectorSelect<{type}, {boolType}>");
-        sb.AppendLine("{");
 
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine("    [MethodImpl(256)]");
@@ -85,7 +81,6 @@ public partial class VectorGenerator
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {type} select(in {boolType} c, in {type} t, in {type} f) => t.select(c, f);");
-        sb.AppendLine("}");
 
         // the member implements the interface of the select, its documentation is the one of the operation
         return VectorDocs.Apply(sb.ToString());

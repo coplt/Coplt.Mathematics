@@ -49,7 +49,7 @@ public partial class VectorGenerator
     /// <param name="size">The number of components of the vector</param>
     /// <param name="storeVariant">True for the storage variant of the vector</param>
     /// <returns>The file</returns>
-    private static string GenCtor(Typ typ, int size, bool storeVariant)
+    private static string GenCtor(Typ typ, int size, bool storeVariant, List<string> ifaces)
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;
@@ -90,7 +90,7 @@ public partial class VectorGenerator
         // the interfaces the members implement, they are declared by the part that holds the members instead of
         // the base part because the base part has no member of them. The interface of a vector of 2 components
         // declares the create of it itself, so this part carries no interface of its own for it
-        var ifaces = size switch
+        var ctorIfaces = size switch
         {
             2 => new List<string>(),
             3 => new List<string>
@@ -187,14 +187,6 @@ public partial class VectorGenerator
 
         var sb = new StringBuilder();
 
-        VectorGenShared.FileHeader(sb, false);
-        sb.AppendLine(ifaces.Count == 0 ? $"public partial struct {type}" : $"public partial struct {type} :");
-        for (var i = 0; i < ifaces.Count; i++)
-        {
-            sb.AppendLine($"    {ifaces[i]}" + (i == ifaces.Count - 1 ? "" : ","));
-        }
-
-        sb.AppendLine("{");
 
         // the constructor of a member that creates a vector from a part of a shorter one forwards to the member,
         // the member below holds the construction of the vector
@@ -239,7 +231,6 @@ public partial class VectorGenerator
 
         sb.AppendLine();
         sb.AppendLine("    #endregion");
-        sb.AppendLine("}");
         return sb.ToString();
     }
 }

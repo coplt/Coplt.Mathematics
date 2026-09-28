@@ -10,8 +10,8 @@ public partial class VectorGenerator
     /// The vector keeps the member of every operation on itself, so a caller of it does not have to name the
     /// type of the vector at all, and the interface declares the same operations as static members that take
     /// the vector as a parameter, which is the form a caller that only knows a type parameter can use. Every
-    /// member below is the forwarding of the one of the vector to the other one, they are emitted into their
-    /// own file.
+    /// member below is the forwarding of the one of the vector to the other one, they are emitted into the file
+    /// of the value itself, grouped by the legacy interface of the family of the member.
     /// <para>The parameter list of every member follows the legacy implementation, so the parameter that the
     /// member of the vector is called on is the first one of it, beside the few members whose legacy form has
     /// it in another position</para>
@@ -74,22 +74,26 @@ public partial class VectorGenerator
         };
 
         var sb = new StringBuilder();
-        VectorGenShared.FileHeader(sb, false);
-        sb.AppendLine($"public partial struct {type}");
-        sb.AppendLine("{");
 
+        // the members are the forwarding of the legacy interfaces of the kind of the value, so every family of
+        // them is named by the region of the interface it implements
+        var family = "";
         var first = true;
         foreach (var (kind, member) in members)
         {
             if (!Implements(typ, size, kind)) continue;
-            if (first)
+            var name = Family(kind);
+            if (name != family)
             {
-                first = false;
-            }
-            else
-            {
+                if (family.Length != 0) sb.AppendLine("    #endregion");
+                family = name;
+                first = true;
                 sb.AppendLine();
+                sb.AppendLine($"    #region {name}");
             }
+
+            if (!first) sb.AppendLine();
+            first = false;
 
             var text = member.Replace("{type}", type).Replace("{scalar}", scalar).Replace("{bool}", boolType);
             sb.AppendLine("    /// <inheritdoc/>");
@@ -97,9 +101,19 @@ public partial class VectorGenerator
             sb.AppendLine($"    public static {text}");
         }
 
-        sb.AppendLine("}");
+        if (family.Length != 0) sb.AppendLine("    #endregion");
+
         return VectorDocs.Apply(sb.ToString());
     }
+
+    /// <summary>
+    /// Returns the name of the legacy interface a member of the kind belongs to.
+    /// </summary>
+    private static string Family(char kind) => kind switch
+    {
+        'f' => "IVectorFloatingPointIeee754",
+        _ => "IVectorInteger",
+    };
 
     /// <summary>
     /// True when the vector described by <paramref name="typ"/> implements the kind of the interface a member

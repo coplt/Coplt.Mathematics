@@ -60,9 +60,6 @@ public partial class VectorGenerator
         var width = 8 * typ.size;
 
         var sb = new StringBuilder();
-        VectorGenShared.FileHeader(sb, false);
-        sb.AppendLine($"public partial struct {type}");
-        sb.AppendLine("{");
 
         foreach (var (kind, target) in targets)
         {
@@ -127,7 +124,6 @@ public partial class VectorGenerator
             sb.AppendLine("    }");
         }
 
-        sb.AppendLine("}");
         return sb.ToString();
     }
 

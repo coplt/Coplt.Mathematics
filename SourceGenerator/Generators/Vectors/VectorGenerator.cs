@@ -18,8 +18,11 @@ namespace Coplt.Analyzers.Generators;
 /// <c>GenIeee</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
 /// <c>GenConv</c>, the as members of the math class by <c>GenMathAs</c> and
-/// the select members by <c>GenSelect</c>, every part lives in its own file. The converter of a vector is not
-/// generated: every vector of a count of components carries the same generic converter, which names the type
+/// the select members by <c>GenSelect</c>. The members that replace the components, the ones of the legacy
+/// insert api, the swizzle members and the shuffle members are emitted into a file of their own, the members of
+/// every other part are emitted into the file of the type itself, see <c>Initialize</c>. The converter of a
+/// vector is not generated: every vector of a count of components carries the same generic converter, which
+/// names the type
 /// of the vector and the type of a single component of it. The converters live in <c>Coplt.Mathematics.Json</c>
 /// so that the types of <c>System.Text.Json</c> are not a part of the surface of <c>Coplt.Mathematics</c>.
 /// </summary>
@@ -48,24 +51,34 @@ public partial class VectorGenerator : IIncrementalGenerator
                     {
                         var storeVariant = variant == 1;
                         var name = VectorGenShared.VecName(typ, size, storeVariant);
+                        // the members of the type that are a part of the value itself are emitted into one file,
+                        // which is the file of the type, see Gen
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.g.cs",
                             SourceText.From(Gen(typ, size, storeVariant), Encoding.UTF8));
-                        // the members that reach the bits of the value implement the underlying interface of the
-                        // width of the register of the vector
-                        ctx.AddSource(
-                            $"{VecNamespace}.{name}.underlying.g.cs",
-                            SourceText.From(GenUnderlying(typ, size, storeVariant), Encoding.UTF8));
-                        // the members that dispatch the value of the vector implement the
-                        // INumberAlgebraDispatch interface, they are a part of the base members of the vector
-                        // the members that create the vector out of another one implement the create members of
-                        // the interfaces of the algebra library, they are emitted into their own file so they
-                        // stay separate from the members of the base type
-                        ctx.AddSource(
-                            $"{VecNamespace}.{name}.ctor.g.cs",
-                            SourceText.From(GenCtor(typ, size, storeVariant), Encoding.UTF8));
+                        // the forwarding of the legacy families of the interfaces of the value and the members of
+                        // the legacy ieee 754 interface of it are emitted into a file of their own, which the
+                        // migration removes as a whole
+                        if (typ.arith)
+                        {
+                            ctx.AddSource(
+                                $"{VecNamespace}.{name}.legacy.g.cs",
+                                SourceText.From(GenLegacy(typ, size, storeVariant), Encoding.UTF8));
+                        }
+
+                        // the as member of the kind of the vector is a member of the math class as well, it
+                        // forwards the call to the value itself, the forwarding of every target vector lives in
+                        // the extension class of its own
+                        var mathAs = GenMathAs(typ, size, storeVariant);
+                        if (mathAs != null)
+                        {
+                            ctx.AddSource(
+                                $"{VecNamespace}.ex_{name}.g.cs",
+                                SourceText.From(mathAs, Encoding.UTF8));
+                        }
+
                         // the members that replace the components of the vector implement the IVectorReplace
-                        // interfaces, they are emitted into their own file as well
+                        // interfaces, they are long enough to be kept in a file of their own
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.replace.g.cs",
                             SourceText.From(GenReplace(typ, size, storeVariant), Encoding.UTF8));
@@ -80,8 +93,12 @@ public partial class VectorGenerator : IIncrementalGenerator
                                 SourceText.From(insert, Encoding.UTF8));
                         }
 
-                        // the shuffle members implement the IVectorShuffle interface, they combine two
-                        // vectors of 4 components and a shorter vector has no member of them
+                        // the swizzle members implement the swizzle interfaces, they are kept in a file of their own
+                        ctx.AddSource(
+                            $"{VecNamespace}.{name}.swizzle.g.cs",
+                            SourceText.From(GenSwizzle(typ, size, storeVariant), Encoding.UTF8));
+                        // the shuffle members implement the IVectorShuffle interface, they combine two vectors of
+                        // 4 components and a shorter vector has no member of them
                         var shuffle = GenShuffle(typ, size, storeVariant);
                         if (shuffle != null)
                         {
@@ -89,83 +106,6 @@ public partial class VectorGenerator : IIncrementalGenerator
                                 $"{VecNamespace}.{name}.shuffle.g.cs",
                                 SourceText.From(shuffle, Encoding.UTF8));
                         }
-
-                        // the swizzle members implement the swizzle interfaces, they are emitted into their own file
-                        ctx.AddSource(
-                            $"{VecNamespace}.{name}.swizzle.g.cs",
-                            SourceText.From(GenSwizzle(typ, size, storeVariant), Encoding.UTF8));
-                        // the arithmetic members implement the IVectorArithmetic interfaces, they are emitted
-                        // into their own file so they stay separate from the members of the base type
-                        if (typ.arith)
-                        {
-                            ctx.AddSource(
-                                $"{VecNamespace}.{name}.arith.g.cs",
-                                SourceText.From(GenArith(typ, size, storeVariant), Encoding.UTF8));
-                        }
-
-                        // the integer members implement the IVectorInteger interfaces, they are emitted into
-                        // their own file as well
-                        if (typ.arith && typ.i)
-                        {
-                            ctx.AddSource(
-                                $"{VecNamespace}.{name}.int.g.cs",
-                                SourceText.From(GenInt(typ, size, storeVariant), Encoding.UTF8));
-                        }
-
-                        // the members that implement the interfaces are the forwarding of the members of the
-                        // vector, they are emitted into their own file as well
-                        if (typ.arith)
-                        {
-                            ctx.AddSource(
-                                $"{VecNamespace}.{name}.iface.g.cs",
-                                SourceText.From(GenIface(typ, size, storeVariant), Encoding.UTF8));
-                        }
-
-                        // the floating point members are the math constants of the kind of a floating point
-                        // number, they are emitted into their own file as well
-                        if (typ.arith && typ.f)
-                        {
-                            ctx.AddSource(
-                                $"{VecNamespace}.{name}.float.g.cs",
-                                SourceText.From(GenFloat(typ, size, storeVariant), Encoding.UTF8));
-                            // the ieee 754 members implement the IVectorFloatingPointIeee754 interfaces
-                            ctx.AddSource(
-                                $"{VecNamespace}.{name}.ieee.g.cs",
-                                SourceText.From(GenIeee(typ, size, storeVariant), Encoding.UTF8));
-                        }
-
-                        // the as members and the conversion between the vector and its storage variant are
-                        // members of the vector, they are emitted into their own file as well, a type that
-                        // has neither of them has no file at all
-                        var cast = GenAs(typ, size, storeVariant);
-                        if (cast != null)
-                        {
-                            ctx.AddSource(
-                                $"{VecNamespace}.{name}.as.g.cs",
-                                SourceText.From(cast, Encoding.UTF8));
-                            // the as member of the kind of the vector is also a member of the math class, it
-                            // forwards the call to the vector itself, the forwarding of every target vector
-                            // lives in the extension class of its own
-                            ctx.AddSource(
-                                $"{VecNamespace}.ex_{name}.g.cs",
-                                SourceText.From(GenMathAs(typ, size, storeVariant), Encoding.UTF8));
-                        }
-
-                        // the conversions of the vector into the vectors of the same size that have another
-                        // component type are emitted into their own file as well, a type that has no
-                        // conversion has no file at all
-                        var conv = GenConv(typ, size, storeVariant);
-                        if (conv != null)
-                        {
-                            ctx.AddSource(
-                                $"{VecNamespace}.{name}.conv.g.cs",
-                                SourceText.From(conv, Encoding.UTF8));
-                        }
-
-                        // the select member implements IVectorSelect, it is emitted into its own file as well
-                        ctx.AddSource(
-                            $"{VecNamespace}.{name}.select.g.cs",
-                            SourceText.From(GenSelect(typ, size, storeVariant), Encoding.UTF8));
                     }
                 }
             }

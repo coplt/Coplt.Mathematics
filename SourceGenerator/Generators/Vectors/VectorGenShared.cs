@@ -53,6 +53,40 @@ internal static class VectorGenShared
     public static string From128(string expr) => $"new() {{ {Vector64Field} = ({expr}).AsUInt64()[0] }}";
 
     /// <summary>
+    /// Returns the members of a generated file with the empty lines of it normalized: no two empty lines follow
+    /// each other and the marker of a region is separated from the lines around it by an empty line.
+    /// </summary>
+    /// <param name="text">The members of the file</param>
+    /// <returns>The normalized members</returns>
+    public static string Normalize(string text)
+    {
+        var sb = new StringBuilder();
+        // the last line of the output is empty and the last one is the marker of a region
+        var empty = false;
+        var marker = false;
+        foreach (var line in text.Replace("\r\n", "\n").Split('\n'))
+        {
+            if (line.Length == 0)
+            {
+                if (empty) continue;
+                empty = true;
+                sb.AppendLine();
+                continue;
+            }
+
+            var isMarker = line.TrimStart().StartsWith("#region") || line.TrimStart().StartsWith("#endregion");
+            // a region marker stands between two empty lines, so a blank line opens it and the members after it
+            // start under another one
+            if (!empty && (isMarker || marker)) sb.AppendLine();
+            marker = isMarker;
+            empty = false;
+            sb.AppendLine(line);
+        }
+
+        return sb.ToString();
+    }
+
+    /// <summary>
     /// Emits the header every generated vector file starts with.
     /// </summary>
     /// <param name="sb">The builder of the file</param>

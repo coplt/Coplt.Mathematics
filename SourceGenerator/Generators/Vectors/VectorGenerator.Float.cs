@@ -57,9 +57,6 @@ public partial class VectorGenerator
             _ => $"({scalar})({value}f)",
         };
 
-        VectorGenShared.FileHeader(sb, true);
-        sb.AppendLine($"public partial struct {type}");
-        sb.AppendLine("{");
 
         #region constants
 
@@ -110,7 +107,6 @@ public partial class VectorGenerator
 
         #endregion
 
-        sb.AppendLine("}");
         return VectorDocs.Apply(sb.ToString());
     }
 }
