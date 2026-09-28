@@ -134,7 +134,50 @@ internal static class VectorGenShared
     }
 
     /// <summary>
-    /// True when the vector has a storage variant. Only the 2 component vectors whose register is 64 bits wide
+    /// The type of every value of the algebra by the name of it, the conversions of <see cref="Typ.ExplicitConverts"/>
+    /// and <see cref="Typ.ImplicitConverts"/> name the target of a conversion with it.
+    /// </summary>
+    public static readonly Dictionary<string, Typ> ConvTypes = BuildConvTypes();
+
+    private static Dictionary<string, Typ> BuildConvTypes()
+    {
+        var map = new Dictionary<string, Typ>();
+        foreach (var typ in Typ.Typs) map[typ.name] = typ;
+        return map;
+    }
+
+    /// <summary>
+    /// Returns the conversions of the kind of a component: the target of every conversion of
+    /// <see cref="Typ.ExplicitConverts"/> and <see cref="Typ.ImplicitConverts"/> of it beside the name of the kind
+    /// of the conversion, which is <c>explicit</c> or <c>implicit</c>. Every value that names the kind of a
+    /// component converts the same way, so a vector and a matrix of the kind of a component share the table.
+    /// </summary>
+    /// <param name="typ">The type of the component</param>
+    /// <returns>The conversions of the kind of the component</returns>
+    public static List<(string Kind, Typ Target)> ConvTargets(Typ typ)
+    {
+        var targets = new List<(string Kind, Typ Target)>();
+        if (Typ.ExplicitConverts.TryGetValue(typ.name, out var explicitTargets))
+        {
+            foreach (var name in explicitTargets)
+            {
+                if (ConvTypes.TryGetValue(name, out var target)) targets.Add(("explicit", target));
+            }
+        }
+
+        if (Typ.ImplicitConverts.TryGetValue(typ.name, out var implicitTargets))
+        {
+            foreach (var name in implicitTargets)
+            {
+                if (ConvTypes.TryGetValue(name, out var target)) targets.Add(("implicit", target));
+            }
+        }
+
+        return targets;
+    }
+
+    /// <summary>
+    /// True when the vector has a storage variant. Only the 2 component vectors whose value is 64 bits wide
     /// and the 3 component ones have one: the first ones keep the exact bits of their value instead of a padded
     /// 128 bit register, the last ones keep their components in fields and have no register at all.
     /// </summary>

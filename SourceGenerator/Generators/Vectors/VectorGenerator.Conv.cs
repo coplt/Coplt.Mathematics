@@ -7,19 +7,6 @@ namespace Coplt.Analyzers.Generators;
 public partial class VectorGenerator
 {
     /// <summary>
-    /// The type of every vector by its name, the conversions of <see cref="Typ.ExplicitConverts"/> and
-    /// <see cref="Typ.ImplicitConverts"/> name their target with it.
-    /// </summary>
-    private static readonly Dictionary<string, Typ> ConvTypes = BuildConvTypes();
-
-    private static Dictionary<string, Typ> BuildConvTypes()
-    {
-        var map = new Dictionary<string, Typ>();
-        foreach (var typ in Typ.Typs) map[typ.name] = typ;
-        return map;
-    }
-
-    /// <summary>
     /// Generates the conversions of the vector described by <paramref name="typ"/> into the vectors that have the
     /// same number of components and another component type: the target of every conversion of
     /// <see cref="Typ.ExplicitConverts"/> and <see cref="Typ.ImplicitConverts"/>. A conversion is an operator of
@@ -33,22 +20,7 @@ public partial class VectorGenerator
     /// <returns>The conversions of the vector or null when it has none</returns>
     private static string? GenConv(Typ typ, int size, bool storeVariant)
     {
-        var targets = new List<(string Kind, Typ Target)>();
-        if (Typ.ExplicitConverts.TryGetValue(typ.name, out var explicitTargets))
-        {
-            foreach (var name in explicitTargets)
-            {
-                if (ConvTypes.TryGetValue(name, out var target)) targets.Add(("explicit", target));
-            }
-        }
-
-        if (Typ.ImplicitConverts.TryGetValue(typ.name, out var implicitTargets))
-        {
-            foreach (var name in implicitTargets)
-            {
-                if (ConvTypes.TryGetValue(name, out var target)) targets.Add(("implicit", target));
-            }
-        }
+        var targets = VectorGenShared.ConvTargets(typ);
 
         targets.RemoveAll(a => storeVariant && !VectorGenShared.HasStorageVariant(a.Target, size));
         if (targets.Count == 0) return null;

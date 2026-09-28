@@ -116,3 +116,54 @@ public class TestVectorConversions
         }
     }
 }
+
+/// <summary>
+/// Checks the conversions between the matrices of the same shape. Every column of a matrix is converted by the
+/// conversion of the vector that the column is, so a component of a float matrix is converted and the one of a
+/// matrix that only changes the width of a component keeps the bits of it. The storage variant of a matrix
+/// converts into the storage variants of the same shape alone.
+/// </summary>
+public class TestMatrixConversions
+{
+    [Test]
+    public void Implicit()
+    {
+        double2x2 d2 = new float2x2(new float2(1, 2), new float2(3, 4));
+        double3x3 d3 = new int3x3(new int3(1, 2, 3), new int3(4, 5, 6), new int3(7, 8, 9));
+        long3x2 l3 = new int3x2(new int3(1, 2, 3), new int3(4, 5, 6));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((d2.c0.x, d2.c0.y, d2.c1.x, d2.c1.y), Is.EqualTo((1d, 2d, 3d, 4d)));
+            Assert.That((d3.c0.x, d3.c2.z), Is.EqualTo((1d, 9d)));
+            Assert.That((l3.c0.z, l3.c1.x), Is.EqualTo((3L, 4L)));
+        }
+    }
+
+    [Test]
+    public void Explicit()
+    {
+        var i2 = (int2x2)new float2x2(new float2(1.9f, -2.9f), new float2(3.9f, -4.9f));
+        var u3 = (uint3x3)new int3x3(new int3(-1, 2, 3), new int3(4, 5, 6), new int3(7, 8, 9));
+        var h2 = (half2x2)new float2x2(new float2(1, 2), new float2(3, 4));
+        using (Assert.EnterMultipleScope())
+        {
+            // the component of the float matrix is converted toward zero
+            Assert.That((i2.c0.x, i2.c0.y, i2.c1.x, i2.c1.y), Is.EqualTo((1, -2, 3, -4)));
+            Assert.That((u3.c0.x, u3.c2.z), Is.EqualTo((4294967295u, 9u)));
+            Assert.That((h2.c0.x, h2.c1.y), Is.EqualTo(((Half)1, (Half)4)));
+        }
+    }
+
+    [Test]
+    public void StorageVariant()
+    {
+        var i2 = (int2x2s)new float2x2s(new float2s(1.9f, -2.9f), new float2s(3.9f, -4.9f));
+        var i3 = (int3x3s)new float3x3s(new float3s(1.9f, -2.9f, 3.9f), new float3s(4, 5, 6),
+            new float3s(7, 8, 9));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((i2.c0.x, i2.c0.y, i2.c1.x, i2.c1.y), Is.EqualTo((1, -2, 3, -4)));
+            Assert.That((i3.c0.x, i3.c0.y, i3.c0.z), Is.EqualTo((1, -2, 3)));
+        }
+    }
+}

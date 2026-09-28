@@ -8,7 +8,8 @@ namespace Tests.Core;
 /// The storage variants of the vectors keep the same components as the regular vectors in a narrower storage: the
 /// variant of a 2 component vector keeps the exact 64 bits of its value instead of a padded 128 bit register, the
 /// one of a 3 component vector keeps its components in fields and has no register at all. Both convert into each
-/// other and keep the components of the value.
+/// other and keep the components of the value. The storage variant of a matrix keeps its columns in the storage
+/// variants of the vectors, the two of them convert into each other the same way and keep every column.
 /// </summary>
 public class TestStorageVariant
 {
@@ -150,6 +151,26 @@ public class TestStorageVariant
             Assert.That((back.x, back.y, back.z), Is.EqualTo((1UL, 2UL, 3UL)));
             Assert.That((regular.x, regular.y, regular.z), Is.EqualTo((1UL, 2UL, 3UL)));
             Assert.That(regular.vector.GetElement(3), Is.EqualTo(0UL));
+        }
+    }
+
+    [Test]
+    public void Matrix()
+    {
+        var v = new float2x2s(new float2s(1, 2), new float2s(3, 4));
+        float2x2 regular = v;
+        float2x2s back = regular;
+        var wide = new float3x2s(new float3s(1, 2, 3), new float3s(4, 5, 6));
+
+        using (Assert.EnterMultipleScope())
+        {
+            // every column of the value is kept by the conversion of the two of them
+            Assert.That((back.c0.x, back.c0.y, back.c1.x, back.c1.y), Is.EqualTo((1f, 2f, 3f, 4f)));
+            Assert.That((regular.c0.x, regular.c0.y, regular.c1.x, regular.c1.y), Is.EqualTo((1f, 2f, 3f, 4f)));
+            // the conversion of the two of them is reachable by name as well
+            Assert.That(regular.to_storage().c1.y, Is.EqualTo(4f));
+            Assert.That(v.to_compute().c0.y, Is.EqualTo(2f));
+            Assert.That(wide.to_compute().c1.z, Is.EqualTo(6f));
         }
     }
 }

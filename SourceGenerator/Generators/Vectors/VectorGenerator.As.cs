@@ -142,7 +142,6 @@ public partial class VectorGenerator
             else if (size == 4) ifaces.Add($"IVectorAs3<{type}, {type3}>");
         }
 
-
         // the as members reinterpret the bits of the vector as another vector of the same group, the name of
         // every member is built from the components of the target. The vector keeps the member of every target on
         // itself and the interface declares it as a static member that takes the vector as its parameter, so
