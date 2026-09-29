@@ -114,6 +114,13 @@ public partial class VectorGenerator
         // type of a component of the value it reaches: the level of the kind of the component decides the member
         // of the visitor that reaches the value
         Member(type, self, "Map_Self<V>", $"in {type} self", $"V.Map_{level}<{type}, {scalar}>(self)");
+        // a member that reaches the bool value of the vector hands the value over the same way every other member
+        // that takes the value alone does: the register of the vector when it keeps its value in one and the
+        // vector itself when it has no register
+        Member("bool", self, "Bool<V>", $"in {type} self", one);
+        // a member that takes a component of the vector alone does not reach the value at all, so the visitor
+        // reaches the component of every value of the kind of it the same way
+        Member("bool", withScalar, "Bool<V>", $"{scalar} a", scalarOne);
 
         sb.AppendLine("    #endregion");
         sb.AppendLine();

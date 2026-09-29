@@ -39,13 +39,39 @@ internal static class Utils
         condition ? TScalar.AllBitsSet : TScalar.Zero;
 
     /// <summary>
-    /// True when a value is not the zero of its kind, which is what a component of a mask that says that a
+    /// True when the bits of a value are not all zero, which is what a component of a mask that says that a
     /// condition holds is
+    /// <para>A mask is a value of the kind of the values that a condition is about and the component of it that
+    /// says that the condition holds is the all bits set value of the kind, so a component holds when the bits
+    /// of it are not all zero and the all bits zero value of the kind is the only one of it that does not. The
+    /// bits of the value are the ones that decide it: a floating point kind is read as the bits of the value,
+    /// so the value of a kind that has only the sign bit of it set holds just as well, and the kinds that are
+    /// not floating point are compared with the all bits zero value of the kind, which a value that has a bit
+    /// set never is.</para>
+    /// <para>The value of a floating point kind is read as a vector that keeps it in the lane of it and leaves
+    /// the ones that follow it at zero: the lane that keeps the value is compared with the all bits zero lane
+    /// and the ones that follow it are compared with the all bits set lane, which the zeroes they are do not
+    /// match, so the bits of the value alone decide the answer. The value of the half kind is read as the 16
+    /// bits of it.</para>
     /// </summary>
     /// <typeparam name="TScalar">The type of the value</typeparam>
     /// <param name="value">The value</param>
-    /// <returns>True when the value is not the zero of its kind</returns>
+    /// <returns>True when the bits of the value are not all zero</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsTrue<TScalar>(TScalar value) where TScalar : unmanaged, IBinaryNumber<TScalar> =>
-        !TScalar.IsZero(value);
+    public static bool IsTrue<TScalar>(TScalar value) where TScalar : unmanaged, IBinaryNumber<TScalar>
+    {
+        if (typeof(TScalar) == typeof(float))
+        {
+            return !Vector128.EqualsAny(Vector128.CreateScalar(value).AsUInt32(), Vector128.Create(0, -1, -1, -1).AsUInt32());
+        }
+        if (typeof(TScalar) == typeof(double))
+        {
+            return !Vector128.EqualsAny(Vector128.CreateScalar(value).AsUInt64(), Vector128.Create(0, -1).AsUInt64());
+        }
+        if (typeof(TScalar) == typeof(half))
+        {
+            return Unsafe.BitCast<TScalar, ushort>(value) != 0;
+        }
+        return value != TScalar.Zero;
+    }
 }

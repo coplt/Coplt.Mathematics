@@ -12,7 +12,25 @@ namespace Tests;
 
 public static class ViewJit
 {
-    public static float3 Some1(in float3 a, in float3 b) => foo.min(a, b);
+    public static bool Some1(float a) => IsTrue(a);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsTrue<TScalar>(TScalar value) where TScalar : unmanaged, IBinaryNumber<TScalar>
+    {
+        if (typeof(TScalar) == typeof(float))
+        {
+            return !Vector128.EqualsAny(Vector128.CreateScalar(value).AsUInt32(), Vector128.Create(0, -1, -1, -1).AsUInt32());
+        }
+        if (typeof(TScalar) == typeof(double))
+        {
+            return !Vector128.EqualsAny(Vector128.CreateScalar(value).AsUInt64(), Vector128.Create(0, -1).AsUInt64());
+        }
+        if (typeof(TScalar) == typeof(Half))
+        {
+            return Unsafe.BitCast<TScalar, ushort>(value) != 0;
+        }
+        return value != TScalar.Zero;
+    }
 }
 
 public static class foo
@@ -25,14 +43,6 @@ public static class foo
             get => T.Self<impl_swizzle_yyy>(self);
         }
     }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T abs<T>(in T a) where T : IAlgebraDispatch<T>
-        => T.Self<impl_abs>(a);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T min<T>(in T a, in T b) where T : IAlgebraDispatch<T>
-        => T.Self<impl_min>(a, b);
 }
 
 public struct impl_swizzle_yyy : IAlgebraVisitor_T_T<impl_swizzle_yyy>
@@ -48,34 +58,4 @@ public struct impl_swizzle_yyy : IAlgebraVisitor_T_T<impl_swizzle_yyy>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static TVector IAlgebraVisitor_T_T<impl_swizzle_yyy>.Vector3_Any<TVector, TScalar>(in TVector vector)
         => TVector.Create(TVector.get_y(vector), TVector.get_y(vector), TVector.get_y(vector));
-}
-
-public struct impl_abs : IAlgebraVisitor_T_T<impl_abs>
-{
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TScalar IAlgebraVisitor_S_S<impl_abs>.Scalar_Number<TScalar>(TScalar value)
-        => TScalar.Abs(value);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
-        => TVector.UnsafeFromUnderlying(Vector128.Abs(vector).AsByte());
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
-        => TVector.UnsafeFromUnderlying(Vector256.Abs(vector).AsByte());
-}
-
-public struct impl_min : IAlgebraVisitor_T_T_T<impl_min>
-{
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TScalar IAlgebraVisitor_S_S_S<impl_min>.Scalar_Number<TScalar>(TScalar a, TScalar b)
-        => TScalar.Min(a, b);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
-        => TVector.UnsafeFromUnderlying(Vector128.Min(a, b).AsByte());
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
-        => TVector.UnsafeFromUnderlying(Vector256.Min(a, b).AsByte());
 }

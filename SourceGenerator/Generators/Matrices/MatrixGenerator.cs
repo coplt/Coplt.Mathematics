@@ -838,6 +838,13 @@ public class MatrixGenerator : IIncrementalGenerator
             // it is mapped and the matrix is built out of the values the visitor returned
             Member(type, self, "Map_Self<V>", $"in {type} self",
                 $"new({VectorGenShared.Join(cols, j => $"V.Map_{level}<{col}, {scalar}>(self.c{j})")})");
+            // a member that reaches the bool value of the matrix hands the value over the same way every other
+            // member that takes the value alone does: the visitor reaches the shape of the matrix and builds the
+            // bool value of every column of it out of the columns
+            Member("bool", self, "Bool<V>", $"in {type} self", $"{matrix}(self)");
+            // a member that takes a component of the matrix alone does not reach the value at all, so the visitor
+            // reaches the component of every value of the kind of it the same way
+            Member("bool", withScalar, "Bool<V>", $"{scalar} a", $"V.Scalar_{level}(a)");
 
             // the vectors a matrix is made of are the columns of it, so the member that reduces them to a
             // single vector is the one of the count of the columns of the matrix
