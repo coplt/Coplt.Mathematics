@@ -29,5 +29,11 @@ public partial struct float3 : IAlgebraDispatch<float3, float>
     static float IAlgebraDispatch<float3, float>.Scalar<V>(float a, float b, float c) => V.Scalar_Float(a, b, c);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static float IAlgebraDispatch<float3, float>.Scalar<V>(float3 a) => V.Simd_Float<float3, float>(a.vector);
+    static float IAlgebraDispatch<float3, float>.Scalar<V>(in float3 a) => V.Simd_Float<float3, float>(a.vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static float IAlgebraDispatch<float3, float>.Scalar<V>(in float3 a, in float3 b) => V.Simd_Float<float3, float>(a.vector, b.vector);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static float IAlgebraDispatch<float3, float>.Combine<V>(float a, float b) => V.Combine_Float(a, b);
 }
