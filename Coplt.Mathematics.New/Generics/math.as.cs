@@ -46,18 +46,6 @@ public static partial class math
         => T.asu(source);
 
     /// <summary>
-    /// Reinterprets the bits of <paramref name="source"/> as the vector of the boolean component
-    /// </summary>
-    /// <typeparam name="T">The type of the vector to reinterpret</typeparam>
-    /// <typeparam name="TResult">The vector of the boolean component</typeparam>
-    /// <param name="source">The vector to reinterpret</param>
-    /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
-    [MethodImpl(256)]
-    [OverloadResolutionPriority(1000)]
-    public static TResult asb<T, TResult>(in T source) where T : unmanaged, IVectorAsB<T, TResult>
-        => T.asb(source);
-
-    /// <summary>
     /// Reinterprets the bits of <paramref name="source"/> as the 2 component vector of the same component type
     /// <para>The components behind the second one are dropped, so they have to be zero</para>
     /// </summary>

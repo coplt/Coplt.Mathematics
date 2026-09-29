@@ -20,8 +20,6 @@ public partial class VectorGenerator
         var scalar = typ.compType;
         var byteSize = typ.size * (size == 3 ? 4 : size);
         var bitSize = 8 * byteSize;
-        var bol = typ.bol;
-        var boolType = $"b{typ.size * 8}v{size}";
         var simd = VectorGenShared.Simd(typ, size, storeVariant);
         // the value of a 64 bit vector is kept in a raw ulong field, the other simd vectors keep the register
         var v64 = VectorGenShared.Uses64(typ, size, storeVariant);
@@ -103,13 +101,11 @@ public partial class VectorGenerator
 
         // the name of the interface of the kind of the vector in the algebra library, which is the floating
         // point kind for every floating point type of the library, a half as well
-        string AlgebraIface() => bol
-            ? "IBoolVector"
-            : typ.f
-                ? "IFloatingPointVector"
-                : typ.sig
-                    ? "ISignedNumberVector"
-                    : "INumberVector";
+        string AlgebraIface() => typ.f
+            ? "IFloatingPointVector"
+            : typ.sig
+                ? "ISignedNumberVector"
+                : "INumberVector";
 
         // only one of the partial declarations of a type may carry the documentation of the type, so the
         // documentation that names the interfaces of every part lives on the base members
@@ -231,8 +227,7 @@ public partial class VectorGenerator
         // members of the kind of the vector, which the algebra library declares
         var ifaces = new List<string>
         {
-            $"IEqualityOperators<{type}, {type}, {boolType}>",
-            $"IComparisonOperators<{type}, {type}, {boolType}>",
+            $"IEqualityOperators<{type}, {type}, bool>",
             $"Algebras.IVector{size}<{type}, {scalar}>",
         };
         // the storage variant of a vector holds the components of a value of the kind of it, it reaches the
@@ -242,15 +237,14 @@ public partial class VectorGenerator
         if (!storeVariant)
         {
             ifaces.Add($"Algebras.{AlgebraIface()}<{type}, {scalar}>");
-            // the members that dispatch the value of the vector implement the interface of the dispatch of it, a
-            // mask does not dispatch: the members of the visitors name the vector of a kind of a number. The
-            // dispatch of the value names the type of the value and the one that reaches the members that take a
-            // single component of it beside it names the type of the component as well
-            if (!bol)
-            {
-                ifaces.Add(VectorGenShared.DispatchIface(type));
-                ifaces.Add(VectorGenShared.DispatchIfaceScalar(type, scalar));
-            }
+            // the comparison of the whole value is a member of the algebra of the kind of a number, which the
+            // storage variant of a vector does not reach, so it keeps the value of the comparison alone
+            ifaces.Add($"IComparisonOperators<{type}, {type}, bool>");
+            // the members that dispatch the value of the vector implement the interface of the dispatch of it.
+            // The dispatch of the value names the type of the value and the one that reaches the members that
+            // take a single component of it beside it names the type of the component as well
+            ifaces.Add(VectorGenShared.DispatchIface(type));
+            ifaces.Add(VectorGenShared.DispatchIfaceScalar(type, scalar));
             if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
             if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
             // a signed vector reaches the negative of every whole number of the vector a column of its matrix
@@ -273,14 +267,12 @@ public partial class VectorGenerator
         var ctorMembers = GenCtor(typ, size, storeVariant);
         var arithMembers = !storeVariant && typ.arith ? GenArith(typ, size, storeVariant) : null;
         var intMembers = !storeVariant && typ.arith && typ.i ? GenInt(typ, size, storeVariant) : null;
-        if (intMembers != null) ifaces.Add(typ.sig ? $"IVectorInteger<{type}, {boolType}>" : $"IVectorUnsignedInteger<{type}, {boolType}>");
+        if (intMembers != null) ifaces.Add(typ.sig ? $"IVectorInteger<{type}>" : $"IVectorUnsignedInteger<{type}>");
         var floatMembers = !storeVariant && typ.arith && typ.f ? GenFloat(typ, size, storeVariant) : null;
         var ieeeConstsMembers = !storeVariant && typ.arith && typ.f ? GenIeeeConsts(typ, size, storeVariant) : null;
         if (ieeeConstsMembers != null) ifaces.Add($"IVectorFloatingPointIeee754<{type}, {scalar}>");
         var asMembers = GenAs(typ, size, storeVariant, ifaces);
         var convMembers = GenConv(typ, size, storeVariant);
-        var selectMembers = storeVariant ? null : GenSelect(typ, size, storeVariant);
-        if (!storeVariant) ifaces.Add($"IVectorSelect<{type}, {boolType}>");
         sb.AppendLine($"public partial struct {type} :");
         sb.AppendLine("    " + string.Join(",\n    ", ifaces));
         sb.AppendLine("{");
@@ -327,47 +319,28 @@ public partial class VectorGenerator
         sb.AppendLine();
         sb.AppendLine("    #region Constants");
         sb.AppendLine();
-        if (bol)
+        // every whole number the algebra reaches is a constant of the value beside the one of a single
+        // component of it, the zero of a type is the default of it and the one of every other one is the
+        // literal of the number of the component type
+        for (var i = 0; i < VectorGenShared.NumberNames.Length; i++)
         {
-            InheritDoc();
-            sb.AppendLine($"    public static {type} True");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine($"        get => new({typ.one});");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-            InheritDoc();
-            sb.AppendLine($"    public static {type} False");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        {attr}");
-            sb.AppendLine("        get => default;");
-            sb.AppendLine("    }");
+            var name = VectorGenShared.NumberNames[i];
+            var value = VectorGenShared.NumberValue(scalar, i);
+            Prop($"public static {type} {name}", value == "default" ? "default" : $"new({value})");
+            // the whole number of a single component is a member of the algebra of the kind of the vector,
+            // so the storage variant of a vector keeps the value of the number alone
+            if (!storeVariant) Prop($"public static {scalar} Scalar{name}", value);
         }
-        else
-        {
-            // every whole number the algebra reaches is a constant of the value beside the one of a single
-            // component of it, the zero of a type is the default of it and the one of every other one is the
-            // literal of the number of the component type
-            for (var i = 0; i < VectorGenShared.NumberNames.Length; i++)
-            {
-                var name = VectorGenShared.NumberNames[i];
-                var value = VectorGenShared.NumberValue(scalar, i);
-                Prop($"public static {type} {name}", value == "default" ? "default" : $"new({value})");
-                // the whole number of a single component is a member of the algebra of the kind of the vector,
-                // so the storage variant of a vector keeps the value of the number alone
-                if (!storeVariant) Prop($"public static {scalar} Scalar{name}", value);
-            }
 
-            // a signed value reaches the negative of every whole number beside the zero as well
-            if (typ.sig && !storeVariant)
+        // a signed value reaches the negative of every whole number beside the zero as well
+        if (typ.sig && !storeVariant)
+        {
+            for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
             {
-                for (var i = 1; i < VectorGenShared.NumberNames.Length; i++)
-                {
-                    var name = $"Negative{VectorGenShared.NumberNames[i]}";
-                    var value = VectorGenShared.NegativeValue(scalar, i);
-                    Prop($"public static {type} {name}", $"new({value})");
-                    Prop($"public static {scalar} Scalar{name}", value);
-                }
+                var name = $"Negative{VectorGenShared.NumberNames[i]}";
+                var value = VectorGenShared.NegativeValue(scalar, i);
+                Prop($"public static {type} {name}", $"new({value})");
+                Prop($"public static {scalar} Scalar{name}", value);
             }
         }
 
@@ -411,9 +384,8 @@ public partial class VectorGenerator
             sb.AppendLine();
         }
 
-        // the vector itself is the value of the only column of the matrix, and a mask reaches its true and its
-        // false instead of the zero and the one of a number
-        var one = bol ? "True" : "One";
+        // the vector itself is the value of the only column of the matrix
+        var one = "One";
 
         sb.AppendLine();
         sb.AppendLine("    #region matrix");
@@ -426,8 +398,7 @@ public partial class VectorGenerator
         for (var i = 0; i < VectorGenShared.NumberNames.Length; i++)
         {
             var name = VectorGenShared.NumberNames[i];
-            var value = bol ? (i == 0 ? "False" : "True") : name;
-            Prop($"public static {type} Vector{name}", $"{type}.{value}");
+            Prop($"public static {type} Vector{name}", $"{type}.{name}");
         }
 
         // a signed vector reaches the negative of every whole number beside the zero as well, the storage variant
@@ -835,46 +806,28 @@ public partial class VectorGenerator
             sb.AppendLine($"        return {fallback};");
         }
 
-        // emits a comparison operator that returns the bool vector, it is not part of the vector interfaces
+        // emits a comparison operator that returns the value of the kind of the vector itself: every component
+        // of the result is the all bits set value of the kind where the comparison of the components holds and
+        // the zero of it where it does not, so a bool result is a value of the kind and no mask type is needed
         void EmitMaskOp(string op, string vecOp, bool invert, string scalarOp, string doc)
         {
-            string MaskExpr(string name, bool to64)
-            {
-                var args = to64 ? $"{Load64("left.")}, {Load64("right.")}" : "left.vector, right.vector";
-                var expr = $"{name}.{vecOp}({args}).{maskAs}()";
-                if (invert) expr = $"~{expr}";
-                return expr;
-            }
-
             Doc(doc);
             DocParam("left", "The left vector");
             DocParam("right", "The right vector");
-            sb.AppendLine("    /// <returns>A mask with the result of <i>every</i> component</returns>");
+            sb.AppendLine("    /// <returns>A value whose every component says whether the comparison holds and whose component that holds is the all bits set value of the kind of it</returns>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static {boolType} operator {op}({type} left, {type} right)");
+            sb.AppendLine($"    public static {type} operator {op}({type} left, {type} right)");
             sb.AppendLine("    {");
-            // the padding lanes are zero on both sides, so a comparison over the whole vector of them is false,
-            // the operators that keep false there write the field directly, the ones that turn it into true need
-            // the mask because the mask of every component is compared against theirs by the bool vector checks
-            var masked = op is "==" or "<=" or ">=";
+            // the padding lanes are zero on both sides, so the comparison of them holds and the result of the
+            // whole register leaves the padding lanes at all ones for the operators that hold on them, which the
+            // mask of the constructor of the value clears
             if (simd)
             {
-                // the mask is a vector of the bool type of the vector and its register is 128 bits wide, so the
-                // mask of the 64 bit register of the value is widened to it, the padding lanes the widening
-                // creates are false and the ones the comparison creates are masked by the constructor
-                var mask64 = MaskExpr(vecName, false);
-                if (v64) mask64 = $"Vector128.Create({mask64})";
                 sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
-                sb.AppendLine($"            return {(masked ? $"new({mask64})" : $"new() {{ vector = {mask64} }}")};");
-                if (v64)
-                {
-                    var mask128 = MaskExpr("Vector128", true);
-                    sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    sb.AppendLine($"            return {(masked ? $"new({mask128})" : $"new() {{ vector = {mask128} }}")};");
-                }
+                sb.AppendLine($"            return {FromVector($"{(invert ? "~" : "")}{vecName}.{vecOp}(left.vector, right.vector)", true)};");
             }
 
-            sb.AppendLine($"        return new({Join(i => $"left.{comp[i]} {scalarOp} right.{comp[i]}")});");
+            sb.AppendLine($"        return new({Join(i => $"Utils.AllBits<{scalar}>(left.{comp[i]} {scalarOp} right.{comp[i]})")});");
             sb.AppendLine("    }");
             sb.AppendLine();
         }
@@ -933,58 +886,55 @@ public partial class VectorGenerator
             Join(i => $"{comp[i]} == other.{comp[i]}", " && "));
         sb.AppendLine("    }");
         sb.AppendLine();
-        if (!bol)
+        InheritDoc();
+        sb.AppendLine($"    {attr}");
+        sb.AppendLine("    public readonly int CompareTo(object? obj)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        if (ReferenceEquals(null, obj)) return 1;");
+        sb.AppendLine($"        return obj is {type} other ? CompareTo(other) : throw new ArgumentException($\"Object must be of type {{nameof({type})}}\");");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        InheritDoc();
+        sb.AppendLine($"    {attr}");
+        sb.AppendLine($"    public readonly int CompareTo({type} other)");
+        sb.AppendLine("    {");
+        if (simd)
         {
-            InheritDoc();
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine("    public readonly int CompareTo(object? obj)");
-            sb.AppendLine("    {");
-            sb.AppendLine("        if (ReferenceEquals(null, obj)) return 1;");
-            sb.AppendLine($"        return obj is {type} other ? CompareTo(other) : throw new ArgumentException($\"Object must be of type {{nameof({type})}}\");");
-            sb.AppendLine("    }");
-            sb.AppendLine();
-            InheritDoc();
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public readonly int CompareTo({type} other)");
-            sb.AppendLine("    {");
-            if (simd)
+            sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
+            sb.AppendLine("        {");
+            sb.AppendLine($"            if ({vecName}.LessThanAny(vector, other.vector)) return -1;");
+            sb.AppendLine($"            if ({vecName}.GreaterThanAny(vector, other.vector)) return 1;");
+            sb.AppendLine("            return 0;");
+            sb.AppendLine("        }");
+            if (v64)
             {
-                sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
+                sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
                 sb.AppendLine("        {");
-                sb.AppendLine($"            if ({vecName}.LessThanAny(vector, other.vector)) return -1;");
-                sb.AppendLine($"            if ({vecName}.GreaterThanAny(vector, other.vector)) return 1;");
+                sb.AppendLine($"            if (Vector128.LessThanAny({Load64("")}, {Load64("other.")})) return -1;");
+                sb.AppendLine($"            if (Vector128.GreaterThanAny({Load64("")}, {Load64("other.")})) return 1;");
                 sb.AppendLine("            return 0;");
                 sb.AppendLine("        }");
-                if (v64)
-                {
-                    sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                    sb.AppendLine("        {");
-                    sb.AppendLine($"            if (Vector128.LessThanAny({Load64("")}, {Load64("other.")})) return -1;");
-                    sb.AppendLine($"            if (Vector128.GreaterThanAny({Load64("")}, {Load64("other.")})) return 1;");
-                    sb.AppendLine("            return 0;");
-                    sb.AppendLine("        }");
-                }
             }
-
-            sb.AppendLine($"        if ({Join(i => $"{comp[i]} < other.{comp[i]}", " || ")}) return -1;");
-            sb.AppendLine($"        if ({Join(i => $"{comp[i]} > other.{comp[i]}", " || ")}) return 1;");
-            sb.AppendLine("        return 0;");
-            sb.AppendLine("    }");
-            sb.AppendLine();
         }
 
+        sb.AppendLine($"        if ({Join(i => $"{comp[i]} < other.{comp[i]}", " || ")}) return -1;");
+        sb.AppendLine($"        if ({Join(i => $"{comp[i]} > other.{comp[i]}", " || ")}) return 1;");
+        sb.AppendLine("        return 0;");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+
         EmitMaskOp("==", "Equals", false, "==",
-            "Returns a mask that is true where the components of the two vectors are equal");
+            "Returns a value that says where the components of the two vectors are equal");
         EmitMaskOp("!=", "Equals", true, "!=",
-            "Returns a mask that is true where the components of the two vectors are not equal");
+            "Returns a value that says where the components of the two vectors are not equal");
         EmitMaskOp("<", "LessThan", false, "<",
-            "Returns a mask that is true where a component of the left vector is less than the component of the right vector");
+            "Returns a value that says where a component of the left vector is less than the component of the right vector");
         EmitMaskOp(">", "GreaterThan", false, ">",
-            "Returns a mask that is true where a component of the left vector is greater than the component of the right vector");
+            "Returns a value that says where a component of the left vector is greater than the component of the right vector");
         EmitMaskOp("<=", "LessThanOrEqual", false, "<=",
-            "Returns a mask that is true where a component of the left vector is less than or equal to the component of the right vector");
+            "Returns a value that says where a component of the left vector is less than or equal to the component of the right vector");
         EmitMaskOp(">=", "GreaterThanOrEqual", false, ">=",
-            "Returns a mask that is true where a component of the left vector is greater than or equal to the component of the right vector");
+            "Returns a value that says where a component of the left vector is greater than or equal to the component of the right vector");
         InheritDoc();
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    static bool IEqualityOperators<{type}, {type}, bool>.operator ==({type} left, {type} right) => left.Equals(right);");
@@ -993,17 +943,12 @@ public partial class VectorGenerator
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    static bool IEqualityOperators<{type}, {type}, bool>.operator !=({type} left, {type} right) => !left.Equals(right);");
         sb.AppendLine();
-        if (!bol)
+        if (!storeVariant)
         {
-            // the comparison of two values is a member of the algebra of the kind of a number, which the storage
-            // variant of a vector does not reach, so it holds the mask of the comparison alone
-            if (!storeVariant)
-            {
-                EmitBoolOp("<", "LessThanAll", "<");
-                EmitBoolOp(">", "GreaterThanAll", ">");
-                EmitBoolOp("<=", "LessThanOrEqualAll", "<=");
-                EmitBoolOp(">=", "GreaterThanOrEqualAll", ">=");
-            }
+            EmitBoolOp("<", "LessThanAll", "<");
+            EmitBoolOp(">", "GreaterThanAll", ">");
+            EmitBoolOp("<=", "LessThanOrEqualAll", "<=");
+            EmitBoolOp(">=", "GreaterThanOrEqualAll", ">=");
         }
 
         // a bitwise operator is a member of every value of the algebra library, so the storage variant of a vector
@@ -1050,9 +995,9 @@ public partial class VectorGenerator
             }
         }
 
-        // a component that is an integer or a mask has the bitwise operators of its own, the bits of a floating
+        // a component that is an integer has the bitwise operators of its own, the bits of a floating
         // point one are reached through the bit conversions of the BCL
-        var bitwise = !typ.i && !bol;
+        var bitwise = !typ.i;
 
         string BitNot(string x) => bitwise
             ? VectorScalar.FromBits(scalar, $"~{VectorScalar.Bits(scalar, x)}")
@@ -1077,15 +1022,12 @@ public partial class VectorGenerator
             Join(i => BitOp("|", $"a.{comp[i]}", $"b.{comp[i]}")));
         EmitBitOp("^", type, "b.vector", Load64("b."),
             Join(i => BitOp("^", $"a.{comp[i]}", $"b.{comp[i]}")));
-        if (!bol)
-        {
-            EmitBitOp("<<", "int", "b", "b",
-                Join(i => BitShift("<<", $"a.{comp[i]}", "b")));
-            EmitBitOp(">>", "int", "b", "b",
-                Join(i => BitShift(">>", $"a.{comp[i]}", "b")));
-            EmitBitOp(">>>", "int", "b", "b",
-                Join(i => BitShift(">>>", $"a.{comp[i]}", "b")));
-        }
+        EmitBitOp("<<", "int", "b", "b",
+            Join(i => BitShift("<<", $"a.{comp[i]}", "b")));
+        EmitBitOp(">>", "int", "b", "b",
+            Join(i => BitShift(">>", $"a.{comp[i]}", "b")));
+        EmitBitOp(">>>", "int", "b", "b",
+            Join(i => BitShift(">>>", $"a.{comp[i]}", "b")));
 
         sb.AppendLine("    #endregion");
 
@@ -1098,17 +1040,12 @@ public partial class VectorGenerator
         void EmitFormatLiteral(string literal) =>
             sb.AppendLine($"        if (!FormatUtils.TryFormatPart(ref dst, ref n, {literal})) return false;");
 
-        // a component of a bool vector is a mask, its text is the lower case name of the value it tests and the
-        // format and the provider are not used, the other components are formatted with them
-        void EmitFormatComponent(int i, bool utf8) =>
-            sb.AppendLine(bol
-                ? $"        if (!FormatUtils.TryFormatPart(ref dst, ref n, (bool){comp[i]} ? {Literal("true", utf8)} : {Literal("false", utf8)})) return false;"
-                : $"        if (!FormatUtils.TryFormatPart(ref dst, ref n, {comp[i]}, format, provider)) return false;");
-
-        string Literal(string text, bool utf8) => utf8 ? $"\"{text}\"u8" : $"\"{text}\"";
+        // a component is formatted with the format and the provider of the call
+        void EmitFormatComponent(int i) =>
+            sb.AppendLine($"        if (!FormatUtils.TryFormatPart(ref dst, ref n, {comp[i]}, format, provider)) return false;");
 
         // the body of a TryFormat, the literals of the utf8 one are the utf8 literals of the same text
-        void EmitFormatBody(string open, string separator, string close, bool utf8)
+        void EmitFormatBody(string open, string separator, string close)
         {
             sb.AppendLine("    {");
             sb.AppendLine("        nc = 0;");
@@ -1117,7 +1054,7 @@ public partial class VectorGenerator
             for (var i = 0; i < size; i++)
             {
                 if (i != 0) EmitFormatLiteral(separator);
-                EmitFormatComponent(i, utf8);
+                EmitFormatComponent(i);
             }
 
             EmitFormatLiteral(close);
@@ -1126,13 +1063,10 @@ public partial class VectorGenerator
             sb.AppendLine("    }");
         }
 
-        // the text of a component of the ToString members, a bool component ignores the format and the provider
-        // and its conditional expression has to be parenthesized to be the whole of an interpolation
-        string ComponentText(int i, bool formatted) => bol
-            ? $"{{((bool){comp[i]} ? \"true\" : \"false\")}}"
-            : formatted
-                ? $"{{{comp[i]}.ToString(format, formatProvider)}}"
-                : $"{{{comp[i]}}}";
+        // the text of a component of the ToString members
+        string ComponentText(int i, bool formatted) => formatted
+            ? $"{{{comp[i]}.ToString(format, formatProvider)}}"
+            : $"{{{comp[i]}}}";
 
         sb.AppendLine();
         sb.AppendLine("    #region str");
@@ -1146,18 +1080,16 @@ public partial class VectorGenerator
         sb.AppendLine();
         InheritDoc();
         sb.AppendLine("    public readonly bool TryFormat(Span<char> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)");
-        EmitFormatBody("\"(\"", "\", \"", "\")\"", false);
+        EmitFormatBody("\"(\"", "\", \"", "\")\"");
         sb.AppendLine();
         InheritDoc();
         sb.AppendLine("    public readonly bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)");
-        EmitFormatBody("\"(\"u8", "\", \"u8", "\")\"u8", true);
+        EmitFormatBody("\"(\"u8", "\", \"u8", "\")\"u8");
         sb.AppendLine();
         sb.AppendLine("    #endregion");
 
         #endregion
 
-        // the members that dispatch the value of the vector to a visitor, a mask has none of them and they are
-        // a part of the file of the base members of the vector
         // every part that is emitted into the declaration of the value is separated from the part before it by
         // an empty line and it is named by a region of its own, so the members of the value stay readable
         void Part(string? members, string name)
@@ -1196,7 +1128,6 @@ public partial class VectorGenerator
         Part(ieeeConstsMembers, "constants");
         Part(asMembers, "as");
         Part(convMembers, "conv");
-        Part(selectMembers, "select");
 
         sb.AppendLine("}");
 

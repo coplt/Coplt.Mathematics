@@ -17,8 +17,6 @@ public partial class VectorGenerator
     private static string GenInt(Typ typ, int size, bool storeVariant)
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
-        // the bool vector that has the same number of components as the vector
-        var boolType = $"b{typ.size * 8}v{size}";
 
         var sb = new StringBuilder();
 
@@ -31,10 +29,12 @@ public partial class VectorGenerator
         sb.AppendLine("    [MethodImpl(256)]");
         // a component is a power of two when the only bit that is set is cleared by the subtraction of one and
         // every other bit is kept, the zero leaves the all ones mask of the subtraction and a negative value has
-        // the top bit set, so both of them are excluded by the comparison with the zero of the vector
+        // the top bit set, so both of them are excluded by the comparison with the zero of the vector. The result
+        // is a value of the kind of the vector itself: a component of it holds the all bits set value of the kind
+        // where the component is a power of two and the zero of it where it is not
         sb.AppendLine(typ.sig
-            ? $"    public readonly {boolType} is_pow2() => ((this & (this - {type}.One)) == {type}.Zero) & (this > {type}.Zero);"
-            : $"    public readonly {boolType} is_pow2() => ((this & (this - {type}.One)) == {type}.Zero) & (this != {type}.Zero);");
+            ? $"    public readonly {type} is_pow2() => ((this & (this - {type}.One)) == {type}.Zero) & (this > {type}.Zero);"
+            : $"    public readonly {type} is_pow2() => ((this & (this - {type}.One)) == {type}.Zero) & (this != {type}.Zero);");
         sb.AppendLine();
         sb.AppendLine("    #endregion");
 

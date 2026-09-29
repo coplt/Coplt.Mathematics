@@ -109,30 +109,6 @@ public interface IMatrixScalar<TSelf, TScalar> :
 
 #endregion
 
-#region Bool
-
-/// <summary>
-/// An <see cref="IMatrix{TSelf}"/> of a mask: every component of it is a bit that says whether a condition
-/// holds
-/// </summary>
-/// <typeparam name="TSelf">The type of the matrix itself</typeparam>
-public interface IBoolMatrix<TSelf> : IMatrix<TSelf>, IBoolAlgebra<TSelf>
-    where TSelf : unmanaged, IBoolMatrix<TSelf>;
-
-/// <summary>
-/// An <see cref="IBoolMatrix{TSelf}"/> that also names the type of a single component
-/// </summary>
-/// <typeparam name="TSelf">The type of the matrix itself</typeparam>
-/// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IBoolMatrix<TSelf, TScalar> :
-    IBoolMatrix<TSelf>,
-    IMatrixScalar<TSelf, TScalar>,
-    IBoolAlgebra<TSelf, TScalar>
-    where TSelf : unmanaged, IBoolMatrix<TSelf>, IBoolMatrix<TSelf, TScalar>
-    where TScalar : unmanaged, IMask<TScalar>;
-
-#endregion
-
 #region Number
 
 /// <summary>

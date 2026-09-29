@@ -18,22 +18,15 @@ public record struct Typ(
     bool bitop = true,
     bool shift = true,
     bool sig = false,
-    bool bin = true,
-    bool bol = false
+    bool bin = true
 )
 {
     public string compType { get; set; } = name;
     public string simdComp { get; set; } = name;
-    public string maskType { get; set; } = "";
-    public string sigMaskType { get; set; } = "";
 
     public string jsonType { get; set; } = Type;
     public string jsonCast { get; set; } = "";
     public string jsonCastBack { get; set; } = "";
-
-    public string maskNeg { get; set; } = "";
-    public string maskPos { get; set; } = "";
-    public string maskAll { get; set; } = "";
 
     public string arithCast { get; set; } = "";
 
@@ -51,19 +44,11 @@ public record struct Typ(
         {
             two = "2.0f",
             half = "0.5f",
-            maskType = "uint",
-            sigMaskType = "int",
-            maskNeg = "0x80000000",
-            maskAll = "0xFFFFFFFF"
         },
         new("double", nameof(Double), sizeof(double), "", "1.0", arith: true, sig: true, f: true, simd: true)
         {
             two = "2.0",
             half = "0.5",
-            maskType = "ulong",
-            sigMaskType = "long",
-            maskNeg = "0x8000000000000000",
-            maskAll = "0xFFFFFFFFFFFFFFFF",
             structSuffix = "_d",
         },
         new("short", nameof(Int16), sizeof(short), "", "(short)1", arith: true, sig: true, i: true) { arithCast = "(short)" },
@@ -80,24 +65,7 @@ public record struct Typ(
             jsonCastBack = "(half)",
             arithCast = "(half)",
             jsonType = "Single",
-            maskType = "ushort",
-            sigMaskType = "short",
-            maskNeg = "0x8000",
-            maskAll = "0xFFFF",
             structSuffix = "_h",
-        },
-        new("b16v", nameof(UInt16), sizeof(ushort), "", "true", shift: false, bol: true) { compType = "b16", jsonType = "Boolean" },
-        new("b32v", nameof(UInt32), sizeof(uint), "", "true", simd: true, shuffleCast: "(uint)", shift: false, bol: true)
-        {
-            compType = "b32",
-            simdComp = "uint",
-            jsonType = "Boolean"
-        },
-        new("b64v", nameof(UInt64), sizeof(ulong), "", "true", simd: true, shuffleCast: "(ulong)", shift: false, bol: true)
-        {
-            compType = "b64",
-            simdComp = "ulong",
-            jsonType = "Boolean"
         },
     };
 
@@ -110,9 +78,6 @@ public record struct Typ(
         { "float", ["uint", "int", "ulong", "long", "half"] },
         { "double", ["uint", "int", "ulong", "long", "float", "half"] },
         { "half", ["uint", "int", "ulong", "long"] },
-        { "b16v", ["uint", "int", "ulong", "long", "float", "double", "half", "b32v", "b64v"] },
-        { "b32v", ["uint", "int", "ulong", "long", "float", "double", "half", "b16v", "b64v"] },
-        { "b64v", ["uint", "int", "ulong", "long", "float", "double", "half", "b16v", "b32v"] },
     };
     public static Dictionary<string, string[]> ImplicitConverts = new()
     {

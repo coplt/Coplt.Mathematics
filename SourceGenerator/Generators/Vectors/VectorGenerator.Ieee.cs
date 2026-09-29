@@ -47,8 +47,6 @@ public partial class VectorGenerator
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;
-        // the bool vector that has the same number of components as the vector
-        var boolType = $"b{typ.size * 8}v{size}";
         var simd = VectorGenShared.Simd(typ, size, storeVariant);
         // the value of a 64 bit vector is kept in a raw ulong field, the other simd vectors keep the register
         var v64 = VectorGenShared.Uses64(typ, size, storeVariant);
@@ -56,11 +54,6 @@ public partial class VectorGenerator
         var pad = VectorGenShared.PadLanes(typ, size, storeVariant) > 0;
         var vecName = $"Vector{reg}";
         var attr = "[MethodImpl(256)]";
-        // the mask of a check is held by the bool vector of the same size, the register of it is 128 bits wide for
-        // a bool of 4 byte components and the register of the vector itself for a bool of 8 byte ones
-        var boolRegName = $"Vector{(typ.size == 4 ? 128 : reg)}";
-        // the mask of a bool of 4 byte components is a 32 bit one and the mask of a bool of 8 byte ones is 64 bits
-        var boolAs = typ.size == 4 ? "AsUInt32" : "AsUInt64";
         var comp = VectorGenShared.Components(size);
 
         var sb = new StringBuilder();

@@ -165,60 +165,6 @@ public partial struct half4x3;
 
 public partial struct half4x4;
 
-public partial struct b16m2x2;
-
-public partial struct b16m2x3;
-
-public partial struct b16m2x4;
-
-public partial struct b16m3x2;
-
-public partial struct b16m3x3;
-
-public partial struct b16m3x4;
-
-public partial struct b16m4x2;
-
-public partial struct b16m4x3;
-
-public partial struct b16m4x4;
-
-public partial struct b32m2x2;
-
-public partial struct b32m2x3;
-
-public partial struct b32m2x4;
-
-public partial struct b32m3x2;
-
-public partial struct b32m3x3;
-
-public partial struct b32m3x4;
-
-public partial struct b32m4x2;
-
-public partial struct b32m4x3;
-
-public partial struct b32m4x4;
-
-public partial struct b64m2x2;
-
-public partial struct b64m2x3;
-
-public partial struct b64m2x4;
-
-public partial struct b64m3x2;
-
-public partial struct b64m3x3;
-
-public partial struct b64m3x4;
-
-public partial struct b64m4x2;
-
-public partial struct b64m4x3;
-
-public partial struct b64m4x4;
-
 // The storage variants, a column of them is the storage variant of the vector of the column. Only a column
 // that has a storage variant has one, so a matrix of 2 rows is stored that way when its components are 4 bytes
 // wide and a matrix of 3 rows when its components are backed by a register.

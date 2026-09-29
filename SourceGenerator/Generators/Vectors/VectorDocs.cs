@@ -85,21 +85,11 @@ internal static class VectorDocs
 
         #region IVectorInteger
 
-        { "is_pow2", ("Returns a mask that is true where the component is a power of two, a zero and a negative component are not a power of two", "The mask", "a=The vector") },
+        { "is_pow2", ("Returns a value that says where the component is a power of two, a zero and a negative component are not a power of two", "The value of the check", "a=The vector") },
         {
             "up2pow2",
             ("Returns every component rounded up to the next power of two, a component that is a power of two already is kept and a zero stays zero", "The rounded up vector",
                 "a=The vector")
-        },
-
-        #endregion
-
-        #region IVectorSelect
-
-        {
-            "select",
-            ("Returns the component of the second vector where the mask is true and the component of the third where it is false", "The selected vector",
-                "c=The mask;t|a=The vector that the true components are taken from;f|b=The vector that the false components are taken from")
         },
 
         #endregion

@@ -21,30 +21,6 @@ public interface IVector<TSelf, TScalar> : IVector<TSelf>, IMatrixScalar<TSelf, 
 
 #endregion
 
-#region Bool
-
-/// <summary>
-/// An <see cref="IVector{TSelf}"/> of a mask: every component of it is a bit that says whether a condition
-/// holds
-/// </summary>
-/// <typeparam name="TSelf">The type of the vector itself</typeparam>
-public interface IBoolVector<TSelf> : IVector<TSelf>, IBoolMatrix<TSelf>
-    where TSelf : unmanaged, IBoolVector<TSelf>;
-
-/// <summary>
-/// An <see cref="IBoolVector{TSelf}"/> that also names the type of a single component
-/// </summary>
-/// <typeparam name="TSelf">The type of the vector itself</typeparam>
-/// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IBoolVector<TSelf, TScalar> :
-    IBoolVector<TSelf>,
-    IVector<TSelf, TScalar>,
-    IBoolMatrix<TSelf, TScalar>
-    where TSelf : unmanaged, IBoolVector<TSelf>, IBoolVector<TSelf, TScalar>
-    where TScalar : unmanaged, IMask<TScalar>;
-
-#endregion
-
 #region Number
 
 /// <summary>

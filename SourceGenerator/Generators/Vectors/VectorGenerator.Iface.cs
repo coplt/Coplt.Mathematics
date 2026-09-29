@@ -24,8 +24,6 @@ public partial class VectorGenerator
     {
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;
-        // the bool vector that has the same number of components as the vector
-        var boolType = $"b{typ.size * 8}v{size}";
 
         // the members that implement the interfaces, the kind tells which vector implements them:
         // a = every arithmetic vector, 3 = the 3 component one, f = the floating point one,
@@ -66,7 +64,7 @@ public partial class VectorGenerator
 
             #region IVectorInteger
 
-            ('i', "{bool} is_pow2(in {type} a) => a.is_pow2();"),
+            ('i', "{type} is_pow2(in {type} a) => a.is_pow2();"),
             // the rounding up to the next power of two is only meaningful for a vector that has no sign
             ('u', "{type} up2pow2(in {type} a) => a.up2pow2();"),
 
@@ -95,7 +93,7 @@ public partial class VectorGenerator
             if (!first) sb.AppendLine();
             first = false;
 
-            var text = member.Replace("{type}", type).Replace("{scalar}", scalar).Replace("{bool}", boolType);
+            var text = member.Replace("{type}", type).Replace("{scalar}", scalar);
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine("    [MethodImpl(256)]");
             sb.AppendLine($"    public static {text}");

@@ -14,8 +14,7 @@ public partial class VectorGenerator
     /// builds the result out of the type of the vector, which the constraints of the members of the visitor
     /// name, so the same visitor serves a vector and a matrix. The members are implemented explicitly and they
     /// are emitted into the file of the base members of the vector. Every vector of a number type implements the
-    /// interface, a mask does not: the constraint of a member of a visitor names the vector interface of a
-    /// number and a mask implements the one of a bool instead.
+    /// interface, it is the constraint of a member of a visitor that names the vector interface of a number.
     /// <para>The kind of the component decides the level of the member of the visitor that the value reaches:
     /// the members of the level of a floating point number fall back to the ones of the level of a number and
     /// those fall back to the ones that reach every value, so a visitor implements the members of the level of
@@ -30,8 +29,6 @@ public partial class VectorGenerator
     /// <returns>The members that dispatch the value of the vector, null when the vector implements no dispatch</returns>
     private static string? GenDispatch(Typ typ, int size, bool storeVariant)
     {
-        // the members of the visitors name the number vector of the type, a mask is not one of them
-        if (typ.bol) return null;
         // the storage variant of a vector holds the components of a value of the kind of it, it does not reach
         // the algebra of it and the members of it do not dispatch
         if (storeVariant) return null;
@@ -113,6 +110,10 @@ public partial class VectorGenerator
         Member(scalar, withScalar, "Scalar<V>", $"in {type} a", reduceOne);
         Member(scalar, withScalar, "Scalar<V>", $"in {type} a, in {type} b", reduceTwo);
         Member(scalar, withScalar, "Combine<V>", $"{scalar} a, {scalar} b", combine);
+        // the value of the vector hands itself over instead of a component of it, so the visitor decides the
+        // type of a component of the value it reaches: the level of the kind of the component decides the member
+        // of the visitor that reaches the value
+        Member(type, self, "Map_Self<V>", $"in {type} self", $"V.Map_{level}<{type}, {scalar}>(self)");
 
         sb.AppendLine("    #endregion");
         sb.AppendLine();

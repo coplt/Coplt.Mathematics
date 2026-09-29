@@ -8,6 +8,20 @@ public interface IAlgebraDispatch<TSelf>
     public static abstract TSelf Self<V>(in TSelf a)
         where V : IAlgebraVisitor_T_T<V>;
 
+    /// <summary>
+    /// Hands the whole value of <paramref name="self"/> over to <typeparamref name="V"/>, which returns the value
+    /// it built out of it
+    /// <para>The value hands itself over instead of a component of it, so the visitor decides the type of a
+    /// component of the value it reaches and a caller that only knows the value itself reaches the map of it
+    /// through this member. It is the dispatch of <see cref="IMapVisitor{V}"/>, which is the map of a value
+    /// alone.</para>
+    /// </summary>
+    /// <typeparam name="V">The type of the visitor that reaches the value</typeparam>
+    /// <param name="self">The value that hands itself over</param>
+    /// <returns>The value the visitor built out of the value</returns>
+    public static abstract TSelf Map_Self<V>(in TSelf self)
+        where V : IMapVisitor<V>;
+
     public static abstract TSelf Self<V>(in TSelf a, in TSelf b)
         where V : IAlgebraVisitor_T_T_T<V>;
 

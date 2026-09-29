@@ -162,9 +162,9 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
 
         foreach (var typ in Typ.Typs)
         {
-            // only a number type has arithmetic, a bool vector has no dot product at all, and a member of the
-            // floating point kind only reaches the floating point types of a vector
-            if (!typ.arith || typ.bol) continue;
+            // only a number type has arithmetic, and a member of the floating point kind only reaches the
+            // floating point types of a vector
+            if (!typ.arith) continue;
             if (floating && !typ.f) continue;
             context.AddSource(
                 $"{Namespace}.{method.Name}.{typ.name}.g.cs",

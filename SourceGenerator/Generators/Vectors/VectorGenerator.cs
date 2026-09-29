@@ -17,8 +17,7 @@ namespace Coplt.Analyzers.Generators;
 /// integer members by <c>GenInt</c>, the floating point members by <c>GenFloat</c>, the ieee 754 members by
 /// <c>GenIeee</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
-/// <c>GenConv</c>, the as members of the math class by <c>GenMathAs</c> and
-/// the select members by <c>GenSelect</c>. The members that replace the components, the ones of the legacy
+/// <c>GenConv</c> and the as members of the math class by <c>GenMathAs</c>. The members that replace the components, the ones of the legacy
 /// insert api, the swizzle members and the shuffle members are emitted into a file of their own, the members of
 /// every other part are emitted into the file of the type itself, see <c>Initialize</c>. The converter of a
 /// vector is not generated: every vector of a count of components carries the same generic converter, which

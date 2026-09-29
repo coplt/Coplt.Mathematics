@@ -25,9 +25,9 @@ namespace Coplt.Mathematics
         [VectorExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TVector csum<T, TVector>(in T value)
-            where T : unmanaged, INumberMatrixColumnDispatch<T, TVector>
+            where T : unmanaged, IMatrixColumnDispatch<T, TVector>
             where TVector : unmanaged, INumberVector<TVector>
-            => T.Visit_Vector<impl_matrix_column_sum>(value);
+            => T.Combine<impl_matrix_column_sum>(value);
 
         /// <summary>
         /// Returns the sum of the rows of the value, which is the sum of every column of it
@@ -47,9 +47,9 @@ namespace Coplt.Mathematics
         [VectorExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TVector rsum<T, TVector>(in T value)
-            where T : unmanaged, INumberMatrixRowDispatch<T, TVector>
+            where T : unmanaged, IMatrixRowDispatch<T, TVector>
             where TVector : unmanaged, INumberVector<TVector>
-            => T.Visit_Vector<impl_matrix_row_sum>(value);
+            => T.Reduce<impl_matrix_row_sum>(value);
     }
 }
 
@@ -61,10 +61,10 @@ namespace Coplt.Mathematics.Implements
     /// sum of their components, so the component of the result at the index of a row of the matrix is the sum of
     /// the components of that row of it</para>
     /// </summary>
-    internal struct impl_matrix_column_sum : INumberAlgebraVisitor_Self_ColumnVector<impl_matrix_column_sum>
+    internal struct impl_matrix_column_sum : IMatrixColumnVisitor<impl_matrix_column_sum>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_ColumnVector<impl_matrix_column_sum>.AcceptCombine<TVector, TScalar>(
+        static TVector IMatrixColumnVisitor<impl_matrix_column_sum>.Combine_Number<TVector, TScalar>(
             in TVector a, in TVector b
         ) => a + b;
     }
@@ -76,20 +76,20 @@ namespace Coplt.Mathematics.Implements
     /// vector, so the component of the result at the index of a column of the matrix is the sum of the
     /// components of that column of it</para>
     /// </summary>
-    internal struct impl_matrix_row_sum : INumberAlgebraVisitor_Self_RowVector<impl_matrix_row_sum>
+    internal struct impl_matrix_row_sum : IMatrixRowVisitor<impl_matrix_row_sum>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TRow INumberAlgebraVisitor_Self_RowVector<impl_matrix_row_sum>.AcceptMatrixRow2<TColumn, TRow, TScalar>(
+        static TRow IMatrixRowVisitor<impl_matrix_row_sum>.Row2_Number<TColumn, TRow, TScalar>(
             in TColumn c0, in TColumn c1
         ) => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TRow INumberAlgebraVisitor_Self_RowVector<impl_matrix_row_sum>.AcceptMatrixRow3<TColumn, TRow, TScalar>(
+        static TRow IMatrixRowVisitor<impl_matrix_row_sum>.Row3_Number<TColumn, TRow, TScalar>(
             in TColumn c0, in TColumn c1, in TColumn c2
         ) => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1), math.sum<TColumn, TScalar>(c2));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TRow INumberAlgebraVisitor_Self_RowVector<impl_matrix_row_sum>.AcceptMatrixRow4<TColumn, TRow, TScalar>(
+        static TRow IMatrixRowVisitor<impl_matrix_row_sum>.Row4_Number<TColumn, TRow, TScalar>(
             in TColumn c0, in TColumn c1, in TColumn c2, in TColumn c3
         ) => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1), math.sum<TColumn, TScalar>(c2),
             math.sum<TColumn, TScalar>(c3));

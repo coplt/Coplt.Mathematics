@@ -92,47 +92,6 @@ public interface IAlgebra<TSelf, TScalar> : IAlgebra<TSelf>
 
 #endregion
 
-#region Bool
-
-/// <summary>
-/// An <see cref="IAlgebra{TSelf}"/> of a mask: every component of it is a bit that says whether a condition
-/// holds
-/// </summary>
-/// <typeparam name="TSelf">The type of the value itself</typeparam>
-public interface IBoolAlgebra<TSelf> : IAlgebra<TSelf>
-    where TSelf : unmanaged, IBoolAlgebra<TSelf>
-{
-    #region Constants
-
-    /// <summary>A value whose every component is true</summary>
-    public static abstract TSelf True { get; }
-
-    /// <summary>A value whose every component is false</summary>
-    public static abstract TSelf False { get; }
-
-    #endregion
-
-    #region Operators
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TSelf operator !(TSelf value) => ~value;
-
-    #endregion
-}
-
-/// <summary>
-/// An <see cref="IBoolAlgebra{TSelf}"/> that also names the type of a single component
-/// </summary>
-/// <typeparam name="TSelf">The type of the value itself</typeparam>
-/// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IBoolAlgebra<TSelf, TScalar> :
-    IBoolAlgebra<TSelf>,
-    IAlgebra<TSelf, TScalar>
-    where TSelf : unmanaged, IBoolAlgebra<TSelf, TScalar>
-    where TScalar : unmanaged;
-
-#endregion
-
 #region Number
 
 /// <summary>

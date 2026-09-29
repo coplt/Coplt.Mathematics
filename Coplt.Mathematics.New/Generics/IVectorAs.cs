@@ -55,25 +55,6 @@ public interface IVectorAsU<TSelf, out T>
 }
 
 /// <summary>
-/// A vector whose bits can be reinterpreted as the vector of the boolean component of the same width
-/// <para>The vector of a storage variant reinterprets its bits as the regular bool vector, the bool vector has no
-/// storage variant of its own, so a storage variant that has no bool vector of its own width has no bool member
-/// at all and does not implement this interface</para>
-/// </summary>
-/// <typeparam name="TSelf">The vector type itself</typeparam>
-/// <typeparam name="T">The vector of the boolean component</typeparam>
-public interface IVectorAsB<TSelf, out T>
-    where TSelf : unmanaged, IVectorAsB<TSelf, T>
-{
-    /// <summary>
-    /// Reinterprets the bits of <paramref name="source"/> as the vector of the boolean component
-    /// </summary>
-    /// <param name="source">The vector to reinterpret</param>
-    /// <returns>The vector of <typeparamref name="T"/> that has the bits of <paramref name="source"/></returns>
-    public static abstract T asb(in TSelf source);
-}
-
-/// <summary>
 /// A vector whose bits can be reinterpreted as the vector of the same kind that has 2 components
 /// <para>The register of a vector of 4 byte components is as wide as the one of its 2 component vector, so the
 /// bits of one of them are the bits of the other one whose dropped components are zero</para>

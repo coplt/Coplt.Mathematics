@@ -23,24 +23,20 @@ public partial class VectorGenerator
         { "ushort", ("asu", "as_ushort", 2) },
         { "uint", ("asu", "as_uint", 2) },
         { "ulong", ("asu", "as_ulong", 2) },
-        { "b16v", ("asb", "as_b16", 3) },
-        { "b32v", ("asb", "as_b32", 3) },
-        { "b64v", ("asb", "as_b64", 3) },
     };
 
     /// <summary>
     /// The interface of every kind of the as members, the kind of a component is the index of the interface.
     /// </summary>
-    private static readonly string[] AsInterfaces = { "IVectorAsF", "IVectorAsI", "IVectorAsU", "IVectorAsB" };
+    private static readonly string[] AsInterfaces = { "IVectorAsF", "IVectorAsI", "IVectorAsU" };
 
     /// <summary>
     /// Returns the types the bits of a vector can be reinterpreted as, it can reach the vector of every component
     /// type of its own group: the types that have as many components as it has, whose components are as wide as
     /// its ones and that keep their components in the same storage. A storage variant reaches the other storage
     /// variants and a regular vector the other regular ones, the components of every member of a group are
-    /// covered by the bits of every other one, so a bit cast between them keeps every component. A bool vector
-    /// has no storage variant, it joins a group by the width of its value, so a storage variant that has no bool
-    /// vector of its own width has no bool member at all. The members of a group are ordered by their kind.
+    /// covered by the bits of every other one, so a bit cast between them keeps every component. The members of a
+    /// group are ordered by their kind.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -48,19 +44,13 @@ public partial class VectorGenerator
     /// <returns>The type of the vector of every member of the group</returns>
     private static List<Typ> AsTargets(Typ typ, int size, bool storeVariant)
     {
-        var byteSize = VectorGenShared.ByteSize(typ, size, storeVariant);
         var targets = new List<Typ>();
         foreach (var target in Typ.Typs)
         {
             if (target.size != typ.size) continue;
-            if (target.bol)
-            {
-                // a bool vector has no storage variant, it joins the group by the width of its value
-                if (VectorGenShared.ByteSize(target, size, false) != byteSize) continue;
-            }
             // a type whose storage variant does not exist has no storage variant to reach, its own name is the
             // one of a regular vector
-            else if (storeVariant && !VectorGenShared.HasStorageVariant(target, size)) continue;
+            if (storeVariant && !VectorGenShared.HasStorageVariant(target, size)) continue;
 
             targets.Add(target);
         }
@@ -110,8 +100,8 @@ public partial class VectorGenerator
         var sb = new StringBuilder();
         var first = true;
 
-        // a bool vector has no storage variant, the name of it is always the regular one
-        string TargetName(Typ target) => VectorGenShared.VecName(target, size, storeVariant && !target.bol);
+        // a vector that has a storage variant reaches the regular one by its name
+        string TargetName(Typ target) => VectorGenShared.VecName(target, size, storeVariant);
 
         // emits a member with its documentation, every member beside the first one is separated from the one
         // before it by an empty line

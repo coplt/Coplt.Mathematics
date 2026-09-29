@@ -157,8 +157,8 @@ public class VectorExtensionGenerator : IIncrementalGenerator
 
         foreach (var typ in Typ.Typs)
         {
-            // only a number has arithmetic, a bool vector of an algebra has no arithmetic at all
-            if (!typ.arith || typ.bol) continue;
+            // only a number has arithmetic
+            if (!typ.arith) continue;
             for (var size = 2; size <= 4; size++)
             {
                 // a member is emitted for a regular vector alone: it works on the value of the vector through the
