@@ -1,7 +1,4 @@
 using Coplt.Mathematics;
-using B16 = Coplt.Mathematics.b16;
-using B32 = Coplt.Mathematics.b32;
-using B64 = Coplt.Mathematics.b64;
 
 namespace Tests.Core;
 
@@ -47,18 +44,6 @@ public class TestVectorMeta
             Assert.That((half2.Length, half2.SizeByte, half2.SizeBit, half2.IsSimdAccelerated), Is.EqualTo((2, 4, 32, false)));
             Assert.That((half3.Length, half3.SizeByte, half3.SizeBit, half3.IsSimdAccelerated), Is.EqualTo((3, 8, 64, false)));
             Assert.That((half4.Length, half4.SizeByte, half4.SizeBit, half4.IsSimdAccelerated), Is.EqualTo((4, 8, 64, false)));
-
-            Assert.That((b16v2.Length, b16v2.SizeByte, b16v2.SizeBit, b16v2.IsSimdAccelerated), Is.EqualTo((2, 4, 32, false)));
-            Assert.That((b16v3.Length, b16v3.SizeByte, b16v3.SizeBit, b16v3.IsSimdAccelerated), Is.EqualTo((3, 8, 64, false)));
-            Assert.That((b16v4.Length, b16v4.SizeByte, b16v4.SizeBit, b16v4.IsSimdAccelerated), Is.EqualTo((4, 8, 64, false)));
-
-            Assert.That((b32v2.Length, b32v2.SizeByte, b32v2.SizeBit, b32v2.IsSimdAccelerated), Is.EqualTo((2, 8, 64, true)));
-            Assert.That((b32v3.Length, b32v3.SizeByte, b32v3.SizeBit, b32v3.IsSimdAccelerated), Is.EqualTo((3, 16, 128, true)));
-            Assert.That((b32v4.Length, b32v4.SizeByte, b32v4.SizeBit, b32v4.IsSimdAccelerated), Is.EqualTo((4, 16, 128, true)));
-
-            Assert.That((b64v2.Length, b64v2.SizeByte, b64v2.SizeBit, b64v2.IsSimdAccelerated), Is.EqualTo((2, 16, 128, true)));
-            Assert.That((b64v3.Length, b64v3.SizeByte, b64v3.SizeBit, b64v3.IsSimdAccelerated), Is.EqualTo((3, 32, 256, true)));
-            Assert.That((b64v4.Length, b64v4.SizeByte, b64v4.SizeBit, b64v4.IsSimdAccelerated), Is.EqualTo((4, 32, 256, true)));
         }
     }
 
@@ -78,7 +63,6 @@ public class TestVectorMeta
             Assert.That((long3.One.z, long3.Two.z, long3.Three.z), Is.EqualTo((1L, 2L, 3L)));
             Assert.That((ulong2.One.x, ulong2.Two.x, ulong2.Three.x), Is.EqualTo((1UL, 2UL, 3UL)));
             Assert.That(((float)half2.One.y, (float)half2.Two.y, (float)half2.Three.y), Is.EqualTo((1f, 2f, 3f)));
-            Assert.That((bool)b32v2.True.y, Is.True);
 
             // the scalar constants are plain scalars, they are not vectors
             Assert.That((float2.ScalarZero, float2.ScalarOne, float2.ScalarTwo, float2.ScalarThree),
@@ -205,28 +189,6 @@ public class TestVectorMeta
             Assert.That(double2x2.ScalarDenomEpsilon, Is.EqualTo(1e-16));
             Assert.That(float3x2.DenomEpsilon.c1.z, Is.EqualTo(1e-8f));
             Assert.That(double2x2.DenomEpsilon.c0.x, Is.EqualTo(1e-16));
-        }
-    }
-
-    [Test]
-    public void BoolConstants()
-    {
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((b16v2.True.x, b16v2.True.y), Is.EqualTo((B16.True, B16.True)));
-            Assert.That((b16v2.False.x, b16v2.False.y), Is.EqualTo((B16.False, B16.False)));
-            Assert.That(b16v3.False.Equals(default(b16v3)), Is.True);
-
-            Assert.That((b32v3.True.x, b32v3.True.z), Is.EqualTo((B32.True, B32.True)));
-            Assert.That((b32v3.False.x, b32v3.False.z), Is.EqualTo((B32.False, B32.False)));
-            Assert.That((b32v4.True.x, b32v4.True.w), Is.EqualTo((B32.True, B32.True)));
-            Assert.That(b32v2.True.Equals(b32v2.True), Is.True);
-            Assert.That(b32v2.True.Equals(b32v2.False), Is.False);
-
-            Assert.That((b64v2.True.y, b64v2.False.y), Is.EqualTo((B64.True, B64.False)));
-            Assert.That((b64v3.True.z, b64v3.False.z), Is.EqualTo((B64.True, B64.False)));
-            Assert.That(b64v4.False.Equals(default(b64v4)), Is.True);
-            Assert.That((b16v4.True.a, b16v4.False.a), Is.EqualTo((B16.True, B16.False)));
         }
     }
 }

@@ -3,15 +3,18 @@ using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
 
 namespace Tests.Arith;
 
 /// <summary>
 /// The visitors that reduce the values of their arguments to a single component: the value of a vector that
 /// keeps it in a register reaches the member of the visitor that matches the width of the register, the one of a
-/// vector without a register reaches the member of the count of its components and the value of a matrix has no
-/// reduction of it at all. The visitors are only written for a test, the members that reduce a value that has no
-/// register are the ones the operation of a visitor decides.
+/// vector without a register reaches the member of the count of its components and the value of a matrix reduces
+/// every column of it and combines the values of the reductions. The visitors are only written for a test, the
+/// members that reduce a value that has no register are the ones the operation of a visitor decides. The
+/// members of the interfaces are implemented explicitly, so the constraints of the members are inherited from
+/// the interfaces and are not repeated here.
 /// </summary>
 public class TestScalarDispatch
 {
@@ -19,22 +22,13 @@ public class TestScalarDispatch
     /// Returns the sum of the components of the value, which is the reduction of a single component itself and
     /// the sum of the components of a vector without a register.
     /// </summary>
-    private struct impl_sum : INumberAlgebraVisitor_Self_Scalar<impl_sum>
+    private struct impl_sum : IAlgebraVisitor_T_S<impl_sum>
     {
-        public static TScalar AcceptScalar<TScalar>(TScalar value)
-            where TScalar : unmanaged, IBinaryNumber<TScalar> => value;
+        static TScalar IAlgebraVisitor_S_S<impl_sum>.Scalar_Number<TScalar>(TScalar value) => value;
 
-        public static TScalar AcceptCombine<TScalar>(TScalar a, TScalar b)
-            where TScalar : unmanaged, IBinaryNumber<TScalar> => a + b;
+        static TScalar IAlgebraCombinator_S_S<impl_sum>.Combine_Number<TScalar>(TScalar a, TScalar b) => a + b;
 
-        public static TScalar AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector64Underlying<TVector>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
-            => vector.GetElement(0) + vector.GetElement(1);
-
-        public static TScalar AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector128Underlying<TVector>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
         {
             // the padding lanes of the register follow the components of the vector and are left out
             var r = TScalar.Zero;
@@ -42,28 +36,20 @@ public class TestScalarDispatch
             return r;
         }
 
-        public static TScalar AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector256Underlying<TVector>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
         {
             var r = TScalar.Zero;
             for (var i = 0; i < TVector.Rows; i++) r += vector.GetElement(i);
             return r;
         }
 
-        public static TScalar AcceptVector2<TVector, TScalar>(in TVector vector)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector2_Number<TVector, TScalar>(in TVector vector)
             => TVector.get_x(vector) + TVector.get_y(vector);
 
-        public static TScalar AcceptVector3<TVector, TScalar>(in TVector vector)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector3_Number<TVector, TScalar>(in TVector vector)
             => TVector.get_x(vector) + TVector.get_y(vector) + TVector.get_z(vector);
 
-        public static TScalar AcceptVector4<TVector, TScalar>(in TVector vector)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector4_Number<TVector, TScalar>(in TVector vector)
             => TVector.get_x(vector) + TVector.get_y(vector) + TVector.get_z(vector) + TVector.get_w(vector);
     }
 
@@ -71,63 +57,46 @@ public class TestScalarDispatch
     /// Returns the dot product of the two values, which is the product of the components of a single one of them
     /// and the sum of the products of the components of two vectors without a register.
     /// </summary>
-    private struct impl_dot : INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>
+    private struct impl_dot : IAlgebraVisitor_T_T_S<impl_dot>
     {
-        public static TScalar AcceptScalar<TScalar>(TScalar a, TScalar b)
-            where TScalar : unmanaged, IBinaryNumber<TScalar> => a * b;
+        static TScalar IAlgebraVisitor_S_S_S<impl_dot>.Scalar_Number<TScalar>(TScalar a, TScalar b) => a * b;
 
-        public static TScalar AcceptCombine<TScalar>(TScalar a, TScalar b)
-            where TScalar : unmanaged, IBinaryNumber<TScalar> => a + b;
+        static TScalar IAlgebraCombinator_S_S<impl_dot>.Combine_Number<TScalar>(TScalar a, TScalar b) => a + b;
 
-        public static TScalar AcceptVector<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector64Underlying<TVector>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
-            => a.GetElement(0) * b.GetElement(0) + a.GetElement(1) * b.GetElement(1);
-
-        public static TScalar AcceptVector<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector128Underlying<TVector>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
         {
             var r = TScalar.Zero;
             for (var i = 0; i < TVector.Rows; i++) r += a.GetElement(i) * b.GetElement(i);
             return r;
         }
 
-        public static TScalar AcceptVector<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector256Underlying<TVector>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
         {
             var r = TScalar.Zero;
             for (var i = 0; i < TVector.Rows; i++) r += a.GetElement(i) * b.GetElement(i);
             return r;
         }
 
-        public static TScalar AcceptVector2<TVector, TScalar>(in TVector a, in TVector b)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector2<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector2_Number<TVector, TScalar>(in TVector a, in TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b);
 
-        public static TScalar AcceptVector3<TVector, TScalar>(in TVector a, in TVector b)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector3<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector3_Number<TVector, TScalar>(in TVector a, in TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b) + TVector.get_z(a) * TVector.get_z(b);
 
-        public static TScalar AcceptVector4<TVector, TScalar>(in TVector a, in TVector b)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector>, INumberVector<TVector, TScalar>, IVector4<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector4_Number<TVector, TScalar>(in TVector a, in TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b) +
                TVector.get_z(a) * TVector.get_z(b) + TVector.get_w(a) * TVector.get_w(b);
     }
 
     private static TScalar Sum<T, TScalar>(in T value)
-        where T : unmanaged, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
-        => T.Visit_Scalar<impl_sum>(value);
+        => T.Scalar<impl_sum>(value);
 
     private static TScalar Dot<T, TScalar>(in T a, in T b)
-        where T : unmanaged, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
-        => T.Visit_Scalar<impl_dot>(a, b);
+        => T.Scalar<impl_dot>(a, b);
 
     [Test]
     public void Sum()

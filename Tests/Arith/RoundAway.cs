@@ -3,6 +3,8 @@ using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -21,7 +23,7 @@ public class TestRoundAway
     /// interface reaches it, which is the form the members of the library use.
     /// </summary>
     private static void Check<T>(T v)
-        where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+        where T : unmanaged, IAlgebraDispatch<T>
     {
         var r = math.round_away(v);
         Assert.That(v.round_away(), Is.EqualTo(r));

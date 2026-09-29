@@ -3,6 +3,8 @@ using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -23,7 +25,7 @@ public class TestProject
     /// hold is checked below.
     /// </summary>
     private static void Check<T>(T value, T onto)
-        where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointVector<T>
+        where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
     {
         Assert.That(value.project(onto), Is.EqualTo(math.project(value, onto)));
         Assert.That(value.project_unsafe(onto), Is.EqualTo(math.project_unsafe(value, onto)));

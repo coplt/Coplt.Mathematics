@@ -24,8 +24,6 @@ public class TestVectorShuffle
         var j = new int4(5, 6, 7, 8);
         var h = new half4((Half)1, (Half)2, (Half)3, (Half)4);
         var k = new half4((Half)5, (Half)6, (Half)7, (Half)8);
-        var s = new b32v4(true, false, true, false);
-        var t = new b32v4(false, true, false, true);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(float4.shuffle_xx_xx(a, b), Is.EqualTo(new float4(1, 1, 5, 5)));
@@ -42,11 +40,6 @@ public class TestVectorShuffle
             // a vector without a register reads the components its pattern names
             Assert.That(half4.shuffle_xx_xx(h, k), Is.EqualTo(new half4((Half)1, (Half)1, (Half)5, (Half)5)));
             Assert.That(half4.shuffle_wz_yx(h, k), Is.EqualTo(new half4((Half)4, (Half)3, (Half)6, (Half)5)));
-            // a bool vector keeps the bits of its components, its shuffle is the one of the unsigned vector
-            Assert.That(((bool)b32v4.shuffle_xy_zw(s, t).x, (bool)b32v4.shuffle_xy_zw(s, t).w),
-                Is.EqualTo((true, true)));
-            Assert.That(((bool)b32v4.shuffle_wz_yx(s, t).x, (bool)b32v4.shuffle_wz_yx(s, t).y),
-                Is.EqualTo((false, true)));
         }
     }
 
@@ -112,10 +105,6 @@ public class TestVectorShuffle
             Assert.That(Combine(new short4(1, 2, 3, 4), new short4(5, 6, 7, 8)), Is.EqualTo(new short4(1, 2, 7, 8)));
             Assert.That(Combine(new ushort4(1, 2, 3, 4), new ushort4(5, 6, 7, 8)), Is.EqualTo(new ushort4(1, 2, 7, 8)));
             Assert.That(Combine(new uint4(1, 2, 3, 4), new uint4(5, 6, 7, 8)), Is.EqualTo(new uint4(1, 2, 7, 8)));
-            Assert.That(Combine(new b16v4(true, false, true, false), new b16v4(false, true, false, true)),
-                Is.EqualTo(new b16v4(true, false, false, true)));
-            Assert.That(Combine(new b64v4(true, false, true, false), new b64v4(false, true, false, true)),
-                Is.EqualTo(new b64v4(true, false, false, true)));
         }
     }
 

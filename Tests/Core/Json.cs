@@ -2,17 +2,13 @@ using System.Text.Json;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Generics;
-using B16 = Coplt.Mathematics.b16;
-using B32 = Coplt.Mathematics.b32;
-using B64 = Coplt.Mathematics.b64;
 
 namespace Tests.Core;
 
 /// <summary>
 /// Checks the json converters of the generated vectors and matrices. A vector is written as an array of its
-/// components in order and a matrix as an array of the arrays of the components of its columns, a component of a
-/// bool vector is a json bool and every other one a json number, and the name of the type is not a part of the
-/// value.
+/// components in order and a matrix as an array of the arrays of the components of its columns, every component
+/// is a json number and the name of the type is not a part of the value.
 /// </summary>
 public class TestVectorJson
 {
@@ -35,12 +31,6 @@ public class TestVectorJson
             Assert.That(JsonSerializer.Serialize(new ulong2(1, 2), Options), Is.EqualTo("[1,2]"));
             // a half is not a number of the writer, its value is written as the float it widens to
             Assert.That(JsonSerializer.Serialize(new half2((Half)1, (Half)2), Options), Is.EqualTo("[1,2]"));
-            // a component of a bool vector is a json bool, it is never written as a number
-            Assert.That(JsonSerializer.Serialize(new b16v2(B16.True, B16.False), Options), Is.EqualTo("[true,false]"));
-            Assert.That(
-                JsonSerializer.Serialize(new b32v4(B32.True, B32.False, B32.True, B32.False), Options),
-                Is.EqualTo("[true,false,true,false]"));
-            Assert.That(JsonSerializer.Serialize(new b64v3(B64.True, B64.False, B64.True), Options), Is.EqualTo("[true,false,true]"));
             // the storage variant of a vector has the json shape of the regular vector
             Assert.That(JsonSerializer.Serialize(new float2s(1, 2), Options), Is.EqualTo("[1,2]"));
             Assert.That(JsonSerializer.Serialize(new float3s(1, 2, 3), Options), Is.EqualTo("[1,2,3]"));
@@ -55,7 +45,6 @@ public class TestVectorJson
         var f3 = JsonSerializer.Deserialize<float3>("[1,2,3]", Options);
         var u2 = JsonSerializer.Deserialize<uint2>("[1,2]", Options);
         var h3 = JsonSerializer.Deserialize<half3>("[1,2,3]", Options);
-        var b2 = JsonSerializer.Deserialize<b32v2>("[true,false]", Options);
         var p3 = JsonSerializer.Deserialize<float3>("[ 1 , 2 , 3 ]", Options);
         var s3 = JsonSerializer.Deserialize<float3s>("[1,2,3]", Options);
         using (Assert.EnterMultipleScope())
@@ -65,8 +54,6 @@ public class TestVectorJson
             Assert.That(h3.x, Is.EqualTo((Half)1));
             Assert.That(h3.y, Is.EqualTo((Half)2));
             Assert.That(h3.z, Is.EqualTo((Half)3));
-            Assert.That((bool)b2.x, Is.True);
-            Assert.That((bool)b2.y, Is.False);
             // the whitespace between the components is skipped by the reader
             Assert.That((p3.x, p3.y, p3.z), Is.EqualTo((1f, 2f, 3f)));
             Assert.That((s3.x, s3.y, s3.z), Is.EqualTo((1f, 2f, 3f)));
@@ -102,9 +89,6 @@ public class TestVectorJson
         Check<uint2s, uint>(new uint2s(1, 2), "[1,2]");
         Check<double3s, double>(new double3s(1, 2, 3), "[1,2,3]");
         Check<long3s, long>(new long3s(1, 2, 3), "[1,2,3]");
-        Check<b16v2, B16>(new b16v2(B16.True, B16.False), "[true,false]");
-        Check<b32v4, B32>(new b32v4(B32.True, B32.False, B32.True, B32.False), "[true,false,true,false]");
-        Check<b64v2, B64>(new b64v2(B64.True, B64.False), "[true,false]");
     }
 
     [Test]
@@ -124,11 +108,6 @@ public class TestVectorJson
                 JsonSerializer.Serialize(
                     new float2x4(new float2(1, 2), new float2(3, 4), new float2(5, 6), new float2(7, 8)), Options),
                 Is.EqualTo("[[1,2],[3,4],[5,6],[7,8]]"));
-            // a column of a matrix of a mask is a bool vector of it
-            Assert.That(
-                JsonSerializer.Serialize(
-                    new b32m2x2(new b32v2(B32.True, B32.False), new b32v2(B32.False, B32.True)), Options),
-                Is.EqualTo("[[true,false],[false,true]]"));
             // the storage variant of a matrix has the json shape of the regular matrix
             Assert.That(
                 JsonSerializer.Serialize(new float2x2s(new float2s(1, 2), new float2s(3, 4)), Options),

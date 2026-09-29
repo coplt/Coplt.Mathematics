@@ -4,6 +4,8 @@ using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -20,7 +22,7 @@ public class TestFused
     /// members reach the same ones.
     /// </summary>
     private static void Check<T>(T a, T b, T c)
-        where T : unmanaged, INumberAlgebraDispatch<T>
+        where T : unmanaged, IAlgebraDispatch<T>, Coplt.Mathematics.Algebras.INumberAlgebra<T>
     {
         using (Assert.EnterMultipleScope())
         {

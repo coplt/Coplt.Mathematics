@@ -1,7 +1,9 @@
 using System.Reflection;
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
 
 namespace Tests.Core;
 
@@ -16,67 +18,54 @@ namespace Tests.Core;
 /// implemented explicitly, so this file reaches them through the interface of the dispatch of a parameter.
 /// <para>The algebra a value belongs to is a part of its type as well: the type of it implements the dispatch
 /// of every kind of it, which reaches the members of the kind. A floating point number reaches the members a
-/// floating point number has of its own and the ones the ieee 754 standard names beside the ones of a number,
-/// every kind of it dispatching the values of the kind alone.</para>
+/// floating point number has of its own beside the ones of a number, every kind of it dispatching the values of
+/// the kind alone.</para>
 /// </summary>
 public class TestDynamicVector
 {
     /// <summary>Builds the value that dispatched the call out of the value it is handed</summary>
-    private readonly struct AgainVisitor : INumberAlgebraVisitor_Self_Self<AgainVisitor>
+    private readonly struct AgainVisitor : IAlgebraVisitor_T_T<AgainVisitor>
     {
         /// <summary>The value of a scalar is handed over as it is</summary>
-        static TScalar INumberAlgebraVisitor_Self_Self<AgainVisitor>.AcceptScalar<TScalar>(TScalar value) => value;
-
-        /// <summary>Builds the value of a vector out of its register of 64 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self<AgainVisitor>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
-            => TVector.FromUnderlying(vector.As<TScalar, byte>());
+        static TScalar IAlgebraVisitor_S_S<AgainVisitor>.Scalar_Number<TScalar>(TScalar value) => value;
 
         /// <summary>Builds the value of a vector out of its register of 128 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self<AgainVisitor>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<AgainVisitor>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> vector)
             => TVector.FromUnderlying(vector.As<TScalar, byte>());
 
         /// <summary>Builds the value of a vector out of its register of 256 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self<AgainVisitor>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<AgainVisitor>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> vector)
             => TVector.FromUnderlying(vector.As<TScalar, byte>());
     }
 
     /// <summary>Builds the value that dispatched the call out of the second of the two values it is handed</summary>
-    private readonly struct SecondVisitor : INumberAlgebraVisitor_Self_Self_Self<SecondVisitor>
+    private readonly struct SecondVisitor : IAlgebraVisitor_T_T_T<SecondVisitor>
     {
         /// <summary>The second of the two scalars</summary>
-        static TScalar INumberAlgebraVisitor_Self_Self_Self<SecondVisitor>.AcceptScalar<TScalar>(TScalar a, TScalar b) => b;
-
-        /// <summary>Builds the second value out of its register of 64 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self<SecondVisitor>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b)
-            => TVector.FromUnderlying(b.As<TScalar, byte>());
+        static TScalar IAlgebraVisitor_S_S_S<SecondVisitor>.Scalar_Number<TScalar>(TScalar a, TScalar b) => b;
 
         /// <summary>Builds the second value out of its register of 128 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self<SecondVisitor>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<SecondVisitor>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
             => TVector.FromUnderlying(b.As<TScalar, byte>());
 
         /// <summary>Builds the second value out of its register of 256 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self<SecondVisitor>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<SecondVisitor>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
             => TVector.FromUnderlying(b.As<TScalar, byte>());
     }
 
     /// <summary>Builds the value that dispatched the call out of the third of the three values it is handed</summary>
-    private readonly struct ThirdVisitor : INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>
+    private readonly struct ThirdVisitor : IAlgebraVisitor_T_T_T_T<ThirdVisitor>
     {
         /// <summary>The third of the three scalars</summary>
-        static TScalar INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptScalar<TScalar>(TScalar a, TScalar b, TScalar c) => c;
-
-        /// <summary>Builds the third value out of its register of 64 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b,
-            in Vector64<TScalar> c)
-            => TVector.FromUnderlying(c.As<TScalar, byte>());
+        static TScalar IAlgebraVisitor_S_S_S_S<ThirdVisitor>.Scalar_Number<TScalar>(TScalar a, TScalar b, TScalar c) => c;
 
         /// <summary>Builds the third value out of its register of 128 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b,
+        static TVector IAlgebraVisitor_T_T_T_T<ThirdVisitor>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b,
             in Vector128<TScalar> c)
             => TVector.FromUnderlying(c.As<TScalar, byte>());
 
         /// <summary>Builds the third value out of its register of 256 bits</summary>
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<ThirdVisitor>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b,
+        static TVector IAlgebraVisitor_T_T_T_T<ThirdVisitor>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b,
             in Vector256<TScalar> c)
             => TVector.FromUnderlying(c.As<TScalar, byte>());
     }
@@ -86,22 +75,18 @@ public class TestDynamicVector
     /// of the vector, every other value reaches the scalar of the visitor for every one of its components and
     /// adds one to it
     /// </summary>
-    private readonly struct WhichVisitor : INumberAlgebraVisitor_Self_Self<WhichVisitor>
+    private readonly struct WhichVisitor : IAlgebraVisitor_T_T<WhichVisitor>
     {
         /// <summary>Adds one to the value, it tells that the scalar of the visitor was reached</summary>
-        static TScalar INumberAlgebraVisitor_Self_Self<WhichVisitor>.AcceptScalar<TScalar>(TScalar value)
+        static TScalar IAlgebraVisitor_S_S<WhichVisitor>.Scalar_Number<TScalar>(TScalar value)
             => value + TScalar.One;
 
-        /// <summary>Replaces the value of a register of 64 bits by the one of the vector</summary>
-        static TVector INumberAlgebraVisitor_Self_Self<WhichVisitor>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
-            => TVector.One;
-
         /// <summary>Replaces the value of a register of 128 bits by the one of the vector</summary>
-        static TVector INumberAlgebraVisitor_Self_Self<WhichVisitor>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<WhichVisitor>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
             => TVector.One;
 
         /// <summary>Replaces the value of a register of 256 bits by the one of the vector</summary>
-        static TVector INumberAlgebraVisitor_Self_Self<WhichVisitor>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<WhichVisitor>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
             => TVector.One;
     }
 
@@ -110,33 +95,41 @@ public class TestDynamicVector
     /// implemented explicitly, so only the interface of the dispatch of a parameter reaches it
     /// </summary>
     private static T Visit<T, V>(in T value)
-        where T : unmanaged, INumberAlgebraDispatch<T>
-        where V : INumberAlgebraVisitor_Self_Self<V>
-        => T.Visit_Self<V>(value);
+        where T : unmanaged, IAlgebraDispatch<T>
+        where V : IAlgebraVisitor_T_T<V>
+        => T.Self<V>(value);
 
     /// <summary>Dispatches the two values of a vector or of a matrix to a visitor</summary>
     private static T Visit<T, V>(in T a, in T b)
-        where T : unmanaged, INumberAlgebraDispatch<T>
-        where V : INumberAlgebraVisitor_Self_Self_Self<V>
-        => T.Visit_Self<V>(a, b);
+        where T : unmanaged, IAlgebraDispatch<T>
+        where V : IAlgebraVisitor_T_T_T<V>
+        => T.Self<V>(a, b);
 
     /// <summary>Dispatches the three values of a vector or of a matrix to a visitor</summary>
     private static T Visit<T, V>(in T a, in T b, in T c)
-        where T : unmanaged, INumberAlgebraDispatch<T>
-        where V : INumberAlgebraVisitor_Self_Self_Self_Self<V>
-        => T.Visit_Self<V>(a, b, c);
+        where T : unmanaged, IAlgebraDispatch<T>
+        where V : IAlgebraVisitor_T_T_T_T<V>
+        => T.Self<V>(a, b, c);
 
     /// <summary>
     /// Counts the members that dispatch the value of the type: the member of an explicit implementation of an
     /// interface is named by the interface and the member of it, so the count of them tells whether the type
-    /// implements the dispatch at all
+    /// implements the dispatch at all and how many members of it the type reaches
     /// </summary>
-    private static int CountVisit<T>()
+    private static int CountDispatch<T>()
     {
         var count = 0;
         foreach (var method in typeof(T).GetMethods(BindingFlags.NonPublic | BindingFlags.Static))
         {
-            if (method.Name.EndsWith(".Visit_Self", StringComparison.Ordinal)) count++;
+            var name = method.Name;
+            if (name.EndsWith(".Self", StringComparison.Ordinal)
+                || name.EndsWith(".Scalar", StringComparison.Ordinal)
+                || name.EndsWith(".Combine", StringComparison.Ordinal)
+                || name.EndsWith(".Map_Self", StringComparison.Ordinal)
+                || name.EndsWith(".Reduce", StringComparison.Ordinal))
+            {
+                count++;
+            }
         }
 
         return count;
@@ -165,21 +158,16 @@ public class TestDynamicVector
             Assert.That(Visit<double2x4, AgainVisitor>(
                     new double2x4(new double2(1, 2), new double2(3, 4), new double2(5, 6), new double2(7, 8))),
                 Is.EqualTo(new double2x4(new double2(1, 2), new double2(3, 4), new double2(5, 6), new double2(7, 8))));
-            // every member of a visitor names the algebra of a kind of the value and every kind of it the
-            // value has dispatches to the members of it: a number dispatches three members that take values
-            // and two that take a component of the value beside it, which every value has, and a floating
-            // point number dispatches the three members of the floating point kind of it as well, which take
-            // the values of the kind alone. A matrix reaches the members of the same kinds and a mask does not
-            // dispatch at all.
-            Assert.That(CountVisit<float2>(), Is.EqualTo(8));
-            Assert.That(CountVisit<double2x4>(), Is.EqualTo(8));
-            Assert.That(CountVisit<float2x2>(), Is.EqualTo(8));
-            Assert.That(CountVisit<float3x2>(), Is.EqualTo(8));
-            Assert.That(CountVisit<half2>(), Is.EqualTo(8));
-            Assert.That(CountVisit<half2x2>(), Is.EqualTo(8));
-            Assert.That(CountVisit<int2>(), Is.EqualTo(5));
-            Assert.That(CountVisit<b32v2>(), Is.EqualTo(0));
-            Assert.That(CountVisit<b16m2x2>(), Is.EqualTo(0));
+            // every value of a kind dispatches the members of the kind: three that take values, two that take a
+            // component of the value beside it and the map of the value, and a matrix reaches the two members
+            // that combine and reduce its columns on top of them
+            Assert.That(CountDispatch<float2>(), Is.EqualTo(12));
+            Assert.That(CountDispatch<half2>(), Is.EqualTo(12));
+            Assert.That(CountDispatch<int2>(), Is.EqualTo(12));
+            Assert.That(CountDispatch<float2x2>(), Is.EqualTo(14));
+            Assert.That(CountDispatch<float3x2>(), Is.EqualTo(14));
+            Assert.That(CountDispatch<half2x2>(), Is.EqualTo(14));
+            Assert.That(CountDispatch<double2x4>(), Is.EqualTo(14));
         }
     }
 
@@ -222,7 +210,7 @@ public class TestDynamicVector
             Assert.That(Visit<half2, WhichVisitor>(new half2((Half)1, (Half)2)),
                 Is.EqualTo(new half2((Half)2, (Half)3)));
             // a matrix of a number dispatches the value of its columns, every one of them reaching the member
-            // of the width of its register, and a mask dispatches nothing at all
+            // of the width of its register
             Assert.That(Visit<float2x2, WhichVisitor>(new float2x2(new float2(1, 2), new float2(3, 4))),
                 Is.EqualTo(new float2x2(new float2(1, 1), new float2(1, 1))));
         }

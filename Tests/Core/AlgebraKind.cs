@@ -4,6 +4,8 @@ using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Core;
 
 /// <summary>
@@ -54,8 +56,8 @@ public class TestAlgebraKind
             Assert.That(Implements(typeof(half3), typeof(IFloatingPointVector<>)), Is.True);
 
             // the dispatch of a value is the one of every kind of the component of it
-            Assert.That(Implements(typeof(float3), typeof(IFloatingPointAlgebraDispatch<>)), Is.True);
-            Assert.That(Implements(typeof(half3), typeof(IFloatingPointAlgebraDispatch<>)), Is.True);
+            Assert.That(Implements(typeof(float3), typeof(IAlgebraDispatch<>)), Is.True);
+            Assert.That(Implements(typeof(half3), typeof(IAlgebraDispatch<>)), Is.True);
         }
     }
 }

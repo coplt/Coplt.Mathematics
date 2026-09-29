@@ -1,8 +1,5 @@
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
-using B16 = Coplt.Mathematics.b16;
-using B32 = Coplt.Mathematics.b32;
-using B64 = Coplt.Mathematics.b64;
 
 namespace Tests.Core;
 
@@ -84,35 +81,6 @@ public class TestVectorBitwise
             Assert.That(us4 & us4, Is.EqualTo(us4));
             Assert.That((~us4).y, Is.EqualTo((ushort)0xFF00));
             Assert.That(us4 ^ us4, Is.EqualTo(default(ushort4)));
-        }
-
-        var t3 = new b32v3(B32.True, B32.True, B32.True);
-        var t3b = new b32v3(B32.True, B32.False, B32.True);
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(t3 & t3b, Is.EqualTo(t3b));
-            Assert.That(t3 | t3b, Is.EqualTo(t3));
-            Assert.That(t3 ^ t3b, Is.EqualTo(new b32v3(B32.False, B32.True, B32.False)));
-            Assert.That(~t3, Is.EqualTo(new b32v3(B32.False, B32.False, B32.False)));
-            Assert.That(~t3b, Is.EqualTo(new b32v3(B32.False, B32.True, B32.False)));
-        }
-
-        var e2 = new b16v2(B16.True, B16.False);
-        var e2b = new b16v2(B16.True, B16.True);
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(e2 & e2b, Is.EqualTo(e2));
-            Assert.That(e2 | e2b, Is.EqualTo(e2b));
-            Assert.That((bool)(~e2).y, Is.True);
-        }
-
-        var q4 = new b64v4(B64.True, B64.False, B64.True, B64.False);
-        var q4b = new b64v4(B64.True, B64.True, B64.False, B64.False);
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(q4 & q4b, Is.EqualTo(new b64v4(B64.True, B64.False, B64.False, B64.False)));
-            Assert.That(q4 | q4b, Is.EqualTo(new b64v4(B64.True, B64.True, B64.True, B64.False)));
-            Assert.That(q4 ^ q4b, Is.EqualTo(new b64v4(B64.False, B64.True, B64.True, B64.False)));
         }
     }
 
@@ -331,21 +299,6 @@ public class TestVectorBitwise
             Assert.That((d3 << 3).vector.GetElement(3), Is.EqualTo(0d));
             Assert.That((~l3).vector.GetElement(3), Is.EqualTo(0L));
             Assert.That((ul3 << 1).vector.GetElement(3), Is.EqualTo(0UL));
-        }
-
-        var t3 = b32v3.True;
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((~t3).vector.GetElement(3), Is.EqualTo(0u));
-            Assert.That((t3 & t3).vector.GetElement(3), Is.EqualTo(0u));
-            Assert.That((bool)(~t3).x, Is.False);
-            Assert.That((bool)(~t3).z, Is.False);
-        }
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That((b64v3.True | b64v3.False).vector.GetElement(3), Is.EqualTo(0UL));
-            Assert.That((b16v3.True & b16v3.True).z, Is.EqualTo(B16.True));
         }
     }
 }

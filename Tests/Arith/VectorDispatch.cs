@@ -3,6 +3,7 @@ using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
 using half = System.Half;
 
 namespace Tests.Arith;
@@ -14,18 +15,17 @@ namespace Tests.Arith;
 /// combine, which a visitor that maps a column before they are combined overrides. The rows of a matrix have no
 /// value of their own, so the visitor of the rows reduces every column of it to a single component and builds the
 /// vector of the values of the reductions. The visitors are only written for a test, the members that reduce the
-/// vectors of a matrix are the ones the operation of a visitor decides.
+/// vectors of a matrix are the ones the operation of a visitor decides, and they are implemented explicitly, so
+/// the constraints of the members are inherited from the interfaces and are not repeated here.
 /// </summary>
 public class TestVectorDispatch
 {
     /// <summary>
     /// Returns the sum of the columns of a matrix, which is the sum of every one of them component by component.
     /// </summary>
-    private struct impl_sum_columns : INumberAlgebraVisitor_Self_ColumnVector<impl_sum_columns>
+    private struct impl_sum_columns : IMatrixColumnVisitor<impl_sum_columns>
     {
-        public static TVector AcceptCombine<TVector, TScalar>(in TVector a, in TVector b)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TVector IMatrixColumnVisitor<impl_sum_columns>.Combine_Number<TVector, TScalar>(in TVector a, in TVector b)
             => a + b;
     }
 
@@ -34,26 +34,18 @@ public class TestVectorDispatch
     /// are handed over, every one of them is reduced by the sum and the values of the reductions are the
     /// components of the row vector they build.
     /// </summary>
-    private struct impl_sum_rows : INumberAlgebraVisitor_Self_RowVector<impl_sum_rows>
+    private struct impl_sum_rows : IMatrixRowVisitor<impl_sum_rows>
     {
-        public static TRow AcceptMatrixRow2<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1)
-            where TColumn : unmanaged, INumberAlgebraDispatch<TColumn, TScalar>, INumberVector<TColumn, TScalar>
-            where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector2<TRow, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TRow IMatrixRowVisitor<impl_sum_rows>.Row2_Number<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1)
             => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1));
 
-        public static TRow AcceptMatrixRow3<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1, in TColumn c2)
-            where TColumn : unmanaged, INumberAlgebraDispatch<TColumn, TScalar>, INumberVector<TColumn, TScalar>
-            where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector3<TRow, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TRow IMatrixRowVisitor<impl_sum_rows>.Row3_Number<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1,
+            in TColumn c2)
             => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1),
                 math.sum<TColumn, TScalar>(c2));
 
-        public static TRow AcceptMatrixRow4<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1, in TColumn c2,
-            in TColumn c3)
-            where TColumn : unmanaged, INumberAlgebraDispatch<TColumn, TScalar>, INumberVector<TColumn, TScalar>
-            where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector4<TRow, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TRow IMatrixRowVisitor<impl_sum_rows>.Row4_Number<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1,
+            in TColumn c2, in TColumn c3)
             => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1),
                 math.sum<TColumn, TScalar>(c2), math.sum<TColumn, TScalar>(c3));
     }
@@ -63,34 +55,21 @@ public class TestVectorDispatch
     /// ones that reach the columns themselves, so a visitor that maps them before they are combined overrides
     /// them and the one that combines two of them.
     /// </summary>
-    private struct impl_sum_sq_columns : INumberAlgebraVisitor_Self_ColumnVector<impl_sum_sq_columns>
+    private struct impl_sum_sq_columns : IMatrixColumnVisitor<impl_sum_sq_columns>
     {
-        public static TVector AcceptCombine<TVector, TScalar>(in TVector a, in TVector b)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
+        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine_Number<TVector, TScalar>(in TVector a, in TVector b)
             => a + b;
 
-        public static TVector AcceptMatrixColumns2<TVector, TScalar>(in TVector c0, in TVector c1)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
-            => impl_sum_sq_columns.AcceptCombine<TVector, TScalar>(c0 * c0, c1 * c1);
+        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine2_Number<TVector, TScalar>(in TVector c0, in TVector c1)
+            => (c0 * c0) + (c1 * c1);
 
-        public static TVector AcceptMatrixColumns3<TVector, TScalar>(in TVector c0, in TVector c1, in TVector c2)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
-            => impl_sum_sq_columns.AcceptCombine<TVector, TScalar>(
-                impl_sum_sq_columns.AcceptCombine<TVector, TScalar>(c0 * c0, c1 * c1),
-                c2 * c2);
+        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine3_Number<TVector, TScalar>(in TVector c0, in TVector c1,
+            in TVector c2)
+            => ((c0 * c0) + (c1 * c1)) + (c2 * c2);
 
-        public static TVector AcceptMatrixColumns4<TVector, TScalar>(in TVector c0, in TVector c1, in TVector c2,
-            in TVector c3)
-            where TVector : unmanaged, INumberAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
-            where TScalar : unmanaged, IBinaryNumber<TScalar>
-            => impl_sum_sq_columns.AcceptCombine<TVector, TScalar>(
-                impl_sum_sq_columns.AcceptCombine<TVector, TScalar>(
-                    impl_sum_sq_columns.AcceptCombine<TVector, TScalar>(c0 * c0, c1 * c1),
-                    c2 * c2),
-                c3 * c3);
+        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine4_Number<TVector, TScalar>(in TVector c0, in TVector c1,
+            in TVector c2, in TVector c3)
+            => (((c0 * c0) + (c1 * c1)) + (c2 * c2)) + (c3 * c3);
     }
 
     /// <summary>
@@ -99,19 +78,19 @@ public class TestVectorDispatch
     /// that vector, so it is not named by the interface of the dispatch of the vectors.
     /// </summary>
     private static TVector SumColumns<T, TVector>(in T value)
-        where T : unmanaged, INumberMatrixColumnDispatch<T, TVector>
+        where T : unmanaged, IMatrixColumnDispatch<T, TVector>
         where TVector : unmanaged, INumberVector<TVector>
-        => T.Visit_Vector<impl_sum_columns>(value);
+        => T.Combine<impl_sum_columns>(value);
 
     private static TVector SumRows<T, TVector>(in T value)
-        where T : unmanaged, INumberMatrixRowDispatch<T, TVector>
+        where T : unmanaged, IMatrixRowDispatch<T, TVector>
         where TVector : unmanaged, INumberVector<TVector>
-        => T.Visit_Vector<impl_sum_rows>(value);
+        => T.Reduce<impl_sum_rows>(value);
 
     private static TVector SumSqColumns<T, TVector>(in T value)
-        where T : unmanaged, INumberMatrixColumnDispatch<T, TVector>
+        where T : unmanaged, IMatrixColumnDispatch<T, TVector>
         where TVector : unmanaged, INumberVector<TVector>
-        => T.Visit_Vector<impl_sum_sq_columns>(value);
+        => T.Combine<impl_sum_sq_columns>(value);
 
     /// <summary>
     /// The count of the columns of a matrix decides the member of the visitor that reaches them and the type of

@@ -4,6 +4,8 @@ using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -18,7 +20,7 @@ public class TestFloatingPointAlgebra
     /// parameter that only knows the interface uses.
     /// </summary>
     private static void CheckVector<T, TScalar>(T v)
-        where T : unmanaged, IFloatingPointVector<T, TScalar>, IFloatingPointAlgebraDispatch<T>
+        where T : unmanaged, IFloatingPointVector<T, TScalar>, IAlgebraDispatch<T>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
     {
         _ = T.E / T.PI;
@@ -34,7 +36,7 @@ public class TestFloatingPointAlgebra
 
     /// <inheritdoc cref="CheckVector{T,TScalar}(T)"/>
     private static void CheckMatrix<T, TScalar>(T m)
-        where T : unmanaged, IFloatingPointMatrix<T, TScalar>, IFloatingPointAlgebraDispatch<T>
+        where T : unmanaged, IFloatingPointMatrix<T, TScalar>, IAlgebraDispatch<T>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
     {
         _ = T.E / T.PI;

@@ -1,9 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
-using B16 = Coplt.Mathematics.b16;
-using B32 = Coplt.Mathematics.b32;
-using B64 = Coplt.Mathematics.b64;
 
 namespace Tests.Core;
 
@@ -55,10 +52,6 @@ public class TestVectorConversions
         long2 nl2 = (long2)new ulong2(18446744073709551615UL, 2);
         float2 f2 = (float2)new double2(1.5, -2.5);
         half2 h2 = (half2)new int2(1, 2);
-        int2 bi2 = (int2)new b32v2(B32.True, B32.False);
-        int2 si2 = (int2)new b16v2(B16.True, B16.False);
-        float2 bf2 = (float2)new b32v2(B32.True, B32.False);
-        b64v2 bb2 = (b64v2)new b32v2(B32.True, B32.False);
         using (Assert.EnterMultipleScope())
         {
             Assert.That((i2.x, i2.y), Is.EqualTo((1, -2)));
@@ -71,11 +64,6 @@ public class TestVectorConversions
             Assert.That(f2.y, Is.EqualTo(-2.5f));
             Assert.That(h2.x, Is.EqualTo((Half)1));
             Assert.That(h2.y, Is.EqualTo((Half)2));
-            Assert.That((bi2.x, bi2.y), Is.EqualTo((-1, 0)));
-            // the component of a bool vector that has no register is cast as the value of its bits
-            Assert.That((si2.x, si2.y), Is.EqualTo((65535, 0)));
-            Assert.That((bf2.x, bf2.y), Is.EqualTo((4294967296f, 0f)));
-            Assert.That(((bool)bb2.x, (bool)bb2.y), Is.EqualTo((true, false)));
         }
     }
 

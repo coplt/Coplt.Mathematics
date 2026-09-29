@@ -15,34 +15,30 @@ namespace Tests.Core;
 public class TestAsCast
 {
     /// <summary>
-    /// The members of a group keep the bits of every one of them, so all of them are as wide as the vector. A
-    /// type whose group has no bool vector of its own width does not implement the bool interface, so only the
-    /// types that have one are checked with the four interfaces.
+    /// The members of a group keep the bits of every one of them, so all of them are as wide as the vector.
     /// </summary>
-    private static void CheckAs<T, F, I, U, B>(T v)
-        where T : unmanaged, IVectorAsF<T, F>, IVectorAsI<T, I>, IVectorAsU<T, U>, IVectorAsB<T, B>
+    private static void CheckAs<T, F, I, U>(T v)
+        where T : unmanaged, IVectorAsF<T, F>, IVectorAsI<T, I>, IVectorAsU<T, U>
     {
         T.asf(v);
         T.asi(v);
         T.asu(v);
-        T.asb(v);
 
         using (Assert.EnterMultipleScope())
         {
             Assert.That(Unsafe.SizeOf<F>(), Is.EqualTo(Unsafe.SizeOf<T>()));
             Assert.That(Unsafe.SizeOf<I>(), Is.EqualTo(Unsafe.SizeOf<T>()));
             Assert.That(Unsafe.SizeOf<U>(), Is.EqualTo(Unsafe.SizeOf<T>()));
-            Assert.That(Unsafe.SizeOf<B>(), Is.EqualTo(Unsafe.SizeOf<T>()));
         }
     }
 
     [Test]
     public void AsInterfaces()
     {
-        CheckAs<float3, float3, int3, uint3, b32v3>(new float3(1, 2, 3));
-        CheckAs<float2, float2, int2, uint2, b32v2>(new float2(1, 2));
-        CheckAs<short2, half2, short2, ushort2, b16v2>(new short2(-1, 2));
-        CheckAs<double2, double2, long2, ulong2, b64v2>(new double2(1, 2));
+        CheckAs<float3, float3, int3, uint3>(new float3(1, 2, 3));
+        CheckAs<float2, float2, int2, uint2>(new float2(1, 2));
+        CheckAs<short2, half2, short2, ushort2>(new short2(-1, 2));
+        CheckAs<double2, double2, long2, ulong2>(new double2(1, 2));
     }
 
     [Test]
@@ -54,7 +50,6 @@ public class TestAsCast
         var h = math.asf(new short2(0x3C00, 0x4000));
         var i = math.asi(new float2(1, 2));
         var u = math.asu(new float2(1, 2));
-        var b = math.asb(new short2(-1, 2));
 
         using (Assert.EnterMultipleScope())
         {
@@ -62,8 +57,6 @@ public class TestAsCast
             Assert.That(((float)h.x, (float)h.y), Is.EqualTo((1f, 2f)));
             Assert.That((i.x, i.y), Is.EqualTo((0x3F800000, 0x40000000)));
             Assert.That((u.x, u.y), Is.EqualTo((0x3F800000u, 0x40000000u)));
-            Assert.That((bool)b.x, Is.True);
-            Assert.That((bool)b.y, Is.True);
         }
     }
 
@@ -92,10 +85,8 @@ public class TestAsCast
         {
             Assert.That((v.asi().x, v.asi().y), Is.EqualTo((0x3F800000, 0x40000000)));
             Assert.That((v.asu().x, v.asu().y), Is.EqualTo((0x3F800000u, 0x40000000u)));
-            Assert.That(Unsafe.SizeOf<b32v2>(), Is.EqualTo(Unsafe.SizeOf<float2>()));
             Assert.That((v.asi().as_float().x, v.asi().as_float().y), Is.EqualTo((1f, 2f)));
             Assert.That((v.asu().asf().x, v.asu().asf().y), Is.EqualTo((1f, 2f)));
-            Assert.That((v.asb().as_float().x, v.asb().as_float().y), Is.EqualTo((1f, 2f)));
         }
     }
 
@@ -110,9 +101,6 @@ public class TestAsCast
             // the 16 bit group is covered by the bits of every one of its members as well
             Assert.That((v.asf().asi().x, v.asf().asi().y), Is.EqualTo((-1, 2)));
             Assert.That((v.as_half().as_short().x, v.as_half().as_short().y), Is.EqualTo((-1, 2)));
-            // the b16 vector of the group keeps the truth of the bits of a value that is not zero
-            Assert.That((bool)v.as_ushort().asb().x, Is.True);
-            Assert.That((bool)v.as_ushort().asb().y, Is.True);
         }
     }
 
@@ -123,7 +111,6 @@ public class TestAsCast
         using (Assert.EnterMultipleScope())
         {
             Assert.That((v.asi().x, v.asi().y, v.asi().z), Is.EqualTo((0x3F800000, 0x40000000, 0x40400000)));
-            Assert.That((v.asb().asf().x, v.asb().asf().y, v.asb().asf().z), Is.EqualTo((1f, 2f, 3f)));
         }
     }
 
@@ -135,7 +122,6 @@ public class TestAsCast
         {
             Assert.That((v.asi().x, v.asi().y), Is.EqualTo((0x3FF0000000000000L, 0x4000000000000000L)));
             Assert.That((v.asu().as_double().x, v.asu().as_double().y), Is.EqualTo((1d, 2d)));
-            Assert.That(Unsafe.SizeOf<b64v2>(), Is.EqualTo(Unsafe.SizeOf<double2>()));
         }
     }
 
@@ -185,7 +171,6 @@ public class TestAsCast
         var l3 = new long3(1, 2, 3);
         var s3 = new short3(1, 2, 3);
         var h3 = new half3((Half)1, (Half)2, (Half)3);
-        var t3 = new b32v3(true, false, true);
 
         using (Assert.EnterMultipleScope())
         {
@@ -198,8 +183,6 @@ public class TestAsCast
             Assert.That(long3.as2(l3), Is.EqualTo(new long2(1, 2)));
             Assert.That(short3.as2(s3), Is.EqualTo(new short2(1, 2)));
             Assert.That(half3.as2(h3), Is.EqualTo(new half2((Half)1, (Half)2)));
-            Assert.That((bool)b32v4.as2(b32v3.as4(t3)).x, Is.True);
-            Assert.That((bool)b64v3.as2(new b64v3(true, false, true)).y, Is.False);
             // the 4 component vector that a 3 component one converts into has a w component of zero
             var f4 = float3.as4(f3);
             Assert.That((f4.x, f4.y, f4.z, f4.w), Is.EqualTo((1f, 2f, 3f, 0f)));
@@ -209,7 +192,6 @@ public class TestAsCast
             Assert.That((short3.as4(s3).z, short3.as4(s3).w), Is.EqualTo(((short)3, (short)0)));
             Assert.That((half3.as4(h3).z, half3.as4(h3).w), Is.EqualTo(((Half)3, (Half)0)));
             Assert.That(half3.as4(h3), Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)0)));
-            Assert.That((bool)b32v3.as4(t3).w, Is.False);
             // the component that the 3 component vector cannot hold is dropped
             Assert.That(float4.as3(f4), Is.EqualTo(f3));
             Assert.That(float4.as3(new float4(1, 2, 3, 4)), Is.EqualTo(f3));
@@ -217,7 +199,6 @@ public class TestAsCast
             Assert.That(long4.as3(long3.as4(l3)), Is.EqualTo(l3));
             Assert.That(short4.as3(short3.as4(s3)), Is.EqualTo(s3));
             Assert.That(half4.as3(half3.as4(h3)), Is.EqualTo(h3));
-            Assert.That(b32v4.as3(b32v3.as4(t3)), Is.EqualTo(t3));
         }
     }
 
@@ -231,14 +212,12 @@ public class TestAsCast
         var f2 = math.as2<float4, float2>(new float4(1, 2, 3, 4));
         var f4 = math.as4<float3, float4>(new float3(1, 2, 3));
         var f3 = math.as3<float4, float3>(new float4(1, 2, 3, 0));
-        var t3 = math.as3<b64v4, b64v3>(new b64v4(true, false, true, false));
 
         using (Assert.EnterMultipleScope())
         {
             Assert.That(f2, Is.EqualTo(new float2(1, 2)));
             Assert.That(f4, Is.EqualTo(new float4(1, 2, 3, 0)));
             Assert.That(f3, Is.EqualTo(new float3(1, 2, 3)));
-            Assert.That(((bool)t3.x, (bool)t3.y, (bool)t3.z), Is.EqualTo((true, false, true)));
         }
     }
 }

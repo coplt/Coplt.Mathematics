@@ -7,65 +7,57 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The integer members of a vector implement <c>IVectorInteger</c> and, for a vector that has no sign,
-/// <c>IVectorUnsignedInteger</c>: the check of a power of two that produces a bool vector of the same shape and
-/// the rounding up to the next power of two of every component. The values keep the ones of the legacy
-/// implementation.
+/// <c>IVectorUnsignedInteger</c>: the check of a power of two and the rounding up to the next power of two of
+/// every component. The value of the check is a value of the kind of the vector itself, the all bits set value
+/// of a kind is its true component and a zero is its false one, so a component that holds is not zero and a
+/// component that does not is zero. The values keep the ones of the legacy implementation.
 /// </summary>
 public class TestInteger
 {
     /// <summary>
     /// Every integer vector implements the check of a power of two, so it is reachable through the interface and
-    /// the mask of it is the bool vector of the shape of the vector.
+    /// the value of it has the kind of the vector itself.
     /// </summary>
-    private static void Check<T, TBool>(T v)
-        where T : unmanaged, IVectorInteger<T, TBool>
-        where TBool : unmanaged
+    private static void Check<T>(T v)
+        where T : unmanaged, IVectorInteger<T>
     {
         var mask = T.is_pow2(v);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(mask.Equals(T.is_pow2(v)), Is.True);
-            Assert.That(Unsafe.SizeOf<TBool>(), Is.GreaterThan(0));
-        }
+        Assert.That(mask.Equals(T.is_pow2(v)), Is.True);
     }
 
     /// <summary>
     /// A vector without a sign also has the rounding up to the next power of two, which the interface of the
     /// plain integer vector does not declare because it is not meaningful for a negative value.
     /// </summary>
-    private static void CheckUnsigned<T, TBool>(T v)
-        where T : unmanaged, IVectorUnsignedInteger<T, TBool>
-        where TBool : unmanaged
+    private static void CheckUnsigned<T>(T v)
+        where T : unmanaged, IVectorUnsignedInteger<T>
     {
-        Check<T, TBool>(v);
+        Check(v);
         _ = T.up2pow2(v);
     }
 
     [Test]
     public void Interface()
     {
-        // the type of a single component and the type of the mask cannot be inferred from the vector, they have
-        // to be spelled out
-        Check<short2, b16v2>(new short2(1, 2));
-        Check<short3, b16v3>(new short3(1, 2, 3));
-        Check<short4, b16v4>(new short4(1, 2, 3, 4));
-        Check<int2, b32v2>(new int2(1, 2));
-        Check<int3, b32v3>(new int3(1, 2, 3));
-        Check<int4, b32v4>(new int4(1, 2, 3, 4));
-        Check<long2, b64v2>(new long2(1, 2));
-        Check<long3, b64v3>(new long3(1, 2, 3));
-        Check<long4, b64v4>(new long4(1, 2, 3, 4));
+        Check(new short2(1, 2));
+        Check(new short3(1, 2, 3));
+        Check(new short4(1, 2, 3, 4));
+        Check(new int2(1, 2));
+        Check(new int3(1, 2, 3));
+        Check(new int4(1, 2, 3, 4));
+        Check(new long2(1, 2));
+        Check(new long3(1, 2, 3));
+        Check(new long4(1, 2, 3, 4));
 
-        CheckUnsigned<ushort2, b16v2>(new ushort2(1, 2));
-        CheckUnsigned<ushort3, b16v3>(new ushort3(1, 2, 3));
-        CheckUnsigned<ushort4, b16v4>(new ushort4(1, 2, 3, 4));
-        CheckUnsigned<uint2, b32v2>(new uint2(1, 2));
-        CheckUnsigned<uint3, b32v3>(new uint3(1, 2, 3));
-        CheckUnsigned<uint4, b32v4>(new uint4(1, 2, 3, 4));
-        CheckUnsigned<ulong2, b64v2>(new ulong2(1, 2));
-        CheckUnsigned<ulong3, b64v3>(new ulong3(1, 2, 3));
-        CheckUnsigned<ulong4, b64v4>(new ulong4(1, 2, 3, 4));
+        CheckUnsigned(new ushort2(1, 2));
+        CheckUnsigned(new ushort3(1, 2, 3));
+        CheckUnsigned(new ushort4(1, 2, 3, 4));
+        CheckUnsigned(new uint2(1, 2));
+        CheckUnsigned(new uint3(1, 2, 3));
+        CheckUnsigned(new uint4(1, 2, 3, 4));
+        CheckUnsigned(new ulong2(1, 2));
+        CheckUnsigned(new ulong3(1, 2, 3));
+        CheckUnsigned(new ulong4(1, 2, 3, 4));
     }
 
     [Test]
@@ -77,9 +69,9 @@ public class TestInteger
         using (Assert.EnterMultipleScope())
         {
             // one is a power of two
-            Assert.That((bool)m.x, Is.True);
-            Assert.That((bool)m.y, Is.True);
-            Assert.That((bool)m.z, Is.False);
+            Assert.That(m.x != 0, Is.True);
+            Assert.That(m.y != 0, Is.True);
+            Assert.That(m.z != 0, Is.False);
         }
 
         // a zero and a negative value are not a power of two
@@ -88,9 +80,9 @@ public class TestInteger
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((bool)nm.x, Is.False);
-            Assert.That((bool)nm.y, Is.False);
-            Assert.That((bool)nm.z, Is.False);
+            Assert.That(nm.x != 0, Is.False);
+            Assert.That(nm.y != 0, Is.False);
+            Assert.That(nm.z != 0, Is.False);
         }
 
         // a value without a sign that has the top bit set is a power of two and a zero still is not
@@ -99,16 +91,16 @@ public class TestInteger
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((bool)um.x, Is.True);
-            Assert.That((bool)um.y, Is.False);
-            Assert.That((bool)um.z, Is.False);
+            Assert.That(um.x != 0, Is.True);
+            Assert.That(um.y != 0, Is.False);
+            Assert.That(um.z != 0, Is.False);
         }
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((bool)new short3(1, 2, 4).is_pow2().z, Is.True);
-            Assert.That((bool)new short3(0, 3, -1).is_pow2().z, Is.False);
-            Assert.That((bool)new long3(1L, 0x4000_0000_0000_0000L, 6L).is_pow2().y, Is.True);
+            Assert.That(new short3(1, 2, 4).is_pow2().z != 0, Is.True);
+            Assert.That(new short3(0, 3, -1).is_pow2().z != 0, Is.False);
+            Assert.That(new long3(1L, 0x4000_0000_0000_0000L, 6L).is_pow2().y != 0, Is.True);
         }
     }
 
@@ -168,7 +160,7 @@ public class TestInteger
         {
             using (Assert.EnterMultipleScope())
             {
-                Assert.That((bool)new uint3(a).is_pow2().x, Is.EqualTo(IsPow2(a)), $"is_pow2({a})");
+                Assert.That(new uint3(a).is_pow2().x != 0, Is.EqualTo(IsPow2(a)), $"is_pow2({a})");
                 Assert.That(new uint3(a).up2pow2().x, Is.EqualTo(Up2Pow2(a)), $"up2pow2({a})");
             }
         }
@@ -179,7 +171,7 @@ public class TestInteger
         {
             using (Assert.EnterMultipleScope())
             {
-                Assert.That((bool)new int3(a).is_pow2().x, Is.EqualTo(a > 0 && (a & (a - 1)) == 0), $"is_pow2({a})");
+                Assert.That(new int3(a).is_pow2().x != 0, Is.EqualTo(a > 0 && (a & (a - 1)) == 0), $"is_pow2({a})");
             }
         }
     }

@@ -29,7 +29,6 @@ public class TestVectorInsert
     public void Insert3()
     {
         var h2 = new half2((Half)2, (Half)3);
-        var t2 = new b32v2(true, false);
 
         using (Assert.EnterMultipleScope())
         {
@@ -44,7 +43,6 @@ public class TestVectorInsert
             Assert.That(double2.Iz(new double2(1, 2), 3), Is.EqualTo(new double3(1, 2, 3)));
             Assert.That(uint2.Iy(new uint2(1, 3), 2), Is.EqualTo(new uint3(1, 2, 3)));
             Assert.That(half2.Ix(h2, (Half)1), Is.EqualTo(new half3((Half)1, (Half)2, (Half)3)));
-            Assert.That((bool)b32v2.Iz(t2, true).z, Is.True);
             // the member of the interface is reached through the type parameter of the generic member
             Assert.That(CallIx<float2, float, float3, float4>(new float2(2, 3), 1), Is.EqualTo(new float3(1, 2, 3)));
         }
@@ -53,8 +51,6 @@ public class TestVectorInsert
     [Test]
     public void Insert4FromPair()
     {
-        var t2 = new b32v2(true, false);
-
         using (Assert.EnterMultipleScope())
         {
             // the pair of the arguments and the pair behind it take the components their name holds
@@ -75,7 +71,6 @@ public class TestVectorInsert
                 Is.EqualTo(float4.InsertYZ(new float2(1, 4), new float2(2, 3))));
             Assert.That(float2.Ixw(new float2(2, 3), 1, 4), Is.EqualTo(float4.Create(1, new float2(2, 3), 4)));
             Assert.That(double2.Ixz(new double2(2, 4), new double2(1, 3)), Is.EqualTo(new double4(1, 2, 3, 4)));
-            Assert.That((bool)b64v2.Ixy(new b64v2(true, false), true, false).x, Is.True);
         }
     }
 
@@ -105,7 +100,6 @@ public class TestVectorInsert
             Assert.That(t.Iw(4), Is.EqualTo(new float4(1, 2, 3, 4)));
             Assert.That(new float3(1, 3, 4).Iy(2), Is.EqualTo(new float4(1, 2, 3, 4)));
             Assert.That(new float3(1, 2, 4).Iz(3), Is.EqualTo(float3.Iz(new float3(1, 2, 4), 3)));
-            Assert.That(new b32v2(true, false).Iz(true), Is.EqualTo(b32v2.Iz(new b32v2(true, false), true)));
         }
     }
 

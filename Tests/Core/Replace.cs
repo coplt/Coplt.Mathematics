@@ -18,7 +18,6 @@ public class TestVectorReplace
         var f = new float2(1, 2);
         var i = new int2(1, 2);
         var s = new short2(1, 2);
-        var t = new b32v2(true, false);
 
         using (Assert.EnterMultipleScope())
         {
@@ -27,7 +26,6 @@ public class TestVectorReplace
             Assert.That((int2.Rx(i, 3).x, int2.Rx(i, 3).y), Is.EqualTo((3, 2)));
             Assert.That((int2.Ry(i, 3).x, int2.Ry(i, 3).y), Is.EqualTo((1, 3)));
             Assert.That((short2.Rx(s, 3).x, short2.Rx(s, 3).y), Is.EqualTo(((short)3, (short)2)));
-            Assert.That(((bool)b32v2.Rx(t, false).x, (bool)b32v2.Rx(t, false).y), Is.EqualTo((false, false)));
         }
     }
 
@@ -38,7 +36,6 @@ public class TestVectorReplace
         var d = new double3(1, 2, 3);
         var u = new uint3(1, 2, 3);
         var h = new half3((Half)1, (Half)2, (Half)3);
-        var t = new b32v3(true, false, true);
 
         using (Assert.EnterMultipleScope())
         {
@@ -51,8 +48,6 @@ public class TestVectorReplace
             Assert.That((double3.Rz(d, 4).z, double3.Rx(d, 4).x), Is.EqualTo((4d, 4d)));
             Assert.That((uint3.Ry(u, 4u).x, uint3.Ry(u, 4u).y, uint3.Ry(u, 4u).z), Is.EqualTo((1u, 4u, 3u)));
             Assert.That(half3.Rz(h, (Half)4), Is.EqualTo(new half3((Half)1, (Half)2, (Half)4)));
-            Assert.That(((bool)b32v3.Rz(t, false).z, (bool)b32v3.Rxy(t, new b32v2(false, true)).x),
-                Is.EqualTo((false, false)));
         }
     }
 
@@ -63,7 +58,6 @@ public class TestVectorReplace
         var d = new double4(1, 2, 3, 4);
         var l = new long4(1, 2, 3, 4);
         var h = new half4((Half)1, (Half)2, (Half)3, (Half)4);
-        var t = new b64v4(true, false, true, false);
 
         using (Assert.EnterMultipleScope())
         {
@@ -85,7 +79,6 @@ public class TestVectorReplace
             Assert.That((long4.Ryzw(l, new long3(5, 6, 7)).x, long4.Ryzw(l, new long3(5, 6, 7)).y),
                 Is.EqualTo((1L, 5L)));
             Assert.That(half4.Rxw(h, new half2((Half)5, (Half)6)), Is.EqualTo(new half4((Half)5, (Half)2, (Half)3, (Half)6)));
-            Assert.That((bool)b64v4.Rxw(t, new b64v2(true, true)).w, Is.True);
         }
     }
 
@@ -101,7 +94,6 @@ public class TestVectorReplace
         var f3 = new float3(1, 2, 3);
         var f4 = new float4(1, 2, 3, 4);
         var d3 = new double3(1, 2, 3);
-        var t2 = new b32v2(true, false);
 
         using (Assert.EnterMultipleScope())
         {
@@ -111,7 +103,6 @@ public class TestVectorReplace
             Assert.That(f3.Rz(4), Is.EqualTo(new float3(1, 2, 4)));
             Assert.That(f3.Rxy(new float2(4, 5)), Is.EqualTo(new float3(4, 5, 3)));
             Assert.That(d3.Rxz(new double2(4, 5)), Is.EqualTo(new double3(4, 2, 5)));
-            Assert.That(t2.Ry(false), Is.EqualTo(new b32v2(true, false)));
             Assert.That(f4.Rw(5), Is.EqualTo(new float4(1, 2, 3, 5)));
             Assert.That(f4.Rxyz(new float3(5, 6, 7)), Is.EqualTo(new float4(5, 6, 7, 4)));
             Assert.That(f4.Ryzw(new float3(5, 6, 7)), Is.EqualTo(new float4(1, 5, 6, 7)));

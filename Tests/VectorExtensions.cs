@@ -70,13 +70,7 @@ internal static class VectorExtensions
     #region IVectorInteger
 
     // the check of a power of two and the rounding up to the next power of two are not forwarded either, the
-    // type of the mask of the first one cannot be inferred
-
-    #endregion
-
-    #region IVectorSelect
-
-    public static T select<T, B>(this T t, in B c, in T f) where T : unmanaged, IVectorSelect<T, B> => T.select(c, t, f);
+    // value of the check is a value of the kind of the vector itself
 
     #endregion
 }

@@ -85,8 +85,6 @@ public class TestMatrixShape
             Assert.That(typeof(IMatrixMx3<float2x3>).IsAssignableFrom(typeof(float2x3)), Is.True);
             Assert.That(typeof(IMatrixMx3<double4x3>).IsAssignableFrom(typeof(double4x3)), Is.True);
             Assert.That(typeof(IMatrixMx4<int4x4>).IsAssignableFrom(typeof(int4x4)), Is.True);
-            // a matrix of a mask reaches the interface of the count of its columns as well
-            Assert.That(typeof(IMatrixMx2<b32m3x2>).IsAssignableFrom(typeof(b32m3x2)), Is.True);
         }
     }
 }

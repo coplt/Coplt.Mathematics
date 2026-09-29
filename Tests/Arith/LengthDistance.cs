@@ -4,6 +4,8 @@ using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -21,7 +23,7 @@ public class TestLengthDistance
     /// interface reaches them, which is the form the members of the library use.
     /// </summary>
     private static void Check<T, TScalar>(T v)
-        where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
+        where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
     {
         _ = math.length<T, TScalar>(v);

@@ -106,8 +106,6 @@ public class TestSwizzle
         Check(new ushort2(1, 2).yyx, new ushort3(2, 2, 1), "ushort2.yyx");
         Check(new half3((half)1.0, (half)2.0, (half)3.0).zyx,
             new half3((half)3.0, (half)2.0, (half)1.0), "half3.zyx");
-        Check(new b32v3(true, true, false).zyx, new b32v3(false, true, true), "b32v3.zyx");
-        Check(new b16v4(true, false, true, false).wx, new b16v2(false, true), "b16v4.wx");
     }
 
     #endregion
@@ -210,11 +208,6 @@ public class TestSwizzle
         Check(u.yx, new uint2(2, 1), "uint2.yx");
         u.yx = new uint2(7, 8);
         Check(u, new uint2(8, 7), "uint2.yx set");
-
-        var b = new b32v2(true, false);
-        Check(b.yx, new b32v2(false, true), "b32v2.yx");
-        b.yx = new b32v2(true, false);
-        Check(b, new b32v2(false, true), "b32v2.yx set");
     }
 
     #endregion

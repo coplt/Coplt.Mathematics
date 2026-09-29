@@ -4,6 +4,8 @@ using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
 using Algebras = Coplt.Mathematics.Algebras;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -75,7 +77,7 @@ internal static class ArithCheck
     /// types alike.
     /// </summary>
     public static void Arithmetic<T, TScalar>(int length, bool simd)
-        where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, Algebras.INumberVector<T, TScalar>
+        where T : unmanaged, IAlgebraDispatch<T, TScalar>, Algebras.INumberVector<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
@@ -247,7 +249,7 @@ internal static class ArithCheck
     /// floating point kind is a signed one as well, so the check reaches both of them.
     /// </summary>
     public static void Negation<T, TScalar>(int length, bool simd)
-        where T : unmanaged, Algebras.ISignedNumberVector<T, TScalar>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, Algebras.ISignedNumberVector<T, TScalar>, IAlgebraDispatch<T>, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, ISignedNumber<TScalar>, IBinaryNumber<TScalar>
     {
         var negOne = -TScalar.One;
@@ -285,7 +287,7 @@ internal static class ArithCheck
     /// every component are checked, so the unsigned types are covered too.
     /// </summary>
     public static void Cross<T, TScalar>(bool simd)
-        where T : unmanaged, Algebras.IVector<T, TScalar>, INumberAlgebraDispatch<T, TScalar>, Algebras.IVector3<T>, Algebras.INumberVector<T, TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>, IAlgebraDispatch<T, TScalar>, Algebras.IVector3<T>, Algebras.INumberVector<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
@@ -315,7 +317,7 @@ internal static class ArithCheck
     /// The cross product of a signed 3 component vector, the parts that need a negative value.
     /// </summary>
     public static void SignedCross<T, TScalar>(bool simd)
-        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.ISignedNumberVector<T, TScalar>, Algebras.IVector3<T>, INumberAlgebraDispatch<T>
+        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.ISignedNumberVector<T, TScalar>, Algebras.IVector3<T>, IAlgebraDispatch<T>
         where TScalar : unmanaged, ISignedNumber<TScalar>, IBinaryNumber<TScalar>
     {
         var zero = TScalar.Zero;
@@ -341,7 +343,7 @@ internal static class ArithCheck
     /// reductions and the equality checks rely on it. <paramref name="padding"/> reads that lane.
     /// </summary>
     public static void PaddingStaysZero<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.INumberAlgebra<T>, Algebras.IVector3<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.INumberAlgebra<T>, Algebras.IVector3<T>, IAlgebraDispatch<T>, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;
@@ -400,7 +402,7 @@ internal static class ArithCheck
     /// reads one of those lanes.
     /// </summary>
     public static void PaddingStaysZero2<T, TScalar>(bool simd, Func<T, TScalar> padding)
-        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.INumberAlgebra<T>, INumberAlgebraDispatch<T>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, Algebras.IVector<T, TScalar>, Algebras.INumberAlgebra<T>, IAlgebraDispatch<T>, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         var one = TScalar.One;

@@ -61,7 +61,6 @@ public class TestVectorComponentInterfaces
     [Test]
     public void Components2()
     {
-        var b = RoundTrip2<b32v2, b32>(new b32v2(), true, false);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(RoundTrip2(new float2(), 1f, 2f), Is.EqualTo((1f, 2f)));
@@ -71,15 +70,12 @@ public class TestVectorComponentInterfaces
             Assert.That(RoundTrip2(new ushort2(), (ushort)1, (ushort)2), Is.EqualTo(((ushort)1, (ushort)2)));
             // the storage variant of a vector reaches its components as well
             Assert.That(RoundTrip2(new float2s(), 1f, 2f), Is.EqualTo((1f, 2f)));
-            // a component of a bool vector is a mask
-            Assert.That(((bool)b.x, (bool)b.y), Is.EqualTo((true, false)));
         }
     }
 
     [Test]
     public void Components3()
     {
-        var b = RoundTrip3<b64v3, b64>(new b64v3(), true, false, true);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(RoundTrip3(new float3(), 1f, 2f, 3f), Is.EqualTo((1f, 2f, 3f)));
@@ -90,14 +86,12 @@ public class TestVectorComponentInterfaces
             // fields even when the regular vector has a register
             Assert.That(RoundTrip3(new float3s(), 1f, 2f, 3f), Is.EqualTo((1f, 2f, 3f)));
             Assert.That(RoundTrip3(new double3s(), 1d, 2d, 3d), Is.EqualTo((1d, 2d, 3d)));
-            Assert.That(((bool)b.x, (bool)b.y, (bool)b.z), Is.EqualTo((true, false, true)));
         }
     }
 
     [Test]
     public void Components4()
     {
-        var b = RoundTrip4<b16v4, b16>(new b16v4(), true, false, true, false);
         using (Assert.EnterMultipleScope())
         {
             Assert.That(RoundTrip4(new float4(), 1f, 2f, 3f, 4f), Is.EqualTo((1f, 2f, 3f, 4f)));
@@ -108,7 +102,6 @@ public class TestVectorComponentInterfaces
                 Is.EqualTo(((short)1, (short)2, (short)3, (short)4)));
             Assert.That(RoundTrip4(new half4(), (Half)1, (Half)2, (Half)3, (Half)4),
                 Is.EqualTo(((Half)1, (Half)2, (Half)3, (Half)4)));
-            Assert.That(((bool)b.x, (bool)b.y, (bool)b.z, (bool)b.w), Is.EqualTo((true, false, true, false)));
         }
     }
 
@@ -137,9 +130,6 @@ public class TestVectorComponentInterfaces
     [Test]
     public void Size()
     {
-        // the component type of a member is a part of the constraint of the member of the size, it cannot be
-        // inferred from its arguments
-        var b = Size4<b32v4, b32>(new b32v4(true, false, true, false));
         using (Assert.EnterMultipleScope())
         {
             Assert.That(Size2<float2, float>(new float2(1, 2)), Is.EqualTo((2, 1f, 2f)));
@@ -147,8 +137,6 @@ public class TestVectorComponentInterfaces
             Assert.That(Size4<float4, float>(new float4(1, 2, 3, 4)), Is.EqualTo((4, 1f, 2f, 3f, 4f)));
             Assert.That(Size4<double4, double>(new double4(1, 2, 3, 4)), Is.EqualTo((4, 1d, 2d, 3d, 4d)));
             // the size of a vector does not need the type of its components
-            Assert.That(b.Length, Is.EqualTo(4));
-            Assert.That(((bool)b.x, (bool)b.y, (bool)b.z, (bool)b.w), Is.EqualTo((true, false, true, false)));
             Assert.That(Length4(new float4(1, 2, 3, 4)), Is.EqualTo(4));
             Assert.That(Length4(new short4(1, 2, 3, 4)), Is.EqualTo(4));
             Assert.That(Length4(new half4((Half)1, (Half)2, (Half)3, (Half)4)), Is.EqualTo(4));

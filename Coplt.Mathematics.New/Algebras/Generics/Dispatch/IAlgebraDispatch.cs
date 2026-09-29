@@ -153,6 +153,7 @@ public interface IAlgebraVisitor_T_T<V> : IAlgebraVisitor_S_S<V>
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(vector)));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(vector)));
         TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(vector)));
+        TVector.set_w(ref r, TVector.Scalar<V>(TVector.get_w(vector)));
         return r;
     }
 

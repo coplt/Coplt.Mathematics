@@ -5,6 +5,8 @@ using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
 using half = System.Half;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -20,7 +22,7 @@ public class TestMathArithForwarding
     /// every one of them is the interface that has no component type.
     /// </summary>
     private static void Check<T>(T v)
-        where T : unmanaged, INumberAlgebraDispatch<T>
+        where T : unmanaged, IAlgebraDispatch<T>, Coplt.Mathematics.Algebras.INumberAlgebra<T>
     {
         math.abs(v);
         math.sign(v);
@@ -48,7 +50,7 @@ public class TestMathArithForwarding
     /// component infers the type of it from the argument, a member that only returns one names both types.
     /// </summary>
     private static void CheckScalar<T, TScalar>(T v, TScalar s0, TScalar s1)
-        where T : unmanaged, INumberAlgebra<T, TScalar>, Coplt.Mathematics.Algebras.INumberVector<T, TScalar>, INumberAlgebraDispatch<T, TScalar>
+        where T : unmanaged, INumberAlgebra<T, TScalar>, Coplt.Mathematics.Algebras.INumberVector<T, TScalar>, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
     {
         // the width of the range of the members that divide by it has to be wider than zero
@@ -70,7 +72,7 @@ public class TestMathArithForwarding
     /// it, and the constraint of every one of the members is the same as the one of a vector.
     /// </summary>
     private static void CheckMatrix<T>(T m)
-        where T : unmanaged, INumberAlgebraDispatch<T>
+        where T : unmanaged, IAlgebraDispatch<T>, Coplt.Mathematics.Algebras.INumberAlgebra<T>
     {
         math.abs(m);
         math.sign(m);

@@ -25,8 +25,6 @@ public class TestVectorUnderlying
     [Test]
     public void Width()
     {
-        var b = Again128(new b32v4(true, false, true, false));
-        var q = Again256(new b64v4(true, false, true, false));
         using (Assert.EnterMultipleScope())
         {
             // the register of a vector of 4 32 bit components is 128 bits wide
@@ -35,12 +33,10 @@ public class TestVectorUnderlying
             Assert.That(Again128(new float4(1, 2, 3, 4)), Is.EqualTo(new float4(1, 2, 3, 4)));
             Assert.That(Again128(new int4(1, 2, 3, 4)), Is.EqualTo(new int4(1, 2, 3, 4)));
             Assert.That(Again128(new uint4(1, 2, 3, 4)), Is.EqualTo(new uint4(1, 2, 3, 4)));
-            Assert.That(((bool)b.x, (bool)b.y, (bool)b.z, (bool)b.w), Is.EqualTo((true, false, true, false)));
             // the register of a vector of 4 64 bit components is 256 bits wide
             Assert.That(Again256(new double4(1, 2, 3, 4)), Is.EqualTo(new double4(1, 2, 3, 4)));
             Assert.That(Again256(new long4(1, 2, 3, 4)), Is.EqualTo(new long4(1, 2, 3, 4)));
             Assert.That(Again256(new ulong4(1, 2, 3, 4)), Is.EqualTo(new ulong4(1, 2, 3, 4)));
-            Assert.That(((bool)q.x, (bool)q.y, (bool)q.z, (bool)q.w), Is.EqualTo((true, false, true, false)));
         }
     }
 
@@ -100,10 +96,8 @@ public class TestVectorUnderlying
         {
             // the value of a vector of 2 32 bit components does not fill the register of 128 bits it is kept in
             Assert.That(float2.HavePaddingLanes, Is.True);
-            Assert.That(b32v2.HavePaddingLanes, Is.True);
             // the value of a vector of 4 32 bit components fills its register, so it has no padding lane
             Assert.That(float4.HavePaddingLanes, Is.False);
-            Assert.That(b32v4.HavePaddingLanes, Is.False);
             // the register of a vector of 3 components is as wide as the one of a vector of 4 components
             Assert.That(float3.HavePaddingLanes, Is.True);
             Assert.That(double3.HavePaddingLanes, Is.True);
@@ -129,7 +123,6 @@ public class TestVectorUnderlying
         {
             // a vector without a register has no bits to reach, it is only marked
             Assert.That(typeof(IVectorSoftUnderlying).IsAssignableFrom(typeof(half4)), Is.True);
-            Assert.That(typeof(IVectorSoftUnderlying).IsAssignableFrom(typeof(b16v4)), Is.True);
             // the other ones carry the underlying members of the width of their register
             Assert.That(typeof(IVectorSoftUnderlying).IsAssignableFrom(typeof(float4)), Is.False);
             Assert.That(typeof(IVector256Underlying<double4>).IsAssignableFrom(typeof(double4)), Is.True);

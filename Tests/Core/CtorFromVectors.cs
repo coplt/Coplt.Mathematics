@@ -2,9 +2,6 @@ using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Generics;
-using B16 = Coplt.Mathematics.b16;
-using B32 = Coplt.Mathematics.b32;
-using B64 = Coplt.Mathematics.b64;
 
 namespace Tests.Core;
 
@@ -131,10 +128,8 @@ public class TestVectorCtorFromVectors
         var f2 = new float2(1, 2);
         var d2 = new double2(1, 2);
         var u2 = new uint2(1, 2);
-        var t2 = new b32v2(true, false);
         var f3 = new float3(1, 2, 3);
         var d3 = new double3(1, 2, 3);
-        var t3 = new b32v3(true, false, true);
         var h3 = new half3((Half)1, (Half)2, (Half)3);
 
         using (Assert.EnterMultipleScope())
@@ -144,7 +139,6 @@ public class TestVectorCtorFromVectors
             Assert.That(new double3(d2, 3), Is.EqualTo(new double3(1, 2, 3)));
             Assert.That(new uint3(1, u2), Is.EqualTo(new uint3(1, 1, 2)));
             Assert.That(new half3(h3.xy, (Half)3), Is.EqualTo(h3));
-            Assert.That((bool)((b32v3)new b32v3(t2, true)).z, Is.True);
             // the storage variant of a vector keeps the components of the one it is created from
             Assert.That(new float3s(f2, 3), Is.EqualTo(float3.Create(f2, 3).to_storage()));
 
@@ -154,7 +148,6 @@ public class TestVectorCtorFromVectors
             Assert.That(new float4(1, f2, 4), Is.EqualTo(new float4(1, 1, 2, 4)));
             Assert.That(new double4(d3, 4), Is.EqualTo(double4.Create(d3, 4)));
             Assert.That(new double4(1, d3), Is.EqualTo(new double4(1, 1, 2, 3)));
-            Assert.That((bool)new b32v4(t3, true).w, Is.True);
             Assert.That(new half4(h3, (Half)4), Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)4)));
         }
     }
@@ -175,9 +168,6 @@ public class TestVectorCtorFromVectors
         var i3 = int3.Create(1, 2, 3);
         var u4 = uint4.Create(1, 2, 3, 4);
         var h3 = half3.Create((Half)1, (Half)2, (Half)3);
-        var t3 = b32v3.Create(B32.True, B32.False, B32.True);
-        var e2 = b16v2.Create(B16.True, B16.False);
-        var q4 = b64v4.Create(B64.True, B64.False, B64.True, B64.False);
         var f2s = float2s.Create(1, 2);
         var f3s = float3s.Create(1, 2, 3);
 
@@ -192,9 +182,6 @@ public class TestVectorCtorFromVectors
             Assert.That((i3.x, i3.y, i3.z), Is.EqualTo((1, 2, 3)));
             Assert.That((u4.x, u4.y, u4.z, u4.w), Is.EqualTo((1u, 2u, 3u, 4u)));
             Assert.That((h3.x, h3.y, h3.z), Is.EqualTo(((Half)1, (Half)2, (Half)3)));
-            Assert.That((t3.x, t3.y, t3.z), Is.EqualTo((B32.True, B32.False, B32.True)));
-            Assert.That((e2.x, e2.y), Is.EqualTo((B16.True, B16.False)));
-            Assert.That((q4.x, q4.y, q4.z, q4.w), Is.EqualTo((B64.True, B64.False, B64.True, B64.False)));
             Assert.That((f2s.x, f2s.y), Is.EqualTo((1f, 2f)));
             Assert.That((f3s.x, f3s.y, f3s.z), Is.EqualTo((1f, 2f, 3f)));
         }
@@ -217,9 +204,6 @@ public class TestVectorCtorFromVectors
         Check3<short3, short, short2>(new(1, 2), new(3, 4), new(5, 6), 7);
         Check3<ushort3, ushort, ushort2>(new(1, 2), new(3, 4), new(5, 6), 7);
         Check3<half3, Half, half2>(new((Half)1, (Half)2), new((Half)3, (Half)4), new((Half)5, (Half)6), (Half)7);
-        Check3<b32v3, b32, b32v2>(new(B32.True, B32.False), new(B32.False, B32.True), new(B32.True, B32.True), B32.False);
-        Check3<b64v3, b64, b64v2>(new(B64.True, B64.False), new(B64.False, B64.True), new(B64.True, B64.True), B64.False);
-        Check3<b16v3, b16, b16v2>(new(B16.True, B16.False), new(B16.False, B16.True), new(B16.True, B16.True), B16.False);
     }
 
     /// <summary>
@@ -238,12 +222,6 @@ public class TestVectorCtorFromVectors
         Check4FromPairs<ushort4, ushort, ushort2>(new(1, 2), new(3, 4), new(5, 6), new(7, 8), new(9, 10), new(11, 12), 13, 14);
         Check4FromPairs<half4, Half, half2>(new((Half)1, (Half)2), new((Half)3, (Half)4), new((Half)5, (Half)6),
             new((Half)7, (Half)8), new((Half)9, (Half)10), new((Half)11, (Half)12), (Half)13, (Half)14);
-        Check4FromPairs<b32v4, b32, b32v2>(new(B32.True, B32.False), new(B32.False, B32.True), new(B32.True, B32.True),
-            new(B32.False, B32.False), new(B32.True, B32.False), new(B32.False, B32.True), B32.True, B32.False);
-        Check4FromPairs<b64v4, b64, b64v2>(new(B64.True, B64.False), new(B64.False, B64.True), new(B64.True, B64.True),
-            new(B64.False, B64.False), new(B64.True, B64.False), new(B64.False, B64.True), B64.True, B64.False);
-        Check4FromPairs<b16v4, b16, b16v2>(new(B16.True, B16.False), new(B16.False, B16.True), new(B16.True, B16.True),
-            new(B16.False, B16.False), new(B16.True, B16.False), new(B16.False, B16.True), B16.True, B16.False);
     }
 
     /// <summary>
@@ -262,12 +240,7 @@ public class TestVectorCtorFromVectors
         Check4FromTriples<ushort4, ushort, ushort3>(new(1, 2, 3), new(4, 5, 6), new(7, 8, 9), new(10, 11, 12), 13);
         Check4FromTriples<half4, Half, half3>(new((Half)1, (Half)2, (Half)3), new((Half)4, (Half)5, (Half)6),
             new((Half)7, (Half)8, (Half)9), new((Half)10, (Half)11, (Half)12), (Half)13);
-        Check4FromTriples<b32v4, b32, b32v3>(new(B32.True, B32.False, B32.True), new(B32.False, B32.True, B32.False),
-            new(B32.True, B32.True, B32.False), new(B32.False, B32.False, B32.True), B32.True);
-        Check4FromTriples<b64v4, b64, b64v3>(new(B64.True, B64.False, B64.True), new(B64.False, B64.True, B64.False),
-            new(B64.True, B64.True, B64.False), new(B64.False, B64.False, B64.True), B64.True);
-        Check4FromTriples<b16v4, b16, b16v3>(new(B16.True, B16.False, B16.True), new(B16.False, B16.True, B16.False),
-            new(B16.True, B16.True, B16.False), new(B16.False, B16.False, B16.True), B16.True);
+
     }
 
     /// <summary>
@@ -283,8 +256,6 @@ public class TestVectorCtorFromVectors
         var u2 = new uint2(1, 2);
         var l2 = new long2(1, 2);
         var ul2 = new ulong2(1, 2);
-        var t2 = new b32v2(B32.True, B32.False);
-        var q2 = new b64v2(B64.True, B64.False);
 
         using (Assert.EnterMultipleScope())
         {
@@ -306,12 +277,6 @@ public class TestVectorCtorFromVectors
             Assert.That(ulong3.Create(ul2, 3).vector.GetElement(3), Is.EqualTo(0UL));
             Assert.That(ulong3.Create(3, ul2).vector.GetElement(3), Is.EqualTo(0UL));
             Assert.That(ulong3.InsertY(ul2, 3).vector.GetElement(3), Is.EqualTo(0UL));
-            Assert.That(b32v3.Create(t2, B32.True).vector.GetElement(3), Is.EqualTo(0u));
-            Assert.That(b32v3.Create(B32.True, t2).vector.GetElement(3), Is.EqualTo(0u));
-            Assert.That(b32v3.InsertY(t2, B32.True).vector.GetElement(3), Is.EqualTo(0u));
-            Assert.That(b64v3.Create(q2, B64.True).vector.GetElement(3), Is.EqualTo(0UL));
-            Assert.That(b64v3.Create(B64.True, q2).vector.GetElement(3), Is.EqualTo(0UL));
-            Assert.That(b64v3.InsertY(q2, B64.True).vector.GetElement(3), Is.EqualTo(0UL));
         }
     }
 }

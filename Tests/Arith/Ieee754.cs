@@ -11,20 +11,19 @@ namespace Tests.Arith;
 /// The ieee 754 members of a vector implement <c>IVectorFloatingPointIeee754</c>: the logarithms, the
 /// exponentials, the step and the refraction, the face forward, the trigonometry, the hyperbolics and the
 /// change of the sign. The members of a simd vector keep the padding lanes of it at zero, the members of a
-/// vector without a register work on the components. The checks of the special floating point values are not
-/// members of the interface any more, they are the members of the dispatch of the bool value of a value, which
-/// the members of the <c>math</c> class from <c>is_NaN</c> on reach.
+/// vector without a register work on the components. The checks of the special floating point values are the
+/// members of the <c>math</c> class from <c>is_NaN</c> on, the value of a check is a value of the kind of the
+/// value it was built from and a component of it that holds is not the zero of its kind.
 /// </summary>
 public class TestIeee754
 {
     /// <summary>
-    /// Every ieee 754 vector implements the interface, so every member below is reachable through it. The mask
-    /// of a vector is the bool vector of the same shape and the refraction is a static member of the interface.
+    /// Every ieee 754 vector implements the interface, so every member below is reachable through it, the
+    /// refraction is a static member of the interface.
     /// </summary>
-    private static void Check<T, TScalar, TBool>(T v)
+    private static void Check<T, TScalar>(T v)
         where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar>
         where TScalar : unmanaged, INumberBase<TScalar>
-        where TBool : unmanaged
     {
         v.log();
         v.log2();
@@ -58,34 +57,32 @@ public class TestIeee754
 
         using (Assert.EnterMultipleScope())
         {
-            // the single and the pair form of the sine and the cosine agree and the mask of a vector is a
-            // value of the same shape
+            // the single and the pair form of the sine and the cosine agree
             Assert.That(v.sin().Equals(sin), Is.True);
             Assert.That(v.cos().Equals(cos), Is.True);
             Assert.That(sin.Equals(s), Is.True);
             Assert.That(cos.Equals(c), Is.True);
-            Assert.That(Unsafe.SizeOf<TBool>(), Is.GreaterThan(0));
         }
     }
 
     [Test]
     public void Interface()
     {
-        // the type of a single component and the type of the mask cannot be inferred from the vector, they have
-        // to be spelled out
-        Check<float2, float, b32v2>(new float2(1, 2));
-        Check<float3, float, b32v3>(new float3(1, 2, 3));
-        Check<float4, float, b32v4>(new float4(1, 2, 3, 4));
-        Check<double2, double, b64v2>(new double2(1, 2));
-        Check<double3, double, b64v3>(new double3(1, 2, 3));
-        Check<double4, double, b64v4>(new double4(1, 2, 3, 4));
-        Check<half2, half, b16v2>(new half2((half)1f, (half)2f));
-        Check<half3, half, b16v3>(new half3((half)1f, (half)2f, (half)3f));
-        Check<half4, half, b16v4>(new half4((half)1f, (half)2f, (half)3f, (half)4f));
+        // the type of a single component cannot be inferred from the vector, it has to be spelled out
+        Check<float2, float>(new float2(1, 2));
+        Check<float3, float>(new float3(1, 2, 3));
+        Check<float4, float>(new float4(1, 2, 3, 4));
+        Check<double2, double>(new double2(1, 2));
+        Check<double3, double>(new double3(1, 2, 3));
+        Check<double4, double>(new double4(1, 2, 3, 4));
+        Check<half2, half>(new half2((half)1f, (half)2f));
+        Check<half3, half>(new half3((half)1f, (half)2f, (half)3f));
+        Check<half4, half>(new half4((half)1f, (half)2f, (half)3f, (half)4f));
     }
 
     /// <summary>
-    /// The checks of the special values produce a mask of the shape of the vector.
+    /// The checks of the special values produce a value of the shape of the vector: the component of a check
+    /// that holds is not the zero of its kind.
     /// </summary>
     [Test]
     public void SpecialValues()
@@ -94,50 +91,57 @@ public class TestIeee754
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((bool)v.is_NaN().x, Is.False);
-            Assert.That((bool)v.is_NaN().y, Is.True);
-            Assert.That((bool)v.is_NaN().z, Is.False);
+            Assert.That(math.is_NaN(v).x != 0f, Is.False);
+            Assert.That(math.is_NaN(v).y != 0f, Is.True);
+            Assert.That(math.is_NaN(v).z != 0f, Is.False);
 
-            Assert.That((bool)v.is_finite().x, Is.True);
-            Assert.That((bool)v.is_finite().y, Is.False);
-            Assert.That((bool)v.is_finite().z, Is.False);
+            Assert.That(math.is_finite(v).x != 0f, Is.True);
+            Assert.That(math.is_finite(v).y != 0f, Is.False);
+            Assert.That(math.is_finite(v).z != 0f, Is.False);
 
-            Assert.That((bool)v.is_inf().x, Is.False);
-            Assert.That((bool)v.is_inf().z, Is.True);
+            Assert.That(math.is_inf(v).x != 0f, Is.False);
+            Assert.That(math.is_inf(v).z != 0f, Is.True);
 
-            Assert.That((bool)v.is_pos_inf().z, Is.True);
-            Assert.That((bool)v.is_neg_inf().z, Is.False);
+            Assert.That(math.is_pos_inf(v).z != 0f, Is.True);
+            Assert.That(math.is_neg_inf(v).z != 0f, Is.False);
         }
 
         var n = new float3(float.NegativeInfinity, 0f, -0f);
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((bool)n.is_neg_inf().x, Is.True);
-            Assert.That((bool)n.is_pos_inf().x, Is.False);
-            Assert.That((bool)n.is_inf().x, Is.True);
+            Assert.That(math.is_neg_inf(n).x != 0f, Is.True);
+            Assert.That(math.is_pos_inf(n).x != 0f, Is.False);
+            Assert.That(math.is_inf(n).x != 0f, Is.True);
             // a zero is finite, the sign of it does not matter
-            Assert.That((bool)n.is_finite().y, Is.True);
-            Assert.That((bool)n.is_finite().z, Is.True);
+            Assert.That(math.is_finite(n).y != 0f, Is.True);
+            Assert.That(math.is_finite(n).z != 0f, Is.True);
         }
 
-        // the mask of a bool of 8 byte components is a 64 bit one
         var d = new double3(1, double.PositiveInfinity, double.NegativeInfinity);
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((bool)d.is_inf().x, Is.False);
-            Assert.That((bool)d.is_pos_inf().y, Is.True);
-            Assert.That((bool)d.is_neg_inf().z, Is.True);
+            Assert.That(math.is_inf(d).x != 0d, Is.False);
+            Assert.That(math.is_pos_inf(d).y != 0d, Is.True);
+            Assert.That(math.is_neg_inf(d).z != 0d, Is.True);
         }
 
         var h = new half3((half)1f, half.NaN, half.PositiveInfinity);
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((bool)h.is_NaN().y, Is.True);
-            Assert.That((bool)h.is_inf().z, Is.True);
-            Assert.That((bool)h.is_finite().x, Is.True);
+            Assert.That(math.is_NaN(h).y != (half)0f, Is.True);
+            Assert.That(math.is_inf(h).z != (half)0f, Is.True);
+            Assert.That(math.is_finite(h).x != (half)0f, Is.True);
+        }
+
+        // the name of a check in HLSL reaches the same member
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(math.isnan(v).y != 0f, Is.True);
+            Assert.That(math.isinf(v).z != 0f, Is.True);
+            Assert.That(math.isfinite(v).x != 0f, Is.True);
         }
     }
 

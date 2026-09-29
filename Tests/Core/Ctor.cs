@@ -1,8 +1,5 @@
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
-using B16 = Coplt.Mathematics.b16;
-using B32 = Coplt.Mathematics.b32;
-using B64 = Coplt.Mathematics.b64;
 
 namespace Tests.Core;
 
@@ -38,15 +35,6 @@ public class TestVectorCtor
         var h2 = new half2((Half)1, (Half)2);
         var h3 = new half3((Half)1, (Half)2, (Half)3);
         var h4 = new half4((Half)1, (Half)2, (Half)3, (Half)4);
-        var e2 = new b16v2(B16.True, B16.False);
-        var e3 = new b16v3(B16.True, B16.False, B16.True);
-        var e4 = new b16v4(B16.True, B16.False, B16.True, B16.False);
-        var t2 = new b32v2(B32.True, B32.False);
-        var t3 = new b32v3(B32.True, B32.False, B32.True);
-        var t4 = new b32v4(B32.True, B32.False, B32.True, B32.False);
-        var q2 = new b64v2(B64.True, B64.False);
-        var q3 = new b64v3(B64.True, B64.False, B64.True);
-        var q4 = new b64v4(B64.True, B64.False, B64.True, B64.False);
 
         using (Assert.EnterMultipleScope())
         {
@@ -77,15 +65,6 @@ public class TestVectorCtor
             Assert.That((h2.x, h2.y), Is.EqualTo(((Half)1, (Half)2)));
             Assert.That((h3.x, h3.y, h3.z), Is.EqualTo(((Half)1, (Half)2, (Half)3)));
             Assert.That((h4.x, h4.y, h4.z, h4.w), Is.EqualTo(((Half)1, (Half)2, (Half)3, (Half)4)));
-            Assert.That((e2.x, e2.y), Is.EqualTo((B16.True, B16.False)));
-            Assert.That((e3.x, e3.y, e3.z), Is.EqualTo((B16.True, B16.False, B16.True)));
-            Assert.That((e4.x, e4.y, e4.z, e4.w), Is.EqualTo((B16.True, B16.False, B16.True, B16.False)));
-            Assert.That((t2.x, t2.y), Is.EqualTo((B32.True, B32.False)));
-            Assert.That((t3.x, t3.y, t3.z), Is.EqualTo((B32.True, B32.False, B32.True)));
-            Assert.That((t4.x, t4.y, t4.z, t4.w), Is.EqualTo((B32.True, B32.False, B32.True, B32.False)));
-            Assert.That((q2.x, q2.y), Is.EqualTo((B64.True, B64.False)));
-            Assert.That((q3.x, q3.y, q3.z), Is.EqualTo((B64.True, B64.False, B64.True)));
-            Assert.That((q4.x, q4.y, q4.z, q4.w), Is.EqualTo((B64.True, B64.False, B64.True, B64.False)));
         }
     }
 
@@ -119,10 +98,6 @@ public class TestVectorCtor
         var h2 = new half2((Half)3);
         var h3 = half3.Broadcast((Half)3);
         var h4 = new half4((Half)3);
-        var e2 = new b16v2(B16.True);
-        var e3 = b16v3.Broadcast(B16.True);
-        var t3 = b32v3.Broadcast(B32.True);
-        var q3 = b64v3.Broadcast(B64.True);
 
         using (Assert.EnterMultipleScope())
         {
@@ -153,10 +128,6 @@ public class TestVectorCtor
             Assert.That((h2.x, h2.y), Is.EqualTo(((Half)3, (Half)3)));
             Assert.That((h3.x, h3.y, h3.z), Is.EqualTo(((Half)3, (Half)3, (Half)3)));
             Assert.That((h4.x, h4.y, h4.z, h4.w), Is.EqualTo(((Half)3, (Half)3, (Half)3, (Half)3)));
-            Assert.That((e2.x, e2.y), Is.EqualTo((B16.True, B16.True)));
-            Assert.That((e3.x, e3.y, e3.z), Is.EqualTo((B16.True, B16.True, B16.True)));
-            Assert.That((t3.x, t3.y, t3.z), Is.EqualTo((B32.True, B32.True, B32.True)));
-            Assert.That((q3.x, q3.y, q3.z), Is.EqualTo((B64.True, B64.True, B64.True)));
 
             // Scalar only writes the first component
             Assert.That((float4.Scalar(9).x, float4.Scalar(9).y, float4.Scalar(9).z, float4.Scalar(9).w),
@@ -165,9 +136,6 @@ public class TestVectorCtor
             Assert.That((short2.Scalar(9).x, short2.Scalar(9).y), Is.EqualTo(((short)9, (short)0)));
             Assert.That((half3.Scalar((Half)9).x, half3.Scalar((Half)9).y, half3.Scalar((Half)9).z),
                 Is.EqualTo(((Half)9, (Half)0, (Half)0)));
-            Assert.That((b32v3.Scalar(B32.True).x, b32v3.Scalar(B32.True).y, b32v3.Scalar(B32.True).z),
-                Is.EqualTo((B32.True, B32.False, B32.False)));
-            Assert.That((b64v2.Scalar(B64.True).x, b64v2.Scalar(B64.True).y), Is.EqualTo((B64.True, B64.False)));
         }
     }
 
@@ -201,11 +169,6 @@ public class TestVectorCtor
         half2 h2 = ((Half)1, (Half)2);
         half3 h3 = ((Half)1, (Half)2, (Half)3);
         half4 h4 = ((Half)1, (Half)2, (Half)3, (Half)4);
-        b16v2 e2 = (B16.True, B16.False);
-        b16v3 e3 = (B16.True, B16.False, B16.True);
-        b32v2 t2 = (B32.True, B32.False);
-        b32v4 t4 = (B32.True, B32.False, B32.True, B32.False);
-        b64v3 q3 = (B64.True, B64.False, B64.True);
 
         using (Assert.EnterMultipleScope())
         {
@@ -218,26 +181,20 @@ public class TestVectorCtor
             Assert.That((l2.y, l3.z, l4.w), Is.EqualTo((2L, 3L, 4L)));
             Assert.That((ul2.y, ul3.z, ul4.w), Is.EqualTo((2UL, 3UL, 4UL)));
             Assert.That((h2.y, h3.z, h4.w), Is.EqualTo(((Half)2, (Half)3, (Half)4)));
-            Assert.That((e2.y, e3.z), Is.EqualTo((B16.False, B16.True)));
-            Assert.That((t2.y, t4.w), Is.EqualTo((B32.False, B32.False)));
-            Assert.That((bool)q3.z, Is.True);
 
             // the tuple constructor is the same as the component constructor
             Assert.That(new float3((1, 2, 3)), Is.EqualTo(new float3(1, 2, 3)));
             Assert.That(new int2((1, 2)), Is.EqualTo(new int2(1, 2)));
-            Assert.That(new b32v2((B32.True, B32.False)), Is.EqualTo(new b32v2(B32.True, B32.False)));
 
             // a scalar converts to a broadcast vector
             float4 sf = 5;
             int3 si = 5;
             short2 ss = 5;
             half3 sh = (Half)5;
-            b32v4 sb = B32.True;
             Assert.That((sf.x, sf.w), Is.EqualTo((5f, 5f)));
             Assert.That((si.x, si.z), Is.EqualTo((5, 5)));
             Assert.That((ss.x, ss.y), Is.EqualTo(((short)5, (short)5)));
             Assert.That((sh.x, sh.z), Is.EqualTo(((Half)5, (Half)5)));
-            Assert.That((sb.x, sb.w), Is.EqualTo((B32.True, B32.True)));
         }
     }
 
@@ -262,12 +219,6 @@ public class TestVectorCtor
         var ul2 = new ulong2(Vector128.Create(1UL, 2UL));
         var ul3 = new ulong3(Vector256.Create(1UL, 2UL, 3UL, 99UL));
         var ul4 = new ulong4(Vector256.Create(1UL, 2UL, 3UL, 4UL));
-        var t2 = new b32v2(Vector128.Create(~0u, 0u, ~0u, ~0u));
-        var t3 = new b32v3(Vector128.Create(~0u, 0u, ~0u, ~0u));
-        var t4 = new b32v4(Vector128.Create(~0u, 0u, ~0u, 0u));
-        var q2 = new b64v2(Vector128.Create(~0UL, 0UL));
-        var q3 = new b64v3(Vector256.Create(~0UL, 0UL, ~0UL, ~0UL));
-        var q4 = new b64v4(Vector256.Create(~0UL, 0UL, ~0UL, 0UL));
 
         using (Assert.EnterMultipleScope())
         {
@@ -289,18 +240,11 @@ public class TestVectorCtor
             Assert.That((ul2.x, ul2.y), Is.EqualTo((1UL, 2UL)));
             Assert.That((ul3.x, ul3.y, ul3.z), Is.EqualTo((1UL, 2UL, 3UL)));
             Assert.That((ul4.x, ul4.y, ul4.z, ul4.w), Is.EqualTo((1UL, 2UL, 3UL, 4UL)));
-            Assert.That((t2.x, t2.y), Is.EqualTo((B32.True, B32.False)));
-            Assert.That((t3.x, t3.y, t3.z), Is.EqualTo((B32.True, B32.False, B32.True)));
-            Assert.That((t4.x, t4.y, t4.z, t4.w), Is.EqualTo((B32.True, B32.False, B32.True, B32.False)));
-            Assert.That((q2.x, q2.y), Is.EqualTo((B64.True, B64.False)));
-            Assert.That((q3.x, q3.y, q3.z), Is.EqualTo((B64.True, B64.False, B64.True)));
-            Assert.That((q4.x, q4.y, q4.z, q4.w), Is.EqualTo((B64.True, B64.False, B64.True, B64.False)));
 
             // a 2 component vector whose register is widened to 128 bits zeroes its padding lanes
             Assert.That(f2.vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(i2.vector.GetElement(3), Is.EqualTo(0));
             Assert.That(u2.vector.GetElement(3), Is.EqualTo(0u));
-            Assert.That(t2.vector.GetElement(3), Is.EqualTo(0u));
 
             // a 3 component vector zeroes its padding lane, the other components are kept
             Assert.That(f3.vector.GetElement(3), Is.EqualTo(0f));
@@ -309,8 +253,6 @@ public class TestVectorCtor
             Assert.That(u3.vector.GetElement(3), Is.EqualTo(0u));
             Assert.That(l3.vector.GetElement(3), Is.EqualTo(0L));
             Assert.That(ul3.vector.GetElement(3), Is.EqualTo(0UL));
-            Assert.That(t3.vector.GetElement(3), Is.EqualTo(0u));
-            Assert.That(q3.vector.GetElement(3), Is.EqualTo(0UL));
         }
     }
 
@@ -348,27 +290,6 @@ public class TestVectorCtor
             Assert.That(half2.Load(new[] { (Half)1, (Half)2 }), Is.EqualTo(new half2((Half)1, (Half)2)));
             Assert.That(half3.Load(new[] { (Half)1, (Half)2, (Half)3 }), Is.EqualTo(new half3((Half)1, (Half)2, (Half)3)));
             Assert.That(half4.Load(new[] { (Half)1, (Half)2, (Half)3, (Half)4 }), Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)4)));
-        }
-    }
-
-    [Test]
-    public void LoadFromBoolSpan()
-    {
-        var ones = new[] { B16.True, B16.True, B16.True, B16.True };
-        var twos = new[] { B32.True, B32.False, B32.True, B32.False };
-        var fours = new[] { B64.True, B64.False, B64.True, B64.False };
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(b16v2.Load(ones.AsSpan(0, 2)), Is.EqualTo(new b16v2(B16.True, B16.True)));
-            Assert.That(b16v3.Load(ones.AsSpan(0, 3)), Is.EqualTo(new b16v3(B16.True, B16.True, B16.True)));
-            Assert.That(b16v4.Load(ones), Is.EqualTo(new b16v4(B16.True, B16.True, B16.True, B16.True)));
-            Assert.That(b32v2.Load(twos.AsSpan(0, 2)), Is.EqualTo(new b32v2(B32.True, B32.False)));
-            Assert.That(b32v3.Load(twos), Is.EqualTo(new b32v3(B32.True, B32.False, B32.True)));
-            Assert.That(b32v4.Load(twos), Is.EqualTo(new b32v4(B32.True, B32.False, B32.True, B32.False)));
-            Assert.That(b64v2.Load(fours.AsSpan(0, 2)), Is.EqualTo(new b64v2(B64.True, B64.False)));
-            Assert.That(b64v3.Load(fours), Is.EqualTo(new b64v3(B64.True, B64.False, B64.True)));
-            Assert.That(b64v4.Load(fours), Is.EqualTo(new b64v4(B64.True, B64.False, B64.True, B64.False)));
         }
     }
 }

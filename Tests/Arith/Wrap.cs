@@ -4,6 +4,8 @@ using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -22,9 +24,12 @@ public class TestWrap
     /// interface reaches it, which is the form the members of the library use.
     /// </summary>
     private static void Check<T>(T value, T min, T max)
-        where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+        where T : unmanaged, IAlgebraDispatch<T>, Coplt.Mathematics.Algebras.IFloatingPointAlgebra<T>
     {
-        var wrapped = math.wrap(value, min, max);
+        // the member of the two bounds of the value is an extension member of the math class, so its type
+        // argument is named to reach it instead of the member of the two bounds of a single component, which
+        // the compiler prefers and whose scalar type a value does not satisfy
+        var wrapped = math.wrap<T>(value, min, max);
         Assert.That(value.wrap(min, max), Is.EqualTo(wrapped));
     }
 
@@ -89,7 +94,7 @@ public class TestWrap
     /// of the value reaches.
     /// </summary>
     private static void CheckBounds<T, TScalar>(T value, TScalar min, TScalar max)
-        where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointAlgebra<T, TScalar>
+        where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
     {
         var wrapped = math.wrap(value, min, max);

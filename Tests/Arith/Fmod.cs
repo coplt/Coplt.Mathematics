@@ -3,6 +3,8 @@ using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -22,7 +24,7 @@ public class TestFmod
     /// reaches it, which is the form the members of the library use.
     /// </summary>
     private static void Check<T>(T a, T b)
-        where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+        where T : unmanaged, IAlgebraDispatch<T>
     {
         var r = math.fmod(a, b);
         Assert.That(a.fmod(b), Is.EqualTo(r));

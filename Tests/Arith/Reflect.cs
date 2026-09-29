@@ -4,6 +4,8 @@ using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
 
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
+
 namespace Tests.Arith;
 
 /// <summary>
@@ -20,7 +22,7 @@ public class TestReflect
     /// interface reaches it, which is the form the members of the library use.
     /// </summary>
     private static void Check<T>(T incident, T normal)
-        where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointVector<T>
+        where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
     {
         var r = math.reflect(incident, normal);
         Assert.That(incident.reflect(normal), Is.EqualTo(r));
