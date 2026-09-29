@@ -17,7 +17,7 @@ public static partial class math
     [ScalarExtension]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TScalar length_sq<T, TScalar>(in T value)
-        where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
+        where T : unmanaged, IAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => dot<T, TScalar>(value, value);
 
@@ -33,7 +33,7 @@ public static partial class math
     [ScalarExtension]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TScalar distance_sq<T, TScalar>(in T from, in T to)
-        where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
+        where T : unmanaged, IAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => length_sq<T, TScalar>(to - from);
 }

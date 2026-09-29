@@ -34,7 +34,7 @@ namespace Coplt.Mathematics
             /// <returns>The value whose every component is the component of the value wrapped into the range</returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static T wrap<T>(in T value, in T min, in T max)
-                where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+                where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             {
                 var range = max - min;
                 return min + fmod(value - min, range);
@@ -74,7 +74,7 @@ namespace Coplt.Mathematics
         [OverloadResolutionPriority(-2)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T wrap<T, TScalar>(in T value, TScalar min, TScalar max)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointAlgebra<T, TScalar>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
         {
             var range = max - min;
@@ -88,14 +88,20 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math_ex.wrap{T}(in T, in T, in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T wrap<T>(this T value, in T min, in T max)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => math.wrap(value, min, max);
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        {
+            // the member is the value form of the wrap of the kind of the value, it computes the same expression
+            // instead of forwarding to it: the forwarding would name the member of a single component of the
+            // bound, which the compiler prefers, and the value of the bound does not satisfy it
+            var range = max - min;
+            return min + fmod(value - min, range);
+        }
 
         /// <inheritdoc cref="math.wrap{T, TScalar}"/>
         [OverloadResolutionPriority(-2)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T wrap<T, TScalar>(this T value, TScalar min, TScalar max)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointAlgebra<T, TScalar>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => math.wrap(value, min, max);
     }

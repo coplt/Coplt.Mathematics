@@ -27,8 +27,8 @@ namespace Coplt.Mathematics
         /// vector</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T project_unit<T>(in T value, in T onto)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointVector<T>
-            => T.Visit_Self<impl_project_unit>(value, onto);
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
+            => T.Self<impl_project_unit>(value, onto);
 
         /// <summary>
         /// Returns the projection of <paramref name="value"/> onto the plane that has
@@ -51,7 +51,7 @@ namespace Coplt.Mathematics
         /// plane</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T project_on_plane_unit<T>(in T value, in T plane_normal)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointVector<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => value - project_unit(value, plane_normal);
     }
 
@@ -60,13 +60,13 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math.project_unit{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T project_unit<T>(this T value, in T onto)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointVector<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => math.project_unit(value, onto);
 
         /// <inheritdoc cref="math.project_on_plane_unit{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T project_on_plane_unit<T>(this T value, in T plane_normal)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointVector<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => math.project_on_plane_unit(value, plane_normal);
     }
 }
@@ -85,31 +85,26 @@ namespace Coplt.Mathematics.Implements
     /// zero, so the projection of it is zero as well and the register of the value can be built from it
     /// directly</para>
     /// </summary>
-    internal struct impl_project_unit : IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unit>
+    internal struct impl_project_unit : IAlgebraVisitor_T_T_T<impl_project_unit>
     {
         // the projection of a value needs the dot product of it and the vector, which a single component cannot
         // hold
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unit>.AcceptScalar<TScalar>(TScalar value, TScalar onto)
+        static TScalar IAlgebraVisitor_S_S_S<impl_project_unit>.Scalar_Float<TScalar>(TScalar value, TScalar onto)
             => throw new UnreachableException();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unit>.AcceptVector<TVector, TScalar>(
-            in Vector64<TScalar> value, in Vector64<TScalar> onto
-        ) => TVector.FromUnderlying((Vector64.Create(Vector64.Dot(value, onto)) * onto).AsByte());
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unit>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Simd_Float<TVector, TScalar>(
             in Vector128<TScalar> value, in Vector128<TScalar> onto
         ) => TVector.FromUnderlying((Vector128.Create(Vector128.Dot(value, onto)) * onto).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unit>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Simd_Float<TVector, TScalar>(
             in Vector256<TScalar> value, in Vector256<TScalar> onto
         ) => TVector.FromUnderlying((Vector256.Create(Vector256.Dot(value, onto)) * onto).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unit>.AcceptVector2<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Vector2_Float<TVector, TScalar>(
             in TVector value, in TVector onto
         )
         {
@@ -127,7 +122,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unit>.AcceptVector3<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Vector3_Float<TVector, TScalar>(
             in TVector value, in TVector onto
         )
         {
@@ -148,7 +143,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unit>.AcceptVector4<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Vector4_Float<TVector, TScalar>(
             in TVector value, in TVector onto
         )
         {

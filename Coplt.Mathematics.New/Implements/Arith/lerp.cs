@@ -1,4 +1,4 @@
-﻿using Coplt.Mathematics.Algebras;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 
@@ -19,20 +19,20 @@ namespace Coplt.Mathematics
             /// <returns>The interpolated value</returns>
             [OverloadResolutionPriority(-1)]
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static T lerp<T>(in T start, in T end, in T t) where T : unmanaged, INumberAlgebraDispatch<T>
-                => T.Visit_Self<impl_lerp>(start, end, t);
+            public static T lerp<T>(in T start, in T end, in T t) where T : unmanaged, IAlgebraDispatch<T>
+                => T.Self<impl_lerp>(start, end, t);
         }
         
         /// <inheritdoc cref="math_ex.lerp{T}(in T, in T, in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [OverloadResolutionPriority(-2)]
-        public static T lerp<T>(this T t, in T start, in T end) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_lerp>(start, end, t);
+        public static T lerp<T>(this T t, in T start, in T end) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_lerp>(start, end, t);
 
         /// <inheritdoc cref="math_ex.lerp{T}(in T, in T, in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [OverloadResolutionPriority(-2)]
-        public static T lerp<T, TScalar>(this TScalar t, in T start, in T end) where T : unmanaged, IAlgebra<T, TScalar>, INumberAlgebraDispatch<T>
+        public static T lerp<T, TScalar>(this TScalar t, in T start, in T end) where T : unmanaged, IAlgebra<T, TScalar>, IAlgebraDispatch<T>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => math.lerp(start, end, T.Broadcast(t));
     }
@@ -46,29 +46,14 @@ namespace Coplt.Mathematics.Implements
     /// the width of the register, the values of every other vector reach the member of the scalar for every
     /// component of them and the values of a matrix reach it for every component of every one of its columns</para>
     /// </summary>
-    internal struct impl_lerp : INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>
+    internal struct impl_lerp : IAlgebraVisitor_T_T_T_T<impl_lerp>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptScalar<TScalar>(TScalar start, TScalar end, TScalar t)
+        static TScalar IAlgebraVisitor_S_S_S_S<impl_lerp>.Scalar_Number<TScalar>(TScalar start, TScalar end, TScalar t)
             => start + t * (end - start);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
-            in Vector64<TScalar> start, in Vector64<TScalar> end, in Vector64<TScalar> t
-        )
-        {
-            var offset = end - start;
-
-            if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(Vector64.FusedMultiplyAdd(
-                    t.AsSingle(), offset.AsSingle(), start.AsSingle()
-                ).AsByte());
-
-            return TVector.FromUnderlying((start + t * offset).AsByte());
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T_T<impl_lerp>.Simd_Number<TVector, TScalar>(
             in Vector128<TScalar> start, in Vector128<TScalar> end, in Vector128<TScalar> t
         )
         {
@@ -88,7 +73,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_lerp>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T_T<impl_lerp>.Simd_Number<TVector, TScalar>(
             in Vector256<TScalar> start, in Vector256<TScalar> end, in Vector256<TScalar> t
         )
         {

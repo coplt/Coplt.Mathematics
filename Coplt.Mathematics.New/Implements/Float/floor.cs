@@ -12,16 +12,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the component of the value rounded down</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T floor<T>(in T value) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => T.Visit_Self<impl_floor>(value);
+        public static T floor<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_floor>(value);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.floor{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T floor<T>(this T value) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => T.Visit_Self<impl_floor>(value);
+        public static T floor<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_floor>(value);
     }
 }
 
@@ -36,22 +36,14 @@ namespace Coplt.Mathematics.Implements
     /// which is what the rounding of it is as well, so the register of the value can be built from it directly
     /// </para>
     /// </summary>
-    internal struct impl_floor : IFloatingPointAlgebraVisitor_Self_Self<impl_floor>
+    internal struct impl_floor : IAlgebraVisitor_T_T<impl_floor>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IFloatingPointAlgebraVisitor_Self_Self<impl_floor>.AcceptScalar<TScalar>(TScalar value)
+        static TScalar IAlgebraVisitor_S_S<impl_floor>.Scalar_Float<TScalar>(TScalar value)
             => TScalar.Floor(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_floor>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
-        {
-            if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(Vector64.Floor(vector.AsSingle()).AsByte());
-            throw new NotSupportedException();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_floor>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_floor>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.UnsafeFromUnderlying(Vector128.Floor(vector.AsSingle()).AsByte());
@@ -61,7 +53,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_floor>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_floor>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(Vector256.Floor(vector.AsDouble()).AsByte());

@@ -6,9 +6,10 @@ namespace Coplt.Mathematics;
 // as well. The parameters of every member below are the ones of the interface of its operation in the same order,
 // which is the order of the hlsl counterpart of the operation as well: math.sin(v) and math.step(threshold, v).
 // Most of the members do not name the type of a single component, the compiler infers the vector type from the
-// argument. The members that do name it or the type of the mask they return can only be reached when the caller
-// spells the extra type out, which is what the members of math.as do as well: math.length<float3, float>(v) and
-// math.is_NaN<float3, b32v3>(v). The members below that take a scalar infer it from the argument.
+// argument. The members that do name it can only be reached when the caller spells the extra type out, which is
+// what the members of math.as do as well: math.length<float3, float>(v) and math.dot<float3, float>(a, b). The
+// generator emits a member of every scalar type beside such a member, which a call that does not name the type
+// of a single component reaches. The members below that take a scalar infer it from the argument.
 public static partial class math
 {
     /// <summary>

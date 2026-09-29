@@ -20,7 +20,7 @@ namespace Coplt.Mathematics
         [ScalarExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TScalar length<T, TScalar>(in T value)
-            where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
+            where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => TScalar.Sqrt(dot<T, TScalar>(value, value));
 
@@ -35,7 +35,7 @@ namespace Coplt.Mathematics
         [ScalarExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TScalar distance<T, TScalar>(in T from, in T to)
-            where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
+            where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => length<T, TScalar>(to - from);
     }
@@ -45,14 +45,14 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math.length{T, TScalar}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TScalar length<T, TScalar>(this T value)
-            where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
+            where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => math.length<T, TScalar>(value);
 
         /// <inheritdoc cref="math.distance{T, TScalar}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TScalar distance<T, TScalar>(this T from, in T to)
-            where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
+            where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => math.distance<T, TScalar>(from, to);
     }

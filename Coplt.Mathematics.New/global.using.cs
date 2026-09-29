@@ -7,6 +7,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using Coplt.Mathematics.Simd;
+global using Coplt.Mathematics.Algebras.Generics.Dispatch;
 global using Coplt.Shader;
 global using half = System.Half;
 global using b16v = Coplt.Mathematics.b16;

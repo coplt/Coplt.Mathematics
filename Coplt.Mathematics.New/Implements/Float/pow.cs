@@ -22,16 +22,16 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value raised to the power of the
         /// matching component of the exponent</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T pow<T>(in T a, in T b) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => T.Visit_Self<impl_pow>(a, b);
+        public static T pow<T>(in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_pow>(a, b);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.pow{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T pow<T>(this T a, in T b) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => T.Visit_Self<impl_pow>(a, b);
+        public static T pow<T>(this T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_pow>(a, b);
     }
 }
 
@@ -48,25 +48,14 @@ namespace Coplt.Mathematics.Implements
     /// lane is zero as well, so the register of the result is built from the mask of the padding lanes of the
     /// value, which keeps them at zero</para>
     /// </summary>
-    internal struct impl_pow : IFloatingPointAlgebraVisitor_Self_Self_Self<impl_pow>
+    internal struct impl_pow : IAlgebraVisitor_T_T_T<impl_pow>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IFloatingPointAlgebraVisitor_Self_Self_Self<impl_pow>.AcceptScalar<TScalar>(TScalar a, TScalar b)
+        static TScalar IAlgebraVisitor_S_S_S<impl_pow>.Scalar_Float<TScalar>(TScalar a, TScalar b)
             => TScalar.Pow(a, b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_pow>.AcceptVector<TVector, TScalar>(
-            in Vector64<TScalar> a, in Vector64<TScalar> b
-        )
-        {
-            if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(simd.Pow(a.AsSingle(), b.AsSingle()).AsByte());
-
-            throw new NotSupportedException();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_pow>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_pow>.Simd_Float<TVector, TScalar>(
             in Vector128<TScalar> a, in Vector128<TScalar> b
         )
         {
@@ -80,7 +69,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_pow>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_pow>.Simd_Float<TVector, TScalar>(
             in Vector256<TScalar> a, in Vector256<TScalar> b
         )
         {

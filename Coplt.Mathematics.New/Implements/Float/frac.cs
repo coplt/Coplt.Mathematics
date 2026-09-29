@@ -1,3 +1,4 @@
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 
 namespace Coplt.Mathematics
@@ -14,7 +15,7 @@ namespace Coplt.Mathematics
         /// fraction of a component that is negative is the value of it above the floor as well and it is never
         /// negative</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T frac<T>(in T value) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+        public static T frac<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => value - floor(value);
     }
 
@@ -22,7 +23,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.frac{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T frac<T>(this T value) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+        public static T frac<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => value - math.floor(value);
     }
 }

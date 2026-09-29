@@ -1,3 +1,4 @@
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 
 namespace Coplt.Mathematics
@@ -15,7 +16,7 @@ namespace Coplt.Mathematics
         /// <returns>The fractional part</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T modf<T>(in T value, out T integer_portion)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
         {
             var d = value;
             var i = trunc(d);
@@ -33,7 +34,7 @@ namespace Coplt.Mathematics
         /// <returns>The fractional part of the value and the integral part of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (T SignedFractionalPortion, T IntegerPortion) modf<T>(in T value)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
         {
             var d = value;
             var i = trunc(d);
@@ -46,13 +47,13 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math.modf{T}(in T, out T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T modf<T>(this T value, out T integer_portion)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => math.modf(value, out integer_portion);
 
         /// <inheritdoc cref="math.modf{T}(in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (T SignedFractionalPortion, T IntegerPortion) modf<T>(this T value)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => math.modf(value);
     }
 }

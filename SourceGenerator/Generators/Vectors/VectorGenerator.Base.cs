@@ -243,19 +243,14 @@ public partial class VectorGenerator
         {
             ifaces.Add($"Algebras.{AlgebraIface()}<{type}, {scalar}>");
             // the members that dispatch the value of the vector implement the interface of the dispatch of it, a
-            // mask does not dispatch: the members of the visitors name the number vector of a type. The dispatch
-            // of the kind of a number names the type of a component of the value beside it, the one of a floating
-            // point kind reaches the values of the kind of it alone, so it names the type of the value
+            // mask does not dispatch: the members of the visitors name the vector of a kind of a number. The
+            // dispatch of the value names the type of the value and the one that reaches the members that take a
+            // single component of it beside it names the type of the component as well
             if (!bol)
-                foreach (var family in VectorGenShared.DispatchIfaces(typ))
-                    ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
-            // a vector of a floating point kind reaches the map of a value as well, which the dispatch of a vector
-            // declares beside the one of the value
-            if (!bol && typ.f) ifaces.Add($"Algebras.Generics.IFloatingPointVectorDispatch<{type}>");
-            // the bool value of a value has a shape of its own, which the dispatch of the kind of the value does
-            // not name, so a vector of a floating point kind reaches the dispatch of the bool value of it as well
-            if (!bol && typ.f)
-                ifaces.Add(VectorGenShared.DispatchBoolIface(type, boolType));
+            {
+                ifaces.Add(VectorGenShared.DispatchIface(type));
+                ifaces.Add(VectorGenShared.DispatchIfaceScalar(type, scalar));
+            }
             if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
             if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
             // a signed vector reaches the negative of every whole number of the vector a column of its matrix

@@ -14,16 +14,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the reciprocal of the component of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T rcp<T>(in T value) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => T.Visit_Self<impl_rcp>(value);
+        public static T rcp<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_rcp>(value);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.rcp{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T rcp<T>(this T value) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => T.Visit_Self<impl_rcp>(value);
+        public static T rcp<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_rcp>(value);
     }
 }
 
@@ -41,22 +41,14 @@ namespace Coplt.Mathematics.Implements
     /// <para>The reciprocal of a padding lane is an infinity, so the register of the value is built from the
     /// mask of the padding lanes of it, which keeps them at zero</para>
     /// </summary>
-    internal struct impl_rcp : IFloatingPointAlgebraVisitor_Self_Self<impl_rcp>
+    internal struct impl_rcp : IAlgebraVisitor_T_T<impl_rcp>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IFloatingPointAlgebraVisitor_Self_Self<impl_rcp>.AcceptScalar<TScalar>(TScalar value)
+        static TScalar IAlgebraVisitor_S_S<impl_rcp>.Scalar_Float<TScalar>(TScalar value)
             => TScalar.One / value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_rcp>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
-        {
-            if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(simd.Rcp(vector.AsSingle()).AsByte());
-            throw new NotSupportedException();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_rcp>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_rcp>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.FromUnderlying(simd.Rcp(vector.AsSingle()).AsByte());
@@ -66,7 +58,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_rcp>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_rcp>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.Rcp(vector.AsDouble()).AsByte());

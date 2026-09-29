@@ -7,69 +7,57 @@ namespace Coplt.Mathematics
     public static partial class math
     {
         /// <summary>
-        /// Returns a mask that is true where the component is NaN
+        /// Returns the value that is true where the component of <paramref name="a"/> is NaN
+        /// <para>The value has the same type as the one it was built from: a component of it that is true is the
+        /// all bits set value of the kind of the component and a component that is false is the zero of it, so
+        /// any value that is not zero counts as true. The all bits set value of a floating point kind is a NaN,
+        /// which is a value of the kind of the component like every other one</para>
         /// <para>The value of a vector that keeps it in a register reaches the member of the visitor that
-        /// matches the width of the register, which builds the mask out of the register of the mask itself,
-        /// the value of every other vector reaches the member of the scalar for every component of it and the
-        /// value of a matrix reaches it for every component of every one of its columns</para>
+        /// matches the width of the register, which builds the value out of the bits of the register of the
+        /// mask, the value of every other vector reaches the member of the scalar for every component of it and
+        /// the value of a matrix reaches it for every component of every one of its columns</para>
         /// </summary>
         /// <param name="a">The value</param>
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
-        /// <typeparam name="TBool">The type of the mask, the value that has the same shape as <typeparamref name="T"/></typeparam>
-        /// <returns>The mask</returns>
+        /// <returns>The value that is true where the component of it is NaN</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [BoolExtension]
-        public static TBool is_NaN<T, TBool>(in T a)
-            where T : unmanaged, IFloatingPointAlgebraBoolDispatch<T, TBool>
-            where TBool : unmanaged, IBoolMatrix<TBool>
-            => T.Visit_Self_Bool<impl_is_nan>(a);
+        public static T is_NaN<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+            => T.Self<impl_is_nan>(a);
 
         /// <summary>
-        /// Returns a mask that is true where the component is NaN, which is the name of the member in HLSL
+        /// Returns the value that is true where the component of <paramref name="a"/> is NaN, which is the name
+        /// of the member in HLSL
         /// </summary>
-        /// <inheritdoc cref="is_NaN{T,TBool}(in T)"/>
+        /// <inheritdoc cref="is_NaN{T}(in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [BoolExtension]
-        public static TBool isnan<T, TBool>(in T a)
-            where T : unmanaged, IFloatingPointAlgebraBoolDispatch<T, TBool>
-            where TBool : unmanaged, IBoolMatrix<TBool>
-            => is_NaN<T, TBool>(a);
+        public static T isnan<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+            => is_NaN(a);
     }
 }
 
 namespace Coplt.Mathematics.Implements
 {
     /// <summary>
-    /// The mask of a value that is true where the component of it is NaN
+    /// The value that is true where the component of a value is NaN
     /// <para>The value of a vector that keeps it in a register reaches the member of the visitor that matches
     /// the width of the register, which is the comparison of the whole register at once, the value of every
     /// other vector reaches the member of the scalar for every component of it and the value of a matrix
     /// reaches it for every component of every one of its columns</para>
     /// </summary>
-    internal struct impl_is_nan : IFloatingPointAlgebraVisitor_Self_Bool<impl_is_nan>
+    internal struct impl_is_nan : IAlgebraVisitor_T_T<impl_is_nan>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TBoolScalar IFloatingPointAlgebraVisitor_Self_Bool<impl_is_nan>.AcceptScalar<TScalar, TBoolScalar>(TScalar value)
-            => TScalar.IsNaN(value);
+        static TScalar IAlgebraVisitor_S_S<impl_is_nan>.Scalar_Float<TScalar>(TScalar value)
+            => TScalar.IsNaN(value) ? TScalar.AllBitsSet : TScalar.Zero;
 
         // the member of the simd library of the kind of the component finds the nan ones, the zero of a padding
-        // lane is not a nan, so the mask of the register does not have to leave the padding lanes out, and a
-        // register of 64 bits has none
+        // lane is not a nan, so the mask of the register does not have to leave the padding lanes out
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TBool IFloatingPointAlgebraVisitor_Self_Bool<impl_is_nan>.AcceptVector<TVector, TScalar, TBool, TBoolScalar>(
-            in Vector64<TScalar> vector
-        ) => TBool.FromUnderlying(Vector64.IsNaN(vector).AsByte());
+        static TVector IAlgebraVisitor_T_T<impl_is_nan>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+            => TVector.UnsafeFromUnderlying(Vector128.IsNaN(vector).AsByte());
 
-        /// <inheritdoc cref="IFloatingPointAlgebraVisitor_Self_Bool{V}.AcceptVector{TVector,TScalar,TBool,TBoolScalar}(in Vector64{TScalar})"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TBool IFloatingPointAlgebraVisitor_Self_Bool<impl_is_nan>.AcceptVector<TVector, TScalar, TBool, TBoolScalar>(
-            in Vector128<TScalar> vector
-        ) => TBool.UnsafeFromUnderlying(Vector128.IsNaN(vector).AsByte());
-
-        /// <inheritdoc cref="IFloatingPointAlgebraVisitor_Self_Bool{V}.AcceptVector{TVector,TScalar,TBool,TBoolScalar}(in Vector64{TScalar})"/>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TBool IFloatingPointAlgebraVisitor_Self_Bool<impl_is_nan>.AcceptVector<TVector, TScalar, TBool, TBoolScalar>(
-            in Vector256<TScalar> vector
-        ) => TBool.UnsafeFromUnderlying(Vector256.IsNaN(vector).AsByte());
+        static TVector IAlgebraVisitor_T_T<impl_is_nan>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+            => TVector.UnsafeFromUnderlying(Vector256.IsNaN(vector).AsByte());
     }
 }

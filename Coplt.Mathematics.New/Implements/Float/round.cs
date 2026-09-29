@@ -13,16 +13,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the component of the value rounded</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T round<T>(in T value) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => T.Visit_Self<impl_round>(value);
+        public static T round<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_round>(value);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.round{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T round<T>(this T value) where T : unmanaged, IFloatingPointAlgebraDispatch<T>
-            => T.Visit_Self<impl_round>(value);
+        public static T round<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_round>(value);
     }
 }
 
@@ -39,22 +39,14 @@ namespace Coplt.Mathematics.Implements
     /// <para>The member of the hardware and the member of the component type round a value that is exactly
     /// between two integers to the even one of them</para>
     /// </summary>
-    internal struct impl_round : IFloatingPointAlgebraVisitor_Self_Self<impl_round>
+    internal struct impl_round : IAlgebraVisitor_T_T<impl_round>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IFloatingPointAlgebraVisitor_Self_Self<impl_round>.AcceptScalar<TScalar>(TScalar value)
+        static TScalar IAlgebraVisitor_S_S<impl_round>.Scalar_Float<TScalar>(TScalar value)
             => TScalar.Round(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_round>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
-        {
-            if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(Vector64.Round(vector.AsSingle()).AsByte());
-            throw new NotSupportedException();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_round>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_round>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.UnsafeFromUnderlying(Vector128.Round(vector.AsSingle()).AsByte());
@@ -64,7 +56,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self<impl_round>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_round>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(Vector256.Round(vector.AsDouble()).AsByte());

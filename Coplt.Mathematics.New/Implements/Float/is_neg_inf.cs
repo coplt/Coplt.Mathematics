@@ -7,58 +7,47 @@ namespace Coplt.Mathematics
     public static partial class math
     {
         /// <summary>
-        /// Returns a mask that is true where the component is a negative infinity
+        /// Returns the value that is true where the component of <paramref name="a"/> is a negative infinity
+        /// <para>The value has the same type as the one it was built from: a component of it that is true is the
+        /// all bits set value of the kind of the component and a component that is false is the zero of it, so
+        /// any value that is not zero counts as true</para>
         /// <para>The value of a vector that keeps it in a register reaches the member of the visitor that
-        /// matches the width of the register, which builds the mask out of the register of the mask itself,
-        /// the value of every other vector reaches the member of the scalar for every component of it and the
-        /// value of a matrix reaches it for every component of every one of its columns</para>
+        /// matches the width of the register, which builds the value out of the bits of the register of the
+        /// mask, the value of every other vector reaches the member of the scalar for every component of it and
+        /// the value of a matrix reaches it for every component of every one of its columns</para>
         /// </summary>
         /// <param name="a">The value</param>
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
-        /// <typeparam name="TBool">The type of the mask, the value that has the same shape as <typeparamref name="T"/></typeparam>
-        /// <returns>The mask</returns>
+        /// <returns>The value that is true where the component of it is a negative infinity</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [BoolExtension]
-        public static TBool is_neg_inf<T, TBool>(in T a)
-            where T : unmanaged, IFloatingPointAlgebraBoolDispatch<T, TBool>
-            where TBool : unmanaged, IBoolMatrix<TBool>
-            => T.Visit_Self_Bool<impl_is_neg_inf>(a);
+        public static T is_neg_inf<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+            => T.Self<impl_is_neg_inf>(a);
     }
 }
 
 namespace Coplt.Mathematics.Implements
 {
     /// <summary>
-    /// The mask of a value that is true where the component of it is a negative infinity
+    /// The value that is true where the component of a value is a negative infinity
     /// <para>The value of a vector that keeps it in a register reaches the member of the visitor that matches
     /// the width of the register, which is the comparison of the whole register at once, the value of every
     /// other vector reaches the member of the scalar for every component of it and the value of a matrix
     /// reaches it for every component of every one of its columns</para>
     /// </summary>
-    internal struct impl_is_neg_inf : IFloatingPointAlgebraVisitor_Self_Bool<impl_is_neg_inf>
+    internal struct impl_is_neg_inf : IAlgebraVisitor_T_T<impl_is_neg_inf>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TBoolScalar IFloatingPointAlgebraVisitor_Self_Bool<impl_is_neg_inf>.AcceptScalar<TScalar, TBoolScalar>(TScalar value)
-            => TScalar.IsNegativeInfinity(value);
+        static TScalar IAlgebraVisitor_S_S<impl_is_neg_inf>.Scalar_Float<TScalar>(TScalar value)
+            => TScalar.IsNegativeInfinity(value) ? TScalar.AllBitsSet : TScalar.Zero;
 
         // the member of the simd library of the kind of the component finds the negative infinite ones, the zero
-        // of a padding lane is not one, so the mask of the register does not have to leave the padding lanes out,
-        // and a register of 64 bits has none
+        // of a padding lane is not one, so the value of the register does not have to leave the padding lanes out
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TBool IFloatingPointAlgebraVisitor_Self_Bool<impl_is_neg_inf>.AcceptVector<TVector, TScalar, TBool, TBoolScalar>(
-            in Vector64<TScalar> vector
-        ) => TBool.FromUnderlying(Vector64.IsNegativeInfinity(vector).AsByte());
+        static TVector IAlgebraVisitor_T_T<impl_is_neg_inf>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+            => TVector.UnsafeFromUnderlying(Vector128.IsNegativeInfinity(vector).AsByte());
 
-        /// <inheritdoc cref="IFloatingPointAlgebraVisitor_Self_Bool{V}.AcceptVector{TVector,TScalar,TBool,TBoolScalar}(in Vector64{TScalar})"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TBool IFloatingPointAlgebraVisitor_Self_Bool<impl_is_neg_inf>.AcceptVector<TVector, TScalar, TBool, TBoolScalar>(
-            in Vector128<TScalar> vector
-        ) => TBool.UnsafeFromUnderlying(Vector128.IsNegativeInfinity(vector).AsByte());
-
-        /// <inheritdoc cref="IFloatingPointAlgebraVisitor_Self_Bool{V}.AcceptVector{TVector,TScalar,TBool,TBoolScalar}(in Vector64{TScalar})"/>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TBool IFloatingPointAlgebraVisitor_Self_Bool<impl_is_neg_inf>.AcceptVector<TVector, TScalar, TBool, TBoolScalar>(
-            in Vector256<TScalar> vector
-        ) => TBool.UnsafeFromUnderlying(Vector256.IsNegativeInfinity(vector).AsByte());
+        static TVector IAlgebraVisitor_T_T<impl_is_neg_inf>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+            => TVector.UnsafeFromUnderlying(Vector256.IsNegativeInfinity(vector).AsByte());
     }
 }

@@ -1,4 +1,4 @@
-﻿using Coplt.Mathematics.Algebras.Generics;
+using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
@@ -12,16 +12,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the sign of the component of the value</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T sign<T>(in T value) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_sign>(value);
+        public static T sign<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_sign>(value);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.sign{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T sign<T>(this T value) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_sign>(value);
+        public static T sign<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_sign>(value);
     }
 }
 
@@ -33,26 +33,14 @@ namespace Coplt.Mathematics.Implements
     /// the width of the register, the value of every other vector reaches <see cref="Scalar.Sign{T}"/> for every
     /// component of it and the value of a matrix reaches it for every component of every one of its columns</para>
     /// </summary>
-    internal struct impl_sign : INumberAlgebraVisitor_Self_Self<impl_sign>
+    internal struct impl_sign : IAlgebraVisitor_T_T<impl_sign>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptScalar<TScalar>(TScalar value)
+        static TScalar IAlgebraVisitor_S_S<impl_sign>.Scalar_Number<TScalar>(TScalar value)
             => Scalar.Sign(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
-        {
-            if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());
-            if (typeof(TScalar) == typeof(int))
-                return TVector.FromUnderlying(simd.SignInt(vector).AsByte());
-            if (typeof(TScalar) == typeof(uint))
-                return TVector.FromUnderlying(simd.SignUInt(vector).AsByte());
-            throw new NotSupportedException();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_sign>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());
@@ -64,7 +52,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self<impl_sign>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_sign>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());

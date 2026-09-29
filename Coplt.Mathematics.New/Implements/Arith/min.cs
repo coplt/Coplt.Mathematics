@@ -1,4 +1,4 @@
-﻿using Coplt.Mathematics.Algebras.Generics;
+using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
@@ -13,16 +13,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The smaller of the two values component by component</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T min<T>(in T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_min>(a, b);
+        public static T min<T>(in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_min>(a, b);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.min{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T min<T>(this T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_min>(a, b);
+        public static T min<T>(this T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_min>(a, b);
     }
 }
 
@@ -34,22 +34,18 @@ namespace Coplt.Mathematics.Implements
     /// the width of the register, the values of every other vector reach the member of the scalar for every
     /// component of them and the values of a matrix reach it for every component of every one of its columns</para>
     /// </summary>
-    internal struct impl_min : INumberAlgebraVisitor_Self_Self_Self<impl_min>
+    internal struct impl_min : IAlgebraVisitor_T_T_T<impl_min>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Self<impl_min>.AcceptScalar<TScalar>(TScalar a, TScalar b)
+        static TScalar IAlgebraVisitor_S_S_S<impl_min>.Scalar_Number<TScalar>(TScalar a, TScalar b)
             => TScalar.Min(a, b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self<impl_min>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> a, in Vector64<TScalar> b)
-            => TVector.FromUnderlying(Vector64.Min(a, b).AsByte());
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self<impl_min>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
             => TVector.UnsafeFromUnderlying(Vector128.Min(a, b).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self<impl_min>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
             => TVector.UnsafeFromUnderlying(Vector256.Min(a, b).AsByte());
     }
 }

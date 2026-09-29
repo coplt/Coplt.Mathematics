@@ -1,4 +1,4 @@
-﻿using Coplt.Mathematics.Algebras;
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 

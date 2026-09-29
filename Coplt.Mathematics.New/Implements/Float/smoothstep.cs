@@ -1,3 +1,4 @@
+using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 
 namespace Coplt.Mathematics
@@ -28,7 +29,7 @@ namespace Coplt.Mathematics
         /// bounds of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T smoothstep<T>(in T min, in T max, in T value)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
         {
             // the position of the component between the bounds is clamped into the range of zero and one, which
             // is what the position of a component outside of them is as well
@@ -44,7 +45,7 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math.smoothstep{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T smoothstep<T>(this T value, in T min, in T max)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => math.smoothstep(min, max, value);
     }
 }

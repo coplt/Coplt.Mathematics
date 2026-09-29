@@ -1,4 +1,4 @@
-﻿using Coplt.Mathematics.Algebras.Generics;
+using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
@@ -16,9 +16,9 @@ namespace Coplt.Mathematics
         /// <typeparam name="TScalar">The type of a single component</typeparam>
         /// <returns>The interpolated value</returns>
         [ScalarExtension(ThisParameter = "t")]
-        public static T lerp<T, TScalar>(TScalar start, TScalar end, in T t) where T : unmanaged, INumberAlgebraDispatch<T, TScalar>
+        public static T lerp<T, TScalar>(TScalar start, TScalar end, in T t) where T : unmanaged, IAlgebraDispatch<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
-            => T.Visit_Self<impl_lerp<TScalar>>(t, start, end);
+            => T.Self<impl_lerp_scalar>(t, start, end);
     }
 
     public static partial class math_ex
@@ -26,9 +26,9 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math.lerp{T, TScalar}(TScalar, TScalar, in T)"/>
         [OverloadResolutionPriority(-2)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T lerp<T, TScalar>(this T t, TScalar start, TScalar end) where T : unmanaged, INumberAlgebraDispatch<T, TScalar>
+        public static T lerp<T, TScalar>(this T t, TScalar start, TScalar end) where T : unmanaged, IAlgebraDispatch<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
-            => T.Visit_Self<impl_lerp<TScalar>>(t, start, end);
+            => T.Self<impl_lerp_scalar>(t, start, end);
     }
 }
 
@@ -39,36 +39,18 @@ namespace Coplt.Mathematics.Implements
     /// <para>The values of the vectors that keep them in a register reach the member of the visitor that matches
     /// the width of the register, the values of every other vector reach the member of the scalar for every
     /// component of them and the values of a matrix reach it for every component of every one of its columns</para>
+    /// <para>The visitor does not name the type of a single component: the members of it that reach a value name
+    /// it themselves, so one visitor serves every kind of a component</para>
     /// </summary>
-    internal struct impl_lerp<TScalar> : INumberAlgebraVisitor_Self_Scalar_Scalar_Self<impl_lerp<TScalar>, TScalar>
-        where TScalar : unmanaged, IBinaryNumber<TScalar>
+    internal struct impl_lerp_scalar : IAlgebraVisitor_T_S_S_T<impl_lerp_scalar>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Scalar_Scalar_Self<impl_lerp<TScalar>, TScalar>.AcceptScalar(
+        static TScalar IAlgebraVisitor_S_S_S_S<impl_lerp_scalar>.Scalar_Number<TScalar>(
             TScalar t, TScalar start, TScalar end
         ) => start + t * (end - start);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Scalar_Scalar_Self<impl_lerp<TScalar>, TScalar>.AcceptVector<TVector>(
-            in Vector64<TScalar> t, TScalar start, TScalar end
-        )
-        {
-            // a 64 bit register is exactly as wide as the value of the vector it keeps, so the broadcast of a
-            // component of it has no padding lane
-            var offset = end - start;
-
-            if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(Vector64.FusedMultiplyAdd(
-                    t.AsSingle(),
-                    Vector64.Create(offset).AsSingle(),
-                    Vector64.Create(start).AsSingle()
-                ).AsByte());
-
-            return TVector.FromUnderlying((t * Vector64.Create(offset) + Vector64.Create(start)).AsByte());
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Scalar_Scalar_Self<impl_lerp<TScalar>, TScalar>.AcceptVector<TVector>(
+        static TVector IAlgebraVisitor_T_S_S_T<impl_lerp_scalar>.Simd_Number<TVector, TScalar>(
             in Vector128<TScalar> t, TScalar start, TScalar end
         )
         {
@@ -99,7 +81,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Scalar_Scalar_Self<impl_lerp<TScalar>, TScalar>.AcceptVector<TVector>(
+        static TVector IAlgebraVisitor_T_S_S_T<impl_lerp_scalar>.Simd_Number<TVector, TScalar>(
             in Vector256<TScalar> t, TScalar start, TScalar end
         )
         {

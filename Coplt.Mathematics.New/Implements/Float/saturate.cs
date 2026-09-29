@@ -13,7 +13,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value clamped into the range of zero
         /// and one</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T saturate<T>(in T value) where T : unmanaged, IFloatingPointAlgebra<T>, INumberAlgebraDispatch<T>
+        public static T saturate<T>(in T value) where T : unmanaged, IFloatingPointAlgebra<T>, IAlgebraDispatch<T>
             => clamp(value, T.Zero, T.One);
     }
 
@@ -21,7 +21,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.saturate{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T saturate<T>(this T value) where T : unmanaged, IFloatingPointAlgebra<T>, INumberAlgebraDispatch<T>
+        public static T saturate<T>(this T value) where T : unmanaged, IFloatingPointAlgebra<T>, IAlgebraDispatch<T>
             => math.clamp(value, T.Zero, T.One);
     }
 }

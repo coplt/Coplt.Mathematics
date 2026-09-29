@@ -1,4 +1,4 @@
-﻿namespace Coplt.Mathematics.Implements;
+namespace Coplt.Mathematics.Implements;
 
 internal static class Scalar
 {

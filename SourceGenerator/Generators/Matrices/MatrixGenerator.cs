@@ -138,12 +138,8 @@ public class MatrixGenerator : IIncrementalGenerator
             // visitors that reduce them to a vector, a matrix of a mask dispatches nothing
             if (!bol)
             {
-                foreach (var family in VectorGenShared.DispatchIfaces(typ))
-                    ifaces.Add(VectorGenShared.DispatchIface(family, type, scalar));
-                // the bool value of a matrix has a shape of its own, which the dispatch of the kind of the value
-                // does not name, so a matrix of a floating point kind reaches the dispatch of the bool value of it
-                // as well
-                if (typ.f) ifaces.Add(VectorGenShared.DispatchBoolIface(type, boolType));
+                ifaces.Add(VectorGenShared.DispatchIface(type));
+                ifaces.Add(VectorGenShared.DispatchIfaceScalar(type, scalar));
                 ifaces.Add($"Algebras.Generics.INumberMatrixColumnDispatch<{type}, {col}>");
                 ifaces.Add($"Algebras.Generics.INumberMatrixRowDispatch<{type}, {row}>");
             }
@@ -802,80 +798,52 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine();
 
         // the shape of a matrix is a part of its type, so the type itself reaches the member of the visitor that
-        // matches the shape, which the visitor reaches the columns of the matrix through. The members are
+        // matches the shape, which the member reaches the columns of the matrix through. The members are
         // implemented explicitly, so a caller reaches them through the interface of the dispatch of the type. The
         // storage variant of a matrix holds the columns of a value of the kind of it, it does not dispatch
         if (!bol && !storeVariant)
         {
             sb.AppendLine("    #region dispatch");
             sb.AppendLine();
-            // the members of the dispatch of every kind of the value are the ones of the same shape: the
-            // interface is the one of the kind, and a member that is implemented explicitly does not name the
-            // constraints of the type of a component of it again, so the value of a member of every kind is
-            // the same one
-            foreach (var family in VectorGenShared.DispatchIfaces(typ))
+
+            // the kind of the component decides the level of the members of the visitor that the value reaches:
+            // the members of the level of a floating point number fall back to the ones of the level of a number
+            // and those fall back to the ones that reach every value
+            var level = VectorGenShared.DispatchLevel(typ);
+            // the member of the visitor that reaches the value of a matrix names the type of a column of it,
+            // which the count of the columns of the matrix decides, so the shape of the matrix is a part of the
+            // name of the member and the row of the matrix reaches the same member as the matrix of the
+            // transposed shape
+            var matrix = $"V.MatrixMx{cols}_{level}<{type}, {col}, {scalar}>";
+            // the members that take the value alone are the members of the interface that names the type of the
+            // value, every other member takes a component of the value beside it or reaches the one it was given
+            var self = VectorGenShared.DispatchIface(type);
+            var withScalar = VectorGenShared.DispatchIfaceScalar(type, scalar);
+            // a member of the dispatch of a value is implemented explicitly, so a member does not name the
+            // constraints of the type of a component of it again and the value of a member of every kind is the
+            // same one
+            void Member(string ret, string iface, string member, string parameters, string body)
             {
-                // the dispatch of a value takes the values of the kind of it, so the members that take a value
-                // alone are the members of the interface that names the type of the value itself
-                var self = $"Algebras.Generics.{family}<{type}>";
-
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} self)");
-                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(self);");
-                sb.AppendLine();
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b)");
-                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
-                sb.AppendLine();
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
-                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b, c);");
-                sb.AppendLine();
-
-                // the bool value of the matrix has the same shape as it, and the dispatch of it is the one that
-                // names the type of the bool value, which the dispatch of the value does not
-                if (family == "IFloatingPointAlgebraDispatch")
-                {
-                    sb.AppendLine("    /// <inheritdoc/>");
-                    sb.AppendLine($"    {attr}");
-                    sb.AppendLine($"    static {boolType} {VectorGenShared.DispatchBoolIface(type, boolType)}.Visit_Self_Bool<V>(in {type} self)");
-                    sb.AppendLine(
-                        $"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}, {boolType}, {VectorGenShared.BoolName(typ, rows)}, {VectorGenShared.BoolScalarName(typ)}>(self);");
-                    sb.AppendLine();
-                }
-
-                // the dispatch of the kind of a number reaches the values that take a component of the value
-                // beside them as well, so it has the members that take a component and the ones that reduce a
-                // value to a single component of it, which the one of a floating point kind does not have
-                if (family != "INumberAlgebraDispatch") continue;
-                var withScalar = $"Algebras.Generics.{family}<{type}, {scalar}>";
-
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b)");
-                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b);");
-                sb.AppendLine();
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
-                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}>(a, b, c);");
-                sb.AppendLine();
-                // a visitor that returns a single component reaches the columns of the matrix as well: the
-                // reduction of the value of a matrix is the one of every column of it combined
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {scalar} {withScalar}.Visit_Scalar<V>(in {type} self)");
-                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(self);");
-                sb.AppendLine();
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {scalar} {withScalar}.Visit_Scalar<V>(in {type} a, in {type} b)");
-                sb.AppendLine($"        => V.AcceptMatrix{shape}<{type}, {col}, {scalar}>(a, b);");
+                sb.AppendLine($"    static {ret} {iface}.{member}({parameters})");
+                sb.AppendLine($"        => {body};");
                 sb.AppendLine();
             }
+
+            Member(type, self, "Self<V>", $"in {type} self", $"{matrix}(self)");
+            Member(type, self, "Self<V>", $"in {type} a, in {type} b", $"{matrix}(a, b)");
+            Member(type, self, "Self<V>", $"in {type} a, in {type} b, in {type} c", $"{matrix}(a, b, c)");
+            Member(type, withScalar, "Self<V>", $"in {type} a, {scalar} b", $"{matrix}(a, b)");
+            Member(type, withScalar, "Self<V>", $"in {type} a, {scalar} b, {scalar} c", $"{matrix}(a, b, c)");
+            // a member that takes a component of the value alone does not reach the value of the matrix at all
+            Member(scalar, withScalar, "Scalar<V>", $"{scalar} a", $"V.Scalar_{level}(a)");
+            Member(scalar, withScalar, "Scalar<V>", $"{scalar} a, {scalar} b", $"V.Scalar_{level}(a, b)");
+            Member(scalar, withScalar, "Scalar<V>", $"{scalar} a, {scalar} b, {scalar} c", $"V.Scalar_{level}(a, b, c)");
+            // a member that reduces the value of the matrix to a single component of it
+            Member(scalar, withScalar, "Scalar<V>", $"in {type} a", $"{matrix}(a)");
+            Member(scalar, withScalar, "Scalar<V>", $"in {type} a, in {type} b", $"{matrix}(a, b)");
+            Member(scalar, withScalar, "Combine<V>", $"{scalar} a, {scalar} b", $"V.Combine_{level}(a, b)");
 
             // the vectors a matrix is made of are the columns of it, so the member that reduces them to a
             // single vector is the one of the count of the columns of the matrix

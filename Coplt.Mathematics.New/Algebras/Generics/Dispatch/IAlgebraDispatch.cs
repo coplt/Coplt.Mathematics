@@ -1,4 +1,4 @@
-﻿namespace Coplt.Mathematics.Algebras.Generics.Dispatch;
+namespace Coplt.Mathematics.Algebras.Generics.Dispatch;
 
 #region Dispatch
 
@@ -359,7 +359,7 @@ public interface IAlgebraVisitor_T_T_T<V> : IAlgebraVisitor_S_S_S<V>
         TVector r = default;
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(a), TVector.get_x(b)));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(a), TVector.get_y(b)));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_z(a), TVector.get_z(b)));
+        TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(a), TVector.get_z(b)));
         return r;
     }
 
@@ -371,8 +371,8 @@ public interface IAlgebraVisitor_T_T_T<V> : IAlgebraVisitor_S_S_S<V>
         TVector r = default;
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(a), TVector.get_x(b)));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(a), TVector.get_y(b)));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_z(a), TVector.get_z(b)));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_w(a), TVector.get_w(b)));
+        TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(a), TVector.get_z(b)));
+        TVector.set_w(ref r, TVector.Scalar<V>(TVector.get_w(a), TVector.get_w(b)));
         return r;
     }
 
@@ -593,7 +593,7 @@ public interface IAlgebraVisitor_T_T_T_T<V> : IAlgebraVisitor_S_S_S_S<V>
         TVector r = default;
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(a), TVector.get_x(b), TVector.get_x(c)));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(a), TVector.get_y(b), TVector.get_y(c)));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_z(a), TVector.get_z(b), TVector.get_z(c)));
+        TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(a), TVector.get_z(b), TVector.get_z(c)));
         return r;
     }
 
@@ -605,8 +605,8 @@ public interface IAlgebraVisitor_T_T_T_T<V> : IAlgebraVisitor_S_S_S_S<V>
         TVector r = default;
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(a), TVector.get_x(b), TVector.get_x(c)));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(a), TVector.get_y(b), TVector.get_y(c)));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_z(a), TVector.get_z(b), TVector.get_z(c)));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_w(a), TVector.get_w(b), TVector.get_w(c)));
+        TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(a), TVector.get_z(b), TVector.get_z(c)));
+        TVector.set_w(ref r, TVector.Scalar<V>(TVector.get_w(a), TVector.get_w(b), TVector.get_w(c)));
         return r;
     }
 
@@ -812,7 +812,7 @@ public interface IAlgebraVisitor_T_S_T<V> : IAlgebraVisitor_S_S_S<V>
         TVector r = default;
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(a), b));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(a), b));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_z(a), b));
+        TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(a), b));
         return r;
     }
 
@@ -824,8 +824,8 @@ public interface IAlgebraVisitor_T_S_T<V> : IAlgebraVisitor_S_S_S<V>
         TVector r = default;
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(a), b));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(a), b));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_z(a), b));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_w(a), b));
+        TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(a), b));
+        TVector.set_w(ref r, TVector.Scalar<V>(TVector.get_w(a), b));
         return r;
     }
 
@@ -1031,7 +1031,7 @@ public interface IAlgebraVisitor_T_S_S_T<V> : IAlgebraVisitor_S_S_S_S<V>
         TVector r = default;
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(a), b, c));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(a), b, c));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_z(a), b, c));
+        TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(a), b, c));
         return r;
     }
 
@@ -1043,8 +1043,8 @@ public interface IAlgebraVisitor_T_S_S_T<V> : IAlgebraVisitor_S_S_S_S<V>
         TVector r = default;
         TVector.set_x(ref r, TVector.Scalar<V>(TVector.get_x(a), b, c));
         TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_y(a), b, c));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_z(a), b, c));
-        TVector.set_y(ref r, TVector.Scalar<V>(TVector.get_w(a), b, c));
+        TVector.set_z(ref r, TVector.Scalar<V>(TVector.get_z(a), b, c));
+        TVector.set_w(ref r, TVector.Scalar<V>(TVector.get_w(a), b, c));
         return r;
     }
 

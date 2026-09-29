@@ -12,16 +12,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the absolute value of the component of the value</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T abs<T>(in T value) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_abs>(value);
+        public static T abs<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_abs>(value);
     }
 
     public static partial class math_ex
     {
         /// <inheritdoc cref="math.abs{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T abs<T>(this T value) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_abs>(value);
+        public static T abs<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_abs>(value);
     }
 }
 
@@ -33,22 +33,18 @@ namespace Coplt.Mathematics.Implements
     /// the width of the register, the value of every other vector reaches the member of the scalar for every
     /// component of it and the value of a matrix reaches it for every component of every one of its columns</para>
     /// </summary>
-    internal struct impl_abs : INumberAlgebraVisitor_Self_Self<impl_abs>
+    internal struct impl_abs : IAlgebraVisitor_T_T<impl_abs>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self<impl_abs>.AcceptScalar<TScalar>(TScalar value)
+        static TScalar IAlgebraVisitor_S_S<impl_abs>.Scalar_Number<TScalar>(TScalar value)
             => TScalar.Abs(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self<impl_abs>.AcceptVector<TVector, TScalar>(in Vector64<TScalar> vector)
-            => TVector.FromUnderlying(Vector64.Abs(vector).AsByte());
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self<impl_abs>.AcceptVector<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector128.Abs(vector).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self<impl_abs>.AcceptVector<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector256.Abs(vector).AsByte());
     }
 }

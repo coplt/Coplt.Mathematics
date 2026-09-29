@@ -22,9 +22,9 @@ namespace Coplt.Mathematics
         [ScalarExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TScalar dot<T, TScalar>(in T a, in T b)
-            where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
+            where T : unmanaged, IAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
-            => T.Visit_Scalar<impl_dot>(a, b);
+            => T.Scalar<impl_dot>(a, b);
     }
 
     public static partial class math_ex
@@ -32,7 +32,7 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math.dot{T, TScalar}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TScalar dot<T, TScalar>(this T a, in T b)
-            where T : unmanaged, INumberAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
+            where T : unmanaged, IAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => math.dot<T, TScalar>(a, b);
     }
@@ -47,44 +47,37 @@ namespace Coplt.Mathematics.Implements
     /// components and the values of a matrix reach the member that combines the sum of the products of every
     /// column of it</para>
     /// </summary>
-    internal struct impl_dot : INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>
+    internal struct impl_dot : IAlgebraVisitor_T_T_S<impl_dot>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>.AcceptScalar<TScalar>(TScalar a, TScalar b)
+        static TScalar IAlgebraVisitor_S_S_S<impl_dot>.Scalar_Number<TScalar>(TScalar a, TScalar b)
             => a * b;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>.AcceptCombine<TScalar>(TScalar a, TScalar b)
+        static TScalar IAlgebraCombinator_S_S<impl_dot>.Combine_Number<TScalar>(TScalar a, TScalar b)
             => a + b;
 
-        // the sum of the products of every lane of the register: the padding lane of both operands is zero, so
-        // the product of it is zero as well and the sum of the whole register is the one of the components
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>.AcceptVector<TVector, TScalar>(
-            in Vector64<TScalar> a, in Vector64<TScalar> b
-        ) => Vector64.Dot(a, b);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>.AcceptVector<TVector, TScalar>(
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(
             in Vector128<TScalar> a, in Vector128<TScalar> b
         ) => Vector128.Dot(a, b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>.AcceptVector<TVector, TScalar>(
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(
             in Vector256<TScalar> a, in Vector256<TScalar> b
         ) => Vector256.Dot(a, b);
 
         // a vector without a register hands no register over, so the sum is the one of the components of it
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>.AcceptVector2<TVector, TScalar>(in TVector a, in TVector b)
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector2_Number<TVector, TScalar>(in TVector a, in TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>.AcceptVector3<TVector, TScalar>(in TVector a, in TVector b)
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector3_Number<TVector, TScalar>(in TVector a, in TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b) + TVector.get_z(a) * TVector.get_z(b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Scalar<impl_dot>.AcceptVector4<TVector, TScalar>(in TVector a, in TVector b)
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector4_Number<TVector, TScalar>(in TVector a, in TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b) +
                TVector.get_z(a) * TVector.get_z(b) + TVector.get_w(a) * TVector.get_w(b);
     }

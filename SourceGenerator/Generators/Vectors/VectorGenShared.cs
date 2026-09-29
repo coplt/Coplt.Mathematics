@@ -258,60 +258,35 @@ internal static class VectorGenShared
     };
 
     /// <summary>
-    /// Returns the names of the interfaces of the dispatch of the kind of a value in the algebra library: the one
-    /// of a number beside the one of the floating point kind, which every floating point type of the library
-    /// names, a half as well.
+    /// Returns the name of the level of the members of a visitor that reach the kind of a value: the algebra of
+    /// a floating point kind beside the one of every other kind of a number. The members of the level of a
+    /// floating point number fall back to the ones of the level of a number and those fall back to the ones that
+    /// reach every value, so a visitor implements the members of the level of the kind it reaches alone.
     /// </summary>
     /// <param name="typ">The type of the component of the value</param>
-    /// <returns>The names of the interfaces of the dispatch</returns>
-    public static string[] DispatchIfaces(Typ typ) => typ.f
-        ? new[]
-        {
-            "INumberAlgebraDispatch", "IFloatingPointAlgebraDispatch",
-        }
-        : new[] { "INumberAlgebraDispatch" };
+    /// <returns>The name of the level of the kind of the component</returns>
+    public static string DispatchLevel(Typ typ) => typ.f ? "Float" : "Number";
 
     /// <summary>
-    /// Returns the name of the interface of the dispatch of a kind of a value as the type of the value names it:
-    /// the dispatch of the kind of a number reaches the values of the kind of it and the ones that take a
-    /// component of the value beside it, so it names the type of a component as well, and the one of the kind of
-    /// a floating point number reaches the values of the kind of it alone, so it names the type of the value.
-    /// </summary>
-    /// <param name="family">The name of the family of the dispatch</param>
-    /// <param name="type">The name of the type of the value</param>
-    /// <param name="item">The name of the type of a single component</param>
-    /// <returns>The name of the interface of the dispatch</returns>
-    public static string DispatchIface(string family, string type, string item) => family == "INumberAlgebraDispatch"
-        ? $"Algebras.Generics.{family}<{type}, {item}>"
-        : $"Algebras.Generics.{family}<{type}>";
-
-    /// <summary>
-    /// Returns the name of the type of the bool value that has the same shape as a vector of a kind, which is
-    /// the letter of the kind of it, the width of a single component of it and the count of its components.
-    /// </summary>
-    /// <param name="typ">The type of the component of the value</param>
-    /// <param name="size">The number of the components of the vector</param>
-    /// <returns>The name of the type of the bool value</returns>
-    public static string BoolName(Typ typ, int size) => $"b{typ.size * 8}v{size}";
-
-    /// <summary>
-    /// Returns the name of the type of a single component of the bool value of a kind, which is the letter of
-    /// the kind of it and the width of a single component of it.
-    /// </summary>
-    /// <param name="typ">The type of the component of the value</param>
-    /// <returns>The name of the type of a single component of the bool value</returns>
-    public static string BoolScalarName(Typ typ) => $"b{typ.size * 8}";
-
-    /// <summary>
-    /// Returns the name of the interface of the dispatch of the bool value of a floating point value: the bool
-    /// value of a value has a shape of its own, which the type of the value does not name, so the dispatch of it
-    /// names the type of the bool value beside the type of the value.
+    /// Returns the name of the interface of the dispatch of the value of a kind as the type of the value names
+    /// it: every member of it is implemented explicitly, so a caller reaches the members through the interface
+    /// the type of the value names instead of through the type itself.
     /// </summary>
     /// <param name="type">The name of the type of the value</param>
-    /// <param name="boolType">The name of the type of the bool value</param>
     /// <returns>The name of the interface of the dispatch</returns>
-    public static string DispatchBoolIface(string type, string boolType) =>
-        $"Algebras.Generics.IFloatingPointAlgebraBoolDispatch<{type}, {boolType}>";
+    public static string DispatchIface(string type) =>
+        $"Algebras.Generics.Dispatch.IAlgebraDispatch<{type}>";
+
+    /// <summary>
+    /// Returns the name of the interface of the dispatch of the value of a kind that reaches the members that
+    /// take a single component of the value beside it and the ones that reduce the value to one of its
+    /// components as well, which the dispatch of the kind of it names the type of a component of it with.
+    /// </summary>
+    /// <param name="type">The name of the type of the value</param>
+    /// <param name="scalar">The name of the type of a single component of the value</param>
+    /// <returns>The name of the interface of the dispatch</returns>
+    public static string DispatchIfaceScalar(string type, string scalar) =>
+        $"Algebras.Generics.Dispatch.IAlgebraDispatch<{type}, {scalar}>";
 
     /// <summary>
     /// Returns the bit size of the register that keeps the value of a vector, 0 when the vector has no register.

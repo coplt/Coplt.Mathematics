@@ -15,8 +15,8 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The fused result</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fnma<T>(in T a, in T b, in T c) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_fnma>(a, b, c);
+        public static T fnma<T>(in T a, in T b, in T c) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_fnma>(a, b, c);
 
         /// <summary>
         /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the subtraction of it
@@ -29,7 +29,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The fused result</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fsm<T>(in T c, in T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
+        public static T fsm<T>(in T c, in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
             => fnma(a, b, c);
     }
 
@@ -37,13 +37,13 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.fnma{T}(in T, in T, in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fnma<T>(this T a, in T b, in T c) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_fnma>(a, b, c);
+        public static T fnma<T>(this T a, in T b, in T c) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_fnma>(a, b, c);
 
         /// <inheritdoc cref="math.fsm{T}(in T, in T, in T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fsm<T>(this T c, in T a, in T b) where T : unmanaged, INumberAlgebraDispatch<T>
-            => T.Visit_Self<impl_fnma>(a, b, c);
+        public static T fsm<T>(this T c, in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_fnma>(a, b, c);
     }
 }
 
@@ -56,10 +56,10 @@ namespace Coplt.Mathematics.Implements
     /// the width of the register, the values of every other vector reach the member of the scalar for every
     /// component of them and the values of a matrix reach it for every component of every one of its columns</para>
     /// </summary>
-    internal struct impl_fnma : INumberAlgebraVisitor_Self_Self_Self_Self<impl_fnma>
+    internal struct impl_fnma : IAlgebraVisitor_T_T_T_T<impl_fnma>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar INumberAlgebraVisitor_Self_Self_Self_Self<impl_fnma>.AcceptScalar<TScalar>(TScalar a, TScalar b, TScalar c)
+        static TScalar IAlgebraVisitor_S_S_S_S<impl_fnma>.Scalar_Number<TScalar>(TScalar a, TScalar b, TScalar c)
         {
             if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
             {
@@ -78,21 +78,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_fnma>.AcceptVector<TVector, TScalar>(
-            in Vector64<TScalar> a, in Vector64<TScalar> b, in Vector64<TScalar> c
-        )
-        {
-            // a floating point value has a fused member in the hardware, the one of every other value multiplies
-            // and subtracts, a 64 bit register is exactly as wide as the value of the vector, so it has no
-            // padding lane and the interface of it does not mask one either way
-            if (typeof(TScalar) == typeof(float))
-                return TVector.FromUnderlying(simd.Fnma(a.AsSingle(), b.AsSingle(), c.AsSingle()).AsByte());
-
-            return TVector.FromUnderlying((c - a * b).AsByte());
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_fnma>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T_T<impl_fnma>.Simd_Number<TVector, TScalar>(
             in Vector128<TScalar> a, in Vector128<TScalar> b, in Vector128<TScalar> c
         )
         {
@@ -107,7 +93,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector INumberAlgebraVisitor_Self_Self_Self_Self<impl_fnma>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T_T<impl_fnma>.Simd_Number<TVector, TScalar>(
             in Vector256<TScalar> a, in Vector256<TScalar> b, in Vector256<TScalar> c
         )
         {

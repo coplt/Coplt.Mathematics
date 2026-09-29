@@ -16,6 +16,13 @@ public partial class VectorGenerator
     /// are emitted into the file of the base members of the vector. Every vector of a number type implements the
     /// interface, a mask does not: the constraint of a member of a visitor names the vector interface of a
     /// number and a mask implements the one of a bool instead.
+    /// <para>The kind of the component decides the level of the member of the visitor that the value reaches:
+    /// the members of the level of a floating point number fall back to the ones of the level of a number and
+    /// those fall back to the ones that reach every value, so a visitor implements the members of the level of
+    /// the kind it reaches alone. The members that take a single component of the value beside it and the ones
+    /// that reduce the value to a single component of it are the members of the same visitor and they are named
+    /// the same way, so every member of the interface of the dispatch of the value is implemented by the member
+    /// of the visitor of the same name.</para>
     /// </summary>
     /// <param name="typ">The type of the component of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -32,127 +39,80 @@ public partial class VectorGenerator
         var type = VectorGenShared.VecName(typ, size, storeVariant);
         var scalar = typ.compType;
         var reg = VectorGenShared.Register(typ, size, storeVariant);
+        // the kind of the component decides the level of the members of the visitor that the value reaches: the
+        // members of the level of a floating point number fall back to the ones of the level of a number and
+        // those fall back to the ones that reach every value
+        var level = VectorGenShared.DispatchLevel(typ);
         // the member of the visitor that matches the kind of the value: the width of the register of the vector
-        // when it keeps its value in one, the count of its components when it has no register
+        // when it keeps its value in one, the count of its components when it has no register. The name of every
+        // argument of a member is the one of the interface of the dispatch of it
         var one = reg == 0
-            ? $"V.AcceptVector{size}<{type}, {scalar}>(self)"
-            : $"V.AcceptVector<{type}, {scalar}>(self.vector)";
+            ? $"V.Vector{size}_{level}<{type}, {scalar}>(self)"
+            : $"V.Simd_{level}<{type}, {scalar}>(self.vector)";
         var two = reg == 0
-            ? $"V.AcceptVector{size}<{type}, {scalar}>(a, b)"
-            : $"V.AcceptVector<{type}, {scalar}>(a.vector, b.vector)";
+            ? $"V.Vector{size}_{level}<{type}, {scalar}>(a, b)"
+            : $"V.Simd_{level}<{type}, {scalar}>(a.vector, b.vector)";
         var three = reg == 0
-            ? $"V.AcceptVector{size}<{type}, {scalar}>(a, b, c)"
-            : $"V.AcceptVector<{type}, {scalar}>(a.vector, b.vector, c.vector)";
-        // the interface of a member that takes a component of the value beside it names the type of the
-        // component, so the member of the visitor is not named with the type of it again
+            ? $"V.Vector{size}_{level}<{type}, {scalar}>(a, b, c)"
+            : $"V.Simd_{level}<{type}, {scalar}>(a.vector, b.vector, c.vector)";
+        // a member that takes a component of the value beside it names the type of the component of the value
+        // through the type of the component itself, so it is not named with the type of the component again
         var oneComponent = reg == 0
-            ? $"V.AcceptVector{size}<{type}>(a, b)"
-            : $"V.AcceptVector<{type}>(a.vector, b)";
+            ? $"V.Vector{size}_{level}<{type}, {scalar}>(a, b)"
+            : $"V.Simd_{level}<{type}, {scalar}>(a.vector, b)";
         var twoComponents = reg == 0
-            ? $"V.AcceptVector{size}<{type}>(a, b, c)"
-            : $"V.AcceptVector<{type}>(a.vector, b, c)";
-        // the member of the visitor that maps a value names the type of the value and the type of a single
-        // component of it, so the value of every shape is handed over the same way
-        var mapOne = $"V.Map<{type}, {scalar}>(self)";
-        var mapTwo = $"V.Map<{type}, {scalar}>(a, b)";
-        // the member of the visitor that builds the mask of a value reaches the mask of the shape of the value
-        // through the register of it or through the components of it, so it names the type of the value and the
-        // type of a single component of it, which the dispatch of the bool value of the value names the mask of
-        // it and the type of a single component of the mask of it beside
-        var boolType = VectorGenShared.BoolName(typ, size);
-        var boolScalar = VectorGenShared.BoolScalarName(typ);
-        // the member of the visitor that takes the register of a value names the width of it as well, so the
-        // mask of the value reaches the components of it instead when the register of the mask is not the one of
-        // the value, which the storage variant of a 4 byte component vector narrows to 64 bits
-        var boolReg = VectorGenShared.Register(typ, size, false);
-        var boolOne = reg == 0 || reg != boolReg
-            ? $"V.AcceptVector{size}<{type}, {scalar}, {boolType}, {boolScalar}>(self)"
-            : $"V.AcceptVector<{type}, {scalar}, {boolType}, {boolScalar}>(self.vector)";
-        var boolDispatch = VectorGenShared.DispatchBoolIface(type, boolType);
+            ? $"V.Vector{size}_{level}<{type}, {scalar}>(a, b, c)"
+            : $"V.Simd_{level}<{type}, {scalar}>(a.vector, b, c)";
+        // a member that takes a value and returns a single component of it is the reduction of the value, which
+        // the member of the visitor of the same name builds, so the value of the vector reaches the same member
+        // of the visitor as the value of a matrix of the same kind does
+        var reduceOne = reg == 0
+            ? $"V.Vector{size}_{level}<{type}, {scalar}>(a)"
+            : $"V.Simd_{level}<{type}, {scalar}>(a.vector)";
+        var reduceTwo = reg == 0
+            ? $"V.Vector{size}_{level}<{type}, {scalar}>(a, b)"
+            : $"V.Simd_{level}<{type}, {scalar}>(a.vector, b.vector)";
+        // a member that takes a component of the value alone does not reach the value of the vector at all, so
+        // the visitor reaches the component of every value of the kind of it the same way
+        var scalarOne = $"V.Scalar_{level}(a)";
+        var scalarTwo = $"V.Scalar_{level}(a, b)";
+        var scalarThree = $"V.Scalar_{level}(a, b, c)";
+        var combine = $"V.Combine_{level}(a, b)";
+
+        // the members that take the value alone are the members of the interface that names the type of the
+        // value, every other member takes a component of the value beside it or reaches the one it was given
+        var self = VectorGenShared.DispatchIface(type);
+        var withScalar = VectorGenShared.DispatchIfaceScalar(type, scalar);
 
         var sb = new StringBuilder();
 
         sb.AppendLine("    #region dispatch");
         sb.AppendLine();
 
-        // the members of the dispatch of every kind of the value are the ones of the same shape: the interface is
-        // the one of the kind, and a member that is implemented explicitly does not name the constraints of the
-        // type of a component of it again, so the value of a member of every kind is the same one
-        foreach (var family in VectorGenShared.DispatchIfaces(typ))
+        // the members of the dispatch of a value are implemented explicitly, so a member does not name the
+        // constraints of the type of a component of it again and the value of a member of every kind is the
+        // same one
+        void Member(string ret, string iface, string member, string parameters, string body)
         {
-            // the dispatch of a value takes the values of the kind of it, so the members that take a value alone
-            // are the members of the interface that names the type of the value itself
-            var self = $"Algebras.Generics.{family}<{type}>";
-
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} self)");
-            sb.AppendLine($"        => {one};");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b)");
-            sb.AppendLine($"        => {two};");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    static {type} {self}.Visit_Self<V>(in {type} a, in {type} b, in {type} c)");
-            sb.AppendLine($"        => {three};");
-            sb.AppendLine();
-
-            // the dispatch of the floating point kind reaches the members of the kind of it alone, so the member
-            // that reaches the members of the kind of a component of the value is the one of the map of a value,
-            // which the dispatch of a vector declares and every value of the kind of it inherits
-            if (family == "IFloatingPointAlgebraDispatch")
-            {
-                var vectorDispatch = $"Algebras.Generics.IFloatingPointVectorDispatch<{type}>";
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine("    [MethodImpl(256)]");
-                sb.AppendLine($"    static {type} {vectorDispatch}.Map_Self<V>(in {type} self)");
-                sb.AppendLine($"        => {mapOne};");
-                sb.AppendLine();
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine("    [MethodImpl(256)]");
-                sb.AppendLine($"    static {type} {vectorDispatch}.Map_Self<V>(in {type} a, in {type} b)");
-                sb.AppendLine($"        => {mapTwo};");
-                sb.AppendLine();
-
-                // the bool value of the vector has the same shape as it, and the dispatch of it is the one that
-                // names the type of the bool value, which the dispatch of the value does not
-                sb.AppendLine("    /// <inheritdoc/>");
-                sb.AppendLine("    [MethodImpl(256)]");
-                sb.AppendLine($"    static {boolType} {boolDispatch}.Visit_Self_Bool<V>(in {type} self)");
-                sb.AppendLine($"        => {boolOne};");
-                sb.AppendLine();
-            }
-
-            // the dispatch of the kind of a number reaches the values that take a component of the value beside
-            // them as well, so it has the members that take a component and the ones that reduce a value to a
-            // single component of it, which the one of a floating point kind does not have
-            if (family != "INumberAlgebraDispatch") continue;
-            var withScalar = $"Algebras.Generics.{family}<{type}, {scalar}>";
-
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b)");
-            sb.AppendLine($"        => {oneComponent};");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    static {type} {withScalar}.Visit_Self<V>(in {type} a, {scalar} b, {scalar} c)");
-            sb.AppendLine($"        => {twoComponents};");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    static {scalar} {withScalar}.Visit_Scalar<V>(in {type} self)");
-            sb.AppendLine($"        => {one};");
-            sb.AppendLine();
-            sb.AppendLine("    /// <inheritdoc/>");
-            sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    static {scalar} {withScalar}.Visit_Scalar<V>(in {type} a, in {type} b)");
-            sb.AppendLine($"        => {two};");
+            sb.AppendLine($"    static {ret} {iface}.{member}({parameters})");
+            sb.AppendLine($"        => {body};");
             sb.AppendLine();
         }
+
+        Member(type, self, "Self<V>", $"in {type} self", one);
+        Member(type, self, "Self<V>", $"in {type} a, in {type} b", two);
+        Member(type, self, "Self<V>", $"in {type} a, in {type} b, in {type} c", three);
+        Member(type, withScalar, "Self<V>", $"in {type} a, {scalar} b", oneComponent);
+        Member(type, withScalar, "Self<V>", $"in {type} a, {scalar} b, {scalar} c", twoComponents);
+        Member(scalar, withScalar, "Scalar<V>", $"{scalar} a", scalarOne);
+        Member(scalar, withScalar, "Scalar<V>", $"{scalar} a, {scalar} b", scalarTwo);
+        Member(scalar, withScalar, "Scalar<V>", $"{scalar} a, {scalar} b, {scalar} c", scalarThree);
+        // a member that reduces the value of the vector to a single component of it
+        Member(scalar, withScalar, "Scalar<V>", $"in {type} a", reduceOne);
+        Member(scalar, withScalar, "Scalar<V>", $"in {type} a, in {type} b", reduceTwo);
+        Member(scalar, withScalar, "Combine<V>", $"{scalar} a, {scalar} b", combine);
 
         sb.AppendLine("    #endregion");
         sb.AppendLine();

@@ -33,8 +33,8 @@ namespace Coplt.Mathematics
         /// vector</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T project_unsafe<T>(in T value, in T onto)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointVector<T>
-            => T.Visit_Self<impl_project_unsafe>(value, onto);
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
+            => T.Self<impl_project_unsafe>(value, onto);
     }
 
     public static partial class math_ex
@@ -42,7 +42,7 @@ namespace Coplt.Mathematics
         /// <inheritdoc cref="math.project_unsafe{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T project_unsafe<T>(this T value, in T onto)
-            where T : unmanaged, IFloatingPointAlgebraDispatch<T>, IFloatingPointVector<T>
+            where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => math.project_unsafe(value, onto);
     }
 }
@@ -67,29 +67,16 @@ namespace Coplt.Mathematics.Implements
     /// zero, so the projection of it is zero as well and the register of the value can be built from it
     /// directly</para>
     /// </summary>
-    internal struct impl_project_unsafe : IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unsafe>
+    internal struct impl_project_unsafe : IAlgebraVisitor_T_T_T<impl_project_unsafe>
     {
         // the projection of a value needs the dot product of it and the vector, which a single component cannot
         // hold
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unsafe>.AcceptScalar<TScalar>(TScalar value, TScalar onto)
+        static TScalar IAlgebraVisitor_S_S_S<impl_project_unsafe>.Scalar_Float<TScalar>(TScalar value, TScalar onto)
             => throw new UnreachableException();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unsafe>.AcceptVector<TVector, TScalar>(
-            in Vector64<TScalar> value, in Vector64<TScalar> onto
-        )
-        {
-            var d = Vector64.Dot(onto, onto);
-            return TVector.FromUnderlying(
-                (Vector64.Create(
-                    Vector64.Dot(value, onto) / d
-                ) * onto).AsByte()
-            );
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unsafe>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Simd_Float<TVector, TScalar>(
             in Vector128<TScalar> value, in Vector128<TScalar> onto
         )
         {
@@ -102,7 +89,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unsafe>.AcceptVector<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Simd_Float<TVector, TScalar>(
             in Vector256<TScalar> value, in Vector256<TScalar> onto
         )
         {
@@ -115,7 +102,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unsafe>.AcceptVector2<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Vector2_Float<TVector, TScalar>(
             in TVector value, in TVector onto
         )
         {
@@ -137,7 +124,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unsafe>.AcceptVector3<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Vector3_Float<TVector, TScalar>(
             in TVector value, in TVector onto
         )
         {
@@ -162,7 +149,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IFloatingPointAlgebraVisitor_Self_Self_Self<impl_project_unsafe>.AcceptVector4<TVector, TScalar>(
+        static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Vector4_Float<TVector, TScalar>(
             in TVector value, in TVector onto
         )
         {
