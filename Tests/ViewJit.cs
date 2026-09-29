@@ -35,47 +35,47 @@ public static class foo
         => T.Self<impl_min>(a, b);
 }
 
-public struct impl_swizzle_yyy : IAlgebraDispatch_Self_Self<impl_swizzle_yyy>
+public struct impl_swizzle_yyy : IAlgebraVisitor_T_T<impl_swizzle_yyy>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraDispatch_Self_Self<impl_swizzle_yyy>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> vector)
+    static TVector IAlgebraVisitor_T_T<impl_swizzle_yyy>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> vector)
         => TVector.UnsafeFromUnderlying(Vector128.Shuffle(vector.AsInt32(), Vector128.Create(1, 1, 1, 3)).AsByte());
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraDispatch_Self_Self<impl_swizzle_yyy>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> vector)
+    static TVector IAlgebraVisitor_T_T<impl_swizzle_yyy>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> vector)
         => TVector.UnsafeFromUnderlying(Vector256.Shuffle(vector.AsInt64(), Vector256.Create(1, 1, 1, 3)).AsByte());
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraDispatch_Self_Self<impl_swizzle_yyy>.Vector3_Any<TVector, TScalar>(in TVector vector)
+    static TVector IAlgebraVisitor_T_T<impl_swizzle_yyy>.Vector3_Any<TVector, TScalar>(in TVector vector)
         => TVector.Create(TVector.get_y(vector), TVector.get_y(vector), TVector.get_y(vector));
 }
 
-public struct impl_abs : IAlgebraDispatch_Self_Self<impl_abs>
+public struct impl_abs : IAlgebraVisitor_T_T<impl_abs>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TScalar IAlgebraDispatch_Self_Self<impl_abs>.Scalar_Number<TScalar>(TScalar value)
+    static TScalar IAlgebraVisitor_S_S<impl_abs>.Scalar_Number<TScalar>(TScalar value)
         => TScalar.Abs(value);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraDispatch_Self_Self<impl_abs>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
+    static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
         => TVector.UnsafeFromUnderlying(Vector128.Abs(vector).AsByte());
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraDispatch_Self_Self<impl_abs>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
+    static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
         => TVector.UnsafeFromUnderlying(Vector256.Abs(vector).AsByte());
 }
 
-public struct impl_min : IAlgebraDispatch_Self_Self_Self<impl_min>
+public struct impl_min : IAlgebraVisitor_T_T_T<impl_min>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TScalar IAlgebraDispatch_Self_Self_Self<impl_min>.Scalar_Number<TScalar>(TScalar a, TScalar b)
+    static TScalar IAlgebraVisitor_S_S_S<impl_min>.Scalar_Number<TScalar>(TScalar a, TScalar b)
         => TScalar.Min(a, b);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraDispatch_Self_Self_Self<impl_min>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+    static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
         => TVector.UnsafeFromUnderlying(Vector128.Min(a, b).AsByte());
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TVector IAlgebraDispatch_Self_Self_Self<impl_min>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+    static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
         => TVector.UnsafeFromUnderlying(Vector256.Min(a, b).AsByte());
 }

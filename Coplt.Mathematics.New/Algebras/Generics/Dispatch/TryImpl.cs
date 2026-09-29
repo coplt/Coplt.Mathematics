@@ -17,11 +17,17 @@ public partial struct float3 : IAlgebraDispatch<float3, float>
     static float3 IAlgebraDispatch<float3, float>.Self<V>(in float3 a, float b) => V.Simd_Float<float3, float>(a.vector, b);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static float IAlgebraDispatch<float3, float>.Scalar<V>(float scalar) => V.Scalar_Float(scalar);
+    static float3 IAlgebraDispatch<float3, float>.Self<V>(in float3 a, float b, float c) => V.Simd_Float<float3, float>(a.vector, b, c);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static float IAlgebraDispatch<float3, float>.Scalar<V>(float a) => V.Scalar_Float(a);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static float IAlgebraDispatch<float3, float>.Scalar<V>(float a, float b) => V.Scalar_Float(a, b);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static float IAlgebraDispatch<float3, float>.Scalar<V>(float a, float b, float c) => V.Scalar_Float(a, b, c);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static float IAlgebraDispatch<float3, float>.Scalar<V>(float3 a) => V.Simd_Float<float3, float>(a.vector);
 }
