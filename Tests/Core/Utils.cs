@@ -6,10 +6,10 @@ namespace Tests.Core;
 
 /// <summary>
 /// The check of a single component of a value: a component holds when the bits of it are not all zero, so the
-/// zero of a kind is the only value of it that does not hold. The zero of the two floating point kinds that has
-/// the sign bit of it set is not the zero of the bits of a component, and the bits of the value of a kind are
-/// the ones the check reads, which the least value of them tells as well. The member is internal, so the test
-/// reaches it through the assembly of the library with the kind of the value it is checked with.
+/// all bits zero value of a kind is the only one of it that does not hold. The negative zero of a floating point
+/// kind has a bit set as well, and the bits of the value of a kind are the ones the check reads, which the least
+/// value of them tells as well. The member is internal, so the test reaches it through the assembly of the
+/// library with the kind of the value it is checked with.
 /// </summary>
 public class TestUtils
 {
@@ -50,7 +50,7 @@ public class TestUtils
 
     /// <summary>
     /// The bits of a value of a floating point kind are the ones the check reads, so the value whose bits are
-    /// not all zero holds, which the zero of the kind that has the sign bit of it set is one of.
+    /// not all zero holds, which the negative zero is one of.
     /// </summary>
     [Test]
     public void Float()
@@ -66,8 +66,8 @@ public class TestUtils
             Assert.That(IsTrueOf(float.PositiveInfinity), Is.True, "the positive infinity");
             // a value of the kind whose bits are the least of the ones it has, so only the bits of it decide
             Assert.That(IsTrueOf(BitConverter.UInt32BitsToSingle(1)), Is.True, "the least value of the bits");
-            // the zero of the kind that only the sign bit of it differs from the zero does not hold as the zero
-            Assert.That(IsTrueOf(-0f), Is.True, "the zero of the kind that has the sign bit of it set");
+            // the negative zero has a bit set as well, so it does not hold as the all bits zero value does
+            Assert.That(IsTrueOf(-0f), Is.True, "the negative zero of a float");
         }
     }
 
@@ -85,7 +85,7 @@ public class TestUtils
             Assert.That(IsTrueOf(double.NaN), Is.True, "a nan");
             Assert.That(IsTrueOf(double.PositiveInfinity), Is.True, "the positive infinity");
             Assert.That(IsTrueOf(BitConverter.UInt64BitsToDouble(1UL)), Is.True, "the least value of the bits");
-            Assert.That(IsTrueOf(-0d), Is.True, "the zero of the kind that has the sign bit of it set");
+            Assert.That(IsTrueOf(-0d), Is.True, "the negative zero of a double");
             // a value of the kind whose upper half is all bits set
             Assert.That(IsTrueOf(BitConverter.UInt64BitsToDouble(0xFFFFFFFF_00000000UL)), Is.True,
                 "the value of the bits whose upper half is the all bits set one");
@@ -104,8 +104,7 @@ public class TestUtils
             Assert.That(IsTrueOf(Unsafe.BitCast<ushort, Half>(1)), Is.True, "the least value of the bits");
             Assert.That(IsTrueOf(Unsafe.BitCast<ushort, Half>(0x7C00)), Is.True, "the positive infinity");
             Assert.That(IsTrueOf(Unsafe.BitCast<ushort, Half>(0x7E00)), Is.True, "a nan");
-            Assert.That(IsTrueOf(Unsafe.BitCast<ushort, Half>(0x8000)), Is.True,
-                "the zero of the kind that has the sign bit of it set");
+            Assert.That(IsTrueOf(Unsafe.BitCast<ushort, Half>(0x8000)), Is.True, "the negative zero of a half");
         }
     }
 }

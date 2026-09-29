@@ -13,7 +13,7 @@ namespace Tests.Arith;
 /// change of the sign. The members of a simd vector keep the padding lanes of it at zero, the members of a
 /// vector without a register work on the components. The checks of the special floating point values are the
 /// members of the <c>math</c> class from <c>is_NaN</c> on, the value of a check is a value of the kind of the
-/// value it was built from and a component of it that holds is not the zero of its kind.
+/// value it was built from and the bits of a component of it that holds are not all zero.
 /// </summary>
 public class TestIeee754
 {
@@ -81,8 +81,8 @@ public class TestIeee754
     }
 
     /// <summary>
-    /// The checks of the special values produce a value of the shape of the vector: the component of a check
-    /// that holds is not the zero of its kind.
+    /// The checks of the special values produce a value of the shape of the vector: the bits of a component of a
+    /// check that holds are not all zero.
     /// </summary>
     [Test]
     public void SpecialValues()

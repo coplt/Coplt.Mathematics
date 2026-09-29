@@ -7,10 +7,12 @@ using static Coplt.Mathematics.math;
 namespace Tests.Core;
 
 /// <summary>
-/// The select of a value is hand written: a mask is a value of the kind of the values to select, so the all bits
-/// set value of the kind is the conventional true component and every value that is not the zero of the kind
-/// holds just as well. The member of the <c>math</c> class and the one that is called on a value are the two
-/// forms of the same operation and the three values of a call have the same type.
+/// The select of a value is hand written and it is a mux of the bits of the two values with the mask: the bit of
+/// the result at a position is the bit of the one of the two values that the bit of the mask at that position
+/// holds, so the all bits set value of the kind takes the whole of the one of them and the all bits zero value
+/// of it takes the whole of the other one, which is what a comparison of two values builds. The member of the
+/// <c>math</c> class and the one that is called on a value are the two forms of the same operation and the three
+/// values of a call have the same type.
 /// </summary>
 public class TestSelect
 {

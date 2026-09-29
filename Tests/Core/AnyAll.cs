@@ -40,7 +40,7 @@ public class TestAnyAll
     {
         using (Assert.EnterMultipleScope())
         {
-            // no component of the value is the zero of its kind
+            // no component of the value has a bit set
             Check<float2>(new(0f, 0f), false, false);
             Check<float3>(new(0f, 0f, 0f), false, false);
             Check<float4>(new(0f, 0f, 0f, 0f), false, false);
@@ -57,7 +57,7 @@ public class TestAnyAll
             Check<ulong3>(new(0UL, 0UL, 0UL), false, false);
             Check<ulong4>(new(0UL, 0UL, 0UL, 0UL), false, false);
 
-            // a single component of the value is not the zero of its kind
+            // a single component of the value has a bit set
             Check<float2>(new(0f, 1f), true, false);
             Check<float3>(new(1f, 0f, 0f), true, false);
             Check<float4>(new(0f, 0f, 0f, 1f), true, false);
@@ -68,8 +68,8 @@ public class TestAnyAll
             Check<long2>(new(0L, long.MinValue), true, false);
             Check<ulong2>(new(1UL, 0UL), true, false);
 
-            // every component of the value is not the zero of its kind, which the all bits set one of the kind
-            // is a value of as well
+            // every component of the value has a bit set, which the all bits set one of the kind is a value of
+            // as well
             Check<float2>(new(1f, 2f), true, true);
             Check<float3>(new(-1f, -2f, -3f), true, true);
             Check<float4>(new(1f, 2f, 3f, 4f), true, true);
@@ -84,7 +84,7 @@ public class TestAnyAll
             Check<long3>(new(-1L, -2L, -3L), true, true);
             Check<ulong2>(new(ulong.MaxValue, ulong.MaxValue), true, true);
 
-            // a nan is not the zero of its kind, so a value that holds one is a value that the query of any
+            // the bits of a nan are not all zero, so a value that holds one is a value that the query of any
             // holds
             Check<float2>(new(0f, float.NaN), true, false);
             Check<double3>(new(double.NaN, 1d, 2d), true, true);
@@ -100,7 +100,7 @@ public class TestAnyAll
     {
         using (Assert.EnterMultipleScope())
         {
-            // no component of the value is the zero of its kind
+            // no component of the value has a bit set
             Check<half2>(new((Half)0f, (Half)0f), false, false);
             Check<half3>(new((Half)0f, (Half)0f, (Half)0f), false, false);
             Check<half4>(new((Half)0f, (Half)0f, (Half)0f, (Half)0f), false, false);
@@ -111,7 +111,7 @@ public class TestAnyAll
             Check<ushort3>(new(0, 0, 0), false, false);
             Check<ushort4>(new(0, 0, 0, 0), false, false);
 
-            // a single component of the value is not the zero of its kind
+            // a single component of the value has a bit set
             Check<half2>(new((Half)0f, (Half)1f), true, false);
             Check<half3>(new((Half)1f, (Half)0f, (Half)0f), true, false);
             Check<half4>(new((Half)0f, (Half)0f, (Half)0f, (Half)float.NaN), true, false);
@@ -122,7 +122,7 @@ public class TestAnyAll
             Check<ushort3>(new(1, 0, 3), true, false);
             Check<ushort4>(new(0, 2, 0, 0), true, false);
 
-            // every component of the value is not the zero of its kind
+            // every component of the value has a bit set
             Check<half2>(new((Half)1f, (Half)2f), true, true);
             Check<half3>(new((Half)(-1f), (Half)(-2f), (Half)(-3f)), true, true);
             Check<half4>(new((Half)1f, (Half)2f, (Half)3f, (Half)4f), true, true);
@@ -145,7 +145,7 @@ public class TestAnyAll
     {
         using (Assert.EnterMultipleScope())
         {
-            // every component of the matrix is the zero of its kind
+            // no component of the matrix has a bit set
             Check<float2x2>(new(new float2(0f, 0f), new float2(0f, 0f)), false, false);
             Check<float3x3>(new(new float3(0f, 0f, 0f), new float3(0f, 0f, 0f), new float3(0f, 0f, 0f)), false,
                 false);
@@ -155,7 +155,7 @@ public class TestAnyAll
             Check<half2x2>(new(new half2((Half)0f, (Half)0f), new half2((Half)0f, (Half)0f)), false, false);
             Check<short3x2>(new(new short3(0, 0, 0), new short3(0, 0, 0)), false, false);
 
-            // the component of a single column of the matrix is not the zero of its kind
+            // the component of a single column of the matrix has a bit set
             Check<float2x2>(new(new float2(0f, 0f), new float2(0f, 1f)), true, false);
             Check<float3x3>(new(new float3(1f, 0f, 0f), new float3(0f, 0f, 0f), new float3(0f, 0f, 0f)), true,
                 false);
@@ -168,7 +168,7 @@ public class TestAnyAll
             Check<half2x2>(new(new half2((Half)0f, (Half)0f), new half2((Half)1f, (Half)0f)), true, false);
             Check<short3x2>(new(new short3(0, 0, 0), new short3(0, -1, 0)), true, false);
 
-            // no component of the matrix is the zero of its kind
+            // every component of the matrix has a bit set
             Check<float2x2>(new(new float2(1f, 2f), new float2(3f, 4f)), true, true);
             Check<float3x3>(new(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f), new float3(7f, 8f, 9f)), true,
                 true);
@@ -209,9 +209,9 @@ public class TestAnyAll
             Assert.That(new float3(1f, 2f, 3f).vector.GetElement(3), Is.EqualTo(0f),
                 "the padding lane of a float3");
 
-            // the padding lanes are the zero of their kind, so they do not decide a query: the value of a
-            // vector whose components all hold is one that the query of all holds, beside the lanes the value
-            // does not reach
+            // the padding lanes are all bits zero, so they do not decide a query: the value of a vector whose
+            // components all hold is one that the query of all holds, beside the lanes the value does not
+            // reach
             Check<float2>(new(1f, 2f), true, true);
             Check<float3>(new(1f, 2f, 3f), true, true);
             Check<int2>(new(1, 2), true, true);
@@ -221,8 +221,8 @@ public class TestAnyAll
             Check<double3>(new(1d, 2d, 3d), true, true);
             Check<long3>(new(1L, 2L, 3L), true, true);
             Check<ulong3>(new(1UL, 2UL, 3UL), true, true);
-            // and the value of a vector whose components are all the zero of their kind is one that the query
-            // of any does not hold, beside the zeroes beyond it as well
+            // and the value of a vector whose components have no bit set is one that the query of any does not
+            // hold, beside the zeroes beyond it as well
             Check<float2>(new(0f, 0f), false, false);
             Check<float3>(new(0f, 0f, 0f), false, false);
             Check<int2>(new(0, 0), false, false);
