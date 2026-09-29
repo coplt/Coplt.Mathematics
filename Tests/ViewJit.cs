@@ -12,7 +12,7 @@ namespace Tests;
 
 public static class ViewJit
 {
-    public static float3 Some1(in float3 a) => foo.abs(a);
+    public static float3 Some1(in float3 a, in float3 b) => foo.min(a, b);
 }
 
 public static class foo
@@ -29,6 +29,10 @@ public static class foo
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T abs<T>(in T a) where T : IAlgebraDispatch<T>
         => T.Self<impl_abs>(a);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T min<T>(in T a, in T b) where T : IAlgebraDispatch<T>
+        => T.Self<impl_min>(a, b);
 }
 
 public struct impl_swizzle_yyy : IAlgebraDispatch_Self_Self<impl_swizzle_yyy>
@@ -49,7 +53,7 @@ public struct impl_swizzle_yyy : IAlgebraDispatch_Self_Self<impl_swizzle_yyy>
 public struct impl_abs : IAlgebraDispatch_Self_Self<impl_abs>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static TScalar IAlgebraDispatch_Scalar_Scalar<impl_abs>.Scalar_Number<TScalar>(TScalar value)
+    static TScalar IAlgebraDispatch_Self_Self<impl_abs>.Scalar_Number<TScalar>(TScalar value)
         => TScalar.Abs(value);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -59,4 +63,19 @@ public struct impl_abs : IAlgebraDispatch_Self_Self<impl_abs>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static TVector IAlgebraDispatch_Self_Self<impl_abs>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
         => TVector.UnsafeFromUnderlying(Vector256.Abs(vector).AsByte());
+}
+
+public struct impl_min : IAlgebraDispatch_Self_Self_Self<impl_min>
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static TScalar IAlgebraDispatch_Self_Self_Self<impl_min>.Scalar_Number<TScalar>(TScalar a, TScalar b)
+        => TScalar.Min(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static TVector IAlgebraDispatch_Self_Self_Self<impl_min>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        => TVector.UnsafeFromUnderlying(Vector128.Min(a, b).AsByte());
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static TVector IAlgebraDispatch_Self_Self_Self<impl_min>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        => TVector.UnsafeFromUnderlying(Vector256.Min(a, b).AsByte());
 }
