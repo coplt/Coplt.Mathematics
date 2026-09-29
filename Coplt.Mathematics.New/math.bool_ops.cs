@@ -40,39 +40,34 @@ public static partial class math
     public static T select<T>(bool c, in T t, in T f) => c ? t : f;
 
     /// <summary>
-    /// Selects between the two values bit by bit, which is a mux of them: the bit of <paramref name="t"/> where
-    /// the bit of <paramref name="c"/> at the position of it is set and the bit of <paramref name="f"/> where it
-    /// is not
+    /// Selects between the two values with a mask
     /// </summary>
     /// <remarks>
-    /// A mask is a value of the type of the values to select and every bit of it decides the bit of the result
-    /// at the position of it: the all bits set value of the type selects the value of <paramref name="t"/> as it
-    /// is, the all bits zero value of it selects the value of <paramref name="f"/> as it is, and a mask that is
-    /// neither of the two of them muxes the bits of the two values.
+    /// A mask is a value of the type of the values to select: the all bits set value of the type takes the whole
+    /// of the result from <paramref name="t"/> and the all bits zero value of it takes the whole of it from
+    /// <paramref name="f"/>, which are the two of them that the member is written for.
+    /// <para>A mask that is neither of the two of them answers with the one of the platform: which of the two
+    /// values a bit of the result comes from is the trait of the platform that selects with the mask, which may
+    /// mux the bits of the two values with it or take the whole of a value with the sign bit of it, so the
+    /// answer of the member that is handed such a mask is not one that a caller may rely on, on a cpu as much as
+    /// on a gpu.</para>
     /// <para>It is not the selection of a whole value, which the <see cref="select{T}(bool, in T, in T)"/> does
     /// with a condition that is about the whole of it, and the <c>select</c> intrinsic of hlsl is its
-    /// counterpart, which differs from it in the mask: the mask of the intrinsic is about a whole component of
-    /// the values to select, so it takes the whole of a component from the one of the two values that the
-    /// component of the mask at the position of it holds, where the mask of this member is a value of the type
-    /// of the values to select itself and every bit of it decides the bit of the result at the position of
-    /// it.</para>
-    /// <para>It is nothing that a computation that is about a whole value notices: simd takes the all bits set
-    /// value of the type as the true one and the all bits zero value of it as the false one, so the mask of a
-    /// comparison of simd values is the one or the other of them, and both of them take the value of one of the
-    /// two values with this member as they do with the intrinsic.</para>
-    /// <para>A mask that is neither of the two of them is not one that the member is written for: the bits of
-    /// the value alone deciding the bits of the result is the answer of this library, where a platform may mux
-    /// the bits of the two values with the mask of it or take the whole of a value with the sign bit of the mask
-    /// of it, so the answer of the member that is handed such a mask is not one that a caller may rely on, on a
-    /// cpu as much as on a gpu.</para>
+    /// counterpart, which selects with a condition of the kind of the values and not with a mask: the whole of a
+    /// value is taken from <paramref name="t"/> where the condition of it holds and from <paramref name="f"/>
+    /// where it does not, which is the <c>c ? t : f</c> of it, and the truth of the condition of it is the one
+    /// of hlsl, which is a value that is not the zero of its kind. The truth of the mask of this member is the
+    /// one of the platform instead.</para>
+    /// <para>It is nothing that a computation that is about a whole value notices: the output of a bool
+    /// operation of simd is the all bits set value of the type where it holds and the all bits zero value of it
+    /// where it does not, so the mask of such a computation is one of the two of them, and both of them take the
+    /// value of one of the two values with this member as they do with the intrinsic.</para>
     /// </remarks>
     /// <typeparam name="T">The type of the values to select, the three of them have it</typeparam>
     /// <param name="c">The mask, a value of the type of the values to select</param>
-    /// <param name="t">The value that the bits the mask sets are taken from</param>
-    /// <param name="f">The value that the bits the mask does not set are taken from</param>
-    /// <returns>The value of <typeparamref name="T"/> whose every bit is the one of <paramref name="t"/> where
-    /// the bit of <paramref name="c"/> at the position of it is set and the one of <paramref name="f"/> where it
-    /// is not</returns>
+    /// <param name="t">The value that is selected where the mask holds</param>
+    /// <param name="f">The value that is selected where the mask does not hold</param>
+    /// <returns>The value that the mask selects out of the two values</returns>
     [MethodImpl(256)]
     public static T select<T>(T c, T t, T f) where T : unmanaged, IBinaryNumber<T>
     {
