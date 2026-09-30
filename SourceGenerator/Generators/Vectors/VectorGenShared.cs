@@ -289,6 +289,28 @@ internal static class VectorGenShared
         $"Algebras.Generics.Dispatch.IAlgebraDispatch<{type}, {scalar}>";
 
     /// <summary>
+    /// Returns the name of the interface of the dispatch of the value of a floating point kind that reaches the
+    /// members that build two values out of the one they are handed. It is the counterpart of the interface of
+    /// the dispatch of every value for the members that are written for a floating point kind alone, so the
+    /// value of every other kind of a number does not reach it.
+    /// </summary>
+    /// <param name="type">The name of the type of the value</param>
+    /// <returns>The name of the interface of the dispatch</returns>
+    public static string DispatchFloatIface(string type) =>
+        $"Algebras.Generics.Dispatch.IFloatDispatch<{type}>";
+
+    /// <summary>
+    /// Returns the name of the interface of the dispatch of the value of a floating point kind that reaches a
+    /// member that takes a single component of the value beside the ones that build two values out of it, which
+    /// the dispatch of the kind of it names the type of a component of it with.
+    /// </summary>
+    /// <param name="type">The name of the type of the value</param>
+    /// <param name="scalar">The name of the type of a single component of the value</param>
+    /// <returns>The name of the interface of the dispatch</returns>
+    public static string DispatchFloatIfaceScalar(string type, string scalar) =>
+        $"Algebras.Generics.Dispatch.IFloatDispatch<{type}, {scalar}>";
+
+    /// <summary>
     /// Returns the bit size of the register that keeps the value of a vector, 0 when the vector has no register.
     /// A 3 or 4 component vector is padded to 4 lanes and the 2 component ones keep the exact width of their
     /// value beside the storage variant of a 4 byte component vector, whose value is widened to 128 bits because

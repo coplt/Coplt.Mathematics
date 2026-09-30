@@ -32,6 +32,13 @@ public interface IAlgebraDispatch<TSelf>
         where V : IAlgebraVisitor_T_bool<V>;
 }
 
+public interface IFloatDispatch<TSelf> : IAlgebraDispatch<TSelf>
+    where TSelf : IFloatDispatch<TSelf>
+{
+    public static abstract void Self_out<V>(in TSelf a, out TSelf b, out TSelf c)
+        where V : IFloatVisitor_T_outT_outT_void<V>;
+}
+
 public interface IAlgebraDispatch<TSelf, TScalar> : IAlgebraDispatch<TSelf>
     where TSelf : IAlgebraDispatch<TSelf, TScalar>
 {
@@ -61,6 +68,13 @@ public interface IAlgebraDispatch<TSelf, TScalar> : IAlgebraDispatch<TSelf>
 
     public static abstract bool Bool<V>(TScalar a)
         where V : IAlgebraVisitor_S_bool<V>;
+}
+
+public interface IFloatDispatch<TSelf, TScalar> : IFloatDispatch<TSelf>, IAlgebraDispatch<TSelf, TScalar>
+    where TSelf : IFloatDispatch<TSelf, TScalar>
+{
+    public static abstract void Scalar_out<V>(TScalar a, out TScalar b, out TScalar c)
+        where V : IFloatVisitor_S_outS_outS_void<V>;
 }
 
 #endregion
@@ -761,6 +775,123 @@ public interface IAlgebraVisitor_T_T_T_T<V> : IAlgebraVisitor_S_S_S_S<V>
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
         => V.MatrixMx4_Number<TMatrix, TVector, TScalar>(a, b, c);
+
+    #endregion
+}
+
+#endregion
+
+#region T -> out T -> out T -> void
+
+public interface IFloatVisitor_S_outS_outS_void<V>
+    where V : IFloatVisitor_S_outS_outS_void<V>
+{
+    #region Scalar
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void Scalar_Float<TScalar>(TScalar a, out TScalar b, out TScalar c)
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar> => throw null!;
+
+    #endregion
+}
+
+public interface IFloatVisitor_T_outT_outT_void<V> : IFloatVisitor_S_outS_outS_void<V>
+    where V : IFloatVisitor_T_outT_outT_void<V>
+{
+    #region Vector Simd Float
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void Simd_Float<TVector, TScalar>(in Vector128<TScalar> a, out TVector b, out TVector c)
+        where TVector : unmanaged, IFloatDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>, IVector128Underlying<TVector>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar> => throw null!;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void Simd_Float<TVector, TScalar>(in Vector256<TScalar> a, out TVector b, out TVector c)
+        where TVector : unmanaged, IFloatDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>, IVector256Underlying<TVector>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar> => throw null!;
+
+    #endregion
+
+    #region Vector Soft Float
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void Vector2_Float<TVector, TScalar>(in TVector a, out TVector b, out TVector c)
+        where TVector : unmanaged, IFloatDispatch<TVector, TScalar>, IVector2<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+    {
+        TVector.Scalar_out<V>(TVector.get_x(a), out var bx, out var cx);
+        TVector.Scalar_out<V>(TVector.get_y(a), out var by, out var cy);
+        b = TVector.Create(bx, by);
+        c = TVector.Create(cx, cy);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void Vector3_Float<TVector, TScalar>(in TVector a, out TVector b, out TVector c)
+        where TVector : unmanaged, IFloatDispatch<TVector, TScalar>, IVector3<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+    {
+        TVector.Scalar_out<V>(TVector.get_x(a), out var bx, out var cx);
+        TVector.Scalar_out<V>(TVector.get_y(a), out var by, out var cy);
+        TVector.Scalar_out<V>(TVector.get_z(a), out var bz, out var cz);
+        b = TVector.Create(bx, by, bz);
+        c = TVector.Create(cx, cy, cz);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void Vector4_Float<TVector, TScalar>(in TVector a, out TVector b, out TVector c)
+        where TVector : unmanaged, IFloatDispatch<TVector, TScalar>, IVector4<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+    {
+        TVector.Scalar_out<V>(TVector.get_x(a), out var bx, out var cx);
+        TVector.Scalar_out<V>(TVector.get_y(a), out var by, out var cy);
+        TVector.Scalar_out<V>(TVector.get_z(a), out var bz, out var cz);
+        TVector.Scalar_out<V>(TVector.get_w(a), out var bw, out var cw);
+        b = TVector.Create(bx, by, bz, bw);
+        c = TVector.Create(cx, cy, cz, cw);
+    }
+
+    #endregion
+
+    #region Matrix Float
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void MatrixMx2_Float<TMatrix, TVector, TScalar>(in TMatrix a, out TMatrix b, out TMatrix c)
+        where TMatrix : unmanaged, IFloatDispatch<TMatrix, TScalar>, IMatrixMx2Vector<TMatrix, TVector>, IFloatingPointMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IFloatDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+    {
+        TVector.Self_out<V>(TMatrix.get_c0(a), out var b0, out var c0);
+        TVector.Self_out<V>(TMatrix.get_c1(a), out var b1, out var c1);
+        b = TMatrix.Create(b0, b1);
+        c = TMatrix.Create(c0, c1);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void MatrixMx3_Float<TMatrix, TVector, TScalar>(in TMatrix a, out TMatrix b, out TMatrix c)
+        where TMatrix : unmanaged, IFloatDispatch<TMatrix, TScalar>, IMatrixMx3Vector<TMatrix, TVector>, IFloatingPointMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IFloatDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+    {
+        TVector.Self_out<V>(TMatrix.get_c0(a), out var b0, out var c0);
+        TVector.Self_out<V>(TMatrix.get_c1(a), out var b1, out var c1);
+        TVector.Self_out<V>(TMatrix.get_c2(a), out var b2, out var c2);
+        b = TMatrix.Create(b0, b1, b2);
+        c = TMatrix.Create(c0, c1, c2);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual void MatrixMx4_Float<TMatrix, TVector, TScalar>(in TMatrix a, out TMatrix b, out TMatrix c)
+        where TMatrix : unmanaged, IFloatDispatch<TMatrix, TScalar>, IMatrixMx4Vector<TMatrix, TVector>, IFloatingPointMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IFloatDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+    {
+        TVector.Self_out<V>(TMatrix.get_c0(a), out var b0, out var c0);
+        TVector.Self_out<V>(TMatrix.get_c1(a), out var b1, out var c1);
+        TVector.Self_out<V>(TMatrix.get_c2(a), out var b2, out var c2);
+        TVector.Self_out<V>(TMatrix.get_c3(a), out var b3, out var c3);
+        b = TMatrix.Create(b0, b1, b2, b3);
+        c = TMatrix.Create(c0, c1, c2, c3);
+    }
 
     #endregion
 }

@@ -122,6 +122,22 @@ public partial class VectorGenerator
         // reaches the component of every value of the kind of it the same way
         Member("bool", withScalar, "Bool<V>", $"{scalar} a", scalarOne);
 
+        // the members that build two values out of the one they are handed are written for a floating point kind
+        // alone, so a vector of another kind does not reach them: the value of the vector is handed over the way
+        // every other member that takes the value alone hands it over and the value of a component of it reaches
+        // the member of the scalar of the visitor
+        if (typ.f)
+        {
+            var floatSelf = VectorGenShared.DispatchFloatIface(type);
+            var floatWithScalar = VectorGenShared.DispatchFloatIfaceScalar(type, scalar);
+            var outOne = reg == 0
+                ? $"V.Vector{size}_Float<{type}, {scalar}>(a, out b, out c)"
+                : $"V.Simd_Float<{type}, {scalar}>(a.vector, out b, out c)";
+            Member("void", floatSelf, "Self_out<V>", $"in {type} a, out {type} b, out {type} c", outOne);
+            Member("void", floatWithScalar, "Scalar_out<V>", $"{scalar} a, out {scalar} b, out {scalar} c",
+                "V.Scalar_Float(a, out b, out c)");
+        }
+
         sb.AppendLine("    #endregion");
         sb.AppendLine();
         return sb.ToString();

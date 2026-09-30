@@ -120,6 +120,14 @@ public class MatrixGenerator : IIncrementalGenerator
             // that reduce them to a vector
             ifaces.Add(VectorGenShared.DispatchIface(type));
             ifaces.Add(VectorGenShared.DispatchIfaceScalar(type, scalar));
+            // the members that build two values out of the one they are handed are written for a floating point
+            // kind alone, so a matrix of another kind does not reach the interface of the dispatch that reaches
+            // them
+            if (typ.f)
+            {
+                ifaces.Add(VectorGenShared.DispatchFloatIface(type));
+                ifaces.Add(VectorGenShared.DispatchFloatIfaceScalar(type, scalar));
+            }
             ifaces.Add($"Algebras.Generics.Dispatch.IMatrixColumnDispatch<{type}, {col}>");
             ifaces.Add($"Algebras.Generics.Dispatch.IMatrixRowDispatch<{type}, {row}>");
 
@@ -845,6 +853,18 @@ public class MatrixGenerator : IIncrementalGenerator
             // a member that takes a component of the matrix alone does not reach the value at all, so the visitor
             // reaches the component of every value of the kind of it the same way
             Member("bool", withScalar, "Bool<V>", $"{scalar} a", $"V.Scalar_{level}(a)");
+
+            // the members that build two values out of the one they are handed are written for a floating point
+            // kind alone, so a matrix of another kind does not reach them: the value of the matrix is handed over
+            // the way every other member that takes the value alone hands it over and the value of a component
+            // of it reaches the member of the scalar of the visitor
+            if (typ.f)
+            {
+                Member("void", VectorGenShared.DispatchFloatIface(type), "Self_out<V>",
+                    $"in {type} a, out {type} b, out {type} c", $"{matrix}(a, out b, out c)");
+                Member("void", VectorGenShared.DispatchFloatIfaceScalar(type, scalar), "Scalar_out<V>",
+                    $"{scalar} a, out {scalar} b, out {scalar} c", "V.Scalar_Float(a, out b, out c)");
+            }
 
             // the vectors a matrix is made of are the columns of it, so the member that reduces them to a
             // single vector is the one of the count of the columns of the matrix

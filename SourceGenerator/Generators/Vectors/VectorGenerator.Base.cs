@@ -245,6 +245,15 @@ public partial class VectorGenerator
             // take a single component of it beside it names the type of the component as well
             ifaces.Add(VectorGenShared.DispatchIface(type));
             ifaces.Add(VectorGenShared.DispatchIfaceScalar(type, scalar));
+            // the members that build two values out of the one they are handed are written for a floating point
+            // kind alone, so a vector of another kind does not reach the interface of the dispatch that reaches
+            // them
+            if (typ.f)
+            {
+                ifaces.Add(VectorGenShared.DispatchFloatIface(type));
+                ifaces.Add(VectorGenShared.DispatchFloatIfaceScalar(type, scalar));
+            }
+
             if (size >= 3) ifaces.Add($"Algebras.IVector{size}CtorFromVector2<{type}, {scalar}, {type2}>");
             if (size == 4) ifaces.Add($"Algebras.IVector4CtorFromVector3<{type}, {scalar}, {type3}>");
             // a signed vector reaches the negative of every whole number of the vector a column of its matrix
@@ -814,7 +823,8 @@ public partial class VectorGenerator
             Doc(doc);
             DocParam("left", "The left vector");
             DocParam("right", "The right vector");
-            sb.AppendLine("    /// <returns>A value whose every component says whether the comparison holds and whose component that holds is the all bits set value of the kind of it</returns>");
+            sb.AppendLine(
+                "    /// <returns>A value whose every component says whether the comparison holds and whose component that holds is the all bits set value of the kind of it</returns>");
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public static {type} operator {op}({type} left, {type} right)");
             sb.AppendLine("    {");
