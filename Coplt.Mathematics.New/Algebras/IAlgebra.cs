@@ -8,7 +8,8 @@
 /// </summary>
 /// <typeparam name="TSelf">The type of the value itself</typeparam>
 public interface IAlgebra<TSelf> :
-    IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>,
+    IEquatable<TSelf>,
+    IEqualityOperators<TSelf, TSelf, TSelf>,
     IBitwiseOperators<TSelf, TSelf, TSelf>,
     ISpanFormattable, IUtf8SpanFormattable
     where TSelf : unmanaged, IAlgebra<TSelf>
@@ -101,7 +102,7 @@ public interface IAlgebra<TSelf, TScalar> : IAlgebra<TSelf>
 /// <typeparam name="TSelf">The type of the value itself</typeparam>
 public interface INumberAlgebra<TSelf> : IAlgebra<TSelf>,
     IComparable<TSelf>, IComparable,
-    IComparisonOperators<TSelf, TSelf, bool>,
+    IComparisonOperators<TSelf, TSelf, TSelf>,
     IShiftOperators<TSelf, int, TSelf>,
     IUnaryPlusOperators<TSelf, TSelf>,
     IAdditionOperators<TSelf, TSelf, TSelf>,
@@ -394,6 +395,20 @@ public interface IFloatingPointAlgebra<TSelf> :
     public static abstract TSelf PositiveInfinity { get; }
 
     #endregion
+
+    #region Sign Mask
+
+    /// <summary>
+    /// The sign of the kind of a component, which is set in every component of the value, and the zero of the
+    /// kind of it in every other bit of it
+    /// <para>It is the negative zero of the kind of the component, and it is the mask that a bitwise operation
+    /// reaches the sign of a value with: an and of it with a value keeps the sign of that value alone, an
+    /// exclusive or of it with a value flips the sign of that value and an or of it with the magnitude of a
+    /// value gives the sign of it to the magnitude</para>
+    /// </summary>
+    public static abstract TSelf SignMask { get; }
+
+    #endregion
 }
 
 /// <summary>
@@ -484,6 +499,20 @@ public interface IFloatingPointAlgebra<TSelf, TScalar> :
     /// <code>Infinity</code>, the value above every number
     /// </summary>
     public static abstract TScalar ScalarPositiveInfinity { get; }
+
+    #endregion
+
+    #region Sign Mask
+
+    /// <summary>
+    /// The sign of the kind of a single component, which is set in it, and the zero of the kind of it in every
+    /// other bit of it
+    /// <para>It is the negative zero of the kind of the component, and it is the mask that a bitwise operation
+    /// reaches the sign of a component with: an and of it with a component keeps the sign of that component
+    /// alone, an exclusive or of it with a component flips the sign of that component and an or of it with the
+    /// magnitude of a component gives the sign of it to the magnitude</para>
+    /// </summary>
+    public static abstract TScalar ScalarSignMask { get; }
 
     #endregion
 }

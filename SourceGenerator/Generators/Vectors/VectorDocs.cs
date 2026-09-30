@@ -20,8 +20,6 @@ internal static class VectorDocs
     /// </summary>
     private static readonly Dictionary<string, (string Summary, string Returns, string Params)> Docs = new()
     {
-        #region IVectorFloatingPointIeee754
-
         { "is_NaN", ("Returns a mask that is true where the component is NaN", "The mask", "a=The vector") },
         { "is_finite", ("Returns a mask that is true where the component is finite, so it is neither NaN nor an infinity", "The mask", "a=The vector") },
         { "is_inf", ("Returns a mask that is true where the component is a positive or a negative infinity", "The mask", "a=The vector") },
@@ -36,38 +34,13 @@ internal static class VectorDocs
         {
             "normalize_safe", ("Returns the vector scaled to a length of 1, it returns a zero vector when the length is zero", "The normalized vector", "a=The vector to normalize")
         },
-        {
-            "step",
-            ("Returns 1 where the component is not less than the matching component of the <c>threshold</c> and 0 where it is less", "The step vector",
-                "threshold=The threshold;a=The vector")
-        },
-        {
-            "face_forward",
-            ("Returns the vector with the sign chosen so that it faces away from the incident vector <c>i</c>, the sign is flipped when the dot product of <c>ng</c> and <c>i</c> is not negative",
-                "The oriented vector", "a=The vector to orient;i=The incident vector;ng=The normal that is used to choose the sign")
-        },
-        { "sinh", ("Returns the hyperbolic sine of every component", "The hyperbolic sine", "a=The vector") },
-        { "cosh", ("Returns the hyperbolic cosine of every component", "The hyperbolic cosine", "a=The vector") },
-        { "tanh", ("Returns the hyperbolic tangent of every component", "The hyperbolic tangent", "a=The vector") },
-        { "asinh", ("Returns the inverse hyperbolic sine of every component", "The inverse hyperbolic sine", "a=The vector") },
-        { "acosh", ("Returns the inverse hyperbolic cosine of every component", "The inverse hyperbolic cosine", "a=The vector") },
-        { "atanh", ("Returns the inverse hyperbolic tangent of every component", "The inverse hyperbolic tangent", "a=The vector") },
-        {
-            "chg_sign",
-            ("Returns a vector that has the magnitude of the vector and the sign of <c>sign</c>", "The vector with the changed sign",
-                "a=The vector that provides the magnitude of every component;sign=The vector that provides the sign of every component")
-        },
-        {
-            "refract",
-            ("Returns the refraction direction, the incident vector has to be normalized and the normal has to point against it", "The refracted direction",
-                "i=The normalized vector of the incoming direction;n=The normalized normal that points against <c>i</c>;index_of_refraction=The ratio between the index of refraction of the two materials")
-        },
-
-        #endregion
 
         #region IVectorInteger
 
-        { "is_pow2", ("Returns a value that says where the component is a power of two, a zero and a negative component are not a power of two", "The value of the check", "a=The vector") },
+        {
+            "is_pow2",
+            ("Returns a value that says where the component is a power of two, a zero and a negative component are not a power of two", "The value of the check", "a=The vector")
+        },
         {
             "up2pow2",
             ("Returns every component rounded up to the next power of two, a component that is a power of two already is kept and a zero stays zero", "The rounded up vector",

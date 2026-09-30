@@ -1616,6 +1616,59 @@ public static partial class simd
 
     #endregion
 
+    #region Fnms
+
+    /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
+    [MethodImpl(256 | 512)]
+    public static Vector64<float> Fnms(Vector64<float> a, Vector64<float> b, Vector64<float> c)
+    {
+        return -Vector64.FusedMultiplyAdd(a, b, c);
+    }
+
+    /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
+    [MethodImpl(256 | 512)]
+    public static Vector128<float> Fnms(Vector128<float> a, Vector128<float> b, Vector128<float> c)
+    {
+        return -Vector128.FusedMultiplyAdd(a, b, c);
+    }
+
+    /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
+    [MethodImpl(256 | 512)]
+    public static Vector128<double> Fnms(Vector128<double> a, Vector128<double> b, Vector128<double> c)
+    {
+        return -Vector128.FusedMultiplyAdd(a, b, c);
+    }
+
+    /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Fnms(Vector256<float> a, Vector256<float> b, Vector256<float> c)
+    {
+        return -Vector256.FusedMultiplyAdd(a, b, c);
+    }
+
+    /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
+    [MethodImpl(256 | 512)]
+    public static Vector256<double> Fnms(Vector256<double> a, Vector256<double> b, Vector256<double> c)
+    {
+        return -Vector256.FusedMultiplyAdd(a, b, c);
+    }
+
+    /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Fnms(Vector512<float> a, Vector512<float> b, Vector512<float> c)
+    {
+        return -Vector512.FusedMultiplyAdd(a, b, c);
+    }
+
+    /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Fnms(Vector512<double> a, Vector512<double> b, Vector512<double> c)
+    {
+        return -Vector512.FusedMultiplyAdd(a, b, c);
+    }
+
+    #endregion
+
     #region CMin
 
     [MethodImpl(256 | 512)]

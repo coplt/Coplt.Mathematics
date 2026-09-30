@@ -31,7 +31,8 @@ namespace Coplt.Mathematics
 namespace Coplt.Mathematics.Implements
 {
     /// <summary>
-    /// The value whose every component fuses the multiplication of two values with the subtraction of a third one
+    /// The value whose every component fuses the multiplication of two values with the subtraction of a third
+    /// one: <code>(a * b) - c</code>
     /// <para>The values of the vectors that keep them in a register reach the member of the visitor that matches
     /// the width of the register, the values of every other vector reach the member of the scalar for every
     /// component of them and the values of a matrix reach it for every component of every one of its columns</para>
@@ -40,22 +41,11 @@ namespace Coplt.Mathematics.Implements
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TScalar IAlgebraVisitor_S_S_S_S<impl_fms>.Scalar_Number<TScalar>(TScalar a, TScalar b, TScalar c)
-        {
-            if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
-            {
-                if (typeof(TScalar) == typeof(float))
-                {
-                    return (TScalar)(object)float.FusedMultiplyAdd((float)(object)a, (float)(object)b, -(float)(object)c);
-                }
+            => a * b - c;
 
-                if (typeof(TScalar) == typeof(double))
-                {
-                    return (TScalar)(object)double.FusedMultiplyAdd((double)(object)a, (double)(object)b, -(double)(object)c);
-                }
-            }
-
-            return a * b - c;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_S_S_S_S<impl_fms>.Scalar_Float<TScalar>(TScalar a, TScalar b, TScalar c)
+            => math.fms(a, b, c);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_fms>.Simd_Number<TVector, TScalar>(

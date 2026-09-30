@@ -32,12 +32,14 @@ public class TestFused
             Assert.That(math.fms(a, b, c), Is.EqualTo(a * b - c), "fms");
             Assert.That(math.fnma(a, b, c), Is.EqualTo(c - a * b), "fnma");
             Assert.That(math.fsm(c, a, b), Is.EqualTo(c - a * b), "fsm");
+            Assert.That(math.fnms(a, b, c), Is.EqualTo(T.Zero - a * b - c), "fnms");
 
             Assert.That(a.fma(b, c), Is.EqualTo(a * b + c), "fma extension");
             Assert.That(c.fam(a, b), Is.EqualTo(c + a * b), "fam extension");
             Assert.That(a.fms(b, c), Is.EqualTo(a * b - c), "fms extension");
             Assert.That(a.fnma(b, c), Is.EqualTo(c - a * b), "fnma extension");
             Assert.That(c.fsm(a, b), Is.EqualTo(c - a * b), "fsm extension");
+            Assert.That(a.fnms(b, c), Is.EqualTo(T.Zero - a * b - c), "fnms extension");
         }
     }
 

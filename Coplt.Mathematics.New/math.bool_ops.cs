@@ -2,28 +2,220 @@ namespace Coplt.Mathematics;
 
 public static partial class math
 {
+    /// <summary>
+    /// Whether the whole of two values is equal
+    /// </summary>
+    /// <remarks>
+    /// It answers with a bool, it is the equality of the framework, and the whole of a vector is what the answer is
+    /// about: every component of one of the values has to be equal to the component of the other one of it.
+    /// <para>The counterpart of it that answers with the mask of the kind of the values is
+    /// <see cref="ceq{T}(T, T)"/>. The mask one is the one the algebra of a value reaches, a type parameter that
+    /// names the interface of the algebra beside the one of the framework does not reach this member at all: the
+    /// two answers of the comparison are ambiguous to it.</para>
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>True when the whole of the two values is equal</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool eq<T>(T a, T b) where T : IEqualityOperators<T, T, bool>
         => a == b;
 
+    /// <summary>
+    /// Whether the whole of two values is not equal
+    /// </summary>
+    /// <remarks>
+    /// It answers with a bool, it is the inequality of the framework. The mask answering counterpart of it, the
+    /// member of the algebra that reaches the comparison and the type parameter that reaches this one are the ones
+    /// <see cref="eq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>True when the whole of the two values is not equal</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ne<T>(T a, T b) where T : IEqualityOperators<T, T, bool>
         => a != b;
 
+    /// <summary>
+    /// Whether every component of the left value is less than the matching component of the right one
+    /// </summary>
+    /// <remarks>
+    /// It answers with a bool, it is the comparison of the framework, and the whole of a vector is what the answer
+    /// is about. The mask answering counterpart of it, the member of the algebra that reaches the comparison and
+    /// the type parameter that reaches this one are the ones <see cref="eq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>True when every component of <paramref name="a"/> is less than the matching one of
+    /// <paramref name="b"/></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool lt<T>(T a, T b) where T : IComparisonOperators<T, T, bool>
         => a < b;
 
+    /// <summary>
+    /// Whether every component of the left value is greater than the matching component of the right one
+    /// </summary>
+    /// <remarks>
+    /// It answers with a bool, it is the comparison of the framework, and the whole of a vector is what the answer
+    /// is about. The mask answering counterpart of it, the member of the algebra that reaches the comparison and
+    /// the type parameter that reaches this one are the ones <see cref="eq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>True when every component of <paramref name="a"/> is greater than the matching one of
+    /// <paramref name="b"/></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool gt<T>(T a, T b) where T : IComparisonOperators<T, T, bool>
         => a > b;
 
+    /// <summary>
+    /// Whether every component of the left value is not greater than the matching component of the right one
+    /// </summary>
+    /// <remarks>
+    /// It answers with a bool, it is the comparison of the framework, and the whole of a vector is what the answer
+    /// is about. The mask answering counterpart of it, the member of the algebra that reaches the comparison and
+    /// the type parameter that reaches this one are the ones <see cref="eq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>True when every component of <paramref name="a"/> is not greater than the matching one of
+    /// <paramref name="b"/></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool le<T>(T a, T b) where T : IComparisonOperators<T, T, bool>
         => a <= b;
 
+    /// <summary>
+    /// Whether every component of the left value is not less than the matching component of the right one
+    /// </summary>
+    /// <remarks>
+    /// It answers with a bool, it is the comparison of the framework, and the whole of a vector is what the answer
+    /// is about. The mask answering counterpart of it, the member of the algebra that reaches the comparison and
+    /// the type parameter that reaches this one are the ones <see cref="eq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>True when every component of <paramref name="a"/> is not less than the matching one of
+    /// <paramref name="b"/></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ge<T>(T a, T b) where T : IComparisonOperators<T, T, bool>
+        => a >= b;
+
+    /// <summary>
+    /// The mask of the equality of two values: the all bits set value of the type at every component that the two
+    /// values are equal at and the all bits zero value of it at every one that they are not
+    /// </summary>
+    /// <remarks>
+    /// It answers with a value of the type of the values and not with a bool, it is the comparison of the algebra,
+    /// so the members that build a value out of two of them, as the <see cref="select{T}(T, T, T)"/> of a mask
+    /// does, reach it. The mask that a comparison of simd answers with is one of the two values that it is written
+    /// for, see the remarks of <see cref="select{T}(T, T, T)"/>.
+    /// <para>The counterpart of it that answers with a bool is <see cref="eq{T}(T, T)"/>, which is the one the code
+    /// whose type parameter names the interface of the framework alone reaches.</para>
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>The mask of the equality of the two values</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T ceq<T>(T a, T b) where T : IEqualityOperators<T, T, T>
+        => a == b;
+
+    /// <summary>
+    /// The mask of the inequality of two values: the all bits set value of the type at every component that the two
+    /// values are not equal at and the all bits zero value of it at every one that they are
+    /// </summary>
+    /// <remarks>
+    /// It answers with a value of the type of the values and not with a bool. Its bool answering counterpart, the
+    /// member of the framework and the type parameter that reaches it are the ones
+    /// <see cref="ceq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>The mask of the inequality of the two values</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T cne<T>(T a, T b) where T : IEqualityOperators<T, T, T>
+        => a != b;
+
+    /// <summary>
+    /// The mask of the comparison of every component of the left value to the matching one of the right one, which
+    /// is the comparison of it that answers with the all bits set value of the type at every component of the left
+    /// value that is less than the matching one of the right one and with the all bits zero value of it at every
+    /// one that it is not
+    /// </summary>
+    /// <remarks>
+    /// It answers with a value of the type of the values and not with a bool. Its bool answering counterpart, the
+    /// member of the framework and the type parameter that reaches it are the ones
+    /// <see cref="ceq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>The mask of the comparison of the two values</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T clt<T>(T a, T b) where T : IComparisonOperators<T, T, T>
+        => a < b;
+
+    /// <summary>
+    /// The mask of the comparison of every component of the left value to the matching one of the right one, which
+    /// is the comparison of it that answers with the all bits set value of the type at every component of the left
+    /// value that is greater than the matching one of the right one and with the all bits zero value of it at every
+    /// one that it is not
+    /// </summary>
+    /// <remarks>
+    /// It answers with a value of the type of the values and not with a bool. Its bool answering counterpart, the
+    /// member of the framework and the type parameter that reaches it are the ones
+    /// <see cref="ceq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>The mask of the comparison of the two values</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T cgt<T>(T a, T b) where T : IComparisonOperators<T, T, T>
+        => a > b;
+
+    /// <summary>
+    /// The mask of the comparison of every component of the left value to the matching one of the right one, which
+    /// is the comparison of it that answers with the all bits set value of the type at every component of the left
+    /// value that is not greater than the matching one of the right one and with the all bits zero value of it at
+    /// every one that it is
+    /// </summary>
+    /// <remarks>
+    /// It answers with a value of the type of the values and not with a bool. Its bool answering counterpart, the
+    /// member of the framework and the type parameter that reaches it are the ones
+    /// <see cref="ceq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>The mask of the comparison of the two values</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T cle<T>(T a, T b) where T : IComparisonOperators<T, T, T>
+        => a <= b;
+
+    /// <summary>
+    /// The mask of the comparison of every component of the left value to the matching one of the right one, which
+    /// is the comparison of it that answers with the all bits set value of the type at every component of the left
+    /// value that is not less than the matching one of the right one and with the all bits zero value of it at
+    /// every one that it is
+    /// </summary>
+    /// <remarks>
+    /// It answers with a value of the type of the values and not with a bool. Its bool answering counterpart, the
+    /// member of the framework and the type parameter that reaches it are the ones
+    /// <see cref="ceq{T}(T, T)"/> names.
+    /// </remarks>
+    /// <typeparam name="T">The type of the two values</typeparam>
+    /// <param name="a">The left value</param>
+    /// <param name="b">The right value</param>
+    /// <returns>The mask of the comparison of the two values</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T cge<T>(T a, T b) where T : IComparisonOperators<T, T, T>
         => a >= b;
 
     /// <summary>

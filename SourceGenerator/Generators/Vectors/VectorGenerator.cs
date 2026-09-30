@@ -14,12 +14,12 @@ namespace Coplt.Analyzers.Generators;
 /// the members that combine two vectors by <c>GenShuffle</c> and the helper that shuffles a vector without a
 /// register by <c>GenShuffleSoft</c>, the swizzle members by <c>GenSwizzle</c>, the
 /// arithmetic members by <c>GenArith</c>, the
-/// integer members by <c>GenInt</c>, the floating point members by <c>GenFloat</c>, the ieee 754 members by
-/// <c>GenIeee</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
+/// integer members by <c>GenInt</c>, the members that implement the interfaces by <c>GenIface</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
 /// <c>GenConv</c> and the as members of the math class by <c>GenMathAs</c>. The members that replace the components, the ones of the legacy
 /// insert api, the swizzle members and the shuffle members are emitted into a file of their own, the members of
-/// every other part are emitted into the file of the type itself, see <c>Initialize</c>. The converter of a
+/// every other part are emitted into the file of the type itself, so the constants of a floating point kind and
+/// the ones of the ieee 754 standard are a part of the base members as well, see <c>Initialize</c>. The converter of a
 /// vector is not generated: every vector of a count of components carries the same generic converter, which
 /// names the type
 /// of the vector and the type of a single component of it. The converters live in <c>Coplt.Mathematics.Json</c>
@@ -67,9 +67,8 @@ public partial class VectorGenerator : IIncrementalGenerator
                         ctx.AddSource(
                             $"{VecNamespace}.{name}.g.cs",
                             SourceText.From(Gen(typ, size, storeVariant), Encoding.UTF8));
-                        // the forwarding of the legacy families of the interfaces of the value and the members of
-                        // the legacy ieee 754 interface of it are emitted into a file of their own, which the
-                        // migration removes as a whole
+                        // the forwarding of the legacy families of the interfaces of the value is emitted into a
+                        // file of their own, which the migration removes as a whole
                         if (typ.arith)
                         {
                             ctx.AddSource(

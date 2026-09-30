@@ -26,27 +26,10 @@ public partial class VectorGenerator
         var scalar = typ.compType;
 
         // the members that implement the interfaces, the kind tells which vector implements them:
-        // a = every arithmetic vector, 3 = the 3 component one, f = the floating point one,
-        // i = the integer one, u = the integer one without a sign
+        // a = every arithmetic vector, 3 = the 3 component one, i = the integer one,
+        // u = the integer one without a sign
         var members = new List<(char Kind, string Member)>
         {
-            #region IVectorFloatingPointIeee754
-
-            // the legacy form of the step puts the threshold first and the value last
-            ('f', "{type} step(in {type} threshold, in {type} a) => a.step(threshold);"),
-            // the legacy form of the safe projection carries the default as an optional parameter, which the
-            // caller of a type parameter can drop, so there is a single member for the two cases of it
-            ('f', "{type} face_forward(in {type} a, in {type} i, in {type} ng) => a.face_forward(i, ng);"),
-            ('f', "{type} sinh(in {type} a) => a.sinh();"),
-            ('f', "{type} cosh(in {type} a) => a.cosh();"),
-            ('f', "{type} tanh(in {type} a) => a.tanh();"),
-            ('f', "{type} asinh(in {type} a) => a.asinh();"),
-            ('f', "{type} acosh(in {type} a) => a.acosh();"),
-            ('f', "{type} atanh(in {type} a) => a.atanh();"),
-            ('f', "{type} chg_sign(in {type} a, in {type} sign) => a.chg_sign(sign);"),
-
-            #endregion
-
             #region IVectorInteger
 
             ('i', "{type} is_pow2(in {type} a) => a.is_pow2();"),
@@ -94,7 +77,6 @@ public partial class VectorGenerator
     /// </summary>
     private static string Family(char kind) => kind switch
     {
-        'f' => "IVectorFloatingPointIeee754",
         _ => "IVectorInteger",
     };
 
@@ -106,7 +88,6 @@ public partial class VectorGenerator
     {
         'a' => typ.arith,
         '3' => typ.arith && size == 3,
-        'f' => typ.f,
         'i' => typ.i,
         'u' => typ.i && !typ.sig,
         _ => false,

@@ -7,9 +7,66 @@ namespace Coplt.Analyzers.Generators;
 public partial class VectorGenerator
 {
     /// <summary>
+    /// The name and the value of every math constant of the kind of a floating point number, the value is the
+    /// literal of a double, the literal of the component type of a vector is built from it. The values are the
+    /// ones of <see cref="SourceGenerator.MathConstants"/>.
+    /// </summary>
+    internal static readonly (string Name, string Value)[] FloatConsts =
+    {
+        ("E", SourceGenerator.MathConstants.E),
+        ("Log2", SourceGenerator.MathConstants.Log2),
+        ("Log10", SourceGenerator.MathConstants.Log10),
+        ("PI", SourceGenerator.MathConstants.Pi),
+        ("Tau", SourceGenerator.MathConstants.Tau),
+        ("RadToDeg", SourceGenerator.MathConstants.RadToDeg),
+        ("DegToRad", SourceGenerator.MathConstants.DegToRad),
+    };
+
+    /// <summary>
+    /// The name of the constant of the denominator of a quotient of the kind of a floating point value. Its value
+    /// is not a constant of the ieee 754 standard and it is not the same for every kind of it, so it is not one of
+    /// the values of <see cref="FloatConsts"/>, the literal of it comes from
+    /// <see cref="VectorGenShared.DenomEpsilonValue"/>.
+    /// </summary>
+    internal const string DenomEpsilonName = "DenomEpsilon";
+
+    /// <summary>
+    /// The name of the sign mask of the kind of a floating point value: the sign of the kind of the value set in
+    /// every component of it and no other bit of it. It is the negative zero of the kind of the component, which
+    /// is a constant of the ieee 754 standard as well, but the member is the mask the members that reach the sign
+    /// of a value use and not the value of the standard.
+    /// </summary>
+    internal const string SignMaskName = "SignMask";
+
+    /// <summary>
+    /// The name of the constant of the smallest positive normal value of the ieee 754 standard. The component type
+    /// of a vector does not carry it, its value is written out, see <see cref="VectorGenShared.MinNormalValue"/>.
+    /// </summary>
+    internal const string MinNormalName = "MinNormal";
+
+    /// <summary>
+    /// The name of every constant of the ieee 754 standard, the value of one of them is the member of the scalar
+    /// type of the component of a vector of the same name. The smallest positive normal value is the only one of
+    /// them whose value is not held by a member of the kind of it.
+    /// </summary>
+    internal static readonly string[] IeeeConsts =
+    {
+        "Epsilon",
+        MinNormalName,
+        "NaN",
+        "NegativeInfinity",
+        "NegativeZero",
+        "PositiveInfinity",
+    };
+
+    /// <summary>
     /// Generates the base members of the vector described by <paramref name="typ"/>: the meta data, the
     /// constants, the fields, the constructors, the deconstruction, the indexer and the operators. They implement
     /// the interfaces of the algebra of the kind of the vector and the operators of the kind of it.
+    /// <para>The constants of the part are the whole numbers of the algebra of the kind of the value and, for a
+    /// floating point kind, the constants of the math of the kind of it, the one of the denominator of a quotient
+    /// of it, the mask of the sign of it and the ones of the kind the ieee 754 standard names, which the value
+    /// reaches through the algebra of its kind.</para>
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -73,6 +130,14 @@ public partial class VectorGenerator
         // the 128 bit value of a 64 bit vector and the construction of a 64 bit vector from a 128 bit one
         string Load64(string self) => VectorGenShared.Load64(self, typ.simdComp);
         string From128(string expr) => VectorGenShared.From128(expr);
+
+        // the literal of a value of the component type of the vector, half is a cast of the float literal
+        string Lit(string value) => typ.name switch
+        {
+            "float" => $"{value}f",
+            "double" => value,
+            _ => $"({scalar})({value}f)",
+        };
 
         // the mask that keeps the padding lanes of the register at zero
         var mask = !pad
@@ -277,9 +342,6 @@ public partial class VectorGenerator
         var arithMembers = !storeVariant && typ.arith ? GenArith(typ, size, storeVariant) : null;
         var intMembers = !storeVariant && typ.arith && typ.i ? GenInt(typ, size, storeVariant) : null;
         if (intMembers != null) ifaces.Add(typ.sig ? $"IVectorInteger<{type}>" : $"IVectorUnsignedInteger<{type}>");
-        var floatMembers = !storeVariant && typ.arith && typ.f ? GenFloat(typ, size, storeVariant) : null;
-        var ieeeConstsMembers = !storeVariant && typ.arith && typ.f ? GenIeeeConsts(typ, size, storeVariant) : null;
-        if (ieeeConstsMembers != null) ifaces.Add($"IVectorFloatingPointIeee754<{type}, {scalar}>");
         var asMembers = GenAs(typ, size, storeVariant, ifaces);
         var convMembers = GenConv(typ, size, storeVariant);
         sb.AppendLine($"public partial struct {type} :");
@@ -350,6 +412,37 @@ public partial class VectorGenerator
                 var value = VectorGenShared.NegativeValue(scalar, i);
                 Prop($"public static {type} {name}", $"new({value})");
                 Prop($"public static {scalar} Scalar{name}", value);
+            }
+        }
+
+        // the constants of the algebra of a floating point kind: the ones of the math of the kind of it, the one
+        // of the denominator of a quotient of it, the mask of the sign of it and the ones of the kind the ieee
+        // 754 standard names. The storage variant of a vector reaches the components of a value and not the
+        // algebra of its kind, so it holds none of them
+        if (typ.arith && typ.f && !storeVariant)
+        {
+            foreach (var (name, value) in FloatConsts)
+            {
+                var lit = Lit(value);
+                Prop($"public static {scalar} Scalar{name}", lit);
+                Prop($"public static {type} {name}", $"new({lit})");
+            }
+
+            var denom = VectorGenShared.DenomEpsilonValue(scalar);
+            Prop($"public static {scalar} Scalar{DenomEpsilonName}", denom);
+            Prop($"public static {type} {DenomEpsilonName}", $"new({denom})");
+
+            // the sign mask of the kind of the value is the negative zero of the kind of the component, which is
+            // the only value of it that holds the sign and no other bit
+            var sign = Lit("-0.0");
+            Prop($"public static {scalar} Scalar{SignMaskName}", sign);
+            Prop($"public static {type} {SignMaskName}", $"new({sign})");
+
+            foreach (var name in IeeeConsts)
+            {
+                var value = name == MinNormalName ? VectorGenShared.MinNormalValue(scalar) : $"{scalar}.{name}";
+                Prop($"public static {scalar} Scalar{name}", value);
+                Prop($"public static {type} {name}", $"new({value})");
             }
         }
 
@@ -1126,19 +1219,42 @@ public partial class VectorGenerator
         }
 
         // the members of the parts above are a part of the value itself, so they are appended into its
-        // declaration as well. The forwarding of the legacy families and the members of the legacy ieee 754
-        // interface are emitted into a file of their own, see Initialize, the value itself does not carry them
+        // declaration as well. The forwarding of the legacy families is emitted into a file of their own, see
+        // Initialize, the value itself does not carry it
         Part(underlyingMembers, "underlying");
         Part(ctorMembers, "ctor");
         Part(arithMembers, "arith");
         Part(intMembers, "int");
-        Part(floatMembers, "float");
-        // the constants of the ieee 754 standard are the representation of the kind of a component and not a
-        // member of the legacy interface, so they stay beside the value itself
-        Part(ieeeConstsMembers, "constants");
         Part(asMembers, "as");
         Part(convMembers, "conv");
 
+        sb.AppendLine("}");
+
+        return VectorDocs.Apply(VectorGenShared.Normalize(sb.ToString()));
+    }
+
+    /// <summary>
+    /// Generates the file of the members of the legacy interfaces of the vector described by
+    /// <paramref name="typ"/>: the forwarding of the families of the interfaces of the value. They are emitted
+    /// into a file of their own, which the migration removes as a whole once the families of the interfaces are
+    /// gone. The constants of the kinds of the value are not a part of it, they are the algebra of it and are
+    /// emitted beside the value itself.
+    /// </summary>
+    /// <param name="typ">The type of the vector</param>
+    /// <param name="size">The number of components of the vector</param>
+    /// <param name="storeVariant">True for the storage variant of the vector</param>
+    /// <returns>The file</returns>
+    private static string GenLegacy(Typ typ, int size, bool storeVariant)
+    {
+        var type = VectorGenShared.VecName(typ, size, storeVariant);
+
+        var sb = new StringBuilder();
+
+        VectorGenShared.FileHeader(sb, true);
+        sb.AppendLine($"public partial struct {type}");
+        sb.AppendLine("{");
+        sb.Append(GenIface(typ, size, storeVariant).Trim('\r', '\n'));
+        sb.AppendLine();
         sb.AppendLine("}");
 
         return VectorDocs.Apply(VectorGenShared.Normalize(sb.ToString()));

@@ -99,6 +99,10 @@ public class MatrixGenerator : IIncrementalGenerator
         var shape = $"{rows}x{cols}";
         // every shape has the members of its own beside the ones every matrix has
         var ifaces = new List<string>();
+        // the comparison of the algebra of the kind of a matrix answers with the mask of the kind of the value,
+        // which is the one the members of the value reach, so the bool result of the comparison of the framework
+        // is the one the concrete type names on its own, see INumberAlgebra{TSelf}
+        ifaces.Add($"IEqualityOperators<{type}, {type}, bool>");
         // the storage variant of a matrix holds the columns of a value of the kind of it, it reaches the interface
         // the json converter of it needs and nothing else: the algebra of the kind of the matrix, the members
         // that dispatch the value of it and the ones that reach a single component of it are the members of the
@@ -113,6 +117,10 @@ public class MatrixGenerator : IIncrementalGenerator
             ifaces.Add($"Algebras.IMatrixScalar<{type}, {scalar}>");
             ifaces.Add($"Algebras.IMatrixVector<{type}, {col}>");
             ifaces.Add($"Algebras.{(typ.f ? "IFloatingPointMatrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>");
+            // the comparison of the algebra is the one of the mask of the kind of the value, the bool result of
+            // the one of the framework is the one of the concrete type, which the storage variant of a matrix
+            // does not reach
+            ifaces.Add($"IComparisonOperators<{type}, {type}, bool>");
             ifaces.Add($"Algebras.IMatrix{shape}<{type}>");
             ifaces.Add($"Algebras.IMatrix{shape}Vector<{type}, {col}>");
             ifaces.Add($"Algebras.IMatrix{shape}Scalar<{type}, {scalar}>");
@@ -429,6 +437,7 @@ public class MatrixGenerator : IIncrementalGenerator
             // type of the library names
             var consts = VectorGenerator.FloatConsts.Select(c => c.Name)
                 .Append(VectorGenerator.DenomEpsilonName)
+                .Append(VectorGenerator.SignMaskName)
                 .Concat(VectorGenerator.IeeeConsts);
             foreach (var name in consts)
             {

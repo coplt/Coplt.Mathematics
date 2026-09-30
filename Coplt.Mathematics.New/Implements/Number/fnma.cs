@@ -60,22 +60,11 @@ namespace Coplt.Mathematics.Implements
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TScalar IAlgebraVisitor_S_S_S_S<impl_fnma>.Scalar_Number<TScalar>(TScalar a, TScalar b, TScalar c)
-        {
-            if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
-            {
-                if (typeof(TScalar) == typeof(float))
-                {
-                    return (TScalar)(object)float.FusedMultiplyAdd(-(float)(object)a, (float)(object)b, (float)(object)c);
-                }
+            => c - a * b;
 
-                if (typeof(TScalar) == typeof(double))
-                {
-                    return (TScalar)(object)double.FusedMultiplyAdd(-(double)(object)a, (double)(object)b, (double)(object)c);
-                }
-            }
-
-            return c - a * b;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_S_S_S_S<impl_fnma>.Scalar_Float<TScalar>(TScalar a, TScalar b, TScalar c)
+            => math.fnma(a, b, c);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_fnma>.Simd_Number<TVector, TScalar>(
