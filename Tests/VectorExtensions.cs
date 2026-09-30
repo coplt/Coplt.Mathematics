@@ -23,13 +23,10 @@ internal static class VectorExtensions
     // of a value only appears in the constraint of the member of the dispatch of its bool value, so the
     // compiler cannot infer it from the arguments and a caller has to name it or reach the member of the
     // type of the mask of its value: math.is_NaN<T, TBool>(v) or v.is_NaN()
-    public static T log<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.log(a);
-    public static T log2<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.log2(a);
-    public static T log<T>(this T a, in T other) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.log(a, other);
-    public static T log10<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.log10(a);
-    public static T exp<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.exp(a);
-    public static T exp2<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.exp2(a);
-    public static T exp10<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.exp10(a);
+
+    // the logarithm, its two other bases and the two exponentials are not forwarded: they are the members of
+    // the dispatch of the algebra of the kind of the value, which a type parameter reaches with the members of
+    // the math class and of the extension of a value
 
     // the power, the square root and its reciprocal and the normalization are not forwarded: they are the
     // members of the algebra of the kind of the value, which a type parameter reaches with the members of the
@@ -43,18 +40,10 @@ internal static class VectorExtensions
     public static T face_forward<T>(this T a, in T i, in T ng) where T : unmanaged, IVectorFloatingPointIeee754<T> =>
         T.face_forward(a, i, ng);
 
-    public static T sin<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.sin(a);
-    public static T cos<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.cos(a);
-    public static (T sin, T cos) sincos<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.sincos(a);
+    // the trigonometry is not forwarded either: it is the member of the dispatch of the algebra of the kind of
+    // the value as well, the pair of the sine and the cosine of it and the member that receives the two of them
+    // are the two forms of the single member of the dispatch that hands the value over once
 
-    public static void sincos<T>(this T a, out T sin, out T cos) where T : unmanaged, IVectorFloatingPointIeee754<T> =>
-        T.sincos(a, out sin, out cos);
-
-    public static T tan<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.tan(a);
-    public static T asin<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.asin(a);
-    public static T acos<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.acos(a);
-    public static T atan<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.atan(a);
-    public static T atan2<T>(this T a, in T v) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.atan2(a, v);
     public static T sinh<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.sinh(a);
     public static T cosh<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.cosh(a);
     public static T tanh<T>(this T a) where T : unmanaged, IVectorFloatingPointIeee754<T> => T.tanh(a);

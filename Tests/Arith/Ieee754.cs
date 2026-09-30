@@ -2,29 +2,35 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
+using Coplt.Mathematics.Algebras.Generics.Dispatch;
 using Coplt.Mathematics.Generics;
 using half = System.Half;
 
 namespace Tests.Arith;
 
 /// <summary>
-/// The ieee 754 members of a vector implement <c>IVectorFloatingPointIeee754</c>: the logarithms, the
-/// exponentials, the step and the refraction, the face forward, the trigonometry, the hyperbolics and the
-/// change of the sign. The members of a simd vector keep the padding lanes of it at zero, the members of a
-/// vector without a register work on the components. The checks of the special floating point values are the
-/// members of the <c>math</c> class from <c>is_NaN</c> on, the value of a check is a value of the kind of the
-/// value it was built from and the bits of a component of it that holds are not all zero.
+/// The ieee 754 members of a vector implement <c>IVectorFloatingPointIeee754</c>: the step and the refraction,
+/// the face forward, the trigonometry, the hyperbolics and the change of the sign. The logarithms and the
+/// exponentials left the interface, they are the members of the dispatch of the algebra of the kind of the
+/// value now. The members of a simd vector keep the padding lanes of it at zero, the members of a vector
+/// without a register work on the components. The checks of the special floating point values are the members
+/// of the <c>math</c> class from <c>is_NaN</c> on, the value of a check is a value of the kind of the value it
+/// was built from and the bits of a component of it that holds are not all zero.
 /// </summary>
 public class TestIeee754
 {
     /// <summary>
-    /// Every ieee 754 vector implements the interface, so every member below is reachable through it, the
-    /// refraction is a static member of the interface.
+    /// Every ieee 754 vector implements both the interface and the dispatch of the algebra of the kind of its
+    /// value, so every member below is reachable through one of the two, the refraction is a static member of
+    /// the interface.
     /// </summary>
     private static void Check<T, TScalar>(T v)
-        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar>
+        where T : unmanaged, IVectorFloatingPointIeee754<T, TScalar>, IAlgebraDispatch<T>, IFloatDispatch<T>
         where TScalar : unmanaged, INumberBase<TScalar>
     {
+        // the logarithms and the exponentials are not members of the ieee 754 interface any more: they are the
+        // members of the dispatch of the algebra of the kind of the value, which a caller reaches with the
+        // members of the math class and of the extension of a value
         v.log();
         v.log2();
         v.log(v);
@@ -38,6 +44,8 @@ public class TestIeee754
         v.step(v);
         T.refract(v, v, default);
         v.face_forward(v, v);
+        // the trigonometry left the interface as well, the pair of the sine and the cosine is the member of the
+        // dispatch that hands the value over once and receives two values out of it
         v.sin();
         v.cos();
         var (sin, cos) = v.sincos();

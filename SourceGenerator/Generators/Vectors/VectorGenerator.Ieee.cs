@@ -28,16 +28,16 @@ public partial class VectorGenerator
 
     /// <summary>
     /// Generates the members of the legacy <c>IVectorFloatingPointIeee754</c> interface of the vector described
-    /// by <paramref name="typ"/>: the logarithm, the exponential, the step and the refraction, the face forward,
-    /// the trigonometry, the hyperbolics and the change of the sign. The part is the one the migration removes
-    /// once the family of the interface is gone, so it is emitted into the file of the value itself under the
-    /// region of the interface it implements.
+    /// by <paramref name="typ"/>: the step and the refraction, the face forward, the hyperbolics and the change
+    /// of the sign. The part is the one the migration removes once the family of the interface is gone, so it is
+    /// emitted into the file of the value itself under the region of the interface it implements.
     /// <para>The constants of the kind of a component are the only members of the part that do not belong to the
     /// interface and stay, they are emitted into a region of their own, which the plain floating point members
     /// carry as well: they name the representation of the kind and not an operation of it.</para>
     /// <para>The members whose op is reached through the algebra of the kind of the value do not live here: the
-    /// power, the square root and its reciprocal, the normalization and the length and the distance of two
-    /// vectors are the ones of the <c>math</c> class and of the extension of a value.</para>
+    /// logarithm, the exponential, the trigonometry, the power, the square root and its reciprocal, the
+    /// normalization and the length and the distance of two vectors are the ones of the <c>math</c> class and of
+    /// the extension of a value.</para>
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -123,50 +123,6 @@ public partial class VectorGenerator
         sb.AppendLine();
         sb.AppendLine("    #region IVectorFloatingPointIeee754");
 
-        #region log
-
-        sb.AppendLine();
-        sb.AppendLine("    #region log");
-        sb.AppendLine();
-
-        Unary("log", "Log", "log");
-        Unary("log2", "Log2", "log2");
-
-        // the logarithm of any base is the quotient of the two logarithms. The receiver is the first parameter
-        // because the interface declares the member as a static one, and a member of the vector that takes the
-        // vector itself as its only parameter would have the same parameter list as the one of the natural
-        // logarithm
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} log(in {type} a, in {type} b)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector("simd.Log(a.vector) / simd.Log(b.vector)")};",
-            $"return {From128($"simd.Log({Load64("a.")}) / simd.Log({Load64("b.")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "log_base", $"a.{comp[n]}", $"b.{comp[n]}"))};");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        Unary("log10", "Log10", "log10");
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region exp
-
-        sb.AppendLine("    #region exp");
-        sb.AppendLine();
-
-        Unary("exp", "Exp", "exp");
-        Unary("exp2", "Exp2", "exp2");
-        Unary("exp10", "Exp10", "exp10");
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
         #region step refract
 
         sb.AppendLine("    #region step refract");
@@ -222,87 +178,6 @@ public partial class VectorGenerator
         InheritDoc();
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public readonly {type} face_forward(in {type} i, in {type} ng) => ng.dot(i) >= {VectorScalar.Zero(scalar)} ? -this : this;");
-        sb.AppendLine();
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region sin cos tan
-
-        sb.AppendLine("    #region sin cos tan");
-        sb.AppendLine();
-
-        Unary("sin", "Sin", "sin", bcl: true);
-        Unary("cos", "Cos", "cos", bcl: true);
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly ({type} sin, {type} cos) sincos()");
-        sb.AppendLine("    {");
-        sb.AppendLine("        sincos(out var sin, out var cos);");
-        sb.AppendLine("        return (sin, cos);");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly void sincos(out {type} sin, out {type} cos)");
-        sb.AppendLine("    {");
-        if (simd)
-        {
-            // the pair of the sine and the cosine is computed by the register of the vector
-            sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
-            sb.AppendLine("        {");
-            sb.AppendLine($"            var (s, c) = {vecName}.SinCos(vector);");
-            sb.AppendLine($"            sin = {FromVector("s")};");
-            sb.AppendLine($"            cos = {FromVector("c")};");
-            sb.AppendLine("            return;");
-            sb.AppendLine("        }");
-            // the 64 bit register of the value is not accelerated on every platform
-            if (v64)
-            {
-                sb.AppendLine("        if (Vector128.IsHardwareAccelerated)");
-                sb.AppendLine("        {");
-                sb.AppendLine($"            var (s, c) = Vector128.SinCos({Load64("")});");
-                sb.AppendLine($"            sin = {From128("s")};");
-                sb.AppendLine($"            cos = {From128("c")};");
-                sb.AppendLine("            return;");
-                sb.AppendLine("        }");
-            }
-        }
-
-        for (var i = 0; i < size; i++) sb.AppendLine($"        var (s{i}, c{i}) = {VectorScalar.Expr(scalar, "sincos", $"this.{comp[i]}")};");
-        sb.AppendLine($"        sin = new({Join(i => $"s{i}")});");
-        sb.AppendLine($"        cos = new({Join(i => $"c{i}")});");
-        sb.AppendLine("    }");
-        sb.AppendLine();
-
-        Unary("tan", "Tan", "tan");
-
-        sb.AppendLine("    #endregion");
-        sb.AppendLine();
-
-        #endregion
-
-        #region asin acos atan atan2
-
-        sb.AppendLine("    #region asin acos atan atan2");
-        sb.AppendLine();
-
-        Unary("asin", "Asin", "asin");
-        Unary("acos", "Acos", "acos");
-        Unary("atan", "Atan", "atan");
-
-        InheritDoc();
-        sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public readonly {type} atan2(in {type} v)");
-        sb.AppendLine("    {");
-        EmitAccel($"return {FromVector("simd.Atan2(vector, v.vector)")};",
-            $"return {From128($"simd.Atan2({Load64("")}, {Load64("v.")})")};",
-            $"return {NewCompWise(n => VectorScalar.Expr(scalar, "atan2", comp[n], $"v.{comp[n]}"))};");
-        sb.AppendLine("    }");
         sb.AppendLine();
 
         sb.AppendLine("    #endregion");

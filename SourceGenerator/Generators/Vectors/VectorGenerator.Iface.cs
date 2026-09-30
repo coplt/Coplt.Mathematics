@@ -32,26 +32,11 @@ public partial class VectorGenerator
         {
             #region IVectorFloatingPointIeee754
 
-            ('f', "{type} log(in {type} a) => a.log();"),
-            ('f', "{type} log2(in {type} a) => a.log2();"),
-            ('f', "{type} log10(in {type} a) => a.log10();"),
-            ('f', "{type} exp(in {type} a) => a.exp();"),
-            ('f', "{type} exp2(in {type} a) => a.exp2();"),
-            ('f', "{type} exp10(in {type} a) => a.exp10();"),
             // the legacy form of the step puts the threshold first and the value last
             ('f', "{type} step(in {type} threshold, in {type} a) => a.step(threshold);"),
             // the legacy form of the safe projection carries the default as an optional parameter, which the
             // caller of a type parameter can drop, so there is a single member for the two cases of it
             ('f', "{type} face_forward(in {type} a, in {type} i, in {type} ng) => a.face_forward(i, ng);"),
-            ('f', "{type} sin(in {type} a) => a.sin();"),
-            ('f', "{type} cos(in {type} a) => a.cos();"),
-            ('f', "({type} sin, {type} cos) sincos(in {type} a) => a.sincos();"),
-            ('f', "void sincos(in {type} a, out {type} sin, out {type} cos) => a.sincos(out sin, out cos);"),
-            ('f', "{type} tan(in {type} a) => a.tan();"),
-            ('f', "{type} asin(in {type} a) => a.asin();"),
-            ('f', "{type} acos(in {type} a) => a.acos();"),
-            ('f', "{type} atan(in {type} a) => a.atan();"),
-            ('f', "{type} atan2(in {type} a, in {type} b) => a.atan2(b);"),
             ('f', "{type} sinh(in {type} a) => a.sinh();"),
             ('f', "{type} cosh(in {type} a) => a.cosh();"),
             ('f', "{type} tanh(in {type} a) => a.tanh();"),

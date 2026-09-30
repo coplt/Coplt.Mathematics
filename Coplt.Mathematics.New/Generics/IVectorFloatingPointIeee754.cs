@@ -4,63 +4,14 @@
 /// A vector of floating point components with the ieee 754 math functions
 /// <para>It does not name the type of a single component because none of these members needs it, <see
 /// cref="IVectorFloatingPointIeee754{Self,Scalar}"/> adds the members that do</para>
+/// <para>The members of it are the ones the migration has not taken over yet: the step and the refraction, the
+/// face forward, the hyperbolics and the change of the sign. The logarithm, the exponential and the
+/// trigonometry are the members of the dispatch of the algebra of the kind of the value.</para>
 /// </summary>
 /// <typeparam name="Self">The vector type itself</typeparam>
 public interface IVectorFloatingPointIeee754<Self>
     where Self : unmanaged, IVectorFloatingPointIeee754<Self>
 {
-    #region Log
-
-    /// <summary>
-    /// Returns the natural logarithm of every component
-    /// </summary>
-    /// <returns>The natural logarithm</returns>
-    public static abstract Self log(in Self a);
-
-    /// <summary>
-    /// Returns the base 2 logarithm of every component
-    /// </summary>
-    /// <returns>The base 2 logarithm</returns>
-    public static abstract Self log2(in Self a);
-
-    /// <summary>
-    /// Returns the logarithm of every component with <paramref name="b"/> as the base
-    /// </summary>
-    /// <param name="a">The vector</param>
-    /// <param name="b">The base of the logarithm</param>
-    /// <returns>The logarithm</returns>
-    public static abstract Self log(in Self a, in Self b);
-
-    /// <summary>
-    /// Returns the base 10 logarithm of every component
-    /// </summary>
-    /// <returns>The base 10 logarithm</returns>
-    public static abstract Self log10(in Self a);
-
-    #endregion
-
-    #region Exp
-
-    /// <summary>
-    /// Returns <c>e</c> raised to the power of every component
-    /// </summary>
-    /// <returns>The exponential</returns>
-    public static abstract Self exp(in Self a);
-
-    /// <summary>
-    /// Returns 2 raised to the power of every component
-    /// </summary>
-    /// <returns>The exponential</returns>
-    public static abstract Self exp2(in Self a);
-
-    /// <summary>
-    /// Returns 10 raised to the power of every component
-    /// </summary>
-    /// <returns>The exponential</returns>
-    public static abstract Self exp10(in Self a);
-
-    #endregion
-
     #region Step Refract
 
     /// <summary>
@@ -86,73 +37,6 @@ public interface IVectorFloatingPointIeee754<Self>
     /// <param name="ng">The normal that is used to choose the sign</param>
     /// <returns>The oriented vector</returns>
     public static abstract Self face_forward(in Self a, in Self i, in Self ng);
-
-    #endregion
-
-    #region Sin Cos Tan
-
-    /// <summary>
-    /// Returns the sine of every component in radians
-    /// </summary>
-    /// <returns>The sine</returns>
-    public static abstract Self sin(in Self a);
-
-    /// <summary>
-    /// Returns the cosine of every component in radians
-    /// </summary>
-    /// <returns>The cosine</returns>
-    public static abstract Self cos(in Self a);
-
-    /// <summary>
-    /// Returns the sine and the cosine of every component in radians
-    /// </summary>
-    /// <returns>The sine and the cosine</returns>
-    public static abstract (Self sin, Self cos) sincos(in Self a);
-
-    /// <summary>
-    /// Computes the sine and the cosine of every component in radians
-    /// </summary>
-    /// <param name="sin">Receives the sine</param>
-    /// <param name="a">The vector</param>
-    /// <param name="cos">Receives the cosine</param>
-    public static abstract void sincos(in Self a, out Self sin, out Self cos);
-
-    /// <summary>
-    /// Returns the tangent of every component in radians
-    /// </summary>
-    /// <returns>The tangent</returns>
-    public static abstract Self tan(in Self a);
-
-    #endregion
-
-    #region ASin ACos ATan ATan2
-
-    /// <summary>
-    /// Returns the arc sine of every component, the result is in radians
-    /// </summary>
-    /// <returns>The arc sine</returns>
-    public static abstract Self asin(in Self a);
-
-    /// <summary>
-    /// Returns the arc cosine of every component, the result is in radians
-    /// </summary>
-    /// <returns>The arc cosine</returns>
-    public static abstract Self acos(in Self a);
-
-    /// <summary>
-    /// Returns the arc tangent of every component, the result is in radians
-    /// </summary>
-    /// <returns>The arc tangent</returns>
-    public static abstract Self atan(in Self a);
-
-    /// <summary>
-    /// Returns the arc tangent of <paramref name="a"/> divided by <paramref name="b"/>, the signs of both are
-    /// used to find the quadrant of the result
-    /// </summary>
-    /// <param name="a">The numerator</param>
-    /// <param name="b">The divisor</param>
-    /// <returns>The arc tangent, it is in radians</returns>
-    public static abstract Self atan2(in Self a, in Self b);
 
     #endregion
 
