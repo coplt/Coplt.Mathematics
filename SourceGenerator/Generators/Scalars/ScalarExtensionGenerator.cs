@@ -18,7 +18,10 @@ namespace Coplt.Analyzers.Generators;
 /// still inferred, and <c>math_ex_*</c> adds them to one of the values, so the call reads like the member of the
 /// vector. The parameter a member of the value is called on is the first one of the marked member unless the
 /// attribute names another one, see <see cref="ThisParameterProperty"/>. A member of a class cannot be overloaded
-/// on its constraints alone, so every scalar type has a class of its own. The marked member names the type of a
+/// on its constraints alone, so every scalar type has a class of its own, and so does a marked member that is not
+/// a member of the <c>math</c> class: the classes of the shapes of a value implement the same operation and share
+/// the name of it, so the name of the class of the marked member is a part of the name of the class the members
+/// of it are emitted into. The marked member names the type of a
 /// single component with a type parameter of its own, which is <c>TScalar</c> unless the attribute says otherwise,
 /// and the generated member is the one of the marked member with that type spelled out and its body is the
 /// forwarding of the call. The marked member decides whether the generated members reach the overload resolution
@@ -58,6 +61,12 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
 
     /// <summary>The attribute of a member, it is inlined into its caller.</summary>
     private const string Attr = "[MethodImpl(MethodImplOptions.AggressiveInlining)]";
+
+    /// <summary>
+    /// The name of the class a marked member is a member of when it is an entry point of the operation it
+    /// implements, which is the class the generated members are added to without a part of their own.
+    /// </summary>
+    private const string MathClass = "math";
 
     /// <summary>
     /// The format of the name of a type in a generated member: the namespace and the containing types of a type
@@ -159,6 +168,10 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
         var typeParameters = method.TypeParameters.Where(p => !SymbolEqualityComparer.Default.Equals(p, component)).ToArray();
         var priority = Priority(method);
         var receiver = Receiver(method);
+        // a member of a class cannot be overloaded on its constraints alone: the marked members of the classes of
+        // two shapes of a value implement the same operation and share the name of it, so the name of the class of
+        // the marked member is a part of the name of the class the generated members are emitted into
+        var group = method.ContainingType.Name == MathClass ? "" : $"_{method.ContainingType.Name}";
 
         foreach (var typ in Typ.Typs)
         {
@@ -167,9 +180,43 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
             if (!typ.arith) continue;
             if (floating && !typ.f) continue;
             context.AddSource(
-                $"{Namespace}.{method.Name}.{typ.name}.g.cs",
-                SourceText.From(Gen(typ.name, method, scalarTypeParameter, typeParameters, priority, receiver), Encoding.UTF8));
+                $"{Namespace}.{method.Name}.{typ.name}.{Signature(method)}.g.cs",
+                SourceText.From(Gen(typ.name, group, method, scalarTypeParameter, typeParameters, priority, receiver), Encoding.UTF8));
         }
+    }
+
+    /// <summary>
+    /// Returns the part of the name of a generated file that tells the marked members which share a name apart: the
+    /// name of the type that contains the member and the types of its parameters. The name of a file has to be
+    /// unique within the generator, and the members of two classes reach the same one of them when they share a
+    /// name and the type of a single component, which the members of the shapes of a matrix do.
+    /// </summary>
+    /// <param name="method">The marked member</param>
+    /// <returns>The name of the member</returns>
+    private static string Signature(IMethodSymbol method)
+    {
+        var sb = new StringBuilder(method.ContainingType.Name);
+        foreach (var parameter in method.Parameters)
+        {
+            // a type is named without its namespace, the name of a file only has to tell the members that share
+            // a name apart
+            sb.Append('_').Append(FileSafe(parameter.Type.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat)));
+        }
+
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns a text as a part of the name of a generated file: every character that a name of a file does not
+    /// carry is spelled out with an underscore.
+    /// </summary>
+    /// <param name="text">The text</param>
+    /// <returns>The text of the name of a file</returns>
+    private static string FileSafe(string text)
+    {
+        var sb = new StringBuilder(text.Length);
+        foreach (var c in text) sb.Append(char.IsLetterOrDigit(c) || c == '_' ? c : '_');
+        return sb.ToString();
     }
 
     /// <summary>
@@ -286,6 +333,7 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
     /// Generates the members of the scalar type <paramref name="scalar"/> that forward to <paramref name="method"/>.
     /// </summary>
     /// <param name="scalar">The scalar type of a single component</param>
+    /// <param name="group">The name of the class of the marked member when it is not <see cref="MathClass"/>, empty for one of them</param>
     /// <param name="method">The marked member</param>
     /// <param name="scalarTypeParameter">The name of the type parameter of the marked member that names the type of a single component</param>
     /// <param name="typeParameters">The type parameters of the marked member beside the one of a single component</param>
@@ -293,8 +341,8 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
     /// <param name="receiver">The index of the parameter of the marked member a member of the value is called on, -1 for none</param>
     /// <returns>The file of the members</returns>
     private static string Gen(
-        string scalar, IMethodSymbol method, string scalarTypeParameter, ITypeParameterSymbol[] typeParameters,
-        int priority, int receiver)
+        string scalar, string group, IMethodSymbol method, string scalarTypeParameter,
+        ITypeParameterSymbol[] typeParameters, int priority, int receiver)
     {
         // the marked member names the type of a single component, a generated member names the type itself, so
         // every type that carries the type parameter of it is written with the scalar type
@@ -370,9 +418,9 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
         }
 
         // the member the math class carries, the type of a single component is named where the member is called
-        sb.AppendLine($"public static partial class ex_{scalar}");
+        sb.AppendLine($"public static partial class ex_{scalar}{group}");
         sb.AppendLine("{");
-        sb.AppendLine("    extension(math)");
+        sb.AppendLine($"    extension({MathClass})");
         sb.AppendLine("    {");
         sb.AppendLine($"        /// <inheritdoc cref=\"{cref}\"/>");
         PriorityAttr("        ");
@@ -387,7 +435,7 @@ public class ScalarExtensionGenerator : IIncrementalGenerator
         // receiver names no parameter of it has no member of the value at all
         if (receiver >= 0)
         {
-            sb.AppendLine($"public static partial class math_ex_{scalar}");
+            sb.AppendLine($"public static partial class math_ex_{scalar}{group}");
             sb.AppendLine("{");
             sb.AppendLine($"    /// <inheritdoc cref=\"{cref}\"/>");
             PriorityAttr("    ");
