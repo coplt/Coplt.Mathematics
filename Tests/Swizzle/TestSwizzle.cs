@@ -93,6 +93,36 @@ public class TestSwizzle
         Check(new int2(1, 2).yxxy, new int4(2, 1, 1, 2), "int2.yxxy");
     }
 
+    /// <summary>
+    /// A combination that names a component of the vector more than once and reaches the vector itself is not a
+    /// member of the type of the vector, it is an extension member of the count of its components: the value of
+    /// a vector that keeps it in a register is shuffled, a vector of 8 byte components reads the 2 lanes of a
+    /// 128 bit register and a vector that has no register reads the components the combination names.
+    /// </summary>
+    [Test]
+    public void Extension()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // a vector of 8 byte components keeps 2 lanes in a register of 128 bits
+            Check(new double2(1, 2).xx, new double2(1, 1), "double2.xx");
+            Check(new long2(1, 2).yy, new long2(2, 2), "long2.yy");
+            Check(new ulong2(1, 2).yx, new ulong2(2, 1), "ulong2.yx");
+            // a vector of 8 byte components keeps 4 lanes in a register of 256 bits
+            Check(new double4(1, 2, 3, 4).wwyy, new double4(4, 4, 2, 2), "double4.wwyy");
+            // the rgba spelling of a combination is the same member
+            Check(new float4(1, 2, 3, 4).aaaa, new float4(4, 4, 4, 4), "float4.aaaa");
+            Check(new float3(1, 2, 3).ggg, new float3(2, 2, 2), "float3.ggg");
+            // a vector that has no register reads the components the combination names
+            Check(new short2(1, 2).xx, new short2(1, 1), "short2.xx");
+            Check(new ushort3(1, 2, 3).zzz, new ushort3(3, 3, 3), "ushort3.zzz");
+            Check(new half3((half)1.0, (half)2.0, (half)3.0).yxx,
+                new half3((half)2.0, (half)1.0, (half)1.0), "half3.yxx");
+            Check(new half4((half)1.0, (half)2.0, (half)3.0, (half)4.0).wzww,
+                new half4((half)4.0, (half)3.0, (half)4.0, (half)4.0), "half4.wzww");
+        }
+    }
+
     [Test]
     public void OtherTypes()
     {

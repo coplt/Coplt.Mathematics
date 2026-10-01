@@ -11,6 +11,11 @@ public partial class VectorGenerator
     /// components is a member, the digits of the name are the indices of the components so <c>01</c> is <c>xy</c>,
     /// and both spellings of a combination, <c>xyzw</c> and <c>rgba</c>, are declared on the same member. They
     /// are emitted into their own file, so the base members and the arithmetic members stay separate.
+    /// <para>A combination that names a component of the vector more than once cannot be written, and the one of
+    /// them that has as many components as the vector itself reaches the vector itself, which the type of the
+    /// vector does not have to carry: those members are emitted as the extension members of the count of the
+    /// components of the vector by <see cref="SwizzleGenerator"/>, so the combinations that are left out here
+    /// are the ones it carries.</para>
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -133,6 +138,10 @@ public partial class VectorGenerator
                 var writable = distinct;
                 // only the whole combination is the vector itself, a shorter combination is its beginning
                 var identity = ordered && dst == size;
+                // a combination of the width of the vector itself that repeats a component is read only and reaches
+                // the vector itself, so it is an extension member of the count of the components of the vector
+                // instead of a member of the type of it, see SwizzleGenerator
+                if (!writable && dst == size) continue;
 
                 // the index of every component inside the combination, and the lanes the combination reads
                 var idx = new int[lanes];

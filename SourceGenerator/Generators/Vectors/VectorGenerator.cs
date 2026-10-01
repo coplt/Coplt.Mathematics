@@ -12,7 +12,8 @@ namespace Coplt.Analyzers.Generators;
 /// create a vector out of another one by <c>GenCtor</c>, the members that replace
 /// the components of the vector by <c>GenReplace</c>, the members of the legacy insert api by <c>GenInsert</c>,
 /// the members that combine two vectors by <c>GenShuffle</c> and the helper that shuffles a vector without a
-/// register by <c>GenShuffleSoft</c>, the swizzle members by <c>GenSwizzle</c>, the
+/// register by <c>GenShuffleSoft</c>, the swizzle members that stay a member of the type by <c>GenSwizzle</c>,
+/// which <see cref="SwizzleGenerator"/> reaches the other ones through an extension member for, the
 /// arithmetic members by <c>GenArith</c>, the as members and the
 /// conversions between a vector and its storage variant by <c>GenAs</c>, the conversions between two vectors by
 /// <c>GenConv</c> and the as members of the math class by <c>GenMathAs</c>. The members that replace the components, the ones of the legacy
