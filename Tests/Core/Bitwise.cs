@@ -266,6 +266,116 @@ public class TestVectorBitwise
     }
 
     [Test]
+    public void ShiftsByAVector()
+    {
+        // every component is shifted by the amount the component of the same position of the other vector holds
+        var i4 = new int4(-8, -1, 4, 8);
+        var n4 = new uint4(1, 2, 2, 3);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(i4 << n4, Is.EqualTo(new int4(-16, -4, 16, 64)));
+            Assert.That(i4 >> n4, Is.EqualTo(new int4(-4, -1, 1, 1)));
+            Assert.That(i4 >>> n4, Is.EqualTo(new int4(2147483644, 1073741823, 1, 1)));
+        }
+
+        // the amount of a component of 8 bytes is a ulong
+        var l3 = new long3(-1, -8, 4);
+        var nl3 = new ulong3(1, 1, 1);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(l3 << nl3, Is.EqualTo(new long3(-2, -16, 8)));
+            Assert.That(l3 >> nl3, Is.EqualTo(new long3(-1, -4, 2)));
+            Assert.That(l3 >>> nl3, Is.EqualTo(new long3(long.MaxValue, 0x7FFF_FFFF_FFFF_FFFC, 2)));
+        }
+
+        var ul4 = new ulong4(0x8000_0000_0000_0000UL, 1, 2, 3);
+        Assert.That(ul4 >>> new ulong4(1, 1, 1, 1),
+            Is.EqualTo(new ulong4(0x4000_0000_0000_0000UL, 0, 1, 1)));
+
+        // the amount may be of the type of the value, the amount of a small type is still a uint
+        var u2 = new uint2(0x8000_0000, 1);
+        var nu2 = new uint2(1, 2);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(u2 << nu2, Is.EqualTo(new uint2(0, 4)));
+            Assert.That(u2 >> nu2, Is.EqualTo(new uint2(0x4000_0000, 0)));
+        }
+
+        var s2 = new short2(-8, 4);
+        var ns2 = new uint2(1, 2);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(s2 << ns2, Is.EqualTo(new short2(-16, 16)));
+            Assert.That(s2 >> ns2, Is.EqualTo(new short2(-4, 1)));
+            Assert.That(s2 >>> ns2, Is.EqualTo(new short2(32764, 1)));
+        }
+
+        var us3 = new ushort3(0x8000, 4, 1);
+        var nus3 = new uint3(1, 2, 3);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(us3 >> nus3, Is.EqualTo(new ushort3(0x4000, 1, 0)));
+            Assert.That(us3 >>> nus3, Is.EqualTo(new ushort3(0x4000, 1, 0)));
+        }
+    }
+
+    [Test]
+    public void ShiftsByAVectorOfFloatingPointIsBitLevel()
+    {
+        static uint F(float x) => BitConverter.SingleToUInt32Bits(x);
+        static ulong D(double x) => BitConverter.DoubleToUInt64Bits(x);
+        static ushort H(Half x) => BitConverter.HalfToUInt16Bits(x);
+
+        var f3 = new float3(1, 2, 3);
+        var f3Shift = f3 << new uint3(1, 2, 3);
+        Assert.That((F(f3Shift.x), F(f3Shift.y), F(f3Shift.z)),
+            Is.EqualTo((F(1f) << 1, F(2f) << 2, F(3f) << 3)));
+
+        var f2 = new float2(1, 2);
+        var f2Shift = f2 >> new uint2(1, 1);
+        var f2Logical = f2 >>> new uint2(2, 1);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((F(f2Shift.x), F(f2Shift.y)), Is.EqualTo((F(1f) >> 1, F(2f) >> 1)));
+            Assert.That((F(f2Logical.x), F(f2Logical.y)), Is.EqualTo((F(1f) >>> 2, F(2f) >>> 1)));
+        }
+
+        var d2 = new double2(1, 2);
+        var d2Shift = d2 << new ulong2(1, 2);
+        Assert.That((D(d2Shift.x), D(d2Shift.y)), Is.EqualTo((D(1d) << 1, D(2d) << 2)));
+
+        var d3 = new double3(1, 2, 3);
+        var d3Shift = d3 >>> new ulong3(1, 2, 3);
+        Assert.That((D(d3Shift.x), D(d3Shift.y), D(d3Shift.z)),
+            Is.EqualTo((D(1d) >>> 1, D(2d) >>> 2, D(3d) >>> 3)));
+
+        var h2 = new half2((Half)1, (Half)2);
+        var h2Shift = h2 << new uint2(1, 2);
+        Assert.That((H(h2Shift.x), H(h2Shift.y)),
+            Is.EqualTo(((ushort)(H((Half)1) << 1), (ushort)(H((Half)2) << 2))));
+    }
+
+    [Test]
+    public void ShiftsOfStorageVariantsByAVector()
+    {
+        static uint F(float x) => BitConverter.SingleToUInt32Bits(x);
+
+        // the amount of a storage variant is the storage variant of the amount of its components
+        var f2 = new float2s(1, 2);
+        float2 f2Shift = f2 << new uint2s(1, 2);
+        Assert.That((F(f2Shift.x), F(f2Shift.y)), Is.EqualTo((F(1f) << 1, F(2f) << 2)));
+
+        var i3 = new int3s(-8, -1, 4);
+        int3 i3Shift = i3 >> new uint3s(1, 1, 2);
+        Assert.That(i3Shift, Is.EqualTo(new int3(-4, -1, 1)));
+
+        var f3 = new float3s(1, 2, 3);
+        float3 f3Shift = f3 >>> new uint3s(2, 1, 3);
+        Assert.That((F(f3Shift.x), F(f3Shift.y), F(f3Shift.z)),
+            Is.EqualTo((F(1f) >>> 2, F(2f) >>> 1, F(3f) >>> 3)));
+    }
+
+    [Test]
     public void PaddingLaneStaysZero()
     {
         var f3 = new float3(1, 2, 3);
@@ -277,6 +387,8 @@ public class TestVectorBitwise
             Assert.That((f3 ^ f3).vector.GetElement(3), Is.EqualTo(0f));
             Assert.That((f3 << 1).vector.GetElement(3), Is.EqualTo(0f));
             Assert.That((f3 >>> 2).vector.GetElement(3), Is.EqualTo(0f));
+            Assert.That((f3 << new uint3(1, 2, 3)).vector.GetElement(3), Is.EqualTo(0f));
+            Assert.That((f3 >>> new uint3(1, 2, 3)).vector.GetElement(3), Is.EqualTo(0f));
         }
 
         var i3 = new int3(1, 2, 3);
@@ -286,6 +398,8 @@ public class TestVectorBitwise
             Assert.That((i3 & i3).vector.GetElement(3), Is.EqualTo(0));
             Assert.That((i3 << 2).vector.GetElement(3), Is.EqualTo(0));
             Assert.That((i3 >> 2).vector.GetElement(3), Is.EqualTo(0));
+            Assert.That((i3 << new uint3(1, 2, 3)).vector.GetElement(3), Is.EqualTo(0));
+            Assert.That((i3 >> new uint3(1, 2, 3)).vector.GetElement(3), Is.EqualTo(0));
         }
 
         var u3 = new uint3(1, 2, 3);
@@ -297,6 +411,8 @@ public class TestVectorBitwise
             Assert.That((~u3).vector.GetElement(3), Is.EqualTo(0u));
             Assert.That((~d3).vector.GetElement(3), Is.EqualTo(0d));
             Assert.That((d3 << 3).vector.GetElement(3), Is.EqualTo(0d));
+            Assert.That((d3 << new ulong3(1, 2, 3)).vector.GetElement(3), Is.EqualTo(0d));
+            Assert.That((d3 >>> new ulong3(1, 2, 3)).vector.GetElement(3), Is.EqualTo(0d));
             Assert.That((~l3).vector.GetElement(3), Is.EqualTo(0L));
             Assert.That((ul3 << 1).vector.GetElement(3), Is.EqualTo(0UL));
         }

@@ -1114,6 +1114,44 @@ public partial class VectorGenerator
         EmitBitOp(">>>", "int", "b", "b",
             Join(i => BitShift(">>>", $"a.{comp[i]}", "b")));
 
+        // a shift of the value by a vector shifts every component by the amount the component of the same position
+        // of the other vector holds, the amount of a component of 4 bytes is a uint and the one of a component of
+        // 8 bytes is a ulong, so the amount is the vector of the unsigned whole number of the width of the value
+        var amount = VectorGenShared.VecName(
+            VectorGenShared.ConvTypes[typ.size == 8 ? "ulong" : "uint"], size, storeVariant);
+        var unsigned = typ.size == 8 ? "AsUInt64" : "AsUInt32";
+        // the shift of a signed whole number that keeps its sign is the arithmetic one, every other shift reaches
+        // the bits of the value: the bits of a floating point component are shifted by its amount
+        var signed = typ.size == 8 ? "AsInt64" : "AsInt32";
+        var arithmetic = typ.i && typ.sig;
+        // the register of a vector of 3 components holds a lane that is not one of them, the helper of the simd
+        // library keeps it at zero when it is told that the value is of 3 components
+        var three = simd && size == 3;
+
+        // emits a shift by the vector of the amount of every component, the view of the value is the one the bits
+        // of it are reached through and is only used when a vector is accelerated
+        void EmitShiftOp(string op, string member, string left)
+        {
+            InheritDoc();
+            sb.AppendLine($"    {attr}");
+            sb.AppendLine($"    public static {type} operator {op}({type} a, {amount} b)");
+            sb.AppendLine("    {");
+            if (simd)
+            {
+                var shifted = $"simd.{member}(a.vector.{left}(), b.vector{(three ? ", true" : "")})";
+                sb.AppendLine($"        if ({vecName}.IsHardwareAccelerated)");
+                sb.AppendLine($"            return {FromVector($"{shifted}.{AsMethod(typ.simdComp)}()")};");
+            }
+
+            sb.AppendLine($"        return new({Join(i => BitShift(op, $"a.{comp[i]}", $"(int)b.{comp[i]}"))});");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        EmitShiftOp("<<", "ShiftLeft", unsigned);
+        EmitShiftOp(">>", "ShiftRight", arithmetic ? signed : unsigned);
+        EmitShiftOp(">>>", "ShiftRight", unsigned);
+
         sb.AppendLine("    #endregion");
 
         #endregion
