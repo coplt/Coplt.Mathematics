@@ -404,7 +404,7 @@ public static partial class simd
         if (Avx512CD.VL.IsSupported)
         {
             var shift = Vector128.Create(64L) - Avx512CD.VL.LeadingZeroCount(a - Vector128<ulong>.One).AsInt64();
-            return Avx2.ShiftLeftLogicalVariable(Vector128<ulong>.One ^ (shift >> 5).AsUInt64(), shift.AsUInt64());
+            return Avx2.ShiftLeftLogicalVariable(Vector128<ulong>.One ^ (shift >> 6).AsUInt64(), shift.AsUInt64());
         }
 
         if (Vector128.IsHardwareAccelerated && !(X86Base.X64.IsSupported || ArmBase.Arm64.IsSupported || PackedSimd.IsSupported))
@@ -431,7 +431,7 @@ public static partial class simd
         if (Avx512CD.VL.IsSupported)
         {
             var shift = Vector256.Create(64L) - Avx512CD.VL.LeadingZeroCount(a - Vector256<ulong>.One).AsInt64();
-            return Avx2.ShiftLeftLogicalVariable(Vector256<ulong>.One ^ (shift >> 5).AsUInt64(), shift.AsUInt64());
+            return Avx2.ShiftLeftLogicalVariable(Vector256<ulong>.One ^ (shift >> 6).AsUInt64(), shift.AsUInt64());
         }
 
         if (Vector256.IsHardwareAccelerated)
@@ -458,7 +458,7 @@ public static partial class simd
         if (Avx512CD.IsSupported)
         {
             var shift = Vector512.Create(64L) - Avx512CD.LeadingZeroCount(a - Vector512<ulong>.One).AsInt64();
-            return Avx512F.ShiftLeftLogicalVariable(Vector512<ulong>.One ^ (shift >> 5).AsUInt64(), shift.AsUInt64());
+            return Avx512F.ShiftLeftLogicalVariable(Vector512<ulong>.One ^ (shift >> 6).AsUInt64(), shift.AsUInt64());
         }
 
         if (Vector512.IsHardwareAccelerated)
@@ -507,14 +507,33 @@ public static partial class simd
     #endregion
 
     #region IsPow2
-    
+
+    public static Vector64<uint> IsPow2(Vector64<float> v)
+    {
+        var bits = v.AsUInt32();
+
+        var isPositive = Vector64.GreaterThan(v, Vector64<float>.Zero).AsUInt32();
+        var isFinite = Vector64.IsFinite(v).AsUInt32();
+        var isValidPositive = isPositive & isFinite;
+
+        var mantissa = bits & Vector64.Create(0x007F_FFFFu);
+        var isNormalPow2 = Vector64.Equals(mantissa, Vector64<uint>.Zero);
+
+        var exp = bits & Vector64.Create(0x7F80_0000u);
+        var isSubnormal = Vector64.Equals(exp, Vector64<uint>.Zero);
+        var isSubnormalPow2 = Vector64.Equals(bits & bits - Vector64.Create(1u), Vector64<uint>.Zero);
+
+        var isPow2 = Vector64.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
+
+        return isValidPositive & isPow2;
+    }
+
     /// <summary>
     /// Says of every component of the register whether it is a power of two, which is the rule of the framework
     /// for the kind of it: a floating point component holds when it is a positive finite power of two, so the zero,
     /// the negative of a power of two, the infinity and the nan of a component do not hold and the smallest
     /// subnormal of the kind, which has a single bit, does
     /// </summary>
-    [MethodImpl(256)]
     public static Vector128<uint> IsPow2(Vector128<float> v)
     {
         var bits = v.AsUInt32();
@@ -528,7 +547,7 @@ public static partial class simd
 
         var exp = bits & Vector128.Create(0x7F80_0000u);
         var isSubnormal = Vector128.Equals(exp, Vector128<uint>.Zero);
-        var isSubnormalPow2 = Vector128.Equals(bits & (bits - Vector128.Create(1u)), Vector128<uint>.Zero);
+        var isSubnormalPow2 = Vector128.Equals(bits & bits - Vector128.Create(1u), Vector128<uint>.Zero);
 
         var isPow2 = Vector128.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
 
@@ -536,29 +555,6 @@ public static partial class simd
     }
 
     /// <inheritdoc cref="IsPow2(Vector128{float})"/>
-    [MethodImpl(256)]
-    public static Vector128<ulong> IsPow2(Vector128<double> v)
-    {
-        var bits = v.AsUInt64();
-
-        var isPositive = Vector128.GreaterThan(v, Vector128<double>.Zero).AsUInt64();
-        var isFinite = Vector128.IsFinite(v).AsUInt64();
-        var isValidPositive = isPositive & isFinite;
-
-        var mantissa = bits & Vector128.Create(0x000F_FFFF_FFFF_FFFFul);
-        var isNormalPow2 = Vector128.Equals(mantissa, Vector128<ulong>.Zero);
-
-        var exp = bits & Vector128.Create(0x7FF0_0000_0000_0000ul);
-        var isSubnormal = Vector128.Equals(exp, Vector128<ulong>.Zero);
-        var isSubnormalPow2 = Vector128.Equals(bits & (bits - Vector128.Create(1ul)), Vector128<ulong>.Zero);
-
-        var isPow2 = Vector128.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
-
-        return isValidPositive & isPow2;
-    }
-
-    /// <inheritdoc cref="IsPow2(Vector128{float})"/>
-    [MethodImpl(256)]
     public static Vector256<uint> IsPow2(Vector256<float> v)
     {
         var bits = v.AsUInt32();
@@ -572,7 +568,7 @@ public static partial class simd
 
         var exp = bits & Vector256.Create(0x7F80_0000u);
         var isSubnormal = Vector256.Equals(exp, Vector256<uint>.Zero);
-        var isSubnormalPow2 = Vector256.Equals(bits & (bits - Vector256.Create(1u)), Vector256<uint>.Zero);
+        var isSubnormalPow2 = Vector256.Equals(bits & bits - Vector256.Create(1u), Vector256<uint>.Zero);
 
         var isPow2 = Vector256.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
 
@@ -580,7 +576,48 @@ public static partial class simd
     }
 
     /// <inheritdoc cref="IsPow2(Vector128{float})"/>
-    [MethodImpl(256)]
+    public static Vector512<uint> IsPow2(Vector512<float> v)
+    {
+        var bits = v.AsUInt32();
+
+        var isPositive = Vector512.GreaterThan(v, Vector512<float>.Zero).AsUInt32();
+        var isFinite = Vector512.IsFinite(v).AsUInt32();
+        var isValidPositive = isPositive & isFinite;
+
+        var mantissa = bits & Vector512.Create(0x007F_FFFFu);
+        var isNormalPow2 = Vector512.Equals(mantissa, Vector512<uint>.Zero);
+
+        var exp = bits & Vector512.Create(0x7F80_0000u);
+        var isSubnormal = Vector512.Equals(exp, Vector512<uint>.Zero);
+        var isSubnormalPow2 = Vector512.Equals(bits & bits - Vector512.Create(1u), Vector512<uint>.Zero);
+
+        var isPow2 = Vector512.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
+
+        return isValidPositive & isPow2;
+    }
+
+    /// <inheritdoc cref="IsPow2(Vector128{float})"/>
+    public static Vector128<ulong> IsPow2(Vector128<double> v)
+    {
+        var bits = v.AsUInt64();
+
+        var isPositive = Vector128.GreaterThan(v, Vector128<double>.Zero).AsUInt64();
+        var isFinite = Vector128.IsFinite(v).AsUInt64();
+        var isValidPositive = isPositive & isFinite;
+
+        var mantissa = bits & Vector128.Create(0x000F_FFFF_FFFF_FFFFul);
+        var isNormalPow2 = Vector128.Equals(mantissa, Vector128<ulong>.Zero);
+
+        var exp = bits & Vector128.Create(0x7FF0_0000_0000_0000ul);
+        var isSubnormal = Vector128.Equals(exp, Vector128<ulong>.Zero);
+        var isSubnormalPow2 = Vector128.Equals(bits & bits - Vector128.Create(1ul), Vector128<ulong>.Zero);
+
+        var isPow2 = Vector128.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
+
+        return isValidPositive & isPow2;
+    }
+
+    /// <inheritdoc cref="IsPow2(Vector128{float})"/>
     public static Vector256<ulong> IsPow2(Vector256<double> v)
     {
         var bits = v.AsUInt64();
@@ -594,11 +631,140 @@ public static partial class simd
 
         var exp = bits & Vector256.Create(0x7FF0_0000_0000_0000ul);
         var isSubnormal = Vector256.Equals(exp, Vector256<ulong>.Zero);
-        var isSubnormalPow2 = Vector256.Equals(bits & (bits - Vector256.Create(1ul)), Vector256<ulong>.Zero);
+        var isSubnormalPow2 = Vector256.Equals(bits & bits - Vector256.Create(1ul), Vector256<ulong>.Zero);
 
         var isPow2 = Vector256.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
 
         return isValidPositive & isPow2;
+    }
+
+    /// <inheritdoc cref="IsPow2(Vector128{float})"/>
+    public static Vector512<ulong> IsPow2(Vector512<double> v)
+    {
+        var bits = v.AsUInt64();
+
+        var isPositive = Vector512.GreaterThan(v, Vector512<double>.Zero).AsUInt64();
+        var isFinite = Vector512.IsFinite(v).AsUInt64();
+        var isValidPositive = isPositive & isFinite;
+
+        var mantissa = bits & Vector512.Create(0x000F_FFFF_FFFF_FFFFul);
+        var isNormalPow2 = Vector512.Equals(mantissa, Vector512<ulong>.Zero);
+
+        var exp = bits & Vector512.Create(0x7FF0_0000_0000_0000ul);
+        var isSubnormal = Vector512.Equals(exp, Vector512<ulong>.Zero);
+        var isSubnormalPow2 = Vector512.Equals(bits & bits - Vector512.Create(1ul), Vector512<ulong>.Zero);
+
+        var isPow2 = Vector512.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
+
+        return isValidPositive & isPow2;
+    }
+
+    #endregion
+
+    #region RoundUpToPowerOf2 Float
+
+    public static Vector128<float> RoundUpToPowerOf2(Vector128<float> v)
+    {
+        var bits = v.AsUInt32();
+        var exp = bits & Vector128.Create(0x7F80_0000u);
+
+        var isSubnormal = Vector128.Equals(exp, Vector128<uint>.Zero).AsSingle();
+
+        var vScaled = v * Vector128.Create(8388608.0f);
+        var inputForTrick = Vector128.ConditionalSelect(isSubnormal, vScaled, v);
+
+        var trickBits = inputForTrick.AsUInt32();
+        var trickResult = (trickBits + Vector128.Create(0x007F_FFFFu) & Vector128.Create(0x7F80_0000u)).AsSingle();
+
+        var unscaledResult = trickResult * Vector128.Create(1.1920928955078125e-7f);
+        var pow2Candidate = Vector128.ConditionalSelect(isSubnormal, unscaledResult, trickResult);
+
+        var isPositive = Vector128.GreaterThan(v, Vector128<float>.Zero);
+        var isFinite = Vector128.IsFinite(v);
+        var isNaN = Vector128.IsNaN(v);
+
+        var positiveResult = Vector128.ConditionalSelect(isFinite, pow2Candidate, v);
+        var nonPositiveResult = Vector128.ConditionalSelect(isNaN, v, Vector128<float>.Zero);
+
+        return Vector128.ConditionalSelect(isPositive, positiveResult, nonPositiveResult);
+    }
+
+    public static Vector256<float> RoundUpToPowerOf2(Vector256<float> v)
+    {
+        var bits = v.AsUInt32();
+        var exp = bits & Vector256.Create(0x7F80_0000u);
+
+        var isSubnormal = Vector256.Equals(exp, Vector256<uint>.Zero).AsSingle();
+
+        var vScaled = v * Vector256.Create(8388608.0f);
+        var inputForTrick = Vector256.ConditionalSelect(isSubnormal, vScaled, v);
+
+        var trickBits = inputForTrick.AsUInt32();
+        var trickResult = (trickBits + Vector256.Create(0x007F_FFFFu) & Vector256.Create(0x7F80_0000u)).AsSingle();
+
+        var unscaledResult = trickResult * Vector256.Create(1.1920928955078125e-7f);
+        var pow2Candidate = Vector256.ConditionalSelect(isSubnormal, unscaledResult, trickResult);
+
+        var isPositive = Vector256.GreaterThan(v, Vector256<float>.Zero);
+        var isFinite = Vector256.IsFinite(v);
+        var isNaN = Vector256.IsNaN(v);
+
+        var positiveResult = Vector256.ConditionalSelect(isFinite, pow2Candidate, v);
+        var nonPositiveResult = Vector256.ConditionalSelect(isNaN, v, Vector256<float>.Zero);
+
+        return Vector256.ConditionalSelect(isPositive, positiveResult, nonPositiveResult);
+    }
+
+    public static Vector128<double> RoundUpToPowerOf2(Vector128<double> v)
+    {
+        var bits = v.AsUInt64();
+        var exp = bits & Vector128.Create(0x7FF0_0000_0000_0000ul);
+
+        var isSubnormal = Vector128.Equals(exp, Vector128<ulong>.Zero).AsDouble();
+
+        var vScaled = v * Vector128.Create(4503599627370496.0);
+        var inputForTrick = Vector128.ConditionalSelect(isSubnormal, vScaled, v);
+
+        var trickBits = inputForTrick.AsUInt64();
+        var trickResult = (trickBits + Vector128.Create(0x000F_FFFF_FFFF_FFFFul) & Vector128.Create(0x7FF0_0000_0000_0000ul)).AsDouble();
+
+        var unscaledResult = trickResult * Vector128.Create(2.220446049250313e-16);
+        var pow2Candidate = Vector128.ConditionalSelect(isSubnormal, unscaledResult, trickResult);
+
+        var isPositive = Vector128.GreaterThan(v, Vector128<double>.Zero);
+        var isFinite = Vector128.IsFinite(v);
+        var isNaN = Vector128.IsNaN(v);
+
+        var positiveResult = Vector128.ConditionalSelect(isFinite, pow2Candidate, v);
+        var nonPositiveResult = Vector128.ConditionalSelect(isNaN, v, Vector128<double>.Zero);
+
+        return Vector128.ConditionalSelect(isPositive, positiveResult, nonPositiveResult);
+    }
+
+    public static Vector256<double> RoundUpToPowerOf2(Vector256<double> v)
+    {
+        var bits = v.AsUInt64();
+        var exp = bits & Vector256.Create(0x7FF0_0000_0000_0000ul);
+
+        var isSubnormal = Vector256.Equals(exp, Vector256<ulong>.Zero).AsDouble();
+
+        var vScaled = v * Vector256.Create(4503599627370496.0);
+        var inputForTrick = Vector256.ConditionalSelect(isSubnormal, vScaled, v);
+
+        var trickBits = inputForTrick.AsUInt64();
+        var trickResult = (trickBits + Vector256.Create(0x000F_FFFF_FFFF_FFFFul) & Vector256.Create(0x7FF0_0000_0000_0000ul)).AsDouble();
+
+        var unscaledResult = trickResult * Vector256.Create(2.220446049250313e-16);
+        var pow2Candidate = Vector256.ConditionalSelect(isSubnormal, unscaledResult, trickResult);
+
+        var isPositive = Vector256.GreaterThan(v, Vector256<double>.Zero);
+        var isFinite = Vector256.IsFinite(v);
+        var isNaN = Vector256.IsNaN(v);
+
+        var positiveResult = Vector256.ConditionalSelect(isFinite, pow2Candidate, v);
+        var nonPositiveResult = Vector256.ConditionalSelect(isNaN, v, Vector256<double>.Zero);
+
+        return Vector256.ConditionalSelect(isPositive, positiveResult, nonPositiveResult);
     }
 
     #endregion
@@ -703,8 +869,7 @@ public static partial class simd
 
     public static bool IsShiftAccelerated
     {
-        [MethodImpl(256)]
-        get => Avx2.IsSupported;
+        [MethodImpl(256)] get => Avx2.IsSupported;
     }
 
     #region ShiftLeft

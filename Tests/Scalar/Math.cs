@@ -42,7 +42,7 @@ public class TestScalarMath
         Assert.That(square((short)-3), Is.EqualTo((short)9));
         Assert.That(dot((ushort)3, (ushort)4), Is.EqualTo((ushort)12));
         Assert.That(distance_sq((short)2, (short)5), Is.EqualTo((short)9));
-        Assert.That(up2pow2((ushort)5), Is.EqualTo((ushort)8));
+        Assert.That(up2_pow2((ushort)5), Is.EqualTo((ushort)8));
     }
 
     [Test]
@@ -130,6 +130,17 @@ public class TestScalarMath
         Assert.That(is_pos_inf(float.PositiveInfinity), Is.True);
         Assert.That(is_neg_inf(float.PositiveInfinity), Is.False);
         Assert.That(is_neg_inf(double.NegativeInfinity), Is.True);
+
+        // the check of a power of two of a floating point value is the one of the framework of the kind of it
+        Assert.That(is_pow2(4f), Is.True);
+        Assert.That(is_pow2(3f), Is.False);
+        Assert.That(is_pow2(0f), Is.False);
+        Assert.That(is_pow2(-4f), Is.False);
+        Assert.That(is_pow2(float.Epsilon), Is.True);
+        Assert.That(up2_pow2(3f), Is.EqualTo(4f));
+        Assert.That(up2_pow2(-4f), Is.EqualTo(0f));
+        Assert.That(up2_pow2(3d), Is.EqualTo(4d));
+        Assert.That(up2_pow2((Half)3f), Is.EqualTo((Half)4f));
     }
 
     [Test]
@@ -139,9 +150,15 @@ public class TestScalarMath
         Assert.That(is_pow2(0), Is.False);
         Assert.That(is_pow2(-8), Is.False);
         Assert.That(is_pow2(5u), Is.False);
-        Assert.That(up2pow2(5u), Is.EqualTo(8u));
-        Assert.That(up2pow2(8ul), Is.EqualTo(8ul));
-        Assert.That(up2pow2(0u), Is.EqualTo(0u));
+        Assert.That(is_pow2((short)4), Is.True);
+        Assert.That(up2_pow2(5u), Is.EqualTo(8u));
+        Assert.That(up2_pow2(8ul), Is.EqualTo(8ul));
+        Assert.That(up2_pow2(0u), Is.EqualTo(0u));
+        // the rounding of a value that has a sign is done in the bits of the unsigned kind of it
+        Assert.That(up2_pow2(5), Is.EqualTo(8));
+        Assert.That(up2_pow2(-4), Is.EqualTo(0));
+        Assert.That(up2_pow2((short)5), Is.EqualTo((short)8));
+        Assert.That(up2_pow2(-4L), Is.EqualTo(0L));
     }
 
     /// <summary>
@@ -189,8 +206,11 @@ public class TestScalarMath
         Assert.That(0.5f.smoothstep(0f, 1f), Is.EqualTo(0.5f));
         Assert.That(8f.is_finite(), Is.True);
         Assert.That(float.NaN.is_NaN(), Is.True);
-        Assert.That(5u.up2pow2(), Is.EqualTo(8u));
+        Assert.That(5u.up2_pow2(), Is.EqualTo(8u));
+        Assert.That((-4).up2_pow2(), Is.EqualTo(0));
         Assert.That(8.is_pow2(), Is.True);
+        Assert.That(3f.is_pow2(), Is.False);
+        Assert.That(3f.up2_pow2(), Is.EqualTo(4f));
 
         var fraction = 1.25f.modf(out var integral);
         Assert.That(integral, Is.EqualTo(1f));

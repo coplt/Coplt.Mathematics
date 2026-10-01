@@ -56,8 +56,9 @@ internal static class ScalarDocs
             "is_pow2", ("Returns true when the value is a power of two, a zero and a negative value are not a power of two", "True when the value is a power of two", "a=The value")
         },
         {
-            "up2pow2",
-            ("Returns the value rounded up to the next power of two, a value that is a power of two already is kept and a zero stays zero", "The rounded up value", "a=The value")
+            "up2_pow2",
+            ("Returns the value rounded up to the next power of two, which is the power of two that is not less than the value and the smallest one of them: a value that is a power of two already is kept, a zero and a negative value answer with a zero, the infinity answers with itself and the nan with itself",
+                "The rounded up value", "a=The value")
         },
 
         #endregion

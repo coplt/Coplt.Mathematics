@@ -340,8 +340,6 @@ public partial class VectorGenerator
 
         var ctorMembers = GenCtor(typ, size, storeVariant);
         var arithMembers = !storeVariant && typ.arith ? GenArith(typ, size, storeVariant) : null;
-        var intMembers = !storeVariant && typ.arith && typ.i ? GenInt(typ, size, storeVariant) : null;
-        if (intMembers != null) ifaces.Add(typ.sig ? $"IVectorInteger<{type}>" : $"IVectorUnsignedInteger<{type}>");
         var asMembers = GenAs(typ, size, storeVariant, ifaces);
         var convMembers = GenConv(typ, size, storeVariant);
         sb.AppendLine($"public partial struct {type} :");
@@ -1219,44 +1217,15 @@ public partial class VectorGenerator
         }
 
         // the members of the parts above are a part of the value itself, so they are appended into its
-        // declaration as well. The forwarding of the legacy families is emitted into a file of their own, see
-        // Initialize, the value itself does not carry it
+        // declaration as well
         Part(underlyingMembers, "underlying");
         Part(ctorMembers, "ctor");
         Part(arithMembers, "arith");
-        Part(intMembers, "int");
         Part(asMembers, "as");
         Part(convMembers, "conv");
 
         sb.AppendLine("}");
 
-        return VectorDocs.Apply(VectorGenShared.Normalize(sb.ToString()));
-    }
-
-    /// <summary>
-    /// Generates the file of the members of the legacy interfaces of the vector described by
-    /// <paramref name="typ"/>: the forwarding of the families of the interfaces of the value. They are emitted
-    /// into a file of their own, which the migration removes as a whole once the families of the interfaces are
-    /// gone. The constants of the kinds of the value are not a part of it, they are the algebra of it and are
-    /// emitted beside the value itself.
-    /// </summary>
-    /// <param name="typ">The type of the vector</param>
-    /// <param name="size">The number of components of the vector</param>
-    /// <param name="storeVariant">True for the storage variant of the vector</param>
-    /// <returns>The file</returns>
-    private static string GenLegacy(Typ typ, int size, bool storeVariant)
-    {
-        var type = VectorGenShared.VecName(typ, size, storeVariant);
-
-        var sb = new StringBuilder();
-
-        VectorGenShared.FileHeader(sb, true);
-        sb.AppendLine($"public partial struct {type}");
-        sb.AppendLine("{");
-        sb.Append(GenIface(typ, size, storeVariant).Trim('\r', '\n'));
-        sb.AppendLine();
-        sb.AppendLine("}");
-
-        return VectorDocs.Apply(VectorGenShared.Normalize(sb.ToString()));
+        return VectorGenShared.Normalize(sb.ToString());
     }
 }

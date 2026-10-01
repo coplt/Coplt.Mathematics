@@ -260,6 +260,7 @@ internal static class ScalarOps
         { "acosh", "{s}.Acosh({0})" },
         { "atanh", "{s}.Atanh({0})" },
         { "is_NaN", "{s}.IsNaN({0})" },
+        { "is_pow2", "{s}.IsPow2({0})" },
         { "is_finite", "{s}.IsFinite({0})" },
         { "is_inf", "{s}.IsInfinity({0})" },
         { "is_pos_inf", "{s}.IsPositiveInfinity({0})" },
@@ -288,7 +289,8 @@ internal static class ScalarOps
     /// The operations of every type, in the order they are emitted.
     /// <para>The operations that the BCL names are its own members, the ones that it does not name are built
     /// from the ones it does: the remainder is <c>a - b * floor(a / b)</c> with the product fused into a single
-    /// rounding and the power of two operations are the ones of <c>BitOperations</c>.</para>
+    /// rounding and the rounding up to a power of two is the one of <c>BitOperations</c> for an integer and the
+    /// one of the simd library for a floating point value.</para>
     /// </summary>
     private static readonly ScalarOp[] All =
     [
@@ -328,8 +330,9 @@ internal static class ScalarOps
         #region integer
 
         Op("is_pow2", "i", ["a"], returns: "bool", body: "BitOperations.IsPow2({ci}{0})"),
-        // the rounding up to a power of two only has unsigned members
-        Op("up2pow2", "u", ["a"], body: "{c}BitOperations.RoundUpToPowerOf2({cu}{0})"),
+        // the rounding up to a power of two is done in the bits of the unsigned kind of the value, which is the
+        // kind of the value itself for one that has no sign
+        Op("up2_pow2", "i", ["a"], body: "{c}BitOperations.RoundUpToPowerOf2({cu}{0})"),
 
         #endregion
 
@@ -389,6 +392,9 @@ internal static class ScalarOps
         Op("is_inf", "e", ["a"], returns: "bool"),
         Op("is_pos_inf", "e", ["a"], returns: "bool"),
         Op("is_neg_inf", "e", ["a"], returns: "bool"),
+        Op("is_pow2", "e", ["a"], returns: "bool"),
+        Op("up2_pow2", "e", ["a"], body: "simd.RoundUpToPowerOf2(Vector128.CreateScalarUnsafe({0})).ToScalar()",
+            halfBody: "(half)simd.RoundUpToPowerOf2(Vector128.CreateScalarUnsafe((float){0})).ToScalar()"),
         Op("log", "e", ["a"]),
         // the base of the logarithm is the second parameter of the same function
         Op("log", "e", ["a", "b"], bcl: "log_base", ext: ["other"]),
@@ -446,8 +452,7 @@ internal static class ScalarOps
 
     /// <summary>
     /// True when the type of a value has the operation.
-    /// <para><c>a</c> is every numeric type, <c>i</c> is an integer, <c>u</c> is an integer without a sign,
-    /// which is the only kind that can be rounded up to a power of two, <c>f</c> is a floating point type and
+    /// <para><c>a</c> is every numeric type, <c>i</c> is an integer, <c>f</c> is a floating point type and
     /// <c>e</c> is a floating point type as well, the last two only tell the two groups of the members
     /// apart.</para>
     /// </summary>
@@ -458,7 +463,6 @@ internal static class ScalarOps
     {
         "a" or "s" => typ.arith,
         "i" => typ.i,
-        "u" => typ.i && !typ.sig,
         "f" or "e" => typ.f,
         _ => false,
     };
@@ -471,7 +475,7 @@ internal static class ScalarOps
     public static string Region(string kind) => kind switch
     {
         "a" => "arithmetic",
-        "i" or "u" => "integer",
+        "i" => "integer",
         "f" => "floating point",
         "e" => "ieee754",
         "s" => "select",
@@ -520,11 +524,17 @@ internal static class ScalarOps
 
     /// <summary>
     /// The cast to the unsigned integer that the bits of a value are counted in: the rounding up to a power of
-    /// two only has unsigned members and the one of a value that is narrower than an int is its uint.
+    /// two is done in the unsigned kind of the value, which is the kind of it for a value without a sign and the
+    /// unsigned kind of the same width for one that has a sign.
     /// </summary>
     /// <param name="scalar">The type of the value</param>
     /// <returns>The cast</returns>
-    public static string UnsignedCast(string scalar) => scalar is "short" or "ushort" ? "(uint)" : "";
+    public static string UnsignedCast(string scalar) => scalar switch
+    {
+        "short" or "ushort" or "int" => "(uint)",
+        "long" => "(ulong)",
+        _ => "",
+    };
 
     /// <summary>
     /// The cast to the integer that the bits of a value are computed in: the arithmetic of an integer that is
