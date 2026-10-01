@@ -1,4 +1,3 @@
-using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
@@ -30,14 +29,31 @@ namespace Coplt.Mathematics.Implements
     /// <summary>
     /// The sign of a value
     /// <para>The value of a vector that keeps it in a register reaches the member of the visitor that matches
-    /// the width of the register, the value of every other vector reaches <see cref="Scalar.Sign{T}"/> for every
+    /// the width of the register, the value of every other vector reaches the member of the scalar for every
     /// component of it and the value of a matrix reaches it for every component of every one of its columns</para>
     /// </summary>
     internal struct impl_sign : IAlgebraVisitor_T_T<impl_sign>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TScalar IAlgebraVisitor_S_S<impl_sign>.Scalar_Number<TScalar>(TScalar value)
-            => Scalar.Sign(value);
+        {
+            if (value.Equals(TScalar.Zero)) return TScalar.Zero;
+            if (typeof(TScalar) == typeof(byte)
+                || typeof(TScalar) == typeof(ushort)
+                || typeof(TScalar) == typeof(uint)
+                || typeof(TScalar) == typeof(ulong)
+                || typeof(TScalar) == typeof(nuint)) return TScalar.One;
+            if (value < TScalar.Zero) return -TScalar.One;
+            return TScalar.One;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_S_S<impl_sign>.Scalar_Float<TScalar>(TScalar value)
+        {
+            var a = value & -TScalar.Zero | TScalar.One;
+            var c = value == TScalar.Zero ? TScalar.Zero : TScalar.AllBitsSet;
+            return a & c;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T<impl_sign>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)

@@ -10,7 +10,7 @@ public static partial class simd
 {
     #region Convert
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> ToInt32(Vector256<double> v)
     {
         if (Avx.IsSupported)
@@ -21,7 +21,7 @@ public static partial class simd
         return Vector128.Narrow(Vector128.ConvertToInt64(v.GetLower()), Vector128.ConvertToInt64(v.GetUpper()));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> ToUInt32(Vector256<double> v)
     {
         if (Avx.IsSupported)
@@ -32,7 +32,7 @@ public static partial class simd
         return Vector128.Narrow(Vector128.ConvertToUInt64(v.GetLower()), Vector128.ConvertToUInt64(v.GetUpper()));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> ToSingle(Vector256<double> v)
     {
         if (Avx.IsSupported)
@@ -43,13 +43,13 @@ public static partial class simd
         return Vector128.Narrow(v.GetLower(), v.GetUpper());
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> ToSingle(Vector128<double> v)
     {
         return Vector64.Narrow(v.GetLower(), v.GetUpper());
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> ToDouble(Vector128<float> v)
     {
         if (Avx.IsSupported)
@@ -61,14 +61,14 @@ public static partial class simd
         return Vector256.Create(l, u);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> ToDouble(Vector64<float> v)
     {
         var (l, u) = Vector64.Widen(v);
         return Vector128.Create(l, u);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> ToDouble(Vector128<int> v)
     {
         if (Avx.IsSupported)
@@ -80,7 +80,7 @@ public static partial class simd
         return Vector256.Create(Vector128.ConvertToDouble(l), Vector128.ConvertToDouble(u));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> ToDouble(Vector128<uint> v)
     {
         if (Avx.IsSupported)
@@ -103,7 +103,7 @@ public static partial class simd
     /// r (x0, y0, x1, y1) (l0, l1)
     /// </code>
     /// </summary>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<T> MoveLowToHigh<T>(Vector128<T> a, Vector128<T> b)
     {
         if (Sse.IsSupported)
@@ -121,7 +121,7 @@ public static partial class simd
     /// r (x0, y0, x1, y1) (l0, l1)
     /// </code>
     /// </summary>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<T> MoveLowToHigh<T>(Vector256<T> a, Vector256<T> b)
     {
         if (Avx.IsSupported)
@@ -143,7 +143,7 @@ public static partial class simd
     /// r (z1, w1, z0, w0) (h1, h0)
     /// </code>
     /// </summary>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<T> MoveHighToLow<T>(Vector128<T> a, Vector128<T> b)
     {
         if (Sse.IsSupported)
@@ -161,7 +161,7 @@ public static partial class simd
     /// r (z1, w1, z0, w0) (h1, h0)
     /// </code>
     /// </summary>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<T> MoveHighToLow<T>(Vector256<T> a, Vector256<T> b)
     {
         if (Avx.IsSupported)
@@ -176,15 +176,15 @@ public static partial class simd
 
     #region UnpackLow
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<T> UnpackLow<T>(Vector128<T> a, Vector128<T> b) =>
         UnpackLow(a.AsSingle(), b.AsSingle()).As<float, T>();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<T> UnpackLow<T>(Vector256<T> a, Vector256<T> b) =>
         UnpackLow(a.AsDouble(), b.AsDouble()).As<double, T>();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector128<float> UnpackLow(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported)
@@ -200,7 +200,7 @@ public static partial class simd
         return Vector128.Shuffle(MoveLowToHigh(a, b), Vector128.Create(0, 2, 1, 3));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector256<double> UnpackLow(Vector256<double> a, Vector256<double> b)
     {
         return Vector256.Shuffle(MoveLowToHigh(a, b), Vector256.Create(0, 2, 1, 3));
@@ -210,15 +210,15 @@ public static partial class simd
 
     #region UnpackHigh
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<T> UnpackHigh<T>(Vector128<T> a, Vector128<T> b) =>
         UnpackHigh(a.AsSingle(), b.AsSingle()).As<float, T>();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<T> UnpackHigh<T>(Vector256<T> a, Vector256<T> b) =>
         UnpackHigh(a.AsDouble(), b.AsDouble()).As<double, T>();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector128<float> UnpackHigh(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported)
@@ -234,7 +234,7 @@ public static partial class simd
         return Vector128.Shuffle(MoveHighToLow(b, a), Vector128.Create(0, 2, 1, 3));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector256<double> UnpackHigh(Vector256<double> a, Vector256<double> b)
     {
         return Vector256.Shuffle(MoveHighToLow(b, a), Vector256.Create(0, 2, 1, 3));
@@ -244,7 +244,7 @@ public static partial class simd
 
     #region LeadingZeroCount
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<uint> LeadingZeroCount(Vector64<uint> a)
     {
         if (Avx512CD.VL.IsSupported && Vector128.IsHardwareAccelerated)
@@ -255,7 +255,7 @@ public static partial class simd
         ).AsUInt32();
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> LeadingZeroCount(Vector128<uint> a)
     {
         if (Avx512CD.VL.IsSupported) return Avx512CD.VL.LeadingZeroCount(a);
@@ -275,7 +275,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<uint> LeadingZeroCount(Vector256<uint> a)
     {
         if (Avx512CD.VL.IsSupported) return Avx512CD.VL.LeadingZeroCount(a);
@@ -295,7 +295,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<uint> LeadingZeroCount(Vector512<uint> a)
     {
         if (Avx512CD.IsSupported) return Avx512CD.LeadingZeroCount(a);
@@ -309,7 +309,7 @@ public static partial class simd
 
     #region RoundUpToPowerOf2
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<uint> RoundUpToPowerOf2(Vector64<uint> a)
     {
         if (Avx512CD.VL.IsSupported || Vector128.IsHardwareAccelerated)
@@ -320,7 +320,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> RoundUpToPowerOf2(Vector128<uint> a)
     {
         if (Avx512CD.VL.IsSupported)
@@ -346,7 +346,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<uint> RoundUpToPowerOf2(Vector256<uint> a)
     {
         if (Avx512CD.VL.IsSupported)
@@ -372,7 +372,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<uint> RoundUpToPowerOf2(Vector512<uint> a)
     {
         if (Avx512CD.IsSupported)
@@ -398,7 +398,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<ulong> RoundUpToPowerOf2(Vector128<ulong> a)
     {
         if (Avx512CD.VL.IsSupported)
@@ -425,7 +425,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> RoundUpToPowerOf2(Vector256<ulong> a)
     {
         if (Avx512CD.VL.IsSupported)
@@ -452,7 +452,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<ulong> RoundUpToPowerOf2(Vector512<ulong> a)
     {
         if (Avx512CD.IsSupported)
@@ -483,32 +483,129 @@ public static partial class simd
 
     #region RoundUpToPowerOf2 signed
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<int> RoundUpToPowerOf2(Vector64<int> a) => RoundUpToPowerOf2(a.AsUInt32()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> RoundUpToPowerOf2(Vector128<int> a) => RoundUpToPowerOf2(a.AsUInt32()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<int> RoundUpToPowerOf2(Vector256<int> a) => RoundUpToPowerOf2(a.AsUInt32()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<int> RoundUpToPowerOf2(Vector512<int> a) => RoundUpToPowerOf2(a.AsUInt32()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<long> RoundUpToPowerOf2(Vector128<long> a) => RoundUpToPowerOf2(a.AsUInt64()).AsInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> RoundUpToPowerOf2(Vector256<long> a) => RoundUpToPowerOf2(a.AsUInt64()).AsInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<long> RoundUpToPowerOf2(Vector512<long> a) => RoundUpToPowerOf2(a.AsUInt64()).AsInt64();
+
+    #endregion
+
+    #region IsPow2
+    
+    /// <summary>
+    /// Says of every component of the register whether it is a power of two, which is the rule of the framework
+    /// for the kind of it: a floating point component holds when it is a positive finite power of two, so the zero,
+    /// the negative of a power of two, the infinity and the nan of a component do not hold and the smallest
+    /// subnormal of the kind, which has a single bit, does
+    /// </summary>
+    [MethodImpl(256)]
+    public static Vector128<uint> IsPow2(Vector128<float> v)
+    {
+        var bits = v.AsUInt32();
+
+        var isPositive = Vector128.GreaterThan(v, Vector128<float>.Zero).AsUInt32();
+        var isFinite = Vector128.IsFinite(v).AsUInt32();
+        var isValidPositive = isPositive & isFinite;
+
+        var mantissa = bits & Vector128.Create(0x007F_FFFFu);
+        var isNormalPow2 = Vector128.Equals(mantissa, Vector128<uint>.Zero);
+
+        var exp = bits & Vector128.Create(0x7F80_0000u);
+        var isSubnormal = Vector128.Equals(exp, Vector128<uint>.Zero);
+        var isSubnormalPow2 = Vector128.Equals(bits & (bits - Vector128.Create(1u)), Vector128<uint>.Zero);
+
+        var isPow2 = Vector128.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
+
+        return isValidPositive & isPow2;
+    }
+
+    /// <inheritdoc cref="IsPow2(Vector128{float})"/>
+    [MethodImpl(256)]
+    public static Vector128<ulong> IsPow2(Vector128<double> v)
+    {
+        var bits = v.AsUInt64();
+
+        var isPositive = Vector128.GreaterThan(v, Vector128<double>.Zero).AsUInt64();
+        var isFinite = Vector128.IsFinite(v).AsUInt64();
+        var isValidPositive = isPositive & isFinite;
+
+        var mantissa = bits & Vector128.Create(0x000F_FFFF_FFFF_FFFFul);
+        var isNormalPow2 = Vector128.Equals(mantissa, Vector128<ulong>.Zero);
+
+        var exp = bits & Vector128.Create(0x7FF0_0000_0000_0000ul);
+        var isSubnormal = Vector128.Equals(exp, Vector128<ulong>.Zero);
+        var isSubnormalPow2 = Vector128.Equals(bits & (bits - Vector128.Create(1ul)), Vector128<ulong>.Zero);
+
+        var isPow2 = Vector128.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
+
+        return isValidPositive & isPow2;
+    }
+
+    /// <inheritdoc cref="IsPow2(Vector128{float})"/>
+    [MethodImpl(256)]
+    public static Vector256<uint> IsPow2(Vector256<float> v)
+    {
+        var bits = v.AsUInt32();
+
+        var isPositive = Vector256.GreaterThan(v, Vector256<float>.Zero).AsUInt32();
+        var isFinite = Vector256.IsFinite(v).AsUInt32();
+        var isValidPositive = isPositive & isFinite;
+
+        var mantissa = bits & Vector256.Create(0x007F_FFFFu);
+        var isNormalPow2 = Vector256.Equals(mantissa, Vector256<uint>.Zero);
+
+        var exp = bits & Vector256.Create(0x7F80_0000u);
+        var isSubnormal = Vector256.Equals(exp, Vector256<uint>.Zero);
+        var isSubnormalPow2 = Vector256.Equals(bits & (bits - Vector256.Create(1u)), Vector256<uint>.Zero);
+
+        var isPow2 = Vector256.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
+
+        return isValidPositive & isPow2;
+    }
+
+    /// <inheritdoc cref="IsPow2(Vector128{float})"/>
+    [MethodImpl(256)]
+    public static Vector256<ulong> IsPow2(Vector256<double> v)
+    {
+        var bits = v.AsUInt64();
+
+        var isPositive = Vector256.GreaterThan(v, Vector256<double>.Zero).AsUInt64();
+        var isFinite = Vector256.IsFinite(v).AsUInt64();
+        var isValidPositive = isPositive & isFinite;
+
+        var mantissa = bits & Vector256.Create(0x000F_FFFF_FFFF_FFFFul);
+        var isNormalPow2 = Vector256.Equals(mantissa, Vector256<ulong>.Zero);
+
+        var exp = bits & Vector256.Create(0x7FF0_0000_0000_0000ul);
+        var isSubnormal = Vector256.Equals(exp, Vector256<ulong>.Zero);
+        var isSubnormalPow2 = Vector256.Equals(bits & (bits - Vector256.Create(1ul)), Vector256<ulong>.Zero);
+
+        var isPow2 = Vector256.ConditionalSelect(isSubnormal, isSubnormalPow2, isNormalPow2);
+
+        return isValidPositive & isPow2;
+    }
 
     #endregion
 
     #region Cmp
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Ne(Vector64<float> a, Vector64<float> b)
     {
         if (Sse.IsSupported)
@@ -524,7 +621,7 @@ public static partial class simd
         return ~Vector64.Equals(a, b);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Ne(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported)
@@ -540,7 +637,7 @@ public static partial class simd
         return ~Vector128.Equals(a, b);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Ne(Vector256<float> a, Vector256<float> b)
     {
         if (Avx.IsSupported)
@@ -551,7 +648,7 @@ public static partial class simd
         return ~Vector256.Equals(a, b);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Ne(Vector512<float> a, Vector512<float> b)
     {
         if (Avx512F.IsSupported)
@@ -562,7 +659,7 @@ public static partial class simd
         return ~Vector512.Equals(a, b);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Ne(Vector128<double> a, Vector128<double> b)
     {
         if (Sse2.IsSupported)
@@ -578,7 +675,7 @@ public static partial class simd
         return ~Vector128.Equals(a, b);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Ne(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -589,7 +686,7 @@ public static partial class simd
         return ~Vector256.Equals(a, b);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Ne(Vector512<double> a, Vector512<double> b)
     {
         if (Avx512F.IsSupported)
@@ -606,12 +703,13 @@ public static partial class simd
 
     public static bool IsShiftAccelerated
     {
-        [MethodImpl(256 | 512)] get => Avx2.IsSupported;
+        [MethodImpl(256)]
+        get => Avx2.IsSupported;
     }
 
     #region ShiftLeft
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<uint> ShiftLeft(Vector64<uint> a, Vector64<uint> b)
     {
         if (Vector128.IsHardwareAccelerated) return ShiftLeft(a.ToVector128(), b.ToVector128()).GetLower();
@@ -621,7 +719,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> ShiftLeft(Vector128<uint> a, Vector128<uint> b, bool _3d = false)
     {
         if (Avx2.IsSupported) return Avx2.ShiftLeftLogicalVariable(a, b);
@@ -629,7 +727,7 @@ public static partial class simd
         return Vector128.Create(a[0] << (int)b[0], a[1] << (int)b[1], a[2] << (int)b[2], a[3] << (int)b[3]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<uint> ShiftLeft(Vector256<uint> a, Vector256<uint> b)
     {
         if (Avx2.IsSupported) return Avx2.ShiftLeftLogicalVariable(a, b);
@@ -639,7 +737,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<uint> ShiftLeft(Vector512<uint> a, Vector512<uint> b)
     {
         if (Avx512F.IsSupported) return Avx512F.ShiftLeftLogicalVariable(a, b);
@@ -649,14 +747,14 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<ulong> ShiftLeft(Vector128<ulong> a, Vector128<ulong> b)
     {
         if (Avx2.IsSupported) return Avx2.ShiftLeftLogicalVariable(a, b);
         return Vector128.Create(a[0] << (int)b[0], a[1] << (int)b[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> ShiftLeft(Vector256<ulong> a, Vector256<ulong> b, bool _3d = false)
     {
         if (Avx2.IsSupported) return Avx2.ShiftLeftLogicalVariable(a, b);
@@ -664,7 +762,7 @@ public static partial class simd
         return Vector256.Create(a[0] << (int)b[0], a[1] << (int)b[1], a[2] << (int)b[2], a[3] << (int)b[3]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<ulong> ShiftLeft(Vector512<ulong> a, Vector512<ulong> b)
     {
         if (Avx512F.IsSupported) return Avx512F.ShiftLeftLogicalVariable(a, b);
@@ -678,7 +776,7 @@ public static partial class simd
 
     #region ShiftRight
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<uint> ShiftRight(Vector64<uint> a, Vector64<uint> b, bool _3d = false)
     {
         if (Vector128.IsHardwareAccelerated) return ShiftRight(a.ToVector128(), b.ToVector128()).GetLower();
@@ -688,7 +786,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> ShiftRight(Vector128<uint> a, Vector128<uint> b, bool _3d = false)
     {
         if (Avx2.IsSupported) return Avx2.ShiftRightLogicalVariable(a, b);
@@ -696,7 +794,7 @@ public static partial class simd
         return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], a[3] >> (int)b[3]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<uint> ShiftRight(Vector256<uint> a, Vector256<uint> b)
     {
         if (Avx2.IsSupported) return Avx2.ShiftRightLogicalVariable(a, b);
@@ -706,7 +804,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<uint> ShiftRight(Vector512<uint> a, Vector512<uint> b)
     {
         if (Avx512F.IsSupported) return Avx512F.ShiftRightLogicalVariable(a, b);
@@ -716,14 +814,14 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<ulong> ShiftRight(Vector128<ulong> a, Vector128<ulong> b)
     {
         if (Avx2.IsSupported) return Avx2.ShiftRightLogicalVariable(a, b);
         return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> ShiftRight(Vector256<ulong> a, Vector256<ulong> b, bool _3d = false)
     {
         if (Avx2.IsSupported) return Avx2.ShiftRightLogicalVariable(a, b);
@@ -731,7 +829,7 @@ public static partial class simd
         return Vector256.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], a[3] >> (int)b[3]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<ulong> ShiftRight(Vector512<ulong> a, Vector512<ulong> b)
     {
         if (Avx512F.IsSupported) return Avx512F.ShiftRightLogicalVariable(a, b);
@@ -745,14 +843,14 @@ public static partial class simd
 
     #region ShiftRightSigned
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<int> ShiftRight(Vector64<int> a, Vector64<uint> b, bool _3d = false)
     {
         if (Avx2.IsSupported) return ShiftRight(a.ToVector128(), b.ToVector128()).GetLower();
         return Vector64.Create(a[0] >> (int)b[0], a[1] >> (int)b[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> ShiftRight(Vector128<int> a, Vector128<uint> b, bool _3d = false)
     {
         if (Avx2.IsSupported) return Avx2.ShiftRightArithmeticVariable(a, b);
@@ -760,7 +858,7 @@ public static partial class simd
         return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], a[3] >> (int)b[3]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<int> ShiftRight(Vector256<int> a, Vector256<uint> b)
     {
         if (Avx2.IsSupported) return Avx2.ShiftRightArithmeticVariable(a, b);
@@ -770,7 +868,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<int> ShiftRight(Vector512<int> a, Vector512<uint> b)
     {
         if (Avx512F.IsSupported) return Avx512F.ShiftRightArithmeticVariable(a, b);
@@ -780,7 +878,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<long> ShiftRight(Vector128<long> a, Vector128<ulong> b)
     {
         #if NET9_0_OR_GREATER
@@ -790,7 +888,7 @@ public static partial class simd
         return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> ShiftRight(Vector256<long> a, Vector256<ulong> b, bool _3d = false)
     {
         #if NET9_0_OR_GREATER
@@ -801,7 +899,7 @@ public static partial class simd
         return Vector256.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], a[3] >> (int)b[3]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<long> ShiftRight(Vector512<long> a, Vector512<ulong> b)
     {
         if (Avx512F.IsSupported) return Avx512F.ShiftRightArithmeticVariable(a, b);
@@ -817,7 +915,7 @@ public static partial class simd
 
     #region Rem
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Rem(Vector64<float> a, Vector64<float> b)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -836,7 +934,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Rem(Vector128<float> a, Vector128<float> b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -850,7 +948,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Rem(Vector256<float> a, Vector256<float> b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -864,7 +962,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Rem(Vector512<float> a, Vector512<float> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -878,7 +976,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Rem(Vector128<double> a, Vector128<double> b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -892,7 +990,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Rem(Vector256<double> a, Vector256<double> b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -906,7 +1004,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Rem(Vector512<double> a, Vector512<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -924,7 +1022,7 @@ public static partial class simd
 
     #region Rem Scalar
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Rem(Vector64<float> a, float b)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -943,7 +1041,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Rem(Vector128<float> a, float b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -957,7 +1055,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Rem(Vector256<float> a, float b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -971,7 +1069,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Rem(Vector512<float> a, float b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -985,7 +1083,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Rem(Vector128<double> a, double b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -999,7 +1097,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Rem(Vector256<double> a, double b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -1013,7 +1111,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Rem(Vector512<double> a, double b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -1031,7 +1129,7 @@ public static partial class simd
 
     #region Mod
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Mod(Vector64<float> a, Vector64<float> b)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -1050,7 +1148,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Mod(Vector128<float> a, Vector128<float> b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1064,7 +1162,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Mod(Vector256<float> a, Vector256<float> b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -1078,7 +1176,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Mod(Vector512<float> a, Vector512<float> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -1092,7 +1190,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Mod(Vector128<double> a, Vector128<double> b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1106,7 +1204,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Mod(Vector256<double> a, Vector256<double> b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -1120,7 +1218,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Mod(Vector512<double> a, Vector512<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -1138,7 +1236,7 @@ public static partial class simd
 
     #region Mod Scalar
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Mod(Vector64<float> a, float b)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -1157,7 +1255,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Mod(Vector128<float> a, float b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1171,7 +1269,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Mod(Vector256<float> a, float b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -1185,7 +1283,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Mod(Vector512<float> a, float b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -1199,7 +1297,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Mod(Vector128<double> a, double b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1213,7 +1311,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Mod(Vector256<double> a, double b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -1227,7 +1325,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Mod(Vector512<double> a, double b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -1245,7 +1343,7 @@ public static partial class simd
 
     #region ModF
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> ModF(Vector64<float> d, out Vector64<float> i)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -1265,7 +1363,7 @@ public static partial class simd
         return d - i;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> ModF(Vector128<float> d, out Vector128<float> i)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1282,7 +1380,7 @@ public static partial class simd
         return r;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> ModF(Vector256<float> d, out Vector256<float> i)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -1299,7 +1397,7 @@ public static partial class simd
         return r;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> ModF(Vector512<float> d, out Vector512<float> i)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -1316,7 +1414,7 @@ public static partial class simd
         return r;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> ModF(Vector128<double> d, out Vector128<double> i)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1329,7 +1427,7 @@ public static partial class simd
         return d - i;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> ModF(Vector256<double> d, out Vector256<double> i)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -1346,7 +1444,7 @@ public static partial class simd
         return r;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> ModF(Vector512<double> d, out Vector512<double> i)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -1367,7 +1465,7 @@ public static partial class simd
 
     #region Sign
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<T> SignInt<T>(Vector64<T> v)
     {
         var pos = Vector64.GreaterThan(v, default) & Vector64<T>.One;
@@ -1375,13 +1473,13 @@ public static partial class simd
         return pos | neg;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<T> SignUInt<T>(Vector64<T> v)
     {
         return Vector64.GreaterThan(v, default) & Vector64<T>.One;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<T> SignFloat<T>(Vector64<T> v)
     {
         var a = v & -Vector64<T>.Zero | Vector64<T>.One;
@@ -1389,7 +1487,7 @@ public static partial class simd
         return Vector64.AndNot(a, c);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<T> SignInt<T>(Vector128<T> v)
     {
         var pos = Vector128.GreaterThan(v, default) & Vector128<T>.One;
@@ -1397,13 +1495,13 @@ public static partial class simd
         return pos | neg;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<T> SignUInt<T>(Vector128<T> v)
     {
         return Vector128.GreaterThan(v, default) & Vector128<T>.One;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<T> SignFloat<T>(Vector128<T> v)
     {
         var a = v & -Vector128<T>.Zero | Vector128<T>.One;
@@ -1411,7 +1509,7 @@ public static partial class simd
         return Vector128.AndNot(a, c);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<T> SignInt<T>(Vector256<T> v)
     {
         var pos = Vector256.GreaterThan(v, default) & Vector256<T>.One;
@@ -1419,13 +1517,13 @@ public static partial class simd
         return pos | neg;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<T> SignUInt<T>(Vector256<T> v)
     {
         return Vector256.GreaterThan(v, default) & Vector256<T>.One;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<T> SignFloat<T>(Vector256<T> v)
     {
         var a = v & -Vector256<T>.Zero | Vector256<T>.One;
@@ -1433,7 +1531,7 @@ public static partial class simd
         return Vector256.AndNot(a, c);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<T> SignInt<T>(Vector512<T> v)
     {
         var pos = Vector512.GreaterThan(v, default) & Vector512<T>.One;
@@ -1441,13 +1539,13 @@ public static partial class simd
         return pos | neg;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<T> SignUInt<T>(Vector512<T> v)
     {
         return Vector512.GreaterThan(v, default) & Vector512<T>.One;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<T> SignFloat<T>(Vector512<T> v)
     {
         var a = v & -Vector512<T>.Zero | Vector512<T>.One;
@@ -1460,49 +1558,49 @@ public static partial class simd
     #region Fma
 
     /// <returns><code>a * b + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Fma(Vector64<float> a, Vector64<float> b, Vector64<float> c)
     {
         return Vector64.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Fma(Vector128<float> a, Vector128<float> b, Vector128<float> c)
     {
         return Vector128.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Fma(Vector128<double> a, Vector128<double> b, Vector128<double> c)
     {
         return Vector128.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Fma(Vector256<float> a, Vector256<float> b, Vector256<float> c)
     {
         return Vector256.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Fma(Vector256<double> a, Vector256<double> b, Vector256<double> c)
     {
         return Vector256.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Fma(Vector512<float> a, Vector512<float> b, Vector512<float> c)
     {
         return Vector512.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>a * b + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Fma(Vector512<double> a, Vector512<double> b, Vector512<double> c)
     {
         return Vector512.FusedMultiplyAdd(a, b, c);
@@ -1513,49 +1611,49 @@ public static partial class simd
     #region Fms
 
     /// <returns><code>a * b - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Fms(Vector64<float> a, Vector64<float> b, Vector64<float> c)
     {
         return Vector64.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Fms(Vector128<float> a, Vector128<float> b, Vector128<float> c)
     {
         return Vector128.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Fms(Vector128<double> a, Vector128<double> b, Vector128<double> c)
     {
         return Vector128.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Fms(Vector256<float> a, Vector256<float> b, Vector256<float> c)
     {
         return Vector256.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Fms(Vector256<double> a, Vector256<double> b, Vector256<double> c)
     {
         return Vector256.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Fms(Vector512<float> a, Vector512<float> b, Vector512<float> c)
     {
         return Vector512.FusedMultiplyAdd(a, b, -c);
     }
 
     /// <returns><code>a * b - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Fms(Vector512<double> a, Vector512<double> b, Vector512<double> c)
     {
         return Vector512.FusedMultiplyAdd(a, b, -c);
@@ -1566,49 +1664,49 @@ public static partial class simd
     #region Fnma
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Fnma(Vector64<float> a, Vector64<float> b, Vector64<float> c)
     {
         return Vector64.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Fnma(Vector128<float> a, Vector128<float> b, Vector128<float> c)
     {
         return Vector128.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Fnma(Vector128<double> a, Vector128<double> b, Vector128<double> c)
     {
         return Vector128.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Fnma(Vector256<float> a, Vector256<float> b, Vector256<float> c)
     {
         return Vector256.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Fnma(Vector256<double> a, Vector256<double> b, Vector256<double> c)
     {
         return Vector256.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Fnma(Vector512<float> a, Vector512<float> b, Vector512<float> c)
     {
         return Vector512.FusedMultiplyAdd(-a, b, c);
     }
 
     /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Fnma(Vector512<double> a, Vector512<double> b, Vector512<double> c)
     {
         return Vector512.FusedMultiplyAdd(-a, b, c);
@@ -1619,49 +1717,49 @@ public static partial class simd
     #region Fnms
 
     /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Fnms(Vector64<float> a, Vector64<float> b, Vector64<float> c)
     {
         return -Vector64.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Fnms(Vector128<float> a, Vector128<float> b, Vector128<float> c)
     {
         return -Vector128.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Fnms(Vector128<double> a, Vector128<double> b, Vector128<double> c)
     {
         return -Vector128.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Fnms(Vector256<float> a, Vector256<float> b, Vector256<float> c)
     {
         return -Vector256.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Fnms(Vector256<double> a, Vector256<double> b, Vector256<double> c)
     {
         return -Vector256.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Fnms(Vector512<float> a, Vector512<float> b, Vector512<float> c)
     {
         return -Vector512.FusedMultiplyAdd(a, b, c);
     }
 
     /// <returns><code>-(a * b + c)</code> or <code>-(a * b) - c</code></returns>
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Fnms(Vector512<double> a, Vector512<double> b, Vector512<double> c)
     {
         return -Vector512.FusedMultiplyAdd(a, b, c);
@@ -1671,7 +1769,7 @@ public static partial class simd
 
     #region CMin
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static uint CMin(Vector128<uint> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1686,7 +1784,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static int CMin(Vector128<int> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1701,7 +1799,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static float CMin(Vector128<float> a)
     {
         if (Sse.IsSupported)
@@ -1734,7 +1832,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static ulong CMin(Vector256<ulong> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1749,7 +1847,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static long CMin(Vector256<long> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1764,7 +1862,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static double CMin(Vector256<double> a)
     {
         if (Avx.IsSupported)
@@ -1783,7 +1881,7 @@ public static partial class simd
 
     #region CMax
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static uint CMax(Vector128<uint> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1798,7 +1896,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static int CMax(Vector128<int> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1813,7 +1911,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static float CMax(Vector128<float> a)
     {
         if (Sse.IsSupported)
@@ -1846,7 +1944,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static ulong CMax(Vector256<ulong> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1861,7 +1959,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static long CMax(Vector256<long> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1876,7 +1974,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static double CMax(Vector256<double> a)
     {
         if (Avx.IsSupported)
@@ -1895,7 +1993,7 @@ public static partial class simd
 
     #region CMin3
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static uint CMin3(Vector128<uint> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1910,7 +2008,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static int CMin3(Vector128<int> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1925,7 +2023,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static float CMin3(Vector128<float> a)
     {
         if (Sse.IsSupported)
@@ -1958,7 +2056,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static ulong CMin3(Vector256<ulong> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1973,7 +2071,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static long CMin3(Vector256<long> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -1988,7 +2086,7 @@ public static partial class simd
         return Math.Min(Math.Min(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static double CMin3(Vector256<double> a)
     {
         if (Avx.IsSupported)
@@ -2007,7 +2105,7 @@ public static partial class simd
 
     #region CMax3
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static uint CMax3(Vector128<uint> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2022,7 +2120,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static int CMax3(Vector128<int> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2037,7 +2135,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static float CMax3(Vector128<float> a)
     {
         if (Sse.IsSupported)
@@ -2070,7 +2168,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static ulong CMax3(Vector256<ulong> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2085,7 +2183,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static long CMax3(Vector256<long> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2100,7 +2198,7 @@ public static partial class simd
         return Math.Max(Math.Max(a[0], a[1]), a[2]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static double CMax3(Vector256<double> a)
     {
         if (Avx.IsSupported)
@@ -2119,7 +2217,7 @@ public static partial class simd
 
     #region CMin2
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static uint CMin(Vector64<uint> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2132,7 +2230,7 @@ public static partial class simd
         return Math.Min(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static int CMin(Vector64<int> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2145,7 +2243,7 @@ public static partial class simd
         return Math.Min(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static float CMin(Vector64<float> a)
     {
         if (Sse.IsSupported)
@@ -2174,7 +2272,7 @@ public static partial class simd
         return Math.Min(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static ulong CMin(Vector128<ulong> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2187,7 +2285,7 @@ public static partial class simd
         return Math.Min(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static long CMin(Vector128<long> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2200,7 +2298,7 @@ public static partial class simd
         return Math.Min(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static double CMin(Vector128<double> a)
     {
         if (Sse2.IsSupported)
@@ -2231,7 +2329,7 @@ public static partial class simd
 
     #region CMax2
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static uint CMax(Vector64<uint> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2244,7 +2342,7 @@ public static partial class simd
         return Math.Max(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static int CMax(Vector64<int> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2257,7 +2355,7 @@ public static partial class simd
         return Math.Max(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static float CMax(Vector64<float> a)
     {
         if (Sse.IsSupported)
@@ -2286,7 +2384,7 @@ public static partial class simd
         return Math.Max(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static ulong CMax(Vector128<ulong> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2299,7 +2397,7 @@ public static partial class simd
         return Math.Max(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static long CMax(Vector128<long> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2312,7 +2410,7 @@ public static partial class simd
         return Math.Max(a[0], a[1]);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static double CMax(Vector128<double> a)
     {
         if (Sse2.IsSupported)
@@ -2343,7 +2441,7 @@ public static partial class simd
 
     #region Log
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Log(Vector64<float> d)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2362,7 +2460,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Log(Vector128<float> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2376,7 +2474,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Log(Vector256<float> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2390,7 +2488,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Log(Vector512<float> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2404,7 +2502,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Log(Vector128<double> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2418,7 +2516,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Log(Vector256<double> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2432,7 +2530,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Log(Vector512<double> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2450,7 +2548,7 @@ public static partial class simd
 
     #region Log2
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Log2(Vector64<float> d)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2469,7 +2567,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Log2(Vector128<float> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2483,7 +2581,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Log2(Vector256<float> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2497,7 +2595,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Log2(Vector512<float> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2511,7 +2609,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Log2(Vector128<double> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2525,7 +2623,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Log2(Vector256<double> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2539,7 +2637,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Log2(Vector512<double> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2557,7 +2655,7 @@ public static partial class simd
 
     #region Log10
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Log10(Vector64<float> d)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2576,7 +2674,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Log10(Vector128<float> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2590,7 +2688,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Log10(Vector256<float> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2604,7 +2702,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Log10(Vector512<float> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2618,7 +2716,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Log10(Vector128<double> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2632,7 +2730,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Log10(Vector256<double> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2646,7 +2744,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Log10(Vector512<double> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2664,7 +2762,7 @@ public static partial class simd
 
     #region Exp
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Exp(Vector64<float> d)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2683,7 +2781,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Exp(Vector128<float> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2697,7 +2795,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Exp(Vector256<float> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2711,7 +2809,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Exp(Vector512<float> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2725,7 +2823,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Exp(Vector128<double> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2739,7 +2837,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Exp(Vector256<double> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2753,7 +2851,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Exp(Vector512<double> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2771,7 +2869,7 @@ public static partial class simd
 
     #region Exp2
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Exp2(Vector64<float> d)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2790,7 +2888,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Exp2(Vector128<float> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2804,7 +2902,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Exp2(Vector256<float> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2818,7 +2916,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Exp2(Vector512<float> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2832,7 +2930,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Exp2(Vector128<double> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2846,7 +2944,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Exp2(Vector256<double> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2860,7 +2958,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Exp2(Vector512<double> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2878,7 +2976,7 @@ public static partial class simd
 
     #region Exp10
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Exp10(Vector64<float> d)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -2897,7 +2995,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Exp10(Vector128<float> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2911,7 +3009,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Exp10(Vector256<float> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2925,7 +3023,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Exp10(Vector512<float> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2939,7 +3037,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Exp10(Vector128<double> d)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -2953,7 +3051,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Exp10(Vector256<double> d)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -2967,7 +3065,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Exp10(Vector512<double> d)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -2985,7 +3083,7 @@ public static partial class simd
 
     #region Pow
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Pow(Vector64<float> a, Vector64<float> b)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -3004,7 +3102,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Pow(Vector128<float> a, Vector128<float> b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3018,7 +3116,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Pow(Vector256<float> a, Vector256<float> b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3032,7 +3130,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Pow(Vector512<float> a, Vector512<float> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3046,7 +3144,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Pow(Vector128<double> a, Vector128<double> b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3060,7 +3158,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Pow(Vector256<double> a, Vector256<double> b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3074,7 +3172,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Pow(Vector512<double> a, Vector512<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3092,7 +3190,7 @@ public static partial class simd
 
     #region Pow Scalar
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Pow(Vector64<float> a, float b)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -3111,7 +3209,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Pow(Vector128<float> a, float b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3125,7 +3223,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Pow(Vector256<float> a, float b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3139,7 +3237,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Pow(Vector512<float> a, float b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3153,7 +3251,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Pow(Vector128<double> a, double b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3167,7 +3265,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Pow(Vector256<double> a, double b)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3181,7 +3279,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Pow(Vector512<double> a, double b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3199,7 +3297,7 @@ public static partial class simd
 
     #region Rcp
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Rcp(Vector64<float> a)
     {
         if (AdvSimd.IsSupported) return AdvSimd.ReciprocalEstimate(a);
@@ -3208,7 +3306,7 @@ public static partial class simd
         return Vector64<float>.One / a;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Rcp(Vector128<float> a)
     {
         if (Avx512F.VL.IsSupported) return Avx512F.VL.Reciprocal14(a);
@@ -3218,7 +3316,7 @@ public static partial class simd
         return Vector128<float>.One / a;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Rcp(Vector256<float> a)
     {
         if (Avx512F.VL.IsSupported) return Avx512F.VL.Reciprocal14(a);
@@ -3227,14 +3325,14 @@ public static partial class simd
         return Vector256<float>.One / a;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Rcp(Vector512<float> a)
     {
         if (Avx512F.IsSupported) return Avx512F.Reciprocal14(a);
         return Vector512<float>.One / a;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Rcp(Vector128<double> a)
     {
         if (Avx512F.VL.IsSupported) return Avx512F.VL.Reciprocal14(a);
@@ -3243,7 +3341,7 @@ public static partial class simd
         return Vector128<double>.One / a;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Rcp(Vector256<double> a)
     {
         if (Avx512F.VL.IsSupported) return Avx512F.VL.Reciprocal14(a);
@@ -3258,7 +3356,7 @@ public static partial class simd
         return Vector256<double>.One / a;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Rcp(Vector512<double> a)
     {
         if (Avx512F.IsSupported) return Avx512F.Reciprocal14(a);
@@ -3269,7 +3367,7 @@ public static partial class simd
 
     #region RSqrt
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> RSqrt(Vector64<float> a)
     {
         if (AdvSimd.IsSupported) return AdvSimd.ReciprocalSquareRootEstimate(a);
@@ -3278,7 +3376,7 @@ public static partial class simd
         return Vector64<float>.One / Vector64.Sqrt(a);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> RSqrt(Vector128<float> a)
     {
         if (Avx512F.VL.IsSupported) return Avx512F.VL.ReciprocalSqrt14(a);
@@ -3288,7 +3386,7 @@ public static partial class simd
         return Vector128<float>.One / Vector128.Sqrt(a);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> RSqrt(Vector256<float> a)
     {
         if (Avx512F.VL.IsSupported) return Avx512F.VL.ReciprocalSqrt14(a);
@@ -3296,7 +3394,7 @@ public static partial class simd
         return Vector256<float>.One / Vector256.Sqrt(a);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> RSqrt(Vector512<float> a)
     {
         if (Avx512F.IsSupported) return Avx512F.ReciprocalSqrt14(a);
@@ -3304,7 +3402,7 @@ public static partial class simd
         return Vector512<float>.One / Vector512.Sqrt(a);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> RSqrt(Vector128<double> a)
     {
         if (Avx512F.VL.IsSupported) return Avx512F.VL.ReciprocalSqrt14(a);
@@ -3313,7 +3411,7 @@ public static partial class simd
         return Vector128<double>.One / Vector128.Sqrt(a);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> RSqrt(Vector256<double> a)
     {
         if (Avx512F.VL.IsSupported) return Avx512F.VL.ReciprocalSqrt14(a);
@@ -3328,7 +3426,7 @@ public static partial class simd
         return Vector256<double>.One / Vector256.Sqrt(a);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> RSqrt(Vector512<double> a)
     {
         if (Avx512F.IsSupported) return Avx512F.ReciprocalSqrt14(a);
@@ -3340,7 +3438,7 @@ public static partial class simd
 
     #region Tan
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Tan(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -3359,7 +3457,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Tan(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3373,7 +3471,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Tan(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3387,7 +3485,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Tan(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3401,7 +3499,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Tan(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3415,7 +3513,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Tan(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3429,7 +3527,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Tan(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3447,7 +3545,7 @@ public static partial class simd
 
     #region Sinh
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Sinh(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -3466,7 +3564,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Sinh(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3480,7 +3578,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Sinh(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3494,7 +3592,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Sinh(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3508,7 +3606,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Sinh(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3522,7 +3620,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Sinh(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3536,7 +3634,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Sinh(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3554,7 +3652,7 @@ public static partial class simd
 
     #region Cosh
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Cosh(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -3573,7 +3671,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Cosh(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3587,7 +3685,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Cosh(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3601,7 +3699,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Cosh(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3615,7 +3713,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Cosh(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3629,7 +3727,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Cosh(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3643,7 +3741,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Cosh(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3661,7 +3759,7 @@ public static partial class simd
 
     #region Tanh
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Tanh(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -3680,7 +3778,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Tanh(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3694,7 +3792,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Tanh(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3708,7 +3806,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Tanh(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3722,7 +3820,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Tanh(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3736,7 +3834,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Tanh(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3750,7 +3848,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Tanh(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3768,7 +3866,7 @@ public static partial class simd
 
     #region Asinh
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Asinh(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -3787,7 +3885,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Asinh(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3801,7 +3899,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Asinh(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3815,7 +3913,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Asinh(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3829,7 +3927,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Asinh(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3843,7 +3941,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Asinh(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3857,7 +3955,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Asinh(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3875,7 +3973,7 @@ public static partial class simd
 
     #region Acosh
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Acosh(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -3894,7 +3992,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Acosh(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3908,7 +4006,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Acosh(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3922,7 +4020,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Acosh(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3936,7 +4034,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Acosh(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -3950,7 +4048,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Acosh(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -3964,7 +4062,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Acosh(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -3982,7 +4080,7 @@ public static partial class simd
 
     #region Atanh
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Atanh(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -4001,7 +4099,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Atanh(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4015,7 +4113,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Atanh(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4029,7 +4127,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Atanh(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4043,7 +4141,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Atanh(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4057,7 +4155,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Atanh(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4071,7 +4169,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Atanh(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4089,7 +4187,7 @@ public static partial class simd
 
     #region Asin
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Asin(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -4108,7 +4206,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Asin(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4122,7 +4220,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Asin(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4136,7 +4234,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Asin(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4150,7 +4248,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Asin(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4164,7 +4262,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Asin(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4178,7 +4276,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Asin(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4196,7 +4294,7 @@ public static partial class simd
 
     #region Acos
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Acos(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -4215,7 +4313,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Acos(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4229,7 +4327,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Acos(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4243,7 +4341,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Acos(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4257,7 +4355,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Acos(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4271,7 +4369,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Acos(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4285,7 +4383,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Acos(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4303,7 +4401,7 @@ public static partial class simd
 
     #region Atan
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Atan(Vector64<float> a)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -4322,7 +4420,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Atan(Vector128<float> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4336,7 +4434,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Atan(Vector256<float> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4350,7 +4448,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Atan(Vector512<float> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4364,7 +4462,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Atan(Vector128<double> a)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4378,7 +4476,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Atan(Vector256<double> a)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4392,7 +4490,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Atan(Vector512<double> a)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4410,7 +4508,7 @@ public static partial class simd
 
     #region Atan2
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<float> Atan2(Vector64<float> y, Vector64<float> x)
     {
         if (Vector64.IsHardwareAccelerated)
@@ -4429,7 +4527,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Atan2(Vector128<float> y, Vector128<float> x)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4443,7 +4541,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<float> Atan2(Vector256<float> y, Vector256<float> x)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4457,7 +4555,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<float> Atan2(Vector512<float> y, Vector512<float> x)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -4471,7 +4569,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<double> Atan2(Vector128<double> y, Vector128<double> x)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -4485,7 +4583,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Atan2(Vector256<double> y, Vector256<double> x)
     {
         if (Vector256.IsHardwareAccelerated)
@@ -4499,7 +4597,7 @@ public static partial class simd
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<double> Atan2(Vector512<double> y, Vector512<double> x)
     {
         if (Vector512.IsHardwareAccelerated)
