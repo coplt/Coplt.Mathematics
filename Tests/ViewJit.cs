@@ -12,4 +12,5 @@ namespace Tests;
 
 public static class ViewJit
 {
+    public static float Some(in float4x4 m) => math.determinant(m);
 }

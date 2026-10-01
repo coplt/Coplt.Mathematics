@@ -21,7 +21,7 @@ namespace Coplt.Mathematics
         // the compiler cannot infer it from the arguments and a call of the member names it, which the attribute
         // marks this member for: a call that does not name it reaches the member of the matrix type of the value
         [SquareMatrixExtension]
-        [OverloadResolutionPriority(-1)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T inverse<T, TScalar>(in T m)
             where T : unmanaged, IMatrix2x2Scalar<T, TScalar>, IFloatingPointMatrix<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
