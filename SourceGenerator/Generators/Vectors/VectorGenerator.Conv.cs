@@ -9,10 +9,11 @@ public partial class VectorGenerator
     /// <summary>
     /// Generates the conversions of the vector described by <paramref name="typ"/> into the vectors that have the
     /// same number of components and another component type: the target of every conversion of
-    /// <see cref="Typ.ExplicitConverts"/> and <see cref="Typ.ImplicitConverts"/>. A conversion is an operator of
-    /// the vector, the operators are emitted into their own file and a type without a conversion has no file at
-    /// all. The storage variant of a vector only converts into the storage variants of the same size, so a
-    /// conversion that only exists beside one of them is kept on the regular vector.
+    /// <see cref="Typ.ExplicitConverts"/> and <see cref="Typ.ImplicitConverts"/>, and the storage variant of the
+    /// vector itself. A conversion is an operator of the vector, the operators are emitted into their own file and
+    /// a type without a conversion has no file at all. The storage variant of a vector only converts into the
+    /// storage variants of the same size, so a conversion that only exists beside one of them is kept on the
+    /// regular vector.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -23,9 +24,17 @@ public partial class VectorGenerator
         var targets = VectorGenShared.ConvTargets(typ);
 
         targets.RemoveAll(a => storeVariant && !VectorGenShared.HasStorageVariant(a.Target, size));
-        if (targets.Count == 0) return null;
 
         var type = VectorGenShared.VecName(typ, size, storeVariant);
+        // the conversion between the vector and its storage variant is emitted beside the numeric ones, the two of
+        // them are implicit: a storage variant keeps the same components in another storage, so neither of the two
+        // conversions drops a component
+        var store = !storeVariant && VectorGenShared.HasStorageVariant(typ, size)
+            ? VectorGenShared.VecName(typ, size, true)
+            : null;
+        var regular = storeVariant ? VectorGenShared.VecName(typ, size, false) : null;
+        if (targets.Count == 0 && store == null && regular == null) return null;
+
         var comp = VectorGenShared.Components(size);
         var simd = VectorGenShared.Simd(typ, size, storeVariant);
         var reg = VectorGenShared.Register(typ, size, storeVariant);
@@ -94,6 +103,25 @@ public partial class VectorGenerator
 
             sb.AppendLine($"        return new({VectorGenShared.Join(size, i => $"({target.compType})self.{comp[i]}")});");
             sb.AppendLine("    }");
+        }
+
+        if (store != null)
+        {
+            sb.AppendLine();
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    public static implicit operator {store}({type} self) => new(self);");
+        }
+
+        if (regular != null)
+        {
+            // the value of the storage variant is widened by the constructor of the regular vector, which zeroes
+            // the padding lanes of its register
+            var toRegular = VectorGenShared.Uses64(typ, size, storeVariant)
+                ? $"new() {{ vector = {VectorGenShared.Load64("self.", typ.simdComp)} }}"
+                : $"new({VectorGenShared.Join(size, i => $"self.{comp[i]}")})";
+            sb.AppendLine();
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    public static implicit operator {regular}({type} self) => {toRegular};");
         }
 
         return sb.ToString();

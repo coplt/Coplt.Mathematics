@@ -6,23 +6,22 @@ namespace Coplt.Analyzers.Generators;
 public partial class VectorGenerator
 {
     /// <summary>
-    /// The names of the as members of a component type: the short name, the long name and the kind of the
-    /// component. A vector reinterprets its bits as the component type of every other member of its own group, so
-    /// the vector of a 16 bit component reaches <c>asf</c> beside <c>as_half</c> and <c>asi</c> beside
-    /// <c>as_short</c>. The short name is the name the interface of the kind declares, the long one names the
-    /// component type itself.
+    /// The name of the as member of a component type and the kind of the component. A vector reinterprets its
+    /// bits as the component type of every other member of its own group, so the vector of a 16 bit component
+    /// reaches <c>asf</c> beside <c>asi</c>: the name of a member is the one of the interface of the kind of the
+    /// target, which is the kind the member of the <c>math</c> class of that kind is constrained by.
     /// </summary>
-    private static readonly Dictionary<string, (string Short, string Long, int Kind)> AsNames = new()
+    private static readonly Dictionary<string, (string Name, int Kind)> AsNames = new()
     {
-        { "float", ("asf", "as_float", 0) },
-        { "double", ("asf", "as_double", 0) },
-        { "half", ("asf", "as_half", 0) },
-        { "short", ("asi", "as_short", 1) },
-        { "int", ("asi", "as_int", 1) },
-        { "long", ("asi", "as_long", 1) },
-        { "ushort", ("asu", "as_ushort", 2) },
-        { "uint", ("asu", "as_uint", 2) },
-        { "ulong", ("asu", "as_ulong", 2) },
+        { "float", ("asf", 0) },
+        { "double", ("asf", 0) },
+        { "half", ("asf", 0) },
+        { "short", ("asi", 1) },
+        { "int", ("asi", 1) },
+        { "long", ("asi", 1) },
+        { "ushort", ("asu", 2) },
+        { "uint", ("asu", 2) },
+        { "ulong", ("asu", 2) },
     };
 
     /// <summary>
@@ -64,7 +63,9 @@ public partial class VectorGenerator
     /// Generates the as members of the vector described by <paramref name="typ"/> and the conversion between the
     /// vector and its storage variant. The as members reinterpret the bits of the vector as the vector of another
     /// component type of the same width, the short spelling of the name of a target and the long one are emitted
-    /// side by side, every member of the group implements the interface of its own kind. A vector of 3 or 4
+    /// side by side, every member of the group implements the interface of its own kind and the kind of the vector
+    /// itself carries no member because reinterpreting the bits of the vector as themselves is the no-op the
+    /// interface of that kind marks. A vector of 3 or 4
     /// components also converts into the one of the other size of its own kind, the two of them keep their
     /// components in a register of the same width and the component that one of them does not hold is zero. The
     /// regular vector and its storage variant convert into each other with <c>to_storage</c> and
@@ -103,16 +104,20 @@ public partial class VectorGenerator
         // a vector that has a storage variant reaches the regular one by its name
         string TargetName(Typ target) => VectorGenShared.VecName(target, size, storeVariant);
 
-        // emits a member with its documentation, every member beside the first one is separated from the one
-        // before it by an empty line
-        void Member(string summary, string returns, string signature)
+        // emits a getter with its documentation, every getter beside the first one is separated from the one
+        // before it by an empty line, and the inlining attribute of a getter is carried by the accessor of it
+        // because it is not a valid attribute of a property
+        void Getter(string summary, string returns, string signature, string body)
         {
             if (!first) sb.AppendLine();
             first = false;
             sb.AppendLine($"    /// <summary>{summary}</summary>");
             sb.AppendLine($"    /// <returns>{returns}</returns>");
-            sb.AppendLine("    [MethodImpl(256)]");
             sb.AppendLine($"    {signature}");
+            sb.AppendLine("    {");
+            sb.AppendLine("        [MethodImpl(256)]");
+            sb.AppendLine($"        get => {body};");
+            sb.AppendLine("    }");
         }
 
         // the members of the group implement the interfaces of the vector, every member of the group has one of
@@ -120,36 +125,26 @@ public partial class VectorGenerator
         foreach (var target in targets)
         {
             var targetName = TargetName(target);
-            var (_, _, kind) = AsNames[target.name];
+            var (_, kind) = AsNames[target.name];
             ifaces.Add($"{AsInterfaces[kind]}<{type}, {targetName}>");
-        }
-
-        // the member that converts the vector into the one of the other size implements the interface of its own
-        if (!storeVariant)
-        {
-            if (size == 3 || size == 4) ifaces.Add($"IVectorAs2<{type}, {type2}>");
-            if (size == 3) ifaces.Add($"IVectorAs4<{type}, {type4}>");
-            else if (size == 4) ifaces.Add($"IVectorAs3<{type}, {type3}>");
         }
 
         // the as members reinterpret the bits of the vector as another vector of the same group, the name of
         // every member is built from the components of the target. The vector keeps the member of every target on
-        // itself and the interface declares it as a static member that takes the vector as its parameter, so
-        // every target also has the static member that forwards to the one of the vector
+        // itself and the interface declares it as a getter of the vector, so the member reads the bits of the
+        // vector itself and the short name of a member is the name its interface gives it. The kind of the vector
+        // itself is left out: the member of it reinterprets the bits of the vector as themselves, which is the
+        // vector itself, so the interface of that kind is what marks the vector alone
         foreach (var target in targets)
         {
             var targetName = TargetName(target);
-            var (shortName, longName, _) = AsNames[target.name];
-            var summary = $"Reinterprets the bits of <paramref name=\"source\"/> as <see cref=\"{targetName}\"/>";
-            var returns = $"The vector of <see cref=\"{targetName}\"/> that has the bits of <paramref name=\"source\"/>";
-            Member(summary, returns, $"public static {targetName} {shortName}(in {type} source) => source.{shortName}();");
-            Member(summary, returns, $"public static {targetName} {longName}(in {type} source) => source.{longName}();");
-            foreach (var name in new[] { shortName, longName })
-            {
-                Member($"Reinterprets the bits of the vector as <see cref=\"{targetName}\"/>",
-                    $"The vector of <see cref=\"{targetName}\"/> that has the bits of the vector",
-                    $"public readonly {targetName} {name}() => Unsafe.BitCast<{type}, {targetName}>(this);");
-            }
+            if (targetName == type) continue;
+
+            var (name, _) = AsNames[target.name];
+            var summary = $"Reinterprets the bits of the vector as <see cref=\"{targetName}\"/>";
+            var returns = $"The vector of <see cref=\"{targetName}\"/> that has the bits of the vector";
+            Getter(summary, returns, $"public readonly {targetName} {name}",
+                $"Unsafe.BitCast<{type}, {targetName}>(this)");
         }
 
         // the 3 component vector and the 4 component one convert into each other and into the 2 component
@@ -165,67 +160,52 @@ public partial class VectorGenerator
                     : VectorGenShared.Register(typ, size, storeVariant) > VectorGenShared.Register(typ, 2, false)
                         ? ".GetLower()"
                         : "";
-                Member(
-                    $"Reinterprets the bits of <paramref name=\"source\"/> as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
-                    $"The 2 component vector that has the bits of <paramref name=\"source\"/>", simd
-                        ? $"public static {type2} as2(in {type} source) => new(source.vector{wide});"
-                        : $"public static {type2} as2(in {type} source) => new(source.x, source.y);");
-                Member($"Reinterprets the bits of the vector as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
-                    $"The 2 component vector that has the bits of the vector", simd
-                        ? $"public readonly {type2} as2() => new(vector{wide});"
-                        : $"public readonly {type2} as2() => new(x, y);");
+                Getter($"Reinterprets the bits of the vector as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
+                    "The 2 component vector that has the bits of the vector",
+                    $"public readonly {type2} as2", simd ? $"new(vector{wide})" : "new(x, y)");
             }
 
             if (size == 4)
             {
-                Member(
-                    $"Reinterprets the bits of <paramref name=\"source\"/> as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the source has to be zero</para>",
-                    $"The 3 component vector that has the bits of <paramref name=\"source\"/>", simd
-                        ? $"public static {type3} as3(in {type} source) => new(source.vector);"
-                        : $"public static {type3} as3(in {type} source) => source.xyz;");
-                Member($"Reinterprets the bits of the vector as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the vector has to be zero</para>",
-                    $"The 3 component vector that has the bits of the vector", simd
-                        ? $"public readonly {type3} as3() => new(vector);"
-                        : $"public readonly {type3} as3() => xyz;");
+                Getter($"Reinterprets the bits of the vector as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the vector has to be zero</para>",
+                    "The 3 component vector that has the bits of the vector",
+                    $"public readonly {type3} as3", simd ? "new(vector)" : "xyz");
             }
             else if (size == 3)
             {
-                Member($"Reinterprets the bits of <paramref name=\"source\"/> as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
-                    $"The 4 component vector that has the bits of <paramref name=\"source\"/>", simd
-                        ? $"public static {type4} as4(in {type} source) => new() {{ vector = source.vector }};"
-                        : $"public static {type4} as4(in {type} source) => new(source.x, source.y, source.z, default);");
-                Member($"Reinterprets the bits of the vector as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
-                    $"The 4 component vector that has the bits of the vector", simd
-                        ? $"public readonly {type4} as4() => new() {{ vector = vector }};"
-                        : $"public readonly {type4} as4() => new(x, y, z, default);");
+                Getter($"Reinterprets the bits of the vector as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
+                    "The 4 component vector that has the bits of the vector",
+                    $"public readonly {type4} as4", simd ? "new() { vector = vector }" : "new(x, y, z, default)");
             }
         }
 
         if (store != null)
         {
-            Member($"Converts the vector to its storage variant <see cref=\"{store}\"/>",
+            Getter($"Converts the vector to its storage variant <see cref=\"{store}\"/>",
                 "The storage variant of the vector",
-                $"public readonly {store} to_storage() => ({store})this;");
+                $"public readonly {store} to_storage", $"({store})this");
         }
 
         if (regular != null)
         {
-            Member($"Converts the storage variant of the vector to the regular <see cref=\"{regular}\"/>",
+            Getter($"Converts the storage variant of the vector to the regular <see cref=\"{regular}\"/>",
                 "The regular vector",
-                $"public readonly {regular} to_compute() => ({regular})this;");
+                $"public readonly {regular} to_compute", $"({regular})this");
         }
 
         return sb.ToString();
     }
 
     /// <summary>
-    /// Generates the as member of the <c>math</c> class for the vector described by <paramref name="typ"/>. The
+    /// Generates the as members of the <c>math</c> class for the vector described by <paramref name="typ"/>. The
     /// vector itself is the target of the kind of its own component, so a generic member that is constrained by
     /// the interface of that kind reaches the vector from every member of its group: <c>math.asf(float2)</c> and
-    /// <c>math.asf(int2)</c> both reach the floating point vector of the group. The member forwards the call to
-    /// the as member of the target vector itself. The forwarding of every target has the same name and the same
-    /// parameters, a constraint does not take part in the signature of a member, so every one of them is an
-    /// extension member of a class of its own and is emitted into its own file.
+    /// <c>math.asf(int2)</c> both reach the floating point vector of the group. The member reinterprets the bits
+    /// of the source itself and the interface only names the type of its result, so a call does not reach the
+    /// interface. The members of every target have the same name and the same parameters, a constraint does not
+    /// take part in the signature of a member, so every target is an extension member of a class of its own and is
+    /// emitted into its own file. The spelling of the intrinsic of HLSL is not emitted here, see the members of
+    /// the <c>math</c> class that are written by hand.
     /// </summary>
     /// <param name="typ">The type of the vector</param>
     /// <param name="size">The number of components of the vector</param>
@@ -241,7 +221,7 @@ public partial class VectorGenerator
         var regular = storeVariant ? VectorGenShared.VecName(typ, size, false) : null;
         if (targets.Count == 0 && store == null && regular == null) return null;
 
-        var (name, _, kind) = AsNames[typ.name];
+        var (name, kind) = AsNames[typ.name];
         var iface = AsInterfaces[kind];
 
         var sb = new StringBuilder();
@@ -256,7 +236,7 @@ public partial class VectorGenerator
         sb.AppendLine($"        /// <returns>The vector of <see cref=\"{type}\"/> that has the bits of <paramref name=\"source\"/></returns>");
         sb.AppendLine("        [MethodImpl(256)]");
         sb.AppendLine($"        public static {type} {name}<T>(in T source) where T : unmanaged, {iface}<T, {type}>");
-        sb.AppendLine($"            => T.{name}(source);");
+        sb.AppendLine($"            => Unsafe.As<T, {type}>(ref Unsafe.AsRef(in source));");
         sb.AppendLine("    }");
         sb.AppendLine("}");
 

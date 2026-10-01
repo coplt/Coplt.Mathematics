@@ -661,30 +661,14 @@ public partial class VectorGenerator
         if (storeVariant)
         {
             // the storage variant and the regular vector keep the same components in different storages, the
-            // conversions go through the register of the 64 bit value and through the components otherwise
+            // conversion of the regular one into the storage variant is an operator of the vector that is emitted
+            // beside the other conversions of it, see GenConv
             var regular = VectorGenShared.VecName(typ, size, false);
             var fromRegular = v64 ? From128("value.vector") : $"new({Join(i => $"value.{comp[i]}")})";
-            // the value of the storage variant is widened by the helper of the vector type, it zeroes the
-            // padding lanes of the regular register
-            var toRegular = v64
-                ? $"new() {{ vector = {Load64("value.")} }}"
-                : $"new({Join(i => $"value.{comp[i]}")})";
             Doc($"Creates the vector from the regular <see cref=\"{regular}\"/>");
             DocParam("value", "The vector to convert");
             sb.AppendLine($"    {attr}");
             sb.AppendLine($"    public {type}(in {regular} value) => this = {fromRegular};");
-            sb.AppendLine();
-            Doc($"Converts the regular <see cref=\"{regular}\"/> to the vector");
-            DocParam("value", "The vector to convert");
-            sb.AppendLine("    /// <returns>The vector</returns>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static implicit operator {type}(in {regular} value) => {fromRegular};");
-            sb.AppendLine();
-            Doc($"Converts the vector to the regular <see cref=\"{regular}\"/>");
-            DocParam("value", "The vector to convert");
-            sb.AppendLine("    /// <returns>The regular vector</returns>");
-            sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static implicit operator {regular}(in {type} value) => {toRegular};");
             sb.AppendLine();
         }
 

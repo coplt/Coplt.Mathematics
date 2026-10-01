@@ -168,9 +168,9 @@ public class TestStorageVariant
             Assert.That((back.c0.x, back.c0.y, back.c1.x, back.c1.y), Is.EqualTo((1f, 2f, 3f, 4f)));
             Assert.That((regular.c0.x, regular.c0.y, regular.c1.x, regular.c1.y), Is.EqualTo((1f, 2f, 3f, 4f)));
             // the conversion of the two of them is reachable by name as well
-            Assert.That(regular.to_storage().c1.y, Is.EqualTo(4f));
-            Assert.That(v.to_compute().c0.y, Is.EqualTo(2f));
-            Assert.That(wide.to_compute().c1.z, Is.EqualTo(6f));
+            Assert.That(regular.to_storage.c1.y, Is.EqualTo(4f));
+            Assert.That(v.to_compute.c0.y, Is.EqualTo(2f));
+            Assert.That(wide.to_compute.c1.z, Is.EqualTo(6f));
         }
     }
 }

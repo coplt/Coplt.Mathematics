@@ -7,9 +7,9 @@ namespace Tests.Core;
 /// <summary>
 /// The as members of a vector reinterpret the bits of it as the vector of another component type of the same
 /// width: the members of a group cover the bits of every member of it, so a round trip through any of them keeps
-/// every component. A 16 bit group has <c>asf</c> / <c>as_half</c> beside <c>asi</c> / <c>as_short</c>, the
-/// regular vectors of a size reach the other regular ones and every member implements the interface of its own
-/// kind. The regular vector and its storage variant convert into each other with <c>to_storage</c> and
+/// every component. A 16 bit group has <c>asf</c> beside <c>asi</c>, the
+/// regular vectors of a size reach the other regular ones and the vector is marked by the interface of the kind
+/// of every one of them. The regular vector and its storage variant convert into each other with <c>to_storage</c> and
 /// <c>to_compute</c> and keep the components of the value.
 /// </summary>
 public class TestAsCast
@@ -17,13 +17,10 @@ public class TestAsCast
     /// <summary>
     /// The members of a group keep the bits of every one of them, so all of them are as wide as the vector.
     /// </summary>
-    private static void CheckAs<T, F, I, U>(T v)
+    private static void CheckAs<T, F, I, U>()
         where T : unmanaged, IVectorAsF<T, F>, IVectorAsI<T, I>, IVectorAsU<T, U>
     {
-        T.asf(v);
-        T.asi(v);
-        T.asu(v);
-
+        // the interface of every kind of the group marks the type of the member of that kind
         using (Assert.EnterMultipleScope())
         {
             Assert.That(Unsafe.SizeOf<F>(), Is.EqualTo(Unsafe.SizeOf<T>()));
@@ -35,10 +32,10 @@ public class TestAsCast
     [Test]
     public void AsInterfaces()
     {
-        CheckAs<float3, float3, int3, uint3>(new float3(1, 2, 3));
-        CheckAs<float2, float2, int2, uint2>(new float2(1, 2));
-        CheckAs<short2, half2, short2, ushort2>(new short2(-1, 2));
-        CheckAs<double2, double2, long2, ulong2>(new double2(1, 2));
+        CheckAs<float3, float3, int3, uint3>();
+        CheckAs<float2, float2, int2, uint2>();
+        CheckAs<short2, half2, short2, ushort2>();
+        CheckAs<double2, double2, long2, ulong2>();
     }
 
     [Test]
@@ -69,11 +66,19 @@ public class TestAsCast
         var h = math.asf<short2, half2>(new short2(0x3C00, 0x4000));
         var u = math.asu<float3, uint3>(new float3(1, 2, 3));
 
+        // the spelling of the intrinsic of HLSL reaches the same member
+        var hf = math.asfloat<int2, float2>(new int2(0x3F800000, 0x40000000));
+        var hi = math.asint<float2, int2>(new float2(1, 2));
+        var hu = math.asuint<float3, uint3>(new float3(1, 2, 3));
+
         using (Assert.EnterMultipleScope())
         {
             Assert.That((f.x, f.y), Is.EqualTo((1f, 2f)));
             Assert.That(((float)h.x, (float)h.y), Is.EqualTo((1f, 2f)));
             Assert.That((u.x, u.y, u.z), Is.EqualTo((0x3F800000u, 0x40000000u, 0x40400000u)));
+            Assert.That((hf.x, hf.y), Is.EqualTo((1f, 2f)));
+            Assert.That((hi.x, hi.y), Is.EqualTo((0x3F800000, 0x40000000)));
+            Assert.That((hu.x, hu.y, hu.z), Is.EqualTo((0x3F800000u, 0x40000000u, 0x40400000u)));
         }
     }
 
@@ -83,10 +88,10 @@ public class TestAsCast
         var v = new float2(1, 2);
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((v.asi().x, v.asi().y), Is.EqualTo((0x3F800000, 0x40000000)));
-            Assert.That((v.asu().x, v.asu().y), Is.EqualTo((0x3F800000u, 0x40000000u)));
-            Assert.That((v.asi().as_float().x, v.asi().as_float().y), Is.EqualTo((1f, 2f)));
-            Assert.That((v.asu().asf().x, v.asu().asf().y), Is.EqualTo((1f, 2f)));
+            Assert.That((v.asi.x, v.asi.y), Is.EqualTo((0x3F800000, 0x40000000)));
+            Assert.That((v.asu.x, v.asu.y), Is.EqualTo((0x3F800000u, 0x40000000u)));
+            Assert.That((v.asi.asf.x, v.asi.asf.y), Is.EqualTo((1f, 2f)));
+            Assert.That((v.asu.asf.x, v.asu.asf.y), Is.EqualTo((1f, 2f)));
         }
     }
 
@@ -96,11 +101,11 @@ public class TestAsCast
         var v = new short2(-1, 2);
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((v.asu().x, v.asu().y), Is.EqualTo((ushort.MaxValue, (ushort)2)));
+            Assert.That((v.asu.x, v.asu.y), Is.EqualTo((ushort.MaxValue, (ushort)2)));
             Assert.That(Unsafe.SizeOf<half2>(), Is.EqualTo(Unsafe.SizeOf<short2>()));
             // the 16 bit group is covered by the bits of every one of its members as well
-            Assert.That((v.asf().asi().x, v.asf().asi().y), Is.EqualTo((-1, 2)));
-            Assert.That((v.as_half().as_short().x, v.as_half().as_short().y), Is.EqualTo((-1, 2)));
+            Assert.That((v.asf.asi.x, v.asf.asi.y), Is.EqualTo((-1, 2)));
+            Assert.That((v.asf.asi.x, v.asf.asi.y), Is.EqualTo((-1, 2)));
         }
     }
 
@@ -110,7 +115,7 @@ public class TestAsCast
         var v = new float3(1, 2, 3);
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((v.asi().x, v.asi().y, v.asi().z), Is.EqualTo((0x3F800000, 0x40000000, 0x40400000)));
+            Assert.That((v.asi.x, v.asi.y, v.asi.z), Is.EqualTo((0x3F800000, 0x40000000, 0x40400000)));
         }
     }
 
@@ -120,8 +125,8 @@ public class TestAsCast
         var v = new double2(1, 2);
         using (Assert.EnterMultipleScope())
         {
-            Assert.That((v.asi().x, v.asi().y), Is.EqualTo((0x3FF0000000000000L, 0x4000000000000000L)));
-            Assert.That((v.asu().as_double().x, v.asu().as_double().y), Is.EqualTo((1d, 2d)));
+            Assert.That((v.asi.x, v.asi.y), Is.EqualTo((0x3FF0000000000000L, 0x4000000000000000L)));
+            Assert.That((v.asu.asf.x, v.asu.asf.y), Is.EqualTo((1d, 2d)));
         }
     }
 
@@ -129,8 +134,8 @@ public class TestAsCast
     public void ToStorage()
     {
         var v = new float3(1, 2, 3);
-        var s = v.to_storage();
-        var back = s.to_compute();
+        var s = v.to_storage;
+        var back = s.to_compute;
 
         using (Assert.EnterMultipleScope())
         {
@@ -143,16 +148,16 @@ public class TestAsCast
     [Test]
     public void ToStorageNarrower()
     {
-        var i = new int2(-1, 2).to_storage();
-        var d = new double3(1, 2, 3).to_storage();
-        var l = new long3(-1, 2, 3).to_storage().to_compute();
+        var i = new int2(-1, 2).to_storage;
+        var d = new double3(1, 2, 3).to_storage;
+        var l = new long3(-1, 2, 3).to_storage.to_compute;
 
         using (Assert.EnterMultipleScope())
         {
             // the storage variant of a 2 component vector keeps the exact 64 bits of its value
             Assert.That(Unsafe.SizeOf<int2s>(), Is.EqualTo(8));
-            Assert.That((i.to_compute().x, i.to_compute().y), Is.EqualTo((-1, 2)));
-            Assert.That((d.to_compute().x, d.to_compute().y, d.to_compute().z), Is.EqualTo((1d, 2d, 3d)));
+            Assert.That((i.to_compute.x, i.to_compute.y), Is.EqualTo((-1, 2)));
+            Assert.That((d.to_compute.x, d.to_compute.y, d.to_compute.z), Is.EqualTo((1d, 2d, 3d)));
             Assert.That((l.x, l.y, l.z), Is.EqualTo((-1L, 2L, 3L)));
         }
     }
@@ -175,49 +180,28 @@ public class TestAsCast
         using (Assert.EnterMultipleScope())
         {
             // the components behind the second one are the padding lanes of the 2 component vector
-            Assert.That(float4.as2(new float4(1, 2, 3, 4)), Is.EqualTo(new float2(1, 2)));
-            Assert.That(float3.as2(f3), Is.EqualTo(new float2(1, 2)));
-            Assert.That(new float4(1, 2, 3, 4).as2(), Is.EqualTo(new float2(1, 2)));
-            Assert.That(double3.as2(d3), Is.EqualTo(new double2(1, 2)));
-            Assert.That(double4.as2(double3.as4(d3)), Is.EqualTo(new double2(1, 2)));
-            Assert.That(long3.as2(l3), Is.EqualTo(new long2(1, 2)));
-            Assert.That(short3.as2(s3), Is.EqualTo(new short2(1, 2)));
-            Assert.That(half3.as2(h3), Is.EqualTo(new half2((Half)1, (Half)2)));
+            Assert.That(new float4(1, 2, 3, 4).as2, Is.EqualTo(new float2(1, 2)));
+            Assert.That(f3.as2, Is.EqualTo(new float2(1, 2)));
+            Assert.That(d3.as2, Is.EqualTo(new double2(1, 2)));
+            Assert.That(d3.as4.as2, Is.EqualTo(new double2(1, 2)));
+            Assert.That(l3.as2, Is.EqualTo(new long2(1, 2)));
+            Assert.That(s3.as2, Is.EqualTo(new short2(1, 2)));
+            Assert.That(h3.as2, Is.EqualTo(new half2((Half)1, (Half)2)));
             // the 4 component vector that a 3 component one converts into has a w component of zero
-            var f4 = float3.as4(f3);
+            var f4 = f3.as4;
             Assert.That((f4.x, f4.y, f4.z, f4.w), Is.EqualTo((1f, 2f, 3f, 0f)));
-            Assert.That(float3.as4(f3).w, Is.EqualTo(f3.as4().w));
-            Assert.That((double3.as4(d3).x, double3.as4(d3).w), Is.EqualTo((1d, 0d)));
-            Assert.That((long3.as4(l3).z, long3.as4(l3).w), Is.EqualTo((3L, 0L)));
-            Assert.That((short3.as4(s3).z, short3.as4(s3).w), Is.EqualTo(((short)3, (short)0)));
-            Assert.That((half3.as4(h3).z, half3.as4(h3).w), Is.EqualTo(((Half)3, (Half)0)));
-            Assert.That(half3.as4(h3), Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)0)));
+            Assert.That((d3.as4.x, d3.as4.w), Is.EqualTo((1d, 0d)));
+            Assert.That((l3.as4.z, l3.as4.w), Is.EqualTo((3L, 0L)));
+            Assert.That((s3.as4.z, s3.as4.w), Is.EqualTo(((short)3, (short)0)));
+            Assert.That((h3.as4.z, h3.as4.w), Is.EqualTo(((Half)3, (Half)0)));
+            Assert.That(h3.as4, Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)0)));
             // the component that the 3 component vector cannot hold is dropped
-            Assert.That(float4.as3(f4), Is.EqualTo(f3));
-            Assert.That(float4.as3(new float4(1, 2, 3, 4)), Is.EqualTo(f3));
-            Assert.That(double4.as3(double3.as4(d3)), Is.EqualTo(d3));
-            Assert.That(long4.as3(long3.as4(l3)), Is.EqualTo(l3));
-            Assert.That(short4.as3(short3.as4(s3)), Is.EqualTo(s3));
-            Assert.That(half4.as3(half3.as4(h3)), Is.EqualTo(h3));
-        }
-    }
-
-    /// <summary>
-    /// The conversion between the sizes is a member of the <c>math</c> class as well, its result type cannot be
-    /// inferred from the source vector by the compiler of today, so it has to be spelled out.
-    /// </summary>
-    [Test]
-    public void SizeConversionForwarding()
-    {
-        var f2 = math.as2<float4, float2>(new float4(1, 2, 3, 4));
-        var f4 = math.as4<float3, float4>(new float3(1, 2, 3));
-        var f3 = math.as3<float4, float3>(new float4(1, 2, 3, 0));
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(f2, Is.EqualTo(new float2(1, 2)));
-            Assert.That(f4, Is.EqualTo(new float4(1, 2, 3, 0)));
-            Assert.That(f3, Is.EqualTo(new float3(1, 2, 3)));
+            Assert.That(f4.as3, Is.EqualTo(f3));
+            Assert.That(new float4(1, 2, 3, 4).as3, Is.EqualTo(f3));
+            Assert.That(d3.as4.as3, Is.EqualTo(d3));
+            Assert.That(l3.as4.as3, Is.EqualTo(l3));
+            Assert.That(s3.as4.as3, Is.EqualTo(s3));
+            Assert.That(h3.as4.as3, Is.EqualTo(h3));
         }
     }
 }

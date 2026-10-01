@@ -140,7 +140,7 @@ public class TestVectorCtorFromVectors
             Assert.That(new uint3(1, u2), Is.EqualTo(new uint3(1, 1, 2)));
             Assert.That(new half3(h3.xy, (Half)3), Is.EqualTo(h3));
             // the storage variant of a vector keeps the components of the one it is created from
-            Assert.That(new float3s(f2, 3), Is.EqualTo(float3.Create(f2, 3).to_storage()));
+            Assert.That(new float3s(f2, 3), Is.EqualTo(float3.Create(f2, 3).to_storage));
 
             Assert.That(new float4(f2, new float2(3, 4)), Is.EqualTo(new float4(1, 2, 3, 4)));
             Assert.That(new float4(f2, 3, 4), Is.EqualTo(new float4(1, 2, 3, 4)));

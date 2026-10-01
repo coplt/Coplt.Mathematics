@@ -136,6 +136,7 @@ public class MatrixGenerator : IIncrementalGenerator
                 ifaces.Add(VectorGenShared.DispatchFloatIface(type));
                 ifaces.Add(VectorGenShared.DispatchFloatIfaceScalar(type, scalar));
             }
+
             ifaces.Add($"Algebras.Generics.Dispatch.IMatrixColumnDispatch<{type}, {col}>");
             ifaces.Add($"Algebras.Generics.Dispatch.IMatrixRowDispatch<{type}, {row}>");
 
@@ -214,8 +215,8 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine("    }");
         sb.AppendLine();
         // the storage variant of a matrix keeps its columns in the storage variants of the vectors, so the two of
-        // them convert into each other through the columns of the value and every one of them names the
-        // conversion that reaches the other one
+        // them convert into each other through the columns of the value, the conversion between the two of them
+        // is emitted beside the other conversions of the matrix, see GenConv
         if (VectorGenShared.HasStorageVariant(typ, rows))
         {
             var other = Name(typ, rows, cols, !storeVariant);
@@ -225,20 +226,22 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine($"    /// <summary>Creates the matrix from the regular <see cref=\"{other}\"/></summary>");
                 sb.AppendLine($"    public {type}(in {other} value) => this = new({columns});");
                 sb.AppendLine();
-                sb.AppendLine($"    /// <summary>Converts the regular <see cref=\"{other}\"/> to the matrix</summary>");
-                sb.AppendLine($"    public static implicit operator {type}(in {other} value) => new({columns});");
-                sb.AppendLine();
-                sb.AppendLine($"    /// <summary>Converts the matrix to the regular <see cref=\"{other}\"/></summary>");
-                sb.AppendLine($"    public static implicit operator {other}(in {type} value) => new({columns});");
-                sb.AppendLine();
                 sb.AppendLine($"    /// <summary>Converts the storage variant of the matrix to the regular <see cref=\"{other}\"/></summary>");
-                sb.AppendLine($"    public readonly {other} to_compute() => ({other})this;");
+                sb.AppendLine($"    public readonly {other} to_compute");
+                sb.AppendLine("    {");
+                sb.AppendLine("        [MethodImpl(256)]");
+                sb.AppendLine($"        get => ({other})this;");
+                sb.AppendLine("    }");
                 sb.AppendLine();
             }
             else
             {
                 sb.AppendLine($"    /// <summary>Converts the matrix to its storage variant <see cref=\"{other}\"/></summary>");
-                sb.AppendLine($"    public readonly {other} to_storage() => ({other})this;");
+                sb.AppendLine($"    public readonly {other} to_storage");
+                sb.AppendLine("    {");
+                sb.AppendLine("        [MethodImpl(256)]");
+                sb.AppendLine($"        get => ({other})this;");
+                sb.AppendLine("    }");
                 sb.AppendLine();
             }
         }
@@ -825,6 +828,7 @@ public class MatrixGenerator : IIncrementalGenerator
             // value, every other member takes a component of the value beside it or reaches the one it was given
             var self = VectorGenShared.DispatchIface(type);
             var withScalar = VectorGenShared.DispatchIfaceScalar(type, scalar);
+
             // a member of the dispatch of a value is implemented explicitly, so a member does not name the
             // constraints of the type of a component of it again and the value of a member of every kind is the
             // same one
@@ -899,7 +903,8 @@ public class MatrixGenerator : IIncrementalGenerator
 
     /// <summary>
     /// Generates the conversions of the matrix described by <paramref name="typ"/> into the matrices that have the
-    /// same shape and another component type: the target of every conversion of <see cref="Typ.ExplicitConverts"/>
+    /// same shape and another component type, and the storage variant of the matrix itself: the target of every
+    /// conversion of <see cref="Typ.ExplicitConverts"/>
     /// and <see cref="Typ.ImplicitConverts"/> of the kind of a component. Every column of the value is converted by
     /// the conversion of the vector that the column is, which the vector of the kind of the target names. The
     /// storage variant of a matrix only converts into the storage variants of the same shape, so a conversion that
@@ -914,9 +919,13 @@ public class MatrixGenerator : IIncrementalGenerator
     {
         var targets = VectorGenShared.ConvTargets(typ);
         targets.RemoveAll(a => storeVariant && !VectorGenShared.HasStorageVariant(a.Target, rows));
-        if (targets.Count == 0) return null;
 
         var type = Name(typ, rows, cols, storeVariant);
+        // the conversion between the matrix and its storage variant is emitted beside the numeric ones
+        var store = !storeVariant && VectorGenShared.HasStorageVariant(typ, rows) ? Name(typ, rows, cols, true) : null;
+        var regular = storeVariant ? Name(typ, rows, cols, false) : null;
+        if (targets.Count == 0 && store == null && regular == null) return null;
+
         var sb = new StringBuilder();
 
         foreach (var (kind, target) in targets)
@@ -926,6 +935,24 @@ public class MatrixGenerator : IIncrementalGenerator
             sb.AppendLine("    [MethodImpl(256)]");
             sb.AppendLine($"    public static {kind} operator {targetType}({type} self) =>");
             sb.AppendLine($"        new({VectorGenShared.Join(cols, i => $"({targetCol})self.c{i}")});");
+            sb.AppendLine();
+        }
+
+        // the conversion between the matrix and its storage variant is implicit and it goes through the columns
+        // of the value, which convert themselves
+        var columns = VectorGenShared.Join(cols, i => $"self.c{i}");
+
+        if (store != null)
+        {
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    public static implicit operator {store}({type} self) => new({columns});");
+            sb.AppendLine();
+        }
+
+        if (regular != null)
+        {
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    public static implicit operator {regular}({type} self) => new({columns});");
             sb.AppendLine();
         }
 

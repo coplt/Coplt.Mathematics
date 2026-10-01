@@ -179,10 +179,6 @@ public static partial class math
 
     #endregion
 
-    // todo rcp fast
-
-    // todo rsqrt fast
-
     // #region slerp
     //
     // [MethodImpl(256 | 512)]
