@@ -26,6 +26,23 @@ public static partial class simd_matrix
             var oc3 = Sse.Shuffle(c, d, 0xDD); // a1 a3 a1 a3 => (c.yw, d.yw) => (c0.w, c1.w, c2.w, c3.w)
             return (oc0, oc1, oc2, oc3);
         }
+
+        // the even lanes of the first and the third registers of the value beside the even lanes of the second
+        // and the fourth take the columns of the result at the even indexes and the odd lanes of the two pairs
+        // take the columns at the odd indexes
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.TransposeEven(c0, c2); // (c0.x, c2.x, c0.z, c2.z)
+            var b = AdvSimd.Arm64.TransposeEven(c1, c3); // (c1.x, c3.x, c1.z, c3.z)
+            var c = AdvSimd.Arm64.TransposeOdd(c0, c2); // (c0.y, c2.y, c0.w, c2.w)
+            var d = AdvSimd.Arm64.TransposeOdd(c1, c3); // (c1.y, c3.y, c1.w, c3.w)
+            return (
+                AdvSimd.Arm64.ZipLow(a, b), // (c0.x, c1.x, c2.x, c3.x)
+                AdvSimd.Arm64.ZipLow(c, d), // (c0.y, c1.y, c2.y, c3.y)
+                AdvSimd.Arm64.ZipHigh(a, b), // (c0.z, c1.z, c2.z, c3.z)
+                AdvSimd.Arm64.ZipHigh(c, d) // (c0.w, c1.w, c2.w, c3.w)
+            );
+        }
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));
             var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), c2.GetElement(1), c3.GetElement(1));
@@ -88,6 +105,23 @@ public static partial class simd_matrix
             var oc3 = Sse.Shuffle(c, d, 0xDD); // a1 a3 a1 a3 => (c.yw, d.yw) => (c0.w, c1.w, c2.w, c3.w)
             return (oc0.AsInt32(), oc1.AsInt32(), oc2.AsInt32(), oc3.AsInt32());
         }
+
+        // the even lanes of the first and the third registers of the value beside the even lanes of the second
+        // and the fourth take the columns of the result at the even indexes and the odd lanes of the two pairs
+        // take the columns at the odd indexes
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.TransposeEven(c0, c2); // (c0.x, c2.x, c0.z, c2.z)
+            var b = AdvSimd.Arm64.TransposeEven(c1, c3); // (c1.x, c3.x, c1.z, c3.z)
+            var c = AdvSimd.Arm64.TransposeOdd(c0, c2); // (c0.y, c2.y, c0.w, c2.w)
+            var d = AdvSimd.Arm64.TransposeOdd(c1, c3); // (c1.y, c3.y, c1.w, c3.w)
+            return (
+                AdvSimd.Arm64.ZipLow(a, b), // (c0.x, c1.x, c2.x, c3.x)
+                AdvSimd.Arm64.ZipLow(c, d), // (c0.y, c1.y, c2.y, c3.y)
+                AdvSimd.Arm64.ZipHigh(a, b), // (c0.z, c1.z, c2.z, c3.z)
+                AdvSimd.Arm64.ZipHigh(c, d) // (c0.w, c1.w, c2.w, c3.w)
+            );
+        }
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));
             var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), c2.GetElement(1), c3.GetElement(1));
@@ -120,6 +154,23 @@ public static partial class simd_matrix
             var oc2 = Sse.Shuffle(c, d, 0x88); // a0 a2 b0 b2 => (c.xz, d.xz) => (c0.z, c1.z, c2.z, c3.z)
             var oc3 = Sse.Shuffle(c, d, 0xDD); // a1 a3 a1 a3 => (c.yw, d.yw) => (c0.w, c1.w, c2.w, c3.w)
             return (oc0.AsUInt32(), oc1.AsUInt32(), oc2.AsUInt32(), oc3.AsUInt32());
+        }
+
+        // the even lanes of the first and the third registers of the value beside the even lanes of the second
+        // and the fourth take the columns of the result at the even indexes and the odd lanes of the two pairs
+        // take the columns at the odd indexes
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.TransposeEven(c0, c2); // (c0.x, c2.x, c0.z, c2.z)
+            var b = AdvSimd.Arm64.TransposeEven(c1, c3); // (c1.x, c3.x, c1.z, c3.z)
+            var c = AdvSimd.Arm64.TransposeOdd(c0, c2); // (c0.y, c2.y, c0.w, c2.w)
+            var d = AdvSimd.Arm64.TransposeOdd(c1, c3); // (c1.y, c3.y, c1.w, c3.w)
+            return (
+                AdvSimd.Arm64.ZipLow(a, b), // (c0.x, c1.x, c2.x, c3.x)
+                AdvSimd.Arm64.ZipLow(c, d), // (c0.y, c1.y, c2.y, c3.y)
+                AdvSimd.Arm64.ZipHigh(a, b), // (c0.z, c1.z, c2.z, c3.z)
+                AdvSimd.Arm64.ZipHigh(c, d) // (c0.w, c1.w, c2.w, c3.w)
+            );
         }
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));

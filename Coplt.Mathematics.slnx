@@ -6,4 +6,5 @@
   <Project Path="SourceGenerator.Old/SourceGenerator.Old.csproj" />
   <Project Path="SourceGenerator/SourceGenerator.csproj" />
   <Project Path="Tests/Tests.csproj" />
+  <Project Path="Tests.Arm/Tests.Arm.csproj" />
 </Solution>

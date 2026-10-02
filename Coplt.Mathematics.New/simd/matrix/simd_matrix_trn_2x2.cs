@@ -15,9 +15,18 @@ public static partial class simd_matrix
     )
     {
         // the two components of a column of the value are the two lower lanes of the register of it and the lanes
-        // that follow them are padding: the two registers are joined into one register of the width of two of them
-        // and a single shuffle of the lanes of it reaches both columns of the result, whose two upper lanes read
-        // the padding of the first column of the value
+        // that follow them are padding, and the paths below are ordered by the number of the instructions they
+        // take: the transpose of the even and the odd lanes of the two registers of the value takes two, the
+        // single shuffle of the lanes of the join of the two registers takes one where the machine has a register
+        // of 256 bits and the low to high combination of them beside a shuffle of each half of the combined
+        // register takes three
+        // the even lanes of the two registers of the value are the first column of the result beside the padding
+        // of the first column of the value and the odd lanes of them are the second
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            return (AdvSimd.Arm64.TransposeEven(c0, c1), AdvSimd.Arm64.TransposeOdd(c0, c1));
+        }
+
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1); // (c0.x, c0.y, c0.z, c0.w, c1.x, c1.y, c1.z, c1.w)
@@ -25,7 +34,6 @@ public static partial class simd_matrix
             return (b.GetLower(), b.GetUpper()); // => ((c0.x, c1.x, c0.z, c0.w), (c0.y, c1.y, c0.z, c0.w))
         }
 
-        // a register of 128 bits reaches the two columns of the result out of the halves of the one it builds
         if (Sse.IsSupported)
         {
             var a = Sse.MoveLowToHigh(c0, c1); // (c0.x, c0.y, c1.x, c1.y)
@@ -52,16 +60,21 @@ public static partial class simd_matrix
     {
         // a column of the value of a kind of 8 bytes is the register of it itself: the low lanes of the two
         // registers of the value are the first column of the result and the high lanes of them are the second
+        if (Sse2.IsSupported)
+        {
+            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
+        }
+
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            return (AdvSimd.Arm64.TransposeEven(c0, c1), AdvSimd.Arm64.TransposeOdd(c0, c1));
+        }
+
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1);
             var b = Vector256.Shuffle(a, Vector256.Create(0, 2, 1, 3));
             return (b.GetLower(), b.GetUpper());
-        }
-
-        if (Sse2.IsSupported)
-        {
-            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
         }
 
         {
@@ -80,6 +93,11 @@ public static partial class simd_matrix
         Vector128<int> c0, Vector128<int> c1
     )
     {
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            return (AdvSimd.Arm64.TransposeEven(c0, c1), AdvSimd.Arm64.TransposeOdd(c0, c1));
+        }
+
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1); // (c0.x, c0.y, c0.z, c0.w, c1.x, c1.y, c1.z, c1.w)
@@ -113,6 +131,11 @@ public static partial class simd_matrix
         Vector128<uint> c0, Vector128<uint> c1
     )
     {
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            return (AdvSimd.Arm64.TransposeEven(c0, c1), AdvSimd.Arm64.TransposeOdd(c0, c1));
+        }
+
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1); // (c0.x, c0.y, c0.z, c0.w, c1.x, c1.y, c1.z, c1.w)
@@ -147,16 +170,21 @@ public static partial class simd_matrix
     )
     {
         // a column of the value of a kind of 8 bytes is the register of it itself
+        if (Sse2.IsSupported)
+        {
+            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
+        }
+
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            return (AdvSimd.Arm64.TransposeEven(c0, c1), AdvSimd.Arm64.TransposeOdd(c0, c1));
+        }
+
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1);
             var b = Vector256.Shuffle(a, Vector256.Create(0, 2, 1, 3));
             return (b.GetLower(), b.GetUpper());
-        }
-
-        if (Sse2.IsSupported)
-        {
-            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
         }
 
         {
@@ -176,16 +204,21 @@ public static partial class simd_matrix
     )
     {
         // a column of the value of a kind of 8 bytes is the register of it itself
+        if (Sse2.IsSupported)
+        {
+            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
+        }
+
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            return (AdvSimd.Arm64.TransposeEven(c0, c1), AdvSimd.Arm64.TransposeOdd(c0, c1));
+        }
+
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1);
             var b = Vector256.Shuffle(a, Vector256.Create((ulong)0, 2, 1, 3));
             return (b.GetLower(), b.GetUpper());
-        }
-
-        if (Sse2.IsSupported)
-        {
-            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
         }
 
         {

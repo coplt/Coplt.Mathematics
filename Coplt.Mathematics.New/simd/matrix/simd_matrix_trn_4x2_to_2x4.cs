@@ -14,8 +14,20 @@ public static partial class simd_matrix
         Vector128<float> c0, Vector128<float> c1
     )
     {
-        // the two components of a column of the result are the two lower lanes of the register of it and the
-        // lanes that follow them are padding
+        // the two components of a column of a result are the two lower lanes of the register of it and the lanes
+        // that follow them are padding: the low and the high combinations of the two registers of the value take
+        // the first and the third columns of the result, the transpose of the odd lanes of them takes the second
+        // and a shuffle of the high combination takes the fourth, which is four instructions where the two halves
+        // of the two registers of the value take six
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.ZipLow(c0, c1); // (c0.x, c1.x, c0.y, c1.y)
+            var b = AdvSimd.Arm64.TransposeOdd(c0, c1); // (c0.y, c1.y, c0.w, c1.w)
+            var c = AdvSimd.Arm64.ZipHigh(c0, c1); // (c0.z, c1.z, c0.w, c1.w)
+            var d = Vector128.Shuffle(c, Vector128.Create(2, 3, 0, 1)); // (c0.w, c1.w, c0.z, c1.z)
+            return (a, b, c, d);
+        }
+
         if (Sse.IsSupported)
         {
             var a = Sse.UnpackLow(c0, c1); // (c0.x, c1.x, c0.y, c1.y)
@@ -67,6 +79,15 @@ public static partial class simd_matrix
         Vector128<int> c0, Vector128<int> c1
     )
     {
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.ZipLow(c0, c1); // (c0.x, c1.x, c0.y, c1.y)
+            var b = AdvSimd.Arm64.TransposeOdd(c0, c1); // (c0.y, c1.y, c0.w, c1.w)
+            var c = AdvSimd.Arm64.ZipHigh(c0, c1); // (c0.z, c1.z, c0.w, c1.w)
+            var d = Vector128.Shuffle(c, Vector128.Create(2, 3, 0, 1)); // (c0.w, c1.w, c0.z, c1.z)
+            return (a, b, c, d);
+        }
+
         if (Sse.IsSupported)
         {
             var ic0 = c0.AsSingle();
@@ -97,6 +118,15 @@ public static partial class simd_matrix
         Vector128<uint> c0, Vector128<uint> c1
     )
     {
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.ZipLow(c0, c1); // (c0.x, c1.x, c0.y, c1.y)
+            var b = AdvSimd.Arm64.TransposeOdd(c0, c1); // (c0.y, c1.y, c0.w, c1.w)
+            var c = AdvSimd.Arm64.ZipHigh(c0, c1); // (c0.z, c1.z, c0.w, c1.w)
+            var d = Vector128.Shuffle(c, Vector128.Create((uint)2, 3, 0, 1)); // (c0.w, c1.w, c0.z, c1.z)
+            return (a, b, c, d);
+        }
+
         if (Sse.IsSupported)
         {
             var ic0 = c0.AsSingle();

@@ -24,6 +24,21 @@ public static partial class simd_matrix
             var oc1 = Sse.Shuffle(a, b, 0xDD); // a1 a3 b1 b3 => (c0.y, c1.y, c2.y, c3.y)
             return (oc0, oc1);
         }
+
+        // the even lanes of the first and the third registers of the value beside the even lanes of the second
+        // and the fourth take the first column of the result and the odd lanes of the two pairs take the second
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.TransposeEven(c0, c2); // (c0.x, c2.x, c0.z, c2.z)
+            var b = AdvSimd.Arm64.TransposeEven(c1, c3); // (c1.x, c3.x, c1.z, c3.z)
+            var c = AdvSimd.Arm64.TransposeOdd(c0, c2); // (c0.y, c2.y, c0.w, c2.w)
+            var d = AdvSimd.Arm64.TransposeOdd(c1, c3); // (c1.y, c3.y, c1.w, c3.w)
+            return (
+                AdvSimd.Arm64.ZipLow(a, b), // (c0.x, c1.x, c2.x, c3.x)
+                AdvSimd.Arm64.ZipLow(c, d) // (c0.y, c1.y, c2.y, c3.y)
+            );
+        }
+
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));
             var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), c2.GetElement(1), c3.GetElement(1));
@@ -32,6 +47,7 @@ public static partial class simd_matrix
     }
 
     #endregion
+
     #region Vector256<double>
 
     [MethodImpl(256)]
@@ -47,6 +63,7 @@ public static partial class simd_matrix
             var oc1 = Avx.Shuffle(a, b, 0xF); // a1 b1 a3 b3 => (c0.y, c1.y, c2.y, c3.y)
             return (oc0, oc1);
         }
+
         {
             var oc0 = Vector256.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));
             var oc1 = Vector256.Create(c0.GetElement(1), c1.GetElement(1), c2.GetElement(1), c3.GetElement(1));
@@ -55,6 +72,7 @@ public static partial class simd_matrix
     }
 
     #endregion
+
     #region Vector128<int>
 
     [MethodImpl(256)]
@@ -74,6 +92,21 @@ public static partial class simd_matrix
             var oc1 = Sse.Shuffle(a, b, 0xDD); // a1 a3 b1 b3 => (c0.y, c1.y, c2.y, c3.y)
             return (oc0.AsInt32(), oc1.AsInt32());
         }
+
+        // the even lanes of the first and the third registers of the value beside the even lanes of the second
+        // and the fourth take the first column of the result and the odd lanes of the two pairs take the second
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.TransposeEven(c0, c2); // (c0.x, c2.x, c0.z, c2.z)
+            var b = AdvSimd.Arm64.TransposeEven(c1, c3); // (c1.x, c3.x, c1.z, c3.z)
+            var c = AdvSimd.Arm64.TransposeOdd(c0, c2); // (c0.y, c2.y, c0.w, c2.w)
+            var d = AdvSimd.Arm64.TransposeOdd(c1, c3); // (c1.y, c3.y, c1.w, c3.w)
+            return (
+                AdvSimd.Arm64.ZipLow(a, b), // (c0.x, c1.x, c2.x, c3.x)
+                AdvSimd.Arm64.ZipLow(c, d) // (c0.y, c1.y, c2.y, c3.y)
+            );
+        }
+
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));
             var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), c2.GetElement(1), c3.GetElement(1));
@@ -82,6 +115,7 @@ public static partial class simd_matrix
     }
 
     #endregion
+
     #region Vector128<uint>
 
     [MethodImpl(256)]
@@ -101,6 +135,21 @@ public static partial class simd_matrix
             var oc1 = Sse.Shuffle(a, b, 0xDD); // a1 a3 b1 b3 => (c0.y, c1.y, c2.y, c3.y)
             return (oc0.AsUInt32(), oc1.AsUInt32());
         }
+
+        // the even lanes of the first and the third registers of the value beside the even lanes of the second
+        // and the fourth take the first column of the result and the odd lanes of the two pairs take the second
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var a = AdvSimd.Arm64.TransposeEven(c0, c2); // (c0.x, c2.x, c0.z, c2.z)
+            var b = AdvSimd.Arm64.TransposeEven(c1, c3); // (c1.x, c3.x, c1.z, c3.z)
+            var c = AdvSimd.Arm64.TransposeOdd(c0, c2); // (c0.y, c2.y, c0.w, c2.w)
+            var d = AdvSimd.Arm64.TransposeOdd(c1, c3); // (c1.y, c3.y, c1.w, c3.w)
+            return (
+                AdvSimd.Arm64.ZipLow(a, b), // (c0.x, c1.x, c2.x, c3.x)
+                AdvSimd.Arm64.ZipLow(c, d) // (c0.y, c1.y, c2.y, c3.y)
+            );
+        }
+
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));
             var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), c2.GetElement(1), c3.GetElement(1));
@@ -109,6 +158,7 @@ public static partial class simd_matrix
     }
 
     #endregion
+
     #region Vector256<long>
 
     [MethodImpl(256)]
@@ -128,6 +178,7 @@ public static partial class simd_matrix
             var oc1 = Avx.Shuffle(a, b, 0xF); // a1 b1 a3 b3 => (c0.y, c1.y, c2.y, c3.y)
             return (oc0.AsInt64(), oc1.AsInt64());
         }
+
         {
             var oc0 = Vector256.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));
             var oc1 = Vector256.Create(c0.GetElement(1), c1.GetElement(1), c2.GetElement(1), c3.GetElement(1));
@@ -136,6 +187,7 @@ public static partial class simd_matrix
     }
 
     #endregion
+
     #region Vector256<ulong>
 
     [MethodImpl(256)]
@@ -155,6 +207,7 @@ public static partial class simd_matrix
             var oc1 = Avx.Shuffle(a, b, 0xF); // a1 b1 a3 b3 => (c0.y, c1.y, c2.y, c3.y)
             return (oc0.AsUInt64(), oc1.AsUInt64());
         }
+
         {
             var oc0 = Vector256.Create(c0.GetElement(0), c1.GetElement(0), c2.GetElement(0), c3.GetElement(0));
             var oc1 = Vector256.Create(c0.GetElement(1), c1.GetElement(1), c2.GetElement(1), c3.GetElement(1));
