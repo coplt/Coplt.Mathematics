@@ -7,40 +7,63 @@ namespace Coplt.Mathematics.Simd;
 
 public static partial class simd_matrix
 {
-    #region Vector64<float>
+    #region Vector128<float>
 
-    [MethodImpl(256 | 512)]
-    public static (Vector64<float> c0, Vector64<float> c1) Transpose2x2(
-        Vector64<float> c0, Vector64<float> c1
+    [MethodImpl(256)]
+    public static (Vector128<float> c0, Vector128<float> c1) Transpose2x2(
+        Vector128<float> c0, Vector128<float> c1
     )
     {
-        if (Vector128.IsHardwareAccelerated)
+        // the two components of a column of the value are the two lower lanes of the register of it and the lanes
+        // that follow them are padding: the two registers are joined into one register of the width of two of them
+        // and a single shuffle of the lanes of it reaches both columns of the result, whose two upper lanes read
+        // the padding of the first column of the value
+        if (Vector256.IsHardwareAccelerated)
         {
-            var a = Vector128.Create(c0, c1);
-            var b = Vector128.Shuffle(a, Vector128.Create(0, 2, 1, 3));
-            return (b.GetLower(), b.GetUpper());
+            var a = Vector256.Create(c0, c1); // (c0.x, c0.y, c0.z, c0.w, c1.x, c1.y, c1.z, c1.w)
+            var b = Vector256.Shuffle(a.AsInt32(), Vector256.Create(0, 4, 2, 3, 1, 5, 2, 3)).AsSingle();
+            return (b.GetLower(), b.GetUpper()); // => ((c0.x, c1.x, c0.z, c0.w), (c0.y, c1.y, c0.z, c0.w))
         }
+
+        // a register of 128 bits reaches the two columns of the result out of the halves of the one it builds
+        if (Sse.IsSupported)
         {
-            var oc0 = Vector64.Create(c0.GetElement(0), c1.GetElement(0));
-            var oc1 = Vector64.Create(c0.GetElement(1), c1.GetElement(1));
+            var a = Sse.MoveLowToHigh(c0, c1); // (c0.x, c0.y, c1.x, c1.y)
+            var r0 = Sse.Shuffle(a, Vector128<float>.Zero, 0x08); // (a0, a2, 0, 0) => (c0.x, c1.x, 0, 0)
+            var r1 = Sse.Shuffle(a, Vector128<float>.Zero, 0x0D); // (a1, a3, 0, 0) => (c0.y, c1.y, 0, 0)
+            return (r0, r1);
+        }
+
+        {
+            var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), 0f, 0f);
+            var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), 0f, 0f);
             return (oc0, oc1);
         }
     }
 
     #endregion
+
     #region Vector128<double>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<double> c0, Vector128<double> c1) Transpose2x2(
         Vector128<double> c0, Vector128<double> c1
     )
     {
+        // a column of the value of a kind of 8 bytes is the register of it itself: the low lanes of the two
+        // registers of the value are the first column of the result and the high lanes of them are the second
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1);
             var b = Vector256.Shuffle(a, Vector256.Create(0, 2, 1, 3));
             return (b.GetLower(), b.GetUpper());
         }
+
+        if (Sse2.IsSupported)
+        {
+            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
+        }
+
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0));
             var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1));
@@ -49,61 +72,93 @@ public static partial class simd_matrix
     }
 
     #endregion
-    #region Vector64<int>
 
-    [MethodImpl(256 | 512)]
-    public static (Vector64<int> c0, Vector64<int> c1) Transpose2x2(
-        Vector64<int> c0, Vector64<int> c1
+    #region Vector128<int>
+
+    [MethodImpl(256)]
+    public static (Vector128<int> c0, Vector128<int> c1) Transpose2x2(
+        Vector128<int> c0, Vector128<int> c1
     )
     {
-        if (Vector128.IsHardwareAccelerated)
+        if (Vector256.IsHardwareAccelerated)
         {
-            var a = Vector128.Create(c0, c1);
-            var b = Vector128.Shuffle(a, Vector128.Create(0, 2, 1, 3));
-            return (b.GetLower(), b.GetUpper());
+            var a = Vector256.Create(c0, c1); // (c0.x, c0.y, c0.z, c0.w, c1.x, c1.y, c1.z, c1.w)
+            var b = Vector256.Shuffle(a, Vector256.Create(0, 4, 2, 3, 1, 5, 2, 3));
+            return (b.GetLower(), b.GetUpper()); // => ((c0.x, c1.x, c0.z, c0.w), (c0.y, c1.y, c0.z, c0.w))
         }
+
+        if (Sse.IsSupported)
         {
-            var oc0 = Vector64.Create(c0.GetElement(0), c1.GetElement(0));
-            var oc1 = Vector64.Create(c0.GetElement(1), c1.GetElement(1));
+            var ic0 = c0.AsSingle();
+            var ic1 = c1.AsSingle();
+            var a = Sse.MoveLowToHigh(ic0, ic1); // (c0.x, c0.y, c1.x, c1.y)
+            var r0 = Sse.Shuffle(a, Vector128<float>.Zero, 0x08); // (a0, a2, 0, 0) => (c0.x, c1.x, 0, 0)
+            var r1 = Sse.Shuffle(a, Vector128<float>.Zero, 0x0D); // (a1, a3, 0, 0) => (c0.y, c1.y, 0, 0)
+            return (r0.AsInt32(), r1.AsInt32());
+        }
+
+        {
+            var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), 0, 0);
+            var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), 0, 0);
             return (oc0, oc1);
         }
     }
 
     #endregion
-    #region Vector64<uint>
 
-    [MethodImpl(256 | 512)]
-    public static (Vector64<uint> c0, Vector64<uint> c1) Transpose2x2(
-        Vector64<uint> c0, Vector64<uint> c1
+    #region Vector128<uint>
+
+    [MethodImpl(256)]
+    public static (Vector128<uint> c0, Vector128<uint> c1) Transpose2x2(
+        Vector128<uint> c0, Vector128<uint> c1
     )
     {
-        if (Vector128.IsHardwareAccelerated)
+        if (Vector256.IsHardwareAccelerated)
         {
-            var a = Vector128.Create(c0, c1);
-            var b = Vector128.Shuffle(a, Vector128.Create((uint)0, 2, 1, 3));
-            return (b.GetLower(), b.GetUpper());
+            var a = Vector256.Create(c0, c1); // (c0.x, c0.y, c0.z, c0.w, c1.x, c1.y, c1.z, c1.w)
+            var b = Vector256.Shuffle(a, Vector256.Create(0, 4, 2, 3, 1, 5, 2, 3).AsUInt32());
+            return (b.GetLower(), b.GetUpper()); // => ((c0.x, c1.x, c0.z, c0.w), (c0.y, c1.y, c0.z, c0.w))
         }
+
+        if (Sse.IsSupported)
         {
-            var oc0 = Vector64.Create(c0.GetElement(0), c1.GetElement(0));
-            var oc1 = Vector64.Create(c0.GetElement(1), c1.GetElement(1));
+            var ic0 = c0.AsSingle();
+            var ic1 = c1.AsSingle();
+            var a = Sse.MoveLowToHigh(ic0, ic1); // (c0.x, c0.y, c1.x, c1.y)
+            var r0 = Sse.Shuffle(a, Vector128<float>.Zero, 0x08); // (a0, a2, 0, 0) => (c0.x, c1.x, 0, 0)
+            var r1 = Sse.Shuffle(a, Vector128<float>.Zero, 0x0D); // (a1, a3, 0, 0) => (c0.y, c1.y, 0, 0)
+            return (r0.AsUInt32(), r1.AsUInt32());
+        }
+
+        {
+            var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), 0u, 0u);
+            var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), 0u, 0u);
             return (oc0, oc1);
         }
     }
 
     #endregion
+
     #region Vector128<long>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<long> c0, Vector128<long> c1) Transpose2x2(
         Vector128<long> c0, Vector128<long> c1
     )
     {
+        // a column of the value of a kind of 8 bytes is the register of it itself
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1);
             var b = Vector256.Shuffle(a, Vector256.Create(0, 2, 1, 3));
             return (b.GetLower(), b.GetUpper());
         }
+
+        if (Sse2.IsSupported)
+        {
+            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
+        }
+
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0));
             var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1));
@@ -112,19 +167,27 @@ public static partial class simd_matrix
     }
 
     #endregion
+
     #region Vector128<ulong>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<ulong> c0, Vector128<ulong> c1) Transpose2x2(
         Vector128<ulong> c0, Vector128<ulong> c1
     )
     {
+        // a column of the value of a kind of 8 bytes is the register of it itself
         if (Vector256.IsHardwareAccelerated)
         {
             var a = Vector256.Create(c0, c1);
             var b = Vector256.Shuffle(a, Vector256.Create((ulong)0, 2, 1, 3));
             return (b.GetLower(), b.GetUpper());
         }
+
+        if (Sse2.IsSupported)
+        {
+            return (Sse2.UnpackLow(c0, c1), Sse2.UnpackHigh(c0, c1));
+        }
+
         {
             var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0));
             var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1));

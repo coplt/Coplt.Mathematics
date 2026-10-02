@@ -103,13 +103,13 @@ public partial class VectorGenerator
             members.Add(new($"Create({scalar} x, {scalar} y, {scalar} z)", Body: "new(x, y, z)"));
             members.Add(new($"Create(in {type2} xy, {scalar} z)", Forward: "this = Create(xy, z)",
                 Summary: "Creates a vector from the pair of the <c>x</c> and <c>y</c> components and the <c>z</c> component",
-                Ctor: $"in {type2} xy, {scalar} z", Fallback: "new(xy.x, xy.y, z)",
+                Ctor: $"{type2} xy, {scalar} z", Fallback: "new(xy.x, xy.y, z)",
                 Accel: $"{vecName}.Create({HalfOf("xy")}, {HalfOfValues("z", "default")})"));
             // the pair is read from the upper half of the register, the shuffle moves it to the components
             // behind the value
             members.Add(new($"Create({scalar} x, in {type2} yz)", Forward: "this = Create(x, yz)",
                 Summary: "Creates a vector from the <c>x</c> component and the pair of the <c>y</c> and <c>z</c> components",
-                Ctor: $"{scalar} x, in {type2} yz", Fallback: "new(x, yz.x, yz.y)",
+                Ctor: $"{scalar} x, {type2} yz", Fallback: "new(x, yz.x, yz.y)",
                 Accel: $"{vecName}.Shuffle({vecName}.Create({HalfOfValues("x", "default")}, {HalfOf("yz")}), {Index(0, 2, 3, 1)})"));
             members.Add(new($"InsertY(in {type2} xz, {scalar} y)", Fallback: "new(xz.x, y, xz.y)",
                 Accel: $"{vecName}.Shuffle({vecName}.Create({HalfOf("xz")}, {HalfOfValues("y", "default")}), {Index(0, 2, 1, 3)})"));
@@ -120,21 +120,21 @@ public partial class VectorGenerator
             // the two pairs of the arguments are the two halves of the register
             members.Add(new($"Create(in {type2} xy, in {type2} zw)", Forward: "this = Create(xy, zw)",
                 Summary: "Creates a vector from two pairs of components",
-                Ctor: $"in {type2} xy, in {type2} zw", Fallback: "new(xy.x, xy.y, zw.x, zw.y)",
+                Ctor: $"{type2} xy, {type2} zw", Fallback: "new(xy.x, xy.y, zw.x, zw.y)",
                 Accel: $"{vecName}.Create({HalfOf("xy")}, {HalfOf("zw")})"));
             members.Add(new($"Create(in {type2} xy, {scalar} z, {scalar} w)", Forward: "this = Create(xy, z, w)",
                 Summary: "Creates a vector from the pair of the <c>x</c> and <c>y</c> components and the two other components",
-                Ctor: $"in {type2} xy, {scalar} z, {scalar} w", Fallback: "new(xy.x, xy.y, z, w)",
+                Ctor: $"{type2} xy, {scalar} z, {scalar} w", Fallback: "new(xy.x, xy.y, z, w)",
                 Accel: $"{vecName}.Create({HalfOf("xy")}, {HalfOfValues("z", "w")})"));
             members.Add(new($"Create({scalar} x, {scalar} y, in {type2} zw)", Forward: "this = Create(x, y, zw)",
                 Summary: "Creates a vector from the two first components and the pair of the <c>z</c> and <c>w</c> ones",
-                Ctor: $"{scalar} x, {scalar} y, in {type2} zw", Fallback: "new(x, y, zw.x, zw.y)",
+                Ctor: $"{scalar} x, {scalar} y, {type2} zw", Fallback: "new(x, y, zw.x, zw.y)",
                 Accel: $"{vecName}.Create({HalfOfValues("x", "y")}, {HalfOf("zw")})"));
             // the pair is read from the upper half of the register, the shuffle moves it to the components
             // between the two values
             members.Add(new($"Create({scalar} x, in {type2} yz, {scalar} w)", Forward: "this = Create(x, yz, w)",
                 Summary: "Creates a vector from the <c>x</c> and <c>w</c> components and the pair of the <c>y</c> and <c>z</c> ones",
-                Ctor: $"{scalar} x, in {type2} yz, {scalar} w", Fallback: "new(x, yz.x, yz.y, w)",
+                Ctor: $"{scalar} x, {type2} yz, {scalar} w", Fallback: "new(x, yz.x, yz.y, w)",
                 Accel: $"{vecName}.Shuffle({vecName}.Create({HalfOfValues("x", "w")}, {HalfOf("yz")}), {Index(0, 2, 3, 1)})"));
             // the members that insert a pair of components keep their own body: the constructor of the first two
             // of them would take the same arguments as the constructor of a merge of two pairs
@@ -156,11 +156,11 @@ public partial class VectorGenerator
             // is appended to it and the shuffle turns the vector around it
             members.Add(new($"Create(in {type3} xyz, {scalar} w)", Forward: "this = Create(xyz, w)",
                 Summary: "Creates a vector from the triple of the <c>x</c>, <c>y</c> and <c>z</c> components and the <c>w</c> component",
-                Ctor: $"in {type3} xyz, {scalar} w", Fallback: "new(xyz.x, xyz.y, xyz.z, w)",
+                Ctor: $"{type3} xyz, {scalar} w", Fallback: "new(xyz.x, xyz.y, xyz.z, w)",
                 Accel: "xyz.vector.WithElement(3, w)"));
             members.Add(new($"Create({scalar} x, in {type3} yzw)", Forward: "this = Create(x, yzw)",
                 Summary: "Creates a vector from the <c>x</c> component and the triple of the <c>y</c>, <c>z</c> and <c>w</c> components",
-                Ctor: $"{scalar} x, in {type3} yzw", Fallback: "new(x, yzw.x, yzw.y, yzw.z)",
+                Ctor: $"{scalar} x, {type3} yzw", Fallback: "new(x, yzw.x, yzw.y, yzw.z)",
                 Accel: $"{vecName}.Shuffle(yzw.vector.WithElement(3, x), {Index(3, 0, 1, 2)})"));
             members.Add(new($"InsertY(in {type3} xzw, {scalar} y)", Fallback: "new(xzw.x, y, xzw.y, xzw.z)",
                 Accel: $"{vecName}.Shuffle(xzw.vector.WithElement(3, y), {Index(0, 3, 1, 2)})"));

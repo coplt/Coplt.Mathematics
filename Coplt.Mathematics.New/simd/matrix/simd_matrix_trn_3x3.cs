@@ -9,7 +9,7 @@ public static partial class simd_matrix
 {
     #region Vector128<float>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<float> c0, Vector128<float> c1, Vector128<float> c2) Transpose3x3(
         Vector128<float> c0, Vector128<float> c1, Vector128<float> c2
     )
@@ -17,7 +17,7 @@ public static partial class simd_matrix
         if (Sse.IsSupported)
         {
             var a = Sse.Shuffle(c0, c1, 0x44); // a0 a1 b0 b1 => (c0.xy, c1.xy)
-            var c = Sse.Shuffle(c0, c1, 0xEE); // a2 a3 b2 b3 => (c0.yz, c1.yz)
+            var c = Sse.Shuffle(c0, c1, 0xEE); // a2 a3 b2 b3 => (c0.zw, c1.zw)
             var oc0 = Sse.Shuffle(a, c2, 0xC8); // a0 a2 b0 b3 => (a.xz, c2.xw) => (c0.x, c1.x, c2.x, 0)         
             var oc1 = Sse.Shuffle(a, c2, 0xDD); // a1 a3 a1 a3 => (a.yw, c2.yw) => (c0.y, c1.y, c2.y, 0)            
             var oc2 = Sse.Shuffle(c, c2, 0xE8); // a0 a2 b2 b3 => (c.xz, c2.zw) => (c0.z, c1.z, c2.z, 0)
@@ -34,7 +34,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<double>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector256<double> c0, Vector256<double> c1, Vector256<double> c2) Transpose3x3(
         Vector256<double> c0, Vector256<double> c1, Vector256<double> c2
     )
@@ -61,7 +61,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector128<int>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<int> c0, Vector128<int> c1, Vector128<int> c2) Transpose3x3(
         Vector128<int> c0, Vector128<int> c1, Vector128<int> c2
     )
@@ -89,7 +89,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector128<uint>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<uint> c0, Vector128<uint> c1, Vector128<uint> c2) Transpose3x3(
         Vector128<uint> c0, Vector128<uint> c1, Vector128<uint> c2
     )
@@ -117,7 +117,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<long>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector256<long> c0, Vector256<long> c1, Vector256<long> c2) Transpose3x3(
         Vector256<long> c0, Vector256<long> c1, Vector256<long> c2
     )
@@ -146,7 +146,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<ulong>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector256<ulong> c0, Vector256<ulong> c1, Vector256<ulong> c2) Transpose3x3(
         Vector256<ulong> c0, Vector256<ulong> c1, Vector256<ulong> c2
     )

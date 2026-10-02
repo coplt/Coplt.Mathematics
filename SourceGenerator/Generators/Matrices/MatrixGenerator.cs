@@ -193,7 +193,7 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine("    #region ctors");
         sb.AppendLine();
         sb.AppendLine("    /// <summary>Creates a matrix from its columns</summary>");
-        sb.AppendLine($"    public {type}({VectorGenShared.Join(cols, i => $"in {col} c{i}")})");
+        sb.AppendLine($"    public {type}({VectorGenShared.Join(cols, i => $"{col} c{i}")})");
         sb.AppendLine("    {");
         for (var i = 0; i < cols; i++)
         {
@@ -224,7 +224,7 @@ public class MatrixGenerator : IIncrementalGenerator
             if (storeVariant)
             {
                 sb.AppendLine($"    /// <summary>Creates the matrix from the regular <see cref=\"{other}\"/></summary>");
-                sb.AppendLine($"    public {type}(in {other} value) => this = new({columns});");
+                sb.AppendLine($"    public {type}({other} value) => this = new({columns});");
                 sb.AppendLine();
                 sb.AppendLine($"    /// <summary>Converts the storage variant of the matrix to the regular <see cref=\"{other}\"/></summary>");
                 sb.AppendLine($"    public readonly {other} to_compute");

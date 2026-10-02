@@ -9,22 +9,29 @@ public static partial class simd_matrix
 {
     #region Vector128<float>
 
-    [MethodImpl(256 | 512)]
-    public static (Vector64<float> c0, Vector64<float> c1, Vector64<float> c2, Vector64<float> c3) Transpose4x2To2x4(
+    [MethodImpl(256)]
+    public static (Vector128<float> c0, Vector128<float> c1, Vector128<float> c2, Vector128<float> c3) Transpose4x2To2x4(
         Vector128<float> c0, Vector128<float> c1
     )
     {
+        // the two components of a column of the result are the two lower lanes of the register of it and the
+        // lanes that follow them are padding
         if (Sse.IsSupported)
         {
             var a = Sse.UnpackLow(c0, c1); // (c0.x, c1.x, c0.y, c1.y)
             var b = Sse.UnpackHigh(c0, c1); // (c0.z, c1.z, c0.w, c1.w)
-            return (a.GetLower(), a.GetUpper(), b.GetLower(), b.GetUpper());
+            return (
+                Vector128.Shuffle(a, Vector128.Create(0, 1, 8, 8)),
+                Vector128.Shuffle(a, Vector128.Create(2, 3, 8, 8)),
+                Vector128.Shuffle(b, Vector128.Create(0, 1, 8, 8)),
+                Vector128.Shuffle(b, Vector128.Create(2, 3, 8, 8))
+            );
         }
         {
-            var oc0 = Vector64.Create(c0.GetElement(0), c1.GetElement(0));
-            var oc1 = Vector64.Create(c0.GetElement(1), c1.GetElement(1));
-            var oc2 = Vector64.Create(c0.GetElement(2), c1.GetElement(2));
-            var oc3 = Vector64.Create(c0.GetElement(3), c1.GetElement(3));
+            var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), 0f, 0f);
+            var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), 0f, 0f);
+            var oc2 = Vector128.Create(c0.GetElement(2), c1.GetElement(2), 0f, 0f);
+            var oc3 = Vector128.Create(c0.GetElement(3), c1.GetElement(3), 0f, 0f);
             return (oc0, oc1, oc2, oc3);
         }
     }
@@ -32,7 +39,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<double>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<double> c0, Vector128<double> c1, Vector128<double> c2, Vector128<double> c3) Transpose4x2To2x4(
         Vector256<double> c0, Vector256<double> c1
     )
@@ -55,8 +62,8 @@ public static partial class simd_matrix
     #endregion
     #region Vector128<int>
 
-    [MethodImpl(256 | 512)]
-    public static (Vector64<int> c0, Vector64<int> c1, Vector64<int> c2, Vector64<int> c3) Transpose4x2To2x4(
+    [MethodImpl(256)]
+    public static (Vector128<int> c0, Vector128<int> c1, Vector128<int> c2, Vector128<int> c3) Transpose4x2To2x4(
         Vector128<int> c0, Vector128<int> c1
     )
     {
@@ -66,13 +73,18 @@ public static partial class simd_matrix
             var ic1 = c1.AsSingle();
             var a = Sse.UnpackLow(ic0, ic1).AsInt32(); // (c0.x, c1.x, c0.y, c1.y)
             var b = Sse.UnpackHigh(ic0, ic1).AsInt32(); // (c0.z, c1.z, c0.w, c1.w)
-            return (a.GetLower(), a.GetUpper(), b.GetLower(), b.GetUpper());
+            return (
+                Vector128.Shuffle(a, Vector128.Create(0, 1, 8, 8)),
+                Vector128.Shuffle(a, Vector128.Create(2, 3, 8, 8)),
+                Vector128.Shuffle(b, Vector128.Create(0, 1, 8, 8)),
+                Vector128.Shuffle(b, Vector128.Create(2, 3, 8, 8))
+            );
         }
         {
-            var oc0 = Vector64.Create(c0.GetElement(0), c1.GetElement(0));
-            var oc1 = Vector64.Create(c0.GetElement(1), c1.GetElement(1));
-            var oc2 = Vector64.Create(c0.GetElement(2), c1.GetElement(2));
-            var oc3 = Vector64.Create(c0.GetElement(3), c1.GetElement(3));
+            var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), 0, 0);
+            var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), 0, 0);
+            var oc2 = Vector128.Create(c0.GetElement(2), c1.GetElement(2), 0, 0);
+            var oc3 = Vector128.Create(c0.GetElement(3), c1.GetElement(3), 0, 0);
             return (oc0, oc1, oc2, oc3);
         }
     }
@@ -80,8 +92,8 @@ public static partial class simd_matrix
     #endregion
     #region Vector128<uint>
 
-    [MethodImpl(256 | 512)]
-    public static (Vector64<uint> c0, Vector64<uint> c1, Vector64<uint> c2, Vector64<uint> c3) Transpose4x2To2x4(
+    [MethodImpl(256)]
+    public static (Vector128<uint> c0, Vector128<uint> c1, Vector128<uint> c2, Vector128<uint> c3) Transpose4x2To2x4(
         Vector128<uint> c0, Vector128<uint> c1
     )
     {
@@ -91,13 +103,18 @@ public static partial class simd_matrix
             var ic1 = c1.AsSingle();
             var a = Sse.UnpackLow(ic0, ic1).AsUInt32(); // (c0.x, c1.x, c0.y, c1.y)
             var b = Sse.UnpackHigh(ic0, ic1).AsUInt32(); // (c0.z, c1.z, c0.w, c1.w)
-            return (a.GetLower(), a.GetUpper(), b.GetLower(), b.GetUpper());
+            return (
+                Vector128.Shuffle(a, Vector128.Create((uint)0, 1, 8, 8)),
+                Vector128.Shuffle(a, Vector128.Create((uint)2, 3, 8, 8)),
+                Vector128.Shuffle(b, Vector128.Create((uint)0, 1, 8, 8)),
+                Vector128.Shuffle(b, Vector128.Create((uint)2, 3, 8, 8))
+            );
         }
         {
-            var oc0 = Vector64.Create(c0.GetElement(0), c1.GetElement(0));
-            var oc1 = Vector64.Create(c0.GetElement(1), c1.GetElement(1));
-            var oc2 = Vector64.Create(c0.GetElement(2), c1.GetElement(2));
-            var oc3 = Vector64.Create(c0.GetElement(3), c1.GetElement(3));
+            var oc0 = Vector128.Create(c0.GetElement(0), c1.GetElement(0), 0u, 0u);
+            var oc1 = Vector128.Create(c0.GetElement(1), c1.GetElement(1), 0u, 0u);
+            var oc2 = Vector128.Create(c0.GetElement(2), c1.GetElement(2), 0u, 0u);
+            var oc3 = Vector128.Create(c0.GetElement(3), c1.GetElement(3), 0u, 0u);
             return (oc0, oc1, oc2, oc3);
         }
     }
@@ -105,7 +122,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<long>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<long> c0, Vector128<long> c1, Vector128<long> c2, Vector128<long> c3) Transpose4x2To2x4(
         Vector256<long> c0, Vector256<long> c1
     )
@@ -130,7 +147,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<ulong>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<ulong> c0, Vector128<ulong> c1, Vector128<ulong> c2, Vector128<ulong> c3) Transpose4x2To2x4(
         Vector256<ulong> c0, Vector256<ulong> c1
     )

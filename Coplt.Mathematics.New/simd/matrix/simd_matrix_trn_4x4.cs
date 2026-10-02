@@ -9,7 +9,7 @@ public static partial class simd_matrix
 {
     #region Vector128<float>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<float> c0, Vector128<float> c1, Vector128<float> c2, Vector128<float> c3) Transpose4x4(
         Vector128<float> c0, Vector128<float> c1, Vector128<float> c2, Vector128<float> c3
     )
@@ -38,7 +38,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<double>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector256<double> c0, Vector256<double> c1, Vector256<double> c2, Vector256<double> c3) Transpose4x4(
         Vector256<double> c0, Vector256<double> c1, Vector256<double> c2, Vector256<double> c3
     )
@@ -67,7 +67,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector128<int>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<int> c0, Vector128<int> c1, Vector128<int> c2, Vector128<int> c3) Transpose4x4(
         Vector128<int> c0, Vector128<int> c1, Vector128<int> c2, Vector128<int> c3
     )
@@ -100,7 +100,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector128<uint>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector128<uint> c0, Vector128<uint> c1, Vector128<uint> c2, Vector128<uint> c3) Transpose4x4(
         Vector128<uint> c0, Vector128<uint> c1, Vector128<uint> c2, Vector128<uint> c3
     )
@@ -133,7 +133,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<long>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector256<long> c0, Vector256<long> c1, Vector256<long> c2, Vector256<long> c3) Transpose4x4(
         Vector256<long> c0, Vector256<long> c1, Vector256<long> c2, Vector256<long> c3
     )
@@ -166,7 +166,7 @@ public static partial class simd_matrix
     #endregion
     #region Vector256<ulong>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static (Vector256<ulong> c0, Vector256<ulong> c1, Vector256<ulong> c2, Vector256<ulong> c3) Transpose4x4(
         Vector256<ulong> c0, Vector256<ulong> c1, Vector256<ulong> c2, Vector256<ulong> c3
     )

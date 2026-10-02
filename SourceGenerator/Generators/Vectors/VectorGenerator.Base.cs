@@ -668,7 +668,7 @@ public partial class VectorGenerator
             Doc($"Creates the vector from the regular <see cref=\"{regular}\"/>");
             DocParam("value", "The vector to convert");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public {type}(in {regular} value) => this = {fromRegular};");
+            sb.AppendLine($"    public {type}({regular} value) => this = {fromRegular};");
             sb.AppendLine();
         }
 
