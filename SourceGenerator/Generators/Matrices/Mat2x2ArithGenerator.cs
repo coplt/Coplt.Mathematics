@@ -54,7 +54,7 @@ public class Mat2x2ArithGenerator : IIncrementalGenerator
         {
             var name = MatrixGenerator.Name(typ, Size, Size, false);
             ctx.AddSource(
-                $"{VectorGenerator.VecNamespace}.matarith.{name}.g.cs",
+                $"{VectorGenerator.VecNamespace}.square.{name}.g.cs",
                 SourceText.From(Gen(name), Encoding.UTF8));
         }
     }
