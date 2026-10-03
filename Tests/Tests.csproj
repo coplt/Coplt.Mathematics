@@ -1,36 +1,37 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <LangVersion>14.0</LangVersion>
-        <IsPackable>false</IsPackable>
-        <IsTestProject>true</IsTestProject>
-        <RootNamespace>MathTests</RootNamespace>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>14.0</LangVersion>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>MathTests</RootNamespace>
+    <NoWarn>CS8981</NoWarn>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="coverlet.collector" Version="10.0.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.7.0" />
-        <PackageReference Include="NUnit" Version="4.6.1" />
-        <PackageReference Include="NUnit.Analyzers" Version="4.14.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="NUnit3TestAdapter" Version="6.2.0" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <Using Include="NUnit.Framework"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AsmResolver.DotNet" Version="6.0.1" />
+    <PackageReference Include="coverlet.collector" Version="10.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.7.0" />
+    <PackageReference Include="NUnit" Version="4.6.1" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.14.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NUnit3TestAdapter" Version="6.2.0" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Coplt.Mathematics.SignedDistances\Coplt.Mathematics.SignedDistances.csproj" />
-      <ProjectReference Include="..\Coplt.Mathematics\Coplt.Mathematics.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <Using Include="NUnit.Framework" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Coplt.Mathematics.New\Coplt.Mathematics.New.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -1,0 +1,82 @@
+using Coplt.Mathematics.Implements;
+
+namespace Coplt.Mathematics
+{
+    public static partial class math
+    {
+        /// <summary>
+        /// Returns <c>-1</c>, <c>0</c> or <c>1</c> for every component of the value depending on the sign of it
+        /// </summary>
+        /// <param name="value">The value</param>
+        /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
+        /// <returns>The value whose every component is the sign of the component of the value</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T sign<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_sign>(value);
+    }
+
+    public static partial class math_ex
+    {
+        /// <inheritdoc cref="math.sign{T}"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T sign<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
+            => T.Self<impl_sign>(value);
+    }
+}
+
+namespace Coplt.Mathematics.Implements
+{
+    /// <summary>
+    /// The sign of a value
+    /// <para>The value of a vector that keeps it in a register reaches the member of the visitor that matches
+    /// the width of the register, the value of every other vector reaches the member of the scalar for every
+    /// component of it and the value of a matrix reaches it for every component of every one of its columns</para>
+    /// </summary>
+    internal struct impl_sign : IAlgebraVisitor_T_T<impl_sign>
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_S_S<impl_sign>.Scalar_Number<TScalar>(TScalar value)
+        {
+            if (value.Equals(TScalar.Zero)) return TScalar.Zero;
+            if (typeof(TScalar) == typeof(byte)
+                || typeof(TScalar) == typeof(ushort)
+                || typeof(TScalar) == typeof(uint)
+                || typeof(TScalar) == typeof(ulong)
+                || typeof(TScalar) == typeof(nuint)) return TScalar.One;
+            if (value < TScalar.Zero) return -TScalar.One;
+            return TScalar.One;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_S_S<impl_sign>.Scalar_Float<TScalar>(TScalar value)
+        {
+            var a = value & -TScalar.Zero | TScalar.One;
+            var c = value == TScalar.Zero ? TScalar.Zero : TScalar.AllBitsSet;
+            return a & c;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TVector IAlgebraVisitor_T_T<impl_sign>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)
+        {
+            if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(double))
+                return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());
+            if (typeof(TScalar) == typeof(int) || typeof(TScalar) == typeof(long))
+                return TVector.FromUnderlying(simd.SignInt(vector).AsByte());
+            if (typeof(TScalar) == typeof(uint) || typeof(TScalar) == typeof(ulong))
+                return TVector.FromUnderlying(simd.SignUInt(vector).AsByte());
+            throw new NotSupportedException();
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TVector IAlgebraVisitor_T_T<impl_sign>.Simd_Number<TVector, TScalar>(Vector256<TScalar> vector)
+        {
+            if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(double))
+                return TVector.FromUnderlying(simd.SignFloat(vector).AsByte());
+            if (typeof(TScalar) == typeof(int) || typeof(TScalar) == typeof(long))
+                return TVector.FromUnderlying(simd.SignInt(vector).AsByte());
+            if (typeof(TScalar) == typeof(uint) || typeof(TScalar) == typeof(ulong))
+                return TVector.FromUnderlying(simd.SignUInt(vector).AsByte());
+            throw new NotSupportedException();
+        }
+    }
+}

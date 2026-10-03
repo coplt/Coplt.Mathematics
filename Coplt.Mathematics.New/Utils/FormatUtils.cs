@@ -1,0 +1,56 @@
+﻿namespace Coplt.Mathematics;
+
+internal static class FormatUtils
+{
+    #region Utf16
+
+    public static bool TryFormatPart(ref Span<char> dst, ref int nc, ReadOnlySpan<char> part)
+    {
+        if (dst.Length < part.Length) return false;
+        part.CopyTo(dst);
+        nc += part.Length;
+        dst = dst[part.Length..];
+        return true;
+    }
+
+    public static bool TryFormatPart<T>(ref Span<char> dst, ref int nc, T part, ReadOnlySpan<char> format, IFormatProvider? provider)
+        where T : ISpanFormattable
+    {
+        var r = part.TryFormat(dst, out var ic, format, provider);
+        nc += ic;
+        if (!r) return false;
+        dst = dst[ic..];
+        return true;
+    }
+
+    public static bool TryFormatPart(ref Span<char> dst, ref int nc, bool part, ReadOnlySpan<char> format, IFormatProvider? provider)
+        => TryFormatPart(ref dst, ref nc, part ? "true" : "false");
+
+    #endregion
+
+    #region Utf8
+
+    public static bool TryFormatPart(ref Span<byte> dst, ref int nc, ReadOnlySpan<byte> part)
+    {
+        if (dst.Length < part.Length) return false;
+        part.CopyTo(dst);
+        nc += part.Length;
+        dst = dst[part.Length..];
+        return true;
+    }
+
+    public static bool TryFormatPart<T>(ref Span<byte> dst, ref int nc, T part, ReadOnlySpan<char> format, IFormatProvider? provider)
+        where T : IUtf8SpanFormattable
+    {
+        var r = part.TryFormat(dst, out var ic, format, provider);
+        nc += ic;
+        if (!r) return false;
+        dst = dst[ic..];
+        return true;
+    }
+
+    public static bool TryFormatPart(ref Span<byte> dst, ref int nc, bool part, ReadOnlySpan<char> format, IFormatProvider? provider)
+        => TryFormatPart(ref dst, ref nc, part ? "true"u8 : "false"u8);
+
+    #endregion
+}

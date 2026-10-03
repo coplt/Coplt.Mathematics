@@ -19,7 +19,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Coplt.Mathematics\Coplt.Mathematics.csproj"/>
+        <ProjectReference Include="..\Coplt.Mathematics.Old\Coplt.Mathematics.Old.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -34,11 +34,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <TextTemplate Include="**\*.tt"/>
+        <TextTemplate Include="**\*.tt" />
     </ItemGroup>
 
     <!--    Inputs="@(TextTemplate)" Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')"-->
-    <Target Name="TextTemplateTransform" BeforeTargets="PrepareForBuild" Inputs="@(TextTemplate)" Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')">
-        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool run t4 -v %(TextTemplate.Identity) -o %(TextTemplate.RelativeDir)%(TextTemplate.Filename).cs -I=%(TextTemplate.RelativeDir)" EnvironmentVariables="ProjectDir=$(ProjectDir)"/>
+    <Target Name="TextTemplateTransform" BeforeTargets="PrepareForBuild" Inputs="@(TextTemplate)"
+        Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')">
+        <Exec WorkingDirectory="$(ProjectDir)"
+            Command="dotnet tool run t4 -v %(TextTemplate.Identity) -o %(TextTemplate.RelativeDir)%(TextTemplate.Filename).cs -I=%(TextTemplate.RelativeDir)"
+            EnvironmentVariables="ProjectDir=$(ProjectDir)" />
     </Target>
 </Project>
