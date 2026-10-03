@@ -1,7 +1,9 @@
 ﻿namespace Coplt.Mathematics;
 
-public static partial class math
+public static partial class scalar_ex
 {
+    extension(math)
+    {
     #region fma
 
     /// <summary>
@@ -85,4 +87,5 @@ public static partial class math
         -T.FusedMultiplyAdd(a, b, c);
 
     #endregion
+    }
 }

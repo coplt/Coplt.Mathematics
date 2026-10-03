@@ -13,7 +13,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The smaller of the two values component by component</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T min<T>(in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+        public static T min<T>(T a, T b) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_min>(a, b);
     }
 
@@ -21,7 +21,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.min{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T min<T>(this T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+        public static T min<T>(this T a, T b) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_min>(a, b);
     }
 }
@@ -41,11 +41,11 @@ namespace Coplt.Mathematics.Implements
             => TScalar.Min(a, b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(Vector128<TScalar> a, Vector128<TScalar> b)
             => TVector.UnsafeFromUnderlying(Vector128.Min(a, b).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<impl_min>.Simd_Number<TVector, TScalar>(Vector256<TScalar> a, Vector256<TScalar> b)
             => TVector.UnsafeFromUnderlying(Vector256.Min(a, b).AsByte());
     }
 }

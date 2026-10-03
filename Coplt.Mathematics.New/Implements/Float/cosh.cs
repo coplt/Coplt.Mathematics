@@ -19,7 +19,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the hyperbolic cosine of the component of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T cosh<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static T cosh<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_cosh>(value);
     }
 
@@ -51,7 +51,7 @@ namespace Coplt.Mathematics.Implements
             => TScalar.Cosh(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_cosh>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_cosh>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.FromUnderlying(simd.Cosh(vector.AsSingle()).AsByte());
@@ -63,7 +63,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_cosh>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_cosh>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.Cosh(vector.AsDouble()).AsByte());

@@ -19,20 +19,27 @@ namespace Coplt.Mathematics
             /// <returns>The interpolated value</returns>
             [OverloadResolutionPriority(-1)]
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static T lerp<T>(in T start, in T end, in T t) where T : unmanaged, IAlgebraDispatch<T>
+            public static T lerp<T>(T start, T end, T t) where T : unmanaged, IAlgebraDispatch<T>
                 => T.Self<impl_lerp>(start, end, t);
         }
-        
-        /// <inheritdoc cref="math_ex.lerp{T}(in T, in T, in T)"/>
+    }
+
+    /// <summary>
+    /// The value forms of the members of the value of the library, they live in a class of their own so that the
+    /// member of the value and the one of the static form of the same shape do not collide
+    /// </summary>
+    public static partial class scalar_math_ex
+    {
+        /// <inheritdoc cref="math_ex.lerp{T}(T, T, T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [OverloadResolutionPriority(-2)]
-        public static T lerp<T>(this T t, in T start, in T end) where T : unmanaged, IAlgebraDispatch<T>
+        public static T lerp<T>(this T t, T start, T end) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_lerp>(start, end, t);
 
-        /// <inheritdoc cref="math_ex.lerp{T}(in T, in T, in T)"/>
+        /// <inheritdoc cref="math_ex.lerp{T}(T, T, T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [OverloadResolutionPriority(-2)]
-        public static T lerp<T, TScalar>(this TScalar t, in T start, in T end) where T : unmanaged, IAlgebra<T, TScalar>, IAlgebraDispatch<T>
+        public static T lerp<T, TScalar>(this TScalar t, T start, T end) where T : unmanaged, IAlgebra<T, TScalar>, IAlgebraDispatch<T>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => math.lerp(start, end, T.Broadcast(t));
     }
@@ -54,7 +61,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_lerp>.Simd_Number<TVector, TScalar>(
-            in Vector128<TScalar> start, in Vector128<TScalar> end, in Vector128<TScalar> t
+            Vector128<TScalar> start, Vector128<TScalar> end, Vector128<TScalar> t
         )
         {
             var offset = end - start;
@@ -74,7 +81,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_lerp>.Simd_Number<TVector, TScalar>(
-            in Vector256<TScalar> start, in Vector256<TScalar> end, in Vector256<TScalar> t
+            Vector256<TScalar> start, Vector256<TScalar> end, Vector256<TScalar> t
         )
         {
             var offset = end - start;

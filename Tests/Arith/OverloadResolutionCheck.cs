@@ -20,6 +20,7 @@ public class TestOverloadResolutionCheck
     private const string Float3x2 = "Coplt.Mathematics.float3x2";
     private const string Math = "Coplt.Mathematics.math";
     private const string MathEx = "Coplt.Mathematics.math_ex";
+    private const string ScalarMathEx = "Coplt.Mathematics.scalar_math_ex";
     private const string MathExFloat = "Coplt.Mathematics.math_ex_float";
     private const string MathExFloat2 = "Coplt.Mathematics.math_ex_float2";
     private const string MathExFloat3 = "Coplt.Mathematics.math_ex_float3";
@@ -36,39 +37,39 @@ public class TestOverloadResolutionCheck
     /// </summary>
     private static readonly (string Call, string Member)[] Calls =
     {
-        ("math.dot(v, v)", $"{ExFloat}::dot<{Float3}>({Float3}&, {Float3}&)"),
-        ("math.clamp(v, 2, 5)", $"{Math}::clamp<{Float3}>({Float3}&, {Float3}&, {Float3}&)"),
-        ("math.lerp(1, 2, v)", $"{ExFloat}::lerp<{Float3}>({Single}, {Single}, {Float3}&)"),
-        ("math.unlerp(v, 2, 3)", $"{ExFloat}::unlerp<{Float3}>({Float3}&, {Single}, {Single})"),
-        ("math.unlerp(v, 2, v)", $"{MathEx}::unlerp<{Float3}>({Float3}&, {Float3}&, {Float3}&)"),
-        ("math.remap(v, 1, 2, 3, 4)", $"{ExFloat}::remap<{Float3}>({Float3}&, {Single}, {Single}, {Single}, {Single})"),
-        ("math.remap(v, v, 2, 3, 4)", $"{MathEx}::remap<{Float3}>({Float3}&, {Float3}&, {Float3}&, {Float3}&, {Float3}&)"),
-        ("math.length_sq(v)", $"{ExFloat}::length_sq<{Float3}>({Float3}&)"),
-        ("math.distance_sq(v, v)", $"{ExFloat}::distance_sq<{Float3}>({Float3}&, {Float3}&)"),
-        ("math.sum(v)", $"{ExFloat}::sum<{Float3}>({Float3}&)"),
-        ("math.hmin(v)", $"{ExFloat}::hmin<{Float3}>({Float3}&)"),
-        ("math.hmax(v)", $"{ExFloat}::hmax<{Float3}>({Float3}&)"),
-        ("math.hmin_native(v)", $"{ExFloat}::hmin_native<{Float3}>({Float3}&)"),
-        ("math.hmax_native(v)", $"{ExFloat}::hmax_native<{Float3}>({Float3}&)"),
-        ("math.wrap(v, v, v)", $"{MathEx}::wrap<{Float3}>({Float3}&, {Float3}&, {Float3}&)"),
-        ("math.wrap<float3, float>(v, 0f, 1f)", $"{Math}::wrap<{Float3}, {Single}>({Float3}&, {Single}, {Single})"),
-        ("math.wrap(v, 0f, 1f)", $"{Math}::wrap<{Float3}, {Single}>({Float3}&, {Single}, {Single})"),
-        ("math.wrap(v, 0, 1)", $"{ExFloat}::wrap<{Float3}>({Float3}&, {Single}, {Single})"),
-        ("math.wrap(v2, 0, 1)", $"{ExFloat}::wrap<{Float2}>({Float2}&, {Single}, {Single})"),
-        ("math.wrap(d2, 0, 1)", $"{ExDouble}::wrap<{Double2}>({Double2}&, {Double}, {Double})"),
-        ("math.wrap(h3, (Half)0, (Half)1)", $"{Math}::wrap<{Half3}, {Half}>({Half3}&, {Half}, {Half})"),
+        ("math.dot(v, v)", $"{ExFloat}::dot<{Float3}>({Float3}, {Float3})"),
+        ("math.clamp(v, 2, 5)", $"{Math}::clamp<{Float3}>({Float3}, {Float3}, {Float3})"),
+        ("math.lerp(1, 2, v)", $"{ExFloat}::lerp<{Float3}>({Single}, {Single}, {Float3})"),
+        ("math.unlerp(v, 2, 3)", $"{ExFloat}::unlerp<{Float3}>({Float3}, {Single}, {Single})"),
+        ("math.unlerp(v, 2, v)", $"{MathEx}::unlerp<{Float3}>({Float3}, {Float3}, {Float3})"),
+        ("math.remap(v, 1, 2, 3, 4)", $"{ExFloat}::remap<{Float3}>({Float3}, {Single}, {Single}, {Single}, {Single})"),
+        ("math.remap(v, v, 2, 3, 4)", $"{MathEx}::remap<{Float3}>({Float3}, {Float3}, {Float3}, {Float3}, {Float3})"),
+        ("math.length_sq(v)", $"{ExFloat}::length_sq<{Float3}>({Float3})"),
+        ("math.distance_sq(v, v)", $"{ExFloat}::distance_sq<{Float3}>({Float3}, {Float3})"),
+        ("math.sum(v)", $"{ExFloat}::sum<{Float3}>({Float3})"),
+        ("math.hmin(v)", $"{ExFloat}::hmin<{Float3}>({Float3})"),
+        ("math.hmax(v)", $"{ExFloat}::hmax<{Float3}>({Float3})"),
+        ("math.hmin_native(v)", $"{ExFloat}::hmin_native<{Float3}>({Float3})"),
+        ("math.hmax_native(v)", $"{ExFloat}::hmax_native<{Float3}>({Float3})"),
+        ("math.wrap(v, v, v)", $"{MathEx}::wrap<{Float3}>({Float3}, {Float3}, {Float3})"),
+        ("math.wrap<float3, float>(v, 0f, 1f)", $"{Math}::wrap<{Float3}, {Single}>({Float3}, {Single}, {Single})"),
+        ("math.wrap(v, 0f, 1f)", $"{Math}::wrap<{Float3}, {Single}>({Float3}, {Single}, {Single})"),
+        ("math.wrap(v, 0, 1)", $"{ExFloat}::wrap<{Float3}>({Float3}, {Single}, {Single})"),
+        ("math.wrap(v2, 0, 1)", $"{ExFloat}::wrap<{Float2}>({Float2}, {Single}, {Single})"),
+        ("math.wrap(d2, 0, 1)", $"{ExDouble}::wrap<{Double2}>({Double2}, {Double}, {Double})"),
+        ("math.wrap(h3, (Half)0, (Half)1)", $"{Math}::wrap<{Half3}, {Half}>({Half3}, {Half}, {Half})"),
         ("v.lerp(1, 2)", $"{MathExFloat}::lerp<{Float3}>({Float3}, {Single}, {Single})"),
-        ("v.lerp(1, v)", $"{MathEx}::lerp<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
+        ("v.lerp(1, v)", $"{ScalarMathEx}::lerp<{Float3}>({Float3}, {Float3}, {Float3})"),
         ("v.unlerp(1, 2)", $"{MathExFloat}::unlerp<{Float3}>({Float3}, {Single}, {Single})"),
-        ("v.unlerp(1, v)", $"{MathEx}::unlerp<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
+        ("v.unlerp(1, v)", $"{ScalarMathEx}::unlerp<{Float3}>({Float3}, {Float3}, {Float3})"),
         ("v.length_sq()", $"{MathExFloat}::length_sq<{Float3}>({Float3})"),
-        ("v.distance_sq(v)", $"{MathExFloat}::distance_sq<{Float3}>({Float3}, {Float3}&)"),
+        ("v.distance_sq(v)", $"{MathExFloat}::distance_sq<{Float3}>({Float3}, {Float3})"),
         ("v.sum()", $"{MathExFloat}::sum<{Float3}>({Float3})"),
         ("v.hmin()", $"{MathExFloat}::hmin<{Float3}>({Float3})"),
         ("v.hmax()", $"{MathExFloat}::hmax<{Float3}>({Float3})"),
         ("v.hmin_native()", $"{MathExFloat}::hmin_native<{Float3}>({Float3})"),
         ("v.hmax_native()", $"{MathExFloat}::hmax_native<{Float3}>({Float3})"),
-        ("v.wrap(v, v)", $"{MathEx}::wrap<{Float3}>({Float3}, {Float3}&, {Float3}&)"),
+        ("v.wrap(v, v)", $"{ScalarMathEx}::wrap<{Float3}>({Float3}, {Float3}, {Float3})"),
         ("v.wrap(0f, 1f)", $"{MathExFloat}::wrap<{Float3}>({Float3}, {Single}, {Single})"),
     };
 
@@ -81,11 +82,11 @@ public class TestOverloadResolutionCheck
     private static readonly (string Call, string Member)[] UsingStaticCalls =
     [
         .. Calls[..16],
-        ("wrap(v, 0f, 1f)", $"{ExFloat}::wrap<{Float3}>({Float3}&, {Single}, {Single})"),
-        ("wrap(v, 0, 1)", $"{ExFloat}::wrap<{Float3}>({Float3}&, {Single}, {Single})"),
-        ("wrap(v2, 0, 1)", $"{ExFloat}::wrap<{Float2}>({Float2}&, {Single}, {Single})"),
-        ("wrap(d2, 0, 1)", $"{ExDouble}::wrap<{Double2}>({Double2}&, {Double}, {Double})"),
-        ("wrap(h3, (Half)0, (Half)1)", $"{ExHalf}::wrap<{Half3}>({Half3}&, {Half}, {Half})"),
+        ("wrap(v, 0f, 1f)", $"{ExFloat}::wrap<{Float3}>({Float3}, {Single}, {Single})"),
+        ("wrap(v, 0, 1)", $"{ExFloat}::wrap<{Float3}>({Float3}, {Single}, {Single})"),
+        ("wrap(v2, 0, 1)", $"{ExFloat}::wrap<{Float2}>({Float2}, {Single}, {Single})"),
+        ("wrap(d2, 0, 1)", $"{ExDouble}::wrap<{Double2}>({Double2}, {Double}, {Double})"),
+        ("wrap(h3, (Half)0, (Half)1)", $"{ExHalf}::wrap<{Half3}>({Half3}, {Half}, {Half})"),
     ];
 
     /// <summary>
@@ -96,11 +97,11 @@ public class TestOverloadResolutionCheck
     /// </summary>
     private static readonly (string Call, string Member)[] MatrixCalls =
     {
-        ("math.csum(m)", $"{ExFloat3}::csum<{Float3x2}>({Float3x2}&)"),
-        ("math.rsum(m)", $"{ExFloat2}::rsum<{Float3x2}>({Float3x2}&)"),
-        ("math.wrap(m, 0f, 1f)", $"{Math}::wrap<{Float3x2}, {Single}>({Float3x2}&, {Single}, {Single})"),
-        ("math.csum<float3x2, float3>(m)", $"{Math}::csum<{Float3x2}, {Float3}>({Float3x2}&)"),
-        ("math.rsum<float3x2, float2>(m)", $"{Math}::rsum<{Float3x2}, {Float2}>({Float3x2}&)"),
+        ("math.csum(m)", $"{ExFloat3}::csum<{Float3x2}>({Float3x2})"),
+        ("math.rsum(m)", $"{ExFloat2}::rsum<{Float3x2}>({Float3x2})"),
+        ("math.wrap(m, 0f, 1f)", $"{Math}::wrap<{Float3x2}, {Single}>({Float3x2}, {Single}, {Single})"),
+        ("math.csum<float3x2, float3>(m)", $"{Math}::csum<{Float3x2}, {Float3}>({Float3x2})"),
+        ("math.rsum<float3x2, float2>(m)", $"{Math}::rsum<{Float3x2}, {Float2}>({Float3x2})"),
         ("m.csum()", $"{MathExFloat3}::csum<{Float3x2}>({Float3x2})"),
         ("m.rsum()", $"{MathExFloat2}::rsum<{Float3x2}>({Float3x2})"),
         ("m.wrap(0f, 1f)", $"{MathExFloat}::wrap<{Float3x2}>({Float3x2}, {Single}, {Single})"),
@@ -114,7 +115,7 @@ public class TestOverloadResolutionCheck
     private static readonly (string Call, string Member)[] MatrixUsingStaticCalls =
     [
         .. MatrixCalls[..2],
-        ("wrap(m, 0f, 1f)", $"{ExFloat}::wrap<{Float3x2}>({Float3x2}&, {Single}, {Single})"),
+        ("wrap(m, 0f, 1f)", $"{ExFloat}::wrap<{Float3x2}>({Float3x2}, {Single}, {Single})"),
     ];
 
     [Test]

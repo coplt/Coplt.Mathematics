@@ -134,7 +134,7 @@ public interface IVector2Components<TSelf, TScalar>
     /// </summary>
     /// <param name="self">The vector</param>
     /// <returns>The <c>x</c> component</returns>
-    public static abstract TScalar get_x(in TSelf self);
+    public static abstract TScalar get_x(TSelf self);
 
     /// <summary>
     /// Sets the <c>x</c> component of <paramref name="self"/> to <paramref name="value"/>
@@ -148,7 +148,7 @@ public interface IVector2Components<TSelf, TScalar>
     /// </summary>
     /// <param name="self">The vector</param>
     /// <returns>The <c>y</c> component</returns>
-    public static abstract TScalar get_y(in TSelf self);
+    public static abstract TScalar get_y(TSelf self);
 
     /// <summary>
     /// Sets the <c>y</c> component of <paramref name="self"/> to <paramref name="value"/>
@@ -205,7 +205,7 @@ public interface IVector3Components<TSelf, TScalar> : IVector2Components<TSelf, 
     /// </summary>
     /// <param name="self">The vector</param>
     /// <returns>The <c>z</c> component</returns>
-    public static abstract TScalar get_z(in TSelf self);
+    public static abstract TScalar get_z(TSelf self);
 
     /// <summary>
     /// Sets the <c>z</c> component of <paramref name="self"/> to <paramref name="value"/>
@@ -229,7 +229,7 @@ public interface IVector3CtorFromVector2<TSelf, TScalar, TVector2> : IVector3<TS
     /// <param name="xy">The <c>x</c> and <c>y</c> components</param>
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf Create(in TVector2 xy, TScalar z);
+    public static abstract TSelf Create(TVector2 xy, TScalar z);
 
     /// <summary>
     /// Creates a vector from the <c>x</c> component and the pair of the <c>y</c> and <c>z</c> components
@@ -237,7 +237,7 @@ public interface IVector3CtorFromVector2<TSelf, TScalar, TVector2> : IVector3<TS
     /// <param name="x">The <c>x</c> component</param>
     /// <param name="yz">The <c>y</c> and <c>z</c> components</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf Create(TScalar x, in TVector2 yz);
+    public static abstract TSelf Create(TScalar x, TVector2 yz);
 
     #endregion
 
@@ -250,7 +250,7 @@ public interface IVector3CtorFromVector2<TSelf, TScalar, TVector2> : IVector3<TS
     /// <param name="xz">The <c>x</c> and <c>z</c> components</param>
     /// <param name="y">The <c>y</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertY(in TVector2 xz, TScalar y);
+    public static abstract TSelf InsertY(TVector2 xz, TScalar y);
 
     #endregion
 }
@@ -301,7 +301,7 @@ public interface IVector4Components<TSelf, TScalar> : IVector3Components<TSelf, 
     /// </summary>
     /// <param name="self">The vector</param>
     /// <returns>The <c>w</c> component</returns>
-    public static abstract TScalar get_w(in TSelf self);
+    public static abstract TScalar get_w(TSelf self);
 
     /// <summary>
     /// Sets the <c>w</c> component of <paramref name="self"/> to <paramref name="value"/>
@@ -325,7 +325,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="xy">The <c>x</c> and <c>y</c> components</param>
     /// <param name="zw">The <c>z</c> and <c>w</c> components</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf Create(in TVector2 xy, in TVector2 zw);
+    public static abstract TSelf Create(TVector2 xy, TVector2 zw);
 
     /// <summary>
     /// Creates a vector from the pair of the <c>x</c> and <c>y</c> components and the two other components
@@ -334,7 +334,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="z">The <c>z</c> component</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf Create(in TVector2 xy, TScalar z, TScalar w);
+    public static abstract TSelf Create(TVector2 xy, TScalar z, TScalar w);
 
     /// <summary>
     /// Creates a vector from the two first components and the pair of the <c>z</c> and <c>w</c> ones
@@ -343,7 +343,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="y">The <c>y</c> component</param>
     /// <param name="zw">The <c>z</c> and <c>w</c> components</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf Create(TScalar x, TScalar y, in TVector2 zw);
+    public static abstract TSelf Create(TScalar x, TScalar y, TVector2 zw);
 
     /// <summary>
     /// Creates a vector from the <c>x</c> and <c>w</c> components and the pair of the <c>y</c> and <c>z</c>
@@ -353,7 +353,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="yz">The <c>y</c> and <c>z</c> components</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf Create(TScalar x, in TVector2 yz, TScalar w);
+    public static abstract TSelf Create(TScalar x, TVector2 yz, TScalar w);
 
     #endregion
 
@@ -366,7 +366,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="xw">The <c>x</c> and <c>w</c> components</param>
     /// <param name="yz">The <c>y</c> and <c>z</c> components</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertYZ(in TVector2 xw, in TVector2 yz);
+    public static abstract TSelf InsertYZ(TVector2 xw, TVector2 yz);
 
     /// <summary>
     /// Creates a vector that has the <c>y</c> and <c>z</c> components of <paramref name="y"/> and
@@ -376,7 +376,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="y">The <c>y</c> component</param>
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertYZ(in TVector2 xw, TScalar y, TScalar z);
+    public static abstract TSelf InsertYZ(TVector2 xw, TScalar y, TScalar z);
 
     /// <summary>
     /// Creates a vector that has the <c>x</c> and <c>w</c> components of <paramref name="xw"/> and the
@@ -385,7 +385,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="yz">The <c>y</c> and <c>z</c> components</param>
     /// <param name="xw">The <c>x</c> and <c>w</c> components</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertXW(in TVector2 yz, in TVector2 xw);
+    public static abstract TSelf InsertXW(TVector2 yz, TVector2 xw);
 
     /// <summary>
     /// Creates a vector that has the <c>x</c> and <c>w</c> components of <paramref name="x"/> and
@@ -395,7 +395,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="x">The <c>x</c> component</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertXW(in TVector2 yz, TScalar x, TScalar w);
+    public static abstract TSelf InsertXW(TVector2 yz, TScalar x, TScalar w);
 
     /// <summary>
     /// Creates a vector that has the <c>y</c> and <c>w</c> components of <paramref name="yw"/> and the
@@ -404,7 +404,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="xz">The <c>x</c> and <c>z</c> components</param>
     /// <param name="yw">The <c>y</c> and <c>w</c> components</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertYW(in TVector2 xz, in TVector2 yw);
+    public static abstract TSelf InsertYW(TVector2 xz, TVector2 yw);
 
     /// <summary>
     /// Creates a vector that has the <c>y</c> and <c>w</c> components of <paramref name="y"/> and
@@ -414,7 +414,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="y">The <c>y</c> component</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertYW(in TVector2 xz, TScalar y, TScalar w);
+    public static abstract TSelf InsertYW(TVector2 xz, TScalar y, TScalar w);
 
     /// <summary>
     /// Creates a vector that has the <c>x</c> and <c>z</c> components of <paramref name="xz"/> and the
@@ -423,7 +423,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="yw">The <c>y</c> and <c>w</c> components</param>
     /// <param name="xz">The <c>x</c> and <c>z</c> components</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertXZ(in TVector2 yw, in TVector2 xz);
+    public static abstract TSelf InsertXZ(TVector2 yw, TVector2 xz);
 
     /// <summary>
     /// Creates a vector that has the <c>x</c> and <c>z</c> components of <paramref name="x"/> and
@@ -433,7 +433,7 @@ public interface IVector4CtorFromVector2<TSelf, TScalar, TVector2> : IVector4<TS
     /// <param name="x">The <c>x</c> component</param>
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertXZ(in TVector2 yw, TScalar x, TScalar z);
+    public static abstract TSelf InsertXZ(TVector2 yw, TScalar x, TScalar z);
 
     #endregion
 }
@@ -451,7 +451,7 @@ public interface IVector4CtorFromVector3<TSelf, TScalar, TVector3> : IVector4<TS
     /// <param name="xyz">The <c>x</c>, <c>y</c> and <c>z</c> components</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf Create(in TVector3 xyz, TScalar w);
+    public static abstract TSelf Create(TVector3 xyz, TScalar w);
 
     /// <summary>
     /// Creates a vector from the <c>x</c> component and the triple of the <c>y</c>, <c>z</c> and <c>w</c>
@@ -460,7 +460,7 @@ public interface IVector4CtorFromVector3<TSelf, TScalar, TVector3> : IVector4<TS
     /// <param name="x">The <c>x</c> component</param>
     /// <param name="yzw">The <c>y</c>, <c>z</c> and <c>w</c> components</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf Create(TScalar x, in TVector3 yzw);
+    public static abstract TSelf Create(TScalar x, TVector3 yzw);
 
     #endregion
 
@@ -473,7 +473,7 @@ public interface IVector4CtorFromVector3<TSelf, TScalar, TVector3> : IVector4<TS
     /// <param name="xzw">The <c>x</c>, <c>z</c> and <c>w</c> components</param>
     /// <param name="y">The <c>y</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertY(in TVector3 xzw, TScalar y);
+    public static abstract TSelf InsertY(TVector3 xzw, TScalar y);
 
     /// <summary>
     /// Creates a vector that has the <c>z</c> component of <paramref name="z"/> and the <c>x</c>, <c>y</c>
@@ -482,7 +482,7 @@ public interface IVector4CtorFromVector3<TSelf, TScalar, TVector3> : IVector4<TS
     /// <param name="xyw">The <c>x</c>, <c>y</c> and <c>w</c> components</param>
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector</returns>
-    public static abstract TSelf InsertZ(in TVector3 xyw, TScalar z);
+    public static abstract TSelf InsertZ(TVector3 xyw, TScalar z);
 
     #endregion
 }

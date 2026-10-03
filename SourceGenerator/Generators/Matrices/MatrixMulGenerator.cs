@@ -230,7 +230,7 @@ public class MatrixMulGenerator : IIncrementalGenerator
         sb.AppendLine($"    /// <param name=\"b\">The vector, a vector of {cols} components</param>");
         sb.AppendLine($"    /// <returns>The product of the value, a vector of {rows} components</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {res} mul(in {matrix} a, in {vec} b) =>");
+        sb.AppendLine($"    public static {res} mul({matrix} a, {vec} b) =>");
         sb.Append($"        {sum};");
         return sb.ToString();
     }
@@ -262,7 +262,7 @@ public class MatrixMulGenerator : IIncrementalGenerator
         sb.AppendLine($"    /// <param name=\"b\">The value, a matrix of {rows} rows and {cols} columns</param>");
         sb.AppendLine($"    /// <returns>The product of the value, a vector of {cols} components</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.Append($"    public static {res} mul(in {vec} a, in {matrix} b) => new({products});");
+        sb.Append($"    public static {res} mul({vec} a, {matrix} b) => new({products});");
         return sb.ToString();
     }
 
@@ -295,7 +295,7 @@ public class MatrixMulGenerator : IIncrementalGenerator
         sb.AppendLine($"    /// <param name=\"b\">The second matrix, a matrix of {cols} rows and {resCols} columns</param>");
         sb.AppendLine($"    /// <returns>The product of the two matrices, a matrix of {rows} rows and {resCols} columns</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {res} mul(in {left} a, in {right} b)");
+        sb.AppendLine($"    public static {res} mul({left} a, {right} b)");
         sb.AppendLine("    {");
         sb.AppendLine("        return new(");
         for (var j = 0; j < resCols; j++)
@@ -316,9 +316,9 @@ public class MatrixMulGenerator : IIncrementalGenerator
     private static string Extension(string first, string second, string res)
     {
         var sb = new StringBuilder();
-        sb.AppendLine($"    /// <inheritdoc cref=\"math.mul(in {first}, in {second})\"/>");
+        sb.AppendLine($"    /// <inheritdoc cref=\"math.mul({first}, {second})\"/>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.Append($"    public static {res} mul(this {first} a, in {second} b) => math.mul(a, b);");
+        sb.Append($"    public static {res} mul(this {first} a, {second} b) => math.mul(a, b);");
         return sb.ToString();
     }
 
@@ -337,7 +337,7 @@ public class MatrixMulGenerator : IIncrementalGenerator
         for (var i = 1; i < count; i++)
         {
             (a, b) = term(i);
-            sum = $"fma({a}, {b}, {sum})";
+            sum = $"math.fma({a}, {b}, {sum})";
         }
 
         return sum;

@@ -10,7 +10,7 @@ namespace Coplt.Mathematics.Generics;
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IVectorReplace<TSelf, in TScalar>
+public interface IVectorReplace<TSelf, TScalar>
     where TSelf : unmanaged, IVectorReplace<TSelf, TScalar>
     where TScalar : unmanaged
 {
@@ -23,7 +23,7 @@ public interface IVectorReplace<TSelf, in TScalar>
     /// <param name="self">The vector</param>
     /// <param name="x">The value of the <c>x</c> component</param>
     /// <returns>The vector with the replaced component</returns>
-    public static abstract TSelf Rx(in TSelf self, TScalar x);
+    public static abstract TSelf Rx(TSelf self, TScalar x);
 
     /// <summary>
     /// Returns the vector whose <c>y</c> component is <paramref name="y"/> and whose other components keep their
@@ -32,7 +32,7 @@ public interface IVectorReplace<TSelf, in TScalar>
     /// <param name="self">The vector</param>
     /// <param name="y">The value of the <c>y</c> component</param>
     /// <returns>The vector with the replaced component</returns>
-    public static abstract TSelf Ry(in TSelf self, TScalar y);
+    public static abstract TSelf Ry(TSelf self, TScalar y);
 
     #endregion
 }
@@ -58,7 +58,7 @@ public interface IVector3Replace<TSelf, TScalar, TVector2> :
     /// <param name="self">The vector</param>
     /// <param name="z">The value of the <c>z</c> component</param>
     /// <returns>The vector with the replaced component</returns>
-    public static abstract TSelf Rz(in TSelf self, TScalar z);
+    public static abstract TSelf Rz(TSelf self, TScalar z);
 
     #endregion
 
@@ -71,7 +71,7 @@ public interface IVector3Replace<TSelf, TScalar, TVector2> :
     /// <param name="self">The vector</param>
     /// <param name="xy">The values of the <c>x</c> and <c>y</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Rxy(in TSelf self, in TVector2 xy);
+    public static abstract TSelf Rxy(TSelf self, TVector2 xy);
 
     /// <summary>
     /// Returns the vector whose <c>y</c> and <c>z</c> components are the pair and whose <c>x</c> component keeps
@@ -80,7 +80,7 @@ public interface IVector3Replace<TSelf, TScalar, TVector2> :
     /// <param name="self">The vector</param>
     /// <param name="yz">The values of the <c>y</c> and <c>z</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Ryz(in TSelf self, in TVector2 yz);
+    public static abstract TSelf Ryz(TSelf self, TVector2 yz);
 
     /// <summary>
     /// Returns the vector whose <c>x</c> and <c>z</c> components are the pair and whose <c>y</c> component keeps
@@ -89,7 +89,7 @@ public interface IVector3Replace<TSelf, TScalar, TVector2> :
     /// <param name="self">The vector</param>
     /// <param name="xz">The values of the <c>x</c> and <c>z</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Rxz(in TSelf self, in TVector2 xz);
+    public static abstract TSelf Rxz(TSelf self, TVector2 xz);
 
     #endregion
 }
@@ -116,7 +116,7 @@ public interface IVector4Replace<TSelf, TScalar, TVector2, TVector3> :
     /// <param name="self">The vector</param>
     /// <param name="w">The value of the <c>w</c> component</param>
     /// <returns>The vector with the replaced component</returns>
-    public static abstract TSelf Rw(in TSelf self, TScalar w);
+    public static abstract TSelf Rw(TSelf self, TScalar w);
 
     #endregion
 
@@ -129,7 +129,7 @@ public interface IVector4Replace<TSelf, TScalar, TVector2, TVector3> :
     /// <param name="self">The vector</param>
     /// <param name="zw">The values of the <c>z</c> and <c>w</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Rzw(in TSelf self, in TVector2 zw);
+    public static abstract TSelf Rzw(TSelf self, TVector2 zw);
 
     /// <summary>
     /// Returns the vector whose <c>x</c> and <c>w</c> components are the pair and whose other components keep
@@ -138,7 +138,7 @@ public interface IVector4Replace<TSelf, TScalar, TVector2, TVector3> :
     /// <param name="self">The vector</param>
     /// <param name="xw">The values of the <c>x</c> and <c>w</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Rxw(in TSelf self, in TVector2 xw);
+    public static abstract TSelf Rxw(TSelf self, TVector2 xw);
 
     /// <summary>
     /// Returns the vector whose <c>y</c> and <c>w</c> components are the pair and whose other components keep
@@ -147,7 +147,7 @@ public interface IVector4Replace<TSelf, TScalar, TVector2, TVector3> :
     /// <param name="self">The vector</param>
     /// <param name="yw">The values of the <c>y</c> and <c>w</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Ryw(in TSelf self, in TVector2 yw);
+    public static abstract TSelf Ryw(TSelf self, TVector2 yw);
 
     #endregion
 
@@ -160,7 +160,7 @@ public interface IVector4Replace<TSelf, TScalar, TVector2, TVector3> :
     /// <param name="self">The vector</param>
     /// <param name="xyz">The values of the <c>x</c>, <c>y</c> and <c>z</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Rxyz(in TSelf self, in TVector3 xyz);
+    public static abstract TSelf Rxyz(TSelf self, TVector3 xyz);
 
     /// <summary>
     /// Returns the vector whose <c>y</c>, <c>z</c> and <c>w</c> components are the triple and whose <c>x</c>
@@ -169,7 +169,7 @@ public interface IVector4Replace<TSelf, TScalar, TVector2, TVector3> :
     /// <param name="self">The vector</param>
     /// <param name="yzw">The values of the <c>y</c>, <c>z</c> and <c>w</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Ryzw(in TSelf self, in TVector3 yzw);
+    public static abstract TSelf Ryzw(TSelf self, TVector3 yzw);
 
     /// <summary>
     /// Returns the vector whose <c>x</c>, <c>y</c> and <c>w</c> components are the triple and whose <c>z</c>
@@ -178,7 +178,7 @@ public interface IVector4Replace<TSelf, TScalar, TVector2, TVector3> :
     /// <param name="self">The vector</param>
     /// <param name="xyw">The values of the <c>x</c>, <c>y</c> and <c>w</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Rxyw(in TSelf self, in TVector3 xyw);
+    public static abstract TSelf Rxyw(TSelf self, TVector3 xyw);
 
     /// <summary>
     /// Returns the vector whose <c>x</c>, <c>z</c> and <c>w</c> components are the triple and whose <c>y</c>
@@ -187,7 +187,7 @@ public interface IVector4Replace<TSelf, TScalar, TVector2, TVector3> :
     /// <param name="self">The vector</param>
     /// <param name="xzw">The values of the <c>x</c>, <c>z</c> and <c>w</c> components</param>
     /// <returns>The vector with the replaced components</returns>
-    public static abstract TSelf Rxzw(in TSelf self, in TVector3 xzw);
+    public static abstract TSelf Rxzw(TSelf self, TVector3 xzw);
 
     #endregion
 }

@@ -46,17 +46,17 @@ public partial class VectorGenerator
             third.Add(("Ix", $"{scalar} x", "x", $"{type3}.Create(x, this)"));
             third.Add(("Iy", $"{scalar} y", "y", $"{type3}.InsertY(this, y)"));
             third.Add(("Iz", $"{scalar} z", "z", $"{type3}.Create(this, z)"));
-            fourth.Add(("Izw", $"in {type} zw", "zw", $"{type4}.Create(this, zw)"));
+            fourth.Add(("Izw", $"{type} zw", "zw", $"{type4}.Create(this, zw)"));
             fourth.Add(("Izw", $"{scalar} z, {scalar} w", "z, w", $"{type4}.Create(this, z, w)"));
-            fourth.Add(("Ixy", $"in {type} xy", "xy", $"{type4}.Create(xy, this)"));
+            fourth.Add(("Ixy", $"{type} xy", "xy", $"{type4}.Create(xy, this)"));
             fourth.Add(("Ixy", $"{scalar} x, {scalar} y", "x, y", $"{type4}.Create(x, y, this)"));
-            fourth.Add(("Iyz", $"in {type} yz", "yz", $"{type4}.InsertYZ(this, yz)"));
+            fourth.Add(("Iyz", $"{type} yz", "yz", $"{type4}.InsertYZ(this, yz)"));
             fourth.Add(("Iyz", $"{scalar} y, {scalar} z", "y, z", $"{type4}.InsertYZ(this, y, z)"));
-            fourth.Add(("Ixw", $"in {type} xw", "xw", $"{type4}.InsertXW(this, xw)"));
+            fourth.Add(("Ixw", $"{type} xw", "xw", $"{type4}.InsertXW(this, xw)"));
             fourth.Add(("Ixw", $"{scalar} x, {scalar} w", "x, w", $"{type4}.InsertXW(this, x, w)"));
-            fourth.Add(("Iyw", $"in {type} yw", "yw", $"{type4}.InsertYW(this, yw)"));
+            fourth.Add(("Iyw", $"{type} yw", "yw", $"{type4}.InsertYW(this, yw)"));
             fourth.Add(("Iyw", $"{scalar} y, {scalar} w", "y, w", $"{type4}.InsertYW(this, y, w)"));
-            fourth.Add(("Ixz", $"in {type} xz", "xz", $"{type4}.InsertXZ(this, xz)"));
+            fourth.Add(("Ixz", $"{type} xz", "xz", $"{type4}.InsertXZ(this, xz)"));
             fourth.Add(("Ixz", $"{scalar} x, {scalar} z", "x, z", $"{type4}.InsertXZ(this, x, z)"));
         }
         else
@@ -95,7 +95,7 @@ public partial class VectorGenerator
             // documentation, it forwards to the member that is called on the vector
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    public static {type3} {name}(in {type} self, {instance}) => self.{name}({args});");
+            sb.AppendLine($"    public static {type3} {name}({type} self, {instance}) => self.{name}({args});");
         }
 
         foreach (var (name, instance, args, body) in fourth)
@@ -107,7 +107,7 @@ public partial class VectorGenerator
             sb.AppendLine();
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    public static {type4} {name}(in {type} self, {instance}) => self.{name}({args});");
+            sb.AppendLine($"    public static {type4} {name}({type} self, {instance}) => self.{name}({args});");
         }
 
         sb.AppendLine("}");

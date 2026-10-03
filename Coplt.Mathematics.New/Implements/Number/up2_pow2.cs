@@ -17,7 +17,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the power of two that is not less than it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T up2_pow2<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, INumberAlgebra<T>
+        public static T up2_pow2<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, INumberAlgebra<T>
             => T.Self<impl_up2_pow2>(a);
     }
 }
@@ -54,7 +54,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_up2_pow2>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_up2_pow2>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(uint) || typeof(TScalar) == typeof(int))
                 return TVector.FromUnderlying(simd.RoundUpToPowerOf2(vector.AsUInt32()).AsByte());
@@ -68,7 +68,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_up2_pow2>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_up2_pow2>.Simd_Number<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(ulong) || typeof(TScalar) == typeof(long))
                 return TVector.FromUnderlying(simd.RoundUpToPowerOf2(vector.AsUInt64()).AsByte());

@@ -18,7 +18,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the reciprocal of the square root of the component of
         /// it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T rsqrt<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T rsqrt<T>(T value) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => T.One / sqrt(value);
     }
 

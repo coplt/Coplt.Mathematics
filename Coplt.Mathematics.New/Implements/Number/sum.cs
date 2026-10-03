@@ -8,7 +8,7 @@ namespace Coplt.Mathematics
         /// <summary>
         /// Returns the sum of every component of the value
         /// <para>It is the dot product of the value with a value whose every component is one, see
-        /// <see cref="dot{T,TScalar}(in T, in T)"/>, and the sum of a matrix is the one of every component of
+        /// <see cref="dot{T,TScalar}(T, T)"/>, and the sum of a matrix is the one of every component of
         /// every one of its columns</para>
         /// </summary>
         /// <param name="value">The value, a vector or a matrix</param>
@@ -21,7 +21,7 @@ namespace Coplt.Mathematics
         // member for it
         [ScalarExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TScalar sum<T, TScalar>(in T value)
+        public static TScalar sum<T, TScalar>(T value)
             where T : unmanaged, IAlgebraDispatch<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => T.Scalar<impl_sum>(value);
@@ -50,25 +50,25 @@ namespace Coplt.Mathematics.Implements
         // register is the one of the components
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TScalar IAlgebraVisitor_T_S<impl_sum>.Simd_Number<TVector, TScalar>(
-            in Vector128<TScalar> value
+            Vector128<TScalar> value
         ) => Vector128.Sum(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TScalar IAlgebraVisitor_T_S<impl_sum>.Simd_Number<TVector, TScalar>(
-            in Vector256<TScalar> value
+            Vector256<TScalar> value
         ) => Vector256.Sum(value);
 
         // a vector without a register hands no register over, so the sum is the one of the components of it
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector2_Number<TVector, TScalar>(in TVector value)
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector2_Number<TVector, TScalar>(TVector value)
             => TVector.get_x(value) + TVector.get_y(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector3_Number<TVector, TScalar>(in TVector value)
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector3_Number<TVector, TScalar>(TVector value)
             => TVector.get_x(value) + TVector.get_y(value) + TVector.get_z(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector4_Number<TVector, TScalar>(in TVector value)
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector4_Number<TVector, TScalar>(TVector value)
             => TVector.get_x(value) + TVector.get_y(value) + TVector.get_z(value) + TVector.get_w(value);
     }
 }

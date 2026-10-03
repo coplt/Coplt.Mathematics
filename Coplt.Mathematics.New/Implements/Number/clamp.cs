@@ -15,7 +15,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is clamped to the range</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T clamp<T>(in T value, in T min, in T max) where T : unmanaged, IAlgebraDispatch<T>
+        public static T clamp<T>(T value, T min, T max) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_clamp>(value, min, max);
     }
 
@@ -23,7 +23,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.clamp{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T clamp<T>(this T value, in T min, in T max) where T : unmanaged, IAlgebraDispatch<T>
+        public static T clamp<T>(this T value, T min, T max) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_clamp>(value, min, max);
     }
 }
@@ -44,12 +44,12 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_clamp>.Simd_Number<TVector, TScalar>(
-            in Vector128<TScalar> a, in Vector128<TScalar> b, in Vector128<TScalar> c)
+            Vector128<TScalar> a, Vector128<TScalar> b, Vector128<TScalar> c)
             => TVector.UnsafeFromUnderlying(Vector128.Clamp(a, b, c).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_clamp>.Simd_Number<TVector, TScalar>(
-            in Vector256<TScalar> a, in Vector256<TScalar> b, in Vector256<TScalar> c)
+            Vector256<TScalar> a, Vector256<TScalar> b, Vector256<TScalar> c)
             => TVector.UnsafeFromUnderlying(Vector256.Clamp(a, b, c).AsByte());
     }
 }

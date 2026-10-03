@@ -66,7 +66,7 @@ public partial class VectorGenerator
             // are beyond the value and writing the register itself leaves them as they are
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static {vecName}<byte> GetUnderlying(in {type} self) => self.vector.As<{comp}, byte>();");
+            sb.AppendLine($"    public static {vecName}<byte> GetUnderlying({type} self) => self.vector.As<{comp}, byte>();");
             sb.AppendLine();
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");

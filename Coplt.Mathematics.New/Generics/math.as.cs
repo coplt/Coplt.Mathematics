@@ -21,17 +21,17 @@ public static partial class math
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asf<T, TResult>(in T source) where T : unmanaged, IVectorAsF<T, TResult>
+    public static TResult asf<T, TResult>(T source) where T : unmanaged, IVectorAsF<T, TResult>
         => Unsafe.As<T, TResult>(ref Unsafe.AsRef(in source));
 
     /// <summary>
     /// Reinterprets the bits of <paramref name="source"/> as the vector of the floating point component, which
     /// is the name of the member in HLSL
     /// </summary>
-    /// <inheritdoc cref="asf{T, TResult}(in T)"/>
+    /// <inheritdoc cref="asf{T, TResult}(T)"/>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asfloat<T, TResult>(in T source) where T : unmanaged, IVectorAsF<T, TResult>
+    public static TResult asfloat<T, TResult>(T source) where T : unmanaged, IVectorAsF<T, TResult>
         => Unsafe.As<T, TResult>(ref Unsafe.AsRef(in source));
 
     /// <summary>
@@ -43,17 +43,17 @@ public static partial class math
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asi<T, TResult>(in T source) where T : unmanaged, IVectorAsI<T, TResult>
+    public static TResult asi<T, TResult>(T source) where T : unmanaged, IVectorAsI<T, TResult>
         => Unsafe.As<T, TResult>(ref Unsafe.AsRef(in source));
 
     /// <summary>
     /// Reinterprets the bits of <paramref name="source"/> as the vector of the signed component, which is the
     /// name of the member in HLSL
     /// </summary>
-    /// <inheritdoc cref="asi{T, TResult}(in T)"/>
+    /// <inheritdoc cref="asi{T, TResult}(T)"/>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asint<T, TResult>(in T source) where T : unmanaged, IVectorAsI<T, TResult>
+    public static TResult asint<T, TResult>(T source) where T : unmanaged, IVectorAsI<T, TResult>
         => Unsafe.As<T, TResult>(ref Unsafe.AsRef(in source));
 
     /// <summary>
@@ -65,16 +65,16 @@ public static partial class math
     /// <returns>The vector of <typeparamref name="TResult"/> that has the bits of <paramref name="source"/></returns>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asu<T, TResult>(in T source) where T : unmanaged, IVectorAsU<T, TResult>
+    public static TResult asu<T, TResult>(T source) where T : unmanaged, IVectorAsU<T, TResult>
         => Unsafe.As<T, TResult>(ref Unsafe.AsRef(in source));
 
     /// <summary>
     /// Reinterprets the bits of <paramref name="source"/> as the vector of the unsigned component, which is the
     /// name of the member in HLSL
     /// </summary>
-    /// <inheritdoc cref="asu{T, TResult}(in T)"/>
+    /// <inheritdoc cref="asu{T, TResult}(T)"/>
     [MethodImpl(256)]
     [OverloadResolutionPriority(1000)]
-    public static TResult asuint<T, TResult>(in T source) where T : unmanaged, IVectorAsU<T, TResult>
+    public static TResult asuint<T, TResult>(T source) where T : unmanaged, IVectorAsU<T, TResult>
         => Unsafe.As<T, TResult>(ref Unsafe.AsRef(in source));
 }

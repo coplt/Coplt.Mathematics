@@ -22,7 +22,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the vectors</typeparam>
         /// <returns>The oriented vector</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T face_forward<T>(in T a, in T i, in T ng)
+        public static T face_forward<T>(T a, T i, T ng)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => T.Self<impl_face_forward>(a, i, ng);
     }
@@ -31,7 +31,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.face_forward{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T face_forward<T>(this T a, in T i, in T ng)
+        public static T face_forward<T>(this T a, T i, T ng)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => T.Self<impl_face_forward>(a, i, ng);
     }
@@ -56,12 +56,12 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_face_forward>.Simd_Float<TVector, TScalar>(
-            in Vector128<TScalar> a, in Vector128<TScalar> i, in Vector128<TScalar> ng
+            Vector128<TScalar> a, Vector128<TScalar> i, Vector128<TScalar> ng
         ) => TVector.UnsafeFromUnderlying((Vector128.Dot(ng, i) >= TScalar.Zero ? -a : a).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_face_forward>.Simd_Float<TVector, TScalar>(
-            in Vector256<TScalar> a, in Vector256<TScalar> i, in Vector256<TScalar> ng
+            Vector256<TScalar> a, Vector256<TScalar> i, Vector256<TScalar> ng
         ) => TVector.UnsafeFromUnderlying((Vector256.Dot(ng, i) >= TScalar.Zero ? -a : a).AsByte());
 
         #endregion
@@ -70,17 +70,17 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_face_forward>.Vector2_Float<TVector, TScalar>(
-            in TVector a, in TVector i, in TVector ng
+            TVector a, TVector i, TVector ng
         ) => TVector.Scalar<impl_dot>(ng, i) >= TScalar.Zero ? -a : a;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_face_forward>.Vector3_Float<TVector, TScalar>(
-            in TVector a, in TVector i, in TVector ng
+            TVector a, TVector i, TVector ng
         ) => TVector.Scalar<impl_dot>(ng, i) >= TScalar.Zero ? -a : a;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_face_forward>.Vector4_Float<TVector, TScalar>(
-            in TVector a, in TVector i, in TVector ng
+            TVector a, TVector i, TVector ng
         ) => TVector.Scalar<impl_dot>(ng, i) >= TScalar.Zero ? -a : a;
 
         #endregion

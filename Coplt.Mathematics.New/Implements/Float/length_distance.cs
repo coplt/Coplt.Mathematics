@@ -19,7 +19,7 @@ namespace Coplt.Mathematics
         // member for it
         [ScalarExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TScalar length<T, TScalar>(in T value)
+        public static TScalar length<T, TScalar>(T value)
             where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => TScalar.Sqrt(dot<T, TScalar>(value, value));
@@ -34,7 +34,7 @@ namespace Coplt.Mathematics
         /// <returns>The distance between the two vectors</returns>
         [ScalarExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TScalar distance<T, TScalar>(in T from, in T to)
+        public static TScalar distance<T, TScalar>(T from, T to)
             where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => length<T, TScalar>(to - from);
@@ -51,7 +51,7 @@ namespace Coplt.Mathematics
 
         /// <inheritdoc cref="math.distance{T, TScalar}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TScalar distance<T, TScalar>(this T from, in T to)
+        public static TScalar distance<T, TScalar>(this T from, T to)
             where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => math.distance<T, TScalar>(from, to);

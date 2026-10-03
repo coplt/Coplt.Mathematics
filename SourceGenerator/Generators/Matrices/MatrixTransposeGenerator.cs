@@ -74,7 +74,7 @@ public class MatrixTransposeGenerator : IIncrementalGenerator
         sb.AppendLine($"    /// <param name=\"m\">The value, a matrix of {rows} rows and {cols} columns</param>");
         sb.AppendLine($"    /// <returns>The transpose of the value, which is a matrix of {cols} rows and {rows} columns</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {resType} transpose(in {type} m)");
+        sb.AppendLine($"    public static {resType} transpose({type} m)");
         sb.AppendLine("    {");
         if (simd && helper is not null)
         {
@@ -107,7 +107,7 @@ public class MatrixTransposeGenerator : IIncrementalGenerator
         // the member of the value, it reads like the member of the value itself
         sb.AppendLine("public static partial class math_ex");
         sb.AppendLine("{");
-        sb.AppendLine($"    /// <inheritdoc cref=\"math.transpose(in {type})\"/>");
+        sb.AppendLine($"    /// <inheritdoc cref=\"math.transpose({type})\"/>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {resType} transpose(this {type} m) => math.transpose(m);");
         sb.AppendLine("}");

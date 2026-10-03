@@ -9,7 +9,7 @@ namespace Coplt.Mathematics.Algebras.Generics.Dispatch;
 /// members are leveled by the kind of a component of the value: the map of a floating point number falls back to
 /// the map of a number and that falls back to the map of every value, so a visitor implements the member of the
 /// level of the kind it reaches alone. It is the visitor of
-/// <see cref="IAlgebraDispatch{TSelf}.Map_Self{V}(in TSelf)"/>.</para>
+/// <see cref="IAlgebraDispatch{TSelf}.Map_Self{V}(TSelf)"/>.</para>
 /// </summary>
 /// <typeparam name="V">The type of the visitor itself</typeparam>
 public interface IMapVisitor<V> where V : IMapVisitor<V>
@@ -21,7 +21,7 @@ public interface IMapVisitor<V> where V : IMapVisitor<V>
     /// <typeparam name="TScalar">The type of a single component of the value</typeparam>
     /// <param name="value">The value to map</param>
     /// <returns>The value the visitor built out of the value</returns>
-    public static virtual TVector Map_Any<TVector, TScalar>(in TVector value)
+    public static virtual TVector Map_Any<TVector, TScalar>(TVector value)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector<TVector, TScalar>
         where TScalar : unmanaged => throw null!;
 
@@ -31,7 +31,7 @@ public interface IMapVisitor<V> where V : IMapVisitor<V>
     /// <param name="value">The value to map</param>
     /// <returns>The value the visitor built out of the value</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TVector Map_Number<TVector, TScalar>(in TVector value)
+    public static virtual TVector Map_Number<TVector, TScalar>(TVector value)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar> => V.Map_Any<TVector, TScalar>(value);
 
@@ -41,7 +41,7 @@ public interface IMapVisitor<V> where V : IMapVisitor<V>
     /// <param name="value">The value to map</param>
     /// <returns>The value the visitor built out of the value</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TVector Map_Float<TVector, TScalar>(in TVector value)
+    public static virtual TVector Map_Float<TVector, TScalar>(TVector value)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar> => V.Map_Number<TVector, TScalar>(value);
 

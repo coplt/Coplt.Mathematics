@@ -3,46 +3,49 @@ using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
 {
-    public static partial class math
+    public static partial class ex_math
     {
-        /// <summary>
-        /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the subtraction of it
-        /// from <paramref name="c"/>: <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-        /// </summary>
-        /// <param name="a">The value that is multiplied</param>
-        /// <param name="b">The value that multiplies <paramref name="a"/></param>
-        /// <param name="c">The value that the product is subtracted from</param>
-        /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
-        /// <returns>The fused result</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fnma<T>(in T a, in T b, in T c) where T : unmanaged, IAlgebraDispatch<T>
-            => T.Self<impl_fnma>(a, b, c);
+        extension(math)
+        {
+            /// <summary>
+            /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the subtraction of it
+            /// from <paramref name="c"/>: <code>c - (a * b)</code> or <code>-(a * b) + c</code>
+            /// </summary>
+            /// <param name="a">The value that is multiplied</param>
+            /// <param name="b">The value that multiplies <paramref name="a"/></param>
+            /// <param name="c">The value that the product is subtracted from</param>
+            /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
+            /// <returns>The fused result</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static T fnma<T>(T a, T b, T c) where T : unmanaged, IAlgebraDispatch<T>
+                => T.Self<impl_fnma>(a, b, c);
 
-        /// <summary>
-        /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the subtraction of it
-        /// from <paramref name="c"/>, the operands are named in the order of the subtraction:
-        /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
-        /// </summary>
-        /// <param name="c">The value that the product is subtracted from</param>
-        /// <param name="a">The value that is multiplied</param>
-        /// <param name="b">The value that multiplies <paramref name="a"/></param>
-        /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
-        /// <returns>The fused result</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fsm<T>(in T c, in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
-            => fnma(a, b, c);
+            /// <summary>
+            /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the subtraction of it
+            /// from <paramref name="c"/>, the operands are named in the order of the subtraction:
+            /// <code>c - (a * b)</code> or <code>-(a * b) + c</code>
+            /// </summary>
+            /// <param name="c">The value that the product is subtracted from</param>
+            /// <param name="a">The value that is multiplied</param>
+            /// <param name="b">The value that multiplies <paramref name="a"/></param>
+            /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
+            /// <returns>The fused result</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static T fsm<T>(T c, T a, T b) where T : unmanaged, IAlgebraDispatch<T>
+                => math.fnma(a, b, c);
+        }
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.fnma{T}(in T, in T, in T)"/>
+        /// <inheritdoc cref="ex_math.fnma{T}(T, T, T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fnma<T>(this T a, in T b, in T c) where T : unmanaged, IAlgebraDispatch<T>
+        public static T fnma<T>(this T a, T b, T c) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_fnma>(a, b, c);
 
-        /// <inheritdoc cref="math.fsm{T}(in T, in T, in T)"/>
+        /// <inheritdoc cref="ex_math.fsm{T}(T, T, T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fsm<T>(this T c, in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+        public static T fsm<T>(this T c, T a, T b) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_fnma>(a, b, c);
     }
 }
@@ -68,7 +71,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_fnma>.Simd_Number<TVector, TScalar>(
-            in Vector128<TScalar> a, in Vector128<TScalar> b, in Vector128<TScalar> c
+            Vector128<TScalar> a, Vector128<TScalar> b, Vector128<TScalar> c
         )
         {
             if (typeof(TScalar) == typeof(float))
@@ -83,7 +86,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_fnma>.Simd_Number<TVector, TScalar>(
-            in Vector256<TScalar> a, in Vector256<TScalar> b, in Vector256<TScalar> c
+            Vector256<TScalar> a, Vector256<TScalar> b, Vector256<TScalar> c
         )
         {
             if (typeof(TScalar) == typeof(double))

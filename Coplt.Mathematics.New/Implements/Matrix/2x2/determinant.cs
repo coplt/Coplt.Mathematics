@@ -13,28 +13,28 @@
         /// <param name="m">The value, a matrix of 2 rows and 2 columns</param>
         /// <returns>The determinant of the value</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float determinant(in float2x2 m) => fsm(m.m00 * m.m11, m.m01, m.m10);
+        public static float determinant(float2x2 m) => math.fsm(m.m00 * m.m11, m.m01, m.m10);
 
-        /// <inheritdoc cref="determinant(in float2x2)"/>
+        /// <inheritdoc cref="determinant(float2x2)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static double determinant(in double2x2 m) => fsm(m.m00 * m.m11, m.m01, m.m10);
+        public static double determinant(double2x2 m) => math.fsm(m.m00 * m.m11, m.m01, m.m10);
 
-        /// <inheritdoc cref="determinant(in float2x2)"/>
+        /// <inheritdoc cref="determinant(float2x2)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static half determinant(in half2x2 m) => fsm(m.m00 * m.m11, m.m01, m.m10);
+        public static half determinant(half2x2 m) => math.fsm(m.m00 * m.m11, m.m01, m.m10);
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.determinant(in float2x2)"/>
+        /// <inheritdoc cref="math.determinant(float2x2)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float determinant(this float2x2 m) => math.determinant(m);
 
-        /// <inheritdoc cref="math.determinant(in double2x2)"/>
+        /// <inheritdoc cref="math.determinant(double2x2)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double determinant(this double2x2 m) => math.determinant(m);
 
-        /// <inheritdoc cref="math.determinant(in half2x2)"/>
+        /// <inheritdoc cref="math.determinant(half2x2)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half determinant(this half2x2 m) => math.determinant(m);
     }

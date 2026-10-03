@@ -3,50 +3,53 @@ using Coplt.Mathematics.Implements;
 
 namespace Coplt.Mathematics
 {
-    public static partial class math
+    public static partial class ex_math
     {
-        /// <summary>
-        /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the addition of
-        /// <paramref name="c"/>: <code>(a * b) + c</code>
-        /// </summary>
-        /// <param name="a">The value that is multiplied</param>
-        /// <param name="b">The value that multiplies <paramref name="a"/></param>
-        /// <param name="c">The value that is added to the product</param>
-        /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
-        /// <returns>The fused result</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fma<T>(in T a, in T b, in T c) where T : unmanaged, IAlgebraDispatch<T>
-            => T.Self<impl_fma>(a, b, c);
-
-        /// <summary>
-        /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the addition of
-        /// <paramref name="c"/>, the operands are named in the order of the addition: <code>c + (a * b)</code>
-        /// </summary>
-        /// <param name="c">The value that is added to the product</param>
-        /// <param name="a">The value that is multiplied</param>
-        /// <param name="b">The value that multiplies <paramref name="a"/></param>
-        /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
-        /// <returns>The fused result</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fam<T>(in T c, in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
-            => fma(a, b, c);
-
-        /// <inheritdoc cref="fma{T}(in T, in T, in T)"/>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T mad<T>(in T a, in T b, in T c) where T : unmanaged, IAlgebraDispatch<T>
-            => fma(a, b, c);
+        extension(math)
+        {
+            /// <summary>
+            /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the addition of
+            /// <paramref name="c"/>: <code>(a * b) + c</code>
+            /// </summary>
+            /// <param name="a">The value that is multiplied</param>
+            /// <param name="b">The value that multiplies <paramref name="a"/></param>
+            /// <param name="c">The value that is added to the product</param>
+            /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
+            /// <returns>The fused result</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static T fma<T>(T a, T b, T c) where T : unmanaged, IAlgebraDispatch<T>
+                => T.Self<impl_fma>(a, b, c);
+    
+            /// <summary>
+            /// Fuses the multiplication of <paramref name="a"/> and <paramref name="b"/> with the addition of
+            /// <paramref name="c"/>, the operands are named in the order of the addition: <code>c + (a * b)</code>
+            /// </summary>
+            /// <param name="c">The value that is added to the product</param>
+            /// <param name="a">The value that is multiplied</param>
+            /// <param name="b">The value that multiplies <paramref name="a"/></param>
+            /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
+            /// <returns>The fused result</returns>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static T fam<T>(T c, T a, T b) where T : unmanaged, IAlgebraDispatch<T>
+                => fma(a, b, c);
+    
+            /// <inheritdoc cref="fma{T}(T, T, T)"/>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static T mad<T>(T a, T b, T c) where T : unmanaged, IAlgebraDispatch<T>
+                => fma(a, b, c);
+        }
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.fma{T}(in T, in T, in T)"/>
+        /// <inheritdoc cref="ex_math.fma{T}(T, T, T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fma<T>(this T a, in T b, in T c) where T : unmanaged, IAlgebraDispatch<T>
+        public static T fma<T>(this T a, T b, T c) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_fma>(a, b, c);
 
-        /// <inheritdoc cref="math.fam{T}(in T, in T, in T)"/>
+        /// <inheritdoc cref="ex_math.fam{T}(T, T, T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T fam<T>(this T c, in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+        public static T fam<T>(this T c, T a, T b) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_fma>(a, b, c);
     }
 }
@@ -72,7 +75,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_fma>.Simd_Number<TVector, TScalar>(
-            in Vector128<TScalar> a, in Vector128<TScalar> b, in Vector128<TScalar> c
+            Vector128<TScalar> a, Vector128<TScalar> b, Vector128<TScalar> c
         )
         {
             if (typeof(TScalar) == typeof(float))
@@ -87,7 +90,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_fma>.Simd_Number<TVector, TScalar>(
-            in Vector256<TScalar> a, in Vector256<TScalar> b, in Vector256<TScalar> c
+            Vector256<TScalar> a, Vector256<TScalar> b, Vector256<TScalar> c
         )
         {
             if (typeof(TScalar) == typeof(double))

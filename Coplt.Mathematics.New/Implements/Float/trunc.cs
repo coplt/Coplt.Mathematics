@@ -12,7 +12,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the component of the value truncated</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T trunc<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static T trunc<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_trunc>(value);
     }
 
@@ -43,7 +43,7 @@ namespace Coplt.Mathematics.Implements
             => TScalar.Truncate(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_trunc>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_trunc>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.UnsafeFromUnderlying(Vector128.Truncate(vector.AsSingle()).AsByte());
@@ -53,7 +53,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_trunc>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_trunc>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(Vector256.Truncate(vector.AsDouble()).AsByte());

@@ -16,17 +16,17 @@ namespace Coplt.Mathematics
         /// <param name="m">The value, a matrix of 4 rows and 4 columns</param>
         /// <returns>The determinant of the value</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float determinant(in float4x4 m)
+        public static float determinant(float4x4 m)
         {
             var r0 = m.c0;
             var r1 = m.c1;
             var r2 = m.c2;
             var r3 = m.c3;
 
-            var p_0123 = fsm(r0.xxxy * r1.yzwz, r0.yzwz, r1.xxxy);
-            var p_45 = fsm(r0.yz * r1.ww, r0.ww, r1.yz);
-            var q_0123 = fsm(r2.xxxy * r3.yzwz, r2.yzwz, r3.xxxy);
-            var q_45 = fsm(r2.yz * r3.ww, r2.ww, r3.yz);
+            var p_0123 = math.fsm(r0.xxxy * r1.yzwz, r0.yzwz, r1.xxxy);
+            var p_45 = math.fsm(r0.yz * r1.ww, r0.ww, r1.yz);
+            var q_0123 = math.fsm(r2.xxxy * r3.yzwz, r2.yzwz, r3.xxxy);
+            var q_45 = math.fsm(r2.yz * r3.ww, r2.ww, r3.yz);
 
             var p_vec1 = chg_sign(p_0123, new(1f, -1f, 1f, 1f));
             float4 q_vec1 = new(q_45.yx, q_0123.wz);
@@ -36,19 +36,19 @@ namespace Coplt.Mathematics
             return math.dot(p_vec1, q_vec1) + math.dot(p_vec2, q_vec2);
         }
 
-        /// <inheritdoc cref="determinant(in float4x4)"/>
+        /// <inheritdoc cref="determinant(float4x4)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static double determinant(in double4x4 m)
+        public static double determinant(double4x4 m)
         {
             var r0 = m.c0;
             var r1 = m.c1;
             var r2 = m.c2;
             var r3 = m.c3;
 
-            var p_0123 = fsm(r0.xxxy * r1.yzwz, r0.yzwz, r1.xxxy);
-            var p_45 = fsm(r0.yz * r1.ww, r0.ww, r1.yz);
-            var q_0123 = fsm(r2.xxxy * r3.yzwz, r2.yzwz, r3.xxxy);
-            var q_45 = fsm(r2.yz * r3.ww, r2.ww, r3.yz);
+            var p_0123 = math.fsm(r0.xxxy * r1.yzwz, r0.yzwz, r1.xxxy);
+            var p_45 = math.fsm(r0.yz * r1.ww, r0.ww, r1.yz);
+            var q_0123 = math.fsm(r2.xxxy * r3.yzwz, r2.yzwz, r3.xxxy);
+            var q_45 = math.fsm(r2.yz * r3.ww, r2.ww, r3.yz);
 
             var p_vec1 = chg_sign(p_0123, new(1f, -1f, 1f, 1f));
             double4 q_vec1 = new(q_45.yx, q_0123.wz);
@@ -58,19 +58,19 @@ namespace Coplt.Mathematics
             return math.dot(p_vec1, q_vec1) + math.dot(p_vec2, q_vec2);
         }
 
-        /// <inheritdoc cref="determinant(in float4x4)"/>
+        /// <inheritdoc cref="determinant(float4x4)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static half determinant(in half4x4 m)
+        public static half determinant(half4x4 m)
         {
             var r0 = m.c0;
             var r1 = m.c1;
             var r2 = m.c2;
             var r3 = m.c3;
 
-            var p_0123 = fsm(r0.xxxy * r1.yzwz, r0.yzwz, r1.xxxy);
-            var p_45 = fsm(r0.yz * r1.ww, r0.ww, r1.yz);
-            var q_0123 = fsm(r2.xxxy * r3.yzwz, r2.yzwz, r3.xxxy);
-            var q_45 = fsm(r2.yz * r3.ww, r2.ww, r3.yz);
+            var p_0123 = math.fsm(r0.xxxy * r1.yzwz, r0.yzwz, r1.xxxy);
+            var p_45 = math.fsm(r0.yz * r1.ww, r0.ww, r1.yz);
+            var q_0123 = math.fsm(r2.xxxy * r3.yzwz, r2.yzwz, r3.xxxy);
+            var q_45 = math.fsm(r2.yz * r3.ww, r2.ww, r3.yz);
 
             var p_vec1 = chg_sign(p_0123, new(half.One, -half.One, half.One, half.One));
             half4 q_vec1 = new(q_45.yx, q_0123.wz);
@@ -83,15 +83,15 @@ namespace Coplt.Mathematics
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.determinant(in float4x4)"/>
+        /// <inheritdoc cref="math.determinant(float4x4)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float determinant(this float4x4 m) => math.determinant(m);
 
-        /// <inheritdoc cref="math.determinant(in double4x4)"/>
+        /// <inheritdoc cref="math.determinant(double4x4)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double determinant(this double4x4 m) => math.determinant(m);
 
-        /// <inheritdoc cref="math.determinant(in half4x4)"/>
+        /// <inheritdoc cref="math.determinant(half4x4)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half determinant(this half4x4 m) => math.determinant(m);
     }

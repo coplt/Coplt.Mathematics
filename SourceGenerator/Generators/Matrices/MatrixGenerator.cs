@@ -315,12 +315,12 @@ public class MatrixGenerator : IIncrementalGenerator
 
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    static {col} Algebras.IMatrixVector<{type}, {col}>.get_vector(in {type} self, int column) => " +
+        sb.AppendLine($"    static {col} Algebras.IMatrixVector<{type}, {col}>.get_vector({type} self, int column) => " +
                       "self[column];");
         sb.AppendLine();
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    static void Algebras.IMatrixVector<{type}, {col}>.set_vector(ref {type} self, int column, in {col} value) => " +
+        sb.AppendLine($"    static void Algebras.IMatrixVector<{type}, {col}>.set_vector(ref {type} self, int column, {col} value) => " +
                       "self[column] = value;");
         sb.AppendLine();
         // the storage variant of a matrix reaches a component of it through the members of the column of it
@@ -328,7 +328,7 @@ public class MatrixGenerator : IIncrementalGenerator
         {
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {scalar} Algebras.IMatrixScalar<{type}, {scalar}>.get(in {type} self, int row, int column) => " +
+            sb.AppendLine($"    static {scalar} Algebras.IMatrixScalar<{type}, {scalar}>.get({type} self, int row, int column) => " +
                           "self[row, column];");
             sb.AppendLine();
             sb.AppendLine("    /// <inheritdoc/>");
@@ -338,7 +338,7 @@ public class MatrixGenerator : IIncrementalGenerator
             sb.AppendLine();
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {scalar} Algebras.IAlgebra<{type}, {scalar}>.get(in {type} self, int index) => " +
+            sb.AppendLine($"    static {scalar} Algebras.IAlgebra<{type}, {scalar}>.get({type} self, int index) => " +
                           $"self[index / {rows}, index % {rows}];");
             sb.AppendLine();
             sb.AppendLine("    /// <inheritdoc/>");
@@ -384,10 +384,10 @@ public class MatrixGenerator : IIncrementalGenerator
 
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} Broadcast(in {col} scalar) => " +
+        sb.AppendLine($"    public static {type} Broadcast({col} scalar) => " +
                       $"new({VectorGenShared.Join(cols, _ => "scalar")});");
         sb.AppendLine();
-        Method($"public static {type} Vector(in {col} scalar)", $"var r = {zeroMatrix}; r[0] = scalar; return r;");
+        Method($"public static {type} Vector({col} scalar)", $"var r = {zeroMatrix}; r[0] = scalar; return r;");
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    public static {type} Load(ReadOnlySpan<{col}> span) => " +
@@ -497,7 +497,7 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
         sb.AppendLine($"    static {type} Algebras.IMatrixMx{cols}Vector<{type}, {col}>.Create(" +
-                      $"{VectorGenShared.Join(cols, i => $"in {col} c{i}")}) => " +
+                      $"{VectorGenShared.Join(cols, i => $"{col} c{i}")}) => " +
                       $"new({VectorGenShared.Join(cols, i => $"c{i}")});");
         sb.AppendLine();
         // the components of the matrix reach the constructor of it, which takes them in the order of a row. The
@@ -524,12 +524,12 @@ public class MatrixGenerator : IIncrementalGenerator
             {
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static {col} Algebras.IMatrixMx{cols}Vector<{type}, {col}>.get_c{j}(in {type} self) => " +
+                sb.AppendLine($"    static {col} Algebras.IMatrixMx{cols}Vector<{type}, {col}>.get_c{j}({type} self) => " +
                               $"self.c{j};");
                 sb.AppendLine();
                 sb.AppendLine("    /// <inheritdoc/>");
                 sb.AppendLine($"    {attr}");
-                sb.AppendLine($"    static void Algebras.IMatrixMx{cols}Vector<{type}, {col}>.set_c{j}(ref {type} self, in {col} value) => " +
+                sb.AppendLine($"    static void Algebras.IMatrixMx{cols}Vector<{type}, {col}>.set_c{j}(ref {type} self, {col} value) => " +
                               $"self.c{j} = value;");
                 sb.AppendLine();
             }
@@ -543,7 +543,7 @@ public class MatrixGenerator : IIncrementalGenerator
                     {
                         sb.AppendLine("    /// <inheritdoc/>");
                         sb.AppendLine($"    {attr}");
-                        sb.AppendLine($"    static {scalar} Algebras.IMatrix{shape}Scalar<{type}, {scalar}>.get_m{r}{c}(in {type} self) => " +
+                        sb.AppendLine($"    static {scalar} Algebras.IMatrix{shape}Scalar<{type}, {scalar}>.get_m{r}{c}({type} self) => " +
                                       $"self.c{c}.{Typ.xyzw[r]};");
                         sb.AppendLine();
                         sb.AppendLine("    /// <inheritdoc/>");
@@ -688,13 +688,13 @@ public class MatrixGenerator : IIncrementalGenerator
             // both of them, every column of the matrix multiplies the value of the component
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static {type} operator *(in {type} value, {scalar} scalar) => " +
+            sb.AppendLine($"    public static {type} operator *({type} value, {scalar} scalar) => " +
                           $"new({VectorGenShared.Join(cols, i => $"value.c{i} * scalar")});");
             sb.AppendLine();
 
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    public static {type} operator *({scalar} scalar, in {type} value) => " +
+            sb.AppendLine($"    public static {type} operator *({scalar} scalar, {type} value) => " +
                           $"new({VectorGenShared.Join(cols, i => $"scalar * value.c{i}")});");
             sb.AppendLine();
 
@@ -841,28 +841,28 @@ public class MatrixGenerator : IIncrementalGenerator
                 sb.AppendLine();
             }
 
-            Member(type, self, "Self<V>", $"in {type} self", $"{matrix}(self)");
-            Member(type, self, "Self<V>", $"in {type} a, in {type} b", $"{matrix}(a, b)");
-            Member(type, self, "Self<V>", $"in {type} a, in {type} b, in {type} c", $"{matrix}(a, b, c)");
-            Member(type, withScalar, "Self<V>", $"in {type} a, {scalar} b", $"{matrix}(a, b)");
-            Member(type, withScalar, "Self<V>", $"in {type} a, {scalar} b, {scalar} c", $"{matrix}(a, b, c)");
+            Member(type, self, "Self<V>", $"{type} self", $"{matrix}(self)");
+            Member(type, self, "Self<V>", $"{type} a, {type} b", $"{matrix}(a, b)");
+            Member(type, self, "Self<V>", $"{type} a, {type} b, {type} c", $"{matrix}(a, b, c)");
+            Member(type, withScalar, "Self<V>", $"{type} a, {scalar} b", $"{matrix}(a, b)");
+            Member(type, withScalar, "Self<V>", $"{type} a, {scalar} b, {scalar} c", $"{matrix}(a, b, c)");
             // a member that takes a component of the value alone does not reach the value of the matrix at all
             Member(scalar, withScalar, "Scalar<V>", $"{scalar} a", $"V.Scalar_{level}(a)");
             Member(scalar, withScalar, "Scalar<V>", $"{scalar} a, {scalar} b", $"V.Scalar_{level}(a, b)");
             Member(scalar, withScalar, "Scalar<V>", $"{scalar} a, {scalar} b, {scalar} c", $"V.Scalar_{level}(a, b, c)");
             // a member that reduces the value of the matrix to a single component of it
-            Member(scalar, withScalar, "Scalar<V>", $"in {type} a", $"{matrix}(a)");
-            Member(scalar, withScalar, "Scalar<V>", $"in {type} a, in {type} b", $"{matrix}(a, b)");
+            Member(scalar, withScalar, "Scalar<V>", $"{type} a", $"{matrix}(a)");
+            Member(scalar, withScalar, "Scalar<V>", $"{type} a, {type} b", $"{matrix}(a, b)");
             Member(scalar, withScalar, "Combine<V>", $"{scalar} a, {scalar} b", $"V.Combine_{level}(a, b)");
             // the value of the matrix hands itself over instead of a component of it, so the visitor decides the
             // type of a component of the value it reaches: a matrix is made of its columns, so every column of
             // it is mapped and the matrix is built out of the values the visitor returned
-            Member(type, self, "Map_Self<V>", $"in {type} self",
+            Member(type, self, "Map_Self<V>", $"{type} self",
                 $"new({VectorGenShared.Join(cols, j => $"V.Map_{level}<{col}, {scalar}>(self.c{j})")})");
             // a member that reaches the bool value of the matrix hands the value over the same way every other
             // member that takes the value alone does: the visitor reaches the shape of the matrix and builds the
             // bool value of every column of it out of the columns
-            Member("bool", self, "Bool<V>", $"in {type} self", $"{matrix}(self)");
+            Member("bool", self, "Bool<V>", $"{type} self", $"{matrix}(self)");
             // a member that takes a component of the matrix alone does not reach the value at all, so the visitor
             // reaches the component of every value of the kind of it the same way
             Member("bool", withScalar, "Bool<V>", $"{scalar} a", $"V.Scalar_{level}(a)");
@@ -874,7 +874,7 @@ public class MatrixGenerator : IIncrementalGenerator
             if (typ.f)
             {
                 Member("void", VectorGenShared.DispatchFloatIface(type), "Self_out<V>",
-                    $"in {type} a, out {type} b, out {type} c", $"{matrix}(a, out b, out c)");
+                    $"{type} a, out {type} b, out {type} c", $"{matrix}(a, out b, out c)");
                 Member("void", VectorGenShared.DispatchFloatIfaceScalar(type, scalar), "Scalar_out<V>",
                     $"{scalar} a, out {scalar} b, out {scalar} c", "V.Scalar_Float(a, out b, out c)");
             }
@@ -883,14 +883,14 @@ public class MatrixGenerator : IIncrementalGenerator
             // single vector is the one of the count of the columns of the matrix
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {col} Algebras.Generics.Dispatch.IMatrixColumnDispatch<{type}, {col}>.Combine<V>(in {type} self)");
+            sb.AppendLine($"    static {col} Algebras.Generics.Dispatch.IMatrixColumnDispatch<{type}, {col}>.Combine<V>({type} self)");
             sb.AppendLine($"        => V.Combine{cols}_{level}<{col}, {scalar}>({VectorGenShared.Join(cols, j => $"self.c{j}")});");
             sb.AppendLine();
             // a row of the matrix has no value of its own, so the columns of it are handed over and every one
             // of them is reduced to a component by the visitor, which builds the vector of the reductions
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {row} Algebras.Generics.Dispatch.IMatrixRowDispatch<{type}, {row}>.Reduce<V>(in {type} self)");
+            sb.AppendLine($"    static {row} Algebras.Generics.Dispatch.IMatrixRowDispatch<{type}, {row}>.Reduce<V>({type} self)");
             sb.AppendLine($"        => V.Row{cols}_{level}<{col}, {row}, {scalar}>({VectorGenShared.Join(cols, j => $"self.c{j}")});");
             sb.AppendLine();
             sb.AppendLine("    #endregion");

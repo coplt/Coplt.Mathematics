@@ -21,16 +21,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value that is true where the component of it is finite</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T is_finite<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T is_finite<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => T.Self<impl_is_finite>(a);
 
         /// <summary>
         /// Returns the value that is true where the component of <paramref name="a"/> is finite, which is the
         /// name of the member in HLSL
         /// </summary>
-        /// <inheritdoc cref="is_finite{T}(in T)"/>
+        /// <inheritdoc cref="is_finite{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T isfinite<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T isfinite<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => is_finite(a);
     }
 }
@@ -53,11 +53,11 @@ namespace Coplt.Mathematics.Implements
         // the member of the simd library of the kind of the component finds the finite ones, but the zero of a
         // padding lane is finite as well, so the value of the register leaves the padding lanes out
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_finite>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_finite>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
             => TVector.FromUnderlying(Vector128.IsFinite(vector).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_finite>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_finite>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
             => TVector.FromUnderlying(Vector256.IsFinite(vector).AsByte());
     }
 }

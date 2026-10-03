@@ -11,7 +11,7 @@ namespace Coplt.Mathematics
         /// component
         /// <para>It is the sum of every row of the value as well: the component of the result at the index of a
         /// row is the sum of the components of that row of it, so the result is the vector of the count of the
-        /// rows of the value. See <see cref="rsum{T,TVector}(in T)"/> for the sum of the rows of it, which is
+        /// rows of the value. See <see cref="rsum{T,TVector}(T)"/> for the sum of the rows of it, which is
         /// the sum of every column of it and the vector of the count of the columns of it</para>
         /// </summary>
         /// <param name="value">The value, a matrix</param>
@@ -24,7 +24,7 @@ namespace Coplt.Mathematics
         // value instead, which the attribute marks this member for
         [VectorExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TVector csum<T, TVector>(in T value)
+        public static TVector csum<T, TVector>(T value)
             where T : unmanaged, IMatrixColumnDispatch<T, TVector>
             where TVector : unmanaged, INumberVector<TVector>
             => T.Combine<impl_matrix_column_sum>(value);
@@ -33,7 +33,7 @@ namespace Coplt.Mathematics
         /// Returns the sum of the rows of the value, which is the sum of every column of it
         /// <para>The component of the result at the index of a column of the value is the sum of the components
         /// of that column of it, so the result is the vector of the count of the columns of the value. See
-        /// <see cref="csum{T,TVector}(in T)"/> for the sum of the columns of it, which is the sum of every row
+        /// <see cref="csum{T,TVector}(T)"/> for the sum of the columns of it, which is the sum of every row
         /// of it and the vector of the count of the rows of it</para>
         /// </summary>
         /// <param name="value">The value, a matrix</param>
@@ -46,7 +46,7 @@ namespace Coplt.Mathematics
         // the visitor reduces every column with the sum and builds the row vector of them
         [VectorExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TVector rsum<T, TVector>(in T value)
+        public static TVector rsum<T, TVector>(T value)
             where T : unmanaged, IMatrixRowDispatch<T, TVector>
             where TVector : unmanaged, INumberVector<TVector>
             => T.Reduce<impl_matrix_row_sum>(value);
@@ -65,14 +65,14 @@ namespace Coplt.Mathematics.Implements
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IMatrixColumnVisitor<impl_matrix_column_sum>.Combine_Number<TVector, TScalar>(
-            in TVector a, in TVector b
+            TVector a, TVector b
         ) => a + b;
     }
 
     /// <summary>
     /// The sum of the rows of a matrix, which is the sum of every column of it
     /// <para>A row of a matrix has no value of its own, so every column of it is reduced by the sum, see
-    /// <see cref="math.sum{T,TScalar}(in T)"/>, and the values of the reductions are the components of the row
+    /// <see cref="math.sum{T,TScalar}(T)"/>, and the values of the reductions are the components of the row
     /// vector, so the component of the result at the index of a column of the matrix is the sum of the
     /// components of that column of it</para>
     /// </summary>
@@ -80,17 +80,17 @@ namespace Coplt.Mathematics.Implements
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TRow IMatrixRowVisitor<impl_matrix_row_sum>.Row2_Number<TColumn, TRow, TScalar>(
-            in TColumn c0, in TColumn c1
+            TColumn c0, TColumn c1
         ) => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TRow IMatrixRowVisitor<impl_matrix_row_sum>.Row3_Number<TColumn, TRow, TScalar>(
-            in TColumn c0, in TColumn c1, in TColumn c2
+            TColumn c0, TColumn c1, TColumn c2
         ) => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1), math.sum<TColumn, TScalar>(c2));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TRow IMatrixRowVisitor<impl_matrix_row_sum>.Row4_Number<TColumn, TRow, TScalar>(
-            in TColumn c0, in TColumn c1, in TColumn c2, in TColumn c3
+            TColumn c0, TColumn c1, TColumn c2, TColumn c3
         ) => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1), math.sum<TColumn, TScalar>(c2),
             math.sum<TColumn, TScalar>(c3));
     }

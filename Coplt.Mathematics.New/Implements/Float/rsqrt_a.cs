@@ -16,7 +16,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the estimate of the reciprocal of the square root of
         /// the component of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T rsqrt_a<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static T rsqrt_a<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_rsqrt_approx>(value);
     }
 
@@ -51,7 +51,7 @@ namespace Coplt.Mathematics.Implements
             => TScalar.ReciprocalSqrtEstimate(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_rsqrt_approx>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_rsqrt_approx>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.FromUnderlying(simd.RSqrt(vector.AsSingle()).AsByte());
@@ -63,7 +63,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_rsqrt_approx>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_rsqrt_approx>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.RSqrt(vector.AsDouble()).AsByte());

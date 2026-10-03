@@ -21,16 +21,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value that is true where the component of it is NaN</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T is_NaN<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T is_NaN<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => T.Self<impl_is_nan>(a);
 
         /// <summary>
         /// Returns the value that is true where the component of <paramref name="a"/> is NaN, which is the name
         /// of the member in HLSL
         /// </summary>
-        /// <inheritdoc cref="is_NaN{T}(in T)"/>
+        /// <inheritdoc cref="is_NaN{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T isnan<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T isnan<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => is_NaN(a);
     }
 }
@@ -53,11 +53,11 @@ namespace Coplt.Mathematics.Implements
         // the member of the simd library of the kind of the component finds the nan ones, the zero of a padding
         // lane is not a nan, so the mask of the register does not have to leave the padding lanes out
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_nan>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_nan>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector128.IsNaN(vector).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_nan>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_nan>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector256.IsNaN(vector).AsByte());
     }
 }

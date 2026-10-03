@@ -20,7 +20,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value that is true where the component of it is a positive infinity</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T is_pos_inf<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T is_pos_inf<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => T.Self<impl_is_pos_inf>(a);
     }
 }
@@ -43,11 +43,11 @@ namespace Coplt.Mathematics.Implements
         // the member of the simd library of the kind of the component finds the positive infinite ones, the zero
         // of a padding lane is not one, so the value of the register does not have to leave the padding lanes out
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_pos_inf>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_pos_inf>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector128.IsPositiveInfinity(vector).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_pos_inf>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_pos_inf>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector256.IsPositiveInfinity(vector).AsByte());
     }
 }

@@ -88,7 +88,7 @@ public class MatrixShapeGenerator : IIncrementalGenerator
     {
         sb.AppendLine("    #region Create");
         sb.AppendLine();
-        sb.AppendLine($"    public static abstract TSelf Create({VectorGenShared.Join(cols, i => $"in TVector c{i}")});");
+        sb.AppendLine($"    public static abstract TSelf Create({VectorGenShared.Join(cols, i => $"TVector c{i}")});");
         sb.AppendLine();
         sb.AppendLine("    #endregion");
         sb.AppendLine();
@@ -96,8 +96,8 @@ public class MatrixShapeGenerator : IIncrementalGenerator
         sb.AppendLine();
         for (var j = 0; j < cols; j++)
         {
-            sb.AppendLine($"    public static abstract TVector get_c{j}(in TSelf self);");
-            sb.AppendLine($"    public static abstract void set_c{j}(ref TSelf self, in TVector value);");
+            sb.AppendLine($"    public static abstract TVector get_c{j}(TSelf self);");
+            sb.AppendLine($"    public static abstract void set_c{j}(ref TSelf self, TVector value);");
         }
 
         sb.AppendLine();
@@ -153,7 +153,7 @@ public class MatrixShapeGenerator : IIncrementalGenerator
         {
             for (var c = 0; c < cols; c++)
             {
-                sb.AppendLine($"    public static abstract TScalar get_m{r}{c}(in TSelf self);");
+                sb.AppendLine($"    public static abstract TScalar get_m{r}{c}(TSelf self);");
                 sb.AppendLine($"    public static abstract void set_m{r}{c}(ref TSelf self, TScalar value);");
             }
         }

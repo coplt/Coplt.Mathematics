@@ -24,7 +24,7 @@ public interface IMatrixColumnDispatch<TSelf, TVector> : IAlgebraDispatch<TSelf>
     /// <typeparam name="V">The type of the visitor that combines the columns</typeparam>
     /// <param name="self">The matrix whose columns are handed over</param>
     /// <returns>The vector the visitor built out of the columns</returns>
-    public static abstract TVector Combine<V>(in TSelf self)
+    public static abstract TVector Combine<V>(TSelf self)
         where V : IMatrixColumnVisitor<V>;
 }
 
@@ -54,7 +54,7 @@ public interface IMatrixRowDispatch<TSelf, TVector> : IAlgebraDispatch<TSelf>
     /// <typeparam name="V">The type of the visitor that reduces the columns</typeparam>
     /// <param name="self">The matrix whose columns are handed over</param>
     /// <returns>The vector of the value of the reduction of every column</returns>
-    public static abstract TVector Reduce<V>(in TSelf self)
+    public static abstract TVector Reduce<V>(TSelf self)
         where V : IMatrixRowVisitor<V>;
 }
 
@@ -80,7 +80,7 @@ public interface IMatrixColumnVisitor<V> where V : IMatrixColumnVisitor<V>
     /// <param name="a">The first column</param>
     /// <param name="b">The second column</param>
     /// <returns>The value of the two columns combined</returns>
-    public static virtual TVector Combine_Number<TVector, TScalar>(in TVector a, in TVector b)
+    public static virtual TVector Combine_Number<TVector, TScalar>(TVector a, TVector b)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar> => throw null!;
 
@@ -91,7 +91,7 @@ public interface IMatrixColumnVisitor<V> where V : IMatrixColumnVisitor<V>
     /// <param name="b">The second column</param>
     /// <returns>The value of the two columns combined</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TVector Combine_Float<TVector, TScalar>(in TVector a, in TVector b)
+    public static virtual TVector Combine_Float<TVector, TScalar>(TVector a, TVector b)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
         => V.Combine_Number<TVector, TScalar>(a, b);
@@ -107,7 +107,7 @@ public interface IMatrixColumnVisitor<V> where V : IMatrixColumnVisitor<V>
     /// <param name="c1">The second column</param>
     /// <returns>The value of the columns combined</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TVector Combine2_Number<TVector, TScalar>(in TVector c0, in TVector c1)
+    public static virtual TVector Combine2_Number<TVector, TScalar>(TVector c0, TVector c1)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => V.Combine_Number<TVector, TScalar>(c0, c1);
@@ -120,7 +120,7 @@ public interface IMatrixColumnVisitor<V> where V : IMatrixColumnVisitor<V>
     /// <param name="c2">The third column</param>
     /// <returns>The value of the columns combined</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TVector Combine3_Number<TVector, TScalar>(in TVector c0, in TVector c1, in TVector c2)
+    public static virtual TVector Combine3_Number<TVector, TScalar>(TVector c0, TVector c1, TVector c2)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => V.Combine_Number<TVector, TScalar>(V.Combine_Number<TVector, TScalar>(c0, c1), c2);
@@ -135,7 +135,7 @@ public interface IMatrixColumnVisitor<V> where V : IMatrixColumnVisitor<V>
     /// <returns>The value of the columns combined</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static virtual TVector Combine4_Number<TVector, TScalar>(
-        in TVector c0, in TVector c1, in TVector c2, in TVector c3
+        TVector c0, TVector c1, TVector c2, TVector c3
     )
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
@@ -149,7 +149,7 @@ public interface IMatrixColumnVisitor<V> where V : IMatrixColumnVisitor<V>
     /// <param name="c1">The second column</param>
     /// <returns>The value of the columns combined</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TVector Combine2_Float<TVector, TScalar>(in TVector c0, in TVector c1)
+    public static virtual TVector Combine2_Float<TVector, TScalar>(TVector c0, TVector c1)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
         => V.Combine2_Number<TVector, TScalar>(c0, c1);
@@ -162,7 +162,7 @@ public interface IMatrixColumnVisitor<V> where V : IMatrixColumnVisitor<V>
     /// <param name="c2">The third column</param>
     /// <returns>The value of the columns combined</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TVector Combine3_Float<TVector, TScalar>(in TVector c0, in TVector c1, in TVector c2)
+    public static virtual TVector Combine3_Float<TVector, TScalar>(TVector c0, TVector c1, TVector c2)
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
         => V.Combine3_Number<TVector, TScalar>(c0, c1, c2);
@@ -177,7 +177,7 @@ public interface IMatrixColumnVisitor<V> where V : IMatrixColumnVisitor<V>
     /// <returns>The value of the columns combined</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static virtual TVector Combine4_Float<TVector, TScalar>(
-        in TVector c0, in TVector c1, in TVector c2, in TVector c3
+        TVector c0, TVector c1, TVector c2, TVector c3
     )
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
@@ -210,7 +210,7 @@ public interface IMatrixRowVisitor<V> where V : IMatrixRowVisitor<V>
     /// <param name="c0">The first column</param>
     /// <param name="c1">The second column</param>
     /// <returns>The row of the matrix</returns>
-    public static virtual TRow Row2_Number<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1)
+    public static virtual TRow Row2_Number<TColumn, TRow, TScalar>(TColumn c0, TColumn c1)
         where TColumn : unmanaged, IAlgebraDispatch<TColumn, TScalar>, INumberVector<TColumn, TScalar>
         where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector2<TRow, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar> => throw null!;
@@ -223,7 +223,7 @@ public interface IMatrixRowVisitor<V> where V : IMatrixRowVisitor<V>
     /// <param name="c1">The second column</param>
     /// <param name="c2">The third column</param>
     /// <returns>The row of the matrix</returns>
-    public static virtual TRow Row3_Number<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1, in TColumn c2)
+    public static virtual TRow Row3_Number<TColumn, TRow, TScalar>(TColumn c0, TColumn c1, TColumn c2)
         where TColumn : unmanaged, IAlgebraDispatch<TColumn, TScalar>, INumberVector<TColumn, TScalar>
         where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector3<TRow, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar> => throw null!;
@@ -238,7 +238,7 @@ public interface IMatrixRowVisitor<V> where V : IMatrixRowVisitor<V>
     /// <param name="c3">The fourth column</param>
     /// <returns>The row of the matrix</returns>
     public static virtual TRow Row4_Number<TColumn, TRow, TScalar>(
-        in TColumn c0, in TColumn c1, in TColumn c2, in TColumn c3
+        TColumn c0, TColumn c1, TColumn c2, TColumn c3
     )
         where TColumn : unmanaged, IAlgebraDispatch<TColumn, TScalar>, INumberVector<TColumn, TScalar>
         where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector4<TRow, TScalar>
@@ -252,7 +252,7 @@ public interface IMatrixRowVisitor<V> where V : IMatrixRowVisitor<V>
     /// <param name="c1">The second column</param>
     /// <returns>The row of the matrix</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TRow Row2_Float<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1)
+    public static virtual TRow Row2_Float<TColumn, TRow, TScalar>(TColumn c0, TColumn c1)
         where TColumn : unmanaged, IAlgebraDispatch<TColumn, TScalar>, IFloatingPointVector<TColumn, TScalar>
         where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector2<TRow, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
@@ -267,7 +267,7 @@ public interface IMatrixRowVisitor<V> where V : IMatrixRowVisitor<V>
     /// <param name="c2">The third column</param>
     /// <returns>The row of the matrix</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static virtual TRow Row3_Float<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1, in TColumn c2)
+    public static virtual TRow Row3_Float<TColumn, TRow, TScalar>(TColumn c0, TColumn c1, TColumn c2)
         where TColumn : unmanaged, IAlgebraDispatch<TColumn, TScalar>, IFloatingPointVector<TColumn, TScalar>
         where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector3<TRow, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
@@ -284,7 +284,7 @@ public interface IMatrixRowVisitor<V> where V : IMatrixRowVisitor<V>
     /// <returns>The row of the matrix</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static virtual TRow Row4_Float<TColumn, TRow, TScalar>(
-        in TColumn c0, in TColumn c1, in TColumn c2, in TColumn c3
+        TColumn c0, TColumn c1, TColumn c2, TColumn c3
     )
         where TColumn : unmanaged, IAlgebraDispatch<TColumn, TScalar>, IFloatingPointVector<TColumn, TScalar>
         where TRow : unmanaged, INumberVector<TRow, TScalar>, IVector4<TRow, TScalar>

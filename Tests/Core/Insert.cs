@@ -18,7 +18,7 @@ public class TestVectorInsert
     /// declares both of the vectors that the members of the pair build and the implementation forwards to the
     /// member of the create of the one it builds.
     /// </summary>
-    private static TVector3 CallIx<T, TScalar, TVector3, TVector4>(in T yz, TScalar x)
+    private static TVector3 CallIx<T, TScalar, TVector3, TVector4>(T yz, TScalar x)
         where T : unmanaged, IVector2Insert<T, TScalar, TVector3, TVector4>
         where TScalar : unmanaged
         where TVector3 : unmanaged

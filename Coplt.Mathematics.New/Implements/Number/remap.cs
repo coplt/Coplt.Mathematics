@@ -20,7 +20,7 @@ public static partial class math_ex
         /// <returns>The remapped value</returns>
         [OverloadResolutionPriority(-1)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T remap<T>(in T value, in T src_start, in T src_end, in T dst_start, in T dst_end)
+        public static T remap<T>(T value, T src_start, T src_end, T dst_start, T dst_end)
             where T : unmanaged, INumberAlgebra<T>, IAlgebraDispatch<T>
             => lerp(dst_start, dst_end, unlerp(value, src_start, src_end));
     }
@@ -30,30 +30,30 @@ public static partial class math
 {
     [ScalarExtension]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T remap<T, TScalar>(in T value, TScalar src_start, TScalar src_end, TScalar dst_start, TScalar dst_end)
+    public static T remap<T, TScalar>(T value, TScalar src_start, TScalar src_end, TScalar dst_start, TScalar dst_end)
         where T : unmanaged, INumberAlgebra<T, TScalar>, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => lerp(dst_start, dst_end, unlerp(value, src_start, src_end));
 
     // [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    // public static T remap<T, TScalar>(in T value, in T src_start, in T src_end, TScalar dst_start, TScalar dst_end)
+    // public static T remap<T, TScalar>(T value, T src_start, T src_end, TScalar dst_start, TScalar dst_end)
     //     where T : unmanaged, INumberAlgebra<T, TScalar>, IAlgebraDispatch<T, TScalar>
     //     where TScalar : unmanaged, IBinaryNumber<TScalar>
     //     => lerp(dst_start, dst_end, unlerp<T>(value, src_start, src_end));
     //
     // [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    // public static T remap<T, TScalar>(in T value, TScalar src_start, TScalar src_end, in T dst_start, in T dst_end)
+    // public static T remap<T, TScalar>(T value, TScalar src_start, TScalar src_end, T dst_start, T dst_end)
     //     where T : unmanaged, INumberAlgebra<T, TScalar>, IAlgebraDispatch<T, TScalar>
     //     where TScalar : unmanaged, IBinaryNumber<TScalar>
     //     => lerp<T>(dst_start, dst_end, unlerp(value, src_start, src_end));
 }
 
-public static partial class math_ex
+public static partial class scalar_math_ex
 {
-    /// <inheritdoc cref="math_ex.remap{T}(in T, in T, in T, in T, in T)"/>
+    /// <inheritdoc cref="math_ex.remap{T}(T, T, T, T, T)"/>
     [OverloadResolutionPriority(-1)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T remap<T>(this T value, in T src_start, in T src_end, in T dst_start, in T dst_end)
+    public static T remap<T>(this T value, T src_start, T src_end, T dst_start, T dst_end)
         where T : unmanaged, INumberAlgebra<T>, IAlgebraDispatch<T>
         => math.lerp<T>(dst_start, dst_end, math.unlerp<T>(value, src_start, src_end));
 
@@ -71,7 +71,7 @@ public static partial class math_ex
     /// <returns>The remapped component</returns>
     [OverloadResolutionPriority(-1)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T remap<T, TScalar>(this TScalar value, in T src_start, in T src_end, in T dst_start, in T dst_end)
+    public static T remap<T, TScalar>(this TScalar value, T src_start, T src_end, T dst_start, T dst_end)
         where T : unmanaged, INumberAlgebra<T, TScalar>, IAlgebraDispatch<T>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => math.lerp<T>(dst_start, dst_end, math.unlerp<T>(T.Broadcast(value), src_start, src_end));

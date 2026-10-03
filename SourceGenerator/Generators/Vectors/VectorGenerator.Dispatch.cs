@@ -98,26 +98,26 @@ public partial class VectorGenerator
             sb.AppendLine();
         }
 
-        Member(type, self, "Self<V>", $"in {type} self", one);
-        Member(type, self, "Self<V>", $"in {type} a, in {type} b", two);
-        Member(type, self, "Self<V>", $"in {type} a, in {type} b, in {type} c", three);
-        Member(type, withScalar, "Self<V>", $"in {type} a, {scalar} b", oneComponent);
-        Member(type, withScalar, "Self<V>", $"in {type} a, {scalar} b, {scalar} c", twoComponents);
+        Member(type, self, "Self<V>", $"{type} self", one);
+        Member(type, self, "Self<V>", $"{type} a, {type} b", two);
+        Member(type, self, "Self<V>", $"{type} a, {type} b, {type} c", three);
+        Member(type, withScalar, "Self<V>", $"{type} a, {scalar} b", oneComponent);
+        Member(type, withScalar, "Self<V>", $"{type} a, {scalar} b, {scalar} c", twoComponents);
         Member(scalar, withScalar, "Scalar<V>", $"{scalar} a", scalarOne);
         Member(scalar, withScalar, "Scalar<V>", $"{scalar} a, {scalar} b", scalarTwo);
         Member(scalar, withScalar, "Scalar<V>", $"{scalar} a, {scalar} b, {scalar} c", scalarThree);
         // a member that reduces the value of the vector to a single component of it
-        Member(scalar, withScalar, "Scalar<V>", $"in {type} a", reduceOne);
-        Member(scalar, withScalar, "Scalar<V>", $"in {type} a, in {type} b", reduceTwo);
+        Member(scalar, withScalar, "Scalar<V>", $"{type} a", reduceOne);
+        Member(scalar, withScalar, "Scalar<V>", $"{type} a, {type} b", reduceTwo);
         Member(scalar, withScalar, "Combine<V>", $"{scalar} a, {scalar} b", combine);
         // the value of the vector hands itself over instead of a component of it, so the visitor decides the
         // type of a component of the value it reaches: the level of the kind of the component decides the member
         // of the visitor that reaches the value
-        Member(type, self, "Map_Self<V>", $"in {type} self", $"V.Map_{level}<{type}, {scalar}>(self)");
+        Member(type, self, "Map_Self<V>", $"{type} self", $"V.Map_{level}<{type}, {scalar}>(self)");
         // a member that reaches the bool value of the vector hands the value over the same way every other member
         // that takes the value alone does: the register of the vector when it keeps its value in one and the
         // vector itself when it has no register
-        Member("bool", self, "Bool<V>", $"in {type} self", one);
+        Member("bool", self, "Bool<V>", $"{type} self", one);
         // a member that takes a component of the vector alone does not reach the value at all, so the visitor
         // reaches the component of every value of the kind of it the same way
         Member("bool", withScalar, "Bool<V>", $"{scalar} a", scalarOne);
@@ -133,7 +133,7 @@ public partial class VectorGenerator
             var outOne = reg == 0
                 ? $"V.Vector{size}_Float<{type}, {scalar}>(a, out b, out c)"
                 : $"V.Simd_Float<{type}, {scalar}>(a.vector, out b, out c)";
-            Member("void", floatSelf, "Self_out<V>", $"in {type} a, out {type} b, out {type} c", outOne);
+            Member("void", floatSelf, "Self_out<V>", $"{type} a, out {type} b, out {type} c", outOne);
             Member("void", floatWithScalar, "Scalar_out<V>", $"{scalar} a, out {scalar} b, out {scalar} c",
                 "V.Scalar_Float(a, out b, out c)");
         }

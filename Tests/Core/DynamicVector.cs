@@ -30,11 +30,11 @@ public class TestDynamicVector
         static TScalar IAlgebraVisitor_S_S<AgainVisitor>.Scalar_Number<TScalar>(TScalar value) => value;
 
         /// <summary>Builds the value of a vector out of its register of 128 bits</summary>
-        static TVector IAlgebraVisitor_T_T<AgainVisitor>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<AgainVisitor>.Simd_Any<TVector, TScalar>(Vector128<TScalar> vector)
             => TVector.FromUnderlying(vector.As<TScalar, byte>());
 
         /// <summary>Builds the value of a vector out of its register of 256 bits</summary>
-        static TVector IAlgebraVisitor_T_T<AgainVisitor>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<AgainVisitor>.Simd_Any<TVector, TScalar>(Vector256<TScalar> vector)
             => TVector.FromUnderlying(vector.As<TScalar, byte>());
     }
 
@@ -45,11 +45,11 @@ public class TestDynamicVector
         static TScalar IAlgebraVisitor_S_S_S<SecondVisitor>.Scalar_Number<TScalar>(TScalar a, TScalar b) => b;
 
         /// <summary>Builds the second value out of its register of 128 bits</summary>
-        static TVector IAlgebraVisitor_T_T_T<SecondVisitor>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<SecondVisitor>.Simd_Any<TVector, TScalar>(Vector128<TScalar> a, Vector128<TScalar> b)
             => TVector.FromUnderlying(b.As<TScalar, byte>());
 
         /// <summary>Builds the second value out of its register of 256 bits</summary>
-        static TVector IAlgebraVisitor_T_T_T<SecondVisitor>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<SecondVisitor>.Simd_Any<TVector, TScalar>(Vector256<TScalar> a, Vector256<TScalar> b)
             => TVector.FromUnderlying(b.As<TScalar, byte>());
     }
 
@@ -60,13 +60,13 @@ public class TestDynamicVector
         static TScalar IAlgebraVisitor_S_S_S_S<ThirdVisitor>.Scalar_Number<TScalar>(TScalar a, TScalar b, TScalar c) => c;
 
         /// <summary>Builds the third value out of its register of 128 bits</summary>
-        static TVector IAlgebraVisitor_T_T_T_T<ThirdVisitor>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b,
-            in Vector128<TScalar> c)
+        static TVector IAlgebraVisitor_T_T_T_T<ThirdVisitor>.Simd_Any<TVector, TScalar>(Vector128<TScalar> a, Vector128<TScalar> b,
+            Vector128<TScalar> c)
             => TVector.FromUnderlying(c.As<TScalar, byte>());
 
         /// <summary>Builds the third value out of its register of 256 bits</summary>
-        static TVector IAlgebraVisitor_T_T_T_T<ThirdVisitor>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b,
-            in Vector256<TScalar> c)
+        static TVector IAlgebraVisitor_T_T_T_T<ThirdVisitor>.Simd_Any<TVector, TScalar>(Vector256<TScalar> a, Vector256<TScalar> b,
+            Vector256<TScalar> c)
             => TVector.FromUnderlying(c.As<TScalar, byte>());
     }
 
@@ -82,11 +82,11 @@ public class TestDynamicVector
             => value + TScalar.One;
 
         /// <summary>Replaces the value of a register of 128 bits by the one of the vector</summary>
-        static TVector IAlgebraVisitor_T_T<WhichVisitor>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<WhichVisitor>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)
             => TVector.One;
 
         /// <summary>Replaces the value of a register of 256 bits by the one of the vector</summary>
-        static TVector IAlgebraVisitor_T_T<WhichVisitor>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<WhichVisitor>.Simd_Number<TVector, TScalar>(Vector256<TScalar> vector)
             => TVector.One;
     }
 
@@ -94,19 +94,19 @@ public class TestDynamicVector
     /// Dispatches the value of a vector or of a matrix to a visitor: the member that dispatches it is
     /// implemented explicitly, so only the interface of the dispatch of a parameter reaches it
     /// </summary>
-    private static T Visit<T, V>(in T value)
+    private static T Visit<T, V>(T value)
         where T : unmanaged, IAlgebraDispatch<T>
         where V : IAlgebraVisitor_T_T<V>
         => T.Self<V>(value);
 
     /// <summary>Dispatches the two values of a vector or of a matrix to a visitor</summary>
-    private static T Visit<T, V>(in T a, in T b)
+    private static T Visit<T, V>(T a, T b)
         where T : unmanaged, IAlgebraDispatch<T>
         where V : IAlgebraVisitor_T_T_T<V>
         => T.Self<V>(a, b);
 
     /// <summary>Dispatches the three values of a vector or of a matrix to a visitor</summary>
-    private static T Visit<T, V>(in T a, in T b, in T c)
+    private static T Visit<T, V>(T a, T b, T c)
         where T : unmanaged, IAlgebraDispatch<T>
         where V : IAlgebraVisitor_T_T_T_T<V>
         => T.Self<V>(a, b, c);

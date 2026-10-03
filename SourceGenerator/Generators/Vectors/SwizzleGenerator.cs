@@ -242,7 +242,7 @@ public class SwizzleGenerator : IIncrementalGenerator
             // a vector of 2 components of 4 bytes is padded to the 4 lanes of a 128 bit register, the 2 lanes of
             // the register of a vector of 2 components of 8 bytes are the value itself
             sb.AppendLine($"    {Attr}");
-            sb.AppendLine($"    static TVector IAlgebraVisitor_T_T<{visitor}>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> vector)");
+            sb.AppendLine($"    static TVector IAlgebraVisitor_T_T<{visitor}>.Simd_Any<TVector, TScalar>(Vector128<TScalar> vector)");
             sb.AppendLine("    {");
             sb.AppendLine("        if (Unsafe.SizeOf<TScalar>() == 8)");
             sb.AppendLine($"            return TVector.UnsafeFromUnderlying(Vector128.Shuffle(vector.AsInt64(), Vector128.Create({Index(digits, 2, "L")})).AsByte());");
@@ -254,17 +254,17 @@ public class SwizzleGenerator : IIncrementalGenerator
             // a vector of 3 or more components keeps 4 lanes in every register it is backed by: a component of 4
             // bytes in a register of 128 bits and a component of 8 bytes in one of 256 bits
             sb.AppendLine($"    {Attr}");
-            sb.AppendLine($"    static TVector IAlgebraVisitor_T_T<{visitor}>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> vector)");
+            sb.AppendLine($"    static TVector IAlgebraVisitor_T_T<{visitor}>.Simd_Any<TVector, TScalar>(Vector128<TScalar> vector)");
             sb.AppendLine($"        => TVector.UnsafeFromUnderlying(Vector128.Shuffle(vector.AsInt32(), Vector128.Create({Index(digits, 4, "")})).AsByte());");
             sb.AppendLine();
             sb.AppendLine($"    {Attr}");
-            sb.AppendLine($"    static TVector IAlgebraVisitor_T_T<{visitor}>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> vector)");
+            sb.AppendLine($"    static TVector IAlgebraVisitor_T_T<{visitor}>.Simd_Any<TVector, TScalar>(Vector256<TScalar> vector)");
             sb.AppendLine($"        => TVector.UnsafeFromUnderlying(Vector256.Shuffle(vector.AsInt64(), Vector256.Create({Index(digits, 4, "L")})).AsByte());");
         }
 
         sb.AppendLine();
         sb.AppendLine($"    {Attr}");
-        sb.AppendLine($"    static TVector IAlgebraVisitor_T_T<{visitor}>.Vector{size}_Any<TVector, TScalar>(in TVector vector)");
+        sb.AppendLine($"    static TVector IAlgebraVisitor_T_T<{visitor}>.Vector{size}_Any<TVector, TScalar>(TVector vector)");
         sb.AppendLine($"        => TVector.Create({VectorGenShared.Join(size, i => $"TVector.get_{Typ.xyzw[digits[i]]}(vector)")});");
         sb.AppendLine("}");
     }

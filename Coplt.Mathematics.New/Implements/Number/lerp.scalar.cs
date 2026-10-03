@@ -16,14 +16,14 @@ namespace Coplt.Mathematics
         /// <typeparam name="TScalar">The type of a single component</typeparam>
         /// <returns>The interpolated value</returns>
         [ScalarExtension(ThisParameter = "t")]
-        public static T lerp<T, TScalar>(TScalar start, TScalar end, in T t) where T : unmanaged, IAlgebraDispatch<T, TScalar>
+        public static T lerp<T, TScalar>(TScalar start, TScalar end, T t) where T : unmanaged, IAlgebraDispatch<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => T.Self<impl_lerp_scalar>(t, start, end);
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.lerp{T, TScalar}(TScalar, TScalar, in T)"/>
+        /// <inheritdoc cref="math.lerp{T, TScalar}(TScalar, TScalar, T)"/>
         [OverloadResolutionPriority(-2)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T lerp<T, TScalar>(this T t, TScalar start, TScalar end) where T : unmanaged, IAlgebraDispatch<T, TScalar>
@@ -51,7 +51,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_S_S_T<impl_lerp_scalar>.Simd_Number<TVector, TScalar>(
-            in Vector128<TScalar> t, TScalar start, TScalar end
+            Vector128<TScalar> t, TScalar start, TScalar end
         )
         {
             // the broadcast of a component builds the whole register of it and masks the padding lanes of the
@@ -82,7 +82,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_S_S_T<impl_lerp_scalar>.Simd_Number<TVector, TScalar>(
-            in Vector256<TScalar> t, TScalar start, TScalar end
+            Vector256<TScalar> t, TScalar start, TScalar end
         )
         {
             // the broadcast of a component builds the whole register of it and masks the padding lanes of the

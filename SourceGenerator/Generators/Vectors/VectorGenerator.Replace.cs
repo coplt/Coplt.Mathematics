@@ -39,21 +39,21 @@ public partial class VectorGenerator
         if (size >= 3)
         {
             members.Add(("Rz", $"{scalar} z", "z"));
-            members.Add(("Rxy", $"in {type2} xy", "xy"));
-            members.Add(("Ryz", $"in {type2} yz", "yz"));
-            members.Add(("Rxz", $"in {type2} xz", "xz"));
+            members.Add(("Rxy", $"{type2} xy", "xy"));
+            members.Add(("Ryz", $"{type2} yz", "yz"));
+            members.Add(("Rxz", $"{type2} xz", "xz"));
         }
 
         if (size >= 4)
         {
             members.Add(("Rw", $"{scalar} w", "w"));
-            members.Add(("Rzw", $"in {type2} zw", "zw"));
-            members.Add(("Rxw", $"in {type2} xw", "xw"));
-            members.Add(("Ryw", $"in {type2} yw", "yw"));
-            members.Add(("Rxyz", $"in {type3} xyz", "xyz"));
-            members.Add(("Ryzw", $"in {type3} yzw", "yzw"));
-            members.Add(("Rxyw", $"in {type3} xyw", "xyw"));
-            members.Add(("Rxzw", $"in {type3} xzw", "xzw"));
+            members.Add(("Rzw", $"{type2} zw", "zw"));
+            members.Add(("Rxw", $"{type2} xw", "xw"));
+            members.Add(("Ryw", $"{type2} yw", "yw"));
+            members.Add(("Rxyz", $"{type3} xyz", "xyz"));
+            members.Add(("Ryzw", $"{type3} yzw", "yzw"));
+            members.Add(("Rxyw", $"{type3} xyw", "xyw"));
+            members.Add(("Rxzw", $"{type3} xzw", "xzw"));
         }
 
         // the interfaces the members implement, they are declared by the part that holds the members instead of
@@ -101,7 +101,7 @@ public partial class VectorGenerator
             // documentation, it forwards to the member that is called on the vector
             sb.AppendLine("    /// <inheritdoc/>");
             sb.AppendLine("    [MethodImpl(256)]");
-            sb.AppendLine($"    public static {type} {name}(in {type} self, {instance}) => self.{name}({components});");
+            sb.AppendLine($"    public static {type} {name}({type} self, {instance}) => self.{name}({components});");
         }
 
         sb.AppendLine("}");

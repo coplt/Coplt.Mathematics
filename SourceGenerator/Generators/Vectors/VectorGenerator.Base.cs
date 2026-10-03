@@ -512,17 +512,17 @@ public partial class VectorGenerator
             }
         }
 
-        Fn($"public static {type} Vector(in {type} scalar)", "scalar");
-        Fn($"public static {type} Broadcast(in {type} scalar)", "scalar");
+        Fn($"public static {type} Vector({type} scalar)", "scalar");
+        Fn($"public static {type} Broadcast({type} scalar)", "scalar");
         Fn($"public static {type} Load(ReadOnlySpan<{type}> span)", "span[0]");
         Fn($"public static unsafe {type} Load({type}* ptr)", "*ptr");
-        Fn($"static {type} Algebras.IMatrixVector<{type}, {type}>.get_vector(in {type} self, int index)", "self");
-        Method($"static void Algebras.IMatrixVector<{type}, {type}>.set_vector(ref {type} self, int index, in {type} value)",
+        Fn($"static {type} Algebras.IMatrixVector<{type}, {type}>.get_vector({type} self, int index)", "self");
+        Method($"static void Algebras.IMatrixVector<{type}, {type}>.set_vector(ref {type} self, int index, {type} value)",
             "self = value;");
-        Fn($"static {scalar} Algebras.IAlgebra<{type}, {scalar}>.get(in {type} self, int index)", "self[index]");
+        Fn($"static {scalar} Algebras.IAlgebra<{type}, {scalar}>.get({type} self, int index)", "self[index]");
         Method($"static void Algebras.IAlgebra<{type}, {scalar}>.set(ref {type} self, int index, {scalar} value)",
             "self[index] = value;");
-        Fn($"static {scalar} Algebras.IMatrixScalar<{type}, {scalar}>.get(in {type} self, int row, int column)",
+        Fn($"static {scalar} Algebras.IMatrixScalar<{type}, {scalar}>.get({type} self, int row, int column)",
             "self[row]");
         Method($"static void Algebras.IMatrixScalar<{type}, {scalar}>.set(ref {type} self, int row, int column, {scalar} value)",
             "self[row] = value;");
@@ -846,7 +846,7 @@ public partial class VectorGenerator
             var algebra = $"Algebras.IVector{Math.Max(2, i + 1)}Components<{type}, {scalar}>";
             InheritDoc();
             sb.AppendLine($"    {attr}");
-            sb.AppendLine($"    static {scalar} {algebra}.get_{comp[i]}(in {type} self) => self.{comp[i]};");
+            sb.AppendLine($"    static {scalar} {algebra}.get_{comp[i]}({type} self) => self.{comp[i]};");
             sb.AppendLine();
             InheritDoc();
             sb.AppendLine($"    {attr}");

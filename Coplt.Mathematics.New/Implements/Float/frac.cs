@@ -15,7 +15,7 @@ namespace Coplt.Mathematics
         /// fraction of a component that is negative is the value of it above the floor as well and it is never
         /// negative</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T frac<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T frac<T>(T value) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => value - floor(value);
     }
 

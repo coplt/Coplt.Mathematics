@@ -22,7 +22,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value raised to the power of the
         /// matching component of the exponent</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T pow<T>(in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+        public static T pow<T>(T a, T b) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_pow>(a, b);
     }
 
@@ -30,7 +30,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.pow{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T pow<T>(this T a, in T b) where T : unmanaged, IAlgebraDispatch<T>
+        public static T pow<T>(this T a, T b) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_pow>(a, b);
     }
 }
@@ -56,7 +56,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_pow>.Simd_Float<TVector, TScalar>(
-            in Vector128<TScalar> a, in Vector128<TScalar> b
+            Vector128<TScalar> a, Vector128<TScalar> b
         )
         {
             if (typeof(TScalar) == typeof(float))
@@ -70,7 +70,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_pow>.Simd_Float<TVector, TScalar>(
-            in Vector256<TScalar> a, in Vector256<TScalar> b
+            Vector256<TScalar> a, Vector256<TScalar> b
         )
         {
             if (typeof(TScalar) == typeof(double))

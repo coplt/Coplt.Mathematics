@@ -21,15 +21,15 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the one of the kind of it or the zero of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T step<T>(in T threshold, in T value) where T : unmanaged, IAlgebraDispatch<T>, INumberAlgebra<T>
-            => select(value >= threshold, T.One, T.Zero);
+        public static T step<T>(T threshold, T value) where T : unmanaged, IAlgebraDispatch<T>, INumberAlgebra<T>
+            => math.select(value >= threshold, T.One, T.Zero);
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.step{T}(in T, in T)"/>
+        /// <inheritdoc cref="math.step{T}(T, T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T step<T>(this T value, in T threshold) where T : unmanaged, IAlgebraDispatch<T>, INumberAlgebra<T>
+        public static T step<T>(this T value, T threshold) where T : unmanaged, IAlgebraDispatch<T>, INumberAlgebra<T>
             => math.step(threshold, value);
     }
 }

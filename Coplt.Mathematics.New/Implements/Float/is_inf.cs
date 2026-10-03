@@ -21,16 +21,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value that is true where the component of it is an infinity</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T is_inf<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T is_inf<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => T.Self<impl_is_inf>(a);
 
         /// <summary>
         /// Returns the value that is true where the component of <paramref name="a"/> is a positive or a
         /// negative infinity, which is the name of the member in HLSL
         /// </summary>
-        /// <inheritdoc cref="is_inf{T}(in T)"/>
+        /// <inheritdoc cref="is_inf{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T isinf<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
+        public static T isinf<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => is_inf(a);
     }
 }
@@ -54,11 +54,11 @@ namespace Coplt.Mathematics.Implements
         // padding lane is not an infinity, so the value of the register does not have to leave the padding
         // lanes out
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_inf>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_inf>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector128.IsInfinity(vector).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_inf>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_inf>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector256.IsInfinity(vector).AsByte());
     }
 }

@@ -10,7 +10,7 @@ namespace Coplt.Mathematics
         /// Returns <paramref name="value"/> scaled to a length of one, it returns the zero of the kind of the
         /// value when the length of it is zero
         /// <para>It is the value multiplied by the reciprocal of the length of it, which is exact, the estimate
-        /// of the hardware is <see cref="normalize_safe_a{T}(in T)"/> instead</para>
+        /// of the hardware is <see cref="normalize_safe_a{T}(T)"/> instead</para>
         /// <para>The value is the zero of the kind of it when the squared length of it is not above the
         /// smallest positive normal value of the kind of a component, which is what the squared length of a
         /// value that is too short to be scaled is as well</para>
@@ -22,7 +22,7 @@ namespace Coplt.Mathematics
         // the value hands itself over to the visitor of the map, which decides the kind of the map of its own, so
         // a call that names the type of the value alone reaches the level of the kind of it
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T normalize_safe<T>(in T value)
+        public static T normalize_safe<T>(T value)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => T.Map_Self<impl_normalize_safe>(value);
 
@@ -30,7 +30,7 @@ namespace Coplt.Mathematics
         /// Returns <paramref name="value"/> scaled to a length of one, which is the estimate of the hardware,
         /// and it returns the zero of the kind of the value when the length of it is zero
         /// <para>The estimate is not exact, the one of the arm platform is the loose one of the two, so a value
-        /// that needs the exact result takes <see cref="normalize_safe{T}(in T)"/></para>
+        /// that needs the exact result takes <see cref="normalize_safe{T}(T)"/></para>
         /// <para>The value is the zero of the kind of it when the squared length of it is not above the
         /// smallest positive normal value of the kind of a component, which is what the squared length of a
         /// value that is too short to be scaled is as well</para>
@@ -40,20 +40,20 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value scaled to a length of one,
         /// or the zero of the kind of the value when the length of it is zero</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T normalize_safe_a<T>(in T value)
+        public static T normalize_safe_a<T>(T value)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => T.Map_Self<impl_normalize_safe_a>(value);
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.normalize_safe{T}(in T)"/>
+        /// <inheritdoc cref="math.normalize_safe{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T normalize_safe<T>(this T value)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => math.normalize_safe(value);
 
-        /// <inheritdoc cref="math.normalize_safe_a{T}(in T)"/>
+        /// <inheritdoc cref="math.normalize_safe_a{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T normalize_safe_a<T>(this T value)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
@@ -73,7 +73,7 @@ namespace Coplt.Mathematics.Implements
     internal struct impl_normalize_safe : IMapVisitor<impl_normalize_safe>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IMapVisitor<impl_normalize_safe>.Map_Float<TVector, TScalar>(in TVector value)
+        static TVector IMapVisitor<impl_normalize_safe>.Map_Float<TVector, TScalar>(TVector value)
         {
             var len = math.dot<TVector, TScalar>(value, value);
             if (len <= TVector.ScalarMinNormal) return TVector.Zero;
@@ -90,7 +90,7 @@ namespace Coplt.Mathematics.Implements
     internal struct impl_normalize_safe_a : IMapVisitor<impl_normalize_safe_a>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IMapVisitor<impl_normalize_safe_a>.Map_Float<TVector, TScalar>(in TVector value)
+        static TVector IMapVisitor<impl_normalize_safe_a>.Map_Float<TVector, TScalar>(TVector value)
         {
             var len = math.dot<TVector, TScalar>(value, value);
             if (len <= TVector.ScalarMinNormal) return TVector.Zero;

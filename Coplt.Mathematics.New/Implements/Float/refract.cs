@@ -34,16 +34,16 @@ namespace Coplt.Mathematics
         /// <typeparam name="TScalar">The type of a single component</typeparam>
         /// <returns>The refracted direction</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T refract<T, TScalar>(in T i, in T n, TScalar index_of_refraction)
+        public static T refract<T, TScalar>(T i, T n, TScalar index_of_refraction)
             where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
         {
             var ni = dot<T, TScalar>(n, i);
-            var k = fsm(TScalar.One, index_of_refraction * index_of_refraction, fnma(ni, ni, TScalar.One));
+            var k = math.fsm(TScalar.One, index_of_refraction * index_of_refraction, math.fnma(ni, ni, TScalar.One));
             if (k < TScalar.Zero) return default;
-            return fms(
+            return math.fms(
                 T.Broadcast(index_of_refraction), i,
-                n * fma(index_of_refraction, ni, TScalar.Sqrt(k))
+                n * math.fma(index_of_refraction, ni, TScalar.Sqrt(k))
             );
         }
     }
@@ -52,7 +52,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.refract{T, TScalar}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T refract<T, TScalar>(this T i, in T n, TScalar index_of_refraction)
+        public static T refract<T, TScalar>(this T i, T n, TScalar index_of_refraction)
             where T : unmanaged, IAlgebraDispatch<T, TScalar>, IFloatingPointVector<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
             => math.refract(i, n, index_of_refraction);

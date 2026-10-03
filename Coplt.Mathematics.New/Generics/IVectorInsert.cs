@@ -29,7 +29,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>y</c> and <c>z</c> components of the vector</param>
     /// <param name="x">The <c>x</c> component</param>
     /// <returns>The vector of 3 components</returns>
-    public static abstract TVector3 Ix(in TSelf self, TScalar x);
+    public static abstract TVector3 Ix(TSelf self, TScalar x);
 
     /// <summary>
     /// Returns the vector of 3 components that has the <c>x</c> and <c>z</c> components of
@@ -38,7 +38,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>x</c> and <c>z</c> components of the vector</param>
     /// <param name="y">The <c>y</c> component</param>
     /// <returns>The vector of 3 components</returns>
-    public static abstract TVector3 Iy(in TSelf self, TScalar y);
+    public static abstract TVector3 Iy(TSelf self, TScalar y);
 
     /// <summary>
     /// Returns the vector of 3 components that has the <c>x</c> and <c>y</c> components of
@@ -47,7 +47,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>x</c> and <c>y</c> components of the vector</param>
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector of 3 components</returns>
-    public static abstract TVector3 Iz(in TSelf self, TScalar z);
+    public static abstract TVector3 Iz(TSelf self, TScalar z);
 
     #endregion
 
@@ -60,7 +60,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>x</c> and <c>y</c> components of the vector</param>
     /// <param name="zw">The <c>z</c> and <c>w</c> components</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Izw(in TSelf self, in TSelf zw);
+    public static abstract TVector4 Izw(TSelf self, TSelf zw);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c> and <c>y</c> components of
@@ -70,7 +70,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="z">The <c>z</c> component</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Izw(in TSelf self, TScalar z, TScalar w);
+    public static abstract TVector4 Izw(TSelf self, TScalar z, TScalar w);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c> and <c>y</c> components of
@@ -79,7 +79,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>z</c> and <c>w</c> components of the vector</param>
     /// <param name="xy">The <c>x</c> and <c>y</c> components</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Ixy(in TSelf self, in TSelf xy);
+    public static abstract TVector4 Ixy(TSelf self, TSelf xy);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c> and <c>y</c> components of the two values and
@@ -89,7 +89,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="x">The <c>x</c> component</param>
     /// <param name="y">The <c>y</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Ixy(in TSelf self, TScalar x, TScalar y);
+    public static abstract TVector4 Ixy(TSelf self, TScalar x, TScalar y);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>y</c> and <c>z</c> components of
@@ -98,7 +98,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>x</c> and <c>w</c> components of the vector</param>
     /// <param name="yz">The <c>y</c> and <c>z</c> components</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Iyz(in TSelf self, in TSelf yz);
+    public static abstract TVector4 Iyz(TSelf self, TSelf yz);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>y</c> and <c>z</c> components of the two values and
@@ -108,7 +108,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="y">The <c>y</c> component</param>
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Iyz(in TSelf self, TScalar y, TScalar z);
+    public static abstract TVector4 Iyz(TSelf self, TScalar y, TScalar z);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c> and <c>w</c> components of
@@ -117,7 +117,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>y</c> and <c>z</c> components of the vector</param>
     /// <param name="xw">The <c>x</c> and <c>w</c> components</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Ixw(in TSelf self, in TSelf xw);
+    public static abstract TVector4 Ixw(TSelf self, TSelf xw);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c> and <c>w</c> components of the two values and
@@ -127,7 +127,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="x">The <c>x</c> component</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Ixw(in TSelf self, TScalar x, TScalar w);
+    public static abstract TVector4 Ixw(TSelf self, TScalar x, TScalar w);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>y</c> and <c>w</c> components of
@@ -136,7 +136,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>x</c> and <c>z</c> components of the vector</param>
     /// <param name="yw">The <c>y</c> and <c>w</c> components</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Iyw(in TSelf self, in TSelf yw);
+    public static abstract TVector4 Iyw(TSelf self, TSelf yw);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>y</c> and <c>w</c> components of the two values and
@@ -146,7 +146,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="y">The <c>y</c> component</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Iyw(in TSelf self, TScalar y, TScalar w);
+    public static abstract TVector4 Iyw(TSelf self, TScalar y, TScalar w);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c> and <c>z</c> components of
@@ -155,7 +155,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="self">The <c>y</c> and <c>w</c> components of the vector</param>
     /// <param name="xz">The <c>x</c> and <c>z</c> components</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Ixz(in TSelf self, in TSelf xz);
+    public static abstract TVector4 Ixz(TSelf self, TSelf xz);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c> and <c>z</c> components of the two values and
@@ -165,7 +165,7 @@ public interface IVector2Insert<TSelf, TScalar, TVector3, TVector4>
     /// <param name="x">The <c>x</c> component</param>
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Ixz(in TSelf self, TScalar x, TScalar z);
+    public static abstract TVector4 Ixz(TSelf self, TScalar x, TScalar z);
 
     #endregion
 }
@@ -196,7 +196,7 @@ public interface IVector3Insert<TSelf, TScalar, TVector4>
     /// <param name="self">The <c>y</c>, <c>z</c> and <c>w</c> components of the vector</param>
     /// <param name="x">The <c>x</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Ix(in TSelf self, TScalar x);
+    public static abstract TVector4 Ix(TSelf self, TScalar x);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c>, <c>z</c> and <c>w</c> components of
@@ -205,7 +205,7 @@ public interface IVector3Insert<TSelf, TScalar, TVector4>
     /// <param name="self">The <c>x</c>, <c>z</c> and <c>w</c> components of the vector</param>
     /// <param name="y">The <c>y</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Iy(in TSelf self, TScalar y);
+    public static abstract TVector4 Iy(TSelf self, TScalar y);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c>, <c>y</c> and <c>w</c> components of
@@ -214,7 +214,7 @@ public interface IVector3Insert<TSelf, TScalar, TVector4>
     /// <param name="self">The <c>x</c>, <c>y</c> and <c>w</c> components of the vector</param>
     /// <param name="z">The <c>z</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Iz(in TSelf self, TScalar z);
+    public static abstract TVector4 Iz(TSelf self, TScalar z);
 
     /// <summary>
     /// Returns the vector of 4 components that has the <c>x</c>, <c>y</c> and <c>z</c> components of
@@ -223,7 +223,7 @@ public interface IVector3Insert<TSelf, TScalar, TVector4>
     /// <param name="self">The <c>x</c>, <c>y</c> and <c>z</c> components of the vector</param>
     /// <param name="w">The <c>w</c> component</param>
     /// <returns>The vector of 4 components</returns>
-    public static abstract TVector4 Iw(in TSelf self, TScalar w);
+    public static abstract TVector4 Iw(TSelf self, TScalar w);
 
     #endregion
 }

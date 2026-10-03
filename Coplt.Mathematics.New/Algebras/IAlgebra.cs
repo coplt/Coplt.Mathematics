@@ -82,7 +82,7 @@ public interface IAlgebra<TSelf, TScalar> : IAlgebra<TSelf>
     #region Index
 
     /// <summary>Returns the component of <paramref name="self"/> at <paramref name="index"/></summary>
-    public static abstract TScalar get(in TSelf self, int index);
+    public static abstract TScalar get(TSelf self, int index);
 
     /// <summary>Sets the component of <paramref name="self"/> at <paramref name="index"/> to
     /// <paramref name="value"/></summary>
@@ -200,10 +200,10 @@ public interface INumberAlgebra<TSelf, TScalar> :
 
     #region Operators
 
-    static abstract TSelf operator *(in TSelf self, TScalar scalar);
+    static abstract TSelf operator *(TSelf self, TScalar scalar);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static virtual TSelf operator *(TScalar scalar, in TSelf self) => self * scalar;
+    static virtual TSelf operator *(TScalar scalar, TSelf self) => self * scalar;
 
     #endregion
 }

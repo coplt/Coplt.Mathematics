@@ -21,13 +21,13 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the base 2 logarithm of the component of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T log2<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static T log2<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_log2>(value);
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.log2{T}(in T)"/>
+        /// <inheritdoc cref="math.log2{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T log2<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_log2>(value);
@@ -52,7 +52,7 @@ namespace Coplt.Mathematics.Implements
             => log2_ieee754.Log2(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_log2>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_log2>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.FromUnderlying(simd.Log2(vector.AsSingle()).AsByte());
@@ -64,7 +64,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_log2>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_log2>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(simd.Log2(vector.AsDouble()).AsByte());

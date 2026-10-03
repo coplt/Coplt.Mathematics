@@ -16,7 +16,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the cosine of the component of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T cos<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static T cos<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_cos>(value);
     }
 
@@ -50,7 +50,7 @@ namespace Coplt.Mathematics.Implements
             => TScalar.Cos(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_cos>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_cos>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.FromUnderlying(Vector128.Cos(vector.AsSingle()).AsByte());
@@ -62,7 +62,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_cos>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_cos>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.FromUnderlying(Vector256.Cos(vector.AsDouble()).AsByte());

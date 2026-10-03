@@ -74,8 +74,8 @@ public interface IMatrixVector<TSelf, TVector> :
 
     #region Ctor
 
-    public static abstract TSelf Broadcast(in TVector scalar);
-    public static abstract TSelf Vector(in TVector scalar);
+    public static abstract TSelf Broadcast(TVector scalar);
+    public static abstract TSelf Vector(TVector scalar);
     public static abstract TSelf Load(ReadOnlySpan<TVector> span);
     public static abstract unsafe TSelf Load(TVector* ptr);
 
@@ -83,8 +83,8 @@ public interface IMatrixVector<TSelf, TVector> :
 
     #region Index
 
-    public static abstract TVector get_vector(in TSelf self, int index);
-    public static abstract void set_vector(ref TSelf self, int index, in TVector value);
+    public static abstract TVector get_vector(TSelf self, int index);
+    public static abstract void set_vector(ref TSelf self, int index, TVector value);
 
     #endregion
 }
@@ -101,7 +101,7 @@ public interface IMatrixScalar<TSelf, TScalar> :
 {
     #region Index
 
-    public static abstract TScalar get(in TSelf self, int row, int column);
+    public static abstract TScalar get(TSelf self, int row, int column);
     public static abstract void set(ref TSelf self, int row, int column, TScalar value);
 
     #endregion

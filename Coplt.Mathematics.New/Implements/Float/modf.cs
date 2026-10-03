@@ -15,7 +15,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The fractional part</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T modf<T>(in T value, out T integer_portion)
+        public static T modf<T>(T value, out T integer_portion)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
         {
             var d = value;
@@ -33,7 +33,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The fractional part of the value and the integral part of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static (T SignedFractionalPortion, T IntegerPortion) modf<T>(in T value)
+        public static (T SignedFractionalPortion, T IntegerPortion) modf<T>(T value)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
         {
             var d = value;
@@ -44,13 +44,13 @@ namespace Coplt.Mathematics
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.modf{T}(in T, out T)"/>
+        /// <inheritdoc cref="math.modf{T}(T, out T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T modf<T>(this T value, out T integer_portion)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => math.modf(value, out integer_portion);
 
-        /// <inheritdoc cref="math.modf{T}(in T)"/>
+        /// <inheritdoc cref="math.modf{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (T SignedFractionalPortion, T IntegerPortion) modf<T>(this T value)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>

@@ -12,7 +12,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the absolute value of the component of the value</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T abs<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static T abs<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_abs>(value);
     }
 
@@ -40,11 +40,11 @@ namespace Coplt.Mathematics.Implements
             => TScalar.Abs(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector128.Abs(vector).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(Vector256<TScalar> vector)
             => TVector.UnsafeFromUnderlying(Vector256.Abs(vector).AsByte());
     }
 }

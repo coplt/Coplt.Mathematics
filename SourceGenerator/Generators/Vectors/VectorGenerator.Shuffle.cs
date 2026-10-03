@@ -68,7 +68,7 @@ public partial class VectorGenerator
         // the member implements the interface, it inherits its documentation from it
         sb.AppendLine("    /// <inheritdoc/>");
         sb.AppendLine($"    {attr}");
-        sb.AppendLine($"    public static {type} shuffle(in {type} a, in {type} b, {lh} lh) => {table};");
+        sb.AppendLine($"    public static {type} shuffle({type} a, {type} b, {lh} lh) => {table};");
 
         foreach (var (name, result) in patterns)
         {
@@ -77,7 +77,7 @@ public partial class VectorGenerator
             sb.AppendLine($"    {attr}");
             // the table of the register shuffles the members of a pattern, a vector without a register reads
             // the components the pattern names
-            sb.AppendLine($"    public static {type} shuffle_{name}(in {type} a, in {type} b) => " +
+            sb.AppendLine($"    public static {type} shuffle_{name}({type} a, {type} b) => " +
                           (simd ? $"new(simd_shuffle.Shuffle_{name}(a.vector, b.vector));" : $"{result};"));
         }
 
@@ -123,7 +123,7 @@ public partial class VectorGenerator
         sb.AppendLine("    /// <param name=\"lh\">The pattern of the shuffle, it is the name of the member that shuffles it</param>");
         sb.AppendLine("    /// <returns>The vector that the pattern <paramref name=\"lh\"/> names</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine("    public static T shuffle<T, S>(in T a, in T b, Shuffle42 lh)");
+        sb.AppendLine("    public static T shuffle<T, S>(T a, T b, Shuffle42 lh)");
         sb.AppendLine("        where T : unmanaged, Algebras.IVector4<T, S>");
         sb.AppendLine("        where S : unmanaged");
         sb.AppendLine("    {");

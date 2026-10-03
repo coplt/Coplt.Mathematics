@@ -18,13 +18,13 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, which is a vector or a matrix</typeparam>
         /// <returns>True when one of the components of <paramref name="value"/> holds</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool any<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static bool any<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Bool<impl_any>(value);
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.any{T}(in T)"/>
+        /// <inheritdoc cref="math.any{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool any<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Bool<impl_any>(value);
@@ -58,13 +58,13 @@ namespace Coplt.Mathematics.Implements
             => Utils.IsTrue(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool IAlgebraVisitor_T_bool<impl_any>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> vector)
+        static bool IAlgebraVisitor_T_bool<impl_any>.Simd_Any<TVector, TScalar>(Vector128<TScalar> vector)
         {
             return !(vector.AsByte() == default);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool IAlgebraVisitor_T_bool<impl_any>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> vector)
+        static bool IAlgebraVisitor_T_bool<impl_any>.Simd_Any<TVector, TScalar>(Vector256<TScalar> vector)
         {
             return !(vector.AsByte() == default);
         }

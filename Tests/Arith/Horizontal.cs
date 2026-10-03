@@ -132,8 +132,8 @@ public class TestHorizontal
 
     /// <summary>
     /// The native members reduce the components of a value with the minimum and the maximum the platform
-    /// computes itself, which is the one of <see cref="math.hmin{T,TScalar}(in T)"/> and
-    /// <see cref="math.hmax{T,TScalar}(in T)"/> for a value that is neither a nan nor a zero of a sign of its
+    /// computes itself, which is the one of <see cref="math.hmin{T,TScalar}(T)"/> and
+    /// <see cref="math.hmax{T,TScalar}(T)"/> for a value that is neither a nan nor a zero of a sign of its
     /// own, so every value that is checked here is the one of the member above it.
     /// </summary>
     [Test]

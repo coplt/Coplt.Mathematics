@@ -13,7 +13,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the component of the value in radians</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T radians<T>(in T value) where T : unmanaged, IFloatingPointAlgebra<T>
+        public static T radians<T>(T value) where T : unmanaged, IFloatingPointAlgebra<T>
             => value * T.DegToRad;
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the component of the value in degrees</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T degrees<T>(in T value) where T : unmanaged, IFloatingPointAlgebra<T>
+        public static T degrees<T>(T value) where T : unmanaged, IFloatingPointAlgebra<T>
             => value * T.RadToDeg;
     }
 

@@ -111,9 +111,9 @@ public static partial class math
     /// </summary>
     /// <remarks>
     /// It answers with a value of the type of the values and not with a bool, it is the comparison of the algebra,
-    /// so the members that build a value out of two of them, as the <see cref="select{T}(T, T, T)"/> of a mask
+    /// so the members that build a value out of two of them, as the <see cref="scalar_ex.select{T}(T, T, T)"/> of a mask
     /// does, reach it. The mask that a comparison of simd answers with is one of the two values that it is written
-    /// for, see the remarks of <see cref="select{T}(T, T, T)"/>.
+    /// for, see the remarks of <see cref="scalar_ex.select{T}(T, T, T)"/>.
     /// <para>The counterpart of it that answers with a bool is <see cref="eq{T}(T, T)"/>, which is the one the code
     /// whose type parameter names the interface of the framework alone reaches.</para>
     /// </remarks>
@@ -229,8 +229,17 @@ public static partial class math
     /// <returns>The value of <paramref name="t"/> when <paramref name="c"/> is true and the one of
     /// <paramref name="f"/> when it is false</returns>
     [MethodImpl(256)]
-    public static T select<T>(bool c, in T t, in T f) => c ? t : f;
+    public static T select<T>(bool c, T t, T f) => c ? t : f;
+}
 
+/// <summary>
+/// The members of the scalar kinds that the member of the value of the same name reaches, they live in a class
+/// of their own so that the member of the value and the one of the scalar of the same shape do not collide
+/// </summary>
+public static partial class scalar_ex
+{
+    extension(math)
+    {
     /// <summary>
     /// Selects between the two values with a mask
     /// </summary>
@@ -243,7 +252,7 @@ public static partial class math
     /// mux the bits of the two values with it or take the whole of a value with the sign bit of it, so the
     /// answer of the member that is handed such a mask is not one that a caller may rely on, on a cpu as much as
     /// on a gpu.</para>
-    /// <para>It is not the selection of a whole value, which the <see cref="select{T}(bool, in T, in T)"/> does
+    /// <para>It is not the selection of a whole value, which the <see cref="math.select{T}(bool, T, T)"/> does
     /// with a condition that is about the whole of it, and the <c>select</c> intrinsic of hlsl is its
     /// counterpart, which selects with a condition of the kind of the values and not with a mask: the whole of a
     /// value is taken from <paramref name="t"/> where the condition of it holds and from <paramref name="f"/>
@@ -273,5 +282,6 @@ public static partial class math
         }
 
         return Utils.IsTrue(c) ? t : f;
+    }
     }
 }

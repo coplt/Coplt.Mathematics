@@ -146,11 +146,11 @@ public partial class VectorGenerator
             sb.AppendLine();
         }
 
-        EmitScalarMul($"in {type} a, {scalar} b",
+        EmitScalarMul($"{type} a, {scalar} b",
             $"return {FromVector("a.vector * b", true)};",
             $"return {From128($"{Load64("a.")} * b")};",
             $"return {NewCompWise(n => $"a.{comp[n]} * b")};");
-        EmitScalarMul($"{scalar} b, in {type} a",
+        EmitScalarMul($"{scalar} b, {type} a",
             $"return {FromVector("b * a.vector", true)};",
             $"return {From128($"b * {Load64("a.")}")};",
             $"return {NewCompWise(n => $"b * a.{comp[n]}")};");

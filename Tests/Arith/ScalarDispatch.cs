@@ -28,7 +28,7 @@ public class TestScalarDispatch
 
         static TScalar IAlgebraCombinator_S_S<impl_sum>.Combine_Number<TScalar>(TScalar a, TScalar b) => a + b;
 
-        static TScalar IAlgebraVisitor_T_S<impl_sum>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)
         {
             // the padding lanes of the register follow the components of the vector and are left out
             var r = TScalar.Zero;
@@ -36,20 +36,20 @@ public class TestScalarDispatch
             return r;
         }
 
-        static TScalar IAlgebraVisitor_T_S<impl_sum>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Simd_Number<TVector, TScalar>(Vector256<TScalar> vector)
         {
             var r = TScalar.Zero;
             for (var i = 0; i < TVector.Rows; i++) r += vector.GetElement(i);
             return r;
         }
 
-        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector2_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector2_Number<TVector, TScalar>(TVector vector)
             => TVector.get_x(vector) + TVector.get_y(vector);
 
-        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector3_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector3_Number<TVector, TScalar>(TVector vector)
             => TVector.get_x(vector) + TVector.get_y(vector) + TVector.get_z(vector);
 
-        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector4_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_sum>.Vector4_Number<TVector, TScalar>(TVector vector)
             => TVector.get_x(vector) + TVector.get_y(vector) + TVector.get_z(vector) + TVector.get_w(vector);
     }
 
@@ -63,37 +63,37 @@ public class TestScalarDispatch
 
         static TScalar IAlgebraCombinator_S_S<impl_dot>.Combine_Number<TScalar>(TScalar a, TScalar b) => a + b;
 
-        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(Vector128<TScalar> a, Vector128<TScalar> b)
         {
             var r = TScalar.Zero;
             for (var i = 0; i < TVector.Rows; i++) r += a.GetElement(i) * b.GetElement(i);
             return r;
         }
 
-        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(Vector256<TScalar> a, Vector256<TScalar> b)
         {
             var r = TScalar.Zero;
             for (var i = 0; i < TVector.Rows; i++) r += a.GetElement(i) * b.GetElement(i);
             return r;
         }
 
-        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector2_Number<TVector, TScalar>(in TVector a, in TVector b)
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector2_Number<TVector, TScalar>(TVector a, TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b);
 
-        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector3_Number<TVector, TScalar>(in TVector a, in TVector b)
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector3_Number<TVector, TScalar>(TVector a, TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b) + TVector.get_z(a) * TVector.get_z(b);
 
-        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector4_Number<TVector, TScalar>(in TVector a, in TVector b)
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector4_Number<TVector, TScalar>(TVector a, TVector b)
             => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b) +
                TVector.get_z(a) * TVector.get_z(b) + TVector.get_w(a) * TVector.get_w(b);
     }
 
-    private static TScalar Sum<T, TScalar>(in T value)
+    private static TScalar Sum<T, TScalar>(T value)
         where T : unmanaged, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => T.Scalar<impl_sum>(value);
 
-    private static TScalar Dot<T, TScalar>(in T a, in T b)
+    private static TScalar Dot<T, TScalar>(T a, T b)
         where T : unmanaged, IAlgebraDispatch<T, TScalar>
         where TScalar : unmanaged, IBinaryNumber<TScalar>
         => T.Scalar<impl_dot>(a, b);

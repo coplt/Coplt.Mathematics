@@ -32,7 +32,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value that is parallel to the
         /// vector</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T project_unsafe<T>(in T value, in T onto)
+        public static T project_unsafe<T>(T value, T onto)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => T.Self<impl_project_unsafe>(value, onto);
     }
@@ -41,7 +41,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.project_unsafe{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T project_unsafe<T>(this T value, in T onto)
+        public static T project_unsafe<T>(this T value, T onto)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => math.project_unsafe(value, onto);
     }
@@ -77,7 +77,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Simd_Float<TVector, TScalar>(
-            in Vector128<TScalar> value, in Vector128<TScalar> onto
+            Vector128<TScalar> value, Vector128<TScalar> onto
         )
         {
             var d = Vector128.Dot(onto, onto);
@@ -90,7 +90,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Simd_Float<TVector, TScalar>(
-            in Vector256<TScalar> value, in Vector256<TScalar> onto
+            Vector256<TScalar> value, Vector256<TScalar> onto
         )
         {
             var d = Vector256.Dot(onto, onto);
@@ -103,7 +103,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Vector2_Float<TVector, TScalar>(
-            in TVector value, in TVector onto
+            TVector value, TVector onto
         )
         {
             var ox = TVector.get_x(onto);
@@ -125,7 +125,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Vector3_Float<TVector, TScalar>(
-            in TVector value, in TVector onto
+            TVector value, TVector onto
         )
         {
             var ox = TVector.get_x(onto);
@@ -150,7 +150,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unsafe>.Vector4_Float<TVector, TScalar>(
-            in TVector value, in TVector onto
+            TVector value, TVector onto
         )
         {
             var ox = TVector.get_x(onto);

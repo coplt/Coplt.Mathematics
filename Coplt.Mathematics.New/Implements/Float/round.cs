@@ -13,7 +13,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the component of the value rounded</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T round<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static T round<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Self<impl_round>(value);
     }
 
@@ -46,7 +46,7 @@ namespace Coplt.Mathematics.Implements
             => TScalar.Round(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_round>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_round>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.UnsafeFromUnderlying(Vector128.Round(vector.AsSingle()).AsByte());
@@ -56,7 +56,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_round>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_round>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(Vector256.Round(vector.AsDouble()).AsByte());

@@ -235,7 +235,7 @@ public partial class VectorGenerator
         sb.AppendLine("        /// <param name=\"source\">The vector to reinterpret</param>");
         sb.AppendLine($"        /// <returns>The vector of <see cref=\"{type}\"/> that has the bits of <paramref name=\"source\"/></returns>");
         sb.AppendLine("        [MethodImpl(256)]");
-        sb.AppendLine($"        public static {type} {name}<T>(in T source) where T : unmanaged, {iface}<T, {type}>");
+        sb.AppendLine($"        public static {type} {name}<T>(T source) where T : unmanaged, {iface}<T, {type}>");
         sb.AppendLine($"            => Unsafe.As<T, {type}>(ref Unsafe.AsRef(in source));");
         sb.AppendLine("    }");
         sb.AppendLine("}");

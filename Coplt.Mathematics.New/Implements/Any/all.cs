@@ -12,20 +12,20 @@ namespace Coplt.Mathematics
         /// kind is the conventional true one and every value of the kind that has a bit set holds just as well.
         /// <para>It is the <c>all</c> intrinsic of hlsl, which determines whether all components of the
         /// specified value are non-zero, and it is the counterpart of the
-        /// <see cref="math.any{T}(in T)"/> of the library.</para>
+        /// <see cref="math.any{T}(T)"/> of the library.</para>
         /// <para><see href="https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-all"/></para>
         /// </remarks>
         /// <param name="value">The value to query</param>
         /// <typeparam name="T">The type of the value, which is a vector or a matrix</typeparam>
         /// <returns>True when every component of <paramref name="value"/> holds</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool all<T>(in T value) where T : unmanaged, IAlgebraDispatch<T>
+        public static bool all<T>(T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Bool<impl_all>(value);
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.all{T}(in T)"/>
+        /// <inheritdoc cref="math.all{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool all<T>(this T value) where T : unmanaged, IAlgebraDispatch<T>
             => T.Bool<impl_all>(value);
@@ -63,7 +63,7 @@ namespace Coplt.Mathematics.Implements
             => Utils.IsTrue(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool IAlgebraVisitor_T_bool<impl_all>.Simd_Any<TVector, TScalar>(in Vector128<TScalar> vector)
+        static bool IAlgebraVisitor_T_bool<impl_all>.Simd_Any<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float) || typeof(TScalar) == typeof(int) || typeof(TScalar) == typeof(uint))
                 return !Vector128.EqualsAny(vector.AsUInt32(), ~TVector.PaddingLanesMask.AsUInt32());
@@ -75,7 +75,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool IAlgebraVisitor_T_bool<impl_all>.Simd_Any<TVector, TScalar>(in Vector256<TScalar> vector)
+        static bool IAlgebraVisitor_T_bool<impl_all>.Simd_Any<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double) || typeof(TScalar) == typeof(long) || typeof(TScalar) == typeof(ulong))
                 return !Vector256.EqualsAny(vector.AsUInt64(), ~TVector.PaddingLanesMask.AsUInt64());

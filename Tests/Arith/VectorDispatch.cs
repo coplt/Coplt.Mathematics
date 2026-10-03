@@ -25,7 +25,7 @@ public class TestVectorDispatch
     /// </summary>
     private struct impl_sum_columns : IMatrixColumnVisitor<impl_sum_columns>
     {
-        static TVector IMatrixColumnVisitor<impl_sum_columns>.Combine_Number<TVector, TScalar>(in TVector a, in TVector b)
+        static TVector IMatrixColumnVisitor<impl_sum_columns>.Combine_Number<TVector, TScalar>(TVector a, TVector b)
             => a + b;
     }
 
@@ -36,16 +36,16 @@ public class TestVectorDispatch
     /// </summary>
     private struct impl_sum_rows : IMatrixRowVisitor<impl_sum_rows>
     {
-        static TRow IMatrixRowVisitor<impl_sum_rows>.Row2_Number<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1)
+        static TRow IMatrixRowVisitor<impl_sum_rows>.Row2_Number<TColumn, TRow, TScalar>(TColumn c0, TColumn c1)
             => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1));
 
-        static TRow IMatrixRowVisitor<impl_sum_rows>.Row3_Number<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1,
-            in TColumn c2)
+        static TRow IMatrixRowVisitor<impl_sum_rows>.Row3_Number<TColumn, TRow, TScalar>(TColumn c0, TColumn c1,
+            TColumn c2)
             => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1),
                 math.sum<TColumn, TScalar>(c2));
 
-        static TRow IMatrixRowVisitor<impl_sum_rows>.Row4_Number<TColumn, TRow, TScalar>(in TColumn c0, in TColumn c1,
-            in TColumn c2, in TColumn c3)
+        static TRow IMatrixRowVisitor<impl_sum_rows>.Row4_Number<TColumn, TRow, TScalar>(TColumn c0, TColumn c1,
+            TColumn c2, TColumn c3)
             => TRow.Create(math.sum<TColumn, TScalar>(c0), math.sum<TColumn, TScalar>(c1),
                 math.sum<TColumn, TScalar>(c2), math.sum<TColumn, TScalar>(c3));
     }
@@ -57,18 +57,18 @@ public class TestVectorDispatch
     /// </summary>
     private struct impl_sum_sq_columns : IMatrixColumnVisitor<impl_sum_sq_columns>
     {
-        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine_Number<TVector, TScalar>(in TVector a, in TVector b)
+        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine_Number<TVector, TScalar>(TVector a, TVector b)
             => a + b;
 
-        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine2_Number<TVector, TScalar>(in TVector c0, in TVector c1)
+        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine2_Number<TVector, TScalar>(TVector c0, TVector c1)
             => (c0 * c0) + (c1 * c1);
 
-        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine3_Number<TVector, TScalar>(in TVector c0, in TVector c1,
-            in TVector c2)
+        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine3_Number<TVector, TScalar>(TVector c0, TVector c1,
+            TVector c2)
             => ((c0 * c0) + (c1 * c1)) + (c2 * c2);
 
-        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine4_Number<TVector, TScalar>(in TVector c0, in TVector c1,
-            in TVector c2, in TVector c3)
+        static TVector IMatrixColumnVisitor<impl_sum_sq_columns>.Combine4_Number<TVector, TScalar>(TVector c0, TVector c1,
+            TVector c2, TVector c3)
             => (((c0 * c0) + (c1 * c1)) + (c2 * c2)) + (c3 * c3);
     }
 
@@ -77,17 +77,17 @@ public class TestVectorDispatch
     /// type of it over beside the type of the matrix: the type of a single component of the value is the one of
     /// that vector, so it is not named by the interface of the dispatch of the vectors.
     /// </summary>
-    private static TVector SumColumns<T, TVector>(in T value)
+    private static TVector SumColumns<T, TVector>(T value)
         where T : unmanaged, IMatrixColumnDispatch<T, TVector>
         where TVector : unmanaged, INumberVector<TVector>
         => T.Combine<impl_sum_columns>(value);
 
-    private static TVector SumRows<T, TVector>(in T value)
+    private static TVector SumRows<T, TVector>(T value)
         where T : unmanaged, IMatrixRowDispatch<T, TVector>
         where TVector : unmanaged, INumberVector<TVector>
         => T.Reduce<impl_sum_rows>(value);
 
-    private static TVector SumSqColumns<T, TVector>(in T value)
+    private static TVector SumSqColumns<T, TVector>(T value)
         where T : unmanaged, IMatrixColumnDispatch<T, TVector>
         where TVector : unmanaged, INumberVector<TVector>
         => T.Combine<impl_sum_sq_columns>(value);

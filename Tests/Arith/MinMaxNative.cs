@@ -5,7 +5,7 @@ namespace Tests.Arith;
 
 /// <summary>
 /// The smaller and the larger of two values, the ones the platform computes itself: they are the values of
-/// <see cref="math.min{T}(in T, in T)"/> and <see cref="math.max{T}(in T, in T)"/> for every value this class
+/// <see cref="math.min{T}(T, T)"/> and <see cref="math.max{T}(T, T)"/> for every value this class
 /// checks, the two of them only differ in the way they handle a nan and a negative zero, which every platform
 /// is free to do in a way of its own and which is not checked here.
 /// </summary>

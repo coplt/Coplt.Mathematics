@@ -16,7 +16,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         /// <returns>The value whose every component is the mask of the check of the component</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T is_pow2<T>(in T a) where T : unmanaged, IAlgebraDispatch<T>, INumberAlgebra<T>
+        public static T is_pow2<T>(T a) where T : unmanaged, IAlgebraDispatch<T>, INumberAlgebra<T>
             => T.Self<impl_is_pow2>(a);
     }
 }
@@ -36,7 +36,7 @@ namespace Coplt.Mathematics.Implements
             => TScalar.IsPow2(value) ? TScalar.AllBitsSet : TScalar.Zero;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_pow2>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_pow2>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(int) || typeof(TScalar) == typeof(long))
                 return TVector.UnsafeFromUnderlying(
@@ -52,7 +52,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_pow2>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_pow2>.Simd_Number<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(int) || typeof(TScalar) == typeof(long))
                 return TVector.UnsafeFromUnderlying(
@@ -68,7 +68,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_pow2>.Simd_Float<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_pow2>.Simd_Float<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(float))
                 return TVector.UnsafeFromUnderlying(simd.IsPow2(vector.AsSingle()).AsByte());
@@ -78,7 +78,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T<impl_is_pow2>.Simd_Float<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TVector IAlgebraVisitor_T_T<impl_is_pow2>.Simd_Float<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (typeof(TScalar) == typeof(double))
                 return TVector.UnsafeFromUnderlying(simd.IsPow2(vector.AsDouble()).AsByte());

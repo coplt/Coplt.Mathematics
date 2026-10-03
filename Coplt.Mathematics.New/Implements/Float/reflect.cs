@@ -25,7 +25,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value reflected around the one of
         /// the normal</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T reflect<T>(in T incident, in T normal)
+        public static T reflect<T>(T incident, T normal)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => T.Self<impl_reflect>(incident, normal);
     }
@@ -34,7 +34,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.reflect{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T reflect<T>(this T incident, in T normal)
+        public static T reflect<T>(this T incident, T normal)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => T.Self<impl_reflect>(incident, normal);
     }
@@ -65,7 +65,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_reflect>.Simd_Float<TVector, TScalar>(
-            in Vector128<TScalar> i, in Vector128<TScalar> n
+            Vector128<TScalar> i, Vector128<TScalar> n
         )
         {
             if (typeof(TScalar) == typeof(float))
@@ -97,7 +97,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_reflect>.Simd_Float<TVector, TScalar>(
-            in Vector256<TScalar> i, in Vector256<TScalar> n
+            Vector256<TScalar> i, Vector256<TScalar> n
         )
         {
             if (typeof(TScalar) == typeof(double))
@@ -117,7 +117,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_reflect>.Vector2_Float<TVector, TScalar>(
-            in TVector i, in TVector n
+            TVector i, TVector n
         )
         {
             // i - 2 * n * dot(i, n)
@@ -138,7 +138,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_reflect>.Vector3_Float<TVector, TScalar>(
-            in TVector i, in TVector n
+            TVector i, TVector n
         )
         {
             var n2 = -TVector.ScalarTwo;
@@ -161,7 +161,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_reflect>.Vector4_Float<TVector, TScalar>(
-            in TVector i, in TVector n
+            TVector i, TVector n
         )
         {
             var n2 = -TVector.ScalarTwo;

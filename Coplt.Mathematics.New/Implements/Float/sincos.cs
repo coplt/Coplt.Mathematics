@@ -19,7 +19,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the sine of the component of it and the value whose
         /// every component is the cosine of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static (T sin, T cos) sincos<T>(in T value) where T : unmanaged, IFloatDispatch<T>
+        public static (T sin, T cos) sincos<T>(T value) where T : unmanaged, IFloatDispatch<T>
         {
             T.Self_out<impl_sincos>(value, out var sin, out var cos);
             return (sin, cos);
@@ -27,7 +27,7 @@ namespace Coplt.Mathematics
 
         /// <summary>
         /// Computes the sine and the cosine of every component in radians
-        /// <para>The two results are the same as the ones of <see cref="sincos{T}(in T)"/>, the value of every
+        /// <para>The two results are the same as the ones of <see cref="sincos{T}(T)"/>, the value of every
         /// component that is no result is not built</para>
         /// </summary>
         /// <param name="value">The value</param>
@@ -35,18 +35,18 @@ namespace Coplt.Mathematics
         /// <param name="cos">Receives the value whose every component is the cosine of the component of it</param>
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void sincos<T>(in T value, out T sin, out T cos) where T : unmanaged, IFloatDispatch<T>
+        public static void sincos<T>(T value, out T sin, out T cos) where T : unmanaged, IFloatDispatch<T>
             => T.Self_out<impl_sincos>(value, out sin, out cos);
     }
 
     public static partial class math_ex
     {
-        /// <inheritdoc cref="math.sincos{T}(in T)"/>
+        /// <inheritdoc cref="math.sincos{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (T sin, T cos) sincos<T>(this T value) where T : unmanaged, IFloatDispatch<T>
             => math.sincos(value);
 
-        /// <inheritdoc cref="math.sincos{T}(in T, out T, out T)"/>
+        /// <inheritdoc cref="math.sincos{T}(T, out T, out T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void sincos<T>(this T value, out T sin, out T cos) where T : unmanaged, IFloatDispatch<T>
             => math.sincos(value, out sin, out cos);
@@ -84,7 +84,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static void IFloatVisitor_T_outT_outT_void<impl_sincos>.Simd_Float<TVector, TScalar>(
-            in Vector128<TScalar> a, out TVector b, out TVector c
+            Vector128<TScalar> a, out TVector b, out TVector c
         )
         {
             if (typeof(TScalar) == typeof(float))
@@ -108,7 +108,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static void IFloatVisitor_T_outT_outT_void<impl_sincos>.Simd_Float<TVector, TScalar>(
-            in Vector256<TScalar> a, out TVector b, out TVector c
+            Vector256<TScalar> a, out TVector b, out TVector c
         )
         {
             if (typeof(TScalar) == typeof(double))

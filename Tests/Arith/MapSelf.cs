@@ -24,13 +24,13 @@ public class TestMapSelf
     private struct impl_twice : IMapVisitor<impl_twice>
     {
         /// <summary>The value whose every component is the one of the value added to itself</summary>
-        public static TVector Map_Float<TVector, TScalar>(in TVector value)
+        public static TVector Map_Float<TVector, TScalar>(TVector value)
             where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar> => value + value;
     }
 
     /// <summary>The map of a single value, the caller knows neither the shape of the value nor a component.</summary>
-    private static T Twice<T>(in T value)
+    private static T Twice<T>(T value)
         where T : unmanaged, IAlgebraDispatch<T>
         => T.Map_Self<impl_twice>(value);
 

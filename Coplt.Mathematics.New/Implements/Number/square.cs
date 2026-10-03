@@ -11,7 +11,7 @@ public static partial class math
     /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
     /// <returns>The squared value</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T square<T>(in T value) where T : unmanaged, INumberAlgebra<T>
+    public static T square<T>(T value) where T : unmanaged, INumberAlgebra<T>
         => value * value;
 }
 

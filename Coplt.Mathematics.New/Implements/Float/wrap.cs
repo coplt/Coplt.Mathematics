@@ -33,7 +33,7 @@ namespace Coplt.Mathematics
             /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
             /// <returns>The value whose every component is the component of the value wrapped into the range</returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static T wrap<T>(in T value, in T min, in T max)
+            public static T wrap<T>(T value, T min, T max)
                 where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             {
                 var range = max - min;
@@ -73,7 +73,7 @@ namespace Coplt.Mathematics
         [ScalarExtension]
         [OverloadResolutionPriority(-2)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T wrap<T, TScalar>(in T value, TScalar min, TScalar max)
+        public static T wrap<T, TScalar>(T value, TScalar min, TScalar max)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T, TScalar>
             where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
         {
@@ -83,18 +83,18 @@ namespace Coplt.Mathematics
         }
     }
 
-    public static partial class math_ex
+    public static partial class scalar_math_ex
     {
-        /// <inheritdoc cref="math_ex.wrap{T}(in T, in T, in T)"/>
+        /// <inheritdoc cref="math_ex.wrap{T}(T, T, T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T wrap<T>(this T value, in T min, in T max)
+        public static T wrap<T>(this T value, T min, T max)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
         {
             // the member is the value form of the wrap of the kind of the value, it computes the same expression
             // instead of forwarding to it: the forwarding would name the member of a single component of the
             // bound, which the compiler prefers, and the value of the bound does not satisfy it
             var range = max - min;
-            return min + fmod(value - min, range);
+            return min + math.fmod(value - min, range);
         }
 
         /// <inheritdoc cref="math.wrap{T, TScalar}"/>

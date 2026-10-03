@@ -19,7 +19,7 @@ public interface IVector64Underlying<TSelf> where TSelf : unmanaged, IVector64Un
     /// </summary>
     /// <param name="self">The vector to read</param>
     /// <returns>The raw 64 bits of <paramref name="self"/></returns>
-    public static abstract Vector64<byte> GetUnderlying(in TSelf self);
+    public static abstract Vector64<byte> GetUnderlying(TSelf self);
 
     /// <summary>
     /// Creates a vector from the raw 64 bits of <paramref name="vector"/>
@@ -59,7 +59,7 @@ public interface IVector128Underlying<TSelf> where TSelf : unmanaged, IVector128
     /// </summary>
     /// <param name="self">The vector to read</param>
     /// <returns>The raw 128 bits of <paramref name="self"/></returns>
-    public static abstract Vector128<byte> GetUnderlying(in TSelf self);
+    public static abstract Vector128<byte> GetUnderlying(TSelf self);
 
     /// <summary>
     /// Creates a vector from the raw 128 bits of <paramref name="vector"/>
@@ -108,7 +108,7 @@ public interface IVector256Underlying<TSelf> where TSelf : unmanaged, IVector256
     /// </summary>
     /// <param name="self">The vector to read</param>
     /// <returns>The raw 256 bits of <paramref name="self"/></returns>
-    public static abstract Vector256<byte> GetUnderlying(in TSelf self);
+    public static abstract Vector256<byte> GetUnderlying(TSelf self);
 
     /// <summary>
     /// Creates a vector from the raw 256 bits of <paramref name="vector"/>

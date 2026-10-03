@@ -22,7 +22,7 @@ public class TestSelect
     private static void Check<T, TScalar>(T t, T f, T c, T expected)
         where T : unmanaged, IAlgebraDispatch<T>
     {
-        Assert.That(select(c, t, f).Equals(expected), Is.True, "the static form");
+        Assert.That(math.select(c, t, f).Equals(expected), Is.True, "the static form");
         Assert.That(t.select(c, f).Equals(expected), Is.True, "the form on a value");
     }
 
@@ -33,7 +33,7 @@ public class TestSelect
         var f = new float2(3, 4);
         // the comparison operators of a value produce a mask of its own kind
         var c = t < f;
-        Assert.That(select(c, t, f), Is.EqualTo(t));
+        Assert.That(math.select(c, t, f), Is.EqualTo(t));
         Assert.That(t.select(c, f), Is.EqualTo(t));
         c = t > f;
         Assert.That(t.select(c, f), Is.EqualTo(f));

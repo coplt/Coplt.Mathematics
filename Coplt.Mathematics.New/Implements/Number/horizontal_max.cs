@@ -21,7 +21,7 @@ namespace Coplt.Mathematics
         // member for it
         [ScalarExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TScalar hmax<T, TScalar>(in T value)
+        public static TScalar hmax<T, TScalar>(T value)
             where T : unmanaged, IAlgebraDispatch<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => T.Scalar<impl_horizontal_max>(value);
@@ -49,7 +49,7 @@ namespace Coplt.Mathematics.Implements
             => TScalar.Max(a, b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (TVector.Rows == 2) return TScalar.Max(vector[0], vector[1]);
 
@@ -95,7 +95,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Simd_Number<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (Vector256.IsHardwareAccelerated)
             {
@@ -122,15 +122,15 @@ namespace Coplt.Mathematics.Implements
         // a vector without a register has no register to reduce, so the components of it are the ones that are
         // combined
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Vector2_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Vector2_Number<TVector, TScalar>(TVector vector)
             => TScalar.Max(TVector.get_x(vector), TVector.get_y(vector));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Vector3_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Vector3_Number<TVector, TScalar>(TVector vector)
             => TScalar.Max(TScalar.Max(TVector.get_x(vector), TVector.get_y(vector)), TVector.get_z(vector));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Vector4_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max>.Vector4_Number<TVector, TScalar>(TVector vector)
             => TScalar.Max(TScalar.Max(TVector.get_x(vector), TVector.get_y(vector)), TScalar.Max(TVector.get_z(vector), TVector.get_w(vector)));
     }
 }

@@ -28,7 +28,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value interpolated between the
         /// bounds of it</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T smoothstep<T>(in T min, in T max, in T value)
+        public static T smoothstep<T>(T min, T max, T value)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
         {
             // the position of the component between the bounds is clamped into the range of zero and one, which
@@ -36,7 +36,7 @@ namespace Coplt.Mathematics
             var t = saturate((value - min) / (max - min));
             // the doubled position is taken from the three by the fused member, which keeps the product of it
             // exact
-            return t * t * fnma(T.Two, t, T.Three);
+            return t * t * math.fnma(T.Two, t, T.Three);
         }
     }
 
@@ -44,7 +44,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.smoothstep{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T smoothstep<T>(this T value, in T min, in T max)
+        public static T smoothstep<T>(this T value, T min, T max)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointAlgebra<T>
             => math.smoothstep(min, max, value);
     }

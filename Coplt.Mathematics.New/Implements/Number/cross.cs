@@ -16,7 +16,7 @@ namespace Coplt.Mathematics
         /// <typeparam name="T">The type of the vector</typeparam>
         /// <returns>The vector that is perpendicular to both vectors</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T cross<T>(in T a, in T b) where T : unmanaged, IAlgebraDispatch<T>, IVector3<T>
+        public static T cross<T>(T a, T b) where T : unmanaged, IAlgebraDispatch<T>, IVector3<T>
             => T.Self<impl_cross>(a, b);
     }
 
@@ -24,7 +24,7 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.cross{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T cross<T>(this T a, in T b) where T : unmanaged, IAlgebraDispatch<T>, IVector3<T>
+        public static T cross<T>(this T a, T b) where T : unmanaged, IAlgebraDispatch<T>, IVector3<T>
             => T.Self<impl_cross>(a, b);
     }
 }
@@ -53,7 +53,7 @@ namespace Coplt.Mathematics.Implements
         // DirectX Math library and the standard library.
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T_T<impl_cross>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> a, in Vector128<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<impl_cross>.Simd_Number<TVector, TScalar>(Vector128<TScalar> a, Vector128<TScalar> b)
         {
             if (typeof(TScalar) == typeof(float))
             {
@@ -95,7 +95,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T_T<impl_cross>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> a, in Vector256<TScalar> b)
+        static TVector IAlgebraVisitor_T_T_T<impl_cross>.Simd_Number<TVector, TScalar>(Vector256<TScalar> a, Vector256<TScalar> b)
         {
             if (typeof(TScalar) == typeof(double))
             {
@@ -137,7 +137,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TVector IAlgebraVisitor_T_T_T<impl_cross>.Vector3_Number<TVector, TScalar>(in TVector a, in TVector b)
+        static TVector IAlgebraVisitor_T_T_T<impl_cross>.Vector3_Number<TVector, TScalar>(TVector a, TVector b)
         {
             var a_x = TVector.get_x(a);
             var a_y = TVector.get_y(a);

@@ -20,7 +20,7 @@ public static partial class math
     /// <param name="b">The second vector</param>
     /// <returns>The calculated distance vector</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static half4 dst(in half4 a, in half4 b) => new(
+    public static half4 dst(half4 a, half4 b) => new(
         Half.One,
         a.y * b.y,
         a.z,
@@ -45,7 +45,7 @@ public static partial class math
     /// <param name="b">The second vector</param>
     /// <returns>The calculated distance vector</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float4 dst(in float4 a, in float4 b) => new(
+    public static float4 dst(float4 a, float4 b) => new(
         1,
         a.y * b.y,
         a.z,
@@ -70,7 +70,7 @@ public static partial class math
     /// <param name="b">The second vector</param>
     /// <returns>The calculated distance vector</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static double4 dst(in double4 a, in double4 b) => new(
+    public static double4 dst(double4 a, double4 b) => new(
         1,
         a.y * b.y,
         a.z,

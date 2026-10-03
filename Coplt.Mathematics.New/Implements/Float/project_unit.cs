@@ -26,7 +26,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value that is parallel to the
         /// vector</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T project_unit<T>(in T value, in T onto)
+        public static T project_unit<T>(T value, T onto)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => T.Self<impl_project_unit>(value, onto);
 
@@ -50,7 +50,7 @@ namespace Coplt.Mathematics
         /// <returns>The value whose every component is the component of the value that is inside the
         /// plane</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T project_on_plane_unit<T>(in T value, in T plane_normal)
+        public static T project_on_plane_unit<T>(T value, T plane_normal)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => value - project_unit(value, plane_normal);
     }
@@ -59,13 +59,13 @@ namespace Coplt.Mathematics
     {
         /// <inheritdoc cref="math.project_unit{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T project_unit<T>(this T value, in T onto)
+        public static T project_unit<T>(this T value, T onto)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => math.project_unit(value, onto);
 
         /// <inheritdoc cref="math.project_on_plane_unit{T}"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T project_on_plane_unit<T>(this T value, in T plane_normal)
+        public static T project_on_plane_unit<T>(this T value, T plane_normal)
             where T : unmanaged, IAlgebraDispatch<T>, IFloatingPointVector<T>
             => math.project_on_plane_unit(value, plane_normal);
     }
@@ -95,17 +95,17 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Simd_Float<TVector, TScalar>(
-            in Vector128<TScalar> value, in Vector128<TScalar> onto
+            Vector128<TScalar> value, Vector128<TScalar> onto
         ) => TVector.FromUnderlying((Vector128.Create(Vector128.Dot(value, onto)) * onto).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Simd_Float<TVector, TScalar>(
-            in Vector256<TScalar> value, in Vector256<TScalar> onto
+            Vector256<TScalar> value, Vector256<TScalar> onto
         ) => TVector.FromUnderlying((Vector256.Create(Vector256.Dot(value, onto)) * onto).AsByte());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Vector2_Float<TVector, TScalar>(
-            in TVector value, in TVector onto
+            TVector value, TVector onto
         )
         {
             var vx = TVector.get_x(value);
@@ -123,7 +123,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Vector3_Float<TVector, TScalar>(
-            in TVector value, in TVector onto
+            TVector value, TVector onto
         )
         {
             var vx = TVector.get_x(value);
@@ -144,7 +144,7 @@ namespace Coplt.Mathematics.Implements
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T<impl_project_unit>.Vector4_Float<TVector, TScalar>(
-            in TVector value, in TVector onto
+            TVector value, TVector onto
         )
         {
             var vx = TVector.get_x(value);

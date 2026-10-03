@@ -11,7 +11,7 @@ namespace Coplt.Mathematics
         /// <para>It is the maximum of every component of it: the value of a matrix is the largest component of
         /// every one of the columns of it</para>
         /// <para>It is the maximum the platform computes itself, which is the one of
-        /// <see cref="hmax{T,TScalar}(in T)"/> beside the way it handles a nan and a negative zero: every platform
+        /// <see cref="hmax{T,TScalar}(T)"/> beside the way it handles a nan and a negative zero: every platform
         /// is free to handle the two of them in a way of its own</para>
         /// </summary>
         /// <param name="value">The value, a vector or a matrix</param>
@@ -24,7 +24,7 @@ namespace Coplt.Mathematics
         // member for it
         [ScalarExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TScalar hmax_native<T, TScalar>(in T value)
+        public static TScalar hmax_native<T, TScalar>(T value)
             where T : unmanaged, IAlgebraDispatch<T, TScalar>
             where TScalar : unmanaged, IBinaryNumber<TScalar>
             => T.Scalar<impl_horizontal_max_native>(value);
@@ -52,7 +52,7 @@ namespace Coplt.Mathematics.Implements
             => TScalar.MaxNative(a, b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Simd_Number<TVector, TScalar>(in Vector128<TScalar> vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)
         {
             if (TVector.Rows == 2) return TScalar.MaxNative(vector[0], vector[1]);
 
@@ -98,7 +98,7 @@ namespace Coplt.Mathematics.Implements
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Simd_Number<TVector, TScalar>(in Vector256<TScalar> vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Simd_Number<TVector, TScalar>(Vector256<TScalar> vector)
         {
             if (Vector256.IsHardwareAccelerated)
             {
@@ -125,15 +125,15 @@ namespace Coplt.Mathematics.Implements
         // a vector without a register has no register to reduce, so the components of it are the ones that are
         // combined
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Vector2_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Vector2_Number<TVector, TScalar>(TVector vector)
             => TScalar.MaxNative(TVector.get_x(vector), TVector.get_y(vector));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Vector3_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Vector3_Number<TVector, TScalar>(TVector vector)
             => TScalar.MaxNative(TScalar.MaxNative(TVector.get_x(vector), TVector.get_y(vector)), TVector.get_z(vector));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Vector4_Number<TVector, TScalar>(in TVector vector)
+        static TScalar IAlgebraVisitor_T_S<impl_horizontal_max_native>.Vector4_Number<TVector, TScalar>(TVector vector)
             => TScalar.MaxNative(TScalar.MaxNative(TVector.get_x(vector), TVector.get_y(vector)), TScalar.MaxNative(TVector.get_z(vector), TVector.get_w(vector)));
     }
 }
