@@ -10,7 +10,7 @@ namespace Coplt.Mathematics.Generics;
 /// </summary>
 /// <typeparam name="TSelf">The vector type itself</typeparam>
 /// <typeparam name="TScalar">The type of a single component</typeparam>
-public interface IVectorReplace<TSelf, TScalar>
+public interface IVectorReplace<TSelf, in TScalar>
     where TSelf : unmanaged, IVectorReplace<TSelf, TScalar>
     where TScalar : unmanaged
 {
