@@ -1,8 +1,6 @@
-﻿using Coplt.Mathematics.Algebras;
-
-namespace Coplt.Mathematics
+﻿namespace Coplt.Mathematics
 {
-    internal static partial class matrix2x2_math
+    public static partial class math
     {
         /// <summary>
         /// Returns the inverse of the value, which is the matrix of the same shape that multiplies with the value
@@ -14,27 +12,43 @@ namespace Coplt.Mathematics
         /// component whose adjugate is the zero of the kind as well is not a number.</para>
         /// </summary>
         /// <param name="m">The value, a matrix of 2 rows and 2 columns</param>
-        /// <typeparam name="T">The type of the value, a matrix of 2 rows and 2 columns</typeparam>
-        /// <typeparam name="TScalar">The type of a single component of the value</typeparam>
         /// <returns>The inverse of the value</returns>
-        // the type of a single component of the value is only a part of the type of the result of the member, so
-        // the compiler cannot infer it from the arguments and a call of the member names it, which the attribute
-        // marks this member for: a call that does not name it reaches the member of the matrix type of the value
-        [SquareMatrixExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T inverse<T, TScalar>(in T m)
-            where T : unmanaged, IMatrix2x2Scalar<T, TScalar>, IFloatingPointMatrix<T, TScalar>
-            where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+        public static float2x2 inverse(in float2x2 m)
         {
-            var a = T.get_m00(m);
-            var b = T.get_m01(m);
-            var c = T.get_m10(m);
-            var d = T.get_m11(m);
-
-            // var det = a * d - b * c;
-            var det = math.fsm(a * d, b, c);
-
-            return T.Create(d, -b, -c, a) * (TScalar.One / det);
+            var det = fsm(m.m00 * m.m11, m.m01, m.m10);
+            return new float2x2(m.m11, -m.m01, -m.m10, m.m00) * (1f / det);
         }
+
+        /// <inheritdoc cref="inverse(in float2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double2x2 inverse(in double2x2 m)
+        {
+            var det = fsm(m.m00 * m.m11, m.m01, m.m10);
+            return new double2x2(m.m11, -m.m01, -m.m10, m.m00) * (1d / det);
+        }
+
+        /// <inheritdoc cref="inverse(in float2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static half2x2 inverse(in half2x2 m)
+        {
+            var det = fsm(m.m00 * m.m11, m.m01, m.m10);
+            return new half2x2(m.m11, -m.m01, -m.m10, m.m00) * (half.One / det);
+        }
+    }
+
+    public static partial class math_ex
+    {
+        /// <inheritdoc cref="math.inverse(in float2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float2x2 inverse(this float2x2 m) => math.inverse(m);
+
+        /// <inheritdoc cref="math.inverse(in double2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double2x2 inverse(this double2x2 m) => math.inverse(m);
+
+        /// <inheritdoc cref="math.inverse(in half2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static half2x2 inverse(this half2x2 m) => math.inverse(m);
     }
 }

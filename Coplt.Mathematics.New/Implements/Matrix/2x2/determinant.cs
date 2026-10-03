@@ -1,8 +1,6 @@
-﻿using Coplt.Mathematics.Algebras;
-
-namespace Coplt.Mathematics
+﻿namespace Coplt.Mathematics
 {
-    internal static partial class matrix2x2_math
+    public static partial class math
     {
         /// <summary>
         /// Returns the determinant of the value, which is the difference of the products of the two diagonals of
@@ -13,25 +11,31 @@ namespace Coplt.Mathematics
         /// columns of it are the same line.</para>
         /// </summary>
         /// <param name="m">The value, a matrix of 2 rows and 2 columns</param>
-        /// <typeparam name="T">The type of the value, a matrix of 2 rows and 2 columns</typeparam>
-        /// <typeparam name="TScalar">The type of a single component of the value</typeparam>
         /// <returns>The determinant of the value</returns>
-        // the type of a single component of the value is only a part of the type of the result of the member, so
-        // the compiler cannot infer it from the arguments and a call of the member names it, which the attribute
-        // marks this member for: a call that does not name it reaches the member of the matrix type of the value
-        [SquareMatrixExtension]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TScalar determinant<T, TScalar>(in T m)
-            where T : unmanaged, IMatrix2x2Scalar<T, TScalar>, IFloatingPointMatrix<T, TScalar>
-            where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
-        {
-            var a = T.get_m00(m);
-            var b = T.get_m01(m);
-            var c = T.get_m10(m);
-            var d = T.get_m11(m);
+        public static float determinant(in float2x2 m) => fsm(m.m00 * m.m11, m.m01, m.m10);
 
-            // var det = a * d - b * c;
-            return math.fsm(a * d, b, c);
-        }
+        /// <inheritdoc cref="determinant(in float2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double determinant(in double2x2 m) => fsm(m.m00 * m.m11, m.m01, m.m10);
+
+        /// <inheritdoc cref="determinant(in float2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static half determinant(in half2x2 m) => fsm(m.m00 * m.m11, m.m01, m.m10);
+    }
+
+    public static partial class math_ex
+    {
+        /// <inheritdoc cref="math.determinant(in float2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float determinant(this float2x2 m) => math.determinant(m);
+
+        /// <inheritdoc cref="math.determinant(in double2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double determinant(this double2x2 m) => math.determinant(m);
+
+        /// <inheritdoc cref="math.determinant(in half2x2)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static half determinant(this half2x2 m) => math.determinant(m);
     }
 }
