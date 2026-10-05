@@ -69,4 +69,39 @@ public class TestMatrixCtor
             Assert.That((h.m00, h.m22), Is.EqualTo(((half)1f, (half)11f)), "half");
         }
     }
+
+    /// <summary>
+    /// A matrix of 4 rows and 4 columns is also created from the rotation of a matrix of 3 rows and 3 columns and the
+    /// translation of a value of 3 components: the value of the upper left of the matrix is the rotation, the value
+    /// of the fourth column of it is the translation and the last row of it is the zero of the kind beside the one
+    /// of it.
+    /// </summary>
+    [Test]
+    public void RotationAndTranslation()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            var rotation = float3x3.EulerZXY(new float3(0.3f, -0.7f, 1.1f));
+            var translation = new float3(1f, 2f, 3f);
+            var m = new float4x4(rotation, translation);
+
+            // the value of the upper left of the matrix is the rotation the member is handed
+            Assert.That((m.m00, m.m01, m.m02, m.m10, m.m11, m.m12, m.m20, m.m21, m.m22),
+                Is.EqualTo((rotation.m00, rotation.m01, rotation.m02, rotation.m10, rotation.m11, rotation.m12,
+                    rotation.m20, rotation.m21, rotation.m22)), "the value of the upper left");
+
+            // the value of the fourth column of the matrix is the translation and the last row of it is the zero of
+            // the kind beside the one of it
+            Assert.That((m.c3.x, m.c3.y, m.c3.z, m.c3.w), Is.EqualTo((1f, 2f, 3f, 1f)), "the fourth column");
+            Assert.That((m.m30, m.m31, m.m32, m.m33), Is.EqualTo((0f, 0f, 0f, 1f)), "the last row");
+
+            // the value of the upper left is the member of every kind a number names
+            var d = new double4x4(double3x3.Identity, new double3(1d, 2d, 3d));
+            Assert.That((d.m00, d.m11, d.m22, d.c3.x, d.m33), Is.EqualTo((1d, 1d, 1d, 1d, 1d)), "double");
+            var i = new int4x4(int3x3.Identity, new int3(1, 2, 3));
+            Assert.That((i.m00, i.m11, i.m22, i.c3.z, i.m33), Is.EqualTo((1, 1, 1, 3, 1)), "int");
+            var h = new half4x4(half3x3.Identity, new half3((half)1f, (half)2f, (half)3f));
+            Assert.That((h.m00, h.c3.z, h.m33), Is.EqualTo(((half)1f, (half)3f, (half)1f)), "half");
+        }
+    }
 }

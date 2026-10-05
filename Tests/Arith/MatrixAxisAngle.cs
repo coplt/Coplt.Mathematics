@@ -86,4 +86,53 @@ public class TestMatrixAxisAngle
                 Is.EqualTo(1f), "half");
         }
     }
+
+    /// <summary>
+    /// Returns the value of the upper left of a matrix of 4 rows and 4 columns, which is the nine components of the
+    /// 3 rows and the 3 columns of it.
+    /// </summary>
+    private static (float, float, float, float, float, float, float, float, float) UpperLeft(float4x4 m) =>
+        (m.m00, m.m01, m.m02, m.m10, m.m11, m.m12, m.m20, m.m21, m.m22);
+
+    /// <inheritdoc cref="UpperLeft(float4x4)"/>
+    private static (double, double, double, double, double, double, double, double, double) UpperLeft(double4x4 m) =>
+        (m.m00, m.m01, m.m02, m.m10, m.m11, m.m12, m.m20, m.m21, m.m22);
+
+    /// <summary>
+    /// The rotation of the space around an axis of it of a matrix of 4 rows and 4 columns: the value of the matrix
+    /// is the one of the shape of 3 rows and 3 columns of it beside the fourth axis of the space, which the rotation
+    /// leaves where it is.
+    /// </summary>
+    [Test]
+    public void Of4x4()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            var angle = 0.7f;
+
+            // the value of the matrix of the rotation around an axis is the one of the shape of 3 rows and 3 columns
+            // of it beside the fourth axis of the space
+            Assert.That(float4x4.AxisAngle(Axis, angle),
+                Is.EqualTo(new float4x4(float3x3.AxisAngle(Axis, angle), default)), "the axis of the value");
+
+            // the matrix of the rotation around one of the three axes of the space is the one of the rotation of
+            // that single axis, which the value of the upper left of the matrix holds
+            Assert.That(UpperLeft(float4x4.AxisAngle(new float3(1f, 0f, 0f), angle)),
+                Is.EqualTo(Components(float3x3.RotateX(angle))).Within(1e-5f), "the x axis");
+            Assert.That(UpperLeft(float4x4.AxisAngle(new float3(0f, 0f, 1f), angle)),
+                Is.EqualTo(Components(float3x3.RotateZ(angle))).Within(1e-5f), "the z axis");
+
+            // the fourth axis of the space keeps the value it is handed
+            var m = float4x4.AxisAngle(Axis, angle);
+            Assert.That((m.c3.x, m.c3.y, m.c3.z, m.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the fourth axis");
+
+            // the zero of the angle keeps the space where it is and the kind of a component of the value is named by
+            // the member that reaches the rotation of it
+            Assert.That(float4x4.AxisAngle(Axis, 0f), Is.EqualTo(float4x4.Identity), "the zero of the angle");
+            Assert.That(half4x4.AxisAngle(new half3((half)1f, (half)0f, (half)0f), (half)0f),
+                Is.EqualTo(half4x4.Identity), "half");
+            Assert.That(UpperLeft(double4x4.AxisAngle(new double3(0d, 0d, 1d), Math.PI / 2)),
+                Is.EqualTo(Components(double3x3.RotateZ(Math.PI / 2))).Within(1e-12), "double");
+        }
+    }
 }

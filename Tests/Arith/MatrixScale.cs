@@ -123,4 +123,44 @@ public class TestMatrixScale
                 "the padding lane of the third column");
         }
     }
+
+    /// <summary>
+    /// The scale of the space: the matrix of it holds the values the axes of the space are scaled by on the diagonal
+    /// of it and the zero of the kind of it everywhere else, so every axis of the space is scaled on its own, and the
+    /// fourth axis of it keeps the one of the kind, which the scale of the space does not reach.
+    /// </summary>
+    [Test]
+    public void Of4x4()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // a single value scales every axis of the space by it
+            Assert.That(float4x4.Scale(2f), Is.EqualTo(new float4x4(2f, 0f, 0f, 0f, 0f, 2f, 0f, 0f, 0f, 0f, 2f, 0f,
+                0f, 0f, 0f, 1f)), "the scale of a single component");
+
+            // three values scale every axis of the space by the one of it
+            var diagonal = float4x4.Scale(2f, 3f, 4f);
+            Assert.That(diagonal, Is.EqualTo(new float4x4(2f, 0f, 0f, 0f, 0f, 3f, 0f, 0f, 0f, 0f, 4f, 0f, 0f, 0f, 0f,
+                1f)), "the scale of three components");
+            Assert.That(float4x4.Scale(new float3(2f, 3f, 4f)), Is.EqualTo(diagonal),
+                "the scale of a value of 3 components");
+
+            // the fourth axis of the space keeps the one of the kind, so the last column of the matrix is not the
+            // zero of the kind alone and the padding lane of every other column of it is the zero of it
+            Assert.That((diagonal.m33, diagonal.c3.w, diagonal.m03), Is.EqualTo((1f, 1f, 0f)), "the fourth axis");
+            Assert.That((diagonal.c0.w, diagonal.c1.w, diagonal.c2.w), Is.EqualTo((0f, 0f, 0f)),
+                "the padding lanes of the columns of a single precision kind");
+            Assert.That(double4x4.Scale(new double3(2d, 3d, 4d)).c0.vector.GetElement(3), Is.EqualTo(0d),
+                "the padding lane of the column of a double precision kind");
+
+            // the scale of the one of a kind is the identity of it
+            Assert.That(float4x4.Scale(1f), Is.EqualTo(float4x4.Identity), "the identity of the scale");
+            Assert.That(float4x4.Scale(new float3(1f, 1f, 1f)), Is.EqualTo(float4x4.Identity),
+                "the identity of the scale of a value of 3 components");
+
+            // the kind of a component of the value is named by the member that reaches the scale of it
+            Assert.That((double4x4.Scale(2d).m00, half4x4.Scale((half)2f).m11, int4x4.Scale(new int3(2, 3, 4)).m22),
+                Is.EqualTo((2d, (half)2f, 4)), "the kind of the value");
+        }
+    }
 }

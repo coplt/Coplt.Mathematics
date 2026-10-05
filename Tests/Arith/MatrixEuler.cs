@@ -91,6 +91,54 @@ public class TestMatrixEuler
     }
 
     /// <summary>
+    /// The rotation of the space of the three Euler angles of a matrix of 4 rows and 4 columns: the value of the
+    /// matrix of an order is the one of the shape of 3 rows and 3 columns of that order beside the fourth axis of the
+    /// space, which the rotation leaves where it is.
+    /// </summary>
+    [Test]
+    public void Of4x4()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the value of the matrix of an order is the one of the shape of 3 rows and 3 columns of that order
+            // beside the fourth axis of the space, which is the zero of the kind beside the one of it
+            Assert.That(float4x4.EulerXYZ(Angles), Is.EqualTo(new float4x4(float3x3.EulerXYZ(Angles), default)),
+                "the x-y-z order");
+            Assert.That(float4x4.EulerXZY(Angles), Is.EqualTo(new float4x4(float3x3.EulerXZY(Angles), default)),
+                "the x-z-y order");
+            Assert.That(float4x4.EulerYXZ(Angles), Is.EqualTo(new float4x4(float3x3.EulerYXZ(Angles), default)),
+                "the y-x-z order");
+            Assert.That(float4x4.EulerYZX(Angles), Is.EqualTo(new float4x4(float3x3.EulerYZX(Angles), default)),
+                "the y-z-x order");
+            Assert.That(float4x4.EulerZXY(Angles), Is.EqualTo(new float4x4(float3x3.EulerZXY(Angles), default)),
+                "the z-x-y order");
+            Assert.That(float4x4.EulerZYX(Angles), Is.EqualTo(new float4x4(float3x3.EulerZYX(Angles), default)),
+                "the z-y-x order");
+
+            // the member of the angles alone reaches the order of the z-x-y angles and the member that names the
+            // order reaches the one it names
+            Assert.That(float4x4.Euler(Angles), Is.EqualTo(float4x4.EulerZXY(Angles)), "the angles alone");
+            Assert.That(float4x4.Euler(Angles, RotationOrder.Default), Is.EqualTo(float4x4.EulerZXY(Angles)),
+                "the default order");
+            Assert.That(float4x4.Euler(Angles, RotationOrder.YZX), Is.EqualTo(float4x4.EulerYZX(Angles)),
+                "the order of the value");
+
+            // the fourth axis of the space keeps the value it is handed, so the last column of the matrix is the
+            // zero of the kind beside the one of it
+            var m = float4x4.EulerZXY(Angles);
+            Assert.That((m.c3.x, m.c3.y, m.c3.z, m.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the fourth axis");
+            Assert.That((m.m30, m.m31, m.m32, m.m33), Is.EqualTo((0f, 0f, 0f, 1f)), "the last row");
+
+            // the zero of the angles keeps the space where it is and the kind of a component of the value is named
+            // by the member that reaches the rotation of it
+            Assert.That(float4x4.EulerZYX(default), Is.EqualTo(float4x4.Identity), "the zero of the angles");
+            Assert.That(half4x4.EulerZXY(default), Is.EqualTo(half4x4.Identity), "half");
+            var d = new double3(0.3d, -0.7d, 1.1d);
+            Assert.That(double4x4.EulerZXY(d), Is.EqualTo(new double4x4(double3x3.EulerZXY(d), default)), "double");
+        }
+    }
+
+    /// <summary>
     /// Returns the nine components of the matrix, which the one of a kind is compared with through the components
     /// of the kind of a single precision number.
     /// </summary>

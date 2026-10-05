@@ -134,4 +134,57 @@ public class TestMatrixRotate
                 "the padding lane of the column of a double precision kind");
         }
     }
+
+    /// <summary>
+    /// Returns the value of the upper left of a matrix of 4 rows and 4 columns, which is the nine components of the
+    /// 3 rows and the 3 columns of it.
+    /// </summary>
+    private static (float, float, float, float, float, float, float, float, float) UpperLeft(float4x4 m) =>
+        (m.m00, m.m01, m.m02, m.m10, m.m11, m.m12, m.m20, m.m21, m.m22);
+
+    /// <summary>
+    /// The rotation of the space around a single axis of a matrix of 4 rows and 4 columns: the value of the matrix
+    /// is the one of the shape of 3 rows and 3 columns of it beside the fourth axis of the space, which the rotation
+    /// leaves where it is.
+    /// </summary>
+    [Test]
+    public void Of4x4()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the value of the upper left of the matrix is the matrix of the plain formula of the rotation of the
+            // axis of the member
+            var angle = 0.3f;
+            math.sincos(angle, out var s, out var c);
+            Assert.That(UpperLeft(float4x4.RotateX(angle)),
+                Is.EqualTo((1f, 0f, 0f, 0f, c, -s, 0f, s, c)).Within(1e-5f), "the x axis");
+            Assert.That(UpperLeft(float4x4.RotateY(angle)),
+                Is.EqualTo((c, 0f, s, 0f, 1f, 0f, -s, 0f, c)).Within(1e-5f), "the y axis");
+            Assert.That(UpperLeft(float4x4.RotateZ(angle)),
+                Is.EqualTo((c, -s, 0f, s, c, 0f, 0f, 0f, 1f)).Within(1e-5f), "the z axis");
+
+            // the fourth axis of the space keeps the value it is handed, so the last column of the matrix is the
+            // zero of the kind beside the one of it and the padding lane of every other column of it is the zero of
+            // it as well
+            var r = float4x4.RotateZ(angle);
+            Assert.That((r.c3.x, r.c3.y, r.c3.z, r.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the fourth axis");
+            Assert.That((r.m30, r.m31, r.m32, r.m33), Is.EqualTo((0f, 0f, 0f, 1f)), "the last row");
+            Assert.That((r.c0.w, r.c1.w, r.c2.w), Is.EqualTo((0f, 0f, 0f)), "the padding lanes of the axes");
+
+            // the rotation of the space reaches the value of the shape of 3 rows and 3 columns of it beside the
+            // fourth axis of the space
+            Assert.That(float4x4.RotateZ(angle), Is.EqualTo(new float4x4(float3x3.RotateZ(angle), default)),
+                "the rotation of 3 rows and 3 columns");
+
+            // the rotation turns the three axes of the space and leaves the fourth one where it is
+            var v = math.mul(float4x4.RotateZ(MathF.PI / 2f), new float4(3f, 4f, 12f, 5f));
+            Assert.That((v.x, v.y, v.z, v.w), Is.EqualTo((-4f, 3f, 12f, 5f)).Within(1e-4f),
+                "the value of the rotation");
+
+            // the kind of a component of the value is named by the member that reaches the rotation of it
+            Assert.That(float4x4.RotateY(0f), Is.EqualTo(float4x4.Identity), "the zero of the angle");
+            Assert.That(half4x4.RotateX((half)0f), Is.EqualTo(half4x4.Identity), "half");
+            Assert.That(double4x4.RotateZ(0d), Is.EqualTo(double4x4.Identity), "double");
+        }
+    }
 }
