@@ -103,7 +103,9 @@ public partial class VectorGenerator
             // the result is taken from the lower lanes of the register
             var narrow = reg > dstReg;
             // the padding lanes of a result hold something else than zero only when the shuffle reads them from
-            // a lane that is a component of the source, the padding lanes of the source are zero
+            // a lane that is a component of the source, the padding lanes of the source are zero; a combination
+            // that keeps the order of the components is not shuffled, it reads the lanes of the value itself, so
+            // it is masked whenever its result has padding lanes, see the loop over the combinations below
             var masked = simd && dstPad && !srcPad;
             // a 64 bit vector has no hardware support on every platform, the shuffle can widen it to 128 bits
             var wide = simd && reg == srcReg && srcReg == 64;
@@ -160,11 +162,20 @@ public partial class VectorGenerator
                 }
 
                 var fallback = $"new({VectorGenShared.Join(dst, i => comp[digits[i]])})";
+                // a combination that keeps the order of the components reads the lanes of the value in the place
+                // of the component instead of shuffling them, so the padding lanes of its result read a lane of
+                // the value that is a component of it and the result has to be masked
+                masked = simd && dstPad && (ordered || !srcPad);
                 // the value of the vector is widened to the register of the shuffle, a 64 bit value is loaded
                 // from the field of the vector type and its upper lanes are zero
                 var widenExpr = srcReg == 64 ? VectorGenShared.Load64("", typ.simdComp) : $"vector.ToVector{reg}()";
-                var shuffle = $"{vecName}.Shuffle({(widen ? widenExpr : "vector")}, " +
-                              $"{vecName}.Create({Args(idx)}))";
+                // a combination that names the components of the vector in their own order keeps the lanes of the
+                // value in the lanes of the result, so the register of the value reaches the result itself and the
+                // shuffle of it is left out: the construction of the value masks the padding lanes of the result
+                var shuffle = ordered
+                    ? (widen ? widenExpr : "vector")
+                    : $"{vecName}.Shuffle({(widen ? widenExpr : "vector")}, " +
+                      $"{vecName}.Create({Args(idx)}))";
                 // the lower lanes of the register are the value of a shorter vector, the value of a 64 bit
                 // vector is already the lower half of the wider register
                 var expr = narrow && dstReg > 64 ? $"{shuffle}.GetLower()" : shuffle;
