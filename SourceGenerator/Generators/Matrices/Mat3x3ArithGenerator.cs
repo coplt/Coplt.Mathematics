@@ -28,20 +28,6 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
     /// <summary>The number of the rows and the number of the columns of the square matrix of this generator.</summary>
     private const int Size = 3;
 
-    /// <summary>The doc of the members the arithmetic of the shape reaches.</summary>
-    private const string Doc = """
-                               The members the arithmetic of the shape reaches are the value of the upper left of a matrix of 4 rows
-                               and 4 columns of it, the scale of a single component, of three of them and of a value of 3 components, the
-                               rotation of the space around the axis of a value of 3 components by an angle, the rotation that a forward
-                               and an up value of 3 components reach, the rotation of the three Euler angles of a value of 3 components and
-                               the rotation of a single axis of the space by an angle. The value of the upper left and the scale are the
-                               members of every kind of a number and the rotations are the members of a floating point kind alone. The
-                               members of the angles are the ones of the six orders of them, where the member of the angles alone reaches
-                               the order of the z-x-y angles, which is the default of the orders. Every one of the members of the shape is
-                               the member of the type of the value, so this file reaches them, and the inverse and the determinant of the
-                               value are the members of the class of the math members, which are written by hand.
-                               """;
-
     /// <summary>
     /// The kinds the arithmetic of a square matrix reaches, which are every kind a number names: the value of the
     /// upper left of a matrix of 4 rows and 4 columns and the scale of a single component, of three of them and of a
@@ -85,12 +71,8 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         var sb = new StringBuilder();
         VectorGenShared.FileHeader(sb, simdHelpers: false);
         sb.AppendLine();
-        sb.AppendLine("/// <summary>");
-        sb.AppendLine($"/// The arithmetic members of the square matrix of {Size} rows and {Size} columns of <see cref=\"{name}\"/>");
-        sb.AppendLine("/// <para>");
-        AddDoc(sb, Doc, "");
-        sb.AppendLine("/// </para>");
-        sb.AppendLine("/// </summary>");
+        // the doc of the type of the value is carried by another declaration of it, so this file reaches the members
+        // of the arithmetic of the shape alone
         sb.AppendLine($"public partial struct {name}");
         sb.AppendLine("{");
         // a matrix of 3 rows and 3 columns is the upper left of a matrix of 4 rows and 4 columns, so the value of

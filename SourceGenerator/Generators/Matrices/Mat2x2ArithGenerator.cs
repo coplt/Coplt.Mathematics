@@ -24,16 +24,6 @@ public class Mat2x2ArithGenerator : IIncrementalGenerator
     /// <summary>The number of the rows and the number of the columns of the square matrix of this generator.</summary>
     private const int Size = 2;
 
-    /// <summary>The doc of the members the arithmetic of the shape reaches.</summary>
-    private const string Doc = """
-                               The members the arithmetic of the shape reaches are the rotation of an angle, the skew of two angles, the
-                               scale of a single component, of two of them and of a column of the value, and the inverse and the determinant
-                               of the value. The scale is a member of every kind of a number and the rotation and the skew are the members of
-                               a floating point kind alone: the rotation, the skew and the scales are the members of the type of the value, so
-                               this file reaches them, and the inverse and the determinant are the members of the class of the math members,
-                               which are written by hand.
-                               """;
-
     /// <summary>
     /// The kinds the arithmetic of a square matrix reaches, which are every kind a number names: the scale of a
     /// single component, of two of them and of a column of the value is a member of every one of them, and the
@@ -77,12 +67,8 @@ public class Mat2x2ArithGenerator : IIncrementalGenerator
         var sb = new StringBuilder();
         VectorGenShared.FileHeader(sb, simdHelpers: false);
         sb.AppendLine();
-        sb.AppendLine("/// <summary>");
-        sb.AppendLine($"/// The arithmetic members of the square matrix of {Size} rows and {Size} columns of <see cref=\"{name}\"/>");
-        sb.AppendLine("/// <para>");
-        AddDoc(sb, Doc, "");
-        sb.AppendLine("/// </para>");
-        sb.AppendLine("/// </summary>");
+        // the doc of the type of the value is carried by another declaration of it, so this file reaches the members
+        // of the arithmetic of the shape alone
         sb.AppendLine($"public partial struct {name}");
         sb.AppendLine("{");
         // the rotation and the skew are the members of a floating point kind alone, the scale is the member of every
@@ -92,12 +78,14 @@ public class Mat2x2ArithGenerator : IIncrementalGenerator
             Rotate(sb, name, typ);
             sb.AppendLine();
         }
+
         Scale(sb, name, typ);
         if (typ.f)
         {
             sb.AppendLine();
             Skew(sb, name, typ);
         }
+
         sb.AppendLine("}");
         return sb.ToString();
     }
