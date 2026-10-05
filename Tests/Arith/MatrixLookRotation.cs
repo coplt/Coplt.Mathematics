@@ -67,6 +67,10 @@ public class TestMatrixLookRotation
             // short or so long that the member cannot read it
             Assert.That(Components(float3x3.LookRotationSafe(new float3(0f, 0f, 1f), new float3(0f, 0f, 2f))),
                 Is.EqualTo((1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)), "the two values that are collinear");
+            Assert.That(Components(float3x3.LookRotationSafe(forward, forward)),
+                Is.EqualTo((1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)), "the two values that are collinear of any axis");
+            Assert.That(Components(float3x3.LookRotationSafe(forward, -forward)),
+                Is.EqualTo((1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)), "the two values that are collinear of any axis");
             Assert.That(Components(float3x3.LookRotationSafe(new float3(0f, 0f, 1e30f), new float3(0f, 1f, 0f))),
                 Is.EqualTo((1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)), "the value that is too long");
 

@@ -77,10 +77,9 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         sb.AppendLine("{");
         // a matrix of 3 rows and 3 columns is the upper left of a matrix of 4 rows and 4 columns, so the value of
         // one of the two reaches the value of the other one, and a rotation of a value is also the one of the
-        // quaternion that holds it, which the library does not reach yet
-        sb.AppendLine("    // the members that take the rotation of a quaternion are to come beside the members of the axes of a");
-        sb.AppendLine("    // rotation, and the type of a quaternion is not written yet, so this file reaches the members of the");
-        sb.AppendLine("    // axes alone");
+        // quaternion that holds it, which the file of the quaternion reaches
+        sb.AppendLine("    // a matrix of 3 rows and 3 columns is the upper left of a matrix of 4 rows and 4 columns, and the");
+        sb.AppendLine("    // rotation of a value is also the one of the quaternion that holds it, which the ctor below reaches");
         sb.AppendLine();
         From4x4(sb, name, typ);
         sb.AppendLine();
@@ -89,6 +88,8 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         // the one of a floating point component
         if (typ.f)
         {
+            sb.AppendLine();
+            Quaternion(sb, name, typ);
             sb.AppendLine();
             LookRotation(sb, name, typ);
             sb.AppendLine();
@@ -156,7 +157,10 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    {");
         foreach (var order in Orders)
             sb.AppendLine($"        RotationOrder.{order.Name} => Euler{order.Name}(xyz),");
-        sb.AppendLine("        _ => EulerZXY(xyz),");
+        // the order of the z-x-y angles is reached by the member of the angles alone, so the switch reaches it
+        // beside the ones the members of the orders reach, and every other value of the order is the identity
+        sb.AppendLine("        RotationOrder.ZXY => EulerZXY(xyz),");
+        sb.AppendLine("        _ => Identity,");
         sb.AppendLine("    };");
     }
 
@@ -456,6 +460,46 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
     }
 
     /// <summary>
+    /// Adds the member that reaches the matrix of the rotation of a quaternion to the square matrix
+    /// <paramref name="name"/>: the value of a quaternion is the rotation of the space of 3 rows and 3 columns of
+    /// it, so the member reads the four components of the value of the quaternion where the value of it is the one
+    /// of that rotation.
+    /// </summary>
+    /// <param name="sb">The source of the file</param>
+    /// <param name="name">The name of the square matrix</param>
+    /// <param name="typ">The kind of the component of the square matrix</param>
+    private static void Quaternion(StringBuilder sb, string name, Typ typ)
+    {
+        var vec = VectorGenShared.VecName(typ, Size, false);
+        var quaternion = QuaternionGenerator.Name(typ);
+        var one = typ.one;
+        var negOne = $"-{one}";
+        AddDoc(sb, """
+                   Returns the matrix of the rotation of the value of <paramref name="q"/>
+                   <para>The value of a quaternion is the rotation of the space of 3 rows and 3 columns of it, so the member
+                   reads the four components of the value where the value of the quaternion is the one of that rotation</para>
+                   <param name="q">The quaternion of the rotation</param>
+                   """, "    ");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public {name}({quaternion} q)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        var v = q.value;");
+        sb.AppendLine("        var v2 = v + v;");
+        sb.AppendLine("        // a component of the value is turned around where the component of the value of the sign is the");
+        sb.AppendLine("        // negative one, which is the exclusive or of the sign of the component that the column reaches");
+        sb.AppendLine($"        var npn = new {vec}({negOne}, default, {negOne});");
+        sb.AppendLine($"        var nnp = new {vec}({negOne}, {negOne}, default);");
+        sb.AppendLine($"        var pnn = new {vec}(default, {negOne}, {negOne});");
+        sb.AppendLine($"        c0 = math.fms(v2.yyy, math.chg_sign(v.yxw, npn), v2.zzz * math.chg_sign(v.zwx, pnn)) +");
+        sb.AppendLine($"            new {vec}({one}, default, default);");
+        sb.AppendLine($"        c1 = math.fms(v2.zzz, math.chg_sign(v.wzy, nnp), v2.xxx * math.chg_sign(v.yxw, npn)) +");
+        sb.AppendLine($"            new {vec}(default, {one}, default);");
+        sb.AppendLine($"        c2 = math.fms(v2.xxx, math.chg_sign(v.zwx, pnn), v2.yyy * math.chg_sign(v.wzy, nnp)) +");
+        sb.AppendLine($"            new {vec}(default, default, {one});");
+        sb.AppendLine("    }");
+    }
+
+    /// <summary>
     /// Adds the members that reach the matrix that scales the space to the square matrix <paramref name="name"/>,
     /// which are the matrices whose diagonal holds the values the axes of the space are scaled by.
     /// </summary>
@@ -648,10 +692,11 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         sb.AppendLine("        var tLengthSq = math.dot(t, t);");
         sb.AppendLine("        t *= math.rsqrt(tLengthSq);");
         sb.AppendLine();
-        sb.AppendLine("        // the length of the two values and the one of the axis that is at a right angle with them, where the");
-        sb.AppendLine("        // kind of the component reads every one of them");
+        sb.AppendLine("        // the length of the two values, the one of the axis that is at a right angle with them and the one of");
+        sb.AppendLine("        // the axis of the rotation, which the two values that are collinear do not reach");
         sb.AppendLine($"        if (math.min(math.min(forwardLengthSq, upLengthSq), tLengthSq) <= math.MinRotateSafe<{scalar}>() ||");
         sb.AppendLine($"            math.max(math.max(forwardLengthSq, upLengthSq), tLengthSq) >= math.MaxRotateSafe<{scalar}>() ||");
+        sb.AppendLine($"            tLengthSq <= math.MinRotateCollinearSq<{scalar}>() ||");
         sb.AppendLine("            !math.is_finite(forwardLengthSq) || !math.is_finite(upLengthSq) || !math.is_finite(tLengthSq))");
         sb.AppendLine("            return Identity;");
         sb.AppendLine("        return new(t, math.cross(forward, t), forward);");

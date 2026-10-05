@@ -93,11 +93,9 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         // space, of the view of it and of the projection of it are the members of a floating point kind alone, which
         // read the members of a rotation of 3 rows and 3 columns of them where the rotation of the space is the whole
         // of the value
-        sb.AppendLine("    // the members that take the rotation of a quaternion and the ones of the transform of a translation, a");
-        sb.AppendLine("    // rotation and a scale beside the one of a translation and a rotation are to come, and the type of a");
-        sb.AppendLine("    // quaternion is not written yet, so this file reaches the members of the value of the space, the ones of a");
-        sb.AppendLine("    // rotation of it, the ones of the view and the projection of it and the ones of the rotation and the");
-        sb.AppendLine("    // transform of a value of 3 components of it");
+        sb.AppendLine("    // a matrix of 4 rows and 4 columns is the value of a rotation of 3 rows and 3 columns beside a");
+        sb.AppendLine("    // translation of 3 components, so the rotation of a quaternion reaches the members of the transform of");
+        sb.AppendLine("    // the value, which the file of the quaternion carries");
         sb.AppendLine();
         From3x3(sb, name, typ);
         sb.AppendLine();
@@ -108,6 +106,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         // one of a floating point component
         if (typ.f)
         {
+            sb.AppendLine();
+            Quaternion(sb, name, typ);
             sb.AppendLine();
             Rotations(sb, name, typ);
             sb.AppendLine();
@@ -174,6 +174,70 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine("        rotation.c2.as4,");
         sb.AppendLine($"        new {vec4}(translation, {one})");
         sb.AppendLine("    );");
+    }
+
+    /// <summary>
+    /// Adds the members that reach the matrix of the rotation of a quaternion and the ones of the transform of a
+    /// translation, a rotation and a scale to the square matrix of 4 rows and 4 columns <paramref name="name"/>:
+    /// the rotation of a quaternion is the value of a matrix of 3 rows and 3 columns of the space, which is the upper
+    /// left of the matrix of the space beside the translation of 3 components of it, so the members read the four
+    /// components of the quaternion where the value of the upper left of the matrix is the one of that rotation.
+    /// </summary>
+    /// <param name="sb">The source of the file</param>
+    /// <param name="name">The name of the square matrix</param>
+    /// <param name="typ">The kind of the component of the square matrix</param>
+    private static void Quaternion(StringBuilder sb, string name, Typ typ)
+    {
+        var vec = VectorGenShared.VecName(typ, Rotation, false);
+        var rotation = MatrixGenerator.Name(typ, Rotation, Rotation, false);
+        var quaternion = QuaternionGenerator.Name(typ);
+        AddDoc(sb, """
+                   Returns the matrix of the rotation of the value of <paramref name="rotation"/> beside the value of the
+                   translation of <paramref name="translation"/>
+                   <para>The value of a quaternion is the rotation of the space of 3 rows and 3 columns of it, which the upper
+                   left of the matrix of the space holds, and the value of the fourth column of it is the translation of the
+                   origin of the space</para>
+                   <param name="rotation">The quaternion of the rotation</param>
+                   <param name="translation">The value the origin of the space is moved by</param>
+                   """, "    ");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public {name}({quaternion} rotation, {vec} translation)" +
+                      $" : this(new {rotation}(rotation), translation) {{ }}");
+        sb.AppendLine();
+        AddDoc(sb, """
+                   Returns the matrix of the transform of a translation, a rotation and a scale of the space, which is the
+                   scale of the space beside the rotation of it and the translation of the origin of it
+                   <para>The value of the matrix is the one of the scale of the space beside the one of the rotation of the
+                   quaternion and the one of the translation of the origin of it, which are the members the value of the
+                   transform of the space is reached by</para>
+                   <param name="translation">The value the origin of the space is moved by</param>
+                   <param name="rotation">The quaternion of the rotation of the space</param>
+                   <param name="scale">The values every axis of the space is scaled by</param>
+                   """, "    ");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {name} TRS({vec} translation, {quaternion} rotation, {vec} scale)");
+        sb.AppendLine("    {");
+        sb.AppendLine($"        var r = new {rotation}(rotation);");
+        sb.AppendLine("        r.c0 *= scale.xxx;");
+        sb.AppendLine("        r.c1 *= scale.yyy;");
+        sb.AppendLine("        r.c2 *= scale.zzz;");
+        sb.AppendLine("        return new(r, translation);");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        AddDoc(sb, """
+                   Returns the matrix of the transform of a translation and a rotation of the space, which is the rotation of
+                   the space beside the translation of the origin of it
+                   <para>The value of the matrix is the one of the rotation of the quaternion beside the one of the translation
+                   of the origin of it, which are the members the value of the transform of the space is reached by</para>
+                   <param name="translation">The value the origin of the space is moved by</param>
+                   <param name="rotation">The quaternion of the rotation of the space</param>
+                   """, "    ");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {name} TR({vec} translation, {quaternion} rotation)");
+        sb.AppendLine("    {");
+        sb.AppendLine($"        var r = new {rotation}(rotation);");
+        sb.AppendLine("        return new(r, translation);");
+        sb.AppendLine("    }");
     }
 
     /// <summary>
@@ -389,7 +453,7 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    {");
         foreach (var order in Orders)
             sb.AppendLine($"        RotationOrder.{order} => Euler{order}(xyz),");
-        sb.AppendLine("        _ => EulerZXY(xyz),");
+        sb.AppendLine("        _ => Identity,");
         sb.AppendLine("    };");
 
         foreach (var order in Orders)
