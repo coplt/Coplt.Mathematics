@@ -1,3 +1,4 @@
+using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
 using half = System.Half;
 
@@ -53,6 +54,84 @@ public class TestMatrixRotate
             var doubleQuarter = double2x2.Rotate(Math.PI / 2);
             Assert.That(doubleQuarter.m10, Is.EqualTo(1d).Within(1e-15), "double");
             Assert.That(doubleQuarter.m01, Is.EqualTo(-1d).Within(1e-15), "double");
+        }
+    }
+
+    /// <summary>
+    /// Returns the nine components of the matrix, which the one of a kind is compared with through the components
+    /// of the kind of a single precision number.
+    /// </summary>
+    private static (float, float, float, float, float, float, float, float, float) Components(float3x3 m) =>
+        (m.m00, m.m01, m.m02, m.m10, m.m11, m.m12, m.m20, m.m21, m.m22);
+
+    /// <inheritdoc cref="Components(float3x3)"/>
+    private static (float, float, float, float, float, float, float, float, float) Components(half3x3 m) =>
+        ((float)m.m00, (float)m.m01, (float)m.m02, (float)m.m10, (float)m.m11, (float)m.m12, (float)m.m20,
+            (float)m.m21, (float)m.m22);
+
+    /// <inheritdoc cref="Components(float3x3)"/>
+    private static (double, double, double, double, double, double, double, double, double) Components(double3x3 m) =>
+        (m.m00, m.m01, m.m02, m.m10, m.m11, m.m12, m.m20, m.m21, m.m22);
+
+    /// <summary>
+    /// The rotation of the space around a single axis: the matrix of it is the one of the plain formula of the
+    /// rotation, which holds the cosine of the angle on the diagonal of the matrix and the sine of it beside it, so
+    /// the axis of the rotation keeps the value it is handed and the length of it. The member is a member of a
+    /// floating point kind alone, since the angle of a rotation is one.
+    /// </summary>
+    [Test]
+    public void Of3x3()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the angle of the zero of the kind keeps the space where it is, whatever the axis of the rotation is
+            Assert.That(Components(float3x3.RotateX(0f)), Is.EqualTo((1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)),
+                "the zero of the angle of the x axis");
+            Assert.That(Components(float3x3.RotateY(0f)), Is.EqualTo((1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)),
+                "the zero of the angle of the y axis");
+            Assert.That(Components(float3x3.RotateZ(0f)), Is.EqualTo((1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)),
+                "the zero of the angle of the z axis");
+
+            // the matrix of the rotation of an angle around one axis is the one of the plain formula of it, which
+            // holds the sine and the cosine of the angle of the kind: the member of the axis builds the matrix of
+            // the two of them without computing anything else, so the two of them agree up to the rounding of the
+            // member that reads them
+            var angle = 0.3f;
+            math.sincos(angle, out var s, out var c);
+            Assert.That(Components(float3x3.RotateX(angle)), Is.EqualTo((1f, 0f, 0f, 0f, c, -s, 0f, s, c)).Within(1e-5f),
+                "the x axis");
+            Assert.That(Components(float3x3.RotateY(angle)), Is.EqualTo((c, 0f, s, 0f, 1f, 0f, -s, 0f, c)).Within(1e-5f),
+                "the y axis");
+            Assert.That(Components(float3x3.RotateZ(angle)), Is.EqualTo((c, -s, 0f, s, c, 0f, 0f, 0f, 1f)).Within(1e-5f),
+                "the z axis");
+
+            // the axis that follows the one of the rotation reaches the one that follows the two of them where the
+            // angle of the rotation is a right angle, and the length of the value is the one it was handed
+            var y = math.mul(float3x3.RotateX(MathF.PI / 2f), new float3(0f, 1f, 0f));
+            Assert.That(y.x, Is.EqualTo(0f).Within(1e-6f), "the first component of the y axis of the x axis");
+            Assert.That(y.y, Is.EqualTo(0f).Within(1e-6f), "the second component of the y axis of the x axis");
+            Assert.That(y.z, Is.EqualTo(1f).Within(1e-5f), "the y axis of the x axis reached the z axis");
+            Assert.That(math.length(math.mul(float3x3.RotateY(MathF.PI / 2f), new float3(3f, 4f, 12f))),
+                Is.EqualTo(13f).Within(1e-4f), "the length of the value of a rotation");
+
+            // the kind of a component of the value is named by the member that reaches the rotation of it, which
+            // builds the matrix of the sine and the cosine of the angle of that kind
+            var hAngle = (half)0.7f;
+            math.sincos(hAngle, out var hs, out var hc);
+            Assert.That(Components(half3x3.RotateX(hAngle)),
+                Is.EqualTo((1f, 0f, 0f, 0f, (float)hc, (float)(-hs), 0f, (float)hs, (float)hc)).Within(1e-2f),
+                "the x axis of the half kind");
+            var dAngle = 0.7d;
+            math.sincos(dAngle, out var ds, out var dc);
+            Assert.That(Components(double3x3.RotateX(dAngle)),
+                Is.EqualTo((1d, 0d, 0d, 0d, dc, -ds, 0d, ds, dc)).Within(1e-12), "the x axis of the double kind");
+
+            // a column of the matrix is a view of 3 components of the value of 4 components the sine and the cosine
+            // of the angle are shuffled into, so the padding lane of it is the zero of that value
+            Assert.That(float3x3.RotateZ(angle).c1.vector.GetElement(3), Is.EqualTo(0f),
+                "the padding lane of the column of a single precision kind");
+            Assert.That(double3x3.RotateZ(dAngle).c1.vector.GetElement(3), Is.EqualTo(0d),
+                "the padding lane of the column of a double precision kind");
         }
     }
 }
