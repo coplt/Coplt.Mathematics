@@ -1,4 +1,5 @@
 using Coplt.Mathematics;
+using half = System.Half;
 
 namespace Tests.Core;
 
@@ -30,6 +31,42 @@ public class TestMatrixCtor
             Assert.That(new float3x3s(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f),
                 Is.EqualTo(new float3x3s(
                     new float3s(1f, 4f, 7f), new float3s(2f, 5f, 8f), new float3s(3f, 6f, 9f))));
+        }
+    }
+
+    /// <summary>
+    /// A matrix of 3 rows and 3 columns is the value of the upper left of a matrix of 4 rows and 4 columns of it,
+    /// so the value of one of the two reaches the value of the other one: the member that takes the value of a
+    /// matrix of 4 rows and 4 columns reads the 3 rows and the 3 columns of the upper left of it, and the member
+    /// that hands the value of a matrix of 4 rows and 4 columns over as the one of the upper left of it is the
+    /// conversion of it.
+    /// </summary>
+    [Test]
+    public void UpperLeft()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the last row and the last column of the value of 4 rows and 4 columns are not part of the value of
+            // the upper left of it
+            var m4x4 = new float4x4(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 11f, 12f, 13f, 14f, 15f, 16f);
+            var m3x3 = new float3x3(m4x4);
+            Assert.That((m3x3.m00, m3x3.m01, m3x3.m02, m3x3.m10, m3x3.m11, m3x3.m12, m3x3.m20, m3x3.m21,
+                m3x3.m22), Is.EqualTo((1f, 2f, 3f, 5f, 6f, 7f, 9f, 10f, 11f)), "the value of the upper left");
+            Assert.That(m3x3, Is.EqualTo(new float3x3(m4x4.c0.xyz, m4x4.c1.xyz, m4x4.c2.xyz)),
+                "the columns of the value of the upper left");
+
+            // the conversion of the value of a matrix of 4 rows and 4 columns is the same member
+            Assert.That((float3x3)m4x4, Is.EqualTo(m3x3), "the conversion of the value of 4 rows and 4 columns");
+
+            // the value of the upper left is the member of every kind a number names
+            var d = new double3x3(new double4x4(1d, 2d, 3d, 4d, 5d, 6d, 7d, 8d, 9d, 10d, 11d, 12d, 13d, 14d, 15d,
+                16d));
+            Assert.That((d.m12, d.m22), Is.EqualTo((7d, 11d)), "double");
+            var i = (int3x3)new int4x4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+            Assert.That((i.m02, i.m22), Is.EqualTo((3, 11)), "int");
+            var h = new half3x3(new half4x4((half)1f, (half)2f, (half)3f, (half)4f, (half)5f, (half)6f, (half)7f,
+                (half)8f, (half)9f, (half)10f, (half)11f, (half)12f, (half)13f, (half)14f, (half)15f, (half)16f));
+            Assert.That((h.m00, h.m22), Is.EqualTo(((half)1f, (half)11f)), "half");
         }
     }
 }

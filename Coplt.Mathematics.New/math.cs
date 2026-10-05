@@ -159,24 +159,6 @@ public static partial class math
         throw new NotSupportedException();
     }
 
-    [MethodImpl(256 | 512)]
-    internal static T MinRotateSafe<T>() where T : unmanaged
-    {
-        if (typeof(T) == typeof(float)) return Unsafe.BitCast<float, T>(1e-35f);
-        if (typeof(T) == typeof(double)) return Unsafe.BitCast<double, T>(1e-290);
-        if (typeof(T) == typeof(half)) return Unsafe.BitCast<half, T>((half)1e-5f);
-        throw new NotSupportedException();
-    }
-
-    [MethodImpl(256 | 512)]
-    internal static T MaxRotateSafe<T>() where T : unmanaged
-    {
-        if (typeof(T) == typeof(float)) return Unsafe.BitCast<float, T>(1e35f);
-        if (typeof(T) == typeof(double)) return Unsafe.BitCast<double, T>(1e290);
-        if (typeof(T) == typeof(half)) return Unsafe.BitCast<half, T>((half)1e5f);
-        throw new NotSupportedException();
-    }
-
     #endregion
 
     // #region slerp

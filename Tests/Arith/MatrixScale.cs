@@ -77,4 +77,36 @@ public class TestMatrixScale
             Assert.That(short2x2.Scale(new short2((short)2, (short)3)).m11, Is.EqualTo((short)3), "the column of a short");
         }
     }
+
+    /// <summary>
+    /// The scale of the space: the matrix of it holds the values the axes of the space are scaled by on the diagonal
+    /// of it and the zero of the kind of it everywhere else, so every axis of the space is scaled on its own and the
+    /// value of the three axes of it is the one of the scale.
+    /// </summary>
+    [Test]
+    public void Of3x3()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // a single value scales every axis of the space by it
+            Assert.That(float3x3.Scale(2f), Is.EqualTo(new float3x3(2f, 0f, 0f, 0f, 2f, 0f, 0f, 0f, 2f)),
+                "the scale of a single component");
+
+            // three values scale every axis of the space by the one of it
+            var diagonal = float3x3.Scale(2f, 3f, 4f);
+            Assert.That(diagonal, Is.EqualTo(new float3x3(2f, 0f, 0f, 0f, 3f, 0f, 0f, 0f, 4f)),
+                "the scale of three components");
+            Assert.That(float3x3.Scale(new float3(2f, 3f, 4f)), Is.EqualTo(diagonal),
+                "the scale of a value of 3 components");
+
+            // every axis of the space is scaled on its own, so the value of the three axes is the one of the scale
+            var scaled = math.mul(diagonal, new float3(1f, 1f, 1f));
+            Assert.That((scaled.x, scaled.y, scaled.z), Is.EqualTo((2f, 3f, 4f)), "the axes of the space");
+
+            // the kind of a component of the value is named by the member that reaches the scale of it
+            Assert.That((double3x3.Scale(2d).m00, double3x3.Scale(2d, 3d, 4d).m22), Is.EqualTo((2d, 4d)), "double");
+            Assert.That(half3x3.Scale((half)2f).m00, Is.EqualTo((half)2f), "half");
+            Assert.That((int3x3.Scale(2).m11, long3x3.Scale(new long3(2L, 3L, 4L)).m22), Is.EqualTo((2, 4L)), "whole");
+        }
+    }
 }

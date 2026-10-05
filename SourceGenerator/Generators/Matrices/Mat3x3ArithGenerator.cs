@@ -7,14 +7,18 @@ using Microsoft.CodeAnalysis.Text;
 namespace Coplt.Analyzers.Generators;
 
 /// <summary>
-/// Generates the arithmetic members of the square matrix of 3 rows and 3 columns of every kind a floating point
-/// component names: <c>half</c>, <c>float</c> and <c>double</c>.
+/// Generates the arithmetic members of the square matrix of 3 rows and 3 columns of every kind a number names:
+/// <c>short</c>, <c>ushort</c>, <c>int</c>, <c>uint</c>, <c>long</c>, <c>ulong</c>, <c>half</c>, <c>float</c> and
+/// <c>double</c>.
 /// <para>The arithmetic of a shape of a square matrix is the one of that shape alone: the value of a shape
 /// reaches no member of the arithmetic of another shape, so this generator shares no part of itself with the one
 /// of another shape and it holds every part of the arithmetic of the shape it reaches.</para>
-/// <para>The members of the shape are the rotation of the three Euler angles of a value of 3 components, which is
-/// the rotation of the three axes of the space in the order of the angles, and the rotation of a single axis of it
-/// by an angle. The members of the angles and the members of a single axis are the members of the type of the
+/// <para>The members of the shape are the value of the upper left of a matrix of 4 rows and 4 columns of it, the
+/// scale of a single component, of three of them and of a value of 3 components, the rotation of the space around
+/// the axis of a value of 3 components by an angle, the rotation that a forward and an up value of 3 components
+/// reach, the rotation of the three Euler angles of a value of 3 components and the rotation of a single axis of
+/// the space by an angle. The value of the upper left and the scale are the members of every kind of a number and
+/// the rotations are the members of a floating point kind alone: every one of them is the member of the type of the
 /// value, so this file reaches them, and the inverse and the determinant of the value are the members of the class
 /// of the math members, which are written by hand.</para>
 /// </summary>
@@ -26,20 +30,25 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
 
     /// <summary>The doc of the members the arithmetic of the shape reaches.</summary>
     private const string Doc = """
-                               The members the arithmetic of the shape reaches are the rotation of the three Euler angles of a value of 3
-                               components, which is the rotation of the three axes of the space in the order of the angles, and the rotation
-                               of a single axis of it by an angle. The members of the angles are the ones of the six orders of them, and the
-                               member of the angles alone reaches the order of the z-x-y angles, which is the default of the orders. All of
-                               them are the members of the type of the value, so this file reaches them, and the inverse and the determinant
-                               of the value are the members of the class of the math members, which are written by hand.
+                               The members the arithmetic of the shape reaches are the value of the upper left of a matrix of 4 rows
+                               and 4 columns of it, the scale of a single component, of three of them and of a value of 3 components, the
+                               rotation of the space around the axis of a value of 3 components by an angle, the rotation that a forward
+                               and an up value of 3 components reach, the rotation of the three Euler angles of a value of 3 components and
+                               the rotation of a single axis of the space by an angle. The value of the upper left and the scale are the
+                               members of every kind of a number and the rotations are the members of a floating point kind alone. The
+                               members of the angles are the ones of the six orders of them, where the member of the angles alone reaches
+                               the order of the z-x-y angles, which is the default of the orders. Every one of the members of the shape is
+                               the member of the type of the value, so this file reaches them, and the inverse and the determinant of the
+                               value are the members of the class of the math members, which are written by hand.
                                """;
 
     /// <summary>
-    /// The kinds the arithmetic of a square matrix reaches, which are the ones of a floating point component:
-    /// <c>half</c>, <c>float</c> and <c>double</c>. The rotation of the three Euler angles of a value and the
-    /// rotation of a single axis of it are the members of a floating point kind alone.
+    /// The kinds the arithmetic of a square matrix reaches, which are every kind a number names: the value of the
+    /// upper left of a matrix of 4 rows and 4 columns and the scale of a single component, of three of them and of a
+    /// value of 3 components are the members of every one of them, and the rotations are the members of a floating
+    /// point kind alone.
     /// </summary>
-    private static readonly Typ[] Kinds = Typ.Typs.Where(static typ => typ.f).ToArray();
+    private static readonly Typ[] Kinds = Typ.Typs.Where(static typ => typ.arith).ToArray();
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -84,17 +93,34 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         sb.AppendLine("/// </summary>");
         sb.AppendLine($"public partial struct {name}");
         sb.AppendLine("{");
-        // a rotation of a value is also the one of the quaternion that holds it, and the type of a quaternion is not
-        // written yet: the members that take the rotation of a quaternion are to come beside the ones of the angles
-        sb.AppendLine("    // the members that take the rotation of a quaternion are to come beside the members of the angles of a");
+        // a matrix of 3 rows and 3 columns is the upper left of a matrix of 4 rows and 4 columns, so the value of
+        // one of the two reaches the value of the other one, and a rotation of a value is also the one of the
+        // quaternion that holds it, which the library does not reach yet
+        sb.AppendLine("    // the members that take the rotation of a quaternion are to come beside the members of the axes of a");
         sb.AppendLine("    // rotation, and the type of a quaternion is not written yet, so this file reaches the members of the");
-        sb.AppendLine("    // angles alone");
+        sb.AppendLine("    // axes alone");
         sb.AppendLine();
-        EulerAngles(sb, name, typ);
+        From4x4(sb, name, typ);
         sb.AppendLine();
-        EulerOrders(sb, name, typ);
-        sb.AppendLine();
-        AxisRotations(sb, name, typ);
+        Scales(sb, name, typ);
+        // the rotation of the space is the member of a floating point kind alone, since the angle of a rotation is
+        // the one of a floating point component
+        if (typ.f)
+        {
+            sb.AppendLine();
+            LookRotation(sb, name, typ);
+            sb.AppendLine();
+            LookRotationSafe(sb, name, typ);
+            sb.AppendLine();
+            AxisAngle(sb, name, typ);
+            sb.AppendLine();
+            EulerAngles(sb, name, typ);
+            sb.AppendLine();
+            EulerOrders(sb, name, typ);
+            sb.AppendLine();
+            AxisRotations(sb, name, typ);
+        }
+
         sb.AppendLine("}");
         return sb.ToString();
     }
@@ -410,6 +436,229 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
             sb.AppendLine($"            {value[row, 0].PadRight(width[0])}, {value[row, 1].PadRight(width[1])}, " +
                           $"{value[row, 2]}{(row == 2 ? "" : ",")}");
         }
+    }
+
+    /// <summary>
+    /// Adds the members that reach the value of the upper left of a matrix of 4 rows and 4 columns to the square
+    /// matrix <paramref name="name"/>, which are the member the value of a matrix of 4 rows and 4 columns reaches
+    /// and the member that hands a value of that shape over: a matrix of 3 rows and 3 columns is the value of the
+    /// upper left of a matrix of 4 rows and 4 columns, so the value of the one of the two reaches the value of the
+    /// other one, and the conversion of the value of a matrix of 4 rows and 4 columns is the one that the type of
+    /// the value carries beside the member of the upper left of it.
+    /// </summary>
+    /// <param name="sb">The source of the file</param>
+    /// <param name="name">The name of the square matrix</param>
+    /// <param name="typ">The kind of the component of the square matrix</param>
+    private static void From4x4(StringBuilder sb, string name, Typ typ)
+    {
+        var m4x4 = MatrixGenerator.Name(typ, 4, 4, false);
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Returns the value of the upper left of the matrix of 4 rows and 4 columns of <paramref name=\"m4x4\"/>,");
+        sb.AppendLine("    /// which is the value of the 3 rows and the 3 columns of it");
+        sb.AppendLine("    /// </summary>");
+        sb.AppendLine("    /// <param name=\"m4x4\">The matrix of 4 rows and 4 columns the upper left of which is the value</param>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public {name}({m4x4} m4x4)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        c0 = m4x4.c0.xyz;");
+        sb.AppendLine("        c1 = m4x4.c1.xyz;");
+        sb.AppendLine("        c2 = m4x4.c2.xyz;");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        sb.AppendLine("    /// <summary>Returns the value of the upper left of the matrix of 4 rows and 4 columns of");
+        sb.AppendLine("    /// <paramref name=\"m4x4\"/></summary>");
+        sb.AppendLine("    /// <param name=\"m4x4\">The matrix of 4 rows and 4 columns the upper left of which is the value</param>");
+        sb.AppendLine("    /// <returns>The value of the upper left of <paramref name=\"m4x4\"/></returns>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static explicit operator {name}({m4x4} m4x4) => new(m4x4);");
+    }
+
+    /// <summary>
+    /// Adds the members that reach the matrix that scales the space to the square matrix <paramref name="name"/>,
+    /// which are the matrices whose diagonal holds the values the axes of the space are scaled by.
+    /// </summary>
+    /// <param name="sb">The source of the file</param>
+    /// <param name="name">The name of the square matrix</param>
+    /// <param name="typ">The kind of the component of the square matrix</param>
+    private static void Scales(StringBuilder sb, string name, Typ typ)
+    {
+        var scalar = typ.compType;
+        var vec = VectorGenShared.VecName(typ, Size, false);
+
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Returns the matrix that scales every axis of the space by <paramref name=\"s\"/>");
+        sb.AppendLine("    /// <para>The matrix holds the value on the diagonal of it and the zero of the kind of it everywhere");
+        sb.AppendLine("    /// else, so every axis of the space is scaled on its own</para>");
+        sb.AppendLine("    /// </summary>");
+        sb.AppendLine("    /// <param name=\"s\">The value every axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <returns>The matrix of the scale</returns>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {name} Scale({scalar} s) => new(");
+        sb.AppendLine("        s,       default, default,");
+        sb.AppendLine("        default, s,       default,");
+        sb.AppendLine("        default, default, s");
+        sb.AppendLine("    );");
+        sb.AppendLine();
+
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Returns the matrix that scales the first axis of the space by <paramref name=\"x\"/>, the second axis of");
+        sb.AppendLine("    /// it by <paramref name=\"y\"/> and the third axis of it by <paramref name=\"z\"/>");
+        sb.AppendLine("    /// <para>The matrix holds the three values on the diagonal of it and the zero of the kind of it everywhere");
+        sb.AppendLine("    /// else, so every axis of the space is scaled on its own</para>");
+        sb.AppendLine("    /// </summary>");
+        sb.AppendLine("    /// <param name=\"x\">The value the first axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"y\">The value the second axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"z\">The value the third axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <returns>The matrix of the scale</returns>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {name} Scale({scalar} x, {scalar} y, {scalar} z) => new(");
+        sb.AppendLine("        x,       default, default,");
+        sb.AppendLine("        default, y,       default,");
+        sb.AppendLine("        default, default, z");
+        sb.AppendLine("    );");
+        sb.AppendLine();
+
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Returns the matrix that scales the first axis of the space by the first component of");
+        sb.AppendLine("    /// <paramref name=\"v\"/>, the second axis of it by the second component of it and the third axis of it by");
+        sb.AppendLine("    /// the third component of it");
+        sb.AppendLine("    /// <para>The matrix holds the components of the value on the diagonal of it and the zero of the kind of it");
+        sb.AppendLine("    /// everywhere else, so every axis of the space is scaled on its own</para>");
+        sb.AppendLine("    /// </summary>");
+        sb.AppendLine("    /// <param name=\"v\">The value whose components the axes of the space are scaled by</param>");
+        sb.AppendLine("    /// <returns>The matrix of the scale</returns>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {name} Scale({vec} v) => new(");
+        sb.AppendLine("        v.x,     default, default,");
+        sb.AppendLine("        default, v.y,     default,");
+        sb.AppendLine("        default, default, v.z");
+        sb.AppendLine("    );");
+    }
+
+    /// <summary>
+    /// Adds the member that reaches the matrix of the rotation of the space around the axis of a value by an angle
+    /// to the square matrix <paramref name="name"/>, which is the product of the axis with the one of the kind beside
+    /// the sine and the cosine of the angle: every column of the matrix reaches the component of the axis that the
+    /// column names, which is the one the axis holds at the two other components of it with the sign of the sine of
+    /// the angle beside it.
+    /// </summary>
+    /// <param name="sb">The source of the file</param>
+    /// <param name="name">The name of the square matrix</param>
+    /// <param name="typ">The kind of the component of the square matrix</param>
+    private static void AxisAngle(StringBuilder sb, string name, Typ typ)
+    {
+        var scalar = typ.compType;
+        var vec = VectorGenShared.VecName(typ, Size, false);
+        var vec4 = VectorGenShared.VecName(typ, 4, false);
+        var one = typ.one;
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Returns the matrix that rotates the value around the axis of <paramref name=\"axis\"/> by");
+        sb.AppendLine("    /// <paramref name=\"angle\"/>, which is the rotation of the value around the origin of the space");
+        sb.AppendLine("    /// <para>Every angle of the rotation is in radians and the rotation of an angle is clockwise where the axis of");
+        sb.AppendLine("    /// it is looked along towards the origin, so the length of the value is the one it was handed where the axis");
+        sb.AppendLine("    /// of the rotation is of the length one and not the zero of the kind</para>");
+        sb.AppendLine("    /// </summary>");
+        sb.AppendLine("    /// <param name=\"axis\">The axis of the rotation, which is of the length one</param>");
+        sb.AppendLine("    /// <param name=\"angle\">The angle of the rotation, in radians</param>");
+        sb.AppendLine("    /// <returns>The matrix of the rotation around the axis</returns>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {name} AxisAngle({vec} axis, {scalar} angle)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        math.sincos(angle, out var sina, out var cosa);");
+        sb.AppendLine("        // the axis scaled by the one of the kind beside the cosine of the angle, which every column of the");
+        sb.AppendLine("        // matrix is scaled by beside the sine and the cosine of it");
+        sb.AppendLine("        var u_inv_cosa = math.fsm(axis, axis, cosa); // axis - axis * cosa");
+        sb.AppendLine($"        var t = new {vec4}(axis * sina, cosa);");
+        sb.AppendLine("        // the sign of the component of the axis that follows the one of the column is the negative one and the");
+        sb.AppendLine("        // one of the component of the axis of the column itself is the positive one");
+        sb.AppendLine("        return new(");
+        sb.AppendLine($"            math.fma(axis.xxx, u_inv_cosa, math.chg_sign(t.wzy, new {vec}({one}, {one}, -{one}))),");
+        sb.AppendLine($"            math.fma(axis.yyy, u_inv_cosa, math.chg_sign(t.zwx, new {vec}(-{one}, {one}, {one}))),");
+        sb.AppendLine($"            math.fma(axis.zzz, u_inv_cosa, math.chg_sign(t.yxw, new {vec}({one}, -{one}, {one})))");
+        sb.AppendLine("        );");
+        sb.AppendLine("    }");
+    }
+
+    /// <summary>
+    /// Adds the member that reaches the matrix of the rotation of the space that looks along a value while another
+    /// one stays over it to the square matrix <paramref name="name"/>, which is the rotation of the two values of
+    /// it as they are: the member reads the two of them where they are of the length one and are not collinear, so
+    /// the value that is of another length or the one that is collinear with the other one reaches the member of the
+    /// safe rotation instead.
+    /// </summary>
+    /// <param name="sb">The source of the file</param>
+    /// <param name="name">The name of the square matrix</param>
+    /// <param name="typ">The kind of the component of the square matrix</param>
+    private static void LookRotation(StringBuilder sb, string name, Typ typ)
+    {
+        var vec = VectorGenShared.VecName(typ, Size, false);
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Returns the matrix of the rotation of the space that looks along <paramref name=\"forward\"/> while the");
+        sb.AppendLine("    /// value of <paramref name=\"up\"/> stays over it");
+        sb.AppendLine("    /// <para>Every one of the two values of the member has to be of the length one and the two of them must not");
+        sb.AppendLine("    /// be collinear, so a value that is of another length or that is collinear with the other one reaches the");
+        sb.AppendLine("    /// member of the safe rotation, which takes the two of them to the length one first</para>");
+        sb.AppendLine("    /// </summary>");
+        sb.AppendLine("    /// <param name=\"forward\">The value the rotation looks along, which is of the length one</param>");
+        sb.AppendLine("    /// <param name=\"up\">The value that stays over the one that is looked along, which is of the length one</param>");
+        sb.AppendLine("    /// <returns>The matrix of the rotation</returns>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {name} LookRotation({vec} forward, {vec} up)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        var t = math.normalize(math.cross(up, forward));");
+        sb.AppendLine("        return new(t, math.cross(forward, t), forward);");
+        sb.AppendLine("    }");
+    }
+
+    /// <summary>
+    /// Adds the member that reaches the matrix of the rotation of the space that looks along a value while another
+    /// one stays over it, which takes the two values of it to the length one first, to the square matrix
+    /// <paramref name="name"/>: the two values are read where the length of them and the one of the axis that is at
+    /// a right angle with the two of them are the ones the kind of the component reads, so the identity of the
+    /// matrix is reached where the two of them are collinear or where one of them is so short or so long that the
+    /// member cannot read it.
+    /// </summary>
+    /// <param name="sb">The source of the file</param>
+    /// <param name="name">The name of the square matrix</param>
+    /// <param name="typ">The kind of the component of the square matrix</param>
+    private static void LookRotationSafe(StringBuilder sb, string name, Typ typ)
+    {
+        var vec = VectorGenShared.VecName(typ, Size, false);
+        var scalar = typ.compType;
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Returns the matrix of the rotation of the space that looks along <paramref name=\"forward\"/> while the");
+        sb.AppendLine("    /// value of <paramref name=\"up\"/> stays over it, where the two values of it are taken to the length one");
+        sb.AppendLine("    /// first");
+        sb.AppendLine("    /// <para>Every one of the two values is accepted whatever its length is where the length of the two of them");
+        sb.AppendLine("    /// and the one of the axis that is at a right angle with them are the ones the kind of the component reads,");
+        sb.AppendLine("    /// and the identity of the matrix is reached where the two of them are collinear or where one of them is so");
+        sb.AppendLine("    /// short or so long that the member cannot read it</para>");
+        sb.AppendLine("    /// </summary>");
+        sb.AppendLine("    /// <param name=\"forward\">The value the rotation looks along</param>");
+        sb.AppendLine("    /// <param name=\"up\">The value that stays over the one that is looked along</param>");
+        sb.AppendLine("    /// <returns>The matrix of the rotation, or the identity of the matrix where the two values of it cannot be");
+        sb.AppendLine("    /// read</returns>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public static {name} LookRotationSafe({vec} forward, {vec} up)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        var forwardLengthSq = math.dot(forward, forward);");
+        sb.AppendLine("        var upLengthSq = math.dot(up, up);");
+        sb.AppendLine();
+        sb.AppendLine("        forward *= math.rsqrt(forwardLengthSq);");
+        sb.AppendLine("        up *= math.rsqrt(upLengthSq);");
+        sb.AppendLine();
+        sb.AppendLine("        var t = math.cross(up, forward);");
+        sb.AppendLine("        var tLengthSq = math.dot(t, t);");
+        sb.AppendLine("        t *= math.rsqrt(tLengthSq);");
+        sb.AppendLine();
+        sb.AppendLine("        // the length of the two values and the one of the axis that is at a right angle with them, where the");
+        sb.AppendLine("        // kind of the component reads every one of them");
+        sb.AppendLine($"        if (math.min(math.min(forwardLengthSq, upLengthSq), tLengthSq) <= math.MinRotateSafe<{scalar}>() ||");
+        sb.AppendLine($"            math.max(math.max(forwardLengthSq, upLengthSq), tLengthSq) >= math.MaxRotateSafe<{scalar}>() ||");
+        sb.AppendLine("            !math.is_finite(forwardLengthSq) || !math.is_finite(upLengthSq) || !math.is_finite(tLengthSq))");
+        sb.AppendLine("            return Identity;");
+        sb.AppendLine("        return new(t, math.cross(forward, t), forward);");
+        sb.AppendLine("    }");
     }
 
     /// <summary>
