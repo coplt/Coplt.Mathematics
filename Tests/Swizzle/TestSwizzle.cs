@@ -39,6 +39,18 @@ public class TestSwizzle
     private static void CheckLane(float3 v, float expected, string what)
         => Assert.That(v.vector.GetElement(3), Is.EqualTo(expected), what);
 
+    /// <summary>
+    /// Checks the padding lanes of a 2 component vector that is backed by a simd type.
+    /// </summary>
+    private static void CheckLane(float2 v, string what)
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(v.vector.GetElement(2), Is.EqualTo(0f), $"{what}, padding lane 2");
+            Assert.That(v.vector.GetElement(3), Is.EqualTo(0f), $"{what}, padding lane 3");
+        }
+    }
+
     #endregion
 
     #region get
@@ -260,6 +272,12 @@ public class TestSwizzle
             // a 2 component vector widened to 3 components
             CheckLane(new float2(1, 2).xxx, 0f, "float2.xxx");
             CheckLane(new float2(1, 2).yxy, 0f, "float2.yxy");
+            // a 4 or 3 component vector narrowed to 2 components, the combination that keeps the order of the
+            // components reaches the result without a shuffle as well
+            CheckLane(new float4(1, 2, 3, 42).xy, "float4.xy");
+            CheckLane(new float4(1, 2, 3, 42).yx, "float4.yx");
+            CheckLane(new float3(1, 2, 3).xy, "float3.xy");
+            CheckLane(new float3(1, 2, 3).yx, "float3.yx");
             // one of the vectors own combinations
             CheckLane(new float3(1, 2, 3).zyx, 0f, "float3.zyx");
             CheckLane(new float3(1, 2, 3).xxx, 0f, "float3.xxx");
@@ -278,6 +296,8 @@ public class TestSwizzle
             Assert.That(new double4(1, 2, 3, 42).xyz.vector.GetElement(3), Is.EqualTo(0d), "double4.xyz");
             Assert.That(new long2(1, 2).xxx.vector.GetElement(3), Is.EqualTo(0L), "long2.xxx");
             Assert.That(new int2(1, 2).yxy.vector.GetElement(3), Is.EqualTo(0), "int2.yxy");
+            Assert.That(new int3(1, 2, 3).xy.vector.GetElement(3), Is.EqualTo(0), "int3.xy");
+            Assert.That(new uint3(1, 2, 3).xy.vector.GetElement(3), Is.EqualTo(0u), "uint3.xy");
         }
     }
 
