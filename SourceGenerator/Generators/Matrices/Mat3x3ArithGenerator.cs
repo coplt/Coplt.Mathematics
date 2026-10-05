@@ -528,11 +528,26 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    /// <param name=\"v\">The value whose components the axes of the space are scaled by</param>");
         sb.AppendLine("    /// <returns>The matrix of the scale</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} Scale({vec} v) => new(");
-        sb.AppendLine("        v.x,     default, default,");
-        sb.AppendLine("        default, v.y,     default,");
-        sb.AppendLine("        default, default, v.z");
-        sb.AppendLine("    );");
+        // the padding lane of the value of a vector that keeps it in a register is zero, so a column of the
+        // matrix is the swizzle of the value that reads the component the column scales beside the padding lane:
+        // the swizzle is of 4 components and the column of 3, and the padding lane of the swizzle stays zero,
+        // so the column reads the swizzle as the value of 3 components without masking anything
+        if (VectorGenShared.Simd(typ, Size, false))
+        {
+            sb.AppendLine($"    public static {name} Scale({vec} v) => new(");
+            sb.AppendLine("        v.as4.xwww.as3,");
+            sb.AppendLine("        v.as4.wyww.as3,");
+            sb.AppendLine("        v.as4.wwzw.as3");
+            sb.AppendLine("    );");
+        }
+        else
+        {
+            sb.AppendLine($"    public static {name} Scale({vec} v) => new(");
+            sb.AppendLine("        v.x,     default, default,");
+            sb.AppendLine("        default, v.y,     default,");
+            sb.AppendLine("        default, default, v.z");
+            sb.AppendLine("    );");
+        }
     }
 
     /// <summary>

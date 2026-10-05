@@ -1,3 +1,4 @@
+using System.Runtime.Intrinsics;
 using Coplt.Mathematics;
 using half = System.Half;
 
@@ -107,6 +108,19 @@ public class TestMatrixScale
             Assert.That((double3x3.Scale(2d).m00, double3x3.Scale(2d, 3d, 4d).m22), Is.EqualTo((2d, 4d)), "double");
             Assert.That(half3x3.Scale((half)2f).m00, Is.EqualTo((half)2f), "half");
             Assert.That((int3x3.Scale(2).m11, long3x3.Scale(new long3(2L, 3L, 4L)).m22), Is.EqualTo((2, 4L)), "whole");
+
+            // the column of the value of a kind that has no register is put together from the components of the
+            // value, since only the value of a kind that keeps its value in one has a padding lane to read
+            var halfColumn = half3x3.Scale(new half3((half)2f, (half)3f, (half)4f));
+            Assert.That((halfColumn.m00, halfColumn.m11, halfColumn.m22), Is.EqualTo(((half)2f, (half)3f, (half)4f)),
+                "the scale of a value of 3 components of a kind that has no register");
+
+            // the value of a kind that keeps its value in a register reads the padding lane of it, which is zero,
+            // so the padding lane of a column of the matrix is zero as well
+            Assert.That(float3x3.Scale(new float3(2f, 3f, 4f)).c0.vector.GetElement(3), Is.EqualTo(0f),
+                "the padding lane of the first column");
+            Assert.That(double3x3.Scale(new double3(2d, 3d, 4d)).c2.vector.GetElement(3), Is.EqualTo(0d),
+                "the padding lane of the third column");
         }
     }
 }
