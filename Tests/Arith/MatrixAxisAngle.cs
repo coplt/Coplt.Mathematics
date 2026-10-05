@@ -100,7 +100,7 @@ public class TestMatrixAxisAngle
 
     /// <summary>
     /// The rotation of the space around an axis of it of a matrix of 4 rows and 4 columns: the value of the matrix
-    /// is the one of the shape of 3 rows and 3 columns of it beside the fourth axis of the space, which the rotation
+    /// is the one of the shape of 3 rows and 3 columns of it beside the w axis of the space, which the rotation
     /// leaves where it is.
     /// </summary>
     [Test]
@@ -111,7 +111,7 @@ public class TestMatrixAxisAngle
             var angle = 0.7f;
 
             // the value of the matrix of the rotation around an axis is the one of the shape of 3 rows and 3 columns
-            // of it beside the fourth axis of the space
+            // of it beside the w axis of the space
             Assert.That(float4x4.AxisAngle(Axis, angle),
                 Is.EqualTo(new float4x4(float3x3.AxisAngle(Axis, angle), default)), "the axis of the value");
 
@@ -122,9 +122,9 @@ public class TestMatrixAxisAngle
             Assert.That(UpperLeft(float4x4.AxisAngle(new float3(0f, 0f, 1f), angle)),
                 Is.EqualTo(Components(float3x3.RotateZ(angle))).Within(1e-5f), "the z axis");
 
-            // the fourth axis of the space keeps the value it is handed
+            // the w axis of the space keeps the value it is handed
             var m = float4x4.AxisAngle(Axis, angle);
-            Assert.That((m.c3.x, m.c3.y, m.c3.z, m.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the fourth axis");
+            Assert.That((m.c3.x, m.c3.y, m.c3.z, m.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the w axis");
 
             // the zero of the angle keeps the space where it is and the kind of a component of the value is named by
             // the member that reaches the rotation of it

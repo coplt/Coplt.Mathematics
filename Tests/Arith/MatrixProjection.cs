@@ -7,7 +7,7 @@ namespace Tests.Arith;
 /// The projection of the space: the matrix of the projection reads the value of the volume of the view, which is the
 /// space between the two planes at the distance of the near value and the one of the far value of it from the eye of
 /// read as the value of the cube of the view, whose value on every axis of the space is between the negative one of
-/// the kind and the one of it. The range of the third axis of the cube is the reversed one, so the value of the near
+/// the kind and the one of it. The range of the ±z axis of the cube is the reversed one, so the value of the near
 /// plane of the volume is the one of the kind on that axis and the one of the far plane of it is the zero of it, which
 /// holds the most of the precision of the kind beside the near plane of the volume, and the depth of a graphics api
 /// that reads the value of the cube is cleared as the one of the kind and tested with the value that is greater than
@@ -33,7 +33,7 @@ public class TestMatrixProjection
         using (Assert.EnterMultipleScope())
         {
             // the projection of the left of it reads the value of the volume of the origin of the space of the view as
-            // the one of the cube of the view, whose range of the third axis is the reversed one: the value
+            // the one of the cube of the view, whose range of the ±z axis is the reversed one: the value
             // of the near plane is the one of the kind and the one of the far plane is the zero of it
             var o = float4x4.Ortho(2f, 4f, 1f, 5f);
             Assert.That(Cube(o, new float3(0f, 0f, 1f)), Is.EqualTo((0f, 0f, 1f)).Within(1e-6f), "the near plane");
@@ -43,7 +43,7 @@ public class TestMatrixProjection
             Assert.That(Cube(o, new float3(-1f, -2f, 3f)), Is.EqualTo((-1f, -1f, 0.5f)).Within(1e-6f),
                 "the other corner of the volume");
 
-            // the projection of the right of it reads the value of the volume of the negative third axis of the space,
+            // the projection of the right of it reads the value of the volume of the negative z axis of the space,
             // which the near plane of the volume reads as the one of the origin of the cube of the view
             var rh = float4x4.Ortho_RH(2f, 4f, 1f, 5f);
             Assert.That(Cube(rh, new float3(0f, 0f, -1f)), Is.EqualTo((0f, 0f, 1f)).Within(1e-6f),
@@ -73,7 +73,7 @@ public class TestMatrixProjection
         {
             // the projection of the value of a field of view reads the value of the volume of the origin of the space
             // of the view as the one of the cube of the view, and the value of the field of view is the
-            // angle of the second axis of the space of the view
+            // angle of the y axis of the space of the view
             var p = float4x4.PerspectiveFov(MathF.PI / 2f, 1f, 1f, 5f);
             Assert.That(Cube(p, new float3(0f, 0f, 1f)), Is.EqualTo((0f, 0f, 1f)).Within(1e-6f), "the near plane");
             Assert.That(Cube(p, new float3(0f, 0f, 5f)), Is.EqualTo((0f, 0f, 0f)).Within(1e-6f), "the far plane");
@@ -82,19 +82,20 @@ public class TestMatrixProjection
             Assert.That(Cube(p, new float3(1f, 0f, 1f)), Is.EqualTo((1f, 0f, 1f)).Within(1e-6f),
                 "the right of the near plane");
 
-            // the aspect of the view is the value of the first axis of the space of it beside the one of the second
+            // the aspect of the view is the value of the x axis of the space of it beside the one of the y
             // axis of it, so the value of the volume of a view of an aspect of the value is read as the one of the
-            // cube, which the second axis of the space of the view does not reach
+            // cube, which the y axis of the space of the view does not reach
             var wide = float4x4.PerspectiveFov(MathF.PI / 2f, 2f, 1f, 5f);
             Assert.That(Cube(wide, new float3(0f, 1f, 1f)), Is.EqualTo((0f, 1f, 1f)).Within(1e-6f),
                 "the top of the near plane of the value");
             Assert.That(Cube(wide, new float3(2f, 0f, 1f)), Is.EqualTo((1f, 0f, 1f)).Within(1e-6f),
                 "the right of the near plane of the value");
 
-            // the projection of the right of it reads the value of the volume of the negative third axis of the space
+            // the projection of the right of it reads the value of the volume of the negative z axis of the space
             // and the member that names the rows of the matrix reads the value of the projection of the value of the
             // left of it on the rows of the matrix
-            var rh = float4x4.PerspectiveFov_RH(MathF.PI / 2f, 1f, 1f, 5f);            Assert.That(rh, Is.EqualTo(new float4x4(
+            var rh = float4x4.PerspectiveFov_RH(MathF.PI / 2f, 1f, 1f, 5f);
+            Assert.That(rh, Is.EqualTo(new float4x4(
                 1f, 0f, 0f, 0f,
                 0f, 1f, 0f, 0f,
                 0f, 0f, 0.25f, 1.25f,
@@ -105,13 +106,13 @@ public class TestMatrixProjection
                 Is.EqualTo(math.transpose(rh)), "the rows of the projection of the right of it");
 
             // the projection of the value of an infinite field of view has no far plane, so the value of the near plane
-            // of it is the one of the kind and the value of the third axis of a point beyond the near plane of it is the
-            // one of the near plane of the volume beside the one of the third axis of the point
+            // of it is the one of the kind and the value of the +z axis of a point beyond the near plane of it is the
+            // one of the near plane of the volume beside the one of the +z axis of the point
             var infinite = float4x4.PerspectiveFov(MathF.PI / 2f, 1f, 1f);
             Assert.That(Cube(infinite, new float3(0f, 0f, 1f)), Is.EqualTo((0f, 0f, 1f)).Within(1e-6f),
                 "the near plane of the infinite value");
             Assert.That(Cube(infinite, new float3(0f, 0f, 5f)).z, Is.EqualTo(0.2f).Within(1e-6f),
-                "the value of the third axis of a point beyond the near plane of the infinite value");
+                "the value of the +z axis of a point beyond the near plane of the infinite value");
             Assert.That(float4x4.PerspectiveFov_Row(MathF.PI / 2f, 1f, 1f),
                 Is.EqualTo(math.transpose(infinite)), "the rows of the infinite value");
             Assert.That(float4x4.PerspectiveFov_RH_Row(MathF.PI / 2f, 1f, 1f),

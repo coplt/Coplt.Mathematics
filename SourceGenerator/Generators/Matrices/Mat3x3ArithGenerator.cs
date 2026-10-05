@@ -483,14 +483,14 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         sb.AppendLine();
 
         sb.AppendLine("    /// <summary>");
-        sb.AppendLine("    /// Returns the matrix that scales the first axis of the space by <paramref name=\"x\"/>, the second axis of");
-        sb.AppendLine("    /// it by <paramref name=\"y\"/> and the third axis of it by <paramref name=\"z\"/>");
+        sb.AppendLine("    /// Returns the matrix that scales the x axis of the space by <paramref name=\"x\"/>, the y axis of");
+        sb.AppendLine("    /// it by <paramref name=\"y\"/> and the z axis of it by <paramref name=\"z\"/>");
         sb.AppendLine("    /// <para>The matrix holds the three values on the diagonal of it and the zero of the kind of it everywhere");
         sb.AppendLine("    /// else, so every axis of the space is scaled on its own</para>");
         sb.AppendLine("    /// </summary>");
-        sb.AppendLine("    /// <param name=\"x\">The value the first axis of the space is scaled by</param>");
-        sb.AppendLine("    /// <param name=\"y\">The value the second axis of the space is scaled by</param>");
-        sb.AppendLine("    /// <param name=\"z\">The value the third axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"x\">The value the x axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"y\">The value the y axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"z\">The value the z axis of the space is scaled by</param>");
         sb.AppendLine("    /// <returns>The matrix of the scale</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} Scale({scalar} x, {scalar} y, {scalar} z) => new(");
@@ -501,8 +501,8 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         sb.AppendLine();
 
         sb.AppendLine("    /// <summary>");
-        sb.AppendLine("    /// Returns the matrix that scales the first axis of the space by the first component of");
-        sb.AppendLine("    /// <paramref name=\"v\"/>, the second axis of it by the second component of it and the third axis of it by");
+        sb.AppendLine("    /// Returns the matrix that scales the x axis of the space by the first component of");
+        sb.AppendLine("    /// <paramref name=\"v\"/>, the y axis of it by the second component of it and the z axis of it by");
         sb.AppendLine("    /// the third component of it");
         sb.AppendLine("    /// <para>The matrix holds the components of the value on the diagonal of it and the zero of the kind of it");
         sb.AppendLine("    /// everywhere else, so every axis of the space is scaled on its own</para>");

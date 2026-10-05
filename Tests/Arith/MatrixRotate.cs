@@ -7,8 +7,8 @@ namespace Tests.Arith;
 /// <summary>
 /// The rotation of a plane around the origin: the matrix of it holds the cosine of the angle beside the negative
 /// of the sine of it in the first row and the sine beside the cosine in the second one, so the product of the
-/// matrix with a value of 2 components is the value of the rotation of it and the first axis of the plane reaches
-/// the second one where the angle of the rotation is a right angle. The member is a member of a floating point
+/// matrix with a value of 2 components is the value of the rotation of it and the x axis of the plane reaches
+/// the y one where the angle of the rotation is a right angle. The member is a member of a floating point
 /// kind alone, since the angle of a rotation is one.
 /// </summary>
 public class TestMatrixRotate
@@ -30,7 +30,7 @@ public class TestMatrixRotate
             Assert.That(quarter.m10, Is.EqualTo(1f).Within(1e-5f), "the sine of a right angle");
             Assert.That(quarter.m11, Is.EqualTo(0f).Within(1e-6f), "the cosine of a right angle");
 
-            // the axis of the first component of the value is the one that reaches the second axis of the plane
+            // the axis of the first component of the value is the one that reaches the y axis of the plane
             var axis = math.mul(quarter, new float2(1f, 0f));
             Assert.That(axis.x, Is.EqualTo(0f).Within(1e-6f), "the first component of the axis reached");
             Assert.That(axis.y, Is.EqualTo(1f).Within(1e-5f), "the second component of the axis reached");
@@ -144,7 +144,7 @@ public class TestMatrixRotate
 
     /// <summary>
     /// The rotation of the space around a single axis of a matrix of 4 rows and 4 columns: the value of the matrix
-    /// is the one of the shape of 3 rows and 3 columns of it beside the fourth axis of the space, which the rotation
+    /// is the one of the shape of 3 rows and 3 columns of it beside the w axis of the space, which the rotation
     /// leaves where it is.
     /// </summary>
     [Test]
@@ -163,16 +163,16 @@ public class TestMatrixRotate
             Assert.That(UpperLeft(float4x4.RotateZ(angle)),
                 Is.EqualTo((c, -s, 0f, s, c, 0f, 0f, 0f, 1f)).Within(1e-5f), "the z axis");
 
-            // the fourth axis of the space keeps the value it is handed, so the last column of the matrix is the
+            // the w axis of the space keeps the value it is handed, so the last column of the matrix is the
             // zero of the kind beside the one of it and the padding lane of every other column of it is the zero of
             // it as well
             var r = float4x4.RotateZ(angle);
-            Assert.That((r.c3.x, r.c3.y, r.c3.z, r.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the fourth axis");
+            Assert.That((r.c3.x, r.c3.y, r.c3.z, r.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the w axis");
             Assert.That((r.m30, r.m31, r.m32, r.m33), Is.EqualTo((0f, 0f, 0f, 1f)), "the last row");
             Assert.That((r.c0.w, r.c1.w, r.c2.w), Is.EqualTo((0f, 0f, 0f)), "the padding lanes of the axes");
 
             // the rotation of the space reaches the value of the shape of 3 rows and 3 columns of it beside the
-            // fourth axis of the space
+            // w axis of the space
             Assert.That(float4x4.RotateZ(angle), Is.EqualTo(new float4x4(float3x3.RotateZ(angle), default)),
                 "the rotation of 3 rows and 3 columns");
 

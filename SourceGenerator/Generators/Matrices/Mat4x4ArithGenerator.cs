@@ -179,8 +179,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
     /// <summary>
     /// Adds the members that reach the matrix that scales the space to the square matrix <paramref name="name"/>,
     /// which are the matrices whose diagonal holds the values the axes of the space are scaled by: a matrix of 4 rows
-    /// and 4 columns holds the three axes of the space beside the fourth one of them, which a scale of the space
-    /// leaves where it is, so the value of the fourth one is the one of the kind.
+    /// and 4 columns holds the x, y and z axes of the space beside the w axis of it, which a scale of the space
+    /// leaves where it is, so the value of the w axis is the one of the kind.
     /// </summary>
     /// <param name="sb">The source of the file</param>
     /// <param name="name">The name of the square matrix</param>
@@ -195,7 +195,7 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         AddDoc(sb, """
                    Returns the matrix that scales every axis of the space by <paramref name="s"/>
                    <para>The matrix holds the value on the diagonal of it and the zero of the kind of it everywhere else, so
-                   every axis of the space is scaled on its own, and the fourth axis of it keeps the one of the kind</para>
+                   every axis of the space is scaled on its own, and the w axis of it keeps the one of the kind</para>
                    """, "    ");
         sb.AppendLine("    /// <param name=\"s\">The value every axis of the space is scaled by</param>");
         sb.AppendLine("    /// <returns>The matrix of the scale</returns>");
@@ -209,15 +209,15 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine();
 
         AddDoc(sb, """
-                   Returns the matrix that scales the first axis of the space by <paramref name="x"/>, the second axis of
-                   it by <paramref name="y"/> and the third axis of it by <paramref name="z"/>
+                   Returns the matrix that scales the x axis of the space by <paramref name="x"/>, the y axis of
+                   it by <paramref name="y"/> and the z axis of it by <paramref name="z"/>
                    <para>The matrix holds the three values on the diagonal of it and the zero of the kind of it everywhere
-                   else, so every axis of the space is scaled on its own, and the fourth axis of it keeps the one of the
+                   else, so every axis of the space is scaled on its own, and the w axis of it keeps the one of the
                    kind</para>
                    """, "    ");
-        sb.AppendLine("    /// <param name=\"x\">The value the first axis of the space is scaled by</param>");
-        sb.AppendLine("    /// <param name=\"y\">The value the second axis of the space is scaled by</param>");
-        sb.AppendLine("    /// <param name=\"z\">The value the third axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"x\">The value the x axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"y\">The value the y axis of the space is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"z\">The value the z axis of the space is scaled by</param>");
         sb.AppendLine("    /// <returns>The matrix of the scale</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} Scale({scalar} x, {scalar} y, {scalar} z) => new(");
@@ -229,11 +229,11 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine();
 
         AddDoc(sb, """
-                   Returns the matrix that scales the first axis of the space by the first component of
-                   <paramref name="v"/>, the second axis of it by the second component of it and the third axis of it by
+                   Returns the matrix that scales the x axis of the space by the first component of
+                   <paramref name="v"/>, the y axis of it by the second component of it and the z axis of it by
                    the third component of it
                    <para>The matrix holds the components of the value on the diagonal of it and the zero of the kind of it
-                   everywhere else, so every axis of the space is scaled on its own, and the fourth axis of it keeps the one
+                   everywhere else, so every axis of the space is scaled on its own, and the w axis of it keeps the one
                    of the kind</para>
                    """, "    ");
         sb.AppendLine("    /// <param name=\"v\">The value whose components the axes of the space are scaled by</param>");
@@ -312,8 +312,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
 
     /// <summary>
     /// Adds the members that reach the matrix of a rotation of the space to the square matrix <paramref name="name"/>:
-    /// the rotation of the space turns the three axes of it and leaves the fourth one where it is, so the value of the
-    /// upper left of the matrix is a rotation of the shape of 3 rows and 3 columns and the last column of it is the
+    /// the rotation of the space turns the x, y and z axes of it and leaves the w axis where it is, so the value of
+    /// the upper left of the matrix is a rotation of the shape of 3 rows and 3 columns and the last column of it is the
     /// zero of the kind beside the one of it. Every member reads the member of a rotation of the shape of 3 rows and 3
     /// columns whose angle is the one it is handed, so a rotation of the space holds nothing of the arithmetic of a
     /// rotation and the angle of the value is read once.
@@ -327,10 +327,10 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         var vec = VectorGenShared.VecName(typ, Rotation, false);
         var rotation = MatrixGenerator.Name(typ, Rotation, Rotation, false);
         var vec4 = VectorGenShared.VecName(typ, Size, false);
-        sb.AppendLine("    // the rotation of the space turns the three axes of it and leaves the fourth one where it is, so the");
-        sb.AppendLine("    // value of the upper left of the matrix is the rotation of the shape of 3 rows and 3 columns of it and");
-        sb.AppendLine("    // the last column of it is the zero of the kind beside the one of it, which is the value of the fourth");
-        sb.AppendLine("    // coordinate of the space");
+        sb.AppendLine("    // the rotation of the space turns the x, y and z axes of it and leaves the w axis where it is,");
+        sb.AppendLine("    // so the value of the upper left of the matrix is the rotation of the shape of 3 rows and 3 columns");
+        sb.AppendLine("    // of it and the last column of it is the zero of the kind beside the one of it, which is the value");
+        sb.AppendLine("    // of the fourth coordinate of the space");
         var last = $"new {vec4}(default, default, default, {typ.one})";
 
         // the value of a member of this shape is the rotation of the shape of 3 rows and 3 columns of it beside the
@@ -350,8 +350,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
                    <paramref name="angle"/>, which is the rotation of the value around the origin of the space
                    <para>Every angle of the rotation is in radians and the rotation of an angle is clockwise where the axis
                    of it is looked along towards the origin, so the length of the value is the one it was handed where the
-                   axis of the rotation is of the length one and not the zero of the kind, and the rotation turns the three
-                   axes of the space and leaves the fourth one where it is</para>
+                   axis of the rotation is of the length one and not the zero of the kind, and the rotation turns the x, y
+                   and z axes of the space and leaves the w axis where it is</para>
                    """, "    ");
         sb.AppendLine("    /// <param name=\"axis\">The axis of the rotation, which is of the length one</param>");
         sb.AppendLine("    /// <param name=\"angle\">The angle of the rotation, in radians</param>");
@@ -365,8 +365,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
                    Returns the matrix of the rotation of the three Euler angles of <paramref name="xyz"/>, which is the one
                    of the z-x-y order
                    <para>Every angle of the value is in radians and the rotation of an angle is clockwise where the axis of it
-                   is looked along towards the origin, and the rotation turns the three axes of the space and leaves the
-                   fourth one where it is</para>
+                   is looked along towards the origin, and the rotation turns the x, y and z axes of the space and leaves
+                   the w axis where it is</para>
                    """, "    ");
         sb.AppendLine("    /// <param name=\"xyz\">The angles of the x axis, the y axis and the z axis, in radians</param>");
         sb.AppendLine("    /// <returns>The matrix of the rotation in the z-x-y order</returns>");
@@ -378,8 +378,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
                    Returns the matrix of the rotation of the three Euler angles of <paramref name="xyz"/> in the order
                    <paramref name="order"/> names
                    <para>Every angle of the value is in radians and the rotation of an angle is clockwise where the axis of it
-                   is looked along towards the origin, and the rotation turns the three axes of the space and leaves the
-                   fourth one where it is</para>
+                   is looked along towards the origin, and the rotation turns the x, y and z axes of the space and leaves
+                   the w axis where it is</para>
                    """, "    ");
         sb.AppendLine("    /// <param name=\"xyz\">The angles of the x axis, the y axis and the z axis, in radians</param>");
         sb.AppendLine("    /// <param name=\"order\">The order the three rotations of the angles are applied in</param>");
@@ -401,8 +401,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
                         around the {axes[0]} axis by {Word(axes[0])} of them, then the rotation around the {axes[1]} axis by {Word(axes[1])} one
                         and finally the rotation around the {axes[2]} axis by {Word(axes[2])} one
                         <para>Every angle of the value is in radians and the rotation of an angle is clockwise where the axis of it
-                        is looked along towards the origin, and the rotation turns the three axes of the space and leaves the fourth
-                        one where it is</para>
+                        is looked along towards the origin, and the rotation turns the x, y and z axes of the space and leaves the
+                        w axis where it is</para>
                         """, "    ");
             sb.AppendLine("    /// <param name=\"xyz\">The angles of the x axis, the y axis and the z axis, in radians</param>");
             sb.AppendLine($"    /// <returns>The matrix of the rotation in the {Spelling(order)} order</returns>");
@@ -433,14 +433,15 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
     /// <summary>
     /// Adds the members that reach the matrix of the view of the space to the square matrix <paramref name="name"/>:
     /// the view of the space is the matrix that reads a value of the space as the value of the eye of a view, which is
-    /// turned towards the value the view looks along, so the value of the third axis of the space of the view is the
+    /// turned towards the value the view looks along, so the value of the +z axis of the space of the view is the
     /// one that is looked along and the value of the fourth column of the matrix is the one of the eye of it.
     /// <para>The members of the value of an eye position and the one of a target it looks at read the members of the
     /// value of a direction between the two of them, so the arithmetic of the view of the space is held by the members
     /// of a direction alone. The view of the space is the one of the left of it, which keeps the value that is looked
-    /// along on the third axis of the space, or the one of the right of it, which holds the opposite of that value,
-    /// and the member that names the rows of the matrix reaches the view of the value as the matrix whose rows are the
-    /// axes of the view, which reads a value of the space as the value of the view without a transpose.</para>
+    /// along on the +z axis of the space, or the one of the right of it, which holds the opposite of that value on the
+    /// -z axis of it, and the member that names the rows of the matrix reaches the view of the value as the matrix
+    /// whose rows are the axes of the view, which reads a value of the space as the value of the view without a
+    /// transpose.</para>
     /// </summary>
     /// <param name="sb">The source of the file</param>
     /// <param name="name">The name of the square matrix</param>
@@ -493,8 +494,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
                     <para>Every value of the member is read where it is: the two points of the value of the eye position and the
                     one of the target have to be apart from each other, and the value that stays over the one that is looked
                     along has to be of the length one and not collinear with it. The view of the value is the one of the left of
-                    it with the value that is looked along turned around, since the two of them look along the value with the
-                    axes of the space of the view apart</para>
+                    it with the value that is looked along turned around, so it looks along the -z axis of the space of the view,
+                    since the two of them look along the value with the axes of the space of the view apart</para>
                     {Eye}
                     <returns>The matrix of the view</returns>
                     """, "    ");
@@ -524,8 +525,9 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
                     <paramref name="target"/>
                     <para>The rows of the matrix are the axes of the space of the view, which reads a value of the space as the
                     value of the view without a transpose, and the view of the value is the one of the left of it with the value
-                    that is looked along turned around. Every value of the member is read where it is: the two points of the value
-                    of the eye position and the one of the target have to be apart from each other, and the value that stays over
+                    that is looked along turned around, so it looks along the -z axis of the space of the view. Every value of the
+                    member is read where it is: the two points of the value of the eye position and the one of the target have to
+                    be apart from each other, and the value that stays over
                     the one that is looked along has to be of the length one and not collinear with it</para>
                     {Eye}
                     <returns>The matrix of the view</returns>
@@ -555,17 +557,17 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
                     <para>Every value of the member is read where it is: the value of the direction is the one the view looks
                     along, and the value that stays over the one that is looked along has to be of the length one and not
                     collinear with it. The view of the value is the one of the left of it with the value that is looked along
-                    turned around</para>
+                    turned around, so it looks along the -z axis of the space of the view</para>
                     {Direction}
                     <returns>The matrix of the view</returns>
                     """, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} LookTo_RH({vec} eye, {vec} dir, {vec} up)");
         sb.AppendLine("    {");
-        sb.AppendLine("        // the value that is looked along, the value of the first axis of the space of the view and the one of");
-        sb.AppendLine("        // the second axis of it: the value of the first axis is at a right angle with the one that is looked");
-        sb.AppendLine("        // along and the one that stays over it, and the value of the second axis is at a right angle with the two");
-        sb.AppendLine("        // of them");
+        sb.AppendLine("        // the value that is looked along, the value of the x axis of the space of the view and the one of");
+        sb.AppendLine("        // the y axis of it: the value of the x axis is at a right angle with the one that is looked along");
+        sb.AppendLine("        // and the one that stays over it, and the value of the y axis is at a right angle with the two of");
+        sb.AppendLine("        // them");
         sb.AppendLine("        var f = math.normalize(dir);");
         sb.AppendLine("        var s = math.normalize(math.cross(f, up));");
         sb.AppendLine("        var u = math.cross(s, f);");
@@ -608,8 +610,8 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} LookTo_RH_Row({vec} eye, {vec} dir, {vec} up)");
         sb.AppendLine("    {");
-        sb.AppendLine("        // the value that is looked along, the value of the first axis of the space of the view and the one of");
-        sb.AppendLine("        // the second axis of it, which the member reads on the rows of the matrix");
+        sb.AppendLine("        // the value that is looked along, the value of the x axis of the space of the view and the one of");
+        sb.AppendLine("        // the y axis of it, which the member reads on the rows of the matrix");
         sb.AppendLine("        var f = math.normalize(dir);");
         sb.AppendLine("        var s = math.normalize(math.cross(f, up));");
         sb.AppendLine("        var u = math.cross(s, f);");
@@ -629,13 +631,13 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
     /// <paramref name="name"/>: the projection of the space reads the value of the volume of the view, which is the
     /// space between the two planes at the distance of the near value and the one of the far value of it from the eye
     /// of the view, as the value of the cube of the view, whose value on every axis of the space is between the
-    /// negative one of the kind and the one of it and whose value on the third axis of it is the one of the kind at the
-    /// near plane of the volume and the zero of it at the far plane of it, so the range of the third axis of the cube
+    /// negative one of the kind and the one of it and whose value on the ±z axis of it is the one of the kind at the
+    /// near plane of the volume and the zero of it at the far plane of it, so the range of the ±z axis of the cube
     /// is reversed and the member of a projection reads the far plane of the volume as the zero of the kind. The
     /// reversed range holds the most of the precision of the kind beside the near plane of the volume, so the depth of
-    /// the value of the third axis of the cube is cleared as the one of the kind and tested with the value that is
+    /// the value of the ±z axis of the cube is cleared as the one of the kind and tested with the value that is
     /// greater than the other one.
-    /// <para>The projection of the value of a field of view reads the angle of the first axis of the space of the view
+    /// <para>The projection of the value of a field of view reads the angle of the x axis of the space of the view
     /// beside the aspect of it, and the projection of the value of a view volume reads the two planes of every axis of
     /// the space. The member that names the rows of the matrix reads the projection of the value as the matrix whose
     /// rows are the axes of it, which reads a value of the space as the value of the view without a transpose.</para>
@@ -648,20 +650,21 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         var scalar = typ.compType;
         var vec4 = VectorGenShared.VecName(typ, Size, false);
         var one = typ.one;
+        var two = typ.two;
         var half = typ.half;
-        // the doc of the range of the third axis of the cube of the view, which every member of a projection carries:
+        // the doc of the range of the ±z axis of the cube of the view, which every member of a projection carries:
         // the range is the reversed one, which holds the most of the precision of the kind beside the near plane of the
-        // volume, so the depth of a value of the third axis of the cube is cleared as the one of the kind and tested
+        // volume, so the depth of a value of the ±z axis of the cube is cleared as the one of the kind and tested
         // with the value that is greater than the other one
         const string Depth = """
                              <remarks>
-                             <para>The range of the third axis of the cube of the view is the <b>reversed</b> one, which is <b>[1, 0]</b>
-                             beside the one [0, 1] of a value that reads the third axis of the space the other way: the value of the near
+                             <para>The range of the ±z axis of the cube of the view is the <b>reversed</b> one, which is <b>[1, 0]</b>
+                             beside the one [0, 1] of a space whose ±z axis is read the other way: the value of the near
                              plane of the volume is the one of the kind on that axis and the one of the far plane of it is the zero of
                              it.</para>
                              <para>The reversed range reads the value of the near plane of the volume as the one of the kind, which is the
-                             value the kind of the component reads the most precisely, so the value of the third axis of the cube is
-                             <b>more precise</b> than the one of a range that is not reversed. The depth of the value of the third axis of
+                             value the kind of the component reads the most precisely, so the value of the ±z axis of the cube is
+                             <b>more precise</b> than the one of a range that is not reversed. The depth of the value of the ±z axis of
                              the cube is <b>cleared as the one of the kind</b> and the test of it reads the <b>greater</b> of two values,
                              which is <c>Greater</c> or <c>GreaterEqual</c>.</para>
                              </remarks>
@@ -675,14 +678,14 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
             first = false;
         }
 
-        // the range of the third axis of the cube of the view is the reversed one, which is [1, 0] beside the one
-        // [0, 1] of a value that reads the third axis of the space the other way: the value of the near plane of the
-        // volume is the one of the kind on the third axis of the cube and the one of the far plane of it is the zero of
+        // the range of the ±z axis of the cube of the view is the reversed one, which is [1, 0] beside the one
+        // [0, 1] of a space whose ±z axis is read the other way: the value of the near plane of the
+        // volume is the one of the kind on the ±z axis of the cube and the one of the far plane of it is the zero of
         // that axis, which holds the most of the precision of the kind beside the near plane of the volume, so the
-        // depth of the value of the third axis of the cube is cleared as the one of the kind and tested with the value
+        // depth of the value of the ±z axis of the cube is cleared as the one of the kind and tested with the value
         // that is greater than the other one
-        sb.AppendLine("    // the range of the third axis of the cube of the view is the reversed one, which is [1, 0] beside the one");
-        sb.AppendLine("    // [0, 1] of a value that reads the third axis of the space the other way: the value of the near plane of");
+        sb.AppendLine("    // the range of the ±z axis of the cube of the view is the reversed one, which is [1, 0] beside the one");
+        sb.AppendLine("    // [0, 1] of a space whose ±z axis is read the other way: the value of the near plane of");
         sb.AppendLine("    // the volume is the one of the kind on that axis and the one of the far plane of it is the zero of it, so");
         sb.AppendLine("    // the member of a projection of the volume of a single axis of the space reads the far plane of it as the");
         sb.AppendLine("    // zero of the kind. The reversed range holds the most of the precision of the kind beside the near plane of");
@@ -692,11 +695,11 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the left of it of the value of a view volume of
-                    <paramref name="width"/> and <paramref name="height"/> centered on the third axis of the space
+                    <paramref name="width"/> and <paramref name="height"/> centered on the +z axis of the space
                     <para>The volume of the value is the one between the two planes at the distance of <paramref name="near"/> and
                     the one of the value of <paramref name="far"/> from the eye of the view, which is the origin of the space, and
-                    the value of the volume is read on the first axis of the space by the value of the width of it and on the
-                    second axis of it by the one of the height of it</para>
+                    the value of the volume is read on the x axis of the space by the value of the width of it and on the
+                    y axis of it by the one of the height of it</para>
                     <param name="width">The width of the view volume</param>
                     <param name="height">The height of the view volume</param>
                     <param name="near">The distance to the near plane of the view volume</param>
@@ -707,28 +710,26 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} Ortho({scalar} width, {scalar} height, {scalar} near, {scalar} far)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var rcp_width = {one} / width;");
-        sb.AppendLine($"        var rcp_height = {one} / height;");
-        sb.AppendLine($"        var r = {one} / (far - near);");
+        sb.AppendLine($"        var rcpdz = {one} / (far - near);");
         sb.AppendLine("        return new(");
-        sb.AppendLine($"            new {vec4}(rcp_width + rcp_width, default, default, default),");
-        sb.AppendLine($"            new {vec4}(default, rcp_height + rcp_height, default, default),");
-        sb.AppendLine($"            new {vec4}(default, default, -r, default),");
-        sb.AppendLine($"            new {vec4}(default, default, r * far, {one})");
+        sb.AppendLine($"            new {vec4}({two} / width, default, default, default),");
+        sb.AppendLine($"            new {vec4}(default, {two} / height, default, default),");
+        sb.AppendLine($"            new {vec4}(default, default, -rcpdz, default),");
+        sb.AppendLine($"            new {vec4}(default, default, far * rcpdz, {one})");
         sb.AppendLine("        );");
         sb.AppendLine("    }");
 
         Separate();
         AddDoc(sb, $"""
-                    Returns the matrix of the projection of the space of the left of it of the value of a view volume whose first
-                    axis of the space is between <paramref name="left"/> and <paramref name="right"/> and whose second axis of it
+                    Returns the matrix of the projection of the space of the left of it of the value of a view volume whose x axis
+                    of the space is between <paramref name="left"/> and <paramref name="right"/> and whose y axis of it
                     is between <paramref name="bottom"/> and <paramref name="top"/>
                     <para>The volume of the value is the one between the two planes at the distance of <paramref name="near"/> and
                     the one of the value of <paramref name="far"/> from the eye of the view, which is the origin of the space</para>
-                    <param name="left">The value of the first axis of the space the view volume starts at</param>
-                    <param name="right">The value of the first axis of the space the view volume ends at</param>
-                    <param name="bottom">The value of the second axis of the space the view volume starts at</param>
-                    <param name="top">The value of the second axis of the space the view volume ends at</param>
+                    <param name="left">The value of the x axis of the space the view volume starts at</param>
+                    <param name="right">The value of the x axis of the space the view volume ends at</param>
+                    <param name="bottom">The value of the y axis of the space the view volume starts at</param>
+                    <param name="top">The value of the y axis of the space the view volume ends at</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <param name="far">The distance to the far plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
@@ -740,22 +741,22 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    {");
         sb.AppendLine($"        var rcp_width = {one} / (right - left);");
         sb.AppendLine($"        var rcp_height = {one} / (top - bottom);");
-        sb.AppendLine($"        var r = {one} / (far - near);");
+        sb.AppendLine($"        var rcpdz = {one} / (far - near);");
         sb.AppendLine("        return new(");
         sb.AppendLine($"            new {vec4}(rcp_width + rcp_width, default, default, default),");
         sb.AppendLine($"            new {vec4}(default, rcp_height + rcp_height, default, default),");
-        sb.AppendLine($"            new {vec4}(default, default, -r, default),");
-        sb.AppendLine($"            new {vec4}(-(left + right) * rcp_width, -(top + bottom) * rcp_height, r * far, {one})");
+        sb.AppendLine($"            new {vec4}(default, default, -rcpdz, default),");
+        sb.AppendLine($"            new {vec4}(-(left + right) * rcp_width, -(top + bottom) * rcp_height, far * rcpdz, {one})");
         sb.AppendLine("        );");
         sb.AppendLine("    }");
 
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the right of it of the value of a view volume of
-                    <paramref name="width"/> and <paramref name="height"/> centered on the third axis of the space
-                    <para>The projection of the value is the one of the left of it on the third axis of the space turned around,
-                    which reads the value of the volume between <paramref name="near"/> and <paramref name="far"/> in front of the
-                    eye of the view as the one of the cube of the view</para>
+                    <paramref name="width"/> and <paramref name="height"/> centered on the -z axis of the space
+                    <para>The projection of the value is the one of the left of it on the +z axis turned around, which is the -z
+                    axis, and it reads the value of the volume between <paramref name="near"/> and <paramref name="far"/> in front of
+                    the eye of the view as the one of the cube of the view</para>
                     <param name="width">The width of the view volume</param>
                     <param name="height">The height of the view volume</param>
                     <param name="near">The distance to the near plane of the view volume</param>
@@ -766,29 +767,27 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} Ortho_RH({scalar} width, {scalar} height, {scalar} near, {scalar} far)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var rcp_width = {one} / width;");
-        sb.AppendLine($"        var rcp_height = {one} / height;");
-        sb.AppendLine($"        var r = {one} / (far - near);");
+        sb.AppendLine($"        var rcpdz = {one} / (far - near);");
         sb.AppendLine("        return new(");
-        sb.AppendLine($"            new {vec4}(rcp_width + rcp_width, default, default, default),");
-        sb.AppendLine($"            new {vec4}(default, rcp_height + rcp_height, default, default),");
-        sb.AppendLine($"            new {vec4}(default, default, r, default),");
-        sb.AppendLine($"            new {vec4}(default, default, r * far, {one})");
+        sb.AppendLine($"            new {vec4}({two} / width, default, default, default),");
+        sb.AppendLine($"            new {vec4}(default, {two} / height, default, default),");
+        sb.AppendLine($"            new {vec4}(default, default, rcpdz, default),");
+        sb.AppendLine($"            new {vec4}(default, default, far * rcpdz, {one})");
         sb.AppendLine("        );");
         sb.AppendLine("    }");
 
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the right of it of the value of a view volume whose
-                    first axis of the space is between <paramref name="left"/> and <paramref name="right"/> and whose second
+                    x axis of the space is between <paramref name="left"/> and <paramref name="right"/> and whose y
                     axis of it is between <paramref name="bottom"/> and <paramref name="top"/>
-                    <para>The projection of the value is the one of the left of it on the third axis of the space turned around,
-                    which reads the value of the volume between <paramref name="near"/> and <paramref name="far"/> in front of the
-                    eye of the view as the one of the cube of the view</para>
-                    <param name="left">The value of the first axis of the space the view volume starts at</param>
-                    <param name="right">The value of the first axis of the space the view volume ends at</param>
-                    <param name="bottom">The value of the second axis of the space the view volume starts at</param>
-                    <param name="top">The value of the second axis of the space the view volume ends at</param>
+                    <para>The projection of the value is the one of the left of it on the +z axis turned around, which is the -z
+                    axis, and it reads the value of the volume between <paramref name="near"/> and <paramref name="far"/> in front of
+                    the eye of the view as the one of the cube of the view</para>
+                    <param name="left">The value of the x axis of the space the view volume starts at</param>
+                    <param name="right">The value of the x axis of the space the view volume ends at</param>
+                    <param name="bottom">The value of the y axis of the space the view volume starts at</param>
+                    <param name="top">The value of the y axis of the space the view volume ends at</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <param name="far">The distance to the far plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
@@ -800,154 +799,154 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    {");
         sb.AppendLine($"        var rcp_width = {one} / (right - left);");
         sb.AppendLine($"        var rcp_height = {one} / (top - bottom);");
-        sb.AppendLine($"        var r = {one} / (far - near);");
+        sb.AppendLine($"        var rcpdz = {one} / (far - near);");
         sb.AppendLine("        return new(");
         sb.AppendLine($"            new {vec4}(rcp_width + rcp_width, default, default, default),");
         sb.AppendLine($"            new {vec4}(default, rcp_height + rcp_height, default, default),");
-        sb.AppendLine($"            new {vec4}(default, default, r, default),");
-        sb.AppendLine($"            new {vec4}(-(left + right) * rcp_width, -(top + bottom) * rcp_height, r * far, {one})");
+        sb.AppendLine($"            new {vec4}(default, default, rcpdz, default),");
+        sb.AppendLine($"            new {vec4}(-(left + right) * rcp_width, -(top + bottom) * rcp_height, far * rcpdz, {one})");
         sb.AppendLine("        );");
         sb.AppendLine("    }");
 
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the left of it of the value of a field of view of
-                    <paramref name="verticalFov"/> and the aspect of <paramref name="aspect"/>
-                    <para>The value of the field is the angle of the second axis of the space of the view and the aspect of the
-                    view is the value of the first axis of it beside the one of the second axis of it. The value of the volume
+                    <paramref name="vertical_fov"/> and the aspect of <paramref name="aspect"/>
+                    <para>The value of the field is the angle of the y axis of the space of the view and the aspect of the
+                    view is the value of the x axis of it beside the one of the y axis of it. The value of the volume
                     between <paramref name="near"/> and <paramref name="far"/> in front of the eye of the view, which is the origin
                     of the space, is read as the one of the cube of the view, and the value of the fourth component of the
-                    result of the member is the one of the third axis of the space of the view</para>
-                    <param name="verticalFov">The angle of the field of view of the second axis of the space, in radians</param>
-                    <param name="aspect">The value of the first axis of the space of the view beside the one of the second axis of it</param>
+                    result of the member is the one of the +z axis of the space of the view</para>
+                    <param name="vertical_fov">The angle of the field of view of the y axis of the space, in radians</param>
+                    <param name="aspect">The value of the x axis of the space of the view beside the one of the y axis of it</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <param name="far">The distance to the far plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
                     """, "    ");
         AddDoc(sb, Depth, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} PerspectiveFov({scalar} verticalFov, {scalar} aspect, {scalar} near," +
+        sb.AppendLine($"    public static {name} PerspectiveFov({scalar} vertical_fov, {scalar} aspect, {scalar} near," +
                       $" {scalar} far)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var h = {one} / math.tan(verticalFov * {half});");
+        sb.AppendLine($"        var h = {one} / math.tan(vertical_fov * {half});");
         sb.AppendLine("        var w = h / aspect;");
-        sb.AppendLine($"        var rcpdz = {one} / (far - near);");
+        sb.AppendLine($"        var r = far / (far - near);");
         sb.AppendLine("        return new(");
         sb.AppendLine($"            new {vec4}(w, default, default, default),");
         sb.AppendLine($"            new {vec4}(default, h, default, default),");
-        sb.AppendLine($"            new {vec4}(default, default, -near * rcpdz, {one}),");
-        sb.AppendLine($"            new {vec4}(default, default, near * far * rcpdz, default)");
+        sb.AppendLine($"            new {vec4}(default, default, {one} - r, {one}),");
+        sb.AppendLine($"            new {vec4}(default, default, r * near, default)");
         sb.AppendLine("        );");
         sb.AppendLine("    }");
 
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the right of it of the value of a field of view of
-                    <paramref name="verticalFov"/> and the aspect of <paramref name="aspect"/>
-                    <para>The projection of the value is the one of the left of it on the third axis of the space turned around,
-                    which reads the value of the volume between <paramref name="near"/> and <paramref name="far"/> in front of the
-                    eye of the view as the one of the cube of the view</para>
-                    <param name="verticalFov">The angle of the field of view of the second axis of the space, in radians</param>
-                    <param name="aspect">The value of the first axis of the space of the view beside the one of the second axis of it</param>
+                    <paramref name="vertical_fov"/> and the aspect of <paramref name="aspect"/>
+                    <para>The projection of the value is the one of the left of it on the +z axis turned around, which is the -z
+                    axis, and it reads the value of the volume between <paramref name="near"/> and <paramref name="far"/> in front
+                    of the eye of the view as the one of the cube of the view</para>
+                    <param name="vertical_fov">The angle of the field of view of the y axis of the space, in radians</param>
+                    <param name="aspect">The value of the x axis of the space of the view beside the one of the y axis of it</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <param name="far">The distance to the far plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
                     """, "    ");
         AddDoc(sb, Depth, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} PerspectiveFov_RH({scalar} verticalFov, {scalar} aspect," +
+        sb.AppendLine($"    public static {name} PerspectiveFov_RH({scalar} vertical_fov, {scalar} aspect," +
                       $" {scalar} near, {scalar} far)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var h = {one} / math.tan(verticalFov * {half});");
+        sb.AppendLine($"        var h = {one} / math.tan(vertical_fov * {half});");
         sb.AppendLine("        var w = h / aspect;");
-        sb.AppendLine($"        var rcpdz = {one} / (far - near);");
+        sb.AppendLine($"        var r = far / (far - near);");
         sb.AppendLine("        return new(");
         sb.AppendLine($"            new {vec4}(w, default, default, default),");
         sb.AppendLine($"            new {vec4}(default, h, default, default),");
-        sb.AppendLine($"            new {vec4}(default, default, near * rcpdz, -{one}),");
-        sb.AppendLine($"            new {vec4}(default, default, near * far * rcpdz, default)");
+        sb.AppendLine($"            new {vec4}(default, default, r - {one}, -{one}),");
+        sb.AppendLine($"            new {vec4}(default, default, r * near, default)");
         sb.AppendLine("        );");
         sb.AppendLine("    }");
 
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the left of it of the value of a field of view of
-                    <paramref name="verticalFov"/> and the aspect of <paramref name="aspect"/>, whose rows are the axes of the view
+                    <paramref name="vertical_fov"/> and the aspect of <paramref name="aspect"/>, whose rows are the axes of the view
                     <para>The rows of the matrix are the axes of the space of the view, which reads a value of the space as the
                     value of the view without a transpose. The value of the volume between <paramref name="near"/> and
                     <paramref name="far"/> in front of the eye of the view is read as the one of the cube of the view, and the
-                    value of the fourth component of the result of the member is the one of the third axis of the space of the
+                    value of the fourth component of the result of the member is the one of the +z axis of the space of the
                     view</para>
-                    <param name="verticalFov">The angle of the field of view of the second axis of the space, in radians</param>
-                    <param name="aspect">The value of the first axis of the space of the view beside the one of the second axis of it</param>
+                    <param name="vertical_fov">The angle of the field of view of the y axis of the space, in radians</param>
+                    <param name="aspect">The value of the x axis of the space of the view beside the one of the y axis of it</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <param name="far">The distance to the far plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
                     """, "    ");
         AddDoc(sb, Depth, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} PerspectiveFov_Row({scalar} verticalFov, {scalar} aspect," +
+        sb.AppendLine($"    public static {name} PerspectiveFov_Row({scalar} vertical_fov, {scalar} aspect," +
                       $" {scalar} near, {scalar} far)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var h = {one} / math.tan(verticalFov * {half});");
+        sb.AppendLine($"        var h = {one} / math.tan(vertical_fov * {half});");
         sb.AppendLine("        var w = h / aspect;");
-        sb.AppendLine($"        var rcpdz = {one} / (far - near);");
+        sb.AppendLine($"        var r = far / (far - near);");
         sb.AppendLine("        return new(");
-        sb.AppendLine($"            w,       default, default, default,");
-        sb.AppendLine($"            default, h,       default, default,");
-        sb.AppendLine($"            default, default, -near * rcpdz, {one},");
-        sb.AppendLine($"            default, default, near * far * rcpdz, default");
+        sb.AppendLine($"            w,       default, default,           default,");
+        sb.AppendLine($"            default, h,       default,           default,");
+        sb.AppendLine($"            default, default, {one} - r,         {one},");
+        sb.AppendLine($"            default, default, r * near,          default");
         sb.AppendLine("        );");
         sb.AppendLine("    }");
 
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the right of it of the value of a field of view of
-                    <paramref name="verticalFov"/> and the aspect of <paramref name="aspect"/>, whose rows are the axes of the view
+                    <paramref name="vertical_fov"/> and the aspect of <paramref name="aspect"/>, whose rows are the axes of the view
                     <para>The rows of the matrix are the axes of the space of the view, which reads a value of the space as the
                     value of the view without a transpose, and the projection of the value is the one of the left of it on the
-                    third axis of the space turned around</para>
-                    <param name="verticalFov">The angle of the field of view of the second axis of the space, in radians</param>
-                    <param name="aspect">The value of the first axis of the space of the view beside the one of the second axis of it</param>
+                    +z axis turned around, which is the -z axis</para>
+                    <param name="vertical_fov">The angle of the field of view of the y axis of the space, in radians</param>
+                    <param name="aspect">The value of the x axis of the space of the view beside the one of the y axis of it</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <param name="far">The distance to the far plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
                     """, "    ");
         AddDoc(sb, Depth, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} PerspectiveFov_RH_Row({scalar} verticalFov, {scalar} aspect," +
+        sb.AppendLine($"    public static {name} PerspectiveFov_RH_Row({scalar} vertical_fov, {scalar} aspect," +
                       $" {scalar} near, {scalar} far)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var h = {one} / math.tan(verticalFov * {half});");
+        sb.AppendLine($"        var h = {one} / math.tan(vertical_fov * {half});");
         sb.AppendLine("        var w = h / aspect;");
-        sb.AppendLine($"        var rcpdz = {one} / (far - near);");
+        sb.AppendLine($"        var r = far / (far - near);");
         sb.AppendLine("        return new(");
-        sb.AppendLine($"            w,       default, default, default,");
-        sb.AppendLine($"            default, h,       default, default,");
-        sb.AppendLine($"            default, default, near * rcpdz, -{one},");
-        sb.AppendLine($"            default, default, near * far * rcpdz, default");
+        sb.AppendLine($"            w,       default, default,   default,");
+        sb.AppendLine($"            default, h,       default,   default,");
+        sb.AppendLine($"            default, default, r - {one}, -{one},");
+        sb.AppendLine($"            default, default, r * near,  default");
         sb.AppendLine("        );");
         sb.AppendLine("    }");
 
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the left of it of the value of an infinite field of view
-                    of <paramref name="verticalFov"/> and the aspect of <paramref name="aspect"/>
-                    <para>The value of the field is the angle of the second axis of the space of the view and the aspect of the
-                    view is the value of the first axis of it beside the one of the second axis of it. The volume of the value is
-                    the one in front of the eye of the view without a far plane, so the value of the third axis of the space is
-                    read where it is and the value of the fourth component of the result of the member is the one of the third
+                    of <paramref name="vertical_fov"/> and the aspect of <paramref name="aspect"/>
+                    <para>The value of the field is the angle of the y axis of the space of the view and the aspect of the
+                    view is the value of the x axis of it beside the one of the y axis of it. The volume of the value is
+                    the one in front of the eye of the view without a far plane, so the value of the +z axis of the space is
+                    read where it is and the value of the fourth component of the result of the member is the one of the +z
                     axis of the space</para>
-                    <param name="verticalFov">The angle of the field of view of the second axis of the space, in radians</param>
-                    <param name="aspect">The value of the first axis of the space of the view beside the one of the second axis of it</param>
+                    <param name="vertical_fov">The angle of the field of view of the y axis of the space, in radians</param>
+                    <param name="aspect">The value of the x axis of the space of the view beside the one of the y axis of it</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
                     """, "    ");
         AddDoc(sb, Depth, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} PerspectiveFov({scalar} verticalFov, {scalar} aspect, {scalar} near)");
+        sb.AppendLine($"    public static {name} PerspectiveFov({scalar} vertical_fov, {scalar} aspect, {scalar} near)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var h = {one} / math.tan(verticalFov * {half});");
+        sb.AppendLine($"        var h = {one} / math.tan(vertical_fov * {half});");
         sb.AppendLine("        var w = h / aspect;");
         sb.AppendLine("        return new(");
         sb.AppendLine($"            new {vec4}(w, default, default, default),");
@@ -960,19 +959,19 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the right of it of the value of an infinite field of view
-                    of <paramref name="verticalFov"/> and the aspect of <paramref name="aspect"/>
-                    <para>The projection of the value is the one of the left of it on the third axis of the space turned around,
-                    whose volume is the one in front of the eye of the view without a far plane</para>
-                    <param name="verticalFov">The angle of the field of view of the second axis of the space, in radians</param>
-                    <param name="aspect">The value of the first axis of the space of the view beside the one of the second axis of it</param>
+                    of <paramref name="vertical_fov"/> and the aspect of <paramref name="aspect"/>
+                    <para>The projection of the value is the one of the left of it on the +z axis turned around, which is the -z
+                    axis, whose volume is the one in front of the eye of the view without a far plane</para>
+                    <param name="vertical_fov">The angle of the field of view of the y axis of the space, in radians</param>
+                    <param name="aspect">The value of the x axis of the space of the view beside the one of the y axis of it</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
                     """, "    ");
         AddDoc(sb, Depth, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} PerspectiveFov_RH({scalar} verticalFov, {scalar} aspect, {scalar} near)");
+        sb.AppendLine($"    public static {name} PerspectiveFov_RH({scalar} vertical_fov, {scalar} aspect, {scalar} near)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var h = {one} / math.tan(verticalFov * {half});");
+        sb.AppendLine($"        var h = {one} / math.tan(vertical_fov * {half});");
         sb.AppendLine("        var w = h / aspect;");
         sb.AppendLine("        return new(");
         sb.AppendLine($"            new {vec4}(w, default, default, default),");
@@ -985,20 +984,20 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the left of it of the value of an infinite field of view
-                    of <paramref name="verticalFov"/> and the aspect of <paramref name="aspect"/>, whose rows are the axes of the view
+                    of <paramref name="vertical_fov"/> and the aspect of <paramref name="aspect"/>, whose rows are the axes of the view
                     <para>The rows of the matrix are the axes of the space of the view, which reads a value of the space as the
                     value of the view without a transpose. The volume of the value is the one in front of the eye of the view
-                    without a far plane, so the value of the third axis of the space is read where it is</para>
-                    <param name="verticalFov">The angle of the field of view of the second axis of the space, in radians</param>
-                    <param name="aspect">The value of the first axis of the space of the view beside the one of the second axis of it</param>
+                    without a far plane, so the value of the +z axis of the space is read where it is</para>
+                    <param name="vertical_fov">The angle of the field of view of the y axis of the space, in radians</param>
+                    <param name="aspect">The value of the x axis of the space of the view beside the one of the y axis of it</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
                     """, "    ");
         AddDoc(sb, Depth, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} PerspectiveFov_Row({scalar} verticalFov, {scalar} aspect, {scalar} near)");
+        sb.AppendLine($"    public static {name} PerspectiveFov_Row({scalar} vertical_fov, {scalar} aspect, {scalar} near)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var h = {one} / math.tan(verticalFov * {half});");
+        sb.AppendLine($"        var h = {one} / math.tan(vertical_fov * {half});");
         sb.AppendLine("        var w = h / aspect;");
         sb.AppendLine("        return new(");
         sb.AppendLine($"            w,       default, default, default,");
@@ -1011,20 +1010,20 @@ public class Mat4x4ArithGenerator : IIncrementalGenerator
         Separate();
         AddDoc(sb, $"""
                     Returns the matrix of the projection of the space of the right of it of the value of an infinite field of view
-                    of <paramref name="verticalFov"/> and the aspect of <paramref name="aspect"/>, whose rows are the axes of the view
+                    of <paramref name="vertical_fov"/> and the aspect of <paramref name="aspect"/>, whose rows are the axes of the view
                     <para>The rows of the matrix are the axes of the space of the view, which reads a value of the space as the
                     value of the view without a transpose, and the projection of the value is the one of the left of it on the
-                    third axis of the space turned around</para>
-                    <param name="verticalFov">The angle of the field of view of the second axis of the space, in radians</param>
-                    <param name="aspect">The value of the first axis of the space of the view beside the one of the second axis of it</param>
+                    +z axis turned around, which is the -z axis</para>
+                    <param name="vertical_fov">The angle of the field of view of the y axis of the space, in radians</param>
+                    <param name="aspect">The value of the x axis of the space of the view beside the one of the y axis of it</param>
                     <param name="near">The distance to the near plane of the view volume</param>
                     <returns>The matrix of the projection</returns>
                     """, "    ");
         AddDoc(sb, Depth, "    ");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} PerspectiveFov_RH_Row({scalar} verticalFov, {scalar} aspect, {scalar} near)");
+        sb.AppendLine($"    public static {name} PerspectiveFov_RH_Row({scalar} vertical_fov, {scalar} aspect, {scalar} near)");
         sb.AppendLine("    {");
-        sb.AppendLine($"        var h = {one} / math.tan(verticalFov * {half});");
+        sb.AppendLine($"        var h = {one} / math.tan(vertical_fov * {half});");
         sb.AppendLine("        var w = h / aspect;");
         sb.AppendLine("        return new(");
         sb.AppendLine($"            w,       default, default, default,");

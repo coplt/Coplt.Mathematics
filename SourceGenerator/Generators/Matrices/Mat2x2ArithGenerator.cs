@@ -120,7 +120,7 @@ public class Mat2x2ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    /// is the angle of the rotation of the value of 2 components that the matrix is multiplied by, and the");
         sb.AppendLine("    /// angle of the rotation is in radians");
         sb.AppendLine("    /// <para>The rotation keeps the length of the value it is handed and the origin of the plane, and the");
-        sb.AppendLine("    /// first axis of the plane reaches the second one where the angle of the rotation is a right angle, so a");
+        sb.AppendLine("    /// x axis of the plane reaches the y one where the angle of the rotation is a right angle, so a");
         sb.AppendLine("    /// value turns the way the plane turns where the angle of the rotation grows</para>");
         sb.AppendLine("    /// </summary>");
         sb.AppendLine("    /// <param name=\"angle\">The angle of the rotation, in radians</param>");
@@ -160,13 +160,13 @@ public class Mat2x2ArithGenerator : IIncrementalGenerator
         sb.AppendLine();
 
         sb.AppendLine("    /// <summary>");
-        sb.AppendLine("    /// Returns the matrix that scales the first axis of the plane by <paramref name=\"x\"/> and the second");
-        sb.AppendLine("    /// axis of it by <paramref name=\"y\"/>");
+        sb.AppendLine("    /// Returns the matrix that scales the x axis of the plane by <paramref name=\"x\"/> and the y axis of");
+        sb.AppendLine("    /// it by <paramref name=\"y\"/>");
         sb.AppendLine("    /// <para>The matrix holds the two values on the diagonal of it and the zero of the kind of it everywhere");
         sb.AppendLine("    /// else, so every axis of the plane is scaled on its own</para>");
         sb.AppendLine("    /// </summary>");
-        sb.AppendLine("    /// <param name=\"x\">The value the first axis of the plane is scaled by</param>");
-        sb.AppendLine("    /// <param name=\"y\">The value the second axis of the plane is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"x\">The value the x axis of the plane is scaled by</param>");
+        sb.AppendLine("    /// <param name=\"y\">The value the y axis of the plane is scaled by</param>");
         sb.AppendLine("    /// <returns>The matrix of the scale</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} Scale({scalar} x, {scalar} y) => new(");
@@ -176,8 +176,8 @@ public class Mat2x2ArithGenerator : IIncrementalGenerator
         sb.AppendLine();
 
         sb.AppendLine("    /// <summary>");
-        sb.AppendLine("    /// Returns the matrix that scales the first axis of the plane by the first component of");
-        sb.AppendLine("    /// <paramref name=\"v\"/> and the second axis of it by the second component of it");
+        sb.AppendLine("    /// Returns the matrix that scales the x axis of the plane by the first component of");
+        sb.AppendLine("    /// <paramref name=\"v\"/> and the y axis of it by the second component of it");
         sb.AppendLine("    /// <para>The matrix holds the components of the value on the diagonal of it and the zero of the kind of");
         sb.AppendLine("    /// it everywhere else, so every axis of the plane is scaled on its own</para>");
         sb.AppendLine("    /// </summary>");
@@ -214,15 +214,15 @@ public class Mat2x2ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    /// and whose second component holds the product of the tangent of <paramref name=\"ay\"/> with the first");
         sb.AppendLine("    /// component of it beside its own, so every axis of the plane is skewed along the other one</para>");
         sb.AppendLine("    /// </summary>");
-        sb.AppendLine("    /// <param name=\"ax\">The angle of the skew of the second axis of the plane along the first axis of it</param>");
-        sb.AppendLine("    /// <param name=\"ay\">The angle of the skew of the first axis of the plane along the second axis of it</param>");
+        sb.AppendLine("    /// <param name=\"ax\">The angle of the skew of the y axis of the plane along the x axis of it</param>");
+        sb.AppendLine("    /// <param name=\"ay\">The angle of the skew of the x axis of the plane along the y axis of it</param>");
         sb.AppendLine("    /// <returns>The matrix of the skew</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} Skew({scalar} ax, {scalar} ay) => Skew(new {vec}(ax, ay));");
         sb.AppendLine();
         sb.AppendLine("    /// <summary>");
         sb.AppendLine("    /// Returns the matrix that skews the plane by the angle of the first component of <paramref name=\"v\"/>");
-        sb.AppendLine("    /// along the second axis of it and by the angle of the second component of it along the first axis of it");
+        sb.AppendLine("    /// along the y axis of it and by the angle of the second component of it along the x axis of it");
         sb.AppendLine("    /// <para>The matrix holds the tangents of the two angles beside the one of the kind of the value on the");
         sb.AppendLine("    /// diagonal of it, so every axis of the plane is skewed along the other one</para>");
         sb.AppendLine("    /// </summary>");

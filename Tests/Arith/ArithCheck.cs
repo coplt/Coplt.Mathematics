@@ -3,7 +3,6 @@ using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
 using Algebras = Coplt.Mathematics.Algebras;
-
 using Coplt.Mathematics.Algebras.Generics.Dispatch;
 
 namespace Tests.Arith;
@@ -307,7 +306,7 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(vZero.cross(axisZ), vZero, "0 cross z");
             AllEqual<T, TScalar>(axisX.cross(allTwo * axisY), allTwo * axisZ, "cross is linear");
 
-            ScalarEqual(math.dot<T, TScalar>(axisZ, math.cross(axisX, axisY)), one, "cross of the basis vectors is the third axis");
+            ScalarEqual(math.dot<T, TScalar>(axisZ, math.cross(axisX, axisY)), one, "cross of the basis vectors is the z axis");
             ScalarEqual(math.dot<T, TScalar>(axisX, math.cross(axisX, axisY)), zero, "cross is orthogonal to the left operand");
             ScalarEqual(math.dot<T, TScalar>(axisY, math.cross(axisX, axisY)), zero, "cross is orthogonal to the right operand");
         }

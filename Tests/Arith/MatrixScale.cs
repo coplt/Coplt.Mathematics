@@ -22,7 +22,7 @@ public class TestMatrixScale
             Assert.That((uniform.m00, uniform.m01, uniform.m10, uniform.m11), Is.EqualTo((2f, 0f, 0f, 2f)),
                 "the scale of a single component");
 
-            // two values scale the first axis of the plane by the first of them and the second one by the second
+            // two values scale the x axis of the plane by the first of them and the y one by the second
             var diagonal = float2x2.Scale(2f, 3f);
             Assert.That((diagonal.m00, diagonal.m01, diagonal.m10, diagonal.m11), Is.EqualTo((2f, 0f, 0f, 3f)),
                 "the scale of two components");
@@ -30,11 +30,11 @@ public class TestMatrixScale
             // the value whose components the axes of the plane are scaled by is the two of them
             Assert.That(float2x2.Scale(new float2(2f, 3f)), Is.EqualTo(diagonal), "the scale of a column");
 
-            // every axis of the plane is scaled on its own, so the scale of the value of the first axis is the
-            // first axis scaled and it keeps no part of the second one
+            // every axis of the plane is scaled on its own, so the scale of the value of the x axis is the
+            // x axis scaled and it keeps no part of the y one
             var scaled = math.mul(diagonal, new float2(1f, 1f));
-            Assert.That(scaled.x, Is.EqualTo(2f), "the first axis of the plane");
-            Assert.That(scaled.y, Is.EqualTo(3f), "the second axis of the plane");
+            Assert.That(scaled.x, Is.EqualTo(2f), "the x axis of the plane");
+            Assert.That(scaled.y, Is.EqualTo(3f), "the y axis of the plane");
 
             // the scales of two values that are the reciprocal of each other keep the plane where it is, and the
             // identity of the kind is the one the scale of the one of it is
@@ -127,7 +127,7 @@ public class TestMatrixScale
     /// <summary>
     /// The scale of the space: the matrix of it holds the values the axes of the space are scaled by on the diagonal
     /// of it and the zero of the kind of it everywhere else, so every axis of the space is scaled on its own, and the
-    /// fourth axis of it keeps the one of the kind, which the scale of the space does not reach.
+    /// w axis of it keeps the one of the kind, which the scale of the space does not reach.
     /// </summary>
     [Test]
     public void Of4x4()
@@ -145,9 +145,9 @@ public class TestMatrixScale
             Assert.That(float4x4.Scale(new float3(2f, 3f, 4f)), Is.EqualTo(diagonal),
                 "the scale of a value of 3 components");
 
-            // the fourth axis of the space keeps the one of the kind, so the last column of the matrix is not the
+            // the w axis of the space keeps the one of the kind, so the last column of the matrix is not the
             // zero of the kind alone and the padding lane of every other column of it is the zero of it
-            Assert.That((diagonal.m33, diagonal.c3.w, diagonal.m03), Is.EqualTo((1f, 1f, 0f)), "the fourth axis");
+            Assert.That((diagonal.m33, diagonal.c3.w, diagonal.m03), Is.EqualTo((1f, 1f, 0f)), "the w axis");
             Assert.That((diagonal.c0.w, diagonal.c1.w, diagonal.c2.w), Is.EqualTo((0f, 0f, 0f)),
                 "the padding lanes of the columns of a single precision kind");
             Assert.That(double4x4.Scale(new double3(2d, 3d, 4d)).c0.vector.GetElement(3), Is.EqualTo(0d),

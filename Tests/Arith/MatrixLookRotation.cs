@@ -27,8 +27,8 @@ public class TestMatrixLookRotation
     {
         using (Assert.EnterMultipleScope())
         {
-            // the value that is looked along is the third axis of the space and the one that stays over it is the
-            // second one, so the axis that is at a right angle with the two of them is the first one and the matrix
+            // the value that is looked along is the z axis of the space and the one that stays over it is the
+            // y one, so the axis that is at a right angle with the two of them is the x one and the matrix
             // of the rotation is the identity of it
             Assert.That(Components(float3x3.LookRotation(new float3(0f, 0f, 1f), new float3(0f, 1f, 0f))),
                 Is.EqualTo((1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)).Within(1e-6f), "the axes of the identity");

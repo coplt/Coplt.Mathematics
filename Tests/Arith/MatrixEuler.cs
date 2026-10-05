@@ -92,7 +92,7 @@ public class TestMatrixEuler
 
     /// <summary>
     /// The rotation of the space of the three Euler angles of a matrix of 4 rows and 4 columns: the value of the
-    /// matrix of an order is the one of the shape of 3 rows and 3 columns of that order beside the fourth axis of the
+    /// matrix of an order is the one of the shape of 3 rows and 3 columns of that order beside the w axis of the
     /// space, which the rotation leaves where it is.
     /// </summary>
     [Test]
@@ -101,7 +101,7 @@ public class TestMatrixEuler
         using (Assert.EnterMultipleScope())
         {
             // the value of the matrix of an order is the one of the shape of 3 rows and 3 columns of that order
-            // beside the fourth axis of the space, which is the zero of the kind beside the one of it
+            // beside the w axis of the space, which is the zero of the kind beside the one of it
             Assert.That(float4x4.EulerXYZ(Angles), Is.EqualTo(new float4x4(float3x3.EulerXYZ(Angles), default)),
                 "the x-y-z order");
             Assert.That(float4x4.EulerXZY(Angles), Is.EqualTo(new float4x4(float3x3.EulerXZY(Angles), default)),
@@ -123,10 +123,10 @@ public class TestMatrixEuler
             Assert.That(float4x4.Euler(Angles, RotationOrder.YZX), Is.EqualTo(float4x4.EulerYZX(Angles)),
                 "the order of the value");
 
-            // the fourth axis of the space keeps the value it is handed, so the last column of the matrix is the
+            // the w axis of the space keeps the value it is handed, so the last column of the matrix is the
             // zero of the kind beside the one of it
             var m = float4x4.EulerZXY(Angles);
-            Assert.That((m.c3.x, m.c3.y, m.c3.z, m.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the fourth axis");
+            Assert.That((m.c3.x, m.c3.y, m.c3.z, m.c3.w), Is.EqualTo((0f, 0f, 0f, 1f)), "the w axis");
             Assert.That((m.m30, m.m31, m.m32, m.m33), Is.EqualTo((0f, 0f, 0f, 1f)), "the last row");
 
             // the zero of the angles keeps the space where it is and the kind of a component of the value is named
