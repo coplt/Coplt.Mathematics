@@ -33,7 +33,6 @@ public static partial class simd_math
         return r;
     }
 
-
     public static Vector128<f64> Tan(Vector128<f64> x)
     {
         // Since tan() is periodic around pi, this converts x into the range of [0, pi]
@@ -93,7 +92,6 @@ public static partial class simd_math
 
         return r;
     }
-
 
     public static Vector256<f64> Tan(Vector256<f64> x)
     {
@@ -155,7 +153,6 @@ public static partial class simd_math
         return r;
     }
 
-
     public static Vector512<f64> Tan(Vector512<f64> x)
     {
         // Since tan() is periodic around pi, this converts x into the range of [0, pi]
@@ -202,14 +199,12 @@ public static partial class simd_math
         return (r - rr) * 0.5;
     }
 
-
     public static Vector128<f64> Cosh(Vector128<f64> x)
     {
         var r = Exp(x);
         var rr = Vector128<f64>.One / r;
         return (r + rr) * 0.5;
     }
-
 
     public static Vector128<f64> Tanh(Vector128<f64> x)
     {
@@ -229,14 +224,12 @@ public static partial class simd_math
         return (r - rr) * 0.5;
     }
 
-
     public static Vector256<f64> Cosh(Vector256<f64> x)
     {
         var r = Exp(x);
         var rr = Vector256<f64>.One / r;
         return (r + rr) * 0.5;
     }
-
 
     public static Vector256<f64> Tanh(Vector256<f64> x)
     {
@@ -256,14 +249,12 @@ public static partial class simd_math
         return (r - rr) * 0.5;
     }
 
-
     public static Vector512<f64> Cosh(Vector512<f64> x)
     {
         var r = Exp(x);
         var rr = Vector512<f64>.One / r;
         return (r + rr) * 0.5;
     }
-
 
     public static Vector512<f64> Tanh(Vector512<f64> x)
     {
@@ -284,7 +275,6 @@ public static partial class simd_math
         return rrr * 0.5;
     }
 
-
     public static Vector256<f64> SinhCoshD128To256(Vector128<f64> x)
     {
         var r = Exp(x);
@@ -294,7 +284,6 @@ public static partial class simd_math
         return rrr * 0.5;
     }
 
-
     public static Vector512<f64> SinhCosh(Vector512<f64> x)
     {
         var r = Exp(x);
@@ -302,7 +291,6 @@ public static partial class simd_math
         var rrr = simd.Fma(rr, Vector512.Create(1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0), r);
         return rrr * 0.5;
     }
-
 
     public static Vector512<f64> SinhCoshD256To512(Vector256<f64> x)
     {
@@ -330,7 +318,6 @@ public static partial class simd_math
         return r;
     }
 
-
     public static Vector128<f64> Acosh(Vector128<f64> x)
     {
         var r = simd.Fma(x, x, -Vector128<f64>.One);
@@ -339,7 +326,6 @@ public static partial class simd_math
         r = Log(r);
         return r;
     }
-
 
     public static Vector128<f64> Atanh(Vector128<f64> x)
     {
@@ -361,7 +347,6 @@ public static partial class simd_math
         return r;
     }
 
-
     public static Vector256<f64> Acosh(Vector256<f64> x)
     {
         var r = simd.Fma(x, x, -Vector256<f64>.One);
@@ -370,7 +355,6 @@ public static partial class simd_math
         r = Log(r);
         return r;
     }
-
 
     public static Vector256<f64> Atanh(Vector256<f64> x)
     {
@@ -392,7 +376,6 @@ public static partial class simd_math
         return r;
     }
 
-
     public static Vector512<f64> Acosh(Vector512<f64> x)
     {
         var r = simd.Fma(x, x, -Vector512<f64>.One);
@@ -401,7 +384,6 @@ public static partial class simd_math
         r = Log(r);
         return r;
     }
-
 
     public static Vector512<f64> Atanh(Vector512<f64> x)
     {
@@ -422,7 +404,6 @@ public static partial class simd_math
         r = Log(r);
         return r;
     }
-
 
     public static Vector512<f64> AsinhAcosh(Vector512<f64> x)
     {

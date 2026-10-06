@@ -631,9 +631,7 @@ public static partial class simd_math
 
     public static Vector64<f32> Log(Vector64<f32> a) => Log2_impl(a) * math.F_Log2;
 
-
     public static Vector64<f32> Log10(Vector64<f32> a) => Log2_impl(a) * (math.F_Log2 / math.F_Log10);
-
 
     public static Vector64<f32> Log2(Vector64<f32> a) => Log2_impl(a);
 
@@ -687,9 +685,7 @@ public static partial class simd_math
 
     public static Vector128<f32> Log(Vector128<f32> a) => Log2_impl(a) * math.F_Log2;
 
-
     public static Vector128<f32> Log10(Vector128<f32> a) => Log2_impl(a) * (math.F_Log2 / math.F_Log10);
-
 
     public static Vector128<f32> Log2(Vector128<f32> a) => Log2_impl(a);
 
@@ -743,9 +739,7 @@ public static partial class simd_math
 
     public static Vector256<f32> Log(Vector256<f32> a) => Log2_impl(a) * math.F_Log2;
 
-
     public static Vector256<f32> Log10(Vector256<f32> a) => Log2_impl(a) * (math.F_Log2 / math.F_Log10);
-
 
     public static Vector256<f32> Log2(Vector256<f32> a) => Log2_impl(a);
 
@@ -799,9 +793,7 @@ public static partial class simd_math
 
     public static Vector512<f32> Log(Vector512<f32> a) => Log2_impl(a) * math.F_Log2;
 
-
     public static Vector512<f32> Log10(Vector512<f32> a) => Log2_impl(a) * (math.F_Log2 / math.F_Log10);
-
 
     public static Vector512<f32> Log2(Vector512<f32> a) => Log2_impl(a);
 
@@ -855,9 +847,7 @@ public static partial class simd_math
 
     public static Vector128<f64> Log(Vector128<f64> a) => Log2_impl(a) * math.D_Log2;
 
-
     public static Vector128<f64> Log10(Vector128<f64> a) => Log2_impl(a) * (math.D_Log2 / math.D_Log10);
-
 
     public static Vector128<f64> Log2(Vector128<f64> a) => Log2_impl(a);
 
@@ -914,9 +904,7 @@ public static partial class simd_math
 
     public static Vector256<f64> Log(Vector256<f64> a) => Log2_impl(a) * math.D_Log2;
 
-
     public static Vector256<f64> Log10(Vector256<f64> a) => Log2_impl(a) * (math.D_Log2 / math.D_Log10);
-
 
     public static Vector256<f64> Log2(Vector256<f64> a) => Log2_impl(a);
 
@@ -973,9 +961,7 @@ public static partial class simd_math
 
     public static Vector512<f64> Log(Vector512<f64> a) => Log2_impl(a) * math.D_Log2;
 
-
     public static Vector512<f64> Log10(Vector512<f64> a) => Log2_impl(a) * (math.D_Log2 / math.D_Log10);
-
 
     public static Vector512<f64> Log2(Vector512<f64> a) => Log2_impl(a);
 
@@ -1036,9 +1022,7 @@ public static partial class simd_math
 
     public static Vector64<f32> Exp(Vector64<f32> x) => Exp2_impl(x * math.F_1_Div_Log2);
 
-
     public static Vector64<f32> Exp10(Vector64<f32> x) => Exp2_impl(x * 2.302585092994045684f * math.F_1_Div_Log2);
-
 
     public static Vector64<f32> Exp2(Vector64<f32> x) => Exp2_impl(x);
 
@@ -1078,9 +1062,7 @@ public static partial class simd_math
 
     public static Vector128<f32> Exp(Vector128<f32> x) => Exp2_impl(x * math.F_1_Div_Log2);
 
-
     public static Vector128<f32> Exp10(Vector128<f32> x) => Exp2_impl(x * 2.302585092994045684f * math.F_1_Div_Log2);
-
 
     public static Vector128<f32> Exp2(Vector128<f32> x) => Exp2_impl(x);
 
@@ -1120,9 +1102,7 @@ public static partial class simd_math
 
     public static Vector256<f32> Exp(Vector256<f32> x) => Exp2_impl(x * math.F_1_Div_Log2);
 
-
     public static Vector256<f32> Exp10(Vector256<f32> x) => Exp2_impl(x * 2.302585092994045684f * math.F_1_Div_Log2);
-
 
     public static Vector256<f32> Exp2(Vector256<f32> x) => Exp2_impl(x);
 
@@ -1162,9 +1142,7 @@ public static partial class simd_math
 
     public static Vector512<f32> Exp(Vector512<f32> x) => Exp2_impl(x * math.F_1_Div_Log2);
 
-
     public static Vector512<f32> Exp10(Vector512<f32> x) => Exp2_impl(x * 2.302585092994045684f * math.F_1_Div_Log2);
-
 
     public static Vector512<f32> Exp2(Vector512<f32> x) => Exp2_impl(x);
 
@@ -1204,9 +1182,7 @@ public static partial class simd_math
 
     public static Vector128<f64> Exp(Vector128<f64> x) => Exp2_impl(x * math.D_1_Div_Log2);
 
-
     public static Vector128<f64> Exp10(Vector128<f64> x) => Exp2_impl(x * 2.302585092994045684 * math.D_1_Div_Log2);
-
 
     public static Vector128<f64> Exp2(Vector128<f64> x) => Exp2_impl(x);
 
@@ -1250,9 +1226,7 @@ public static partial class simd_math
 
     public static Vector256<f64> Exp(Vector256<f64> x) => Exp2_impl(x * math.D_1_Div_Log2);
 
-
     public static Vector256<f64> Exp10(Vector256<f64> x) => Exp2_impl(x * 2.302585092994045684 * math.D_1_Div_Log2);
-
 
     public static Vector256<f64> Exp2(Vector256<f64> x) => Exp2_impl(x);
 
@@ -1296,9 +1270,7 @@ public static partial class simd_math
 
     public static Vector512<f64> Exp(Vector512<f64> x) => Exp2_impl(x * math.D_1_Div_Log2);
 
-
     public static Vector512<f64> Exp10(Vector512<f64> x) => Exp2_impl(x * 2.302585092994045684 * math.D_1_Div_Log2);
-
 
     public static Vector512<f64> Exp2(Vector512<f64> x) => Exp2_impl(x);
 
