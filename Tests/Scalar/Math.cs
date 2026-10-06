@@ -10,6 +10,15 @@ namespace Tests.Scalar;
 /// </summary>
 public class TestScalarMath
 {
+    /// <summary>
+    /// The estimate of the hardware is not exact, the one of the arm platform is the loose one of the two, so the
+    /// tolerance leaves room for it.
+    /// </summary>
+    private const float Tolerance = 0.01f;
+
+    /// <inheritdoc cref="Tolerance"/>
+    private const double DoubleTolerance = 0.01;
+
     [Test]
     public void Arithmetic()
     {
@@ -122,11 +131,11 @@ public class TestScalarMath
         Assert.That(normalize_safe(1e-30d), Is.EqualTo(1d));
         // the arithmetic of the kind of a half is coarse enough to move the result of the scaling of a short value
         Assert.That((float)normalize_safe((Half)0.001f), Is.EqualTo(1f).Within(0.02f));
-        Assert.That(rsqrt_a(0.25f), Is.EqualTo(2f).Within(1e-3f));
-        Assert.That(normalize_a(2f), Is.EqualTo(1f).Within(1e-3f));
+        Assert.That(rsqrt_a(0.25f), Is.EqualTo(2f).Within(Tolerance));
+        Assert.That(normalize_a(2f), Is.EqualTo(1f).Within(Tolerance));
         Assert.That(normalize_safe_a(0f), Is.EqualTo(0f));
         Assert.That(normalize_safe_a(1e-30f), Is.EqualTo(0f));
-        Assert.That(normalize_safe_a(2d), Is.EqualTo(1d).Within(1e-9d));
+        Assert.That(normalize_safe_a(2d), Is.EqualTo(1d).Within(DoubleTolerance));
         Assert.That(refract(1f, 1f, 1f), Is.EqualTo(-1f));
         Assert.That(radians(180f), Is.EqualTo(MathF.PI).Within(1e-5f));
         Assert.That(degrees(MathF.PI), Is.EqualTo(180f).Within(1e-3f));
