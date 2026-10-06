@@ -39,6 +39,35 @@ public class TestVectorJson
         }
     }
 
+    /// <summary>
+    /// The value of a quaternion is the one of the four components of the kind of it, so the json of it is the
+    /// array of the four components of the value of 4 components of it.
+    /// </summary>
+    [Test]
+    public void Quaternion()
+    {
+        var q = new quaternion(1f, 2f, 3f, 4f);
+        var d = new quaternion_d(1, 2, 3, 4);
+        var h = new quaternion_h((Half)1, (Half)2, (Half)3, (Half)4);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(JsonSerializer.Serialize(q, Options), Is.EqualTo("[1,2,3,4]"));
+            Assert.That(JsonSerializer.Serialize(d, Options), Is.EqualTo("[1,2,3,4]"));
+            // a half is not a number of the writer, its value is written as the float it widens to
+            Assert.That(JsonSerializer.Serialize(h, Options), Is.EqualTo("[1,2,3,4]"));
+
+            var rq = JsonSerializer.Deserialize<quaternion>("[1,2,3,4]", Options);
+            Assert.That((rq.value.x, rq.value.y, rq.value.z, rq.value.w), Is.EqualTo((1f, 2f, 3f, 4f)));
+            var rd = JsonSerializer.Deserialize<quaternion_d>("[1,2,3,4]", Options);
+            Assert.That((rd.value.x, rd.value.y, rd.value.z, rd.value.w), Is.EqualTo((1d, 2d, 3d, 4d)));
+            var rh = JsonSerializer.Deserialize<quaternion_h>("[1,2,3,4]", Options);
+            Assert.That((float)rh.value.w, Is.EqualTo(4f));
+            // the value of a quaternion without the four components of it is not a value it can be read from
+            Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<quaternion>("{\"x\":1}", Options));
+        }
+    }
+
     [Test]
     public void Read()
     {

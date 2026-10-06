@@ -116,7 +116,20 @@ public class QuaternionGenerator : IIncrementalGenerator
         sb.AppendLine();
         // the type of a quaternion is declared by this generator alone, so the doc of it is written here
         sb.AppendLine("/// <summary>A quaternion type for representing rotations.</summary>");
-        sb.AppendLine($"public partial struct {name}");
+        // the text of a quaternion is the text of the four components of it, so the converter of it is the one of
+        // the kind of a component of it alone, see Coplt.Mathematics.Json
+        sb.AppendLine($"[JsonConverter(typeof(Json.{name}JsonConverter))]");
+        sb.AppendLine($"public partial struct {name} :");
+        // the value of a quaternion is the one of the four components of it: the comparison of two of them is the
+        // one of the whole of a value, which the members of the framework that name a bool answer with, and the
+        // ordering of it is the one of the four components of it in the order of them
+        sb.AppendLine($"    IEquatable<{name}>,");
+        sb.AppendLine($"    IEqualityOperators<{name}, {name}, bool>,");
+        sb.AppendLine($"    IComparable<{name}>,");
+        sb.AppendLine($"    IComparable,");
+        sb.AppendLine($"    IComparisonOperators<{name}, {name}, bool>,");
+        sb.AppendLine("    ISpanFormattable,");
+        sb.AppendLine("    IUtf8SpanFormattable");
         sb.AppendLine("{");
         // the members of the value of the quaternion, the ones of a rotation of it and the ones every value of the
         // library has, which are the ones of the record of it
@@ -213,12 +226,6 @@ public class QuaternionGenerator : IIncrementalGenerator
         var vec4 = VectorGenShared.VecName(typ, 4, false);
         var one = typ.one;
         sb.AppendLine($"    public {vec4} value;");
-        sb.AppendLine();
-        sb.AppendLine("    /// <summary>Returns the text of the value, which is the name of the type beside the four components");
-        sb.AppendLine("    /// of it</summary>");
-        sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine("    public readonly override string ToString() => $\"{nameof(" + name +
-                      ")}({value.x}, {value.y}, {value.z}, {value.w})\";");
         sb.AppendLine();
         AddDoc(sb, """
                    Returns the identity of the quaternion, which is the value of no rotation of the space
@@ -664,7 +671,7 @@ public class QuaternionGenerator : IIncrementalGenerator
 
     /// <summary>
     /// Adds the members every value of the library has to the quaternion <paramref name="name"/>, which are the
-    /// equality of two values and the hash of the value of one of them.
+    /// equality of two values, the ordering of them, the hash of the value of one of them and the text of it.
     /// </summary>
     /// <param name="sb">The source of the file</param>
     /// <param name="name">The name of the quaternion</param>
@@ -701,6 +708,101 @@ public class QuaternionGenerator : IIncrementalGenerator
         sb.AppendLine("    /// <returns>True where the two values are not the one of the kind</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static bool operator !=({name} left, {name} right) => !left.Equals(right);");
+        sb.AppendLine();
+
+        // the ordering of two quaternions is the one of the four components of them in the order of the
+        // components, which is the one of a columns of a matrix through the columns of it
+        sb.AppendLine("    /// <summary>Returns the position of the value of the quaternion against the one of another quaternion</summary>");
+        sb.AppendLine("    /// <param name=\"other\">The other quaternion</param>");
+        sb.AppendLine("    /// <returns>A negative number where the value of the quaternion is the one before the value of the other one, the zero where the two are the one and a positive number where it is the one after it</returns>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public readonly int CompareTo({name} other)");
+        sb.AppendLine("    {");
+        for (var i = 0; i < 4; i++)
+        {
+            var comp = "xyzw"[i];
+            sb.AppendLine($"        {(i == 0 ? "var " : "")}c = value.{comp}.CompareTo(other.value.{comp});");
+            sb.AppendLine("        if (c != 0) return c;");
+        }
+
+        sb.AppendLine("        return 0;");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        sb.AppendLine("    /// <inheritdoc cref=\"CompareTo(" + name + ")\"/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    int IComparable.CompareTo(object? obj) => obj is {name} other");
+        sb.AppendLine("        ? CompareTo(other)");
+        sb.AppendLine("        : throw new ArgumentException(null, nameof(obj));");
+        sb.AppendLine();
+        foreach (var op in new[] { "<", "<=", ">", ">=" })
+        {
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    public static bool operator {op}({name} left, {name} right) => left.CompareTo(right) {op} 0;");
+            sb.AppendLine();
+        }
+
+        // the text of a quaternion is the text of the four components of it between parentheses, every part of it
+        // is written into the destination without a string in between, so a part that does not fit leaves the
+        // count at zero and fails
+        var text = VectorGenShared.Join(4, i => "{value." + "xyzw"[i] + "}", ", ");
+        sb.AppendLine("    /// <summary>Formats the quaternion as the four components of it between parentheses</summary>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine("    public readonly override string ToString() => $\"(" + text + ")\";");
+        sb.AppendLine();
+        var textFormat = VectorGenShared.Join(4, i => "{value." + "xyzw"[i] + ".ToString(format, formatProvider)}", ", ");
+        sb.AppendLine("    /// <inheritdoc/>");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine("    public readonly string ToString(string? format, IFormatProvider? formatProvider) => " +
+                      "$\"(" + textFormat + ")\";");
+        sb.AppendLine();
+        List<string> Parts(string suffix)
+        {
+            var calls = new List<string>
+            {
+                $"FormatUtils.TryFormatPart(ref d, ref n, \"(\"{suffix})",
+            };
+            for (var i = 0; i < 4; i++)
+            {
+                if (i != 0) calls.Add($"FormatUtils.TryFormatPart(ref d, ref n, \", \"{suffix})");
+                calls.Add($"FormatUtils.TryFormatPart(ref d, ref n, value.{"xyzw"[i]}, format, provider)");
+            }
+
+            calls.Add($"FormatUtils.TryFormatPart(ref d, ref n, \")\"{suffix})");
+            return calls;
+        }
+
+        void EmitTryFormat(string span, string suffix)
+        {
+            var calls = Parts(suffix);
+            sb.AppendLine("    /// <inheritdoc/>");
+            sb.AppendLine("    [MethodImpl(256)]");
+            sb.AppendLine($"    public readonly bool TryFormat({span} destination, out int charsWritten, " +
+                          "ReadOnlySpan<char> format, IFormatProvider? provider)");
+            sb.AppendLine("    {");
+            sb.AppendLine("        var n = 0;");
+            sb.AppendLine("        var d = destination;");
+            var cond = new StringBuilder();
+            for (var i = 0; i < calls.Count; i++)
+            {
+                cond.Append(i == 0 ? $"if (!{calls[i]}" : $"\n            || !{calls[i]}");
+            }
+
+            cond.Append(")");
+            sb.AppendLine($"        {cond}");
+            sb.AppendLine("        {");
+            sb.AppendLine("            charsWritten = 0;");
+            sb.AppendLine("            return false;");
+            sb.AppendLine("        }");
+            sb.AppendLine();
+            sb.AppendLine("        charsWritten = n;");
+            sb.AppendLine("        return true;");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
+        EmitTryFormat("Span<char>", "");
+        EmitTryFormat("Span<byte>", "u8");
     }
 
     /// <summary>The text of a member of the class of the math members and the one of the extension member of it.</summary>

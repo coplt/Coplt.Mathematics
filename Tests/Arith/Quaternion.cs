@@ -1,4 +1,7 @@
+using System.Globalization;
+using System.Numerics;
 using System.Runtime.Intrinsics;
+using System.Text;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Simd;
 using half = System.Half;
@@ -9,8 +12,9 @@ namespace Tests.Arith;
 /// The quaternion: the value of the four components of the kind of it, which holds the rotation of the space of 3
 /// rows and 3 columns of it. The members of the type are the value of it, the rotation of an angle around the axis
 /// of a value of 3 components, the ones of the three Euler angles, the ones around a single axis of the space, the
-/// ones that read the value of the rotation of a matrix and the ones of the look rotation of two values of 3
-/// components.
+/// ones that read the value of the rotation of a matrix, the ones of the look rotation of two values of 3
+/// components and the ones every value of the library has, which are the equality of two of them, the ordering of
+/// them and the text of the value of one of them.
 /// </summary>
 public class TestQuaternion
 {
@@ -24,6 +28,31 @@ public class TestQuaternion
     /// <summary>Returns the nine components of the matrix, which the one of a kind is compared with.</summary>
     private static (float, float, float, float, float, float, float, float, float) Components(float3x3 m) =>
         (m.m00, m.m01, m.m02, m.m10, m.m11, m.m12, m.m20, m.m21, m.m22);
+
+    /// <summary>
+    /// The equality of two quaternions, the ordering of them and the text of the value of one of them are the
+    /// members of the framework of it, so a parameter that only knows the interfaces reaches them, which is the
+    /// form the members of the library use.
+    /// </summary>
+    private static void Check<T>(T value, T same)
+        where T : unmanaged, IEquatable<T>, IEqualityOperators<T, T, bool>, IComparable<T>,
+            IComparisonOperators<T, T, bool>, ISpanFormattable, IUtf8SpanFormattable
+    {
+        Assert.That(value.Equals(same), Is.True);
+        Assert.That(value == same, Is.True);
+        Assert.That(value != same, Is.False);
+        Assert.That(value.CompareTo(same), Is.Zero);
+        Assert.That(value <= same, Is.True);
+        Assert.That(value >= same, Is.True);
+        Assert.That(value < same, Is.False);
+        Assert.That(value > same, Is.False);
+        var chars = new char[64];
+        Assert.That(value.TryFormat(chars, out var n, default, null), Is.True);
+        Assert.That(new string(chars, 0, n).Length, Is.GreaterThan(0));
+        var bytes = new byte[64];
+        Assert.That(value.TryFormat(bytes, out var bn, default, null), Is.True);
+        Assert.That(bn, Is.GreaterThan(0));
+    }
 
     [Test]
     public void Value()
@@ -45,7 +74,59 @@ public class TestQuaternion
             Assert.That(q != new quaternion(1f, 2f, 3f, 5f), Is.True, "the inequality of the other one");
             Assert.That(q.Equals(new quaternion(1f, 2f, 3f, 4f)), Is.True, "the equality of the value");
             Assert.That(q.GetHashCode(), Is.EqualTo(new quaternion(1f, 2f, 3f, 4f).GetHashCode()), "the hash");
-            Assert.That(q.ToString(), Is.EqualTo("quaternion(1, 2, 3, 4)"), "the text");
+        }
+    }
+
+    /// <summary>
+    /// The equality of two quaternions, the ordering of them and the text of the value of one of them are the
+    /// members of the framework of it: the ordering of two of them is the one of the four components of the value
+    /// of them in the order of the components and the text of one of them is the four components of it between
+    /// parentheses.
+    /// </summary>
+    [Test]
+    public void Record()
+    {
+        var q = new quaternion(1f, 2f, 3f, 4f);
+        var same = new quaternion(1f, 2f, 3f, 4f);
+        var after = new quaternion(1f, 2f, 3f, 5f);
+
+        using (Assert.EnterMultipleScope())
+        {
+            // every kind of a component of a quaternion has the members and a parameter that only knows the
+            // interfaces of them reaches them
+            Check(q, new quaternion(1f, 2f, 3f, 4f));
+            Check(new quaternion_d(1, 2, 3, 4), new quaternion_d(1, 2, 3, 4));
+            Check(new quaternion_h((half)1, (half)2, (half)3, (half)4),
+                new quaternion_h((half)1, (half)2, (half)3, (half)4));
+
+            Assert.That(q.CompareTo(new quaternion(1f, 2f, 3f, 4f)), Is.Zero, "the one of the value");
+            Assert.That(q.CompareTo(after) < 0, Is.True, "the one before");
+            Assert.That(after.CompareTo(q) > 0, Is.True, "the one after");
+            Assert.That(q < after, Is.True, "the before");
+            Assert.That(q <= same, Is.True, "the before or the one");
+            Assert.That(q > after, Is.False, "the after");
+            Assert.That(q >= same, Is.True, "the after or the one");
+            // the component of the value that comes first decides the ordering
+            Assert.That(new quaternion(2f, 0f, 0f, 0f).CompareTo(new quaternion(1f, 9f, 9f, 9f)) > 0, Is.True,
+                "the first component of the value");
+            // the text of the value of a quaternion is the four components of it between parentheses
+            Assert.That(q.ToString(), Is.EqualTo("(1, 2, 3, 4)"), "the text");
+            Assert.That(q.ToString("0.0", CultureInfo.InvariantCulture), Is.EqualTo("(1.0, 2.0, 3.0, 4.0)"),
+                "the text of the format");
+            var chars = new char[64];
+            Assert.That(q.TryFormat(chars, out var n, default, null), Is.True);
+            Assert.That(new string(chars, 0, n), Is.EqualTo("(1, 2, 3, 4)"), "the text of the span");
+            var bytes = new byte[64];
+            Assert.That(q.TryFormat(bytes, out var bn, default, null), Is.True);
+            Assert.That(Encoding.UTF8.GetString(bytes, 0, bn), Is.EqualTo("(1, 2, 3, 4)"),
+                "the text of the utf8 span");
+            // a text that does not fit leaves the count at zero and fails
+            Assert.That(q.TryFormat(new char[3], out var sn, default, null), Is.False,
+                "the text that does not fit");
+            Assert.That(sn, Is.Zero, "the count of the text that does not fit");
+            Assert.That(new quaternion_d(1, 2, 3, 4).ToString(), Is.EqualTo("(1, 2, 3, 4)"), "the text of a double");
+            Assert.That(new quaternion_h((half)1, (half)2, (half)3, (half)4).ToString(),
+                Is.EqualTo("(1, 2, 3, 4)"), "the text of a half");
         }
     }
 
