@@ -10,28 +10,6 @@ namespace Coplt.Analyzers.Generators;
 internal static class VectorGenShared
 {
     /// <summary>
-    /// Makes the reference to a generic interface. A reference cannot carry the type arguments of a constructed
-    /// interface, so the reference names the interface with the type parameters it declares and its text shows
-    /// the constructed interface.
-    /// </summary>
-    /// <param name="name">The name of the interface without its type arguments</param>
-    /// <param name="parameters">The names of the type parameters the interface declares</param>
-    /// <param name="args">The type arguments of the constructed interface</param>
-    /// <returns>The reference</returns>
-    public static string IfaceRef(string name, List<string> parameters, List<string> args)
-    {
-        // the arguments are shown in the text of the reference and every one of them is a reference of its own
-        var text = new StringBuilder();
-        for (var i = 0; i < args.Count; i++)
-        {
-            if (i != 0) text.Append(", ");
-            text.Append($"<see cref=\"{args[i]}\"/>");
-        }
-
-        return $"<see cref=\"{name}{{{string.Join(",", parameters)}}}\">{name}&lt;{text}&gt;</see>";
-    }
-
-    /// <summary>
     /// The name of the field that keeps the value of a 64 bit vector. The <c>vector</c> property of the vector
     /// reinterprets it, so the value of the vector does not have to go through a 64 bit vector type.
     /// </summary>

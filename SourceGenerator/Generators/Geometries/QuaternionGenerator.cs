@@ -101,6 +101,16 @@ public class QuaternionGenerator : IIncrementalGenerator
     public static string Name(Typ typ) => $"quaternion{typ.structSuffix}";
 
     /// <summary>
+    /// Returns the name of the converter of the json of a quaternion, which is the name of the value of it and
+    /// the name of the kind of a component of it, with the first letter of the name of the kind in upper case,
+    /// see <c>Coplt.Mathematics.Json.FloatQuaternionJsonConverter</c>.
+    /// </summary>
+    /// <param name="typ">The kind of the component of the quaternion</param>
+    /// <returns>The name of the converter</returns>
+    private static string ConverterName(Typ typ) =>
+        $"{char.ToUpperInvariant(typ.name[0])}{typ.name.Substring(1)}QuaternionJsonConverter";
+
+    /// <summary>
     /// Generates the file of the members of the quaternion <paramref name="name"/>, which is the type of the
     /// value: the class of the math members reaches the members of a quaternion as well, but it is the class of
     /// every value of the library, so the file of a kind reaches the type of the value of it and the members of
@@ -117,8 +127,9 @@ public class QuaternionGenerator : IIncrementalGenerator
         // the type of a quaternion is declared by this generator alone, so the doc of it is written here
         sb.AppendLine("/// <summary>A quaternion type for representing rotations.</summary>");
         // the text of a quaternion is the text of the four components of it, so the converter of it is the one of
-        // the kind of a component of it alone, see Coplt.Mathematics.Json
-        sb.AppendLine($"[JsonConverter(typeof(Json.{name}JsonConverter))]");
+        // the kind of a component of it alone, which names the kind of the component and the value, see
+        // Coplt.Mathematics.Json
+        sb.AppendLine($"[JsonConverter(typeof(Json.{ConverterName(typ)}))]");
         sb.AppendLine($"public partial struct {name} :");
         // the value of a quaternion is the one of the four components of it: the comparison of two of them is the
         // one of the whole of a value, which the members of the framework that name a bool answer with, and the

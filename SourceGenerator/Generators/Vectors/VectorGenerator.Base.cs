@@ -172,102 +172,11 @@ public partial class VectorGenerator
                 ? "ISignedNumberVector"
                 : "INumberVector";
 
-        // only one of the partial declarations of a type may carry the documentation of the type, so the
-        // documentation that names the interfaces of every part lives on the base members
         var type2 = VectorGenShared.VecName(typ, 2, false);
         var type3 = VectorGenShared.VecName(typ, 3, false);
-        var type4 = VectorGenShared.VecName(typ, 4, false);
         // the bits of the value are reachable as a raw vector of bytes, the width of the register of the
         // vector decides the interface of them
         var underlying = VectorGenShared.Register(typ, size, storeVariant);
-        var parts = new List<string>
-        {
-            "The members implement " +
-            VectorGenShared.IfaceRef($"Algebras.IVector{size}", new List<string> { "TSelf", "TScalar" },
-                new List<string> { type, scalar }) +
-            (storeVariant
-                ? ""
-                : " and " +
-                  VectorGenShared.IfaceRef($"Algebras.{AlgebraIface()}", new List<string> { "TSelf", "TScalar" },
-                      new List<string> { type, scalar }) +
-                  (typ.i
-                      ? ", and " + VectorGenShared.IfaceRef("Algebras.IIntegerVector",
-                          new List<string> { "TSelf", "TScalar" }, new List<string> { type, scalar })
-                      : "")),
-        };
-
-        // the storage variant of a vector holds the components of a value of the kind of it, so it keeps the
-        // members the interfaces above declare alone and the ones that create it and convert it
-        if (!storeVariant)
-        {
-            parts.Add(underlying == 0
-                ? "the value has no register, it is only marked as <see cref=\"Algebras.Generics.IVectorSoftUnderlying\"/>"
-                : "the underlying members implement " +
-                  VectorGenShared.IfaceRef($"Algebras.Generics.IVector{underlying}Underlying", new List<string> { "TSelf" },
-                      new List<string> { type }));
-            // the members that create the vector out of another one implement the interfaces of the create members.
-            // The interface of a vector of 2 components declares its create itself, which the first sentence names
-            if (size == 3)
-            {
-                parts.Add("the create members implement " +
-                          VectorGenShared.IfaceRef("Algebras.IVector3CtorFromVector2",
-                              new List<string> { "TSelf", "TScalar", "TVector2" },
-                              new List<string> { type, scalar, type2 }));
-            }
-            else if (size == 4)
-            {
-                parts.Add("the create members implement " +
-                          VectorGenShared.IfaceRef("Algebras.IVector4CtorFromVector2",
-                              new List<string> { "TSelf", "TScalar", "TVector2" },
-                              new List<string> { type, scalar, type2 }) + " and " +
-                          VectorGenShared.IfaceRef("Algebras.IVector4CtorFromVector3",
-                              new List<string> { "TSelf", "TScalar", "TVector3" },
-                              new List<string> { type, scalar, type3 }));
-            }
-
-            // the members that replace the components of the vector implement the interfaces of the replace members
-            if (size == 2)
-            {
-                parts.Add("the replace members implement " +
-                          VectorGenShared.IfaceRef("IVectorReplace", new List<string> { "TSelf", "TScalar" },
-                              new List<string> { type, scalar }));
-            }
-            else if (size == 3)
-            {
-                parts.Add("the replace members implement " +
-                          VectorGenShared.IfaceRef("IVector3Replace", new List<string> { "TSelf", "TScalar", "TVector2" },
-                              new List<string> { type, scalar, type2 }));
-            }
-            else
-            {
-                parts.Add("the replace members implement " +
-                          VectorGenShared.IfaceRef("IVector4Replace", new List<string> { "TSelf", "TScalar", "TVector2", "TVector3" },
-                              new List<string> { type, scalar, type2, type3 }));
-            }
-
-            // the members of the legacy insert api implement the interfaces of the insert as well, they are the
-            // legacy spelling of the members of the create of the longer vectors and forward to them
-            if (size == 2)
-            {
-                parts.Add("the insert members implement " +
-                          VectorGenShared.IfaceRef("IVector2Insert", new List<string> { "TSelf", "TScalar", "TVector3", "TVector4" },
-                              new List<string> { type, scalar, type3, type4 }));
-            }
-            else if (size == 3)
-            {
-                parts.Add("the insert members implement " +
-                          VectorGenShared.IfaceRef("IVector3Insert", new List<string> { "TSelf", "TScalar", "TVector4" },
-                              new List<string> { type, scalar, type4 }));
-            }
-
-            // a shuffle combines two vectors of the same type, only a vector of 4 components has its members
-            if (size == 4)
-            {
-                parts.Add("the shuffle members implement " +
-                          VectorGenShared.IfaceRef("IVectorShuffle", new List<string> { "TSelf" },
-                              new List<string> { type }));
-            }
-        }
 
         VectorGenShared.FileHeader(sb, true, true);
         sb.AppendLine("/// <summary>");
@@ -284,7 +193,6 @@ public partial class VectorGenerator
             sb.AppendLine("/// <para>It keeps its components in fields, it has no simd register</para>");
         }
 
-        sb.AppendLine($"/// <para>{string.Join(", ", parts)}</para>");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("[Serializable]");
         // the converter of a vector is shared by every vector of the count of its components, it names the type

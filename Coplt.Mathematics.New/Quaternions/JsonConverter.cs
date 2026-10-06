@@ -10,7 +10,7 @@ namespace Coplt.Mathematics.Json;
 /// components of it</para>
 /// </summary>
 [CpuOnly]
-public sealed class quaternionJsonConverter : JsonConverter<quaternion>
+public sealed class FloatQuaternionJsonConverter : JsonConverter<quaternion>
 {
     /// <inheritdoc/>
     public override quaternion Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -28,7 +28,7 @@ public sealed class quaternionJsonConverter : JsonConverter<quaternion>
 /// components of it</para>
 /// </summary>
 [CpuOnly]
-public sealed class quaternion_dJsonConverter : JsonConverter<quaternion_d>
+public sealed class DoubleQuaternionJsonConverter : JsonConverter<quaternion_d>
 {
     /// <inheritdoc/>
     public override quaternion_d Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -46,7 +46,7 @@ public sealed class quaternion_dJsonConverter : JsonConverter<quaternion_d>
 /// components of it</para>
 /// </summary>
 [CpuOnly]
-public sealed class quaternion_hJsonConverter : JsonConverter<quaternion_h>
+public sealed class HalfQuaternionJsonConverter : JsonConverter<quaternion_h>
 {
     /// <inheritdoc/>
     public override quaternion_h Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
