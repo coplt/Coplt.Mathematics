@@ -39,6 +39,29 @@ public class TestAsCast
     }
 
     [Test]
+    public void Merge2()
+    {
+        var f = new float2(1f, 2f);
+        var i = new int2(1, 2);
+        var u = new uint2(1u, 2u);
+
+        using (Assert.EnterMultipleScope())
+        {
+            // the register of a vector of 2 components of 4 bytes is as wide as the one of its 3 and 4 component
+            // vectors, so the bits of it are the bits of those and the components behind the value are the zero
+            // of the kind of the component: a vector whose register is of another width, like the one of a
+            // component of 8 bytes, and one that has no register at all, like the one of a component of 2 bytes,
+            // has no such member
+            Assert.That((f.as3.x, f.as3.y, f.as3.z), Is.EqualTo((1f, 2f, 0f)), "the 3 components of a float");
+            Assert.That((f.as4.x, f.as4.y, f.as4.z, f.as4.w), Is.EqualTo((1f, 2f, 0f, 0f)),
+                "the 4 components of a float");
+            Assert.That((i.as3.x, i.as3.y, i.as3.z), Is.EqualTo((1, 2, 0)), "the 3 components of an int");
+            Assert.That((i.as4.z, i.as4.w), Is.EqualTo((0, 0)), "the 4 components of an int");
+            Assert.That((u.as4.z, u.as4.w), Is.EqualTo((0u, 0u)), "the 4 components of a uint");
+        }
+    }
+
+    [Test]
     public void MathForwarding()
     {
         // a generic member of the math class is constrained by the interface of the kind of the target vector,
@@ -174,34 +197,25 @@ public class TestAsCast
         var f3 = new float3(1, 2, 3);
         var d3 = new double3(1, 2, 3);
         var l3 = new long3(1, 2, 3);
-        var s3 = new short3(1, 2, 3);
-        var h3 = new half3((Half)1, (Half)2, (Half)3);
 
         using (Assert.EnterMultipleScope())
         {
-            // the components behind the second one are the padding lanes of the 2 component vector
+            // the members that reinterpret the bits of a vector are the ones of a register that is exactly the
+            // register of the other vector: the one of a 3 or a 4 component vector of 4 byte components is as
+            // wide as the one of its 2 component vector, the one of 8 byte components is twice as wide as the
+            // one of the 2 component vector of them, and a vector of 2 byte components has no register at all
             Assert.That(new float4(1, 2, 3, 4).as2, Is.EqualTo(new float2(1, 2)));
             Assert.That(f3.as2, Is.EqualTo(new float2(1, 2)));
-            Assert.That(d3.as2, Is.EqualTo(new double2(1, 2)));
-            Assert.That(d3.as4.as2, Is.EqualTo(new double2(1, 2)));
-            Assert.That(l3.as2, Is.EqualTo(new long2(1, 2)));
-            Assert.That(s3.as2, Is.EqualTo(new short2(1, 2)));
-            Assert.That(h3.as2, Is.EqualTo(new half2((Half)1, (Half)2)));
             // the 4 component vector that a 3 component one converts into has a w component of zero
             var f4 = f3.as4;
             Assert.That((f4.x, f4.y, f4.z, f4.w), Is.EqualTo((1f, 2f, 3f, 0f)));
             Assert.That((d3.as4.x, d3.as4.w), Is.EqualTo((1d, 0d)));
             Assert.That((l3.as4.z, l3.as4.w), Is.EqualTo((3L, 0L)));
-            Assert.That((s3.as4.z, s3.as4.w), Is.EqualTo(((short)3, (short)0)));
-            Assert.That((h3.as4.z, h3.as4.w), Is.EqualTo(((Half)3, (Half)0)));
-            Assert.That(h3.as4, Is.EqualTo(new half4((Half)1, (Half)2, (Half)3, (Half)0)));
             // the component that the 3 component vector cannot hold is dropped
             Assert.That(f4.as3, Is.EqualTo(f3));
             Assert.That(new float4(1, 2, 3, 4).as3, Is.EqualTo(f3));
             Assert.That(d3.as4.as3, Is.EqualTo(d3));
             Assert.That(l3.as4.as3, Is.EqualTo(l3));
-            Assert.That(s3.as4.as3, Is.EqualTo(s3));
-            Assert.That(h3.as4.as3, Is.EqualTo(h3));
         }
     }
 }

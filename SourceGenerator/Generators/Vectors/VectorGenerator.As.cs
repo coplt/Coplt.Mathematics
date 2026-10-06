@@ -148,34 +148,57 @@ public partial class VectorGenerator
         }
 
         // the 3 component vector and the 4 component one convert into each other and into the 2 component
-        // vector without a copy of the components when the vector is simd backed: the register of a vector of
-        // 4 byte components is as wide as the one of its 2 component vector and twice as wide when a component
-        // is 8 bytes wide, so only the lower half of it reaches the second component of the 2 component vector
+        // vector: the bits of the value are the bits of the other one where the register of the other one is
+        // exactly the register of the value, which is what the member of the public surface reaches. The
+        // register of a vector of 4 byte components is as wide as the one of its 2 component vector and twice
+        // as wide when a component is 8 bytes wide, so only the lower half of it reaches the second component
+        // of the 2 component vector of 8 byte components. The member of a value whose register is of another
+        // width, like the one of 2 or of 8 byte components, is the conversion of the value for the library
+        // itself: the widening adds the zero of the kind of the component and the narrowing keeps the leading
+        // components
         if (!storeVariant)
         {
+            var reg = VectorGenShared.Register(typ, size, storeVariant);
+            var reg2 = VectorGenShared.Register(typ, 2, false);
+            var reg3 = VectorGenShared.Register(typ, 3, false);
+            var reg4 = VectorGenShared.Register(typ, 4, false);
+            var wide = simd && reg > reg2 ? ".GetLower()" : "";
+
             if (size == 3 || size == 4)
             {
-                var wide = !simd
-                    ? ""
-                    : VectorGenShared.Register(typ, size, storeVariant) > VectorGenShared.Register(typ, 2, false)
-                        ? ".GetLower()"
-                        : "";
+                var same = simd && reg == reg2;
                 Getter($"Reinterprets the bits of the vector as the 2 component <see cref=\"{type2}\"/><para>The components behind the second one have to be zero</para>",
                     "The 2 component vector that has the bits of the vector",
-                    $"public readonly {type2} as2", simd ? $"new(vector{wide})" : "new(x, y)");
+                    $"{(same ? "public" : "internal")} readonly {type2} as2",
+                    same ? $"new(vector{wide})" : "new(x, y)");
             }
 
             if (size == 4)
             {
+                var same = simd && reg == reg3;
                 Getter($"Reinterprets the bits of the vector as the 3 component <see cref=\"{type3}\"/><para>The <c>w</c> component of the vector has to be zero</para>",
                     "The 3 component vector that has the bits of the vector",
-                    $"public readonly {type3} as3", simd ? "new(vector)" : "xyz");
+                    $"{(same ? "public" : "internal")} readonly {type3} as3", same ? "new(vector)" : "xyz");
             }
             else if (size == 3)
             {
+                var same = simd && reg == reg4;
                 Getter($"Reinterprets the bits of the vector as the 4 component <see cref=\"{type4}\"/><para>The added <c>w</c> component is zero</para>",
                     "The 4 component vector that has the bits of the vector",
-                    $"public readonly {type4} as4", simd ? "new() { vector = vector }" : "new(x, y, z, default)");
+                    $"{(same ? "public" : "internal")} readonly {type4} as4",
+                    same ? "new() { vector = vector }" : "new(x, y, z, default)");
+            }
+            else if (size == 2)
+            {
+                var same = simd && reg == reg3 && reg == reg4;
+                Getter($"Reinterprets the bits of the vector as the 3 component <see cref=\"{type3}\"/><para>The added <c>z</c> component is zero</para>",
+                    "The 3 component vector that has the bits of the vector",
+                    $"{(same ? "public" : "internal")} readonly {type3} as3",
+                    same ? "new(vector)" : "new(x, y, default)");
+                Getter($"Reinterprets the bits of the vector as the 4 component <see cref=\"{type4}\"/><para>The added <c>z</c> and <c>w</c> components are zero</para>",
+                    "The 4 component vector that has the bits of the vector",
+                    $"{(same ? "public" : "internal")} readonly {type4} as4",
+                    same ? "new() { vector = vector }" : "new(x, y, default, default)");
             }
         }
 

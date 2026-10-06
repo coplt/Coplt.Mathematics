@@ -298,7 +298,11 @@ internal static class ScalarOps
 
         // the members of every numeric type
         Op("abs", "a", ["a"]),
-        Op("sign", "a", ["a"]),
+        // the sign of a floating point value is read out of the bit of the sign of it, the BCL throws for a value
+        // that is not a number, though one of those has a sign like every other value
+        Op("sign", "a", ["a"],
+            body: "{0} == {z} ? {z} : {s}.CopySign({o}, {0})",
+            intBody: "{c}{s}.Sign({0})"),
         Op("min", "a", ["a", "b"], ext: ["other"]),
         Op("max", "a", ["a", "b"], ext: ["other"]),
         Op("clamp", "a", ["a", "min", "max"]),

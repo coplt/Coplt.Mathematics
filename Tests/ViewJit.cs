@@ -12,5 +12,5 @@ namespace Tests;
 
 public static class ViewJit
 {
-    public static float4x4 Some(float4x4 a, float4x4 b) => math.mul(a, b);
+    public static float3 Some(quaternion a) => a.ToEulerZXY();
 }

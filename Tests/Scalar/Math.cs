@@ -58,6 +58,21 @@ public class TestScalarMath
         Assert.That(mod(1f, 0.1f), Is.EqualTo(-1.4901161193847656E-08f));
         Assert.That(rcp(4f), Is.EqualTo(0.25f));
         Assert.That(saturate(2f), Is.EqualTo(1f));
+        // the sign of a value that is not a number is the one of the bit of the sign of it, the BCL throws for
+        // one of those, and the one of the kind of the library has the bit of the sign set
+        var positiveNaN = BitConverter.UInt32BitsToSingle(BitConverter.SingleToUInt32Bits(float.NaN) & 0x7FFFFFFFu);
+        Assert.That(sign(float.NaN), Is.EqualTo(-1f), "the not a number of the kind");
+        Assert.That(sign(positiveNaN), Is.EqualTo(1f), "the not a number of the kind that is turned around");
+        Assert.That(sign(double.NaN), Is.EqualTo(-1d), "the not a number of a double");
+        Assert.That(chg_sign(2f, -1f), Is.EqualTo(-2f));
+        Assert.That(chg_sign(-2f, 1f), Is.EqualTo(-2f));
+        Assert.That(chg_sign(2f, float.NaN), Is.EqualTo(-2f), "the sign of the not a number of the kind");
+        Assert.That(chg_sign(2f, positiveNaN), Is.EqualTo(2f), "the sign of the not a number that is turned around");
+        Assert.That(chg_sign(2d, -1d), Is.EqualTo(-2d));
+        Assert.That(chg_sign((Half)2f, (Half)(-1f)), Is.EqualTo((Half)(-2f)));
+        // the sign of a negative zero is turned around like the one of every other value
+        Assert.That(BitConverter.SingleToInt32Bits(chg_sign(2f, -0f)),
+            Is.EqualTo(BitConverter.SingleToInt32Bits(-2f)), "the negative zero");
         Assert.That(step(2f, 3f), Is.EqualTo(1f));
         Assert.That(step(3f, 2f), Is.EqualTo(0f));
         Assert.That(smoothstep(0f, 1f, 0.5f), Is.EqualTo(0.5f));
