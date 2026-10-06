@@ -7,7 +7,7 @@ namespace Coplt.Mathematics.Simd;
 
 public static partial class simd_shuffle
 {    
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle(Vector128<float> a, Vector128<float> b, Shuffle42 lh)
     {
         switch (lh)
@@ -529,7 +529,7 @@ public static partial class simd_shuffle
         }
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle(Vector256<double> a, Vector256<double> b, Shuffle42 lh)
     {
         switch (lh)

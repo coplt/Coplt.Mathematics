@@ -11,14 +11,13 @@ public static partial class simd_math
     /// <summary>
     /// Computes sines in [0,pi/4]
     /// </summary>
-    [MethodImpl(512)]
     public static Vector64<f32> SinIn0P4(Vector64<f32> x) => SinIn0P4_impl(x);
 
     /// <summary>
     /// Computes sines in [0,pi/4]
     /// </summary>
-    [MethodImpl(256 | 512)]
-    public static Vector64<f32> SinIn0P4_impl(Vector64<f32> x)
+    [MethodImpl(256)]
+    private static Vector64<f32> SinIn0P4_impl(Vector64<f32> x)
     {
         var sq = x * x;
 
@@ -34,7 +33,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Tan(Vector64<f32> x)
     {
         // Since tan() is periodic around pi, this converts x into the range of [0, pi]
@@ -73,14 +72,13 @@ public static partial class simd_math
     /// <summary>
     /// Computes sines in [0,pi/4]
     /// </summary>
-    [MethodImpl(512)]
     public static Vector128<f32> SinIn0P4(Vector128<f32> x) => SinIn0P4_impl(x);
 
     /// <summary>
     /// Computes sines in [0,pi/4]
     /// </summary>
-    [MethodImpl(256 | 512)]
-    public static Vector128<f32> SinIn0P4_impl(Vector128<f32> x)
+    [MethodImpl(256)]
+    private static Vector128<f32> SinIn0P4_impl(Vector128<f32> x)
     {
         var sq = x * x;
 
@@ -96,7 +94,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Tan(Vector128<f32> x)
     {
         // Since tan() is periodic around pi, this converts x into the range of [0, pi]
@@ -135,14 +133,13 @@ public static partial class simd_math
     /// <summary>
     /// Computes sines in [0,pi/4]
     /// </summary>
-    [MethodImpl(512)]
     public static Vector256<f32> SinIn0P4(Vector256<f32> x) => SinIn0P4_impl(x);
 
     /// <summary>
     /// Computes sines in [0,pi/4]
     /// </summary>
-    [MethodImpl(256 | 512)]
-    public static Vector256<f32> SinIn0P4_impl(Vector256<f32> x)
+    [MethodImpl(256)]
+    private static Vector256<f32> SinIn0P4_impl(Vector256<f32> x)
     {
         var sq = x * x;
 
@@ -158,7 +155,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Tan(Vector256<f32> x)
     {
         // Since tan() is periodic around pi, this converts x into the range of [0, pi]
@@ -197,14 +194,13 @@ public static partial class simd_math
     /// <summary>
     /// Computes sines in [0,pi/4]
     /// </summary>
-    [MethodImpl(512)]
     public static Vector512<f32> SinIn0P4(Vector512<f32> x) => SinIn0P4_impl(x);
 
     /// <summary>
     /// Computes sines in [0,pi/4]
     /// </summary>
-    [MethodImpl(256 | 512)]
-    public static Vector512<f32> SinIn0P4_impl(Vector512<f32> x)
+    [MethodImpl(256)]
+    private static Vector512<f32> SinIn0P4_impl(Vector512<f32> x)
     {
         var sq = x * x;
 
@@ -220,7 +216,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Tan(Vector512<f32> x)
     {
         // Since tan() is periodic around pi, this converts x into the range of [0, pi]
@@ -260,7 +256,6 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(512)]
     public static Vector64<f32> Sinh(Vector64<f32> x)
     {
         var r = Exp(x);
@@ -268,7 +263,7 @@ public static partial class simd_math
         return (r - rr) * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Cosh(Vector64<f32> x)
     {
         var r = Exp(x);
@@ -276,7 +271,7 @@ public static partial class simd_math
         return (r + rr) * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Tanh(Vector64<f32> x)
     {
         var r = Exp(x);
@@ -288,7 +283,6 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(512)]
     public static Vector128<f32> Sinh(Vector128<f32> x)
     {
         var r = Exp(x);
@@ -296,7 +290,7 @@ public static partial class simd_math
         return (r - rr) * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Cosh(Vector128<f32> x)
     {
         var r = Exp(x);
@@ -304,7 +298,7 @@ public static partial class simd_math
         return (r + rr) * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Tanh(Vector128<f32> x)
     {
         var r = Exp(x);
@@ -316,7 +310,6 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(512)]
     public static Vector256<f32> Sinh(Vector256<f32> x)
     {
         var r = Exp(x);
@@ -324,7 +317,7 @@ public static partial class simd_math
         return (r - rr) * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Cosh(Vector256<f32> x)
     {
         var r = Exp(x);
@@ -332,7 +325,7 @@ public static partial class simd_math
         return (r + rr) * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Tanh(Vector256<f32> x)
     {
         var r = Exp(x);
@@ -344,7 +337,6 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(512)]
     public static Vector512<f32> Sinh(Vector512<f32> x)
     {
         var r = Exp(x);
@@ -352,7 +344,7 @@ public static partial class simd_math
         return (r - rr) * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Cosh(Vector512<f32> x)
     {
         var r = Exp(x);
@@ -360,7 +352,7 @@ public static partial class simd_math
         return (r + rr) * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Tanh(Vector512<f32> x)
     {
         var r = Exp(x);
@@ -372,7 +364,6 @@ public static partial class simd_math
 
     #region SinhCosh
 
-    [MethodImpl(512)]
     public static Vector128<f32> SinhCosh(Vector128<f32> x)
     {
         var r = Exp(x);
@@ -381,7 +372,7 @@ public static partial class simd_math
         return rrr * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> SinhCosh(Vector256<f32> x)
     {
         var r = Exp(x);
@@ -390,7 +381,7 @@ public static partial class simd_math
         return rrr * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> SinhCosh(Vector512<f32> x)
     {
         var r = Exp(x);
@@ -402,7 +393,7 @@ public static partial class simd_math
         return rrr * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> SinhCoshF64To128(Vector64<f32> x)
     {
         var r = Exp(x);
@@ -412,7 +403,7 @@ public static partial class simd_math
         return rrr * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> SinhCoshF128To256(Vector128<f32> x)
     {
         var r = Exp(x);
@@ -422,7 +413,7 @@ public static partial class simd_math
         return rrr * 0.5f;
     }
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> SinhCoshF256To512(Vector256<f32> x)
     {
         var r = Exp(x);
@@ -443,7 +434,6 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(512)]
     public static Vector64<f32> Asinh(Vector64<f32> x)
     {
         var r = simd.Fma(x, x, Vector64<f32>.One);
@@ -453,7 +443,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Acosh(Vector64<f32> x)
     {
         var r = simd.Fma(x, x, -Vector64<f32>.One);
@@ -463,7 +453,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Atanh(Vector64<f32> x)
     {
         var r = (Vector64<f32>.One + x) / (Vector64<f32>.One - x);
@@ -475,7 +465,6 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(512)]
     public static Vector128<f32> Asinh(Vector128<f32> x)
     {
         var r = simd.Fma(x, x, Vector128<f32>.One);
@@ -485,7 +474,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Acosh(Vector128<f32> x)
     {
         var r = simd.Fma(x, x, -Vector128<f32>.One);
@@ -495,7 +484,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Atanh(Vector128<f32> x)
     {
         var r = (Vector128<f32>.One + x) / (Vector128<f32>.One - x);
@@ -507,7 +496,6 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(512)]
     public static Vector256<f32> Asinh(Vector256<f32> x)
     {
         var r = simd.Fma(x, x, Vector256<f32>.One);
@@ -517,7 +505,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Acosh(Vector256<f32> x)
     {
         var r = simd.Fma(x, x, -Vector256<f32>.One);
@@ -527,7 +515,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Atanh(Vector256<f32> x)
     {
         var r = (Vector256<f32>.One + x) / (Vector256<f32>.One - x);
@@ -539,7 +527,6 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(512)]
     public static Vector512<f32> Asinh(Vector512<f32> x)
     {
         var r = simd.Fma(x, x, Vector512<f32>.One);
@@ -549,7 +536,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Acosh(Vector512<f32> x)
     {
         var r = simd.Fma(x, x, -Vector512<f32>.One);
@@ -559,7 +546,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Atanh(Vector512<f32> x)
     {
         var r = (Vector512<f32>.One + x) / (Vector512<f32>.One - x);
@@ -571,7 +558,6 @@ public static partial class simd_math
 
     #region AsinhAcosh
 
-    [MethodImpl(512)]
     public static Vector128<f32> AsinhAcosh(Vector128<f32> x)
     {
         var r = simd.Fma(x, x, Vector128.Create(1.0f, 1.0f, -1.0f, -1.0f));
@@ -581,7 +567,7 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> AsinhAcosh(Vector256<f32> x)
     {
         var r = simd.Fma(x, x, Vector256.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f));
@@ -591,12 +577,12 @@ public static partial class simd_math
         return r;
     }
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> AsinhAcosh(Vector512<f32> x)
     {
         var r = simd.Fma(x, x, Vector512.Create(
-            1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 
-            -1.0f, -1.0f, -1.0f, -1.0f,  -1.0f, -1.0f, -1.0f, -1.0f
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+            -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f
         ));
         r = Vector512.Sqrt(r);
         r += x;
@@ -612,7 +598,6 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(512)]
     public static Vector64<f32> Asin(Vector64<f32> d)
     {
         var abs = Vector64.Abs(d);
@@ -638,7 +623,6 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(512)]
     public static Vector128<f32> Asin(Vector128<f32> d)
     {
         var abs = Vector128.Abs(d);
@@ -664,7 +648,6 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(512)]
     public static Vector256<f32> Asin(Vector256<f32> d)
     {
         var abs = Vector256.Abs(d);
@@ -690,7 +673,6 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(512)]
     public static Vector512<f32> Asin(Vector512<f32> d)
     {
         var abs = Vector512.Abs(d);
@@ -720,7 +702,6 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(512)]
     public static Vector64<f32> Acos(Vector64<f32> d)
     {
         var abs = Vector64.Abs(d);
@@ -750,7 +731,6 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(512)]
     public static Vector128<f32> Acos(Vector128<f32> d)
     {
         var abs = Vector128.Abs(d);
@@ -780,7 +760,6 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(512)]
     public static Vector256<f32> Acos(Vector256<f32> d)
     {
         var abs = Vector256.Abs(d);
@@ -810,7 +789,6 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(512)]
     public static Vector512<f32> Acos(Vector512<f32> d)
     {
         var abs = Vector512.Abs(d);
@@ -844,7 +822,6 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(512)]
     public static Vector64<f32> Atan(Vector64<f32> s)
     {
         var sign = s & -Vector64<f32>.Zero;
@@ -881,7 +858,6 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(512)]
     public static Vector128<f32> Atan(Vector128<f32> s)
     {
         var sign = s & -Vector128<f32>.Zero;
@@ -918,7 +894,6 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(512)]
     public static Vector256<f32> Atan(Vector256<f32> s)
     {
         var sign = s & -Vector256<f32>.Zero;
@@ -955,7 +930,6 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(512)]
     public static Vector512<f32> Atan(Vector512<f32> s)
     {
         var sign = s & -Vector512<f32>.Zero;
@@ -996,7 +970,6 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(512)]
     public static Vector64<f32> Atan2(Vector64<f32> y, Vector64<f32> x)
     {
         var x_is_inf = Vector64.IsInfinity(x).AsSingle();
@@ -1057,7 +1030,6 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(512)]
     public static Vector128<f32> Atan2(Vector128<f32> y, Vector128<f32> x)
     {
         var x_is_inf = Vector128.IsInfinity(x).AsSingle();
@@ -1118,7 +1090,6 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(512)]
     public static Vector256<f32> Atan2(Vector256<f32> y, Vector256<f32> x)
     {
         var x_is_inf = Vector256.IsInfinity(x).AsSingle();
@@ -1179,7 +1150,6 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(512)]
     public static Vector512<f32> Atan2(Vector512<f32> y, Vector512<f32> x)
     {
         var x_is_inf = Vector512.IsInfinity(x).AsSingle();

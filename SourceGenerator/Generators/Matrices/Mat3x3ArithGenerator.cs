@@ -211,10 +211,9 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
                         """, "    ");
             sb.AppendLine("    /// <param name=\"xyz\">The angles of the x axis, the y axis and the z axis, in radians</param>");
             sb.AppendLine($"    /// <returns>The matrix of the rotation in the {Spelling(order.Name)} order</returns>");
-            sb.AppendLine("    [MethodImpl(256)]");
             sb.AppendLine($"    public static {name} Euler{order.Name}({vec} xyz)");
             sb.AppendLine("    {");
-            sb.AppendLine($"        var m = EulerZXY({(order.Negate ? "-" : "")}xyz.{order.Input});");
+            sb.AppendLine($"        var m = EulerZXY_impl({(order.Negate ? "-" : "")}xyz.{order.Input});");
             sb.AppendLine($"        return new(m.c{order.C0}, m.c{order.C1}, m.c{order.C2});");
             sb.AppendLine("    }");
         }
@@ -249,8 +248,10 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
                    """, "    ");
         sb.AppendLine("    /// <param name=\"xyz\">The angles of the x axis, the y axis and the z axis, in radians</param>");
         sb.AppendLine("    /// <returns>The matrix of the rotation in the z-x-y order</returns>");
+        sb.AppendLine($"    public static {name} EulerZXY({vec} xyz) => EulerZXY_impl(xyz);");
+        sb.AppendLine();
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public static {name} EulerZXY({vec} xyz)");
+        sb.AppendLine($"    private static {name} EulerZXY_impl({vec} xyz)");
         sb.AppendLine("    {");
         if (VectorGenShared.Simd(typ, Size, false))
         {
@@ -679,7 +680,6 @@ public class Mat3x3ArithGenerator : IIncrementalGenerator
         sb.AppendLine("    /// <param name=\"up\">The value that stays over the one that is looked along</param>");
         sb.AppendLine("    /// <returns>The matrix of the rotation, or the identity of the matrix where the two values of it cannot be");
         sb.AppendLine("    /// read</returns>");
-        sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static {name} LookRotationSafe({vec} forward, {vec} up)");
         sb.AppendLine("    {");
         sb.AppendLine("        var forwardLengthSq = math.dot(forward, forward);");

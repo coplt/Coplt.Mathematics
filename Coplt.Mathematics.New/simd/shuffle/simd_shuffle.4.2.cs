@@ -8,15 +8,15 @@ namespace Coplt.Mathematics.Simd;
 public static partial class simd_shuffle
 {
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00000000);
@@ -31,15 +31,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01000000);
@@ -54,15 +54,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10000000);
@@ -77,15 +77,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11000000);
@@ -100,15 +100,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00010000);
@@ -123,15 +123,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01010000);
@@ -146,15 +146,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10010000);
@@ -169,15 +169,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11010000);
@@ -192,15 +192,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00100000);
@@ -215,15 +215,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01100000);
@@ -238,15 +238,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10100000);
@@ -261,15 +261,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11100000);
@@ -284,15 +284,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00110000);
@@ -307,15 +307,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01110000);
@@ -330,15 +330,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10110000);
@@ -353,15 +353,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xx_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xx_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xx_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xx_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xx_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11110000);
@@ -376,15 +376,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00000100);
@@ -399,15 +399,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01000100);
@@ -422,15 +422,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10000100);
@@ -445,15 +445,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11000100);
@@ -468,15 +468,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00010100);
@@ -491,15 +491,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01010100);
@@ -514,15 +514,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10010100);
@@ -537,15 +537,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11010100);
@@ -560,15 +560,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00100100);
@@ -583,15 +583,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01100100);
@@ -606,15 +606,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10100100);
@@ -629,15 +629,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11100100);
@@ -652,15 +652,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00110100);
@@ -675,15 +675,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01110100);
@@ -698,15 +698,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10110100);
@@ -721,15 +721,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xy_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xy_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xy_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xy_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xy_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11110100);
@@ -744,15 +744,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00001000);
@@ -767,15 +767,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01001000);
@@ -790,15 +790,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10001000);
@@ -813,15 +813,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11001000);
@@ -836,15 +836,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00011000);
@@ -859,15 +859,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01011000);
@@ -882,15 +882,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10011000);
@@ -905,15 +905,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11011000);
@@ -928,15 +928,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00101000);
@@ -951,15 +951,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01101000);
@@ -974,15 +974,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10101000);
@@ -997,15 +997,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11101000);
@@ -1020,15 +1020,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00111000);
@@ -1043,15 +1043,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01111000);
@@ -1066,15 +1066,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10111000);
@@ -1089,15 +1089,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xz_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xz_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xz_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xz_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xz_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11111000);
@@ -1112,15 +1112,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00001100);
@@ -1135,15 +1135,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01001100);
@@ -1158,15 +1158,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10001100);
@@ -1181,15 +1181,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11001100);
@@ -1204,15 +1204,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00011100);
@@ -1227,15 +1227,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01011100);
@@ -1250,15 +1250,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10011100);
@@ -1273,15 +1273,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11011100);
@@ -1296,15 +1296,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00101100);
@@ -1319,15 +1319,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01101100);
@@ -1342,15 +1342,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10101100);
@@ -1365,15 +1365,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11101100);
@@ -1388,15 +1388,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00111100);
@@ -1411,15 +1411,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01111100);
@@ -1434,15 +1434,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10111100);
@@ -1457,15 +1457,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_xw_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_xw_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_xw_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_xw_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_xw_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11111100);
@@ -1480,15 +1480,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00000001);
@@ -1503,15 +1503,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01000001);
@@ -1526,15 +1526,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10000001);
@@ -1549,15 +1549,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11000001);
@@ -1572,15 +1572,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00010001);
@@ -1595,15 +1595,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01010001);
@@ -1618,15 +1618,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10010001);
@@ -1641,15 +1641,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11010001);
@@ -1664,15 +1664,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00100001);
@@ -1687,15 +1687,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01100001);
@@ -1710,15 +1710,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10100001);
@@ -1733,15 +1733,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11100001);
@@ -1756,15 +1756,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00110001);
@@ -1779,15 +1779,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01110001);
@@ -1802,15 +1802,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10110001);
@@ -1825,15 +1825,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yx_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yx_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yx_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yx_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yx_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11110001);
@@ -1848,15 +1848,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00000101);
@@ -1871,15 +1871,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01000101);
@@ -1894,15 +1894,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10000101);
@@ -1917,15 +1917,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11000101);
@@ -1940,15 +1940,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00010101);
@@ -1963,15 +1963,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01010101);
@@ -1986,15 +1986,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10010101);
@@ -2009,15 +2009,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11010101);
@@ -2032,15 +2032,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00100101);
@@ -2055,15 +2055,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01100101);
@@ -2078,15 +2078,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10100101);
@@ -2101,15 +2101,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11100101);
@@ -2124,15 +2124,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00110101);
@@ -2147,15 +2147,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01110101);
@@ -2170,15 +2170,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10110101);
@@ -2193,15 +2193,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yy_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yy_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yy_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yy_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yy_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11110101);
@@ -2216,15 +2216,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00001001);
@@ -2239,15 +2239,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01001001);
@@ -2262,15 +2262,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10001001);
@@ -2285,15 +2285,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11001001);
@@ -2308,15 +2308,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00011001);
@@ -2331,15 +2331,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01011001);
@@ -2354,15 +2354,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10011001);
@@ -2377,15 +2377,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11011001);
@@ -2400,15 +2400,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00101001);
@@ -2423,15 +2423,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01101001);
@@ -2446,15 +2446,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10101001);
@@ -2469,15 +2469,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11101001);
@@ -2492,15 +2492,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00111001);
@@ -2515,15 +2515,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01111001);
@@ -2538,15 +2538,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10111001);
@@ -2561,15 +2561,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yz_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yz_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yz_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yz_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yz_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11111001);
@@ -2584,15 +2584,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00001101);
@@ -2607,15 +2607,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01001101);
@@ -2630,15 +2630,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10001101);
@@ -2653,15 +2653,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11001101);
@@ -2676,15 +2676,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00011101);
@@ -2699,15 +2699,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01011101);
@@ -2722,15 +2722,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10011101);
@@ -2745,15 +2745,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11011101);
@@ -2768,15 +2768,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00101101);
@@ -2791,15 +2791,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01101101);
@@ -2814,15 +2814,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10101101);
@@ -2837,15 +2837,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11101101);
@@ -2860,15 +2860,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00111101);
@@ -2883,15 +2883,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01111101);
@@ -2906,15 +2906,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10111101);
@@ -2929,15 +2929,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_yw_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_yw_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_yw_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_yw_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_yw_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11111101);
@@ -2952,15 +2952,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00000010);
@@ -2975,15 +2975,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01000010);
@@ -2998,15 +2998,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10000010);
@@ -3021,15 +3021,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11000010);
@@ -3044,15 +3044,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00010010);
@@ -3067,15 +3067,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01010010);
@@ -3090,15 +3090,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10010010);
@@ -3113,15 +3113,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11010010);
@@ -3136,15 +3136,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00100010);
@@ -3159,15 +3159,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01100010);
@@ -3182,15 +3182,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10100010);
@@ -3205,15 +3205,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11100010);
@@ -3228,15 +3228,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00110010);
@@ -3251,15 +3251,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01110010);
@@ -3274,15 +3274,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10110010);
@@ -3297,15 +3297,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zx_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zx_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zx_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zx_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zx_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11110010);
@@ -3320,15 +3320,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00000110);
@@ -3343,15 +3343,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01000110);
@@ -3366,15 +3366,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10000110);
@@ -3389,15 +3389,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11000110);
@@ -3412,15 +3412,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00010110);
@@ -3435,15 +3435,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01010110);
@@ -3458,15 +3458,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10010110);
@@ -3481,15 +3481,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11010110);
@@ -3504,15 +3504,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00100110);
@@ -3527,15 +3527,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01100110);
@@ -3550,15 +3550,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10100110);
@@ -3573,15 +3573,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11100110);
@@ -3596,15 +3596,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00110110);
@@ -3619,15 +3619,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01110110);
@@ -3642,15 +3642,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10110110);
@@ -3665,15 +3665,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zy_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zy_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zy_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zy_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zy_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11110110);
@@ -3688,15 +3688,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00001010);
@@ -3711,15 +3711,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01001010);
@@ -3734,15 +3734,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10001010);
@@ -3757,15 +3757,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11001010);
@@ -3780,15 +3780,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00011010);
@@ -3803,15 +3803,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01011010);
@@ -3826,15 +3826,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10011010);
@@ -3849,15 +3849,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11011010);
@@ -3872,15 +3872,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00101010);
@@ -3895,15 +3895,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01101010);
@@ -3918,15 +3918,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10101010);
@@ -3941,15 +3941,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11101010);
@@ -3964,15 +3964,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00111010);
@@ -3987,15 +3987,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01111010);
@@ -4010,15 +4010,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10111010);
@@ -4033,15 +4033,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zz_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zz_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zz_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zz_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zz_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11111010);
@@ -4056,15 +4056,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00001110);
@@ -4079,15 +4079,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01001110);
@@ -4102,15 +4102,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10001110);
@@ -4125,15 +4125,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11001110);
@@ -4148,15 +4148,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00011110);
@@ -4171,15 +4171,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01011110);
@@ -4194,15 +4194,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10011110);
@@ -4217,15 +4217,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11011110);
@@ -4240,15 +4240,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00101110);
@@ -4263,15 +4263,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01101110);
@@ -4286,15 +4286,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10101110);
@@ -4309,15 +4309,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11101110);
@@ -4332,15 +4332,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00111110);
@@ -4355,15 +4355,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01111110);
@@ -4378,15 +4378,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10111110);
@@ -4401,15 +4401,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_zw_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_zw_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_zw_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_zw_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_zw_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11111110);
@@ -4424,15 +4424,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00000011);
@@ -4447,15 +4447,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01000011);
@@ -4470,15 +4470,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10000011);
@@ -4493,15 +4493,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11000011);
@@ -4516,15 +4516,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00010011);
@@ -4539,15 +4539,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01010011);
@@ -4562,15 +4562,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10010011);
@@ -4585,15 +4585,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11010011);
@@ -4608,15 +4608,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00100011);
@@ -4631,15 +4631,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01100011);
@@ -4654,15 +4654,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10100011);
@@ -4677,15 +4677,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11100011);
@@ -4700,15 +4700,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00110011);
@@ -4723,15 +4723,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01110011);
@@ -4746,15 +4746,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10110011);
@@ -4769,15 +4769,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wx_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wx_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wx_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wx_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wx_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11110011);
@@ -4792,15 +4792,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00000111);
@@ -4815,15 +4815,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01000111);
@@ -4838,15 +4838,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10000111);
@@ -4861,15 +4861,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11000111);
@@ -4884,15 +4884,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00010111);
@@ -4907,15 +4907,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01010111);
@@ -4930,15 +4930,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10010111);
@@ -4953,15 +4953,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11010111);
@@ -4976,15 +4976,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00100111);
@@ -4999,15 +4999,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01100111);
@@ -5022,15 +5022,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10100111);
@@ -5045,15 +5045,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11100111);
@@ -5068,15 +5068,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00110111);
@@ -5091,15 +5091,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01110111);
@@ -5114,15 +5114,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10110111);
@@ -5137,15 +5137,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wy_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wy_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wy_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wy_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wy_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11110111);
@@ -5160,15 +5160,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00001011);
@@ -5183,15 +5183,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01001011);
@@ -5206,15 +5206,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10001011);
@@ -5229,15 +5229,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11001011);
@@ -5252,15 +5252,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00011011);
@@ -5275,15 +5275,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01011011);
@@ -5298,15 +5298,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10011011);
@@ -5321,15 +5321,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11011011);
@@ -5344,15 +5344,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00101011);
@@ -5367,15 +5367,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01101011);
@@ -5390,15 +5390,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10101011);
@@ -5413,15 +5413,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11101011);
@@ -5436,15 +5436,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00111011);
@@ -5459,15 +5459,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01111011);
@@ -5482,15 +5482,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10111011);
@@ -5505,15 +5505,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_wz_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_wz_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_wz_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_wz_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_wz_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11111011);
@@ -5528,15 +5528,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_xx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_xx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_xx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_xx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_xx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00001111);
@@ -5551,15 +5551,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_xy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_xy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_xy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_xy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_xy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01001111);
@@ -5574,15 +5574,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_xz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_xz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_xz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_xz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_xz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10001111);
@@ -5597,15 +5597,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_xw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_xw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_xw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_xw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_xw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11001111);
@@ -5620,15 +5620,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_yx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_yx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_yx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_yx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_yx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00011111);
@@ -5643,15 +5643,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_yy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_yy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_yy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_yy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_yy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01011111);
@@ -5666,15 +5666,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_yz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_yz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_yz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_yz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_yz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10011111);
@@ -5689,15 +5689,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_yw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_yw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_yw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_yw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_yw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11011111);
@@ -5712,15 +5712,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_zx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_zx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_zx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_zx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_zx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00101111);
@@ -5735,15 +5735,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_zy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_zy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_zy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_zy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_zy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01101111);
@@ -5758,15 +5758,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_zz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_zz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_zz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_zz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_zz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10101111);
@@ -5781,15 +5781,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_zw(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_zw(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_zw(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_zw(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_zw(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11101111);
@@ -5804,15 +5804,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_wx(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_wx(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_wx(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_wx(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_wx(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b00111111);
@@ -5827,15 +5827,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_wy(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_wy(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_wy(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_wy(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_wy(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b01111111);
@@ -5850,15 +5850,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_wz(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_wz(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_wz(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_wz(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_wz(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b10111111);
@@ -5873,15 +5873,15 @@ public static partial class simd_shuffle
         );
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<int> Shuffle_ww_ww(Vector128<int> a, Vector128<int> b) =>
         Shuffle_ww_ww(a.AsSingle(), b.AsSingle()).AsInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<uint> Shuffle_ww_ww(Vector128<uint> a, Vector128<uint> b) =>
         Shuffle_ww_ww(a.AsSingle(), b.AsSingle()).AsUInt32();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<float> Shuffle_ww_ww(Vector128<float> a, Vector128<float> b)
     {
         if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b11111111);
@@ -5896,15 +5896,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -5923,15 +5923,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -5945,15 +5945,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -5972,15 +5972,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -5999,15 +5999,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6021,15 +6021,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6048,15 +6048,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6075,15 +6075,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6102,15 +6102,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6129,15 +6129,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6156,15 +6156,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6183,15 +6183,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6205,15 +6205,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6232,15 +6232,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6259,15 +6259,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6281,15 +6281,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xx_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xx_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xx_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xx_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xx_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6308,15 +6308,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6330,15 +6330,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6352,15 +6352,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6374,15 +6374,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6396,15 +6396,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6418,15 +6418,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6440,15 +6440,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6462,15 +6462,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6484,15 +6484,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6506,15 +6506,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6528,15 +6528,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6550,15 +6550,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6572,15 +6572,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6594,15 +6594,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6616,15 +6616,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6638,15 +6638,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xy_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xy_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xy_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xy_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xy_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6660,15 +6660,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6687,15 +6687,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6709,15 +6709,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6736,15 +6736,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6763,15 +6763,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6785,15 +6785,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6812,15 +6812,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6839,15 +6839,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6866,15 +6866,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6893,15 +6893,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6920,15 +6920,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6947,15 +6947,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -6969,15 +6969,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -6996,15 +6996,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7023,15 +7023,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7045,15 +7045,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xz_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xz_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xz_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xz_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xz_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7072,15 +7072,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7099,15 +7099,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7121,15 +7121,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7148,15 +7148,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7175,15 +7175,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7197,15 +7197,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7224,15 +7224,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7251,15 +7251,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7278,15 +7278,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7305,15 +7305,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7332,15 +7332,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7359,15 +7359,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7381,15 +7381,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7408,15 +7408,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7435,15 +7435,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7457,15 +7457,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_xw_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_xw_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_xw_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_xw_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_xw_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7484,15 +7484,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7506,15 +7506,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7528,15 +7528,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7550,15 +7550,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7572,15 +7572,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7594,15 +7594,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7616,15 +7616,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7638,15 +7638,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7660,15 +7660,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7682,15 +7682,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7704,15 +7704,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7726,15 +7726,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7748,15 +7748,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7770,15 +7770,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7792,15 +7792,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7814,15 +7814,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yx_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yx_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yx_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yx_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yx_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7836,15 +7836,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7863,15 +7863,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7885,15 +7885,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7912,15 +7912,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7939,15 +7939,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -7961,15 +7961,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -7988,15 +7988,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8015,15 +8015,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8042,15 +8042,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8069,15 +8069,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8096,15 +8096,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8123,15 +8123,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8145,15 +8145,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8172,15 +8172,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8199,15 +8199,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8221,15 +8221,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yy_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yy_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yy_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yy_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yy_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8248,15 +8248,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8275,15 +8275,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8297,15 +8297,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8324,15 +8324,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8351,15 +8351,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8373,15 +8373,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8400,15 +8400,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8427,15 +8427,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8454,15 +8454,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8481,15 +8481,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8508,15 +8508,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8535,15 +8535,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8557,15 +8557,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8584,15 +8584,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8611,15 +8611,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8633,15 +8633,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yz_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yz_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yz_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yz_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yz_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8660,15 +8660,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8687,15 +8687,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8709,15 +8709,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8736,15 +8736,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8763,15 +8763,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8785,15 +8785,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8812,15 +8812,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8839,15 +8839,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8866,15 +8866,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8893,15 +8893,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8920,15 +8920,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8947,15 +8947,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -8969,15 +8969,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -8996,15 +8996,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9023,15 +9023,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9045,15 +9045,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_yw_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_yw_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_yw_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_yw_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_yw_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9072,15 +9072,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9099,15 +9099,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9121,15 +9121,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9148,15 +9148,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9175,15 +9175,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9197,15 +9197,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9224,15 +9224,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9251,15 +9251,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9278,15 +9278,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9305,15 +9305,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9332,15 +9332,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9359,15 +9359,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9381,15 +9381,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9408,15 +9408,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9435,15 +9435,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9457,15 +9457,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zx_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zx_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zx_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zx_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zx_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9484,15 +9484,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9511,15 +9511,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9533,15 +9533,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9560,15 +9560,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9587,15 +9587,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9609,15 +9609,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9636,15 +9636,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9663,15 +9663,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9690,15 +9690,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9717,15 +9717,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9744,15 +9744,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9771,15 +9771,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9793,15 +9793,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9820,15 +9820,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9847,15 +9847,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9869,15 +9869,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zy_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zy_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zy_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zy_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zy_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9896,15 +9896,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9923,15 +9923,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -9945,15 +9945,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9972,15 +9972,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -9999,15 +9999,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10021,15 +10021,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10048,15 +10048,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10075,15 +10075,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10102,15 +10102,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10129,15 +10129,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10156,15 +10156,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10183,15 +10183,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10205,15 +10205,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10232,15 +10232,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10259,15 +10259,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10281,15 +10281,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zz_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zz_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zz_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zz_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zz_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10308,15 +10308,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10330,15 +10330,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10352,15 +10352,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10374,15 +10374,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10396,15 +10396,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10418,15 +10418,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10440,15 +10440,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10462,15 +10462,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10484,15 +10484,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10506,15 +10506,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10528,15 +10528,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10550,15 +10550,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10572,15 +10572,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10594,15 +10594,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10616,15 +10616,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10638,15 +10638,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_zw_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_zw_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_zw_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_zw_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_zw_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10660,15 +10660,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10687,15 +10687,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10709,15 +10709,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10736,15 +10736,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10763,15 +10763,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10785,15 +10785,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10812,15 +10812,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10839,15 +10839,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10866,15 +10866,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10893,15 +10893,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10920,15 +10920,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10947,15 +10947,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -10969,15 +10969,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -10996,15 +10996,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11023,15 +11023,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11045,15 +11045,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wx_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wx_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wx_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wx_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wx_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11072,15 +11072,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11099,15 +11099,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11121,15 +11121,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11148,15 +11148,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11175,15 +11175,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11197,15 +11197,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11224,15 +11224,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11251,15 +11251,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11278,15 +11278,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11305,15 +11305,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11332,15 +11332,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11359,15 +11359,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11381,15 +11381,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11408,15 +11408,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11435,15 +11435,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11457,15 +11457,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wy_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wy_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wy_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wy_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wy_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11484,15 +11484,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11506,15 +11506,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11528,15 +11528,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11550,15 +11550,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11572,15 +11572,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11594,15 +11594,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11616,15 +11616,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11638,15 +11638,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11660,15 +11660,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11682,15 +11682,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11704,15 +11704,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11726,15 +11726,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11748,15 +11748,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11770,15 +11770,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11792,15 +11792,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11814,15 +11814,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_wz_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_wz_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_wz_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_wz_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_wz_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11836,15 +11836,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_xx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_xx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_xx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_xx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_xx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11863,15 +11863,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_xy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_xy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_xy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_xy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_xy(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11885,15 +11885,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_xz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_xz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_xz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_xz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_xz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11912,15 +11912,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_xw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_xw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_xw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_xw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_xw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11939,15 +11939,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_yx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_yx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_yx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_yx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_yx(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -11961,15 +11961,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_yy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_yy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_yy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_yy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_yy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -11988,15 +11988,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_yz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_yz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_yz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_yz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_yz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -12015,15 +12015,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_yw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_yw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_yw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_yw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_yw(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -12042,15 +12042,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_zx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_zx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_zx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_zx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_zx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -12069,15 +12069,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_zy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_zy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_zy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_zy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_zy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -12096,15 +12096,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_zz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_zz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_zz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_zz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_zz(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -12123,15 +12123,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_zw(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_zw(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_zw(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_zw(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_zw(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -12145,15 +12145,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_wx(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_wx(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_wx(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_wx(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_wx(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -12172,15 +12172,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_wy(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_wy(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_wy(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_wy(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_wy(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)
@@ -12199,15 +12199,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_wz(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_wz(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_wz(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_wz(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_wz(Vector256<double> a, Vector256<double> b)
     {
         if (Vector512.IsHardwareAccelerated)
@@ -12221,15 +12221,15 @@ public static partial class simd_shuffle
         );
     }
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<long> Shuffle_ww_ww(Vector256<long> a, Vector256<long> b) =>
         Shuffle_ww_ww(a.AsDouble(), b.AsDouble()).AsInt64();
     
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<ulong> Shuffle_ww_ww(Vector256<ulong> a, Vector256<ulong> b) =>
         Shuffle_ww_ww(a.AsDouble(), b.AsDouble()).AsUInt64();
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<double> Shuffle_ww_ww(Vector256<double> a, Vector256<double> b)
     {
         if (Avx.IsSupported)

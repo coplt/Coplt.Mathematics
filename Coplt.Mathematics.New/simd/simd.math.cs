@@ -8,7 +8,7 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Mod(Vector64<f32> x, Vector64<f32> y)
     {
         var div = x / y;
@@ -16,7 +16,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Mod(Vector64<f32> x, f32 y)
     {
         var div = x / y;
@@ -28,7 +28,7 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Mod(Vector128<f32> x, Vector128<f32> y)
     {
         var div = x / y;
@@ -36,7 +36,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Mod(Vector128<f32> x, f32 y)
     {
         var div = x / y;
@@ -48,7 +48,7 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Mod(Vector256<f32> x, Vector256<f32> y)
     {
         var div = x / y;
@@ -56,7 +56,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Mod(Vector256<f32> x, f32 y)
     {
         var div = x / y;
@@ -68,7 +68,7 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Mod(Vector512<f32> x, Vector512<f32> y)
     {
         var div = x / y;
@@ -76,7 +76,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Mod(Vector512<f32> x, f32 y)
     {
         var div = x / y;
@@ -88,7 +88,7 @@ public static partial class simd_math
 
     #region Vector128<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Mod(Vector128<f64> x, Vector128<f64> y)
     {
         var div = x / y;
@@ -96,7 +96,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Mod(Vector128<f64> x, f64 y)
     {
         var div = x / y;
@@ -108,7 +108,7 @@ public static partial class simd_math
 
     #region Vector256<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Mod(Vector256<f64> x, Vector256<f64> y)
     {
         var div = x / y;
@@ -116,7 +116,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Mod(Vector256<f64> x, f64 y)
     {
         var div = x / y;
@@ -128,7 +128,7 @@ public static partial class simd_math
 
     #region Vector512<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Mod(Vector512<f64> x, Vector512<f64> y)
     {
         var div = x / y;
@@ -136,7 +136,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Mod(Vector512<f64> x, f64 y)
     {
         var div = x / y;
@@ -152,7 +152,7 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Rem(Vector64<f32> x, Vector64<f32> y)
     {
         var div = x / y;
@@ -160,7 +160,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Rem(Vector64<f32> x, f32 y)
     {
         var div = x / y;
@@ -172,7 +172,7 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Rem(Vector128<f32> x, Vector128<f32> y)
     {
         var div = x / y;
@@ -180,7 +180,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Rem(Vector128<f32> x, f32 y)
     {
         var div = x / y;
@@ -192,7 +192,7 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Rem(Vector256<f32> x, Vector256<f32> y)
     {
         var div = x / y;
@@ -200,7 +200,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Rem(Vector256<f32> x, f32 y)
     {
         var div = x / y;
@@ -212,7 +212,7 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Rem(Vector512<f32> x, Vector512<f32> y)
     {
         var div = x / y;
@@ -220,7 +220,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Rem(Vector512<f32> x, f32 y)
     {
         var div = x / y;
@@ -232,7 +232,7 @@ public static partial class simd_math
 
     #region Vector128<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Rem(Vector128<f64> x, Vector128<f64> y)
     {
         var div = x / y;
@@ -240,7 +240,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Rem(Vector128<f64> x, f64 y)
     {
         var div = x / y;
@@ -252,7 +252,7 @@ public static partial class simd_math
 
     #region Vector256<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Rem(Vector256<f64> x, Vector256<f64> y)
     {
         var div = x / y;
@@ -260,7 +260,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Rem(Vector256<f64> x, f64 y)
     {
         var div = x / y;
@@ -272,7 +272,7 @@ public static partial class simd_math
 
     #region Vector512<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Rem(Vector512<f64> x, Vector512<f64> y)
     {
         var div = x / y;
@@ -280,7 +280,7 @@ public static partial class simd_math
         return simd.Fnma(flr, y, x);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Rem(Vector512<f64> x, f64 y)
     {
         var div = x / y;
@@ -296,7 +296,7 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Wrap(Vector64<f32> x, Vector64<f32> min, Vector64<f32> max)
     {
         var add = Vector64.ConditionalSelect(Vector64.GreaterThanOrEqual(x, default), min, max);
@@ -304,7 +304,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Wrap(Vector64<f32> x, f32 min, f32 max)
     {
         var add = Vector64.ConditionalSelect(Vector64.GreaterThanOrEqual(x, default), Vector64.Create(min), Vector64.Create(max));
@@ -312,7 +312,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Wrap0ToPi(Vector64<f32> x)
     {
         var add = x + (Vector64.LessThan(x, default) & Vector64.Create(math.F_PI));
@@ -321,7 +321,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector64.Create(math.F_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Wrap0To2Pi(Vector64<f32> x)
     {
         var add = x + (Vector64.LessThan(x, default) & Vector64.Create(math.F_2_PI));
@@ -330,7 +330,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector64.Create(math.F_2_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Wrap0To4Pi(Vector64<f32> x)
     {
         var add = x + (Vector64.LessThan(x, default) & Vector64.Create(math.F_4_PI));
@@ -343,7 +343,7 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Wrap(Vector128<f32> x, Vector128<f32> min, Vector128<f32> max)
     {
         var add = Vector128.ConditionalSelect(Vector128.GreaterThanOrEqual(x, default), min, max);
@@ -351,7 +351,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Wrap(Vector128<f32> x, f32 min, f32 max)
     {
         var add = Vector128.ConditionalSelect(Vector128.GreaterThanOrEqual(x, default), Vector128.Create(min), Vector128.Create(max));
@@ -359,7 +359,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Wrap0ToPi(Vector128<f32> x)
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.F_PI));
@@ -368,7 +368,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector128.Create(math.F_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Wrap0To2Pi(Vector128<f32> x)
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.F_2_PI));
@@ -377,7 +377,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector128.Create(math.F_2_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Wrap0To4Pi(Vector128<f32> x)
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.F_4_PI));
@@ -390,7 +390,7 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Wrap(Vector256<f32> x, Vector256<f32> min, Vector256<f32> max)
     {
         var add = Vector256.ConditionalSelect(Vector256.GreaterThanOrEqual(x, default), min, max);
@@ -398,7 +398,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Wrap(Vector256<f32> x, f32 min, f32 max)
     {
         var add = Vector256.ConditionalSelect(Vector256.GreaterThanOrEqual(x, default), Vector256.Create(min), Vector256.Create(max));
@@ -406,7 +406,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Wrap0ToPi(Vector256<f32> x)
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.F_PI));
@@ -415,7 +415,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector256.Create(math.F_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Wrap0To2Pi(Vector256<f32> x)
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.F_2_PI));
@@ -424,7 +424,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector256.Create(math.F_2_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Wrap0To4Pi(Vector256<f32> x)
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.F_4_PI));
@@ -437,7 +437,7 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Wrap(Vector512<f32> x, Vector512<f32> min, Vector512<f32> max)
     {
         var add = Vector512.ConditionalSelect(Vector512.GreaterThanOrEqual(x, default), min, max);
@@ -445,7 +445,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Wrap(Vector512<f32> x, f32 min, f32 max)
     {
         var add = Vector512.ConditionalSelect(Vector512.GreaterThanOrEqual(x, default), Vector512.Create(min), Vector512.Create(max));
@@ -453,7 +453,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Wrap0ToPi(Vector512<f32> x)
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.F_PI));
@@ -462,7 +462,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector512.Create(math.F_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Wrap0To2Pi(Vector512<f32> x)
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.F_2_PI));
@@ -471,7 +471,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector512.Create(math.F_2_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Wrap0To4Pi(Vector512<f32> x)
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.F_4_PI));
@@ -484,7 +484,7 @@ public static partial class simd_math
 
     #region Vector128<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Wrap(Vector128<f64> x, Vector128<f64> min, Vector128<f64> max)
     {
         var add = Vector128.ConditionalSelect(Vector128.GreaterThanOrEqual(x, default), min, max);
@@ -492,7 +492,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Wrap(Vector128<f64> x, f64 min, f64 max)
     {
         var add = Vector128.ConditionalSelect(Vector128.GreaterThanOrEqual(x, default), Vector128.Create(min), Vector128.Create(max));
@@ -500,7 +500,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Wrap0ToPi(Vector128<f64> x)
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.D_PI));
@@ -509,7 +509,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector128.Create(math.D_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Wrap0To2Pi(Vector128<f64> x)
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.D_2_PI));
@@ -518,7 +518,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector128.Create(math.D_2_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Wrap0To4Pi(Vector128<f64> x)
     {
         var add = x + (Vector128.LessThan(x, default) & Vector128.Create(math.D_4_PI));
@@ -531,7 +531,7 @@ public static partial class simd_math
 
     #region Vector256<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Wrap(Vector256<f64> x, Vector256<f64> min, Vector256<f64> max)
     {
         var add = Vector256.ConditionalSelect(Vector256.GreaterThanOrEqual(x, default), min, max);
@@ -539,7 +539,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Wrap(Vector256<f64> x, f64 min, f64 max)
     {
         var add = Vector256.ConditionalSelect(Vector256.GreaterThanOrEqual(x, default), Vector256.Create(min), Vector256.Create(max));
@@ -547,7 +547,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Wrap0ToPi(Vector256<f64> x)
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.D_PI));
@@ -556,7 +556,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector256.Create(math.D_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Wrap0To2Pi(Vector256<f64> x)
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.D_2_PI));
@@ -565,7 +565,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector256.Create(math.D_2_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Wrap0To4Pi(Vector256<f64> x)
     {
         var add = x + (Vector256.LessThan(x, default) & Vector256.Create(math.D_4_PI));
@@ -578,7 +578,7 @@ public static partial class simd_math
 
     #region Vector512<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Wrap(Vector512<f64> x, Vector512<f64> min, Vector512<f64> max)
     {
         var add = Vector512.ConditionalSelect(Vector512.GreaterThanOrEqual(x, default), min, max);
@@ -586,7 +586,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Wrap(Vector512<f64> x, f64 min, f64 max)
     {
         var add = Vector512.ConditionalSelect(Vector512.GreaterThanOrEqual(x, default), Vector512.Create(min), Vector512.Create(max));
@@ -594,7 +594,7 @@ public static partial class simd_math
         return add + off;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Wrap0ToPi(Vector512<f64> x)
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.D_PI));
@@ -603,7 +603,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector512.Create(math.D_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Wrap0To2Pi(Vector512<f64> x)
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.D_2_PI));
@@ -612,7 +612,7 @@ public static partial class simd_math
         return simd.Fnma(flr, Vector512.Create(math.D_2_PI), add);
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Wrap0To4Pi(Vector512<f64> x)
     {
         var add = x + (Vector512.LessThan(x, default) & Vector512.Create(math.D_4_PI));
@@ -629,16 +629,15 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(512)]
     public static Vector64<f32> Log(Vector64<f32> a) => Log2_impl(a) * math.F_Log2;
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Log10(Vector64<f32> a) => Log2_impl(a) * (math.F_Log2 / math.F_Log10);
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Log2(Vector64<f32> a) => Log2_impl(a);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector64<f32> Log2_impl(Vector64<f32> a)
     {
         var xl = Vector64.Max(a, Vector64<f32>.Zero).AsInt32();
@@ -686,16 +685,15 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(512)]
     public static Vector128<f32> Log(Vector128<f32> a) => Log2_impl(a) * math.F_Log2;
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Log10(Vector128<f32> a) => Log2_impl(a) * (math.F_Log2 / math.F_Log10);
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Log2(Vector128<f32> a) => Log2_impl(a);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector128<f32> Log2_impl(Vector128<f32> a)
     {
         var xl = Vector128.Max(a, Vector128<f32>.Zero).AsInt32();
@@ -743,16 +741,15 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(512)]
     public static Vector256<f32> Log(Vector256<f32> a) => Log2_impl(a) * math.F_Log2;
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Log10(Vector256<f32> a) => Log2_impl(a) * (math.F_Log2 / math.F_Log10);
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Log2(Vector256<f32> a) => Log2_impl(a);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector256<f32> Log2_impl(Vector256<f32> a)
     {
         var xl = Vector256.Max(a, Vector256<f32>.Zero).AsInt32();
@@ -800,16 +797,15 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(512)]
     public static Vector512<f32> Log(Vector512<f32> a) => Log2_impl(a) * math.F_Log2;
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Log10(Vector512<f32> a) => Log2_impl(a) * (math.F_Log2 / math.F_Log10);
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Log2(Vector512<f32> a) => Log2_impl(a);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector512<f32> Log2_impl(Vector512<f32> a)
     {
         var xl = Vector512.Max(a, Vector512<f32>.Zero).AsInt32();
@@ -857,16 +853,15 @@ public static partial class simd_math
 
     #region Vector128<f64>
 
-    [MethodImpl(512)]
     public static Vector128<f64> Log(Vector128<f64> a) => Log2_impl(a) * math.D_Log2;
 
-    [MethodImpl(512)]
+
     public static Vector128<f64> Log10(Vector128<f64> a) => Log2_impl(a) * (math.D_Log2 / math.D_Log10);
 
-    [MethodImpl(512)]
+
     public static Vector128<f64> Log2(Vector128<f64> a) => Log2_impl(a);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector128<f64> Log2_impl(Vector128<f64> a)
     {
         var xl = Vector128.Max(a, Vector128<f64>.Zero).AsInt64();
@@ -917,16 +912,15 @@ public static partial class simd_math
 
     #region Vector256<f64>
 
-    [MethodImpl(512)]
     public static Vector256<f64> Log(Vector256<f64> a) => Log2_impl(a) * math.D_Log2;
 
-    [MethodImpl(512)]
+
     public static Vector256<f64> Log10(Vector256<f64> a) => Log2_impl(a) * (math.D_Log2 / math.D_Log10);
 
-    [MethodImpl(512)]
+
     public static Vector256<f64> Log2(Vector256<f64> a) => Log2_impl(a);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector256<f64> Log2_impl(Vector256<f64> a)
     {
         var xl = Vector256.Max(a, Vector256<f64>.Zero).AsInt64();
@@ -977,16 +971,15 @@ public static partial class simd_math
 
     #region Vector512<f64>
 
-    [MethodImpl(512)]
     public static Vector512<f64> Log(Vector512<f64> a) => Log2_impl(a) * math.D_Log2;
 
-    [MethodImpl(512)]
+
     public static Vector512<f64> Log10(Vector512<f64> a) => Log2_impl(a) * (math.D_Log2 / math.D_Log10);
 
-    [MethodImpl(512)]
+
     public static Vector512<f64> Log2(Vector512<f64> a) => Log2_impl(a);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector512<f64> Log2_impl(Vector512<f64> a)
     {
         var xl = Vector512.Max(a, Vector512<f64>.Zero).AsInt64();
@@ -1041,16 +1034,15 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(512)]
     public static Vector64<f32> Exp(Vector64<f32> x) => Exp2_impl(x * math.F_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Exp10(Vector64<f32> x) => Exp2_impl(x * 2.302585092994045684f * math.F_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector64<f32> Exp2(Vector64<f32> x) => Exp2_impl(x);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector64<f32> Exp2_impl(Vector64<f32> x)
     {
         var e = Vector64.GreaterThanOrEqual(x, Vector64.Create(89f)) & Vector64.Create(f32.PositiveInfinity);
@@ -1084,16 +1076,15 @@ public static partial class simd_math
 
     #region Vector128<f32>
 
-    [MethodImpl(512)]
     public static Vector128<f32> Exp(Vector128<f32> x) => Exp2_impl(x * math.F_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Exp10(Vector128<f32> x) => Exp2_impl(x * 2.302585092994045684f * math.F_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector128<f32> Exp2(Vector128<f32> x) => Exp2_impl(x);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector128<f32> Exp2_impl(Vector128<f32> x)
     {
         var e = Vector128.GreaterThanOrEqual(x, Vector128.Create(89f)) & Vector128.Create(f32.PositiveInfinity);
@@ -1127,16 +1118,15 @@ public static partial class simd_math
 
     #region Vector256<f32>
 
-    [MethodImpl(512)]
     public static Vector256<f32> Exp(Vector256<f32> x) => Exp2_impl(x * math.F_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Exp10(Vector256<f32> x) => Exp2_impl(x * 2.302585092994045684f * math.F_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector256<f32> Exp2(Vector256<f32> x) => Exp2_impl(x);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector256<f32> Exp2_impl(Vector256<f32> x)
     {
         var e = Vector256.GreaterThanOrEqual(x, Vector256.Create(89f)) & Vector256.Create(f32.PositiveInfinity);
@@ -1170,16 +1160,15 @@ public static partial class simd_math
 
     #region Vector512<f32>
 
-    [MethodImpl(512)]
     public static Vector512<f32> Exp(Vector512<f32> x) => Exp2_impl(x * math.F_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Exp10(Vector512<f32> x) => Exp2_impl(x * 2.302585092994045684f * math.F_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector512<f32> Exp2(Vector512<f32> x) => Exp2_impl(x);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector512<f32> Exp2_impl(Vector512<f32> x)
     {
         var e = Vector512.GreaterThanOrEqual(x, Vector512.Create(89f)) & Vector512.Create(f32.PositiveInfinity);
@@ -1213,16 +1202,15 @@ public static partial class simd_math
 
     #region Vector128<f64>
 
-    [MethodImpl(512)]
     public static Vector128<f64> Exp(Vector128<f64> x) => Exp2_impl(x * math.D_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector128<f64> Exp10(Vector128<f64> x) => Exp2_impl(x * 2.302585092994045684 * math.D_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector128<f64> Exp2(Vector128<f64> x) => Exp2_impl(x);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector128<f64> Exp2_impl(Vector128<f64> x)
     {
         var e = Vector128.GreaterThanOrEqual(x, Vector128.Create(709.0 * 1.4426950408889634)) & Vector128.Create(f64.PositiveInfinity);
@@ -1260,16 +1248,15 @@ public static partial class simd_math
 
     #region Vector256<f64>
 
-    [MethodImpl(512)]
     public static Vector256<f64> Exp(Vector256<f64> x) => Exp2_impl(x * math.D_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector256<f64> Exp10(Vector256<f64> x) => Exp2_impl(x * 2.302585092994045684 * math.D_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector256<f64> Exp2(Vector256<f64> x) => Exp2_impl(x);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector256<f64> Exp2_impl(Vector256<f64> x)
     {
         var e = Vector256.GreaterThanOrEqual(x, Vector256.Create(709.0 * 1.4426950408889634)) & Vector256.Create(f64.PositiveInfinity);
@@ -1307,16 +1294,15 @@ public static partial class simd_math
 
     #region Vector512<f64>
 
-    [MethodImpl(512)]
     public static Vector512<f64> Exp(Vector512<f64> x) => Exp2_impl(x * math.D_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector512<f64> Exp10(Vector512<f64> x) => Exp2_impl(x * 2.302585092994045684 * math.D_1_Div_Log2);
 
-    [MethodImpl(512)]
+
     public static Vector512<f64> Exp2(Vector512<f64> x) => Exp2_impl(x);
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     private static Vector512<f64> Exp2_impl(Vector512<f64> x)
     {
         var e = Vector512.GreaterThanOrEqual(x, Vector512.Create(709.0 * 1.4426950408889634)) & Vector512.Create(f64.PositiveInfinity);
@@ -1358,7 +1344,7 @@ public static partial class simd_math
 
     #region Vector64<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Pow(Vector64<f32> a, Vector64<f32> b)
     {
         var sig = Vector64.LessThan(a, default)
@@ -1368,14 +1354,14 @@ public static partial class simd_math
         return r | sig;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector64<f32> Pow(Vector64<f32> a, f32 b) => Pow(a, Vector64.Create(b));
 
     #endregion
 
     #region Vector128<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Pow(Vector128<f32> a, Vector128<f32> b)
     {
         var sig = Vector128.LessThan(a, default)
@@ -1385,14 +1371,14 @@ public static partial class simd_math
         return r | sig;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f32> Pow(Vector128<f32> a, f32 b) => Pow(a, Vector128.Create(b));
 
     #endregion
 
     #region Vector256<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Pow(Vector256<f32> a, Vector256<f32> b)
     {
         var sig = Vector256.LessThan(a, default)
@@ -1402,14 +1388,14 @@ public static partial class simd_math
         return r | sig;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f32> Pow(Vector256<f32> a, f32 b) => Pow(a, Vector256.Create(b));
 
     #endregion
 
     #region Vector512<f32>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Pow(Vector512<f32> a, Vector512<f32> b)
     {
         var sig = Vector512.LessThan(a, default)
@@ -1419,14 +1405,14 @@ public static partial class simd_math
         return r | sig;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f32> Pow(Vector512<f32> a, f32 b) => Pow(a, Vector512.Create(b));
 
     #endregion
 
     #region Vector128<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Pow(Vector128<f64> a, Vector128<f64> b)
     {
         var sig = Vector128.LessThan(a, default)
@@ -1436,14 +1422,14 @@ public static partial class simd_math
         return r | sig;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector128<f64> Pow(Vector128<f64> a, f64 b) => Pow(a, Vector128.Create(b));
 
     #endregion
 
     #region Vector256<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Pow(Vector256<f64> a, Vector256<f64> b)
     {
         var sig = Vector256.LessThan(a, default)
@@ -1453,14 +1439,14 @@ public static partial class simd_math
         return r | sig;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector256<f64> Pow(Vector256<f64> a, f64 b) => Pow(a, Vector256.Create(b));
 
     #endregion
 
     #region Vector512<f64>
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Pow(Vector512<f64> a, Vector512<f64> b)
     {
         var sig = Vector512.LessThan(a, default)
@@ -1470,7 +1456,7 @@ public static partial class simd_math
         return r | sig;
     }
 
-    [MethodImpl(256 | 512)]
+    [MethodImpl(256)]
     public static Vector512<f64> Pow(Vector512<f64> a, f64 b) => Pow(a, Vector512.Create(b));
 
     #endregion
