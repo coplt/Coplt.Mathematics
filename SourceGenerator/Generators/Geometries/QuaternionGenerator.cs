@@ -136,6 +136,8 @@ public class QuaternionGenerator : IIncrementalGenerator
         sb.AppendLine();
         Rotations(sb, name, typ);
         sb.AppendLine();
+        EulerAngles(sb, name, typ);
+        sb.AppendLine();
         Views(sb, name, typ);
         sb.AppendLine();
         sb.AppendLine("    #endregion");
@@ -441,6 +443,160 @@ public class QuaternionGenerator : IIncrementalGenerator
     /// <param name="sign">The sign of the component</param>
     /// <returns>The text of the sign</returns>
     private static string Sign(int sign) => sign < 0 ? "-" : "";
+
+    /// <summary>
+    /// True when the three axes of an order of the three Euler angles come in the order of the axes of the space,
+    /// which is the parity of the permutation of the axes of it: the axes of an order that is an even permutation
+    /// of them are the ones of the space turned around and the ones of an odd permutation of them are the ones of
+    /// the space turned around and of the space of the other side of them.
+    /// </summary>
+    /// <param name="order">The name of the order</param>
+    /// <returns>True when the permutation of the axes of the order is even</returns>
+    private static bool Even(string order)
+    {
+        var inversions = 0;
+        for (var i = 0; i < order.Length; i++)
+        for (var j = i + 1; j < order.Length; j++)
+        {
+            if (char.ToLowerInvariant(order[i]) > char.ToLowerInvariant(order[j])) inversions++;
+        }
+
+        return inversions % 2 == 0;
+    }
+
+    /// <summary>
+    /// Adds the members that read the three Euler angles of the rotation of the quaternion out of the value of it
+    /// to the quaternion <paramref name="name"/>, which are the inverse of the ones of the rotations of it: every
+    /// order of the three angles has the member of its own and the two members that take the order of them reach
+    /// the member of the order they name.
+    /// <para>The three angles of an order are read out of the value of the quaternion with the axes of it turned
+    /// so that the axis in the middle of the order takes the place of the x axis, which the value of 3 components
+    /// of a rotation, the product of the components of the value that name the sine of the angle of an axis and
+    /// the squared value of it are the ones of the angles of the order that way. The order of the axes of the
+    /// angles is the one of the space for an even permutation of them and the one of the space of the other side
+    /// for an odd one, which the signs of the products of the axes of the value are the ones of.</para>
+    /// </summary>
+    /// <param name="sb">The source of the file</param>
+    /// <param name="name">The name of the quaternion</param>
+    /// <param name="typ">The kind of the component of the quaternion</param>
+    private static void EulerAngles(StringBuilder sb, string name, Typ typ)
+    {
+        var scalar = typ.compType;
+        var vec3 = VectorGenShared.VecName(typ, 3, false);
+        var vec4 = VectorGenShared.VecName(typ, 4, false);
+        var one = typ.one;
+        var two = typ.two;
+        // the angle of the middle axis of an order that is a right angle cannot be told apart from the ones of
+        // the two axes beside it, which the two of them reach the quaternion of the three angles of the order
+        // through: the sum and the difference of the two of them is the whole of what the value holds
+        var halfPi = typ.name switch
+        {
+            "float" => "math.F_Half_PI",
+            "double" => "math.D_Half_PI",
+            _ => "(half)math.F_Half_PI",
+        };
+        // the angle of the middle axis of an order that is a right angle is read out of the value with the sine
+        // of the angle of it, which the value of the kind of the component holds to the digits of the kind of it:
+        // the cutoff is the value that is as close to the one as the kind of it reaches
+        var digits = typ.name switch
+        {
+            "float" => "0.99999",
+            "double" => "0.99999999999",
+            _ => "0.999",
+        };
+        var cutoff = Lit(typ, digits);
+
+        // the member of every order holds the whole of the read back of the angles of the value of a quaternion,
+        // which is long enough not to be inlined into its callers, while the two members that take the order of
+        // the angles are the ones that reach the member of the order they name and nothing else of their own
+        AddDoc(sb, $"""
+                    Reads the three Euler angles of the rotation of the value out of it, which is the one of the z-x-y
+                    order
+                    <para>Every angle of the result is in radians and the rotation of an angle is clockwise where the
+                    axis of it is looked along towards the origin, so the rotation the angles of the result hold is the
+                    one the value holds</para>
+                    <returns>The angles of the x axis, the y axis and the z axis of the rotation of the value, in radians</returns>
+                    """, "    ");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public {vec3} ToEulerAngles() => ToEulerZXY();");
+        sb.AppendLine();
+
+        AddDoc(sb, """
+                   Reads the three Euler angles of the rotation of the value out of it, which is the one of the order
+                   <paramref name="order"/> names
+                   <para>Every angle of the result is in radians and the rotation of an angle is clockwise where the
+                   axis of it is looked along towards the origin, so the rotation the angles of the result hold is the
+                   one the value holds</para>
+                   <param name="order">The order the three rotations of the angles are read in</param>
+                   <returns>The angles of the x axis, the y axis and the z axis of the rotation of the value, in radians</returns>
+                   """, "    ");
+        sb.AppendLine("    [MethodImpl(256)]");
+        sb.AppendLine($"    public {vec3} ToEulerAngles(RotationOrder order) => order switch");
+        sb.AppendLine("    {");
+        foreach (var order in Orders)
+            sb.AppendLine($"        RotationOrder.{order.Order} => ToEuler{order.Order}(),");
+        sb.AppendLine($"        _ => ToEulerZXY(),");
+        sb.AppendLine("    };");
+        sb.AppendLine();
+
+        foreach (var order in Orders)
+        {
+            var axes = order.Order.ToLowerInvariant();
+            var middle = "xyz".IndexOf(axes[1]);
+            var next = (middle + 1) % 3;
+            var next2 = (middle + 2) % 3;
+            var even = Even(order.Order);
+            var relabel = middle switch
+            {
+                1 => ".yzxw",
+                2 => ".zxyw",
+                _ => "",
+            };
+            var back = middle switch
+            {
+                1 => ".zxy",
+                2 => ".yzx",
+                _ => "",
+            };
+            var cross = even
+                ? $"{Sign(-1)}{one}, {one}, {one}, {one}"
+                : $"{one}, {Sign(-1)}{one}, {Sign(-1)}{one}, {one}";
+            // the pair of the axes of the value that names the sine of the sum and of the difference of the two
+            // angles beside the middle one is the difference of the product of the middle axis and the one that
+            // follows it with the product of the last one of them and the one of the value itself for the axes
+            // of the space, and the sum of the two of them for the axes of the space of the other side
+            var sum = even ? "-" : "+";
+
+            AddDoc(sb, $"""
+                        Reads the three Euler angles of the rotation of the value out of it, which is the rotation around the {axes[0]} axis by {Word(axes[0])} of them, then the rotation around the {axes[1]} axis by {Word(axes[1])} one and finally the rotation around the {axes[2]} axis by {Word(axes[2])} one
+                        <para>Every angle of the result is in radians and the rotation of an angle is clockwise where the axis of it is looked along towards the origin, so the rotation the angles of the result hold is the one the value holds</para>
+                        <para>The three angles of an order whose middle rotation is of a right angle are not read out of the value on their own: the member answers with the angle of the {axes[middle]} axis at the right angle, with the sum or the difference of the other two at the {axes[next]} axis one and with the zero of the kind at the {axes[next2]} axis one</para>
+                        <returns>The angles of the x axis, the y axis and the z axis of the rotation of the value, in radians</returns>
+                        """, "    ");
+            sb.AppendLine($"    public {vec3} ToEuler{order.Order}()");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        var q = value{relabel};");
+            sb.AppendLine($"        var cross = math.chg_sign(q.yzxw * q.zxyw, new {vec4}({cross}));");
+            sb.AppendLine($"        var num = {two} * math.fma(q.wwww, q, cross);");
+            sb.AppendLine("        var q2 = q * q;");
+            sb.AppendLine("        var sin = num.x;");
+            sb.AppendLine($"        if (math.abs(sin) >= {cutoff})");
+            sb.AppendLine("        {");
+            sb.AppendLine($"            var angle = math.atan2(");
+            sb.AppendLine($"                math.chg_sign({two} * ((q.x * q.y) {sum} (q.z * q.w)), sin),");
+            sb.AppendLine($"                math.fsm({one}, {two}, q2.y + q2.z)");
+            sb.AppendLine("            );");
+            sb.AppendLine($"            return new {vec3}(math.chg_sign({halfPi}, sin), angle, default){back};");
+            sb.AppendLine("        }");
+            sb.AppendLine();
+            sb.AppendLine($"        var den = math.fsm({one}, {two}, q2 + q2.xxxx);");
+            sb.AppendLine("        var r = math.atan2(num, den);");
+            sb.AppendLine($"        r.x = math.asin(math.clamp(sin, -{one}, {one}));");
+            sb.AppendLine($"        return r.xyz{back};");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+    }
 
     /// <summary>
     /// Adds the members that reach the rotation of the space that looks along a value while another one stays over
