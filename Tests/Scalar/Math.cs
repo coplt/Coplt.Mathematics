@@ -26,6 +26,9 @@ public class TestScalarMath
         Assert.That(max(3, 5), Is.EqualTo(5));
         Assert.That(clamp(7, 1, 5), Is.EqualTo(5));
         Assert.That(clamp(0, 1, 5), Is.EqualTo(1));
+        // the lower bound of the range is asked before the upper one, so the bounds over one another place the
+        // value at the upper bound of the two instead of raising the exception of the member of the BCL
+        Assert.That(clamp(5, 10, 0), Is.EqualTo(0));
         Assert.That(abs(-4), Is.EqualTo(4));
         Assert.That(sign(-4), Is.EqualTo(-1));
         Assert.That(sign(4), Is.EqualTo(1));
@@ -57,6 +60,12 @@ public class TestScalarMath
     {
         Assert.That(min(3u, 5u), Is.EqualTo(3u));
         Assert.That(abs(-4L), Is.EqualTo(4L));
+        // the absolute value of the smallest value of a signed kind is not a value of the kind: the negation of
+        // the value of the kind wraps into the value itself, which the member answers instead of raising
+        Assert.That(abs(short.MinValue), Is.EqualTo(short.MinValue));
+        Assert.That(abs(int.MinValue), Is.EqualTo(int.MinValue));
+        Assert.That(abs(long.MinValue), Is.EqualTo(long.MinValue));
+        Assert.That(clamp(long.MinValue, 10L, 0L), Is.EqualTo(0L));
         Assert.That(sign(4ul), Is.EqualTo(1ul));
         Assert.That(square((short)-3), Is.EqualTo((short)9));
         Assert.That(dot((ushort)3, (ushort)4), Is.EqualTo((ushort)12));

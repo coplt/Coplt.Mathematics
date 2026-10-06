@@ -228,7 +228,9 @@ internal static class ScalarOps
         { "copy_sign", "{s}.CopySign({0}, {1})" },
         { "min", "{s}.Min({0}, {1})" },
         { "max", "{s}.Max({0}, {1})" },
-        { "clamp", "{s}.Clamp({0}, {1}, {2})" },
+        // the lower bound of the range is asked before the upper one, which the member of the BCL raises where
+        // the one of them is over the other
+        { "clamp", "{s}.Min({s}.Max({0}, {1}), {2})" },
         { "saturate", "{s}.Clamp({0}, {z}, {o})" },
         { "frac", "{0} - {s}.Floor({0})" },
         { "ceil", "{s}.Ceiling({0})" },
@@ -305,7 +307,10 @@ internal static class ScalarOps
         #region arithmetic
 
         // the members of every numeric type
-        Op("abs", "a", ["a"]),
+        // the absolute value of the smallest value of a signed whole number kind is not a value of the kind,
+        // which the member of the BCL raises for: the negation of it wraps into the value itself, which the
+        // register of a value answers as well
+        Op("abs", "a", ["a"], intBody: "{c}unchecked({0} < {z} ? -{0} : {0})"),
         // the sign of a floating point value is read out of the bit of the sign of it, the BCL throws for a value
         // that is not a number, though one of those has a sign like every other value
         Op("sign", "a", ["a"],
@@ -324,7 +329,11 @@ internal static class ScalarOps
             body: "{s}.MaxNative({0}, {1})",
             intBody: "math.max({0}, {1})",
             ext: ["other"]),
-        Op("clamp", "a", ["a", "min", "max"]),
+        // the member of the BCL raises where the lower bound of the range is over the upper one, which the
+        // value is placed at the upper bound of the two for: the register of a value asks the bounds in the
+        // order this member reads them in
+        Op("clamp", "a", ["a", "min", "max"],
+            body: "{s}.Min({s}.Max({0}, {1}), {2})"),
         Op("lerp", "a", ["start", "end", "t"], self: 2,
             body: "{s}.FusedMultiplyAdd({2}, {1} - {0}, {0})",
             intBody: "{c}({2} * {c}({1} - {0}) + {0})"),

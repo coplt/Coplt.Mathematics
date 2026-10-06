@@ -8,6 +8,9 @@ namespace Coplt.Mathematics
         /// <summary>
         /// Clamps every component of the value to the inclusive range of <paramref name="min"/> and
         /// <paramref name="max"/>
+        /// <para>The lower bound of the range is asked before the upper one, so the value of a range whose lower
+        /// bound is over the upper one is the upper bound of the two, which the member of the BCL raises for and
+        /// the register of a value answers as well</para>
         /// </summary>
         /// <param name="value">The value</param>
         /// <param name="min">The lower bound of every component</param>
@@ -40,7 +43,7 @@ namespace Coplt.Mathematics.Implements
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TScalar IAlgebraVisitor_S_S_S_S<impl_clamp>.Scalar_Number<TScalar>(TScalar a, TScalar b, TScalar c)
-            => TScalar.Clamp(a, b, c);
+            => TScalar.Min(TScalar.Max(a, b), c);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T_T_T<impl_clamp>.Simd_Number<TVector, TScalar>(

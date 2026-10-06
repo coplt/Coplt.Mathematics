@@ -4,7 +4,6 @@ using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using Coplt.Mathematics.Generics;
 using half = System.Half;
-
 using Coplt.Mathematics.Algebras.Generics.Dispatch;
 
 namespace Tests.Arith;
@@ -113,6 +112,20 @@ public class TestMathArithForwarding
             // a vector whose register is 64 bits wide and one that has no register reach the member of their
             // own kind
             Assert.That(math.clamp(new int2(-1, 2), new int2(0), new int2(1)), Is.EqualTo(new int2(0, 1)));
+            // the lower bound of the range is asked before the upper one, so the bounds over one another place
+            // the value at the upper bound of the two instead of raising the exception of the member of the BCL
+            Assert.That(math.clamp(new int3(5), new int3(10), new int3(0)), Is.EqualTo(new int3(0)),
+                "the bounds of the range over one another");
+            Assert.That(math.clamp(new short4(5, 5, 5, 5), new short4(10), new short4(0)),
+                Is.EqualTo(new short4(0)), "the bounds of a value without a register over one another");
+            // the absolute value of the smallest value of a signed kind is not a value of the kind: the negation
+            // of the value of the kind wraps into the value itself
+            Assert.That(math.abs(new short4(short.MinValue, -1, 0, 1)),
+                Is.EqualTo(new short4(short.MinValue, 1, 0, 1)), "the smallest value of a short");
+            Assert.That(math.abs(new int4(int.MinValue, -1, 0, 1)),
+                Is.EqualTo(new int4(int.MinValue, 1, 0, 1)), "the smallest value of an int");
+            Assert.That(math.abs(new long2(long.MinValue, -2)),
+                Is.EqualTo(new long2(long.MinValue, 2)), "the smallest value of a long");
             Assert.That(math.square(new int3(2, 3, 4)), Is.EqualTo(new int3(4, 9, 16)));
             Assert.That(math.lerp(default(float3), new float3(2f), new float3(0.5f)), Is.EqualTo(new float3(1f)));
             // the factor scales the difference, so it only places a value between the two of them inside the

@@ -7,6 +7,9 @@ namespace Coplt.Mathematics
     {
         /// <summary>
         /// Returns the absolute value of every component of the value
+        /// <para>The absolute value of the smallest value of a signed whole number kind is not a value of the
+        /// kind, which the member of the BCL raises for: the member of the library answers the value itself,
+        /// which is the value the negation of it wraps into, and the register of a value answers it as well</para>
         /// </summary>
         /// <param name="value">The value</param>
         /// <typeparam name="T">The type of the value, a vector or a matrix</typeparam>
@@ -37,7 +40,14 @@ namespace Coplt.Mathematics.Implements
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TScalar IAlgebraVisitor_S_S<impl_abs>.Scalar_Number<TScalar>(TScalar value)
-            => TScalar.Abs(value);
+        {
+            // the absolute value of the smallest value of a signed whole number kind is not a value of the kind,
+            // which the member of the BCL raises for: the negation of the value of the kind wraps into the value
+            // itself, which the register of a value answers as well
+            if (typeof(TScalar) == typeof(short) || typeof(TScalar) == typeof(int) || typeof(TScalar) == typeof(long))
+                return unchecked(TScalar.IsNegative(value) ? -value : value);
+            return TScalar.Abs(value);
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static TVector IAlgebraVisitor_T_T<impl_abs>.Simd_Number<TVector, TScalar>(Vector128<TScalar> vector)

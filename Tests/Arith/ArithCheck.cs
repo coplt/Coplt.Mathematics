@@ -149,6 +149,9 @@ internal static class ArithCheck
             AllEqual<T, TScalar>(asc.clamp(allOne, allFive), asc, "clamp keeps a value in the range");
             AllEqual<T, TScalar>(allFive.clamp(allOne, allTwo), allTwo, "clamp to the upper bound");
             AllEqual<T, TScalar>(vZero.clamp(allOne, allTwo), allOne, "clamp to the lower bound");
+            // the lower bound of the range is asked before the upper one, so the value of a range whose bounds
+            // are over one another is the upper bound of the two
+            AllEqual<T, TScalar>(asc.clamp(allFive, allOne), allOne, "clamp with the bounds over one another");
 
             #endregion
 
