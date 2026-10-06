@@ -5,6 +5,8 @@ using Coplt.Mathematics.Generics;
 
 namespace Tests.Core;
 
+#pragma warning disable CS1718
+
 /// <summary>
 /// The checks that only use the members declared on the generic interfaces, so every generated vector can be
 /// checked through the same code. The members that are not part of the interfaces are checked separately.

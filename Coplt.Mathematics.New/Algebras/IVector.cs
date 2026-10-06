@@ -68,6 +68,31 @@ public interface ISignedNumberVector<TSelf, TScalar> :
 
 #endregion
 
+#region Integer
+
+/// <summary>
+/// An <see cref="INumberVector{TSelf}"/> of a whole number: the bits of every component of it are the value of
+/// the component, so the number of the bits of it that are set, the ones of them that are zero at the front of
+/// the value and the ones of them that are zero at the back of it are the ones of the value itself
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+public interface IIntegerVector<TSelf> : INumberVector<TSelf>, IIntegerMatrix<TSelf>
+    where TSelf : unmanaged, IIntegerVector<TSelf>;
+
+/// <summary>
+/// An <see cref="IIntegerVector{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the vector itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IIntegerVector<TSelf, TScalar> :
+    IIntegerVector<TSelf>,
+    INumberVector<TSelf, TScalar>,
+    IIntegerMatrix<TSelf, TScalar>
+    where TSelf : unmanaged, IIntegerVector<TSelf>, IIntegerVector<TSelf, TScalar>
+    where TScalar : unmanaged, IBinaryInteger<TScalar>;
+
+#endregion
+
 #region FloatingPoint
 
 /// <summary>

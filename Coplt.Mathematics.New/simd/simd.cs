@@ -249,6 +249,8 @@ public static partial class simd
     {
         if (Avx512CD.VL.IsSupported && Vector128.IsHardwareAccelerated)
             return Avx512CD.VL.LeadingZeroCount(a.ToVector128()).GetLower();
+        if (AdvSimd.IsSupported)
+            return AdvSimd.LeadingZeroCount(a.ToVector128()).GetLower();
         return Vector64.Create(
             BitOperations.LeadingZeroCount(a[0]),
             BitOperations.LeadingZeroCount(a[1])
@@ -259,6 +261,7 @@ public static partial class simd
     public static Vector128<uint> LeadingZeroCount(Vector128<uint> a)
     {
         if (Avx512CD.VL.IsSupported) return Avx512CD.VL.LeadingZeroCount(a);
+        if (AdvSimd.IsSupported) return AdvSimd.LeadingZeroCount(a);
         if (Sse2.IsSupported)
         {
             var b = Vector128.AndNot(a, Vector128.ShiftRightLogical(a, 8));
@@ -304,6 +307,157 @@ public static partial class simd
             LeadingZeroCount(a.GetUpper())
         );
     }
+
+    #endregion
+
+    #region PopCount
+
+    /// <summary>The number of the set bits of the low nibble of a byte, which the table of the two nibbles of
+    /// every byte of the value adds up</summary>
+    private static Vector128<byte> PopCountTable => Vector128.Create(
+        (byte)0, (byte)1, (byte)1, (byte)2, (byte)1, (byte)2, (byte)2, (byte)3,
+        (byte)1, (byte)2, (byte)2, (byte)3, (byte)2, (byte)3, (byte)3, (byte)4);
+
+    /// <summary>The low nibble of every byte, which the table is indexed by</summary>
+    private static Vector128<byte> PopCountNibble => Vector128.Create((byte)0x0F);
+
+    /// <summary>The number of the set bits of every byte of the value, which the table answers for both of the
+    /// nibbles of every one of them</summary>
+    [MethodImpl(256)]
+    private static Vector128<byte> PopCountBytes(Vector128<byte> a)
+        => Sse2.Add(
+            Ssse3.Shuffle(PopCountTable, Sse2.And(a, PopCountNibble)),
+            Ssse3.Shuffle(PopCountTable,
+                Sse2.And(Sse2.ShiftRightLogical(a.AsUInt16(), 4).AsByte(), PopCountNibble)));
+
+    /// <summary>The number of the set bits of every 32 bits of the value, which the four bytes of them add up
+    /// by way of the pairs of them</summary>
+    [MethodImpl(256)]
+    private static Vector128<int> PopCountBits(Vector128<byte> a)
+        => Sse2.MultiplyAddAdjacent(
+            Ssse3.MultiplyAddAdjacent(PopCountBytes(a), Vector128.Create((sbyte)1)),
+            Vector128.Create((short)1));
+
+    [MethodImpl(256)]
+    public static Vector64<uint> PopCount(Vector64<uint> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return PopCount(a.ToVector128()).GetLower();
+        return Vector64.Create(
+            (uint)BitOperations.PopCount(a[0]),
+            (uint)BitOperations.PopCount(a[1])
+        );
+    }
+
+    [MethodImpl(256)]
+    public static Vector128<uint> PopCount(Vector128<uint> a)
+    {
+        if (AdvSimd.IsSupported)
+            return AdvSimd.AddPairwiseWidening(
+                AdvSimd.AddPairwiseWidening(AdvSimd.PopCount(a.AsByte()))).AsUInt32();
+        if (Ssse3.IsSupported) return PopCountBits(a.AsByte()).AsUInt32();
+        return Vector128.Create(
+            (uint)BitOperations.PopCount(a[0]),
+            (uint)BitOperations.PopCount(a[1]),
+            (uint)BitOperations.PopCount(a[2]),
+            (uint)BitOperations.PopCount(a[3])
+        );
+    }
+
+    [MethodImpl(256)]
+    public static Vector256<uint> PopCount(Vector256<uint> a)
+    {
+        if (Avx2.IsSupported)
+        {
+            var table = Vector256.Create(PopCountTable, PopCountTable);
+            var nibble = Vector256.Create(PopCountNibble, PopCountNibble);
+            var bytes = Avx2.Add(
+                Avx2.Shuffle(table, Avx2.And(a.AsByte(), nibble)),
+                Avx2.Shuffle(table, Avx2.And(Avx2.ShiftRightLogical(a.AsUInt16(), 4).AsByte(), nibble)));
+            return Avx2.MultiplyAddAdjacent(
+                Avx2.MultiplyAddAdjacent(bytes, Vector256.Create((sbyte)1)),
+                Vector256.Create((short)1)).AsUInt32();
+        }
+
+        return Vector256.Create(
+            PopCount(a.GetLower()),
+            PopCount(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256)]
+    public static Vector512<uint> PopCount(Vector512<uint> a)
+        => Vector512.Create(
+            PopCount(a.GetLower()),
+            PopCount(a.GetUpper())
+        );
+
+    #endregion
+
+    #region TrailingZeroCount
+
+    [MethodImpl(256)]
+    public static Vector64<uint> TrailingZeroCount(Vector64<uint> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return TrailingZeroCount(a.ToVector128()).GetLower();
+        return Vector64.Create(
+            (uint)BitOperations.TrailingZeroCount(a[0]),
+            (uint)BitOperations.TrailingZeroCount(a[1])
+        );
+    }
+
+    [MethodImpl(256)]
+    public static Vector128<uint> TrailingZeroCount(Vector128<uint> a)
+    {
+        // the count of the bits of no bit set of the kind is the whole width of it, which the count of the bits
+        // of one of them answers as one less than the width, so the value of no bit set is held apart
+        var zero = Vector128.Equals(a, Vector128<uint>.Zero);
+        var one = a & (Vector128<uint>.Zero - a);
+        if (Avx512CD.VL.IsSupported)
+            return Vector128.ConditionalSelect(zero, Vector128.Create(32u),
+                Vector128.Create(31u) - Avx512CD.VL.LeadingZeroCount(one));
+        if (AdvSimd.IsSupported)
+            return Vector128.ConditionalSelect(zero, Vector128.Create(32u),
+                Vector128.Create(31u) - AdvSimd.LeadingZeroCount(one));
+        if (Sse2.IsSupported)
+        {
+            // the exponent of the floating point value of the lowest bit that is set is the position of it
+            var exponent = Vector128.ShiftRightLogical(Vector128.ConvertToSingle(one.AsInt32()).AsUInt32(), 23);
+            return Vector128.ConditionalSelect(zero, Vector128.Create(32u), exponent - Vector128.Create(127u));
+        }
+
+        return Vector128.Create(
+            (uint)BitOperations.TrailingZeroCount(a[0]),
+            (uint)BitOperations.TrailingZeroCount(a[1]),
+            (uint)BitOperations.TrailingZeroCount(a[2]),
+            (uint)BitOperations.TrailingZeroCount(a[3])
+        );
+    }
+
+    [MethodImpl(256)]
+    public static Vector256<uint> TrailingZeroCount(Vector256<uint> a)
+    {
+        if (Avx2.IsSupported)
+        {
+            var zero = Vector256.Equals(a, Vector256<uint>.Zero);
+            var one = a & (Vector256<uint>.Zero - a);
+            var exponent = Vector256.ShiftRightLogical(Vector256.ConvertToSingle(one.AsInt32()).AsUInt32(), 23);
+            return Vector256.ConditionalSelect(zero, Vector256.Create(32u), exponent - Vector256.Create(127u));
+        }
+
+        return Vector256.Create(
+            TrailingZeroCount(a.GetLower()),
+            TrailingZeroCount(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256)]
+    public static Vector512<uint> TrailingZeroCount(Vector512<uint> a)
+        => Vector512.Create(
+            TrailingZeroCount(a.GetLower()),
+            TrailingZeroCount(a.GetUpper())
+        );
 
     #endregion
 

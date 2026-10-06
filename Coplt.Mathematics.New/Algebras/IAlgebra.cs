@@ -304,6 +304,30 @@ public interface ISignedAlgebra<TSelf, TScalar> :
 
 #endregion
 
+#region Integer
+
+/// <summary>
+/// An <see cref="INumberAlgebra{TSelf}"/> of a whole number: the bits of every component of it are the value of
+/// the component, so the number of the bits of it that are set, the ones of them that are zero at the front of
+/// the value and the ones of them that are zero at the back of it are the ones of the value itself
+/// </summary>
+/// <typeparam name="TSelf">The type of the value itself</typeparam>
+public interface IIntegerAlgebra<TSelf> : INumberAlgebra<TSelf>
+    where TSelf : unmanaged, IIntegerAlgebra<TSelf>;
+
+/// <summary>
+/// An <see cref="IIntegerAlgebra{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the value itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IIntegerAlgebra<TSelf, TScalar> :
+    IIntegerAlgebra<TSelf>,
+    INumberAlgebra<TSelf, TScalar>
+    where TSelf : unmanaged, IIntegerAlgebra<TSelf>, IIntegerAlgebra<TSelf, TScalar>
+    where TScalar : unmanaged, IBinaryInteger<TScalar>;
+
+#endregion
+
 #region FloatingPoint
 
 /// <summary>

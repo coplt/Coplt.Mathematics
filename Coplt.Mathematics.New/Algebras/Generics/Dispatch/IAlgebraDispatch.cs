@@ -30,6 +30,9 @@ public interface IAlgebraDispatch<TSelf>
 
     public static abstract bool Bool<V>(TSelf a)
         where V : IAlgebraVisitor_T_bool<V>;
+
+    public static abstract bool Bool<V>(TSelf a, TSelf b)
+        where V : IAlgebraVisitor_T_T_bool<V>;
 }
 
 public interface IFloatDispatch<TSelf> : IAlgebraDispatch<TSelf>
@@ -68,6 +71,9 @@ public interface IAlgebraDispatch<TSelf, TScalar> : IAlgebraDispatch<TSelf>
 
     public static abstract bool Bool<V>(TScalar a)
         where V : IAlgebraVisitor_S_bool<V>;
+
+    public static abstract bool Bool<V>(TScalar a, TScalar b)
+        where V : IAlgebraVisitor_T_T_bool<V>;
 }
 
 public interface IFloatDispatch<TSelf, TScalar> : IFloatDispatch<TSelf>, IAlgebraDispatch<TSelf, TScalar>
@@ -1860,6 +1866,183 @@ public interface IAlgebraVisitor_T_bool<V> : IAlgebraVisitor_S_bool<V>, IAlgebra
         where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
         where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
         => V.MatrixMx4_Number<TMatrix, TVector, TScalar>(vector);
+
+    #endregion
+}
+
+#endregion
+
+#region T -> T -> bool
+
+public interface IAlgebraVisitor_S_S_bool<V>
+    where V : IAlgebraVisitor_S_S_bool<V>
+{
+    #region Bool
+
+    public static virtual bool Scalar_Number<TScalar>(TScalar a, TScalar b)
+        where TScalar : unmanaged, INumber<TScalar> => throw null!;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Scalar_Float<TScalar>(TScalar a, TScalar b)
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar> => V.Scalar_Number(a, b);
+
+    #endregion
+}
+
+public interface IAlgebraVisitor_T_T_bool<V> : IAlgebraVisitor_S_S_bool<V>, IAlgebraCombinator_bool_bool<V>
+    where V : IAlgebraVisitor_T_T_bool<V>
+{
+    #region Vector Simd Any
+
+    public static virtual bool Simd_Any<TVector, TScalar>(Vector128<TScalar> a, Vector128<TScalar> b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector<TVector, TScalar>, IVector128Underlying<TVector>
+        where TScalar : unmanaged => throw null!;
+
+    public static virtual bool Simd_Any<TVector, TScalar>(Vector256<TScalar> a, Vector256<TScalar> b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector<TVector, TScalar>, IVector256Underlying<TVector>
+        where TScalar : unmanaged => throw null!;
+
+    #endregion
+
+    #region Vector Simd Number
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Simd_Number<TVector, TScalar>(Vector128<TScalar> a, Vector128<TScalar> b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>, IVector128Underlying<TVector>
+        where TScalar : unmanaged, IBinaryNumber<TScalar> => V.Simd_Any<TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Simd_Number<TVector, TScalar>(Vector256<TScalar> a, Vector256<TScalar> b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>, IVector256Underlying<TVector>
+        where TScalar : unmanaged, IBinaryNumber<TScalar> => V.Simd_Any<TVector, TScalar>(a, b);
+
+    #endregion
+
+    #region Vector Simd Float
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Simd_Float<TVector, TScalar>(Vector128<TScalar> a, Vector128<TScalar> b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>, IVector128Underlying<TVector>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar> => V.Simd_Number<TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Simd_Float<TVector, TScalar>(Vector256<TScalar> a, Vector256<TScalar> b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>, IVector256Underlying<TVector>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar> => V.Simd_Number<TVector, TScalar>(a, b);
+
+    #endregion
+
+    #region Vector Soft Number
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Vector2_Number<TVector, TScalar>(TVector a, TVector b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector2<TVector, TScalar>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.Combine(TVector.Bool<V>(TVector.get_x(a), TVector.get_x(b)),
+            TVector.Bool<V>(TVector.get_y(a), TVector.get_y(b)));
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Vector3_Number<TVector, TScalar>(TVector a, TVector b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector3<TVector, TScalar>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.Combine(
+            V.Combine(TVector.Bool<V>(TVector.get_x(a), TVector.get_x(b)),
+                TVector.Bool<V>(TVector.get_y(a), TVector.get_y(b))),
+            TVector.Bool<V>(TVector.get_z(a), TVector.get_z(b))
+        );
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Vector4_Number<TVector, TScalar>(TVector a, TVector b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector4<TVector, TScalar>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.Combine(
+            V.Combine(TVector.Bool<V>(TVector.get_x(a), TVector.get_x(b)),
+                TVector.Bool<V>(TVector.get_y(a), TVector.get_y(b))),
+            V.Combine(TVector.Bool<V>(TVector.get_z(a), TVector.get_z(b)),
+                TVector.Bool<V>(TVector.get_w(a), TVector.get_w(b)))
+        );
+
+    #endregion
+
+    #region Vector Soft Float
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Vector2_Float<TVector, TScalar>(TVector a, TVector b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector2<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+        => V.Vector2_Number<TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Vector3_Float<TVector, TScalar>(TVector a, TVector b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector3<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+        => V.Vector3_Number<TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool Vector4_Float<TVector, TScalar>(TVector a, TVector b)
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IVector4<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+        => V.Vector4_Number<TVector, TScalar>(a, b);
+
+    #endregion
+
+    #region Matrix Number
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool MatrixMx2_Number<TMatrix, TVector, TScalar>(TMatrix a, TMatrix b)
+        where TMatrix : unmanaged, IAlgebraDispatch<TMatrix, TScalar>, IMatrixMx2Vector<TMatrix, TVector>, INumberMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.Combine(TVector.Bool<V>(TMatrix.get_c0(a), TMatrix.get_c0(b)),
+            TVector.Bool<V>(TMatrix.get_c1(a), TMatrix.get_c1(b)));
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool MatrixMx3_Number<TMatrix, TVector, TScalar>(TMatrix a, TMatrix b)
+        where TMatrix : unmanaged, IAlgebraDispatch<TMatrix, TScalar>, IMatrixMx3Vector<TMatrix, TVector>, INumberMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.Combine(
+            V.Combine(TVector.Bool<V>(TMatrix.get_c0(a), TMatrix.get_c0(b)),
+                TVector.Bool<V>(TMatrix.get_c1(a), TMatrix.get_c1(b))),
+            TVector.Bool<V>(TMatrix.get_c2(a), TMatrix.get_c2(b))
+        );
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool MatrixMx4_Number<TMatrix, TVector, TScalar>(TMatrix a, TMatrix b)
+        where TMatrix : unmanaged, IAlgebraDispatch<TMatrix, TScalar>, IMatrixMx4Vector<TMatrix, TVector>, INumberMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, INumberVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryNumber<TScalar>
+        => V.Combine(
+            V.Combine(TVector.Bool<V>(TMatrix.get_c0(a), TMatrix.get_c0(b)),
+                TVector.Bool<V>(TMatrix.get_c1(a), TMatrix.get_c1(b))),
+            V.Combine(TVector.Bool<V>(TMatrix.get_c2(a), TMatrix.get_c2(b)),
+                TVector.Bool<V>(TMatrix.get_c3(a), TMatrix.get_c3(b)))
+        );
+
+    #endregion
+
+    #region Matrix Float
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool MatrixMx2_Float<TMatrix, TVector, TScalar>(TMatrix a, TMatrix b)
+        where TMatrix : unmanaged, IAlgebraDispatch<TMatrix, TScalar>, IMatrixMx2Vector<TMatrix, TVector>, IFloatingPointMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+        => V.MatrixMx2_Number<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool MatrixMx3_Float<TMatrix, TVector, TScalar>(TMatrix a, TMatrix b)
+        where TMatrix : unmanaged, IAlgebraDispatch<TMatrix, TScalar>, IMatrixMx3Vector<TMatrix, TVector>, IFloatingPointMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+        => V.MatrixMx3_Number<TMatrix, TVector, TScalar>(a, b);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static virtual bool MatrixMx4_Float<TMatrix, TVector, TScalar>(TMatrix a, TMatrix b)
+        where TMatrix : unmanaged, IAlgebraDispatch<TMatrix, TScalar>, IMatrixMx4Vector<TMatrix, TVector>, IFloatingPointMatrix<TMatrix, TScalar>
+        where TVector : unmanaged, IAlgebraDispatch<TVector, TScalar>, IFloatingPointVector<TVector, TScalar>
+        where TScalar : unmanaged, IBinaryFloatingPointIeee754<TScalar>
+        => V.MatrixMx4_Number<TMatrix, TVector, TScalar>(a, b);
 
     #endregion
 }

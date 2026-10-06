@@ -192,7 +192,7 @@ public class TestOverloadResolutionCheck
     /// <returns>The name of the member or an empty string</returns>
     private static string MemberName(object? operand) => operand switch
     {
-        MethodSpecification specification => specification.Method.Name.ToString(),
+        MethodSpecification specification => specification.Method!.Name!.ToString(),
         IMethodDefOrRef definition => definition.Name!.ToString(),
         _ => "",
     };

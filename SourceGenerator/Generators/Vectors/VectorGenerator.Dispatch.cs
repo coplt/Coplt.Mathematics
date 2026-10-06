@@ -118,9 +118,11 @@ public partial class VectorGenerator
         // that takes the value alone does: the register of the vector when it keeps its value in one and the
         // vector itself when it has no register
         Member("bool", self, "Bool<V>", $"{type} self", one);
+        Member("bool", self, "Bool<V>", $"{type} a, {type} b", two);
         // a member that takes a component of the vector alone does not reach the value at all, so the visitor
         // reaches the component of every value of the kind of it the same way
         Member("bool", withScalar, "Bool<V>", $"{scalar} a", scalarOne);
+        Member("bool", withScalar, "Bool<V>", $"{scalar} a, {scalar} b", scalarTwo);
 
         // the members that build two values out of the one they are handed are written for a floating point kind
         // alone, so a vector of another kind does not reach them: the value of the vector is handed over the way

@@ -117,6 +117,8 @@ public class MatrixGenerator : IIncrementalGenerator
             ifaces.Add($"Algebras.IMatrixScalar<{type}, {scalar}>");
             ifaces.Add($"Algebras.IMatrixVector<{type}, {col}>");
             ifaces.Add($"Algebras.{(typ.f ? "IFloatingPointMatrix" : typ.sig ? "ISignedNumberMatrix" : "INumberMatrix")}<{type}, {scalar}>");
+            // a matrix of a whole number reaches the bits of every component of it, which are the value of it
+            if (typ.i) ifaces.Add($"Algebras.IIntegerMatrix<{type}, {scalar}>");
             // the comparison of the algebra is the one of the mask of the kind of the value, the bool result of
             // the one of the framework is the one of the concrete type, which the storage variant of a matrix
             // does not reach
@@ -868,9 +870,11 @@ public class MatrixGenerator : IIncrementalGenerator
             // member that takes the value alone does: the visitor reaches the shape of the matrix and builds the
             // bool value of every column of it out of the columns
             Member("bool", self, "Bool<V>", $"{type} self", $"{matrix}(self)");
+            Member("bool", self, "Bool<V>", $"{type} a, {type} b", $"{matrix}(a, b)");
             // a member that takes a component of the matrix alone does not reach the value at all, so the visitor
             // reaches the component of every value of the kind of it the same way
             Member("bool", withScalar, "Bool<V>", $"{scalar} a", $"V.Scalar_{level}(a)");
+            Member("bool", withScalar, "Bool<V>", $"{scalar} a, {scalar} b", $"V.Scalar_{level}(a, b)");
 
             // the members that build two values out of the one they are handed are written for a floating point
             // kind alone, so a matrix of another kind does not reach them: the value of the matrix is handed over

@@ -205,6 +205,31 @@ public interface ISignedNumberMatrixVector<TSelf, TVector> :
 
 #endregion
 
+#region Integer
+
+/// <summary>
+/// An <see cref="INumberMatrix{TSelf}"/> of a whole number: the bits of every component of it are the value of
+/// the component, so the number of the bits of it that are set, the ones of them that are zero at the front of
+/// the value and the ones of them that are zero at the back of it are the ones of the value itself
+/// </summary>
+/// <typeparam name="TSelf">The type of the matrix itself</typeparam>
+public interface IIntegerMatrix<TSelf> : INumberMatrix<TSelf>, IIntegerAlgebra<TSelf>
+    where TSelf : unmanaged, IIntegerMatrix<TSelf>;
+
+/// <summary>
+/// An <see cref="IIntegerMatrix{TSelf}"/> that also names the type of a single component
+/// </summary>
+/// <typeparam name="TSelf">The type of the matrix itself</typeparam>
+/// <typeparam name="TScalar">The type of a single component</typeparam>
+public interface IIntegerMatrix<TSelf, TScalar> :
+    IIntegerMatrix<TSelf>,
+    INumberMatrix<TSelf, TScalar>,
+    IIntegerAlgebra<TSelf, TScalar>
+    where TSelf : unmanaged, IIntegerMatrix<TSelf>, IIntegerMatrix<TSelf, TScalar>
+    where TScalar : unmanaged, IBinaryInteger<TScalar>;
+
+#endregion
+
 #region FloatingPoint
 
 /// <summary>

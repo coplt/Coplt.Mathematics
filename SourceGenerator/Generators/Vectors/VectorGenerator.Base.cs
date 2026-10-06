@@ -189,7 +189,11 @@ public partial class VectorGenerator
                 ? ""
                 : " and " +
                   VectorGenShared.IfaceRef($"Algebras.{AlgebraIface()}", new List<string> { "TSelf", "TScalar" },
-                      new List<string> { type, scalar })),
+                      new List<string> { type, scalar }) +
+                  (typ.i
+                      ? ", and " + VectorGenShared.IfaceRef("Algebras.IIntegerVector",
+                          new List<string> { "TSelf", "TScalar" }, new List<string> { type, scalar })
+                      : "")),
         };
 
         // the storage variant of a vector holds the components of a value of the kind of it, so it keeps the
@@ -302,6 +306,8 @@ public partial class VectorGenerator
         if (!storeVariant)
         {
             ifaces.Add($"Algebras.{AlgebraIface()}<{type}, {scalar}>");
+            // a vector of a whole number reaches the bits of every component of it, which are the value of it
+            if (typ.i) ifaces.Add($"Algebras.IIntegerVector<{type}, {scalar}>");
             // the comparison of the whole value is a member of the algebra of the kind of a number, which the
             // storage variant of a vector does not reach, so it keeps the value of the comparison alone
             ifaces.Add($"IComparisonOperators<{type}, {type}, bool>");

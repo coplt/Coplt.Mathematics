@@ -3,7 +3,6 @@ using Coplt.Mathematics;
 using Coplt.Mathematics.Algebras;
 using Coplt.Mathematics.Algebras.Generics;
 using half = System.Half;
-
 using Coplt.Mathematics.Algebras.Generics.Dispatch;
 
 namespace Tests.Core;
@@ -58,6 +57,29 @@ public class TestAlgebraKind
             // the dispatch of a value is the one of every kind of the component of it
             Assert.That(Implements(typeof(float3), typeof(IAlgebraDispatch<>)), Is.True);
             Assert.That(Implements(typeof(half3), typeof(IAlgebraDispatch<>)), Is.True);
+
+            // a value names the algebra of a whole number when the type of its component is a whole number, which
+            // the floating point kinds do not: the members that count the bits of a value reach the values of a
+            // whole number kind alone
+            Assert.That(Implements(typeof(int3), typeof(IIntegerVector<>)), Is.True);
+            Assert.That(Implements(typeof(uint3), typeof(IIntegerVector<>)), Is.True);
+            Assert.That(Implements(typeof(short2), typeof(IIntegerVector<>)), Is.True);
+            Assert.That(Implements(typeof(long4), typeof(IIntegerVector<>)), Is.True);
+            Assert.That(Implements(typeof(float3), typeof(IIntegerVector<>)), Is.False);
+            Assert.That(Implements(typeof(half3), typeof(IIntegerVector<>)), Is.False);
+            Assert.That(Implements(typeof(double3), typeof(IIntegerVector<>)), Is.False);
+        }
+    }
+
+    [Test]
+    public void MatrixTypes()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(Implements(typeof(int3x3), typeof(IIntegerMatrix<>)), Is.True);
+            Assert.That(Implements(typeof(uint2x2), typeof(IIntegerMatrix<>)), Is.True);
+            Assert.That(Implements(typeof(float3x3), typeof(IIntegerMatrix<>)), Is.False);
+            Assert.That(Implements(typeof(half3x3), typeof(IIntegerMatrix<>)), Is.False);
         }
     }
 }
