@@ -31,6 +31,16 @@ public class TestScalarMath
         Assert.That(remap(3, 0, 3, 0, 9), Is.EqualTo(9));
         Assert.That(length_sq(-3), Is.EqualTo(9));
         Assert.That(distance_sq(2, 5), Is.EqualTo(9));
+        // the minimum and the maximum of the platform are the ones of the values of their own: a kind that has
+        // neither a value that is not a number nor a negative zero has no such difference
+        Assert.That(min_native(3, 5), Is.EqualTo(3));
+        Assert.That(max_native(3, 5), Is.EqualTo(5));
+        // every reduction of a value of one component is the whole of the value
+        Assert.That(sum(3), Is.EqualTo(3));
+        Assert.That(hmin(3), Is.EqualTo(3));
+        Assert.That(hmax(3), Is.EqualTo(3));
+        Assert.That(hmin_native(3), Is.EqualTo(3));
+        Assert.That(hmax_native(3), Is.EqualTo(3));
     }
 
     [Test]
@@ -51,11 +61,15 @@ public class TestScalarMath
         Assert.That(ceil(1.2f), Is.EqualTo(2f));
         Assert.That(floor(1.8f), Is.EqualTo(1f));
         Assert.That(round(1.5f), Is.EqualTo(2f));
+        Assert.That(round(2.5f), Is.EqualTo(2f));
+        Assert.That(round_away(1.5f), Is.EqualTo(2f));
+        Assert.That(round_away(2.5f), Is.EqualTo(3f));
+        Assert.That(round_away(-2.5f), Is.EqualTo(-3f));
         Assert.That(trunc(-1.8f), Is.EqualTo(-1f));
         Assert.That(frac(-1.25f), Is.EqualTo(0.75f));
-        Assert.That(mod(-1f, 3f), Is.EqualTo(2f));
+        Assert.That(fmod(-1f, 3f), Is.EqualTo(2f));
         // the product of the remainder is fused, so the subtraction of it is exact
-        Assert.That(mod(1f, 0.1f), Is.EqualTo(-1.4901161193847656E-08f));
+        Assert.That(fmod(1f, 0.1f), Is.EqualTo(-1.4901161193847656E-08f));
         Assert.That(rcp(4f), Is.EqualTo(0.25f));
         Assert.That(saturate(2f), Is.EqualTo(1f));
         // the sign of a value that is not a number is the one of the bit of the sign of it, the BCL throws for
@@ -73,21 +87,46 @@ public class TestScalarMath
         // the sign of a negative zero is turned around like the one of every other value
         Assert.That(BitConverter.SingleToInt32Bits(chg_sign(2f, -0f)),
             Is.EqualTo(BitConverter.SingleToInt32Bits(-2f)), "the negative zero");
+        Assert.That(copy_sign(2f, -1f), Is.EqualTo(-2f));
+        Assert.That(copy_sign(-2f, 1f), Is.EqualTo(2f));
+        Assert.That(copy_sign(2f, -0f), Is.EqualTo(-2f), "the sign of the negative zero");
+        Assert.That(copy_sign(2d, 1d), Is.EqualTo(2d));
+        Assert.That(copy_sign((Half)2f, (Half)(-1f)), Is.EqualTo((Half)(-2f)));
         Assert.That(step(2f, 3f), Is.EqualTo(1f));
         Assert.That(step(3f, 2f), Is.EqualTo(0f));
         Assert.That(smoothstep(0f, 1f, 0.5f), Is.EqualTo(0.5f));
         Assert.That(reflect(1f, 1f), Is.EqualTo(-1f));
         Assert.That(project(2f, 1f), Is.EqualTo(2f));
-        Assert.That(project_normalized(2f, 1f), Is.EqualTo(2f));
+        // a value to project onto that is too short to be projected onto answers with the zero of its kind
+        Assert.That(project(2f, 0f), Is.EqualTo(0f));
+        Assert.That(project(2f, 1e-9f), Is.EqualTo(0f), "the denom epsilon of the kind");
+        Assert.That(project_unsafe(2f, 1f), Is.EqualTo(2f));
+        Assert.That(project_unsafe(2f, 0f), Is.NaN);
+        Assert.That(project_unit(2f, 1f), Is.EqualTo(2f));
         Assert.That(project_on_plane(2f, 1f), Is.EqualTo(0f));
-        Assert.That(project_on_plane_normalized(2f, 1f), Is.EqualTo(0f));
+        Assert.That(project_on_plane_unit(2f, 1f), Is.EqualTo(0f));
         Assert.That(project_safe(2f, 0f), Is.EqualTo(0f));
+        Assert.That(face_forward(1f, 1f, 1f), Is.EqualTo(-1f));
+        Assert.That(face_forward(1f, 1f, -1f), Is.EqualTo(1f));
         Assert.That(wrap(4f, 0f, 3f), Is.EqualTo(1f));
         Assert.That(wrap(-1f, 0f, 3f), Is.EqualTo(2f));
         Assert.That(length(-3f), Is.EqualTo(3f));
         Assert.That(distance(2f, 5f), Is.EqualTo(3f));
         Assert.That(normalize(2f), Is.EqualTo(1f));
         Assert.That(normalize_safe(0f), Is.EqualTo(0f));
+        // the length of a value that is too short to be squared is zero, which is below the smallest positive
+        // normal value of the kind of it
+        Assert.That(normalize_safe(float.Epsilon), Is.EqualTo(0f));
+        Assert.That(normalize_safe(1e-30f), Is.EqualTo(0f));
+        Assert.That(normalize_safe(1e-320d), Is.EqualTo(0d));
+        Assert.That(normalize_safe(1e-30d), Is.EqualTo(1d));
+        // the arithmetic of the kind of a half is coarse enough to move the result of the scaling of a short value
+        Assert.That((float)normalize_safe((Half)0.001f), Is.EqualTo(1f).Within(0.02f));
+        Assert.That(rsqrt_a(0.25f), Is.EqualTo(2f).Within(1e-3f));
+        Assert.That(normalize_a(2f), Is.EqualTo(1f).Within(1e-3f));
+        Assert.That(normalize_safe_a(0f), Is.EqualTo(0f));
+        Assert.That(normalize_safe_a(1e-30f), Is.EqualTo(0f));
+        Assert.That(normalize_safe_a(2d), Is.EqualTo(1d).Within(1e-9d));
         Assert.That(refract(1f, 1f, 1f), Is.EqualTo(-1f));
         Assert.That(radians(180f), Is.EqualTo(MathF.PI).Within(1e-5f));
         Assert.That(degrees(MathF.PI), Is.EqualTo(180f).Within(1e-3f));
@@ -145,6 +184,15 @@ public class TestScalarMath
         Assert.That(is_pos_inf(float.PositiveInfinity), Is.True);
         Assert.That(is_neg_inf(float.PositiveInfinity), Is.False);
         Assert.That(is_neg_inf(double.NegativeInfinity), Is.True);
+        // the three names of hlsl are the ones of the members of the library
+        Assert.That(isnan(float.NaN), Is.True);
+        Assert.That(isfinite(0f), Is.True);
+        Assert.That(isinf(float.NegativeInfinity), Is.True);
+        Assert.That(is_subnormal(float.Epsilon), Is.True);
+        Assert.That(is_subnormal(1f), Is.False);
+        Assert.That(is_subnormal(0f), Is.False);
+        Assert.That(is_subnormal(double.Epsilon), Is.True);
+        Assert.That(is_subnormal(Half.Epsilon), Is.True);
 
         // the check of a power of two of a floating point value is the one of the framework of the kind of it
         Assert.That(is_pow2(4f), Is.True);
@@ -194,6 +242,11 @@ public class TestScalarMath
         Assert.That(false.select(1, 2), Is.EqualTo(2));
         Assert.That(false.select(1u, 2u), Is.EqualTo(2u));
         Assert.That(false.select(1.5f, 2.5f), Is.EqualTo(2.5f));
+        // the member that is called on the condition is the one every kind of a value reaches, so it takes the
+        // kinds that no function of the math class has a member of its own for as well
+        Assert.That(false.select(1m, 2m), Is.EqualTo(2m));
+        Assert.That(true.select(true, false), Is.True);
+        Assert.That(true.select((Half)1, (Half)2), Is.EqualTo((Half)1));
     }
 
     /// <summary>

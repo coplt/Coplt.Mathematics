@@ -285,3 +285,31 @@ public static partial class scalar_ex
         }
     }
 }
+
+/// <summary>
+/// The members of the kinds of a value that are called on a value, which are the second form of the operations of
+/// <see cref="math"/>: the function takes the value it works on as its first parameter and the member receives it.
+/// The generated part of the class carries the member of every kind of a value, the ones that a single member
+/// reaches every kind of a value for are written here.
+/// </summary>
+public static partial class ScalarExtensions
+{
+    extension(bool value)
+    {
+        /// <summary>
+        /// Selects between the two values: it returns <paramref name="t"/> when the condition is true and
+        /// <paramref name="f"/> when it is false
+        /// </summary>
+        /// <remarks>
+        /// The member is called on the condition and every kind of a value reaches it, the member of the kinds of
+        /// <see cref="math.select{T}(bool, T, T)"/> is the one that selects the whole of a value the same way.
+        /// </remarks>
+        /// <typeparam name="T">The type of the values to select</typeparam>
+        /// <param name="t">The value that is selected when the condition is true</param>
+        /// <param name="f">The value that is selected when the condition is false</param>
+        /// <returns>The value of <paramref name="t"/> when the condition is true and the one of
+        /// <paramref name="f"/> when it is false</returns>
+        [MethodImpl(256)]
+        public T select<T>(T t, T f) => value ? t : f;
+    }
+}

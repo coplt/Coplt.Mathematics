@@ -25,6 +25,8 @@ internal static class ScalarDocs
         { "sign", ("Returns <c>-1</c>, <c>0</c> or <c>1</c> depending on the sign of the value", "The sign of the value", "a=The value") },
         { "min", ("Returns the smaller of the two values", "The smaller value", "a=The value;b|other=The other value") },
         { "max", ("Returns the larger of the two values", "The larger value", "a=The value;b|other=The other value") },
+        { "min_native", ("Returns the smaller of the two values, the one the platform computes itself", "The smaller value", "a=The value;b|other=The other value") },
+        { "max_native", ("Returns the larger of the two values, the one the platform computes itself", "The larger value", "a=The value;b|other=The other value") },
         { "clamp", ("Clamps the value into the inclusive range of <c>min</c> and <c>max</c>", "The clamped value", "a=The value;min=The lower bound;max=The upper bound") },
         { "lerp", ("Interpolates between <c>start</c> and <c>end</c>", "The interpolated value", "start=The value at t = 0;end=The value at t = 1;t=The interpolation factor") },
         {
@@ -47,6 +49,12 @@ internal static class ScalarDocs
         },
         { "length_sq", ("Returns the squared length of the value, it is the value multiplied by itself without the square root", "The squared length", "a=The value") },
         { "distance_sq", ("Returns the squared distance between the two values", "The squared distance", "a=The value;b|to=The other value") },
+        // every reduction of a value of one component is the whole of the value
+        { "sum", ("Returns the sum of every component of the value, which is the value itself", "The sum of the components", "a=The value") },
+        { "hmin", ("Returns the smallest component of the value, which is the value itself", "The smallest component", "a=The value") },
+        { "hmax", ("Returns the largest component of the value, which is the value itself", "The largest component", "a=The value") },
+        { "hmin_native", ("Returns the smallest component of the value, which is the value itself, the one the platform computes itself", "The smallest component", "a=The value") },
+        { "hmax_native", ("Returns the largest component of the value, which is the value itself, the one the platform computes itself", "The largest component", "a=The value") },
 
         #endregion
 
@@ -66,18 +74,20 @@ internal static class ScalarDocs
         #region floating point
 
         {
-            "mod",
-            ("Returns the remainder of the division of the two values, it is the same as <c>a - b * floor(a / b)</c> with the product fused into a single rounding",
+            "fmod",
+            ("Returns the remainder of the division of the two values, it is the same as <c>a - floor(a / b) * b</c> with the product fused into a single rounding, so the remainder of a divisor that is negative keeps the sign of the divisor",
                 "The remainder", "a=The value;b|other=The divisor")
         },
         { "modf", ("Splits the value into its integral and its fractional part", "The fractional part", "a=The value;i=Receives the integral part") },
         { "ceil", ("Returns the smallest integer that is not less than the value", "The rounded up value", "a=The value") },
         { "floor", ("Returns the largest integer that is not greater than the value", "The rounded down value", "a=The value") },
         { "round", ("Rounds the value to the nearest integer, a value that is exactly between two of them goes to the even one", "The rounded value", "a=The value") },
+        { "round_away", ("Rounds the value to the nearest integer, a value that is exactly between two of them goes away from zero", "The rounded value", "a=The value") },
         { "trunc", ("Returns the integral part of the value", "The truncated value", "a=The value") },
         { "frac", ("Returns the fractional part of the value", "The fractional part", "a=The value") },
         { "rcp", ("Returns the reciprocal of the value", "The reciprocal", "a=The value") },
         { "saturate", ("Clamps the value into the range of zero and one", "The saturated value", "a=The value") },
+        { "copy_sign", ("Returns the value that has the magnitude of the value and the sign of <c>sign</c>", "The value with the sign of the other one", "a=The value;sign=The value that names the sign of the result") },
         { "step", ("Returns 1 when the value is not less than the <c>threshold</c> and 0 when it is less", "The step value", "threshold=The threshold;a=The value") },
         {
             "smoothstep",
@@ -90,12 +100,25 @@ internal static class ScalarDocs
                 "a=The value to reflect;n=The normalized normal of the surface")
         },
         {
+            "face_forward",
+            ("Returns <c>a</c> with the sign chosen so that it faces away from the incident value <c>i</c>, which flips the sign of it when the product of <c>ng</c> and <c>i</c> is not negative",
+                "The value that faces away from the incident value",
+                "a=The value;i=The incident value;ng=The normal of the surface, it points away from the incident value")
+        },
+        {
             "project",
-            ("Returns the projection of the value onto <c>onto</c>, it is the component that is parallel to it", "The projected value",
+            ("Returns the projection of the value onto <c>onto</c>, it is the component that is parallel to it, and it is the zero of the kind of the value when <c>onto</c> is too short to be projected onto",
+                "The projected value",
                 "a=The value to project;onto=The value to project onto, it does not have to be normalized")
         },
         {
-            "project_normalized",
+            "project_unsafe",
+            ("Returns the projection of the value onto <c>onto</c> without checking the length of it, so the projection onto a value of no length is not a number",
+                "The projected value",
+                "a=The value to project;onto=The value to project onto, it does not have to be normalized")
+        },
+        {
+            "project_unit",
             ("Returns the projection of the value onto the normalized <c>onto</c>", "The projected value",
                 "a=The value to project;onto=The normalized value to project onto")
         },
@@ -105,7 +128,7 @@ internal static class ScalarDocs
                 "a=The value to project;plane_normal=The normal of the plane, it does not have to be normalized")
         },
         {
-            "project_on_plane_normalized",
+            "project_on_plane_unit",
             ("Returns the projection of the value onto the plane that has the normalized <c>plane_normal</c> as its normal", "The projected value",
                 "a=The value to project;plane_normal=The normalized normal of the plane")
         },
@@ -124,13 +147,16 @@ internal static class ScalarDocs
 
         { "sqrt", ("Returns the square root of the value", "The square root", "a=The value") },
         { "rsqrt", ("Returns the reciprocal of the square root of the value, it is the same as <c>rcp(sqrt())</c>", "The reciprocal of the square root", "a=The value") },
+        { "rsqrt_a", ("Returns the estimate of the hardware of the reciprocal of the square root of the value, which is not exact", "The estimate of the reciprocal of the square root", "a=The value") },
         { "length", ("Returns the length of the value, it is the same as its absolute value", "The length of the value", "a=The value") },
         {
             "distance",
             ("Returns the distance between the two values, it is the same as the absolute value of their difference", "The distance", "a=The value;b|to=The other value")
         },
         { "normalize", ("Returns the value scaled to a length of 1, the result is a NaN when the length is zero", "The normalized value", "a=The value to normalize") },
-        { "normalize_safe", ("Returns the value scaled to a length of 1, it returns zero when the length is zero", "The normalized value", "a=The value to normalize") },
+        { "normalize_a", ("Returns the value scaled to a length of 1 with the estimate of the hardware, which is not exact, the result is a NaN when the length is zero", "The normalized value", "a=The value to normalize") },
+        { "normalize_safe", ("Returns the value scaled to a length of 1, it returns zero when the length is not above the smallest positive normal value of the kind of the value", "The normalized value", "a=The value to normalize") },
+        { "normalize_safe_a", ("Returns the value scaled to a length of 1 with the estimate of the hardware, it returns zero when the length is not above the smallest positive normal value of the kind of the value", "The normalized value", "a=The value to normalize") },
         {
             "refract",
             ("Returns the refraction direction, the incident value has to be normalized and the normal has to point against it", "The refracted direction",
@@ -141,6 +167,10 @@ internal static class ScalarDocs
         { "is_inf", ("Returns true when the value is a positive or a negative infinity", "True when the value is an infinity", "a=The value") },
         { "is_pos_inf", ("Returns true when the value is a positive infinity", "True when the value is a positive infinity", "a=The value") },
         { "is_neg_inf", ("Returns true when the value is a negative infinity", "True when the value is a negative infinity", "a=The value") },
+        { "is_subnormal", ("Returns true when the value is subnormal, so it is not zero and it is below the smallest positive normal value of the kind of the value", "True when the value is subnormal", "a=The value") },
+        { "isnan", ("Returns true when the value is NaN, which is the name of the member in HLSL", "True when the value is NaN", "a=The value") },
+        { "isfinite", ("Returns true when the value is finite, so it is neither NaN nor an infinity, which is the name of the member in HLSL", "True when the value is finite", "a=The value") },
+        { "isinf", ("Returns true when the value is a positive or a negative infinity, which is the name of the member in HLSL", "True when the value is an infinity", "a=The value") },
         { "log", ("Returns the natural logarithm of the value, the second one is the base of the logarithm", "The logarithm", "a=The value;b|other=The base of the logarithm") },
         { "log2", ("Returns the base 2 logarithm of the value", "The base 2 logarithm", "a=The value") },
         { "log10", ("Returns the base 10 logarithm of the value", "The base 10 logarithm", "a=The value") },

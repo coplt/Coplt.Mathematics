@@ -29,6 +29,8 @@ public class TestProject
     {
         Assert.That(value.project(onto), Is.EqualTo(math.project(value, onto)));
         Assert.That(value.project_unsafe(onto), Is.EqualTo(math.project_unsafe(value, onto)));
+        Assert.That(value.project_safe(onto), Is.EqualTo(math.project_safe(value, onto)));
+        Assert.That(value.project_safe(onto, value), Is.EqualTo(math.project_safe(value, onto, value)));
         Assert.That(value.project_unit(onto), Is.EqualTo(math.project_unit(value, onto)));
         Assert.That(value.project_on_plane(onto), Is.EqualTo(math.project_on_plane(value, onto)));
         Assert.That(value.project_on_plane_unit(onto), Is.EqualTo(math.project_on_plane_unit(value, onto)));
@@ -173,6 +175,43 @@ public class TestProject
     }
 
     /// <summary>
+    /// The safe projection answers with the value that the caller names for it when the projection of the value
+    /// is not a value, which is the projection of the value onto a vector that is close enough to the zero of the
+    /// kind of it.
+    /// </summary>
+    [Test]
+    public void Safe()
+    {
+        var value = new float3(1f, 2f, 3f);
+        var axis = new float3(2f, 0f, 0f);
+
+        using (Assert.EnterMultipleScope())
+        {
+            // the projection of a value onto a vector that has a length is the one of the member that does not
+            // check the length of it
+            Assert.That(math.project_safe(value, axis), Is.EqualTo(math.project_unsafe(value, axis)));
+            Assert.That(math.project_safe(value, value), Is.EqualTo(value));
+
+            // the projection of a value onto the zero vector is not a value, so the member answers with the one
+            // the caller names for it, which is the zero of the kind of it without one
+            Assert.That(math.project_safe(value, default), Is.EqualTo(default(float3)));
+            Assert.That(math.project_safe(value, default, value), Is.EqualTo(value));
+            Assert.That(math.project_safe(value, default, new float3(7f, 8f, 9f)), Is.EqualTo(new float3(7f, 8f, 9f)));
+
+            // the member is the one of every vector of a floating point kind and the one of every one of them
+            // without a register as well
+            Assert.That(math.project_safe(new float2(1f, 2f), new float2(2f, 0f)), Is.EqualTo(new float2(1f, 0f)));
+            Assert.That(math.project_safe(new float4(1f, 2f, 3f, 4f), default, new float4(1f, 2f, 3f, 4f)),
+                Is.EqualTo(new float4(1f, 2f, 3f, 4f)));
+            Assert.That(math.project_safe(new double3(1, 2, 3), new double3(2, 0, 0)),
+                Is.EqualTo(new double3(1d, 0d, 0d)));
+            Assert.That(math.project_safe(new half3((Half)1f, (Half)2f, (Half)3f),
+                    new half3((Half)2f, (Half)0f, (Half)0f)),
+                Is.EqualTo(new half3((Half)1f, (Half)0f, (Half)0f)));
+        }
+    }
+
+    /// <summary>
     /// A padding lane of the register of a vector holds no component and both the value of the lane and the one
     /// of the vector of it are zero, so the projection of it is the zero of it as well.
     /// </summary>
@@ -210,6 +249,12 @@ public class TestProject
             Assert.That(math.project_unsafe(f2, n2).vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(math.project_unsafe(f3, n3).vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(math.project_unsafe(d3, dy3).vector.GetElement(3), Is.EqualTo(0d));
+
+            // the safe projection is the one of the two of them, so the padding lane of it is zero as well
+            Assert.That(math.project_safe(f2, n2).vector.GetElement(3), Is.EqualTo(0f));
+            Assert.That(math.project_safe(f3, n3).vector.GetElement(3), Is.EqualTo(0f));
+            Assert.That(math.project_safe(d3, dy3).vector.GetElement(3), Is.EqualTo(0d));
+            Assert.That(math.project_safe(f3, default, f3).vector.GetElement(3), Is.EqualTo(0f));
             Assert.That(math.project_on_plane_unit(f3, new float3(1f, 0f, 0f)).vector.GetElement(3),
                 Is.EqualTo(0f));
         }

@@ -225,6 +225,7 @@ internal static class ScalarOps
         { "abs", "{s}.Abs({0})" },
         // the sign of a value is an int where the type of the value is a narrower one
         { "sign", "{c}{s}.Sign({0})" },
+        { "copy_sign", "{s}.CopySign({0}, {1})" },
         { "min", "{s}.Min({0}, {1})" },
         { "max", "{s}.Max({0}, {1})" },
         { "clamp", "{s}.Clamp({0}, {1}, {2})" },
@@ -233,10 +234,12 @@ internal static class ScalarOps
         { "ceil", "{s}.Ceiling({0})" },
         { "floor", "{s}.Floor({0})" },
         { "round", "{s}.Round({0})" },
+        { "round_away", "{s}.Round({0}, MidpointRounding.AwayFromZero)" },
         { "trunc", "{s}.Truncate({0})" },
         { "rcp", "{o} / {0}" },
         { "sqrt", "{s}.Sqrt({0})" },
         { "rsqrt", "{o} / {s}.Sqrt({0})" },
+        { "rsqrt_a", "{s}.ReciprocalSqrtEstimate({0})" },
         { "log", "{s}.Log({0})" },
         { "log_base", "{s}.Log({0}, {1})" },
         { "log2", "{s}.Log2({0})" },
@@ -265,6 +268,11 @@ internal static class ScalarOps
         { "is_inf", "{s}.IsInfinity({0})" },
         { "is_pos_inf", "{s}.IsPositiveInfinity({0})" },
         { "is_neg_inf", "{s}.IsNegativeInfinity({0})" },
+        { "is_subnormal", "{s}.IsSubnormal({0})" },
+        // the three names of the members of hlsl beside the ones of the library
+        { "isnan", "{s}.IsNaN({0})" },
+        { "isfinite", "{s}.IsFinite({0})" },
+        { "isinf", "{s}.IsInfinity({0})" },
         { "wrap", "({0} >= {z} ? ({1}) : ({2})) + {0} % ({2} - {1})" },
         // the fused operation of a floating point value is the one of the BCL, the two operations of an integer
         // are only fused by the operand order of the name
@@ -305,6 +313,17 @@ internal static class ScalarOps
             intBody: "{c}{s}.Sign({0})"),
         Op("min", "a", ["a", "b"], ext: ["other"]),
         Op("max", "a", ["a", "b"], ext: ["other"]),
+        // the minimum of the platform keeps the way it handles a value that is not a number and a negative zero
+        // to itself, which every platform is free to pick: a kind that has neither of the two has no such
+        // difference and takes the minimum of the value of the same name
+        Op("min_native", "a", ["a", "b"],
+            body: "{s}.MinNative({0}, {1})",
+            intBody: "math.min({0}, {1})",
+            ext: ["other"]),
+        Op("max_native", "a", ["a", "b"],
+            body: "{s}.MaxNative({0}, {1})",
+            intBody: "math.max({0}, {1})",
+            ext: ["other"]),
         Op("clamp", "a", ["a", "min", "max"]),
         Op("lerp", "a", ["start", "end", "t"], self: 2,
             body: "{s}.FusedMultiplyAdd({2}, {1} - {0}, {0})",
@@ -328,6 +347,12 @@ internal static class ScalarOps
             body: "math.length_sq({1} - {0})",
             intBody: "math.length_sq({c}({1} - {0}))",
             ext: ["to"]),
+        // every reduction of a value of one component is the whole of the value
+        Op("sum", "a", ["a"], body: "{0}"),
+        Op("hmin", "a", ["a"], body: "{0}"),
+        Op("hmax", "a", ["a"], body: "{0}"),
+        Op("hmin_native", "a", ["a"], body: "{0}"),
+        Op("hmax_native", "a", ["a"], body: "{0}"),
 
         #endregion
 
@@ -344,17 +369,19 @@ internal static class ScalarOps
 
         // the remainder is the difference of the value and the product of the divisor with the integer below the
         // quotient, the fused multiply add leaves the product exact
-        Op("mod", "f", ["a", "b"],
+        Op("fmod", "f", ["a", "b"],
             body: "{s}.FusedMultiplyAdd(-{1}, {s}.Floor({0} / {1}), {0})",
             ext: ["other"]),
         Op("modf", "f", ["a", "out i"], body: "{1} = {s}.Truncate({0});\nreturn {0} - {1};"),
         Op("ceil", "f", ["a"]),
         Op("floor", "f", ["a"]),
         Op("round", "f", ["a"]),
+        Op("round_away", "f", ["a"]),
         Op("trunc", "f", ["a"]),
         Op("frac", "f", ["a"]),
         Op("rcp", "f", ["a"]),
         Op("saturate", "f", ["a"]),
+        Op("copy_sign", "f", ["a", "sign"]),
         Op("step", "f", ["threshold", "a"], self: 1, body: "{1} >= {0} ? {o} : {z}"),
         Op("smoothstep", "f", ["min", "max", "a"], self: 2,
             body: "var t = {s}.Clamp(({2} - {0}) / ({1} - {0}), {z}, {o});\n" +
@@ -362,12 +389,17 @@ internal static class ScalarOps
         // the reflection is the value minus twice the product of the normal with the projection of the value
         // onto it, the fused multiply add leaves the product exact
         Op("reflect", "f", ["a", "n"], body: "math.fnma({two} * {1}, {0} * {1}, {0})"),
-        Op("project", "f", ["a", "onto"], body: "({0} * {1}) / ({1} * {1}) * {1}"),
+        Op("face_forward", "f", ["a", "i", "ng"], body: "{2} * {1} >= {z} ? -{0} : {0}"),
+        // the projection of the value onto a value that is too short to be projected onto is the zero of the
+        // kind of the value, the member without the check of the length is the one below
+        Op("project", "f", ["a", "onto"],
+            body: "var d = {1} * {1};\nreturn d < {denom} ? {z} : ({0} * {1}) / d * {1};"),
+        Op("project_unsafe", "f", ["a", "onto"], body: "({0} * {1}) / ({1} * {1}) * {1}"),
         Op("project_safe", "f", ["a", "onto", "default_value = default"],
             body: "var proj = ({0} * {1}) / ({1} * {1}) * {1};\nreturn {s}.IsFinite(proj) ? proj : {2};"),
-        Op("project_normalized", "f", ["a", "onto"], body: "({0} * {1}) * {1}"),
+        Op("project_unit", "f", ["a", "onto"], body: "({0} * {1}) * {1}"),
         Op("project_on_plane", "f", ["a", "plane_normal"], body: "{0} - ({0} * {1}) / ({1} * {1}) * {1}"),
-        Op("project_on_plane_normalized", "f", ["a", "plane_normal"], body: "{0} - ({0} * {1}) * {1}"),
+        Op("project_on_plane_unit", "f", ["a", "plane_normal"], body: "{0} - ({0} * {1}) * {1}"),
         Op("radians", "f", ["a"],
             body: "{0} * math.{cf}DegToRad",
             halfBody: "(half)((float){0} * math.F_DegToRad)"),
@@ -382,11 +414,21 @@ internal static class ScalarOps
 
         Op("sqrt", "e", ["a"]),
         Op("rsqrt", "e", ["a"]),
+        // the estimate of the hardware of the reciprocal of the square root of the value
+        Op("rsqrt_a", "e", ["a"]),
         // the length of a value of one component is its absolute value
         Op("length", "e", ["a"], bcl: "abs"),
         Op("distance", "e", ["a", "b"], body: "{s}.Abs({1} - {0})", ext: ["to"]),
         Op("normalize", "e", ["a"], body: "{0} * ({o} / {s}.Sqrt({0} * {0}))"),
-        Op("normalize_safe", "e", ["a"], body: "{0} * {0} > {eps} ? {0} * ({o} / {s}.Sqrt({0} * {0})) : {z}"),
+        Op("normalize_a", "e", ["a"], body: "{0} * math.rsqrt_a({0} * {0})"),
+        // the value is the zero of the kind of it when the length of it is not above the smallest positive
+        // normal value of the kind, which is what the length of a value that is too short to be squared is as
+        // well: the length is the one the vector of one component of the value has, so the two of them answer
+        // for the same values
+        Op("normalize_safe", "e", ["a"],
+            body: "var len = {s}.Sqrt({0} * {0});\nreturn len <= {minnormal} ? {z} : {0} * ({o} / len);"),
+        Op("normalize_safe_a", "e", ["a"],
+            body: "var len = {s}.Sqrt({0} * {0});\nreturn len <= {minnormal} ? {z} : {0} * math.rsqrt_a({0} * {0});"),
         // the refraction direction has no member, the value it is called on would be the third operand
         Op("refract", "e", ["i", "n", "index_of_refraction"], self: -1,
             body: "var ni = {1} * {0};\nvar k = {o} - {2} * {2} * ({o} - ni * ni);\n" +
@@ -396,6 +438,11 @@ internal static class ScalarOps
         Op("is_inf", "e", ["a"], returns: "bool"),
         Op("is_pos_inf", "e", ["a"], returns: "bool"),
         Op("is_neg_inf", "e", ["a"], returns: "bool"),
+        Op("is_subnormal", "e", ["a"], returns: "bool"),
+        // the three names of the members of hlsl beside the ones of the library
+        Op("isnan", "e", ["a"], returns: "bool"),
+        Op("isfinite", "e", ["a"], returns: "bool"),
+        Op("isinf", "e", ["a"], returns: "bool"),
         Op("is_pow2", "e", ["a"], returns: "bool"),
         Op("up2_pow2", "e", ["a"], body: "simd.RoundUpToPowerOf2(Vector128.CreateScalarUnsafe({0})).ToScalar()",
             halfBody: "(half)simd.RoundUpToPowerOf2(Vector128.CreateScalarUnsafe((float){0})).ToScalar()"),
@@ -429,9 +476,11 @@ internal static class ScalarOps
 
         #region select
 
-        // the condition is a bool, the declaration of the parameter names its own type, every value can be
-        // selected and the member that is called on a value is called on the condition
-        Op("select", "s", ["bool c", "t", "f"], body: "{0} ? {1} : {2}"),
+        // the condition is a bool and the declaration of the parameter names its own type, so the member that is
+        // called on a value would be called on the condition instead of on the value of the kind: the member of
+        // a value is the one that reaches every kind of a value, which is written once by hand, and the operation
+        // has no member of its own, see ScalarExtensions::select
+        Op("select", "s", ["bool c", "t", "f"], self: -1, body: "{0} ? {1} : {2}"),
 
         #endregion
     ];
@@ -491,7 +540,8 @@ internal static class ScalarOps
     /// the value.
     /// <para><c>{0}</c> and the ones after it are the operands in the order of the parameters of the operation,
     /// <c>{s}</c> is the type of the value, <c>{z}</c> and <c>{o}</c> are its zero and its one, <c>{two}</c> and
-    /// <c>{three}</c> are its two and its three, <c>{eps}</c> is the smallest normal of a floating point type,
+    /// <c>{three}</c> are its two and its three, <c>{minnormal}</c> is the smallest positive normal of a
+    /// floating point type, <c>{denom}</c> is the smallest divisor a quotient of the type may have,
     /// <c>{c}</c> is the cast to the type of the value, which the operations that the BCL returns in a wider
     /// type need, <c>{ci}</c> is the cast to the integer the bits of a narrower integer are computed in,
     /// <c>{cu}</c> is the same for the unsigned integer and <c>{cf}</c> is the prefix of the constants of the
@@ -510,7 +560,8 @@ internal static class ScalarOps
             .Replace("{o}", VectorScalar.One(scalar))
             .Replace("{two}", Number(scalar, "2"))
             .Replace("{three}", Number(scalar, "3"))
-            .Replace("{eps}", Eps(scalar))
+            .Replace("{minnormal}", MinNormal(scalar))
+            .Replace("{denom}", Denom(scalar))
             .Replace("{ci}", IntCast(scalar))
             .Replace("{cu}", UnsignedCast(scalar))
             .Replace("{c}", Cast(scalar))
@@ -563,15 +614,30 @@ internal static class ScalarOps
     };
 
     /// <summary>
-    /// The smallest positive normal of the type of the value, the one of a half is below its own range and
-    /// becomes its zero.
+    /// The smallest positive normal of the type of the value, which is the smallest value of the type that the
+    /// ieee 754 standard calls a normal number.
     /// </summary>
     /// <param name="scalar">The type of the value</param>
     /// <returns>The literal</returns>
-    public static string Eps(string scalar) => scalar switch
+    public static string MinNormal(string scalar) => scalar switch
     {
         "float" => "1.175494351e-38f",
-        "half" => "(half)1.175494351e-38f",
-        _ => "1.175494351e-38",
+        "double" => "2.2250738585072014e-308",
+        _ => "(half)6.103515625e-5f",
+    };
+
+    /// <summary>
+    /// The smallest value that the denominator of a quotient of the type of the value may be, which is the
+    /// value a quotient that is divided by one below it is meaningless for. The value is not a constant of the
+    /// ieee 754 standard, the library picks one for every type: it is a power of ten that is large enough to
+    /// keep the quotient of two values of the type meaningful.
+    /// </summary>
+    /// <param name="scalar">The type of the value</param>
+    /// <returns>The literal</returns>
+    public static string Denom(string scalar) => scalar switch
+    {
+        "float" => "1e-8f",
+        "double" => "1e-16",
+        _ => "(half)1e-3f",
     };
 }
