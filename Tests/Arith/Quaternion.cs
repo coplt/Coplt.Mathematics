@@ -36,7 +36,7 @@ public class TestQuaternion
     /// </summary>
     private static void Check<T>(T value, T same)
         where T : unmanaged, IEquatable<T>, IEqualityOperators<T, T, bool>, IComparable<T>,
-            IComparisonOperators<T, T, bool>, ISpanFormattable, IUtf8SpanFormattable
+        IComparisonOperators<T, T, bool>, ISpanFormattable, IUtf8SpanFormattable
     {
         Assert.That(value.Equals(same), Is.True);
         Assert.That(value == same, Is.True);
@@ -79,9 +79,8 @@ public class TestQuaternion
 
     /// <summary>
     /// The equality of two quaternions, the ordering of them and the text of the value of one of them are the
-    /// members of the framework of it: the ordering of two of them is the one of the four components of the value
-    /// of them in the order of the components and the text of one of them is the four components of it between
-    /// parentheses.
+    /// members of the framework of it: the ordering of two of them is the one of the vectors of the value of them
+    /// and the text of one of them is the four components of it between parentheses.
     /// </summary>
     [Test]
     public void Record()
@@ -106,9 +105,14 @@ public class TestQuaternion
             Assert.That(q <= same, Is.True, "the before or the one");
             Assert.That(q > after, Is.False, "the after");
             Assert.That(q >= same, Is.True, "the after or the one");
-            // the component of the value that comes first decides the ordering
-            Assert.That(new quaternion(2f, 0f, 0f, 0f).CompareTo(new quaternion(1f, 9f, 9f, 9f)) > 0, Is.True,
-                "the first component of the value");
+            // the ordering of two quaternions is the one of the vectors of the value of them: the value of a
+            // quaternion is before the value of another one where any of the four components of it is less than
+            // the component of the other one, and a component that is less decides the ordering even where
+            // another component of the value is greater
+            Assert.That(new quaternion(1f, 2f, 3f, 4f).CompareTo(new quaternion(2f, 2f, 3f, 4f)) < 0, Is.True,
+                "the component of the value that is less");
+            Assert.That(new quaternion(2f, 0f, 0f, 0f).CompareTo(new quaternion(1f, 9f, 9f, 9f)) < 0, Is.True,
+                "the component of the value that is less beside the one that is greater");
             // the text of the value of a quaternion is the four components of it between parentheses
             Assert.That(q.ToString(), Is.EqualTo("(1, 2, 3, 4)"), "the text");
             Assert.That(q.ToString("0.0", CultureInfo.InvariantCulture), Is.EqualTo("(1.0, 2.0, 3.0, 4.0)"),

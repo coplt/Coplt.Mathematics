@@ -710,23 +710,14 @@ public class QuaternionGenerator : IIncrementalGenerator
         sb.AppendLine($"    public static bool operator !=({name} left, {name} right) => !left.Equals(right);");
         sb.AppendLine();
 
-        // the ordering of two quaternions is the one of the four components of them in the order of the
-        // components, which is the one of a columns of a matrix through the columns of it
+        // the value of a quaternion is the one of the four components of it, so the ordering of two of them is
+        // the one of the values of the vectors of them, which is the one of the four components of a vector
         sb.AppendLine("    /// <summary>Returns the position of the value of the quaternion against the one of another quaternion</summary>");
         sb.AppendLine("    /// <param name=\"other\">The other quaternion</param>");
-        sb.AppendLine("    /// <returns>A negative number where the value of the quaternion is the one before the value of the other one, the zero where the two are the one and a positive number where it is the one after it</returns>");
+        sb.AppendLine(
+            "    /// <returns>A negative number where the value of the quaternion is the one before the value of the other one, the zero where the two are the one and a positive number where it is the one after it</returns>");
         sb.AppendLine("    [MethodImpl(256)]");
-        sb.AppendLine($"    public readonly int CompareTo({name} other)");
-        sb.AppendLine("    {");
-        for (var i = 0; i < 4; i++)
-        {
-            var comp = "xyzw"[i];
-            sb.AppendLine($"        {(i == 0 ? "var " : "")}c = value.{comp}.CompareTo(other.value.{comp});");
-            sb.AppendLine("        if (c != 0) return c;");
-        }
-
-        sb.AppendLine("        return 0;");
-        sb.AppendLine("    }");
+        sb.AppendLine($"    public readonly int CompareTo({name} other) => value.CompareTo(other.value);");
         sb.AppendLine();
         sb.AppendLine("    /// <inheritdoc cref=\"CompareTo(" + name + ")\"/>");
         sb.AppendLine("    [MethodImpl(256)]");
@@ -756,6 +747,7 @@ public class QuaternionGenerator : IIncrementalGenerator
         sb.AppendLine("    public readonly string ToString(string? format, IFormatProvider? formatProvider) => " +
                       "$\"(" + textFormat + ")\";");
         sb.AppendLine();
+
         List<string> Parts(string suffix)
         {
             var calls = new List<string>
