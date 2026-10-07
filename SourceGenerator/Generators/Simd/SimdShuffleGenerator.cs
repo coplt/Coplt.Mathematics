@@ -140,7 +140,8 @@ public class SimdShuffleGenerator : IIncrementalGenerator
     /// <summary>
     /// Generates the 3 members of a pattern whose component is of 4 bytes: the 2 members of the kinds that are
     /// read as the kind of the shuffle themselves forward the call to the member of the single kind of a
-    /// component.
+    /// component, which reaches the pattern with 1 instruction of the machine of either of the 2 families the
+    /// library is built on.
     /// </summary>
     /// <param name="sb">The builder of the file</param>
     /// <param name="pattern">The pattern of the member</param>
@@ -164,6 +165,16 @@ public class SimdShuffleGenerator : IIncrementalGenerator
         sb.AppendLine("    [MethodImpl(256)]");
         sb.AppendLine($"    public static Vector128<float> Shuffle_{pattern}(Vector128<float> a, Vector128<float> b)");
         sb.AppendLine("    {");
+        // the table lookup of an arm machine reads the 16 bytes of its result out of the 32 bytes of the 2
+        // registers of the value by the index of every one of them, so every pattern of a value of 4 bytes reaches
+        // 1 instruction: the 4 bytes of a component of the result are the 4 bytes of the component of the value
+        // that holds it, and the index of a component of the second value names the bytes of it beside the 16 bytes
+        // of the register of the first one
+        sb.AppendLine("        if (AdvSimd.Arm64.IsSupported)");
+        sb.AppendLine("            return Vector128.AsSingle(AdvSimd.Arm64.VectorTableLookup(");
+        sb.AppendLine("                (Vector128.AsByte(a), Vector128.AsByte(b)),");
+        sb.AppendLine($"                Vector128.Create({ByteIndexes(i, j, k, l)})");
+        sb.AppendLine("            ));");
         sb.AppendLine($"        if (Sse.IsSupported) return Sse.Shuffle(a, b, 0b{Binary(control, 8)});");
         GenFallback(sb, "Vector128", "Vector128.Create(0, 0, -1, -1).AsSingle()", i, j, k, l);
         sb.AppendLine("    }");
@@ -329,6 +340,7 @@ public class SimdShuffleGenerator : IIncrementalGenerator
         sb.AppendLine("using System;");
         sb.AppendLine("using System.Runtime.CompilerServices;");
         sb.AppendLine("using System.Runtime.Intrinsics;");
+        sb.AppendLine("using System.Runtime.Intrinsics.Arm;");
         sb.AppendLine("using System.Runtime.Intrinsics.X86;");
         sb.AppendLine();
         sb.AppendLine($"namespace {SimdNamespace};");
@@ -393,6 +405,33 @@ public class SimdShuffleGenerator : IIncrementalGenerator
     /// <param name="first">True for the first value, false for the second one</param>
     /// <returns>The lane of the register of the value that holds the component</returns>
     private static int Lane(int p, bool first) => first ? (p < 2 ? 0 : 2) : (p < 2 ? 1 : 3);
+
+    /// <summary>
+    /// Returns the index of every one of the 16 bytes of the result of the table lookup of an arm machine: the 4
+    /// bytes of a component of the first value are the 4 bytes of the component of it that the index names and the
+    /// 4 bytes of a component of the second value are the bytes of it beside the 16 bytes of the register of the
+    /// first one.
+    /// </summary>
+    /// <param name="i">The index of the first component of the low half of the result</param>
+    /// <param name="j">The index of the second component of the low half of the result</param>
+    /// <param name="k">The index of the first component of the high half of the result</param>
+    /// <param name="l">The index of the second component of the high half of the result</param>
+    /// <returns>The index of the 4 bytes of every one of the 4 components of the result</returns>
+    private static string ByteIndexes(int i, int j, int k, int l)
+    {
+        var sb = new StringBuilder();
+        var bases = new[] { i * 4, j * 4, 16 + k * 4, 16 + l * 4 };
+        foreach (var start in bases)
+        {
+            for (var b = 0; b < 4; b++)
+            {
+                if (sb.Length > 0) sb.Append(", ");
+                sb.Append($"(byte){start + b}");
+            }
+        }
+
+        return sb.ToString();
+    }
 
     /// <summary>The binary form of a control, which the member of the machine takes as the value of an immediate</summary>
     private static string Binary(int value, int digits) => Convert.ToString(value, 2).PadLeft(digits, '0');
