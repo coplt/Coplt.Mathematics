@@ -16,12 +16,16 @@ public static class ViewJit
     {
         var (t0, t1, t2) = math.transpose(new float3x3(m.c1, m.c2, m.c0));
 
-        var m0 = math.fsm(t1 * t2.yzx, t1.yzx, t2);
-        var m1 = math.fsm(t0.yzx * t2, t0, t2.yzx);
-        var m2 = math.fsm(t0 * t1.yzx, t0.yzx, t1);
+        var t0_yzx = t0.yzx;
+        var t1_yzx = t1.yzx;
+        var t2_yzx = t2.yzx;
+
+        var m0 = math.fsm(t1 * t2_yzx, t2, t1_yzx);
+        var m2 = math.fsm(t0 * t1_yzx, t1, t0_yzx);
+        var m1 = math.fsm(t2 * t0_yzx, t0, t2_yzx);
 
         float3 rcp_det = (1.0f / math.sum(t0.zxy * m0));
-        return new float3x3(m0, m1, m2) * rcp_det;
+        return new(m0 * rcp_det, m1 * rcp_det, m2 * rcp_det);
     }
 
     public static float3x3 inverse(float3x3 m)
