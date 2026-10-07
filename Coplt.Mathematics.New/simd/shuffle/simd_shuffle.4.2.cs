@@ -6034,7 +6034,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1010);
+            var r = Avx.Shuffle(a, b, 0b0010);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -6142,7 +6142,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1000);
+            var r = Avx.Shuffle(a, b, 0b0010);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -6218,7 +6218,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0010);
+            var r = Avx.Shuffle(a, b, 0b1000);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -6294,7 +6294,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1010);
+            var r = Avx.Shuffle(a, b, 0b1000);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -6798,7 +6798,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1010);
+            var r = Avx.Shuffle(a, b, 0b0010);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -6906,7 +6906,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1000);
+            var r = Avx.Shuffle(a, b, 0b0010);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -6982,7 +6982,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0010);
+            var r = Avx.Shuffle(a, b, 0b1000);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7058,7 +7058,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1010);
+            var r = Avx.Shuffle(a, b, 0b1000);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7210,7 +7210,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1110);
+            var r = Avx.Shuffle(a, b, 0b0110);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7318,7 +7318,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1100);
+            var r = Avx.Shuffle(a, b, 0b0110);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7394,7 +7394,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0110);
+            var r = Avx.Shuffle(a, b, 0b1100);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7470,7 +7470,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1110);
+            var r = Avx.Shuffle(a, b, 0b1100);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7849,7 +7849,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0101);
+            var r = Avx.Shuffle(a, b, 0b0001);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7898,7 +7898,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0101);
+            var r = Avx.Shuffle(a, b, 0b0001);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7925,7 +7925,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1101);
+            var r = Avx.Shuffle(a, b, 0b1001);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -7974,7 +7974,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b0011);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8001,7 +8001,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0111);
+            var r = Avx.Shuffle(a, b, 0b0011);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8028,7 +8028,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b1011);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8055,7 +8055,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0101);
+            var r = Avx.Shuffle(a, b, 0b0001);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8082,7 +8082,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1101);
+            var r = Avx.Shuffle(a, b, 0b0011);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8109,7 +8109,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0101);
+            var r = Avx.Shuffle(a, b, 0b0001);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8158,7 +8158,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0111);
+            var r = Avx.Shuffle(a, b, 0b1001);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8185,7 +8185,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b1011);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8234,7 +8234,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b1001);
             return Vector256.Shuffle(r, Vector256.Create(0, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8386,7 +8386,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1011);
+            var r = Avx.Shuffle(a, b, 0b0011);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8414,7 +8414,7 @@ public static partial class simd_shuffle
         if (Avx.IsSupported)
         {
             var r = Avx.Shuffle(a, b, 0b0011);
-            return Vector256.Shuffle(r, Vector256.Create(0, 2, 1, 3)); 
+            return Vector256.Shuffle(r, Vector256.Create(0, 2, 1, 3));
         }
         if (Vector512.IsHardwareAccelerated)
             return Vector512.Shuffle(
@@ -8494,7 +8494,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1001);
+            var r = Avx.Shuffle(a, b, 0b0011);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8570,7 +8570,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0011);
+            var r = Avx.Shuffle(a, b, 0b1001);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8646,7 +8646,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1011);
+            var r = Avx.Shuffle(a, b, 0b1001);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8798,7 +8798,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b0111);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8906,7 +8906,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1101);
+            var r = Avx.Shuffle(a, b, 0b0111);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -8982,7 +8982,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0111);
+            var r = Avx.Shuffle(a, b, 0b1101);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9058,7 +9058,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b1101);
             return Vector256.Shuffle(r, Vector256.Create(0, 2, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9135,7 +9135,7 @@ public static partial class simd_shuffle
         if (Avx.IsSupported)
         {
             var r = Avx.Shuffle(a, b, 0b0000);
-            return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
+            return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3));
         }
         if (Vector512.IsHardwareAccelerated)
             return Vector512.Shuffle(
@@ -9210,7 +9210,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1010);
+            var r = Avx.Shuffle(a, b, 0b0010);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9318,7 +9318,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1000);
+            var r = Avx.Shuffle(a, b, 0b0010);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9394,7 +9394,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0010);
+            var r = Avx.Shuffle(a, b, 0b1000);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9470,7 +9470,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1010);
+            var r = Avx.Shuffle(a, b, 0b1000);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9497,7 +9497,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0100);
+            var r = Avx.Shuffle(a, b, 0b0001);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9546,7 +9546,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0100);
+            var r = Avx.Shuffle(a, b, 0b0001);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9573,7 +9573,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1100);
+            var r = Avx.Shuffle(a, b, 0b1001);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9622,7 +9622,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1110);
+            var r = Avx.Shuffle(a, b, 0b0011);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9649,7 +9649,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0110);
+            var r = Avx.Shuffle(a, b, 0b0011);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9676,7 +9676,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1110);
+            var r = Avx.Shuffle(a, b, 0b1011);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9703,7 +9703,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0100);
+            var r = Avx.Shuffle(a, b, 0b0001);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9730,7 +9730,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1100);
+            var r = Avx.Shuffle(a, b, 0b0011);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9757,7 +9757,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0100);
+            var r = Avx.Shuffle(a, b, 0b0001);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9806,7 +9806,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0110);
+            var r = Avx.Shuffle(a, b, 0b1001);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9833,7 +9833,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1110);
+            var r = Avx.Shuffle(a, b, 0b1011);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -9882,7 +9882,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1110);
+            var r = Avx.Shuffle(a, b, 0b1001);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10034,7 +10034,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1010);
+            var r = Avx.Shuffle(a, b, 0b0010);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10142,7 +10142,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1000);
+            var r = Avx.Shuffle(a, b, 0b0010);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10218,7 +10218,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0010);
+            var r = Avx.Shuffle(a, b, 0b1000);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10294,7 +10294,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1010);
+            var r = Avx.Shuffle(a, b, 0b1000);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10673,7 +10673,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0001);
+            var r = Avx.Shuffle(a, b, 0b0100);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10722,7 +10722,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0001);
+            var r = Avx.Shuffle(a, b, 0b0100);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10749,7 +10749,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1001);
+            var r = Avx.Shuffle(a, b, 0b1100);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10798,7 +10798,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1011);
+            var r = Avx.Shuffle(a, b, 0b0110);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10825,7 +10825,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0011);
+            var r = Avx.Shuffle(a, b, 0b0110);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10852,7 +10852,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1011);
+            var r = Avx.Shuffle(a, b, 0b1110);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10879,7 +10879,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0001);
+            var r = Avx.Shuffle(a, b, 0b0100);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10906,7 +10906,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1001);
+            var r = Avx.Shuffle(a, b, 0b0110);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10933,7 +10933,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0001);
+            var r = Avx.Shuffle(a, b, 0b0100);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -10982,8 +10982,8 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0011);
-            return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
+            var r = Avx.Shuffle(a, b, 0b1100);
+            return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1));
         }
         if (Vector512.IsHardwareAccelerated)
             return Vector512.Shuffle(
@@ -11009,7 +11009,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1011);
+            var r = Avx.Shuffle(a, b, 0b1110);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11058,7 +11058,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1011);
+            var r = Avx.Shuffle(a, b, 0b1100);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11210,7 +11210,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b0111);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11265,7 +11265,7 @@ public static partial class simd_shuffle
         if (Avx.IsSupported)
         {
             var r = Avx.Shuffle(a, b, 0b1111);
-            return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3)); 
+            return Vector256.Shuffle(r, Vector256.Create(2, 0, 1, 3));
         }
         if (Vector512.IsHardwareAccelerated)
             return Vector512.Shuffle(
@@ -11318,7 +11318,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1101);
+            var r = Avx.Shuffle(a, b, 0b0111);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11394,7 +11394,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0111);
+            var r = Avx.Shuffle(a, b, 0b1101);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11470,7 +11470,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b1101);
             return Vector256.Shuffle(r, Vector256.Create(2, 0, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11849,7 +11849,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0101);
+            var r = Avx.Shuffle(a, b, 0b0100);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11898,7 +11898,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0101);
+            var r = Avx.Shuffle(a, b, 0b0100);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11925,7 +11925,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1101);
+            var r = Avx.Shuffle(a, b, 0b1100);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -11974,7 +11974,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b0110);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 1, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -12001,7 +12001,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0111);
+            var r = Avx.Shuffle(a, b, 0b0110);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -12028,7 +12028,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b1110);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 1, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -12055,7 +12055,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0101);
+            var r = Avx.Shuffle(a, b, 0b0100);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -12082,7 +12082,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1101);
+            var r = Avx.Shuffle(a, b, 0b0110);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -12109,7 +12109,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0101);
+            var r = Avx.Shuffle(a, b, 0b0100);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -12158,7 +12158,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b0111);
+            var r = Avx.Shuffle(a, b, 0b1100);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -12185,7 +12185,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b1110);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 1)); 
         }
         if (Vector512.IsHardwareAccelerated)
@@ -12234,7 +12234,7 @@ public static partial class simd_shuffle
     {
         if (Avx.IsSupported)
         {
-            var r = Avx.Shuffle(a, b, 0b1111);
+            var r = Avx.Shuffle(a, b, 0b1100);
             return Vector256.Shuffle(r, Vector256.Create(2, 2, 3, 3)); 
         }
         if (Vector512.IsHardwareAccelerated)

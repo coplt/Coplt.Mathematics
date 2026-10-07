@@ -35,6 +35,12 @@ public class TestVectorShuffle
             Assert.That(double4.shuffle_xx_xx(d, e), Is.EqualTo(new double4(1, 1, 5, 5)));
             Assert.That(double4.shuffle_xy_zw(d, e), Is.EqualTo(new double4(1, 2, 7, 8)));
             Assert.That(double4.shuffle_yx_wz(d, e), Is.EqualTo(new double4(2, 1, 8, 7)));
+            // a register of these patterns gives one of its two components from each of the halves of itself, so
+            // the member of them combines the lanes of the two registers before it takes the components
+            Assert.That(double4.shuffle_zx_xz(d, e), Is.EqualTo(new double4(3, 1, 5, 7)));
+            Assert.That(double4.shuffle_wy_yw(d, e), Is.EqualTo(new double4(4, 2, 6, 8)));
+            Assert.That(double4.shuffle_yz_yz(d, e), Is.EqualTo(new double4(2, 3, 6, 7)));
+            Assert.That(double4.shuffle_wx_wx(d, e), Is.EqualTo(new double4(4, 1, 8, 5)));
             Assert.That(int4.shuffle_xx_yy(i, j), Is.EqualTo(new int4(1, 1, 6, 6)));
             Assert.That(int4.shuffle_xw_yz(i, j), Is.EqualTo(new int4(1, 4, 6, 7)));
             // a vector without a register reads the components its pattern names
@@ -181,6 +187,20 @@ public class TestVectorShuffle
             static (x, y, z, w) => new float4(x, y, z, w));
         EveryPatternOfTheTable(new float4(0, 1, 2, 3), new float4(4, 5, 6, 7), 4,
             static (x, y, z, w) => new float4(x, y, z, w));
+        // the register of a 4 component vector of a double is 256 bits wide, so the members of it are the ones of
+        // the pairs of the halves of the register of it
+        EveryMember(new double4(0, 1, 2, 3), new double4(4, 5, 6, 7), 4,
+            static (x, y, z, w) => new double4(x, y, z, w));
+        EveryPatternOfTheTable(new double4(0, 1, 2, 3), new double4(4, 5, 6, 7), 4,
+            static (x, y, z, w) => new double4(x, y, z, w));
+        EveryMember(new long4(0, 1, 2, 3), new long4(4, 5, 6, 7), 4,
+            static (x, y, z, w) => new long4(x, y, z, w));
+        EveryMember(new ulong4(0UL, 1UL, 2UL, 3UL), new ulong4(4UL, 5UL, 6UL, 7UL), 4,
+            static (x, y, z, w) => new ulong4((ulong)x, (ulong)y, (ulong)z, (ulong)w));
+        EveryMember(new int4(0, 1, 2, 3), new int4(4, 5, 6, 7), 4,
+            static (x, y, z, w) => new int4(x, y, z, w));
+        EveryMember(new uint4(0U, 1U, 2U, 3U), new uint4(4U, 5U, 6U, 7U), 4,
+            static (x, y, z, w) => new uint4((uint)x, (uint)y, (uint)z, (uint)w));
     }
 
     [Test]

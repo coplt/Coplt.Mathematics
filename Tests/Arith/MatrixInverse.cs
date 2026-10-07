@@ -124,4 +124,108 @@ public class TestMatrixInverse
             Assert.That(float.IsFinite(singular3.m22), Is.False, "the determinant of the value is zero");
         }
     }
+
+    [Test]
+    public void Of4x4()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the inverse of a diagonal value is the value whose every component is the one of the kind divided
+            // by the component of the value, so the inverse of the value whose diagonal is (one, two, four, eight)
+            // is the value whose diagonal is the reciprocal of every one of them
+            var m = new float4x4(1f, 0f, 0f, 0f, 0f, 2f, 0f, 0f, 0f, 0f, 4f, 0f, 0f, 0f, 0f, 8f);
+            var expected = new float4x4(1f, 0f, 0f, 0f, 0f, 0.5f, 0f, 0f, 0f, 0f, 0.25f, 0f, 0f, 0f, 0f, 0.125f);
+            var inverse = math.inverse(m);
+            Assert.That(inverse, Is.EqualTo(expected), "the value whose diagonal is not the one of the kind");
+            Assert.That(m.inverse(), Is.EqualTo(inverse), "the member of the value");
+            Assert.That(math.mul(m, inverse), Is.EqualTo(float4x4.Identity), "the product with the value");
+
+            // the product of [[1, 1, 1, 1], [1, -1, 1, -1], [1, 1, -1, -1], [1, -1, -1, 1]] with itself is four
+            // times the identity of the kind, so the inverse of it is a quarter of it, which every kind of a
+            // component of it holds exactly
+            var hadamard = new float4x4(1f, 1f, 1f, 1f, 1f, -1f, 1f, -1f, 1f, 1f, -1f, -1f, 1f, -1f, -1f, 1f);
+            Assert.That(math.inverse(hadamard), Is.EqualTo(hadamard * 0.25f),
+                "the value whose product with itself is four times the identity");
+            Assert.That(math.mul(hadamard, math.inverse(hadamard)), Is.EqualTo(float4x4.Identity),
+                "the product of the value and the inverse of it");
+
+            // the kind of a component of the value is named by the member that reaches the inverse of it
+            Assert.That(
+                math.inverse(new double4x4(1d, 0d, 0d, 0d, 0d, 2d, 0d, 0d, 0d, 0d, 4d, 0d, 0d, 0d, 0d, 8d)).m11,
+                Is.EqualTo(0.5d), "double");
+            Assert.That(math.inverse(new half4x4((half)1f, (half)0f, (half)0f, (half)0f, (half)0f, (half)2f,
+                (half)0f, (half)0f, (half)0f, (half)0f, (half)4f, (half)0f, (half)0f, (half)0f, (half)0f,
+                (half)8f)).m11, Is.EqualTo((half)0.5f), "half");
+
+            // a value whose determinant is not the one of the kind, so the inverse of it is not a value of the kind
+            // exactly: the product of the value and the inverse of it is the identity of the kind within the
+            // rounding of the arithmetic of it. Every component of the diagonal of this value is larger than the sum
+            // of the other components of the row of it, which keeps every component of the inverse of it small
+            // enough for the product of the determinant of the value and the determinant of the inverse of it to be
+            // the one of the kind within the rounding of a float (the rows of a value like [[1, 2, 3, 4],
+            // [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]] are multiples of one another less a constant, which
+            // leaves every one of them without an inverse and the arithmetic of a float unable to tell)
+            var messy = new float4x4(40.5f, 1f, 2f, 3f, 4f, 41.25f, 6f, 7f, 8f, 9f, 42.5f, 11f,
+                12f, 13f, 14f, 43.75f);
+            var messyInverse = math.inverse(messy);
+            Assert.That(math.hmax(math.abs(math.mul(messy, messyInverse) - float4x4.Identity)), Is.LessThan(1e-5f),
+                "the product of a value and the inverse of it");
+            Assert.That(math.determinant(messy) * math.determinant(messyInverse), Is.EqualTo(1f).Within(1e-5f),
+                "the determinant of the inverse of a value");
+            Assert.That(math.hmax(math.abs(math.inverse(messyInverse) - messy)), Is.LessThan(1e-5f),
+                "the inverse of the inverse of a value");
+            var messyDouble = new double4x4(40.5d, 1d, 2d, 3d, 4d, 41.25d, 6d, 7d, 8d, 9d, 42.5d, 11d,
+                12d, 13d, 14d, 43.75d);
+            Assert.That(math.hmax(math.abs(math.mul(messyDouble, math.inverse(messyDouble)) - double4x4.Identity)),
+                Is.LessThan(1e-12d), "the product of a value of a double component and the inverse of it");
+
+            // the fourth column of the value of the whole numbers of the arithmetic series is the third one of the
+            // columns of it doubled less the second one, so the determinant of the value is the zero of the kind
+            // and the value has no inverse
+            var singular = math.inverse(new float4x4(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 11f, 12f,
+                13f, 14f, 15f, 16f));
+            Assert.That(float.IsFinite(singular.m00), Is.False, "the determinant of the value is zero");
+            Assert.That(float.IsFinite(singular.m33), Is.False, "the determinant of the value is zero");
+        }
+    }
+
+    [Test]
+    public void RigidOf4x4()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the inverse of a value that keeps the distances of the space is the turn of it turned around with the
+            // position of it turned by the turn of it and negated: the turn of [[0, 0, 1], [1, 0, 0], [0, 1, 0]] is
+            // the turn of it turned around once more, so the inverse of the value of the position (1, 2, 3) is the
+            // value of the position -(0 * 1 + 1 * 2 + 0 * 3, 0 * 1 + 0 * 2 + 1 * 3, 1 * 1 + 0 * 2 + 0 * 3), which
+            // every kind of a component of it holds exactly
+            var rigid = new float4x4(0f, 0f, 1f, 1f, 1f, 0f, 0f, 2f, 0f, 1f, 0f, 3f, 0f, 0f, 0f, 1f);
+            var expected = new float4x4(0f, 1f, 0f, -2f, 0f, 0f, 1f, -3f, 1f, 0f, 0f, -1f, 0f, 0f, 0f, 1f);
+            Assert.That(math.inverse_rigid(rigid), Is.EqualTo(expected), "the value whose turn is a turn of the axes");
+            Assert.That(math.inverse_rigid(rigid), Is.EqualTo(math.inverse(rigid)),
+                "the value of the inverse of a value that keeps the distances and the value of the inverse of it");
+            Assert.That(math.mul(rigid, math.inverse_rigid(rigid)), Is.EqualTo(float4x4.Identity),
+                "the product with the value");
+            Assert.That(rigid.inverse_rigid(), Is.EqualTo(math.inverse_rigid(rigid)), "the member of the value");
+
+            // the kind of a component of the value is named by the member that reaches the inverse of it
+            Assert.That(
+                math.inverse_rigid(new double4x4(0d, 0d, 1d, 1d, 1d, 0d, 0d, 2d, 0d, 1d, 0d, 3d, 0d, 0d, 0d, 1d))
+                    .m03, Is.EqualTo(-2d), "double");
+            Assert.That(math.inverse_rigid(new half4x4((half)0f, (half)0f, (half)1f, (half)1f, (half)1f, (half)0f,
+                (half)0f, (half)2f, (half)0f, (half)1f, (half)0f, (half)3f, (half)0f, (half)0f, (half)0f,
+                (half)1f)).m03, Is.EqualTo((half)(-2f)), "half");
+
+            // a value that keeps the distances of the space whose turn is not a turn of the axes, so the components
+            // of it are not held by the kind of them exactly: the inverse of it is the value of the member of it
+            // within the rounding of the arithmetic of it, which the inverse of the value reaches as well
+            var turn = new float4x4(0.8775826f, -0.4794255f, 0f, 4f, 0.4794255f, 0.8775826f, 0f, 5f, 0f, 0f, 1f, 6f,
+                0f, 0f, 0f, 1f);
+            var turnInverse = math.inverse_rigid(turn);
+            Assert.That(math.hmax(math.abs(math.mul(turn, turnInverse) - float4x4.Identity)), Is.LessThan(1e-5f),
+                "the product of a value and the inverse of it");
+            Assert.That(math.hmax(math.abs(turnInverse - math.inverse(turn))), Is.LessThan(1e-5f),
+                "the value of the inverse of a value that keeps the distances and the value of it");
+        }
+    }
 }
