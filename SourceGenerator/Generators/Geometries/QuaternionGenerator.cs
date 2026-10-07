@@ -861,7 +861,7 @@ public class QuaternionGenerator : IIncrementalGenerator
                 <param name="q">The quaternion</param>
                 """,
                 $"{name} inverse({name} q)",
-                $"=> new(math.rcp(math.dot<{vec4}, {scalar}>(q.value, q.value)) * q.value * new {vec4}({negOne}, {negOne}, {negOne}, {one}));",
+                $"=> new(({one} / math.dot<{vec4}, {scalar}>(q.value, q.value)) * q.value * new {vec4}({negOne}, {negOne}, {negOne}, {one}));",
                 $"math.inverse({name})", $"{name} inverse(this {name} q)", "math.inverse(q)"),
             new("""
                 Returns the value of the dot product of the two quaternions
@@ -931,7 +931,7 @@ public class QuaternionGenerator : IIncrementalGenerator
                 $$"""
                   {
                       var v_rcp_len = math.rsqrt(math.dot(q.value.xyz, q.value.xyz));
-                      var v_len = math.rcp(v_rcp_len);
+                      var v_len = ({{one}} / v_rcp_len);
                       math.sincos(v_len, out var sin_v_len, out var cos_v_len);
                       return new(new {{vec4}}(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len));
                   }
@@ -946,7 +946,7 @@ public class QuaternionGenerator : IIncrementalGenerator
                 $$"""
                   {
                       var v_rcp_len = math.rsqrt(math.dot(q.value.xyz, q.value.xyz));
-                      var v_len = math.rcp(v_rcp_len);
+                      var v_len = ({{one}} / v_rcp_len);
                       math.sincos(v_len, out var sin_v_len, out var cos_v_len);
                       return new(new {{vec4}}(q.value.xyz * v_rcp_len * sin_v_len, cos_v_len) * math.exp(q.value.w));
                   }

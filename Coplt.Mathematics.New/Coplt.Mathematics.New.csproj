@@ -37,4 +37,8 @@
         <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Implements\Vec4\" />
+    </ItemGroup>
+
 </Project>
