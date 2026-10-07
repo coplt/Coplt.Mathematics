@@ -63,6 +63,12 @@ public class MatrixTransposeGenerator : IIncrementalGenerator
         var helper = Helper(rows, cols);
         var operands = helper is null ? 0 : Operands(rows, cols);
 
+        // true when the register of a column of the result is wider than that column, so the lanes of the register
+        // of it that follow the components of the column are padding and the member of the simd library of the
+        // shape keeps them at zero, which lets the column write the field of the vector directly instead of going
+        // through the constructor that masks the padding lanes of it
+        var pad = VectorGenShared.PadLanes(typ, cols, false) > 0;
+
         var sb = new StringBuilder();
         VectorGenShared.FileHeader(sb, simdHelpers: true);
         sb.AppendLine();
@@ -80,7 +86,10 @@ public class MatrixTransposeGenerator : IIncrementalGenerator
         {
             var args = Enumerable.Range(0, cols).Select(j => $"m.c{j}.vector").Concat(
                 Enumerable.Range(cols, operands - cols).Select(_ => "default"));
-            var result = Enumerable.Range(0, rows).Select(i => $"new(r.c{i})");
+            // the lanes of the register of a column of the result that follow the components of that column are
+            // padding and the member of the simd library keeps them at zero, so the column writes the field of the
+            // vector directly and skips the mask of the constructor of it
+            var result = Enumerable.Range(0, rows).Select(i => VectorGenShared.Vector(simd, pad, $"r.c{i}"));
             sb.AppendLine($"        if (Vector{register}.IsHardwareAccelerated)");
             sb.AppendLine("        {");
             sb.AppendLine($"            var r = simd_matrix.{helper}({string.Join(", ", args)});");

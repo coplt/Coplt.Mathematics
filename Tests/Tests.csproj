@@ -7,7 +7,6 @@
     <LangVersion>14.0</LangVersion>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <RootNamespace>MathTests</RootNamespace>
     <NoWarn>CS8981</NoWarn>
   </PropertyGroup>
 

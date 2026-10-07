@@ -132,38 +132,27 @@ public class TestMatrixTransposeArm
                 "a matrix of 2 rows and 4 columns of uint");
 
             // the two components of a column of the result of a matrix of 4 rows and 2 columns are the two lower
-            // lanes of the register of that column
+            // lanes of the register of that column and the lanes that follow them are padding, which the member of
+            // the shape keeps at zero on every path of it
             var d = new float4x2(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f);
             var td = math.transpose(d);
-            var (a0, a1, a2, a3) = Transpose4x2To2x4Arm(d.c0.vector, d.c1.vector);
-            Assert.That((a0.GetElement(0), a0.GetElement(1)), Is.EqualTo((td.c0.x, td.c0.y)), "the first column");
-            Assert.That((a1.GetElement(0), a1.GetElement(1)), Is.EqualTo((td.c1.x, td.c1.y)), "the second column");
-            Assert.That((a2.GetElement(0), a2.GetElement(1)), Is.EqualTo((td.c2.x, td.c2.y)), "the third column");
-            Assert.That((a3.GetElement(0), a3.GetElement(1)), Is.EqualTo((td.c3.x, td.c3.y)), "the fourth column");
+            Assert.That(Transpose4x2To2x4Arm(d.c0.vector, d.c1.vector),
+                Is.EqualTo((td.c0.vector, td.c1.vector, td.c2.vector, td.c3.vector)),
+                "a matrix of 4 rows and 2 columns of float");
 
             var id = new int4x2(1, 2, 3, 4, 5, 6, 7, 8);
             var tid = math.transpose(id);
             var (b0, b1, b2, b3) = Transpose4x2To2x4Arm(id.c0.vector.AsSingle(), id.c1.vector.AsSingle());
-            Assert.That((b0.AsInt32().GetElement(0), b0.AsInt32().GetElement(1)), Is.EqualTo((tid.c0.x, tid.c0.y)),
-                "the first column of int");
-            Assert.That((b1.AsInt32().GetElement(0), b1.AsInt32().GetElement(1)), Is.EqualTo((tid.c1.x, tid.c1.y)),
-                "the second column of int");
-            Assert.That((b2.AsInt32().GetElement(0), b2.AsInt32().GetElement(1)), Is.EqualTo((tid.c2.x, tid.c2.y)),
-                "the third column of int");
-            Assert.That((b3.AsInt32().GetElement(0), b3.AsInt32().GetElement(1)), Is.EqualTo((tid.c3.x, tid.c3.y)),
-                "the fourth column of int");
+            Assert.That((b0.AsInt32(), b1.AsInt32(), b2.AsInt32(), b3.AsInt32()),
+                Is.EqualTo((tid.c0.vector, tid.c1.vector, tid.c2.vector, tid.c3.vector)),
+                "a matrix of 4 rows and 2 columns of int");
 
             var ud = new uint4x2(1u, 2u, 3u, 4u, 5u, 6u, 7u, 8u);
             var tud = math.transpose(ud);
             var (c0, c1, c2, c3) = Transpose4x2To2x4Arm(ud.c0.vector.AsSingle(), ud.c1.vector.AsSingle());
-            Assert.That((c0.AsUInt32().GetElement(0), c0.AsUInt32().GetElement(1)), Is.EqualTo((tud.c0.x, tud.c0.y)),
-                "the first column of uint");
-            Assert.That((c1.AsUInt32().GetElement(0), c1.AsUInt32().GetElement(1)), Is.EqualTo((tud.c1.x, tud.c1.y)),
-                "the second column of uint");
-            Assert.That((c2.AsUInt32().GetElement(0), c2.AsUInt32().GetElement(1)), Is.EqualTo((tud.c2.x, tud.c2.y)),
-                "the third column of uint");
-            Assert.That((c3.AsUInt32().GetElement(0), c3.AsUInt32().GetElement(1)), Is.EqualTo((tud.c3.x, tud.c3.y)),
-                "the fourth column of uint");
+            Assert.That((c0.AsUInt32(), c1.AsUInt32(), c2.AsUInt32(), c3.AsUInt32()),
+                Is.EqualTo((tud.c0.vector, tud.c1.vector, tud.c2.vector, tud.c3.vector)),
+                "a matrix of 4 rows and 2 columns of uint");
         }
     }
 
@@ -243,18 +232,22 @@ public class TestMatrixTransposeArm
 
     /// <summary>
     /// The transpose of the two registers of the columns of a matrix of 4 rows and 2 columns reached the way the
-    /// member of the simd library reaches it on arm: the low and the high combinations of the two registers of the
-    /// value take the first and the third columns of the result, the transpose of the odd lanes of them takes the
-    /// second and a shuffle of the high combination takes the fourth.
+    /// member of the simd library reaches it on arm: the low halves of the two registers of the value are the pair
+    /// of the first and the second columns of the result and the high halves are the pair of the third and the
+    /// fourth, and the pair of lanes of every one of the four columns of the result is widened with the zero
+    /// register, which keeps the padding lanes of that column at zero.
     /// </summary>
     private static (Vector128<float> c0, Vector128<float> c1, Vector128<float> c2, Vector128<float> c3) Transpose4x2To2x4Arm(
         Vector128<float> c0, Vector128<float> c1
     )
     {
         var a = AdvSimd.Arm64.ZipLow(c0, c1); // (c0.x, c1.x, c0.y, c1.y)
-        var b = AdvSimd.Arm64.TransposeOdd(c0, c1); // (c0.y, c1.y, c0.w, c1.w)
-        var c = AdvSimd.Arm64.ZipHigh(c0, c1); // (c0.z, c1.z, c0.w, c1.w)
-        var d = Vector128.Shuffle(c, Vector128.Create(2, 3, 0, 1)); // (c0.w, c1.w, c0.z, c1.z)
-        return (a, b, c, d);
+        var b = AdvSimd.Arm64.ZipHigh(c0, c1); // (c0.z, c1.z, c0.w, c1.w)
+        return (
+            Vector128.Create(a.GetLower(), Vector64<float>.Zero), // (c0.x, c1.x, 0, 0)
+            Vector128.Create(a.GetUpper(), Vector64<float>.Zero), // (c0.y, c1.y, 0, 0)
+            Vector128.Create(b.GetLower(), Vector64<float>.Zero), // (c0.z, c1.z, 0, 0)
+            Vector128.Create(b.GetUpper(), Vector64<float>.Zero) // (c0.w, c1.w, 0, 0)
+        );
     }
 }

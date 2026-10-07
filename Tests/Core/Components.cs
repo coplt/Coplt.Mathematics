@@ -278,6 +278,22 @@ public class TestVectorComponents
 
             var (h3x, h3y, h3z) = new half3((Half)1, (Half)2, (Half)3);
             Assert.That((h3x, h3y, h3z), Is.EqualTo(((Half)1, (Half)2, (Half)3)));
+
+            // a matrix deconstructs into its columns, in the order of the columns of the value
+            var (f2c0, f2c1) = new float2x2(new float2(1.5f, -2f), new float2(3f, 0.25f));
+            Assert.That((f2c0, f2c1), Is.EqualTo((new float2(1.5f, -2f), new float2(3f, 0.25f))));
+            var (f3c0, f3c1, f3c2) = new float3x3(new float3(1.5f, -2f, 3f), new float3(0.25f, 4f, -1.5f),
+                new float3(2f, -3f, 0.5f));
+            Assert.That((f3c0, f3c1, f3c2),
+                Is.EqualTo((new float3(1.5f, -2f, 3f), new float3(0.25f, 4f, -1.5f), new float3(2f, -3f, 0.5f))));
+            var (i4c0, i4c1) = new int4x2(new int4(1, -2, 3, -4), new int4(5, -6, 7, -8));
+            Assert.That((i4c0, i4c1), Is.EqualTo((new int4(1, -2, 3, -4), new int4(5, -6, 7, -8))));
+
+            // the storage variant of a matrix deconstructs into the storage variants of its columns
+            var (s3c0, s3c1, s3c2) = new float3x3s(new float3s(1.5f, -2f, 3f), new float3s(0.25f, 4f, -1.5f),
+                new float3s(2f, -3f, 0.5f));
+            Assert.That((s3c0.to_compute, s3c1.to_compute, s3c2.to_compute),
+                Is.EqualTo((new float3(1.5f, -2f, 3f), new float3(0.25f, 4f, -1.5f), new float3(2f, -3f, 0.5f))));
         }
     }
 

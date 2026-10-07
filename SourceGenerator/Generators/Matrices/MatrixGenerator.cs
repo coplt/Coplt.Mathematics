@@ -256,6 +256,23 @@ public class MatrixGenerator : IIncrementalGenerator
         sb.AppendLine("    #endregion");
         sb.AppendLine();
 
+        sb.AppendLine("    #region deconstruct");
+        sb.AppendLine();
+        sb.AppendLine("    /// <summary>Deconstructs the matrix into its columns</summary>");
+        for (var i = 0; i < cols; i++)
+        {
+            sb.AppendLine($"    /// <param name=\"c{i}\">Receives the <c>c{i}</c> column of the matrix</param>");
+        }
+
+        sb.AppendLine($"    {attr}");
+        sb.AppendLine($"    public readonly void Deconstruct({VectorGenShared.Join(cols, i => $"out {col} c{i}")})");
+        sb.AppendLine("    {");
+        for (var i = 0; i < cols; i++) sb.AppendLine($"        c{i} = this.c{i};");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        sb.AppendLine("    #endregion");
+        sb.AppendLine();
+
         sb.AppendLine("    #region index");
         sb.AppendLine();
         sb.AppendLine("    /// <summary>Returns the column of the matrix at <paramref name=\"column\"/></summary>");
