@@ -26,6 +26,7 @@
 
     <ItemGroup>
         <Compile Include="..\Tests\Arith\MatrixTransposeArm.cs" Link="Arith\MatrixTransposeArm.cs" />
+        <Compile Include="..\Tests\Arith\MoveUnpackArm.cs" Link="Arith\MoveUnpackArm.cs" />
     </ItemGroup>
 
     <ItemGroup>

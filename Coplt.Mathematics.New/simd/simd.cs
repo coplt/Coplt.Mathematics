@@ -111,6 +111,13 @@ public static partial class simd
             return Sse.MoveLowToHigh(a.As<T, float>(), b.As<T, float>()).As<float, T>();
         }
 
+        // the two halves of a register of 128 bits are the two lanes of 64 bits of it, so the interlace of the two
+        // low halves of the registers of the value is the low half of the first beside the low half of the second
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            return AdvSimd.Arm64.ZipLow(a.As<T, long>(), b.As<T, long>()).As<long, T>();
+        }
+
         return a.WithUpper(b.GetLower());
     }
 
@@ -149,6 +156,14 @@ public static partial class simd
         if (Sse.IsSupported)
         {
             return Sse.MoveHighToLow(a.As<T, float>(), b.As<T, float>()).As<float, T>();
+        }
+
+        // the high half of the second register of the value is the low half of the result and the high half of the
+        // first one is the high half of it, which the interlace of the two high halves takes where the two
+        // registers of the value are handed to it in the other order
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            return AdvSimd.Arm64.ZipHigh(b.As<T, long>(), a.As<T, long>()).As<long, T>();
         }
 
         return a.WithLower(b.GetUpper());
@@ -1023,8 +1038,7 @@ public static partial class simd
 
     public static bool IsShiftAccelerated
     {
-        [MethodImpl(256)]
-        get => Avx2.IsSupported;
+        [MethodImpl(256)] get => Avx2.IsSupported;
     }
 
     #region ShiftLeft
