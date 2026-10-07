@@ -2,9 +2,11 @@
 
 The runner of the checks of the arm paths of the simd library on a machine that is not an arm one.
 
-The checks themselves live in [`../Tests/Arith/MatrixTransposeArm.cs`](../Tests/Arith/MatrixTransposeArm.cs)
-and this project compiles that file by a link rather than holding a copy of it, so the checks of a machine that is
-an arm one are the checks of this runner beside the ones `dotnet test` reaches.
+The checks themselves live in [`../Tests/Arith/MatrixTransposeArm.cs`](../Tests/Arith/MatrixTransposeArm.cs),
+[`../Tests/Arith/MoveUnpackArm.cs`](../Tests/Arith/MoveUnpackArm.cs) and
+[`../Tests/Core/Shuffle.cs`](../Tests/Core/Shuffle.cs), and this project compiles those files by a link rather than
+holding a copy of them, so the checks of a machine that is an arm one are the checks of this runner beside the ones
+`dotnet test` reaches.
 
 ## Why another test project
 
