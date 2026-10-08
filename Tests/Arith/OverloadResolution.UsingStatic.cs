@@ -53,5 +53,13 @@ public class TestOverloadResolutionUsingStatic
         csum(m);
         rsum(m);
         wrap(m, 0f, 1f);
+        cmin(m);
+        cmax(m);
+        rmin(m);
+        rmax(m);
+        cmin_native(m);
+        cmax_native(m);
+        rmin_native(m);
+        rmax_native(m);
     }
 }

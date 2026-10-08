@@ -67,7 +67,8 @@ public class TestOverloadResolution
     /// The sum of the columns of a matrix is the member of the type of a column of it and the sum of the rows of
     /// a row of it, so a call that does not name that type reaches the member of the vector type of the value,
     /// which the ex_ classes add to the math class and which the math_ex_ classes add to the value itself. The
-    /// first two calls are the ones the using static form of them pins as well, see
+    /// minimum of the 2 of them and the maximum of the 2 of them are the members of the other name and reach the
+    /// same members. The first two calls are the ones the using static form of them pins as well, see
     /// <see cref="TestOverloadResolutionUsingStatic.MatrixArguments"/>.
     /// </summary>
     public void MatrixArguments()
@@ -81,5 +82,29 @@ public class TestOverloadResolution
         m.csum();
         m.rsum();
         m.wrap(0f, 1f);
+        math.cmin(m);
+        math.cmax(m);
+        math.rmin(m);
+        math.rmax(m);
+        math.cmin<float3x2, float3>(m);
+        math.cmax<float3x2, float3>(m);
+        math.rmin<float3x2, float2>(m);
+        math.rmax<float3x2, float2>(m);
+        m.cmin();
+        m.cmax();
+        m.rmin();
+        m.rmax();
+        math.cmin_native(m);
+        math.cmax_native(m);
+        math.rmin_native(m);
+        math.rmax_native(m);
+        math.cmin_native<float3x2, float3>(m);
+        math.cmax_native<float3x2, float3>(m);
+        math.rmin_native<float3x2, float2>(m);
+        math.rmax_native<float3x2, float2>(m);
+        m.cmin_native();
+        m.cmax_native();
+        m.rmin_native();
+        m.rmax_native();
     }
 }

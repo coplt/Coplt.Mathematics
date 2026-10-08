@@ -104,7 +104,29 @@ public class TestOverloadResolutionCheck
         ("math.rsum<float3x2, float2>(m)", $"{Math}::rsum<{Float3x2}, {Float2}>({Float3x2})"),
         ("m.csum()", $"{MathExFloat3}::csum<{Float3x2}>({Float3x2})"),
         ("m.rsum()", $"{MathExFloat2}::rsum<{Float3x2}>({Float3x2})"),
-        ("m.wrap(0f, 1f)", $"{MathExFloat}::wrap<{Float3x2}>({Float3x2}, {Single}, {Single})"),
+        ("m.wrap(0f, 1f)", $"{MathExFloat}::wrap<{Float3x2}>({Float3x2}, {Single}, {Single})"), ("math.cmin(m)", $"{ExFloat3}::cmin<{Float3x2}>({Float3x2})"),
+        ("math.cmax(m)", $"{ExFloat3}::cmax<{Float3x2}>({Float3x2})"),
+        ("math.rmin(m)", $"{ExFloat2}::rmin<{Float3x2}>({Float3x2})"),
+        ("math.rmax(m)", $"{ExFloat2}::rmax<{Float3x2}>({Float3x2})"),
+        ("math.cmin<float3x2, float3>(m)", $"{Math}::cmin<{Float3x2}, {Float3}>({Float3x2})"),
+        ("math.cmax<float3x2, float3>(m)", $"{Math}::cmax<{Float3x2}, {Float3}>({Float3x2})"),
+        ("math.rmin<float3x2, float2>(m)", $"{Math}::rmin<{Float3x2}, {Float2}>({Float3x2})"),
+        ("math.rmax<float3x2, float2>(m)", $"{Math}::rmax<{Float3x2}, {Float2}>({Float3x2})"),
+        ("m.cmin()", $"{MathExFloat3}::cmin<{Float3x2}>({Float3x2})"),
+        ("m.cmax()", $"{MathExFloat3}::cmax<{Float3x2}>({Float3x2})"),
+        ("m.rmin()", $"{MathExFloat2}::rmin<{Float3x2}>({Float3x2})"),
+        ("m.rmax()", $"{MathExFloat2}::rmax<{Float3x2}>({Float3x2})"), ("math.cmin_native(m)", $"{ExFloat3}::cmin_native<{Float3x2}>({Float3x2})"),
+        ("math.cmax_native(m)", $"{ExFloat3}::cmax_native<{Float3x2}>({Float3x2})"),
+        ("math.rmin_native(m)", $"{ExFloat2}::rmin_native<{Float3x2}>({Float3x2})"),
+        ("math.rmax_native(m)", $"{ExFloat2}::rmax_native<{Float3x2}>({Float3x2})"),
+        ("math.cmin_native<float3x2, float3>(m)", $"{Math}::cmin_native<{Float3x2}, {Float3}>({Float3x2})"),
+        ("math.cmax_native<float3x2, float3>(m)", $"{Math}::cmax_native<{Float3x2}, {Float3}>({Float3x2})"),
+        ("math.rmin_native<float3x2, float2>(m)", $"{Math}::rmin_native<{Float3x2}, {Float2}>({Float3x2})"),
+        ("math.rmax_native<float3x2, float2>(m)", $"{Math}::rmax_native<{Float3x2}, {Float2}>({Float3x2})"),
+        ("m.cmin_native()", $"{MathExFloat3}::cmin_native<{Float3x2}>({Float3x2})"),
+        ("m.cmax_native()", $"{MathExFloat3}::cmax_native<{Float3x2}>({Float3x2})"),
+        ("m.rmin_native()", $"{MathExFloat2}::rmin_native<{Float3x2}>({Float3x2})"),
+        ("m.rmax_native()", $"{MathExFloat2}::rmax_native<{Float3x2}>({Float3x2})"),
     };
 
     /// <summary>
@@ -116,6 +138,8 @@ public class TestOverloadResolutionCheck
     [
         .. MatrixCalls[..2],
         ("wrap(m, 0f, 1f)", $"{ExFloat}::wrap<{Float3x2}>({Float3x2}, {Single}, {Single})"),
+        .. MatrixCalls[8..12],
+        .. MatrixCalls[20..24],
     ];
 
     [Test]
