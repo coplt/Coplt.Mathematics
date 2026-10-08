@@ -350,3 +350,6 @@ MigrationBackup/
 
 /.idea
 *.DotSettings
+
+# Personal pending list of the library, not part of it
+/todo.md

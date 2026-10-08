@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!--
+    The runner of the checks of Tests/Arith/MatrixTransposeArm.cs, of Tests/Arith/MoveUnpackArm.cs and
+    of
+    Tests/Core/Shuffle.cs on an arm machine, see README.md.
+    The tests of those files are a part of the Tests project as well, which the dotnet test of a
+    machine
+    that is an arm one runs by itself: this project only exists because the output of a project that
+    the test sdk drives cannot run the checks on its own, while the output of this one runs them where
+    it is started.
+    -->
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <OutputType>Exe</OutputType>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>14.0</LangVersion>
+        <AssemblyName>Tests.Arm</AssemblyName>
+        <RootNamespace>Tests.Arm</RootNamespace>
+        <IsPackable>false</IsPackable>
+        <InvariantGlobalization>true</InvariantGlobalization>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NUnit" Version="4.6.1" />
+        <PackageReference Include="NUnitLite" Version="4.6.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="..\Tests\Arith\MatrixTransposeArm.cs" Link="Arith\MatrixTransposeArm.cs" />
+        <Compile Include="..\Tests\Arith\MoveUnpackArm.cs" Link="Arith\MoveUnpackArm.cs" />
+        <Compile Include="..\Tests\Core\Shuffle.cs" Link="Core\Shuffle.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="NUnit.Framework" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Coplt.Mathematics.New\Coplt.Mathematics.New.csproj" />
+    </ItemGroup>
+
+</Project>
