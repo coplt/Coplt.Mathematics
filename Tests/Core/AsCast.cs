@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using Coplt.Mathematics;
 using Coplt.Mathematics.Generics;
+using half = System.Half;
 
 namespace Tests.Core;
 
@@ -18,7 +19,7 @@ public class TestAsCast
     /// The members of a group keep the bits of every one of them, so all of them are as wide as the vector.
     /// </summary>
     private static void CheckAs<T, F, I, U>()
-        where T : unmanaged, IVectorAsF<T, F>, IVectorAsI<T, I>, IVectorAsU<T, U>
+        where T : unmanaged, IAsF<T, F>, IAsI<T, I>, IAsU<T, U>
     {
         // the interface of every kind of the group marks the type of the member of that kind
         using (Assert.EnterMultipleScope())
@@ -150,6 +151,61 @@ public class TestAsCast
         {
             Assert.That((v.asi.x, v.asi.y), Is.EqualTo((0x3FF0000000000000L, 0x4000000000000000L)));
             Assert.That((v.asu.asf.x, v.asu.asf.y), Is.EqualTo((1d, 2d)));
+        }
+    }
+
+    [Test]
+    public void MatrixInterfaces()
+    {
+        // the interface of the kind of an as member marks a matrix the way it marks a vector, so the members of
+        // a group of matrices are as wide as every one of them
+        CheckAs<float2x2, float2x2, int2x2, uint2x2>();
+        CheckAs<float3x4, float3x4, int3x4, uint3x4>();
+        CheckAs<half2x3, half2x3, short2x3, ushort2x3>();
+        CheckAs<double4x4, double4x4, long4x4, ulong4x4>();
+    }
+
+    [Test]
+    public void Matrix()
+    {
+        // a matrix is laid out by columns, so the bits of its value are the bits of its columns: the value of
+        // the matrix of this check is [[1.5, -2.25], [3.75, 0.5]], whose first column is (1.5, 3.75) and whose
+        // second one is (-2.25, 0.5)
+        var m = new float2x2(1.5f, -2.25f, 3.75f, 0.5f);
+        var i = m.asi;
+        var u = m.asu;
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((i.c0.x, i.c0.y), Is.EqualTo((0x3FC00000, 0x40700000)), "the first column of the matrix");
+            Assert.That((i.c1.x, i.c1.y), Is.EqualTo((unchecked((int)0xC0100000), 0x3F000000)),
+                "the second column of it");
+            Assert.That((u.c0.x, u.c1.y), Is.EqualTo((0x3FC00000u, 0x3F000000u)), "2 of the components of it");
+            // the round trip through the member of any kind of the group keeps every component
+            Assert.That(i.asf, Is.EqualTo(m), "the round trip of the matrix");
+            Assert.That(u.asf, Is.EqualTo(m), "the round trip of the matrix");
+            // the member of the math class reaches the matrix through the interface of the kind of the target,
+            // which is the one of a value whose bits are reinterpreted, so a matrix reaches the member that a
+            // vector reaches: the type of the result cannot be inferred from the source by the compiler of
+            // today, so the member of the 2 generic parameters spells it out beside the member of the target
+            // alone, which the forwarding of the target reaches
+            Assert.That(math.asf<int2x2, float2x2>(i), Is.EqualTo(m), "the spelled out member of the math class");
+            Assert.That(math.asf(i), Is.EqualTo(m), "the member of the target alone");
+            Assert.That(math.asu<float2x2, uint2x2>(m), Is.EqualTo(u), "the member of the other kind");
+        }
+    }
+
+    [Test]
+    public void MatrixOfAHalf()
+    {
+        // the matrix of a component of 2 bytes reaches the members of its group as well
+        var m = new half2x2((half)1f, (half)2f, (half)3f, (half)4f);
+        var i = m.asi;
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That((i.c0.x, i.c1.y), Is.EqualTo((0x3C00, 0x4400)), "the bits of the half components");
+            Assert.That(i.asf, Is.EqualTo(m), "the round trip of the matrix of a half");
         }
     }
 

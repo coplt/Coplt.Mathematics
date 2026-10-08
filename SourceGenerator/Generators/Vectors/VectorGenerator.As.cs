@@ -26,8 +26,10 @@ public partial class VectorGenerator
 
     /// <summary>
     /// The interface of every kind of the as members, the kind of a component is the index of the interface.
+    /// The interface is the one of a value whose bits are reinterpreted, not of a vector alone: a matrix
+    /// reaches it beside a vector, see <see cref="MatrixAsGenerator"/>.
     /// </summary>
-    private static readonly string[] AsInterfaces = { "IVectorAsF", "IVectorAsI", "IVectorAsU" };
+    private static readonly string[] AsInterfaces = { "IAsF", "IAsI", "IAsU" };
 
     /// <summary>
     /// Returns the types the bits of a vector can be reinterpreted as, it can reach the vector of every component
