@@ -110,4 +110,40 @@ public class TestPlane
                 Is.EqualTo(new plane(0f, 1f, 0f, 2f).GetHashCode()), "the hash");
         }
     }
+
+    [Test]
+    public void RayCast()
+    {
+        using (Assert.EnterMultipleScope())
+        {
+            // the plane y + 2 = 0 reaches the ray of the origin (0, 0, 0) and the direction (0, -1, 0) at the
+            // distance two, which is the point (0, -2, 0) of the plane
+            var p = new plane(0f, 2f, 0f, 4f);
+            Assert.That(p.ray_cast(new ray(new float3(0f, 0f, 0f), new float3(0f, -1f, 0f)), out var distance),
+                Is.True, "the ray reaches the plane");
+            Assert.That(distance, Is.EqualTo(2f), "the distance along the ray");
+            Assert.That(p.ray_cast(new ray(new float3(0f, 0f, 0f), new float3(0f, -1f, 0f)), out _,
+                out var point), Is.True, "the ray reaches the plane");
+            Assert.That(point, Is.EqualTo(new float3(0f, -2f, 0f)), "the point of the plane that the ray reaches");
+
+            // a ray that points away from the plane does not reach it
+            Assert.That(p.ray_cast(new ray(new float3(0f, 0f, 0f), new float3(0f, 1f, 0f)), out var away),
+                Is.False, "the ray points away from the plane");
+            Assert.That(p.ray_cast(new ray(new float3(0f, 0f, 0f), new float3(0f, 1f, 0f)), out _,
+                out var awayPoint), Is.False, "the ray points away from the plane");
+            Assert.That(awayPoint, Is.EqualTo(float3.Zero), "the point of a ray that does not reach the plane");
+
+            // a ray that starts on the other side of the plane reaches it as well
+            Assert.That(p.ray_cast(new ray(new float3(1f, -5f, 2f), new float3(0f, 1f, 0f)), out var below),
+                Is.True, "the ray reaches the plane from the other side");
+            Assert.That(below, Is.EqualTo(3f), "the distance along the ray from the other side");
+            Assert.That(p.ray_cast(new ray(new float3(1f, -5f, 2f), new float3(0f, 1f, 0f)), out _,
+                out var belowPoint), Is.True, "the ray reaches the plane from the other side");
+            Assert.That(belowPoint, Is.EqualTo(new float3(1f, -2f, 2f)), "the point it reaches the plane at");
+
+            // a ray that is parallel to the plane does not reach it
+            Assert.That(p.ray_cast(new ray(new float3(0f, 0f, 0f), new float3(1f, 0f, 0f)), out _),
+                Is.False, "the ray is parallel to the plane");
+        }
+    }
 }

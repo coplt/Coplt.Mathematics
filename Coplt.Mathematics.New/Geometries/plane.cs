@@ -85,7 +85,9 @@ public struct plane : IEquatable<plane>
     /// <param name="coefficientD">The coefficient <c>D</c> of the plane equation</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public plane(float coefficientA, float coefficientB, float coefficientC, float coefficientD)
-        : this(normalize(new float4(coefficientA, coefficientB, coefficientC, coefficientD))) { }
+        : this(normalize(new float4(coefficientA, coefficientB, coefficientC, coefficientD)))
+    {
+    }
 
     /// <summary>
     /// Constructs the normalized plane out of the normal of the plane and the distance of it from the origin
@@ -97,7 +99,9 @@ public struct plane : IEquatable<plane>
     /// opposite direction</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public plane(float3 normal, float distance)
-        : this(normalize(new float4(normal, distance))) { }
+        : this(normalize(new float4(normal, distance)))
+    {
+    }
 
     /// <summary>
     /// Constructs the normalized plane out of the normal of the plane and a point that lies in it
@@ -107,7 +111,9 @@ public struct plane : IEquatable<plane>
     /// <param name="point_in_plane">A point that lies in the plane</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public plane(float3 normal, float3 point_in_plane)
-        : this(normal, -math.dot(normal, point_in_plane)) { }
+        : this(normal, -math.dot(normal, point_in_plane))
+    {
+    }
 
     /// <summary>
     /// Constructs the normalized plane out of two vectors that lie in the plane and a point that lies in it
@@ -118,7 +124,9 @@ public struct plane : IEquatable<plane>
     /// <param name="point_in_plane">A point that lies in the plane</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public plane(float3 vector1_in_plane, float3 vector2_in_plane, float3 point_in_plane)
-        : this(math.cross(vector1_in_plane, vector2_in_plane), point_in_plane) { }
+        : this(math.cross(vector1_in_plane, vector2_in_plane), point_in_plane)
+    {
+    }
 
     /// <summary>
     /// Builds the plane of a normal of the length of one and the distance of the plane from the origin without
@@ -199,6 +207,53 @@ public struct plane : IEquatable<plane>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly float3 closest_point(float3 point)
         => point - normal * (math.dot(normal, point) + distance);
+
+    /// <summary>
+    /// Returns whether the ray reaches the plane and stores the distance along the ray of the point that the ray
+    /// reaches the plane at into <paramref name="distance"/>
+    /// <para>The ray reaches the plane where the value of the plane at a point of the ray is the zero of the kind,
+    /// which is the point whose distance along the ray is the distance of the origin of the ray from the plane
+    /// negated and divided by the dot product of the normal of the plane with the direction of the ray. The member
+    /// answers the zero of the kind of that division where the direction of the ray does not cross the plane,
+    /// which is the case that the dot product of the normal of the plane with the direction of the ray is the zero
+    /// of the kind within an epsilon of it, and it answers whether the distance of that point along the ray is not
+    /// negative.</para>
+    /// <para>The plane must be normalized for the distance to be the one of the space from the origin of the
+    /// ray.</para>
+    /// </summary>
+    /// <param name="ray">The ray</param>
+    /// <param name="distance">Receives the distance along the ray of the point that it reaches the plane at</param>
+    /// <returns><c>true</c> where the ray reaches the plane and <c>false</c> otherwise</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly bool ray_cast(ray ray, out float distance)
+    {
+        var denominator = math.dot(normal, ray.direction);
+        distance = -distance_to_point(ray.origin) / denominator;
+        return math.abs(denominator) > 0.0001f && distance >= 0f;
+    }
+
+    /// <summary>
+    /// Returns whether the ray reaches the plane and stores the distance along the ray of the point that the ray
+    /// reaches the plane at into <paramref name="distance"/> and that point into <paramref name="point"/>
+    /// <para>The point of the plane that the ray reaches is the point of the ray at the distance of the first
+    /// member, which is the zero of the kind where the ray does not reach the plane.</para>
+    /// <para>The plane must be normalized for the distance to be the one of the space from the origin of the
+    /// ray.</para>
+    /// </summary>
+    /// <param name="ray">The ray</param>
+    /// <param name="distance">Receives the distance along the ray of the point that it reaches the plane at</param>
+    /// <param name="point">Receives the point of the plane that the ray reaches, which is the zero of the kind
+    /// where the ray does not reach the plane</param>
+    /// <returns><c>true</c> where the ray reaches the plane and <c>false</c> otherwise</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly bool ray_cast(ray ray, out float distance, out float3 point)
+    {
+        var denominator = math.dot(normal, ray.direction);
+        distance = -distance_to_point(ray.origin) / denominator;
+        var intersects = math.abs(denominator) > 0.0001f && distance >= 0f;
+        point = ray.point_at(distance) * (intersects ? 1f : 0f);
+        return intersects;
+    }
 
     /// <inheritdoc/>
     public readonly bool Equals(plane other) => normal_and_distance.Equals(other.normal_and_distance);
