@@ -3,9 +3,13 @@ using System.Numerics;
 namespace Coplt.Mathematics;
 
 /// <summary>
-/// A color whose red, green, blue and alpha components are floating point values
-/// <para>The components follow the convention of red, green and blue color channels: zero is the smallest value
-/// of a channel and one is the largest one. The alpha component is the opacity of the color.</para>
+/// A color of the red, green, blue and alpha channels, which holds the value of every one of the four channels
+/// <para>A color is the value of the three channels that a display mixes beside the opacity of the color, which is
+/// the value of the alpha channel of it: the zero of the kind is a channel that holds nothing and the one of the
+/// kind is a channel that holds the whole of its value, so a color whose components are within the range of the
+/// zero of the kind and the one of it is a color that a display holds as it is.</para>
+/// <para>A member that reads a color does not clamp the components of it, so a computation that leaves that range
+/// reaches <c>math.saturate</c> for the color that a display holds.</para>
 /// </summary>
 [Serializable]
 public struct Color :
@@ -14,11 +18,11 @@ public struct Color :
     IComparisonOperators<Color, Color, float4>
 {
     /// <summary>
-    /// The red, green, blue and alpha components, in that order
+    /// The value of the red, green, blue and alpha channels of the color, in that order
     /// </summary>
     public float4 rgba;
 
-    /// <summary>The red component</summary>
+    /// <summary>The value of the red channel, which is the first component of <see cref="rgba"/></summary>
     public float r
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -27,7 +31,7 @@ public struct Color :
         set => rgba.r = value;
     }
 
-    /// <summary>The green component</summary>
+    /// <summary>The value of the green channel, which is the second component of <see cref="rgba"/></summary>
     public float g
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -36,7 +40,7 @@ public struct Color :
         set => rgba.g = value;
     }
 
-    /// <summary>The blue component</summary>
+    /// <summary>The value of the blue channel, which is the third component of <see cref="rgba"/></summary>
     public float b
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -45,7 +49,7 @@ public struct Color :
         set => rgba.b = value;
     }
 
-    /// <summary>The alpha component</summary>
+    /// <summary>The value of the alpha channel, which is the fourth component of <see cref="rgba"/></summary>
     public float a
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -55,38 +59,50 @@ public struct Color :
     }
 
     /// <summary>
-    /// Creates a color from its red, green, blue and alpha components
+    /// Constructs the color of the four components of the value
     /// </summary>
-    /// <param name="rgba">The red, green, blue and alpha components, in that order</param>
+    /// <param name="rgba">The value of the red, green, blue and alpha channels of the color, in that order</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Color(float4 rgba) => this.rgba = rgba;
 
     /// <summary>
-    /// Creates a color from its red, green and blue components and an alpha component
+    /// Constructs the color of the three components of the channels of it that the value holds and the opacity of
+    /// it
     /// </summary>
-    /// <param name="rgb">The red, green and blue components, in that order</param>
-    /// <param name="a">The alpha component, whose default value is one</param>
+    /// <param name="rgb">The value of the red, green and blue channels of the color, in that order</param>
+    /// <param name="a">The value of the alpha channel, which is the one of the kind where the caller does not name
+    /// it</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public Color(float3 rgb, float a = 1f) : this(new float4(rgb, a)) { }
+    public Color(float3 rgb, float a = 1f) : this(new float4(rgb, a))
+    {
+    }
 
     /// <summary>
-    /// Creates a color from its red, green, blue and alpha components
+    /// Constructs the color of the four values of the channels of it
     /// </summary>
-    /// <param name="r">The red component</param>
-    /// <param name="g">The green component</param>
-    /// <param name="b">The blue component</param>
-    /// <param name="a">The alpha component, whose default value is one</param>
+    /// <param name="r">The value of the red channel</param>
+    /// <param name="g">The value of the green channel</param>
+    /// <param name="b">The value of the blue channel</param>
+    /// <param name="a">The value of the alpha channel, which is the one of the kind where the caller does not name
+    /// it</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public Color(float r, float g, float b, float a = 1f) : this(new float4(r, g, b, a)) { }
+    public Color(float r, float g, float b, float a = 1f) : this(new float4(r, g, b, a))
+    {
+    }
 
     /// <summary>
-    /// Creates a color from the components of a byte color, where 255 is the full value of a channel
+    /// Returns the color of the four components of a byte color, which is the color whose every component is the
+    /// component of the byte color at the index of it divided by <c>255</c>
+    /// <para>A byte color holds the value of a channel in a byte, whose <c>255</c> is the whole of the value of the
+    /// channel and whose zero is the channel that holds nothing, so the color of a byte color is a color whose
+    /// components are within the range of the zero of the kind and the one of it.</para>
     /// </summary>
-    /// <param name="r">The red component</param>
-    /// <param name="g">The green component</param>
-    /// <param name="b">The blue component</param>
-    /// <param name="a">The alpha component, whose default value is 255</param>
-    /// <returns>The color whose components are the components of the byte color divided by 255</returns>
+    /// <param name="r">The value of the red channel, a byte</param>
+    /// <param name="g">The value of the green channel, a byte</param>
+    /// <param name="b">The value of the blue channel, a byte</param>
+    /// <param name="a">The value of the alpha channel, a byte, which is <c>255</c> where the caller does not name
+    /// it</param>
+    /// <returns>The color of the components of the byte color divided by <c>255</c></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color FromByte(byte r, byte g, byte b, byte a = 255)
         => new(new float4(r, g, b, a) * (1f / 255f));
@@ -94,43 +110,50 @@ public struct Color :
     #region Hsv
 
     /// <summary>
-    /// Creates a color from a hue, saturation, value and alpha
-    /// <para>The hue is a fraction of a full turn: zero is red, one third is green, two thirds is blue and one is
-    /// red again. The saturation and value are normally in the range of zero and one.</para>
+    /// Returns the color of a hue, a saturation and a value of the channels of it, beside the opacity of it
+    /// <para>The hue is a fraction of a full turn of the circle of the hues: the zero of the kind is the red hue,
+    /// the third of the kind is the green one, the two thirds of it are the blue one and the one of the kind is
+    /// the red one again. The member turns a hue that is not within the range of the zero of the kind and the one
+    /// of it around the circle, so the hue of a fraction that the whole turns of the value leave out is the one of
+    /// the fraction that it keeps.</para>
+    /// <para>The saturation is the fraction of the hue that the color holds: the zero of the kind is the gray of
+    /// the value of the color and the one of the kind is the hue itself. The value is the largest component of the
+    /// color, so the zero of the kind is the black color.</para>
     /// </summary>
-    /// <param name="h">The hue</param>
-    /// <param name="s">The saturation</param>
-    /// <param name="v">The value</param>
-    /// <param name="a">The alpha component</param>
-    /// <returns>The color</returns>
+    /// <param name="h">The hue, a fraction of a full turn of the circle of the hues</param>
+    /// <param name="s">The saturation, the fraction of the hue that the color holds</param>
+    /// <param name="v">The value, the largest component of the color</param>
+    /// <param name="a">The value of the alpha channel, which is the one of the kind where the caller does not name
+    /// it</param>
+    /// <returns>The color of the hue, the saturation and the value</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color Hsv(float h, float s, float v, float a = 1f)
         => new(HsvToRgb(h, s, v), a);
 
-    /// <summary>
-    /// Creates a color from a hue, saturation, value and alpha
-    /// </summary>
-    /// <param name="hsv">The hue, saturation and value components, in that order</param>
-    /// <param name="a">The alpha component</param>
-    /// <returns>The color</returns>
+    /// <inheritdoc cref="Hsv(float, float, float, float)"/>
+    /// <param name="hsv">The hue, the saturation and the value of the color, in that order</param>
+    /// <param name="a">The value of the alpha channel, which is the one of the kind where the caller does not name
+    /// it</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color Hsv(float3 hsv, float a = 1f)
         => new(HsvToRgb(hsv.x, hsv.y, hsv.z), a);
 
-    /// <summary>
-    /// Creates a color from a hue, saturation, value and alpha
-    /// </summary>
-    /// <param name="hsva">The hue, saturation, value and alpha components, in that order</param>
-    /// <returns>The color</returns>
+    /// <inheritdoc cref="Hsv(float, float, float, float)"/>
+    /// <param name="hsva">The hue, the saturation, the value and the value of the alpha channel, in that
+    /// order</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color Hsv(float4 hsva)
         => new(HsvToRgb(hsva.x, hsva.y, hsva.z), hsva.w);
 
     private static float3 HsvToRgb(float h, float s, float v)
     {
-        // A hue is a fraction of a full turn; wrapping it keeps the conversion valid for values outside the
-        // conventional range of zero and one as well.
+        // the hue is a fraction of a full turn, which the member turns around the circle of the hues so that a
+        // value outside of the range of the zero of the kind and the one of it reaches the hue of the fraction
+        // that the whole turns of it leave out
         h = math.frac(h);
+        // the six sectors of the circle of the hues hold the red hue, the yellow one, the green one, the cyan
+        // one, the blue one and the magenta one in that order, and the fraction within a sector blends the two
+        // hues that meet in the middle of it
         var sector_value = h * 6f;
         var sector = Math.Min(5, (int)MathF.Floor(sector_value));
         var f = sector_value - sector;
@@ -150,8 +173,12 @@ public struct Color :
     }
 
     /// <summary>
-    /// The hue, saturation, value and alpha components of the color, in that order
-    /// <para>The hue is a fraction of a full turn. A color without saturation has a hue of zero.</para>
+    /// The hue, the saturation, the value and the value of the alpha channel of the color, in that order
+    /// <para>The value of the color is the largest of its three components, the saturation is the difference of
+    /// the largest component and the smallest one divided by the largest one, and the hue is the position of the
+    /// largest component within the circle of the hues, which is a fraction of a full turn of it.</para>
+    /// <para>A color whose three components are the same value has a saturation of the zero of the kind and a hue
+    /// of it as well, so the hue of a gray color is not a hue of the circle of the hues.</para>
     /// </summary>
     public readonly float4 ToHsv
     {
@@ -183,135 +210,180 @@ public struct Color :
 
     #region Predefined
 
+    /// <summary>The color that holds nothing of any channel, which is <c>(0, 0, 0, 0)</c></summary>
     public static readonly Color Transparent = new(float4.Zero);
+    /// <summary>The black color, which is <c>(0, 0, 0)</c> of the full opacity</summary>
     public static readonly Color Black = new(0f, 0f, 0f);
+    /// <summary>The gray color of the value <c>0.75</c>, which is <c>(0.75, 0.75, 0.75)</c> of the full opacity</summary>
     public static readonly Color Silver = new(0.75f, 0.75f, 0.75f);
+    /// <summary>The gray color of the value <c>0.5</c>, which is <c>(0.5, 0.5, 0.5)</c> of the full opacity</summary>
     public static readonly Color Gray = new(0.5f, 0.5f, 0.5f);
+    /// <summary>The white color, which is <c>(1, 1, 1)</c> of the full opacity</summary>
     public static readonly Color White = new(float4.One);
+    /// <summary>The dark red color, which is <c>(0.5, 0, 0)</c> of the full opacity</summary>
     public static readonly Color Maroon = new(0.5f, 0f, 0f);
+    /// <summary>The red color, which is <c>(1, 0, 0)</c> of the full opacity</summary>
     public static readonly Color Red = new(1f, 0f, 0f);
+    /// <summary>The dark magenta color, which is <c>(0.5, 0, 0.5)</c> of the full opacity</summary>
     public static readonly Color Purple = new(0.5f, 0f, 0.5f);
+    /// <summary>The magenta color, which is <c>(1, 0, 1)</c> of the full opacity</summary>
     public static readonly Color Fuchsia = new(1f, 0f, 1f);
+    /// <summary>The dark green color, which is <c>(0, 0.5, 0)</c> of the full opacity</summary>
     public static readonly Color Green = new(0f, 0.5f, 0f);
+    /// <summary>The green color, which is <c>(0, 1, 0)</c> of the full opacity</summary>
     public static readonly Color Lime = new(0f, 1f, 0f);
+    /// <summary>The dark yellow color, which is <c>(0.5, 0.5, 0)</c> of the full opacity</summary>
     public static readonly Color Olive = new(0.5f, 0.5f, 0f);
+    /// <summary>The yellow color, which is <c>(1, 1, 0)</c> of the full opacity</summary>
     public static readonly Color Yellow = new(1f, 1f, 0f);
+    /// <summary>The dark blue color, which is <c>(0, 0, 0.5)</c> of the full opacity</summary>
     public static readonly Color Navy = new(0f, 0f, 0.5f);
+    /// <summary>The blue color, which is <c>(0, 0, 1)</c> of the full opacity</summary>
     public static readonly Color Blue = new(0f, 0f, 1f);
+    /// <summary>The dark cyan color, which is <c>(0, 0.5, 0.5)</c> of the full opacity</summary>
     public static readonly Color Teal = new(0f, 0.5f, 0.5f);
+    /// <summary>The cyan color, which is <c>(0, 1, 1)</c> of the full opacity</summary>
     public static readonly Color Aqua = new(0f, 1f, 1f);
 
     #endregion
 
     #region Operators
 
-    /// <summary>Converts a vector to the color of its components</summary>
+    /// <summary>Returns the color of the four components of the vector</summary>
+    /// <param name="color">The value of the red, green, blue and alpha channels, in that order</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator Color(float4 color) => new(color);
 
-    /// <summary>Converts a color to the vector of its components</summary>
+    /// <summary>Returns the vector of the four components of the color</summary>
+    /// <param name="color">The color</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator float4(Color color) => color.rgba;
 
+    /// <summary>Returns the color itself</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator +(Color a) => a;
 
+    /// <summary>Returns the color whose every component is the component of the value at the index of it negated</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator -(Color a) => new(-a.rgba);
 
+    /// <summary>Returns the color whose every component is the sum of the components of the two values at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator +(Color a, Color b) => new(a.rgba + b.rgba);
 
+    /// <summary>Returns the color whose every component is the component of the value at the index of it beside the value of the other one, which is the same for every channel</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator +(Color a, float b) => new(a.rgba + new float4(b));
 
+    /// <summary>Returns the color whose every component is the value of the first operand beside the component of the second one at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator +(float a, Color b) => new(new float4(a) + b.rgba);
 
+    /// <summary>Returns the color whose every component is the difference of the components of the two values at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator -(Color a, Color b) => new(a.rgba - b.rgba);
 
+    /// <summary>Returns the color whose every component is the component of the value at the index of it less the value of the other one</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator -(Color a, float b) => new(a.rgba - new float4(b));
 
+    /// <summary>Returns the color whose every component is the value of the first operand less the component of the second one at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator -(float a, Color b) => new(new float4(a) - b.rgba);
 
+    /// <summary>Returns the color whose every component is the product of the components of the two values at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator *(Color a, Color b) => new(a.rgba * b.rgba);
 
+    /// <summary>Returns the color whose every component is the component of the value at the index of it times the value of the other one</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator *(Color a, float b) => new(a.rgba * b);
 
+    /// <summary>Returns the color whose every component is the value of the first operand times the component of the second one at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator *(float a, Color b) => new(a * b.rgba);
 
+    /// <summary>Returns the color whose every component is the quotient of the components of the two values at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator /(Color a, Color b) => new(a.rgba / b.rgba);
 
+    /// <summary>Returns the color whose every component is the component of the value at the index of it divided by the value of the other one</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator /(Color a, float b) => new(a.rgba / new float4(b));
 
+    /// <summary>Returns the color whose every component is the value of the first operand divided by the component of the second one at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator /(float a, Color b) => new(new float4(a) / b.rgba);
 
+    /// <summary>Returns the color whose every component is the remainder of the components of the two values at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator %(Color a, Color b) => new(a.rgba % b.rgba);
 
+    /// <summary>Returns the color whose every component is the remainder of the component of the value at the index of it and the value of the other one</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator %(Color a, float b) => new(a.rgba % new float4(b));
 
+    /// <summary>Returns the color whose every component is the remainder of the value of the first operand and the component of the second one at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator %(float a, Color b) => new(new float4(a) % b.rgba);
 
+    /// <summary>Returns the color whose every component is the bits of the component of the value at the index of it complemented</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator ~(Color a) => new(~a.rgba);
 
+    /// <summary>Returns the color whose every component is the conjunction of the bits of the components of the two values at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator &(Color a, Color b) => new(a.rgba & b.rgba);
 
+    /// <summary>Returns the color whose every component is the disjunction of the bits of the components of the two values at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator |(Color a, Color b) => new(a.rgba | b.rgba);
 
+    /// <summary>Returns the color whose every component is the exclusive disjunction of the bits of the components of the two values at the index of it</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator ^(Color a, Color b) => new(a.rgba ^ b.rgba);
 
+    /// <summary>Returns the color whose every component is the bits of the component of the value at the index of it shifted to the left by the number of the bits that the other operand names</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color operator <<(Color a, int b) => new(a.rgba << b);
 
+    /// <summary>Returns the color whose every component is the bits of the component of the value at the index of it shifted to the right by the number of the bits that the other operand names</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Color operator >>(Color a, int b) => new(a.rgba >> b);
+    public static Color operator >> (Color a, int b) => new(a.rgba >> b);
 
+    /// <summary>Returns the color whose every component is the bits of the component of the value at the index of it shifted to the right by the number of the bits that the other operand names, which fills the bits that it leaves with the zero of the kind</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Color operator >>>(Color a, int b) => new(a.rgba >>> b);
+    public static Color operator >>> (Color a, int b) => new(a.rgba >>> b);
 
-    /// <summary>Returns a component wise mask of the equality of the two colors</summary>
+    /// <summary>Returns the mask of the components of the two colors that are equal, which is the all bits set value of the kind in a component that holds and the zero of the kind in a component that does not</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float4 operator ==(Color a, Color b) => a.rgba == b.rgba;
 
-    /// <summary>Returns a component wise mask of the inequality of the two colors</summary>
+    /// <summary>Returns the mask of the components of the two colors that are not equal, which is the all bits set value of the kind in a component that holds and the zero of the kind in a component that does not</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float4 operator !=(Color a, Color b) => a.rgba != b.rgba;
 
-    /// <summary>Returns a component wise mask of the greater comparison of the two colors</summary>
+    /// <summary>Returns the mask of the components of the first value that are greater than the components of the second one at the index of them</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float4 operator >(Color a, Color b) => a.rgba > b.rgba;
 
-    /// <summary>Returns a component wise mask of the less comparison of the two colors</summary>
+    /// <summary>Returns the mask of the components of the first value that are less than the components of the second one at the index of them</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float4 operator <(Color a, Color b) => a.rgba < b.rgba;
 
-    /// <summary>Returns a component wise mask of the greater or equal comparison of the two colors</summary>
+    /// <summary>Returns the mask of the components of the first value that are greater than the components of the second one at the index of them or equal to them</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float4 operator >=(Color a, Color b) => a.rgba >= b.rgba;
 
-    /// <summary>Returns a component wise mask of the less or equal comparison of the two colors</summary>
+    /// <summary>Returns the mask of the components of the first value that are less than the components of the second one at the index of them or equal to them</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float4 operator <=(Color a, Color b) => a.rgba <= b.rgba;
 
+    /// <inheritdoc/>
     static bool IEqualityOperators<Color, Color, bool>.operator ==(Color left, Color right)
         => left.Equals(right);
 
+    /// <inheritdoc/>
     static bool IEqualityOperators<Color, Color, bool>.operator !=(Color left, Color right)
         => !left.Equals(right);
 
@@ -333,6 +405,9 @@ public struct Color :
 
     #endregion
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Returns the string of the four components of the color, which is <c>Color(r, g, b, a)</c> where the four of
+    /// them are the components of the color in the order of the channels
+    /// </summary>
     public readonly override string ToString() => $"Color({r}, {g}, {b}, {a})";
 }
