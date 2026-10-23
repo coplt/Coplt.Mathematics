@@ -1,0 +1,84 @@
+using Coplt.Mathematics.Algebras;
+using Coplt.Mathematics.Algebras.Generics;
+using Coplt.Mathematics.Implements;
+
+namespace Coplt.Mathematics
+{
+    public static partial class math
+    {
+        /// <summary>
+        /// Returns the dot product of the two vectors, which is the sum of the products of the components of
+        /// them
+        /// </summary>
+        /// <param name="a">The first vector</param>
+        /// <param name="b">The second vector</param>
+        /// <typeparam name="T">The type of the vectors</typeparam>
+        /// <typeparam name="TScalar">The type of a single component</typeparam>
+        /// <returns>The sum of the products of the components</returns>
+        // the type of a single component is only a part of the result of the member, so the compiler cannot
+        // infer it from the arguments and a call that does not name it reaches the member of the scalar type
+        // of the vector instead, which the generator emits for every scalar type: the attribute marks this
+        // member for it
+        [ScalarExtension]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TScalar dot<T, TScalar>(T a, T b)
+            where T : unmanaged, IAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
+            where TScalar : unmanaged, IBinaryNumber<TScalar>
+            => T.Scalar<impl_dot>(a, b);
+    }
+
+    public static partial class math_ex
+    {
+        /// <inheritdoc cref="math.dot{T, TScalar}"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TScalar dot<T, TScalar>(this T a, T b)
+            where T : unmanaged, IAlgebraDispatch<T, TScalar>, INumberVector<T, TScalar>
+            where TScalar : unmanaged, IBinaryNumber<TScalar>
+            => math.dot<T, TScalar>(a, b);
+    }
+}
+
+namespace Coplt.Mathematics.Implements
+{
+    /// <summary>
+    /// The value of the sum of the products of the components of two values
+    /// <para>The values of the vectors that keep them in a register reach the member of the visitor that matches
+    /// the width of the register, the values of every other vector reach the member of the count of its
+    /// components and the values of a matrix reach the member that combines the sum of the products of every
+    /// column of it</para>
+    /// </summary>
+    internal struct impl_dot : IAlgebraVisitor_T_T_S<impl_dot>
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_S_S_S<impl_dot>.Scalar_Number<TScalar>(TScalar a, TScalar b)
+            => a * b;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraCombinator_S_S<impl_dot>.Combine_Number<TScalar>(TScalar a, TScalar b)
+            => a + b;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(
+            Vector128<TScalar> a, Vector128<TScalar> b
+        ) => Vector128.Dot(a, b);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Simd_Number<TVector, TScalar>(
+            Vector256<TScalar> a, Vector256<TScalar> b
+        ) => Vector256.Dot(a, b);
+
+        // a vector without a register hands no register over, so the sum is the one of the components of it
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector2_Number<TVector, TScalar>(TVector a, TVector b)
+            => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector3_Number<TVector, TScalar>(TVector a, TVector b)
+            => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b) + TVector.get_z(a) * TVector.get_z(b);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TScalar IAlgebraVisitor_T_T_S<impl_dot>.Vector4_Number<TVector, TScalar>(TVector a, TVector b)
+            => TVector.get_x(a) * TVector.get_x(b) + TVector.get_y(a) * TVector.get_y(b) +
+               TVector.get_z(a) * TVector.get_z(b) + TVector.get_w(a) * TVector.get_w(b);
+    }
+}
